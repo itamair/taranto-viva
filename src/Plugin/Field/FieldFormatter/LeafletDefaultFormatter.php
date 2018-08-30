@@ -10,8 +10,6 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Leaflet\LeafletService;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
-use Drupal\Core\Utility\Token;
-use Drupal\core\Render\Renderer;
 
 /**
  * Plugin implementation of the 'leaflet_default' formatter.
@@ -36,20 +34,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
   protected $leafletService;
 
   /**
-   * The token service.
-   *
-   * @var \Drupal\core\Utility\Token
-   */
-  protected $token;
-
-  /**
-   * The renderer service.
-   *
-   * @var \Drupal\core\Render\Renderer
-   */
-  protected $renderer;
-
-  /**
    * LeafletDefaultFormatter constructor.
    *
    * @param string $plugin_id
@@ -68,10 +52,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    *   Any third party settings settings.
    * @param \Drupal\Leaflet\LeafletService $leaflet_service
    *   The Leaflet service.
-   * @param \Drupal\core\Utility\Token $token
-   *   The token service.
-   * @param \Drupal\core\Render\Renderer $renderer
-   *   The renderer service.
    */
   public function __construct(
     $plugin_id,
@@ -81,14 +61,10 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $label,
     $view_mode,
     array $third_party_settings,
-    LeafletService $leaflet_service,
-    Token $token,
-    Renderer $renderer
+    LeafletService $leaflet_service
   ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
     $this->leafletService = $leaflet_service;
-    $this->token = $token;
-    $this->renderer = $renderer;
   }
 
   /**
@@ -103,9 +79,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       $configuration['label'],
       $configuration['view_mode'],
       $configuration['third_party_settings'],
-      $container->get('leaflet.service'),
-      $container->get('token'),
-      $container->get('renderer')
+      $container->get('leaflet.service')
     );
   }
 
@@ -119,8 +93,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       'height' => 400,
       'hide_empty_map' => 0,
       'popup' => FALSE,
-      'popup_title' => '',
-      'popup_text' => '',
       'map_position' => [
         'force' => 0,
         'center' => [
@@ -152,7 +124,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       ->getCardinality();
 
     $elements = parent::settingsForm($form, $form_state);
-    $field_name = $this->fieldDefinition->getName();
 
     if ($field_cardinality !== 1) {
       $elements['multiple_map'] = [
@@ -177,30 +148,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       '#default_value' => $this->getSetting('popup'),
     ];
 
-    $elements['popup_title'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Popup title'),
-      '#description' => $this->t('The title is a tool tip that will be displayed when you click on the map marker.'),
-      '#default_value' => $this->getSetting('popup_title'),
-      '#states' => [
-        'visible' => [
-          'input[name="fields[' . $field_name . '][settings_edit_form][settings][popup]"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $elements['popup_text'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Popup text'),
-      '#description' => $this->t('This text will be displayed as a complementary text under the title. Leave blank if you do not wish to display it. See "REPLACEMENT PATTERNS" below for available replacements.'),
-      '#default_value' => $this->getSetting('popup_text'),
-      '#states' => [
-        'visible' => [
-          'input[name="fields[' . $field_name . '][settings_edit_form][settings][popup]"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
     // Generate the Leaflet Map General Settings.
     $this->generateMapGeneralSettings($elements, $this->getSettings());
 
@@ -212,18 +159,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $icon = $this->getSetting('icon');
     $elements['icon'] = $this->generateIconFormElement($icon);
 
-    $elements['replacement_patterns'] = [
-      '#type' => 'details',
-      '#title' => 'Replacement patterns',
-      '#description' => $this->t('The following replacement patterns are available for the "Popup title" and the "Popup text" settings.'),
-    ];
-    // Add the token UI from the token module if present.
-    $elements['replacement_patterns']['token_help'] = [
-      '#theme' => 'token_tree_link',
-      '#prefix' => $this->t('<h4>Tokens:</h4>'),
-      '#token_types' => [$this->fieldDefinition->getTargetEntityTypeId()],
-    ];
-
     return $elements;
   }
 
@@ -234,12 +169,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $summary = [];
     $summary[] = $this->t('Leaflet Map: @map', ['@map' => $this->getSetting('leaflet_map')]);
     $summary[] = $this->t('Map height: @height px', ['@height' => $this->getSetting('height')]);
-    if ($this->getSetting('popup_title')) {
-      $summary[] = $this->t('Popup title: @title', ['@title' => $this->getSetting('popup_title')]);
-    }
-    if ($this->getSetting('popup_text')) {
-      $summary[] = $this->t('Popup text: @text', ['@text' => $this->getSetting('popup_text')]);
-    }
     return $summary;
   }
 
@@ -277,35 +206,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       $points = $this->leafletService->leafletProcessGeofield($item->value);
       $feature = $points[0];
 
-      // Eventually set the popup content.
+      // Eventually set the popup content to the entity title.
       if ($settings['popup']) {
-        // Get token context.
-        $token_context = [
-           'field' => $items,
-           $this->fieldDefinition->getTargetEntityTypeId() => $items->getEntity(),
-         ];
-        // Construct the renderable array for popup title / text.
-        $build = [];
-        if ($this->getSetting('popup_title')) {
-          $title = $this->token->replace($this->getSetting('popup_title'), $token_context);
-          $build[] = [
-            '#prefix' => '<div class="popup-title">',
-            '#markup' => $title,
-            '#suffix' => '</div>',
-          ];
-        }
-        if ($this->getSetting('popup_text')) {
-          $text = $this->token->replace($this->getSetting('popup_text'), $token_context);
-          $build[] = [
-            '#prefix' => '<div class="popup-text">',
-            '#markup' => $text,
-            '#suffix' => '</div>',
-          ];
-        }
-        // We need a string for using it inside the popup.
-        $build = $this->renderer->render($build);
-        $popup = ($build ) ? $build : $entity->label();
-        $features['popup'] = $popup;
+        $feature['popup'] = $entity->label();
       }
 
       // Eventually set the custom icon.
