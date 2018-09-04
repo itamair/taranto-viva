@@ -41,14 +41,14 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *
    * @var string
    */
-  private $entityType;
+  protected $entityType;
 
   /**
    * The Entity Info service property.
    *
    * @var string
    */
-  private $entityInfo;
+  protected $entityInfo;
 
   /**
    * Does the style plugin for itself support to add fields to it's output.
