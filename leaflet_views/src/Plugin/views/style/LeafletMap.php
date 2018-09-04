@@ -25,14 +25,12 @@ use Drupal\leaflet\LeafletSettingsElementsTrait;
  * Attributes set below end up in the $this->definition[] array.
  *
  * @ViewsStyle(
- *   id = "leafet_map",
+ *   id = "leaflet_map",
  *   title = @Translation("Leaflet Map"),
  *   help = @Translation("Displays a View as a Leaflet map."),
  *   display_types = {"normal"},
  *   theme = "leaflet-map"
  * )
- *
- * @deprecated Should be removed in favor of other plugins.
  */
 class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterface {
 
