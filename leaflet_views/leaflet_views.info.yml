@@ -4,5 +4,5 @@ description: Views integration for the Leaflet module.
 core: 8.x
 package: Views
 dependencies:
-  - leaflet
-  - views
+  - leaflet:leaflet
+  - drupal:views
