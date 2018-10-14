@@ -93,6 +93,13 @@ trait LeafletSettingsElementsTrait {
       ],
     ];
 
+    $elements['disable_wheel'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Disable zoom using mouse wheel'),
+      '#description' => $this->t('If enabled, the mouse wheel won\'t change the zoom level of the map.'),
+      '#default_value' => $settings['disable_wheel'],
+      '#return_value' => 1,
+    ];
   }
 
   /**
@@ -393,6 +400,7 @@ trait LeafletSettingsElementsTrait {
       'lat' => floatval($options['map_position']['center']['lat']),
       'lng' => floatval($options['map_position']['center']['lon']),
     ] : NULL;
+    $map['settings']['scrollWheelZoom'] = isset($options['disable_wheel']) ? !(bool) $options['disable_wheel'] : FALSE;
   }
 
   /**

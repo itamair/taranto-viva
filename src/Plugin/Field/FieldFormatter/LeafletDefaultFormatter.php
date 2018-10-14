@@ -165,6 +165,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         'shadowAnchor' => ['x' => NULL, 'y' => NULL],
         'popupAnchor' => ['x' => NULL, 'y' => NULL],
       ],
+      'disable_wheel' => 0,
     ] + parent::defaultSettings();
   }
 

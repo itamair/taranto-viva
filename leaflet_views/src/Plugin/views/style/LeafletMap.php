@@ -428,6 +428,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       ],
     ];
     $options['icon'] = ['default' => []];
+    $options['disable_wheel'] = ['default' => 0];
     return $options;
   }
 
