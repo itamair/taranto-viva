@@ -13,6 +13,8 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\views\Entity\Render\EntityTranslationRenderTrait;
 use Drupal\views\ViewsData;
 use Drupal\Leaflet\LeafletService;
 
@@ -27,6 +29,7 @@ use Drupal\Leaflet\LeafletService;
  * )
  */
 class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInterface {
+  use EntityTranslationRenderTrait;
 
   /**
    * Overrides Drupal\views\Plugin\Plugin::$usesOptions.
@@ -50,11 +53,25 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
   protected $entityTypeId;
 
   /**
+   * Contains the entity type of this row plugin instance.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeInterface
+   */
+  protected $entityType;
+
+  /**
    * The Entity type manager service.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  public $entityManager;
+
+  /**
+   * The language manager.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
 
   /**
    * The Entity Field manager service property.
@@ -102,6 +119,8 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager.
+   * @param LanguageManagerInterface $language_manager
+   *   The language manager.
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The entity field manager.
    * @param \Drupal\Core\Entity\EntityDisplayRepositoryInterface $entity_display
@@ -118,6 +137,7 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
     $plugin_id,
     $plugin_definition,
     EntityTypeManagerInterface $entity_manager,
+    LanguageManagerInterface $language_manager,
     EntityFieldManagerInterface $entity_field_manager,
     EntityDisplayRepositoryInterface $entity_display,
     RendererInterface $renderer,
@@ -127,6 +147,7 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->entityManager = $entity_manager;
+    $this->languageManager = $language_manager;
     $this->entityFieldManager = $entity_field_manager;
     $this->entityDisplay = $entity_display;
     $this->renderer = $renderer;
@@ -143,6 +164,7 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
       $plugin_id,
       $plugin_definition,
       $container->get('entity_type.manager'),
+      $container->get('language_manager'),
       $container->get('entity_field.manager'),
       $container->get('entity_display.repository'),
       $container->get('renderer'),
@@ -158,6 +180,7 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
     parent::init($view, $display, $options);
     // First base table should correspond to main entity type.
     $this->entityTypeId = $view->getBaseEntityType()->id();
+    $this->entityType = $this->entityManager->getDefinition($this->entityTypeId);
   }
 
   /**
@@ -293,7 +316,7 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
     $popup_body = '';
     if ($this->options['description_field'] === '#rendered_entity' && is_object($row->_entity)) {
       $entity = $row->_entity;
-      $build = $this->entityManager->getViewBuilder($entity->getEntityTypeId())->view($entity, $this->options['view_mode'], $entity->language());
+      $build = $this->getEntityManager()->getViewBuilder($entity->getEntityTypeId())->view($entity, $this->options['view_mode']);
       $popup_body = $this->renderer->renderPlain($build);
     }
     // Normal rendering via fields.
@@ -330,6 +353,52 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
    *   The Result rows.
    */
   protected function alterLeafletMarker(array &$point, ResultRow $row) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getEntityTypeId() {
+    return $this->entityType->id();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEntityManager() {
+    return $this->entityManager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getLanguageManager() {
+    return $this->languageManager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getView() {
+    return $this->view;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function query() {
+    parent::query();
+    $this->getEntityTranslationRenderer()->query($this->view->getQuery());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preRender($result) {
+    parent::preRender($result);
+    if ($result) {
+      $this->getEntityTranslationRenderer()->preRender($result);
+    }
   }
 
   /**
