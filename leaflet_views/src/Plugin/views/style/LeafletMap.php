@@ -325,10 +325,27 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     if ($this->options['data_source']) {
       $this->renderFields($this->view->result);
-      /* @var \Drupal\views\ResultRow $result */
-      foreach ($this->view->result as $id => $result) {
 
-        $geofield_value = $this->getFieldValue($id, $geofield_name);
+      /* @var \Drupal\views\ResultRow  $result */
+      // Clean the View Results for possible duplicates, in case of geofield
+      // multivalue.
+      $view_results = [];
+      foreach ($this->view->result as $id => $result) {
+        // In case _entity is null, it might probably be the search_api case.
+        // @see https://www.drupal.org/project/geofield_map/issues/2994026
+        /* @var \Drupal\Core\Entity\EntityInterface $entity */
+        $entity = $result->_entity ?: $result->_object->getValue();
+        $entity_id = $entity->id();
+        if (!array_key_exists($entity_id, $view_results)) {
+          $result->_entity = $entity;
+          $view_results[$entity_id] = $result;
+        }
+      }
+
+      /* @var \Drupal\views\ResultRow $result */
+      foreach ($view_results as $id => $result) {
+
+        $geofield_value = $this->getFieldValue($result->index, $geofield_name);
 
         if (!empty($geofield_value)) {
           $points = $this->leafletService->leafletProcessGeofield($geofield_value);
@@ -341,7 +358,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           }
           // Normal rendering via fields.
           elseif ($this->options['description_field']) {
-            $description = $this->rendered_fields[$id][$this->options['description_field']];
+            $description = $this->rendered_fields[$result->index][$this->options['description_field']];
           }
 
           // Attach pop-ups if we have a description field.
@@ -356,14 +373,14 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             foreach ($points as &$point) {
               // Decode any entities because JS will encode them again and we
               // don't want double encoding.
-              $point['label'] = Html::decodeEntities(($this->rendered_fields[$id][$this->options['name_field']]));
+              $point['label'] = Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']]));
             }
           }
 
           // Attach iconUrl properties to each point.
           if (!empty($this->options['icon']) && !empty($this->options['icon']['iconUrl'])) {
             $tokens = [];
-            foreach ($this->rendered_fields[$id] as $field_name => $field_value) {
+            foreach ($this->rendered_fields[$result->index] as $field_name => $field_value) {
               $tokens[$field_name] = $field_value;
             }
             foreach ($points as &$point) {
