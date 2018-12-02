@@ -2,7 +2,6 @@
 
 namespace Drupal\leaflet_views\Plugin\views\style;
 
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\style\StylePluginBase;
@@ -16,6 +15,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Leaflet\LeafletService;
 use Drupal\Component\Utility\Html;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
+use Drupal\views\Plugin\views\PluginBase;
 
 /**
  * Style plugin to render a View output as a Leaflet map.
@@ -325,23 +325,50 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     if ($this->options['data_source']) {
       $this->renderFields($this->view->result);
+
       /* @var \Drupal\views\ResultRow $result */
       foreach ($this->view->result as $id => $result) {
 
-        $geofield_value = $this->getFieldValue($id, $geofield_name);
+        // For proper processing make sure the geofield_value is created as
+        // an array, also if single value.
+        $geofield_value = (array) $this->getFieldValue($result->index, $geofield_name);
 
         if (!empty($geofield_value)) {
           $points = $this->leafletService->leafletProcessGeofield($geofield_value);
 
           // Render the entity with the selected view mode.
           if ($this->options['description_field'] === '#rendered_entity' && isset($result->_entity)) {
+
             $entity = $result->_entity;
-            $build = $this->entityManager->getViewBuilder($entity->getEntityTypeId())->view($entity, $this->options['view_mode'], $entity->language()->getId());
+
+            $view = $this->view;
+
+            // Set the langcode to be used for rendering the entity.
+            $rendering_language = $view->display_handler->getOption('rendering_language');
+            $dynamic_renderers = [
+              '***LANGUAGE_entity_translation***' => 'TranslationLanguageRenderer',
+              '***LANGUAGE_entity_default***' => 'DefaultLanguageRenderer',
+            ];
+            if (isset($dynamic_renderers[$rendering_language])) {
+              /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+              $langcode = $result->node_field_data_langcode ?: $entity->language()->getId();
+            }
+            else {
+              if (strpos($rendering_language, '***LANGUAGE_') !== FALSE) {
+                $langcode = PluginBase::queryLanguageSubstitutions()[$rendering_language];
+              }
+              else {
+                // Specific langcode set.
+                $langcode = $rendering_language;
+              }
+            }
+
+            $build = $this->entityManager->getViewBuilder($entity->getEntityTypeId())->view($entity, $this->options['view_mode'], $langcode);
             $description = $this->renderer->renderPlain($build);
           }
           // Normal rendering via fields.
-          elseif ($this->options['description_field']) {
-            $description = $this->rendered_fields[$id][$this->options['description_field']];
+          elseif ($description_field = $this->options['description_field']) {
+            $description = $this->rendered_fields[$result->index][$description_field];
           }
 
           // Attach pop-ups if we have a description field.
@@ -356,14 +383,14 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             foreach ($points as &$point) {
               // Decode any entities because JS will encode them again and we
               // don't want double encoding.
-              $point['label'] = Html::decodeEntities(($this->rendered_fields[$id][$this->options['name_field']]));
+              $point['label'] = Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']]));
             }
           }
 
           // Attach iconUrl properties to each point.
           if (!empty($this->options['icon']) && !empty($this->options['icon']['iconUrl'])) {
             $tokens = [];
-            foreach ($this->rendered_fields[$id] as $field_name => $field_value) {
+            foreach ($this->rendered_fields[$result->index] as $field_name => $field_value) {
               $tokens[$field_name] = $field_value;
             }
             foreach ($points as &$point) {
