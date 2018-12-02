@@ -177,7 +177,9 @@
       case 'polygon':
         lFeature = this.create_polygon(feature);
         break;
-      case 'multipolygon':
+       case 'multipolygon':
+        lFeature = this.create_multipolygon(feature);
+        break;
       case 'multipolyline':
         lFeature = this.create_multipoly(feature);
         break;
@@ -302,6 +304,22 @@
     }
     return new L.Polygon(latlngs);
   };
+
+  Drupal.Leaflet.prototype.create_multipolygon = function (multipolygon) {
+    var polygons = [];
+    for (var x = 0; x < multipolygon.component.length; x++) {
+      var latlngs = [];
+      var polygon = multipolygon.component[x];
+      for (var i = 0; i < polygon.points.length; i++) {
+        var latlng = [polygon.points[i].lat, polygon.points[i].lon];
+        latlngs.push(latlng);
+        this.bounds.push(latlng);
+      }
+      polygons.push(latlngs);
+    }
+    return new L.Polygon(polygons);
+  };
+
 
   Drupal.Leaflet.prototype.create_multipoly = function (multipoly) {
     var polygons = [];
