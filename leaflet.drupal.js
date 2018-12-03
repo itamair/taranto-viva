@@ -186,6 +186,10 @@
       case 'json':
         lFeature = this.create_json(feature.json);
         break;
+      case 'multipoint':
+      case 'geometrycollection':
+        lFeature = this.create_collection(feature);
+        break;
       default:
         return; // Crash and burn.
     }
@@ -295,6 +299,14 @@
     return new L.Polyline(latlngs);
   };
 
+  Drupal.Leaflet.prototype.create_collection = function (collection) {
+    var layers = new L.featureGroup();
+    for (var x = 0; x < collection.component.length; x++) {
+      layers.addLayer(this.create_feature(collection.component[x]));
+    }
+    return layers;
+  };
+
   Drupal.Leaflet.prototype.create_polygon = function (polygon) {
     var latlngs = [];
     for (var i = 0; i < polygon.points.length; i++) {
@@ -320,7 +332,6 @@
     return new L.Polygon(polygons);
   };
 
-
   Drupal.Leaflet.prototype.create_multipoly = function (multipoly) {
     var polygons = [];
     for (var x = 0; x < multipoly.component.length; x++) {
@@ -334,10 +345,10 @@
       polygons.push(latlngs);
     }
     if (multipoly.multipolyline) {
-      return new L.MultiPolyline(polygons);
+      return new L.polyline(polygons);
     }
     else {
-      return new L.MultiPolygon(polygons);
+      return new L.polygon(polygons);
     }
   };
 
