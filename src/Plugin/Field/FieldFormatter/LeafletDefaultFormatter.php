@@ -336,15 +336,23 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       $features[] = $feature;
     }
 
+    $js_settings = [
+      'map' => $map,
+      'features' => $features,
+    ];
+
+    // Allow other modules to add/alter the map js settings.
+    $this->moduleHandler->alter('leaflet_default_map_formatter', $js_settings, $items);
+
     $results = [];
     if (!empty($settings['multiple_map'])) {
-      foreach ($features as $feature) {
-        $results[] = $this->leafletService->leafletRenderMap($map, [$feature], $settings['height'] . 'px');
+      foreach ($js_settings['features'] as $feature) {
+        $results[] = $this->leafletService->leafletRenderMap($js_settings['map'], [$feature], $settings['height'] . 'px');
       }
     }
     // Render the map, if we do have data or the hide option is unchecked.
-    elseif (!empty($features) || empty($settings['hide_empty_map'])) {
-      $results[] = $this->leafletService->leafletRenderMap($map, $features, $settings['height'] . 'px');
+    elseif (!empty($js_settings['features']) || empty($settings['hide_empty_map'])) {
+      $results[] = $this->leafletService->leafletRenderMap($js_settings['map'], $js_settings['features'], $settings['height'] . 'px');
     }
 
     return $results;

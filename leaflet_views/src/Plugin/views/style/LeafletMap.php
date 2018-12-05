@@ -12,6 +12,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Leaflet\LeafletService;
 use Drupal\Component\Utility\Html;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
@@ -86,6 +87,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   protected $renderer;
 
   /**
+   * The module handler to invoke the alter hook.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
    * Leaflet service.
    *
    * @var \Drupal\Leaflet\LeafletService
@@ -109,6 +117,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *   The entity display manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler.
    * @param \Drupal\Leaflet\LeafletService $leaflet_service
    *   The Leaflet service.
    */
@@ -120,6 +130,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     EntityFieldManagerInterface $entity_field_manager,
     EntityDisplayRepositoryInterface $entity_display,
     RendererInterface $renderer,
+    ModuleHandlerInterface $module_handler,
     LeafletService $leaflet_service
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -128,6 +139,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $this->entityFieldManager = $entity_field_manager;
     $this->entityDisplay = $entity_display;
     $this->renderer = $renderer;
+    $this->moduleHandler = $module_handler;
     $this->leafletService = $leaflet_service;
   }
 
@@ -143,6 +155,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $container->get('entity_field.manager'),
       $container->get('entity_display.repository'),
       $container->get('renderer'),
+      $container->get('module_handler'),
       $container->get('leaflet.service')
     );
   }
@@ -427,7 +440,15 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Set Map additional map Settings.
     $this->setAdditionalMapOptions($map, $this->options);
 
-    return $this->leafletService->leafletRenderMap($map, $data, $this->options['height'] . 'px');
+    $js_settings = [
+      'map' => $map,
+      'features' => $data,
+    ];
+
+    // Allow other modules to add/alter the map js settings.
+    $this->moduleHandler->alter('leaflet_map_view_style', $js_settings, $this);
+
+    return $this->leafletService->leafletRenderMap($js_settings['map'], $js_settings['features'], $this->options['height'] . 'px');
   }
 
   /**
