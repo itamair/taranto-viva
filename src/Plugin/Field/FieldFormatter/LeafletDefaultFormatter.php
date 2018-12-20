@@ -13,6 +13,7 @@ use Drupal\leaflet\LeafletSettingsElementsTrait;
 use Drupal\Core\Utility\Token;
 use Drupal\core\Render\Renderer;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\LinkGeneratorInterface;
 
@@ -288,6 +289,12 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       $entity = $entity->getTranslation($langcode);
     }
 
+    $entity_type = $entity->getEntityTypeId();
+    $bundle = $entity->bundle();
+    $entity_id = $entity->id();
+    /* @var \Drupal\Core\Field\FieldDefinitionInterface $field */
+    $field = $items->getFieldDefinition();
+
     // Sets/consider possibly existing previous Zoom settings.
     $this->setExistingZoomSettings();
     $settings = $this->getSettings();
@@ -297,6 +304,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
     // Always render the map, even if we do not have any data.
     $map = leaflet_map_get_info($settings['leaflet_map']);
+
+    // Add a specific map id.
+    $map['id'] = Html::getUniqueId("leaflet_map_{$entity_type}_{$bundle}_{$entity_id}_{$field->getName()}");
 
     // Set Map additional map Settings.
     $this->setAdditionalMapOptions($map, $settings);
@@ -346,8 +356,10 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
     $results = [];
     if (!empty($settings['multiple_map'])) {
-      foreach ($js_settings['features'] as $feature) {
-        $results[] = $this->leafletService->leafletRenderMap($js_settings['map'], [$feature], $settings['height'] . 'px');
+      foreach ($js_settings['features'] as $k => $feature) {
+        $map = $js_settings['map'];
+        $map['id'] = $map['id'] . "-{$k}";
+        $results[] = $this->leafletService->leafletRenderMap($map, [$feature], $settings['height'] . 'px');
       }
     }
     // Render the map, if we do have data or the hide option is unchecked.

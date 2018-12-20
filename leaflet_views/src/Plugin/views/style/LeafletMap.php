@@ -440,6 +440,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Set Map additional map Settings.
     $this->setAdditionalMapOptions($map, $this->options);
 
+    // Add a specific map id.
+    $map['id'] = Html::getUniqueId("leaflet_map_view_" . $this->view->id() . '_' . $this->view->current_display);
+
     $js_settings = [
       'map' => $map,
       'features' => $data,
