@@ -180,9 +180,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       }
     }
     // Set entity info for Search API views.
-    if (\Drupal::moduleHandler()->moduleExists('search_api') && substr($base_table, 0, 17) === 'search_api_index_') {
-      $indexId = substr($base_table, 17);
-      $index = Index::load($indexId);
+    if ($this->moduleHandler->moduleExists('search_api') && substr($base_table, 0, 17) === 'search_api_index_') {
+      $index_id = substr($base_table, 17);
+      $index = Index::load($index_id);
       foreach ($index->getDatasources() as $datasource) {
         if ($datasource instanceof DatasourceInterface) {
           $this->entityType = $datasource->getEntityTypeId();
@@ -369,9 +369,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           }
           elseif (isset($result->_object)) {
             // Search API provides a TypedData EntityAdapter.
-            $entityAdapter = $result->_object;
-            if ($entityAdapter instanceof EntityAdapter) {
-              $entity = $entityAdapter->getValue();
+            $entity_adapter = $result->_object;
+            if ($entity_adapter instanceof EntityAdapter) {
+              $entity = $entity_adapter->getValue();
             }
           }
 
