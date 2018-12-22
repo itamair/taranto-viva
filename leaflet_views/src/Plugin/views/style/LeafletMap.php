@@ -2,7 +2,10 @@
 
 namespace Drupal\leaflet_views\Plugin\views\style;
 
+use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\search_api\Datasource\DatasourceInterface;
+use Drupal\search_api\Entity\Index;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\views\ViewExecutable;
@@ -174,6 +177,17 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         $this->entityType = $key;
         $this->entityInfo = $info;
         return;
+      }
+    }
+    // Set entity info for Search API views.
+    if ($this->moduleHandler->moduleExists('search_api') && substr($base_table, 0, 17) === 'search_api_index_') {
+      $index_id = substr($base_table, 17);
+      $index = Index::load($index_id);
+      foreach ($index->getDatasources() as $datasource) {
+        if ($datasource instanceof DatasourceInterface) {
+          $this->entityType = $datasource->getEntityTypeId();
+          $this->entityInfo = $this->entityManager->getDefinition($this->entityType);
+        }
       }
     }
   }
@@ -349,10 +363,20 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         if (!empty($geofield_value)) {
           $points = $this->leafletService->leafletProcessGeofield($geofield_value);
 
-          // Render the entity with the selected view mode.
-          if ($this->options['description_field'] === '#rendered_entity' && isset($result->_entity)) {
-
+          if (!empty($result->_entity)) {
+            // Entity API provides a plain entity object.
             $entity = $result->_entity;
+          }
+          elseif (isset($result->_object)) {
+            // Search API provides a TypedData EntityAdapter.
+            $entity_adapter = $result->_object;
+            if ($entity_adapter instanceof EntityAdapter) {
+              $entity = $entity_adapter->getValue();
+            }
+          }
+
+          // Render the entity with the selected view mode.
+          if ($this->options['description_field'] === '#rendered_entity' && isset($entity)) {
 
             $view = $this->view;
 
