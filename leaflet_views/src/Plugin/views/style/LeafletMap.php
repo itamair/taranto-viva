@@ -378,6 +378,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           // Render the entity with the selected view mode.
           if ($this->options['description_field'] === '#rendered_entity' && isset($entity)) {
 
+            $entity_type = $entity->getEntityTypeId();
+            $entity_type_langcode_attribute = $entity_type . '_field_data_langcode';
+
             $view = $this->view;
 
             // Set the langcode to be used for rendering the entity.
@@ -388,7 +391,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             ];
             if (isset($dynamic_renderers[$rendering_language])) {
               /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-              $langcode = $result->node_field_data_langcode ?: $entity->language()->getId();
+              $langcode = isset($result->$entity_type_langcode_attribute) ? $result->$entity_type_langcode_attribute : $entity->language()->getId();
             }
             else {
               if (strpos($rendering_language, '***LANGUAGE_') !== FALSE) {
