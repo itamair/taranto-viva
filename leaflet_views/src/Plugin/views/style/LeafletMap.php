@@ -6,6 +6,7 @@ use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
+use Drupal\Core\Url;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\views\ViewExecutable;
@@ -269,6 +270,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     if ($this->entityType) {
       $desc_options += [
         '#rendered_entity' => $this->t('< @entity entity >', ['@entity' => $this->entityType]),
+        '#rendered_entity_ajax' => $this->t('< @entity entity via ajax >', ['@entity' => $this->entityType]),
       ];
     }
 
@@ -299,7 +301,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         '#states' => [
           'visible' => [
             ':input[name="style_options[description_field]"]' => [
-              'value' => '#rendered_entity',
+              ['value' => '#rendered_entity'],
+              ['value' => '#rendered_entity_ajax'],
             ],
           ],
         ],
@@ -376,7 +379,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           }
 
           // Render the entity with the selected view mode.
-          if ($this->options['description_field'] === '#rendered_entity' && isset($entity)) {
+          if (isset($entity)) {
 
             $entity_type = $entity->getEntityTypeId();
             $entity_type_langcode_attribute = $entity_type . '_field_data_langcode';
@@ -403,12 +406,28 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               }
             }
 
-            $build = $this->entityManager->getViewBuilder($entity->getEntityTypeId())->view($entity, $this->options['view_mode'], $langcode);
-            $description = $this->renderer->renderPlain($build);
-          }
-          // Normal rendering via fields.
-          elseif ($description_field = $this->options['description_field']) {
-            $description = $this->rendered_fields[$result->index][$description_field];
+            switch ($this->options['description_field']) {
+              case '#rendered_entity':
+                $build = $this->entityManager->getViewBuilder($entity->getEntityTypeId())->view($entity, $this->options['view_mode'], $langcode);
+                $description = $this->renderer->renderPlain($build);
+                break;
+
+              case '#rendered_entity_ajax':
+                $parameters = [
+                  'entity_type' => $entity->getEntityTypeId(),
+                  'entity' => $entity->id(),
+                  'view_mode' => $this->options['view_mode'],
+                  'langcode' => $langcode,
+                ];
+                $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters, ['absolute' => TRUE]);
+                $description = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s"></div>', $url->toString());
+                break;
+
+              default:
+                // Normal rendering via fields.
+                $description = $this->rendered_fields[$result->index][$this->options['description_field']];
+            }
+
           }
 
           // Attach pop-ups if we have a description field.

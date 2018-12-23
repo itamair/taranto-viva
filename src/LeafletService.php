@@ -83,7 +83,7 @@ class LeafletService {
       '#height' => $height,
       '#map' => $map,
       '#attached' => [
-        'library' => ['leaflet/leaflet-drupal'],
+        'library' => ['leaflet/leaflet-drupal', 'leaflet/general'],
         'drupalSettings' => [
           'leaflet' => $settings,
         ],

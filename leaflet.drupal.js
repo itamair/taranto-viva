@@ -3,6 +3,21 @@
   Drupal.behaviors.leaflet = {
     attach: function (context, settings) {
 
+      // Attach leaflet ajax popup listeners.
+      $(document).on('leaflet.map', function (e, settings, lMap) {
+        lMap.on('popupopen', function (e) {
+          var content = $('[data-leaflet-ajax-popup]', e.popup._contentNode);
+          if (content.length) {
+            var url = content.data('leaflet-ajax-popup');
+            $.get(url, function (response) {
+              if (response) {
+                e.popup.setContent(response)
+              }
+            });
+          }
+        });
+      });
+
       $.each(settings.leaflet, function (m, data) {
         $('#' + data.mapId, context).each(function () {
           var $container = $(this);
