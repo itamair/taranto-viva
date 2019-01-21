@@ -351,9 +351,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     $data = [];
 
-    $geofield_name = $this->options['data_source'];
-
-    if ($this->options['data_source']) {
+    if ($geofield_name = $this->options['data_source']) {
       $this->renderFields($this->view->result);
 
       /* @var \Drupal\views\ResultRow $result */
@@ -364,6 +362,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         $geofield_value = (array) $this->getFieldValue($result->index, $geofield_name);
 
         if (!empty($geofield_value)) {
+
           $points = $this->leafletService->leafletProcessGeofield($geofield_value);
 
           if (!empty($result->_entity)) {
