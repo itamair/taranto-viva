@@ -391,16 +391,18 @@ trait LeafletSettingsElementsTrait {
    *   The options from where to set additional options.
    */
   protected function setAdditionalMapOptions(array &$map, array $options) {
-    // Add additional settings to the Map.
+
+    // Add additional settings to the Map, with fallback on the
+    // hook_leaflet_map_info ones.
     $map['settings']['map_position_force'] = isset($options['map_position']['force']) ? $options['map_position']['force'] : 0;
     $map['settings']['zoom'] = isset($options['map_position']['zoom']) ? (int) $options['map_position']['zoom'] : NULL;
-    $map['settings']['minZoom'] = isset($options['map_position']['minZoom']) ? (int) $options['map_position']['minZoom'] : NULL;
-    $map['settings']['maxZoom'] = isset($options['map_position']['maxZoom']) ? (int) $options['map_position']['maxZoom'] : NULL;
+    $map['settings']['minZoom'] = isset($options['map_position']['minZoom']) ? (int) $options['map_position']['minZoom'] : (isset($map['settings']['minZoom']) ? $map['settings']['minZoom'] : 1);
+    $map['settings']['maxZoom'] = isset($options['map_position']['maxZoom']) ? (int) $options['map_position']['maxZoom'] : (isset($map['settings']['maxZoom']) ? $map['settings']['maxZoom'] : 18);
     $map['settings']['center'] = (isset($options['map_position']['center']['lat']) && isset($options['map_position']['center']['lon'])) ? [
       'lat' => floatval($options['map_position']['center']['lat']),
       'lng' => floatval($options['map_position']['center']['lon']),
     ] : NULL;
-    $map['settings']['scrollWheelZoom'] = isset($options['disable_wheel']) ? !(bool) $options['disable_wheel'] : FALSE;
+    $map['settings']['scrollWheelZoom'] = $options['disable_wheel'] ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
   }
 
   /**
