@@ -345,7 +345,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * Renders the View.
    */
   public function render() {
-
     // Performs some preprocess on the leaflet map settings.
     $this->leafletService->preProcessMapSettings($this->options);
 
@@ -452,9 +451,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               $tokens[$field_name] = $field_value;
             }
             foreach ($points as &$point) {
-              $point['icon'] = $this->options['icon'];
-              $point['icon']['iconUrl'] = $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens);
-              $point['icon']['shadowUrl'] = $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens);
+              if (!empty($this->options['icon']['iconUrl'])) {
+                $point['icon'] = $this->options['icon'];
+                $point['icon']['iconUrl'] = $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens);
+                if (!empty($this->options['icon']['shadowUrl'])) {
+                  $point['icon']['shadowUrl'] = $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens);
+                }
+              }
             }
           }
 

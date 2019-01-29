@@ -96,7 +96,7 @@ trait LeafletSettingsElementsTrait {
     $elements['disable_wheel'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Disable zoom using mouse wheel'),
-      '#description' => $this->t('If enabled, the mouse wheel won\'t change the zoom level of the map.'),
+      '#description' => $this->t("If enabled, the mouse wheel won't change the zoom level of the map."),
       '#default_value' => $settings['disable_wheel'],
       '#return_value' => 1,
     ];
@@ -306,20 +306,19 @@ trait LeafletSettingsElementsTrait {
     $element['iconSize'] = [
       '#title' => $this->t('Icon Size'),
       '#type' => 'fieldset',
-      '#collapsible' => FALSE,
-      '#description' => $this->t('Size of the icon image in pixels.'),
+      '#description' => $this->t('Size of the icon image in pixels (if empty the natural icon image size will be used).'),
     ];
 
     $element['iconSize']['x'] = [
       '#title' => $this->t('Width'),
       '#type' => 'number',
-      '#default_value' => isset($icon_options['iconSize']) ? $icon_options['iconSize']['x'] : NULL,
+      '#default_value' => isset($icon_options['iconSize']['x']) ? $icon_options['iconSize']['x'] : NULL,
     ];
 
     $element['iconSize']['y'] = [
       '#title' => $this->t('Height'),
       '#type' => 'number',
-      '#default_value' => isset($icon_options['iconSize']) ? $icon_options['iconSize']['y'] : NULL,
+      '#default_value' => isset($icon_options['iconSize']['y']) ? $icon_options['iconSize']['y'] : NULL,
     ];
 
     $element['iconAnchor'] = [
@@ -341,10 +340,27 @@ trait LeafletSettingsElementsTrait {
       '#default_value' => isset($icon_options['iconAnchor']) ? $icon_options['iconAnchor']['y'] : NULL,
     ];
 
+    $element['shadowSize'] = [
+      '#title' => $this->t('Shadow Size'),
+      '#type' => 'fieldset',
+      '#description' => $this->t('Size of the shadow image in pixels (if empty the natural shadow image size will be used).'),
+    ];
+
+    $element['shadowSize']['x'] = [
+      '#title' => $this->t('Width'),
+      '#type' => 'number',
+      '#default_value' => isset($icon_options['shadowSize']['x']) ? $icon_options['shadowSize']['x'] : NULL,
+    ];
+
+    $element['shadowSize']['y'] = [
+      '#title' => $this->t('Height'),
+      '#type' => 'number',
+      '#default_value' => isset($icon_options['shadowSize']['y']) ? $icon_options['shadowSize']['y'] : NULL,
+    ];
+
     $element['shadowAnchor'] = [
       '#title' => $this->t('Shadow Anchor'),
       '#type' => 'fieldset',
-      '#collapsible' => FALSE,
       '#description' => $this->t('The point from which the shadow is shown.'),
     ];
 

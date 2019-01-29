@@ -1,4 +1,4 @@
-(function ($) {
+(function ($, Drupal, drupalSettings) {
 
   Drupal.behaviors.leaflet = {
     attach: function (context, settings) {
@@ -279,6 +279,7 @@
   };
 
   Drupal.Leaflet.prototype.create_point = function (marker) {
+    var self = this;
     var latLng = new L.LatLng(marker.lat, marker.lon);
     this.bounds.push(latLng);
     var lMarker;
@@ -291,13 +292,35 @@
       options.alt = marker.alt;
     }
 
+    function checkImage(imageSrc, setIcon, logError) {
+      var img = new Image();
+      img.src = imageSrc;
+      img.onload = setIcon;
+      img.onerror = logError;
+    }
+
+    lMarker = new L.Marker(latLng, options);
+
     if (marker.icon) {
-      options.icon = this.create_icon(marker.icon);
-      lMarker = new L.Marker(latLng, options);
+      checkImage(marker.icon.iconUrl,
+        // Success loading image.
+        function(){
+          marker.icon.iconSize.x = marker.icon.iconSize.x || this.naturalWidth;
+          marker.icon.iconSize.y = marker.icon.iconSize.y || this.naturalHeight;
+          if (marker.icon.shadowUrl) {
+            marker.icon.shadowSize = marker.icon.shadowSize || {};
+            marker.icon.shadowSize.x = marker.icon.shadowSize.x || this.naturalWidth;
+            marker.icon.shadowSize.y = marker.icon.shadowSize.y || this.naturalHeight;
+          }
+          options.icon = self.create_icon(marker.icon);
+          lMarker.setIcon(options.icon);
+        },
+        // Error loading image.
+        function(err){
+          console.log("Leaflet: The Icon Image doesn't exist at the requested path: " + marker.icon.iconUrl);
+        });
     }
-    else {
-      lMarker = new L.Marker(latLng, options);
-    }
+
     return lMarker;
   };
 
@@ -403,4 +426,4 @@
     }
   };
 
-})(jQuery);
+})(jQuery, Drupal, drupalSettings);
