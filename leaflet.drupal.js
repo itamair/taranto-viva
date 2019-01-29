@@ -256,19 +256,19 @@
     if (options.iconSize) {
       icon.options.iconSize = new L.Point(parseInt(options.iconSize.x), parseInt(options.iconSize.y));
     }
-    if (options.iconAnchor) {
+    if (options.iconAnchor && options.iconAnchor.x && options.iconAnchor.y) {
       icon.options.iconAnchor = new L.Point(parseFloat(options.iconAnchor.x), parseFloat(options.iconAnchor.y));
     }
-    if (options.popupAnchor) {
-      icon.options.popupAnchor = new L.Point(parseFloat(options.popupAnchor.x), parseFloat(options.popupAnchor.y));
+    if (options.popupAnchor && options.popupAnchor.x && options.popupAnchor.y) {
+      icon.options.popupAnchor = new L.Point(parseInt(options.popupAnchor.x), parseInt(options.popupAnchor.y));
     }
-    if (options.shadowUrl !== undefined) {
+    if (options.shadowUrl) {
       icon.options.shadowUrl = options.shadowUrl;
     }
-    if (options.shadowSize) {
+    if (options.shadowSize && options.shadowSize.x && options.shadowSize.y) {
       icon.options.shadowSize = new L.Point(parseInt(options.shadowSize.x), parseInt(options.shadowSize.y));
     }
-    if (options.shadowAnchor) {
+    if (options.shadowAnchor && options.shadowAnchor.x && options.shadowAnchor.y) {
       icon.options.shadowAnchor = new L.Point(parseInt(options.shadowAnchor.x), parseInt(options.shadowAnchor.y));
     }
     if (options.className) {

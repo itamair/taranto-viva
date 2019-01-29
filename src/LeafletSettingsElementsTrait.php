@@ -306,7 +306,7 @@ trait LeafletSettingsElementsTrait {
     $element['iconSize'] = [
       '#title' => $this->t('Icon Size'),
       '#type' => 'fieldset',
-      '#description' => $this->t('Size of the icon image in pixels (if empty the natural icon image size will be used).'),
+      '#description' => $this->t("Size of the icon image in pixels (if empty the natural icon image size will be used).<br>Note: Both the values shouldn't be null to be valid."),
     ];
 
     $element['iconSize']['x'] = [
@@ -325,7 +325,7 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Icon Anchor'),
       '#type' => 'fieldset',
       '#collapsible' => FALSE,
-      '#description' => $this->t('The coordinates of the "tip" of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker\'s geographical location.'),
+      '#description' => $this->t("The coordinates of the 'tip' of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker\'s geographical location.<br>Note: Both the values shouldn't be null to be valid."),
     ];
 
     $element['iconAnchor']['x'] = [
@@ -343,7 +343,7 @@ trait LeafletSettingsElementsTrait {
     $element['shadowSize'] = [
       '#title' => $this->t('Shadow Size'),
       '#type' => 'fieldset',
-      '#description' => $this->t('Size of the shadow image in pixels (if empty the natural shadow image size will be used).'),
+      '#description' => $this->t("Size of the shadow image in pixels (if empty the natural shadow image size will be used). <br>Note: Both the values shouldn't be null to be valid."),
     ];
 
     $element['shadowSize']['x'] = [
@@ -361,7 +361,7 @@ trait LeafletSettingsElementsTrait {
     $element['shadowAnchor'] = [
       '#title' => $this->t('Shadow Anchor'),
       '#type' => 'fieldset',
-      '#description' => $this->t('The point from which the shadow is shown.'),
+      '#description' => $this->t("The coordinates of the 'tip' of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).<br>Note: Both the values shouldn't be null to be valid."),
     ];
 
     $element['shadowAnchor']['x'] = [
@@ -380,7 +380,7 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Popup Anchor'),
       '#type' => 'fieldset',
       '#collapsible' => FALSE,
-      '#description' => $this->t('The point from which the marker popup opens, relative to the anchor point.'),
+      '#description' => $this->t("The coordinates of the point from which popups will 'open', relative to the icon anchor.<br>Note: Both the values shouldn't be null to be valid."),
     ];
 
     $element['popupAnchor']['x'] = [
