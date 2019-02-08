@@ -350,6 +350,16 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     $data = [];
 
+    // Always render the map, otherwise ...
+    $leaflet_map_style = !isset($this->options['leaflet_map']) ? $this->options['map'] : $this->options['leaflet_map'];
+    $map = leaflet_map_get_info($leaflet_map_style);
+
+    // Set Map additional map Settings.
+    $this->setAdditionalMapOptions($map, $this->options);
+
+    // Add a specific map id.
+    $map['id'] = Html::getUniqueId("leaflet_map_view_" . $this->view->id() . '_' . $this->view->current_display);
+
     if ($geofield_name = $this->options['data_source']) {
       $this->renderFields($this->view->result);
 
@@ -444,6 +454,19 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             }
           }
 
+          // Add/merge eventual map icon definition from hook_leaflet_map_info.
+          if (!empty($map['icon'])) {
+            $this->options['icon'] = $this->options['icon'] ?: [];
+            // Remove empty icon options so that they might be replaced by the
+            // ones set by the hook_leaflet_map_info.
+            foreach ($this->options['icon'] as $k => $icon_option) {
+              if (empty($icon_option) || (is_array($icon_option) && $this->leafletService::multipleEmpty($icon_option))) {
+                unset($this->options['icon'][$k]);
+              }
+            }
+            $this->options['icon'] = array_replace($map['icon'], $this->options['icon']);
+          }
+
           // Attach iconUrl properties to each point.
           if (!empty($this->options['icon']) && !empty($this->options['icon']['iconUrl'])) {
             $tokens = [];
@@ -469,7 +492,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
           // Add new points to the whole basket.
           $data = array_merge($data, $points);
-
         }
       }
 
@@ -480,16 +502,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     if (empty($data) && !empty($this->options['hide_empty_map'])) {
       return [];
     }
-
-    // Always render the map, otherwise ...
-    $leaflet_map_style = !isset($this->options['leaflet_map']) ? $this->options['map'] : $this->options['leaflet_map'];
-    $map = leaflet_map_get_info($leaflet_map_style);
-
-    // Set Map additional map Settings.
-    $this->setAdditionalMapOptions($map, $this->options);
-
-    // Add a specific map id.
-    $map['id'] = Html::getUniqueId("leaflet_map_view_" . $this->view->id() . '_' . $this->view->current_display);
 
     $js_settings = [
       'map' => $map,

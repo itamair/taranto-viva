@@ -237,7 +237,6 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Icon URL'),
       '#description' => $this->t('Can be an absolute or relative URL.'),
       '#type' => 'textfield',
-      '#maxlength' => 999,
       '#default_value' => isset($icon_options['iconUrl']) ? $icon_options['iconUrl'] : NULL,
     ];
 
@@ -245,7 +244,6 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Icon Shadow URL'),
       '#description' => $this->t('Can be an absolute or relative URL.'),
       '#type' => 'textfield',
-      '#maxlength' => 999,
       '#default_value' => isset($icon_options['shadowUrl']) ? $icon_options['shadowUrl'] : NULL,
     ];
 

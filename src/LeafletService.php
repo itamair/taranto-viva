@@ -313,4 +313,25 @@ class LeafletService {
     return $path;
   }
 
+  /**
+   * Check if an array has all his values empty.
+   *
+   * @param array $array
+   *   The array to check.
+   *
+   * @return bool
+   *   The bool result.
+   */
+  public static function multipleEmpty(array $array) {
+    foreach ($array as $value) {
+      if (empty($value)) {
+        continue;
+      }
+      else {
+        return FALSE;
+      }
+    }
+    return TRUE;
+  }
+
 }

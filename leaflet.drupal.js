@@ -305,6 +305,7 @@
       checkImage(marker.icon.iconUrl,
         // Success loading image.
         function(){
+          marker.icon.iconSize = marker.icon.iconSize || {};
           marker.icon.iconSize.x = marker.icon.iconSize.x || this.naturalWidth;
           marker.icon.iconSize.y = marker.icon.iconSize.y || this.naturalHeight;
           if (marker.icon.shadowUrl) {
