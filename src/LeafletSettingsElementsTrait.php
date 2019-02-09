@@ -5,6 +5,8 @@ namespace Drupal\leaflet;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url as CoreUrl;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
+use Drupal\Core\Url;
+use Drupal\Component\Serialization\Json;
 
 /**
  * Class GeofieldMapFieldTrait.
@@ -47,6 +49,44 @@ trait LeafletSettingsElementsTrait {
    *
    * @var \Drupal\Core\Utility\LinkGeneratorInterface $this->link
    */
+
+  /**
+   * Get the Default Settings.
+   *
+   * @return array
+   *   The default settings.
+   */
+  public static function getDefaultSettings() {
+    return [
+      'multiple_map' => 0,
+      'leaflet_map' => 'OSM Mapnik',
+      'height' => 400,
+      'hide_empty_map' => 0,
+      'popup' => FALSE,
+      'popup_content' => '',
+      'map_position' => [
+        'force' => 0,
+        'center' => [
+          'lat' => 0,
+          'lon' => 0,
+        ],
+        'zoom' => 12,
+        'minZoom' => 1,
+        'maxZoom' => 18,
+      ],
+      'path' => '',
+      'icon' => [
+        'iconUrl' => '',
+        'iconSize' => ['x' => NULL, 'y' => NULL],
+        'iconAnchor' => ['x' => NULL, 'y' => NULL],
+        'shadowUrl' => '',
+        'shadowSize' => ['x' => NULL, 'y' => NULL],
+        'shadowAnchor' => ['x' => NULL, 'y' => NULL],
+        'popupAnchor' => ['x' => NULL, 'y' => NULL],
+      ],
+      'disable_wheel' => 0,
+    ];
+  }
 
   /**
    * Generate the Leaflet Map General Settings.
@@ -397,6 +437,32 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
+   * Set Map Geometries Options Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setMapPathOptionsElement(array &$element, array $settings) {
+
+    $element['path'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Path Geometries Options'),
+      '#rows' => 3,
+      '#description' => $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style (or the one defined in leaflet.api/hook_leaflet_map_info) will be used.', [
+        '@polygons_documentation' => $this->link->generate($this->t('Leaflet Path Documentation'), Url::fromUri('https://leafletjs.com/reference-1.0.3.html#path', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#default_value' => $settings['path'],
+      '#placeholder' => '{"color":"black","opacity":"0.8","stroke":1,"fill": true, "fillColor":"blue","fillOpacity":"0.1"}',
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+    ];
+  }
+
+  /**
    * Set Map additional map Settings.
    *
    * @param array $map
@@ -417,6 +483,7 @@ trait LeafletSettingsElementsTrait {
       'lng' => floatval($options['map_position']['center']['lon']),
     ] : NULL;
     $map['settings']['scrollWheelZoom'] = $options['disable_wheel'] ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
+    $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : []);
   }
 
   /**
@@ -457,6 +524,22 @@ trait LeafletSettingsElementsTrait {
     $max_zoom = $element['#value'];
     if ($max_zoom && $max_zoom <= $min_zoom) {
       $form_state->setError($element, t('The Max Zoom level should be above the Minimum Zoom level.'));
+    }
+  }
+
+  /**
+   * Form element json format validation handler.
+   *
+   * {@inheritdoc}
+   */
+  public static function jsonValidate($element, FormStateInterface &$form_state) {
+    $element_values_array = JSON::decode($element['#value']);
+    // Check the jsonValue.
+    if (!empty($element['#value']) && $element_values_array == NULL) {
+      $form_state->setError($element, t('The @field field is not valid Json Format.', ['@field' => $element['#title']]));
+    }
+    elseif (!empty($element['#value'])) {
+      $form_state->setValueForElement($element, JSON::encode($element_values_array));
     }
   }
 

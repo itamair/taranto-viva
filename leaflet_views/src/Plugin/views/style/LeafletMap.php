@@ -19,6 +19,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Leaflet\LeafletService;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
 use Drupal\views\Plugin\views\PluginBase;
 
@@ -105,6 +106,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   protected $leafletService;
 
   /**
+   * The Link generator Service.
+   *
+   * @var \Drupal\Core\Utility\LinkGeneratorInterface
+   */
+  protected $link;
+
+  /**
    * Constructs a LeafletMap style instance.
    *
    * @param array $configuration
@@ -125,6 +133,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *   The module handler.
    * @param \Drupal\Leaflet\LeafletService $leaflet_service
    *   The Leaflet service.
+   * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
+   *   The Link Generator service.
    */
   public function __construct(
     array $configuration,
@@ -135,7 +145,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     EntityDisplayRepositoryInterface $entity_display,
     RendererInterface $renderer,
     ModuleHandlerInterface $module_handler,
-    LeafletService $leaflet_service
+    LeafletService $leaflet_service,
+    LinkGeneratorInterface $link_generator
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -145,6 +156,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $this->renderer = $renderer;
     $this->moduleHandler = $module_handler;
     $this->leafletService = $leaflet_service;
+    $this->link = $link_generator;
   }
 
   /**
@@ -160,7 +172,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $container->get('entity_display.repository'),
       $container->get('renderer'),
       $container->get('module_handler'),
-      $container->get('leaflet.service')
+      $container->get('leaflet.service'),
+      $container->get('link_generator')
     );
   }
 
@@ -320,6 +333,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $icon_options = $this->options['icon'];
     $form['icon'] = $this->generateIconFormElement($icon_options);
 
+    // Set Map Geometries Options Element.
+    $this->setMapPathOptionsElement($form, $this->options);
   }
 
   /**
@@ -523,24 +538,12 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $options['name_field'] = ['default' => ''];
     $options['description_field'] = ['default' => ''];
     $options['view_mode'] = ['default' => 'full'];
-    $options['map'] = ['default' => ''];
-    $options['height'] = ['default' => '400'];
-    $options['hide_empty_map'] = ['default' => 0];
-    $options['map_position'] = [
-      'default' => [
-        'force' => 0,
-        'center' => [
-          'lat' => 0,
-          'lon' => 0,
-        ],
-        'zoom' => 12,
-        'minZoom' => 1,
-        'maxZoom' => 18,
-      ],
-    ];
-    $options['icon'] = ['default' => []];
-    $options['disable_wheel'] = ['default' => 0];
-    return $options;
+
+    $leaflet_map_default_settings = [];
+    foreach (self::getDefaultSettings() as $k => $setting) {
+      $leaflet_map_default_settings[$k] = ['default' => $setting];
+    }
+    return $options + $leaflet_map_default_settings;
   }
 
 }

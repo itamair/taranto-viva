@@ -141,34 +141,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return [
-      'multiple_map' => 0,
-      'leaflet_map' => 'OSM Mapnik',
-      'height' => 400,
-      'hide_empty_map' => 0,
-      'popup' => FALSE,
-      'popup_content' => '',
-      'map_position' => [
-        'force' => 0,
-        'center' => [
-          'lat' => 0,
-          'lon' => 0,
-        ],
-        'zoom' => 12,
-        'minZoom' => 1,
-        'maxZoom' => 18,
-      ],
-      'icon' => [
-        'iconUrl' => '',
-        'iconSize' => ['x' => NULL, 'y' => NULL],
-        'iconAnchor' => ['x' => NULL, 'y' => NULL],
-        'shadowUrl' => '',
-        'shadowSize' => ['x' => NULL, 'y' => NULL],
-        'shadowAnchor' => ['x' => NULL, 'y' => NULL],
-        'popupAnchor' => ['x' => NULL, 'y' => NULL],
-      ],
-      'disable_wheel' => 0,
-    ] + parent::defaultSettings();
+    return self::getDefaultSettings() + parent::defaultSettings();
   }
 
   /**
@@ -258,6 +231,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Generate Icon form element.
     $icon = $this->getSetting('icon');
     $elements['icon'] = $this->generateIconFormElement($icon);
+
+    // Set Map Geometries Options Element.
+    $this->setMapPathOptionsElement($elements, $this->getSettings());
 
     return $elements;
   }

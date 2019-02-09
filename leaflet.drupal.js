@@ -26,6 +26,7 @@
           if ($container.data('leaflet') === undefined) {
             $container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(data.mapId), data.mapId, data.map));
             if (data.features.length > 0) {
+              Drupal.Leaflet.path = data.map.settings.path ? JSON.parse(data.map.settings.path) : {};
               $container.data('leaflet').add_features(data.features, true);
             }
 
@@ -57,6 +58,7 @@
     this.overlays = {};
     this.lMap = null;
     this.layer_control = null;
+    this.path = {};
 
     this.initialise();
   };
@@ -133,6 +135,7 @@
   };
 
   Drupal.Leaflet.prototype.add_features = function (features, initial) {
+    var self = this;
     for (var i = 0; i < features.length; i++) {
       var feature = features[i];
       var lFeature;
@@ -143,7 +146,7 @@
         for (var groupKey in feature.features) {
           var groupFeature = feature.features[groupKey];
           lFeature = this.create_feature(groupFeature);
-          if (lFeature != undefined) {
+          if (lFeature !== undefined) {
             if (groupFeature.popup) {
               lFeature.bindPopup(groupFeature.popup);
             }
@@ -156,7 +159,10 @@
       }
       else {
         lFeature = this.create_feature(feature);
-        if (lFeature != undefined) {
+        if (lFeature !== undefined) {
+          if (lFeature.setStyle) {
+            lFeature.setStyle(Drupal.Leaflet.path);
+          }
           this.lMap.addLayer(lFeature);
 
           if (feature.popup) {
