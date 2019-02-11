@@ -333,6 +333,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $icon_options = $this->options['icon'];
     $form['icon'] = $this->generateIconFormElement($icon_options);
 
+    // Set Map Marker Cluster Element.
+    $this->setMapMarkerclusterElement($form, $this->options);
+
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->options);
   }
@@ -504,12 +507,10 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             \Drupal::moduleHandler()
               ->alter('leaflet_views_feature', $point, $result, $this->view->rowPlugin);
           }
-
           // Add new points to the whole basket.
           $data = array_merge($data, $points);
         }
       }
-
     }
 
     // Don't render the map, if we do not have any data

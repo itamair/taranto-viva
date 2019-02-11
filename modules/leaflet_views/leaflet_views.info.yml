@@ -2,7 +2,7 @@ name: Leaflet Views
 type: module
 description: Views integration for the Leaflet module.
 core: 8.x
-package: Views
+package: Leaflet
 dependencies:
   - leaflet:leaflet
   - drupal:views
