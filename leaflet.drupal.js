@@ -26,7 +26,7 @@
           if ($container.data('leaflet') === undefined) {
             $container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(data.mapId), data.mapId, data.map));
             if (data.features.length > 0) {
-              Drupal.Leaflet.path = data.map.settings.path ? JSON.parse(data.map.settings.path) : {};
+              Drupal.Leaflet.path = data.map.settings.path && data.map.settings.path.length > 0 ? JSON.parse(data.map.settings.path) : {};
               $container.data('leaflet').add_features(data.features, true);
             }
 

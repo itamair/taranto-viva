@@ -62,6 +62,7 @@ trait LeafletSettingsElementsTrait {
       'leaflet_map' => 'OSM Mapnik',
       'height' => 400,
       'hide_empty_map' => 0,
+      'disable_wheel' => 0,
       'popup' => FALSE,
       'popup_content' => '',
       'map_position' => [
@@ -74,7 +75,6 @@ trait LeafletSettingsElementsTrait {
         'minZoom' => 1,
         'maxZoom' => 18,
       ],
-      'path' => '',
       'icon' => [
         'iconUrl' => '',
         'iconSize' => ['x' => NULL, 'y' => NULL],
@@ -84,7 +84,11 @@ trait LeafletSettingsElementsTrait {
         'shadowAnchor' => ['x' => NULL, 'y' => NULL],
         'popupAnchor' => ['x' => NULL, 'y' => NULL],
       ],
-      'disable_wheel' => 0,
+      'map_markercluster' => [
+        'control' => 0,
+        'options' => '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds": false}',
+      ],
+      'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2"}',
     ];
   }
 
@@ -450,14 +454,14 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'textarea',
       '#title' => $this->t('Path Geometries Options'),
       '#rows' => 3,
-      '#description' => $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style (or the one defined in leaflet.api/hook_leaflet_map_info) will be used.', [
+      '#description' => $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style, or the one choosen and defined in leaflet.api/hook_leaflet_map_info, will be used.', [
         '@polygons_documentation' => $this->link->generate($this->t('Leaflet Path Documentation'), Url::fromUri('https://leafletjs.com/reference-1.0.3.html#path', [
           'absolute' => TRUE,
           'attributes' => ['target' => 'blank'],
         ])),
       ]),
       '#default_value' => $settings['path'],
-      '#placeholder' => '{"color":"black","opacity":"0.8","stroke":1,"fill": true, "fillColor":"blue","fillOpacity":"0.1"}',
+      '#placeholder' => $this::getDefaultSettings()['path'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
   }
@@ -484,6 +488,72 @@ trait LeafletSettingsElementsTrait {
     ] : NULL;
     $map['settings']['scrollWheelZoom'] = $options['disable_wheel'] ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : []);
+    $map['settings']['map_markercluster'] = isset($options['map_markercluster']) ? $options['map_markercluster'] : NULL;
+  }
+
+  /**
+   * Set Map MarkerCluster Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setMapMarkerclusterElement(array &$element, array $settings) {
+
+    $leaflet_markercluster_submodule_warning = $this->t("<u>Note</u>: This functionality and settings are related to the Leaflet Markercluster submodule, present inside the Leaflet module itself.<br><u>(DON'T USE the external self standing Leaflet Markecluster module).</u>");
+
+    $element['map_markercluster'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Marker Clustering'),
+    ];
+
+    if ($this->moduleHandler->moduleExists('leaflet_markercluster')) {
+      $element['map_markercluster']['control'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable the functionality of the @markeclusterer_api_link.', [
+          '@markeclusterer_api_link' => $this->link->generate($this->t('Leaflet Markercluster Js Library'), Url::fromUri('https://github.com/Leaflet/Leaflet.markercluster', [
+            'absolute' => TRUE,
+            'attributes' => ['target' => 'blank'],
+          ])),
+        ]),
+        '#default_value' => $settings['map_markercluster']['control'],
+        '#description' => $this->t("@leaflet_markercluster_submodule_warning", [
+          '@leaflet_markercluster_submodule_warning' => $leaflet_markercluster_submodule_warning,
+        ]),
+        '#return_value' => 1,
+      ];
+      $element['map_markercluster']['options'] = [
+        '#type' => 'textarea',
+        '#rows' => 4,
+        '#title' => $this->t('Marker Cluster Additional Options'),
+        '#description' => $this->t('An object literal of additional marker cluster options, that comply with the Leaflet Markercluster Js Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+        '#default_value' => $settings['map_markercluster']['options'],
+        '#placeholder' => $this::getDefaultSettings()['map_markercluster']['options'],
+        '#element_validate' => [[get_class($this), 'jsonValidate']],
+      ];
+      if (isset($this->fieldDefinition)) {
+        $element['map_markercluster']['options']['#states'] = [
+          'visible' => [
+            ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map_markercluster][control]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
+      else {
+        $element['map_markercluster']['options']['#states'] = [
+          'visible' => [
+            ':input[name="style_options[map_markercluster][control]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
+    }
+    else {
+      $element['map_markercluster']['markup'] = [
+        '#markup' => $this->t("Enable the Leaflet Markecluster submodule to activate this functionality.<br>@leaflet_markercluster_submodule_warning", [
+          '@leaflet_markercluster_submodule_warning' => $leaflet_markercluster_submodule_warning,
+        ]),
+      ];
+    }
   }
 
   /**

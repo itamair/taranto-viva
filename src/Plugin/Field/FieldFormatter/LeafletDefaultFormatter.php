@@ -232,6 +232,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $icon = $this->getSetting('icon');
     $elements['icon'] = $this->generateIconFormElement($icon);
 
+    // Set Map Marker Cluster Element.
+    $this->setMapMarkerclusterElement($elements, $this->getSettings());
+
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($elements, $this->getSettings());
 
