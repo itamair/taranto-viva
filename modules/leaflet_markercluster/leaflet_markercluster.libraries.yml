@@ -1,9 +1,9 @@
 leaflet-markercluster:
   remote: https://github.com/Leaflet/Leaflet.markercluster
-  version: v0.4.0
+  version: 1.4.0
   license:
     name: MIT-License
-    url: https://github.com/Leaflet/Leaflet.markercluster/blob/v0.4.0/MIT-LICENCE.txt
+    url: https://github.com/Leaflet/Leaflet.markercluster/blob/master/MIT-LICENCE.txt
     gpl-compatible: true
   js:
     js/leaflet_markercluster/dist/leaflet.markercluster.js: {}
