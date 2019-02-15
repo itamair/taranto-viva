@@ -501,6 +501,8 @@ trait LeafletSettingsElementsTrait {
    */
   protected function setMapMarkerclusterElement(array &$element, array $settings) {
 
+    $default_settings = $this::getDefaultSettings();
+
     $leaflet_markercluster_submodule_warning = $this->t("<u>Note</u>: This functionality and settings are related to the Leaflet Markercluster submodule, present inside the Leaflet module itself.<br><u>(DON'T USE the external self standing Leaflet Markecluster module).</u>");
 
     $element['map_markercluster'] = [
@@ -517,7 +519,7 @@ trait LeafletSettingsElementsTrait {
             'attributes' => ['target' => 'blank'],
           ])),
         ]),
-        '#default_value' => $settings['map_markercluster']['control'],
+        '#default_value' => isset($settings['map_markercluster']['control']) ? $settings['map_markercluster']['control'] : $default_settings['map_markercluster']['control'],
         '#description' => $this->t("@leaflet_markercluster_submodule_warning", [
           '@leaflet_markercluster_submodule_warning' => $leaflet_markercluster_submodule_warning,
         ]),
@@ -528,7 +530,7 @@ trait LeafletSettingsElementsTrait {
         '#rows' => 4,
         '#title' => $this->t('Marker Cluster Additional Options'),
         '#description' => $this->t('An object literal of additional marker cluster options, that comply with the Leaflet Markercluster Js Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
-        '#default_value' => $settings['map_markercluster']['options'],
+        '#default_value' => isset($settings['map_markercluster']['options']) ? $settings['map_markercluster']['options'] : $default_settings['map_markercluster']['options'],
         '#placeholder' => $this::getDefaultSettings()['map_markercluster']['options'],
         '#element_validate' => [[get_class($this), 'jsonValidate']],
       ];

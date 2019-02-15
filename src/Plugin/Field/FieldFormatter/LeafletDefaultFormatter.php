@@ -149,6 +149,8 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
 
+    $settings = $this->getSettings();
+
     $form['#tree'] = TRUE;
 
     // Get the Cardinality set for the Formatter Field.
@@ -222,7 +224,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     }
 
     // Generate the Leaflet Map General Settings.
-    $this->generateMapGeneralSettings($elements, $this->getSettings());
+    $this->generateMapGeneralSettings($elements, $settings);
 
     // Generate the Leaflet Map Position Form Element.
     $map_position_options = $this->getSetting('map_position');
@@ -233,10 +235,10 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $elements['icon'] = $this->generateIconFormElement($icon);
 
     // Set Map Marker Cluster Element.
-    $this->setMapMarkerclusterElement($elements, $this->getSettings());
+    $this->setMapMarkerclusterElement($elements, $settings);
 
     // Set Map Geometries Options Element.
-    $this->setMapPathOptionsElement($elements, $this->getSettings());
+    $this->setMapPathOptionsElement($elements, $settings);
 
     return $elements;
   }
