@@ -5,8 +5,8 @@
 (function ($) {
   Drupal.Leaflet.prototype.add_features = function (features, initial) {
 
-    var markercluster_options = this.settings.map_markercluster.options && this.settings.map_markercluster.options.length > 0 ? JSON.parse(this.settings.map_markercluster.options) : {};
-    var cluster_layer = new L.MarkerClusterGroup(markercluster_options);
+    var leaflet_markercluster_options = this.settings.leaflet_markercluster.options && this.settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.settings.leaflet_markercluster.options) : {};
+    var cluster_layer = new L.MarkerClusterGroup(leaflet_markercluster_options);
     for (var i = 0; i < features.length; i++) {
       var feature = features[i];
       var lFeature;
