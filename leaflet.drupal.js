@@ -67,10 +67,29 @@
     // Instantiate a new Leaflet map.
     this.lMap = new L.Map(this.mapId, this.settings);
 
-    // Add map base layers.
+    // add map layers (base and overlay layers)
+    var layers = {}, overlays = {};
+    var i = 0;
     for (var key in this.map_definition.layers) {
       var layer = this.map_definition.layers[key];
-      this.add_base_layer(key, layer);
+      // Distinguish between "base" and "overlay" layers.
+      // Default to "base" in case "layer_type" has not been defined in hook_leaflet_map_info().
+      layer.layer_type = (typeof layer.layer_type === 'undefined') ? 'base' : layer.layer_type;
+
+      switch (layer.layer_type) {
+        case 'overlay':
+          var overlay_layer = this.create_layer(layer, key);
+          var layer_hidden = (typeof layer.layer_hidden === "undefined") ? false : layer.layer_hidden ;
+          this.add_overlay(key, overlay_layer, layer_hidden);
+          break;
+        default:
+          this.add_base_layer(key, layer, i);
+          if (i === 0) {    //  Only the first base layer needs to be added to the map - all the others are accessed via the layer switcher
+            i++;
+          }
+          break;
+      }
+      i++;
     }
 
     // Set initial view, fallback to displaying the whole world.
@@ -107,11 +126,12 @@
     }
   };
 
-  Drupal.Leaflet.prototype.add_base_layer = function (key, definition) {
+  Drupal.Leaflet.prototype.add_base_layer = function (key, definition, i) {
     var map_layer = this.create_layer(definition, key);
     this.base_layers[key] = map_layer;
-    this.lMap.addLayer(map_layer);
-
+    if (i === 0) {    //  Only the first base layer needs to be added to the map - all the others are accessed via the layer switcher
+      this.lMap.addLayer(map_layer);
+    }
     if (this.layer_control == null) {
       this.initialise_layer_control();
     }
@@ -121,9 +141,11 @@
     }
   };
 
-  Drupal.Leaflet.prototype.add_overlay = function (label, layer) {
+  Drupal.Leaflet.prototype.add_overlay = function (label, layer, layer_hidden) {
     this.overlays[label] = layer;
-    this.lMap.addLayer(layer);
+    if (!layer_hidden) {
+      this.lMap.addLayer(layer);
+    }
 
     if (this.layer_control == null) {
       this.initialise_layer_control();
@@ -155,7 +177,7 @@
         }
 
         // Add the group to the layer switcher.
-        this.add_overlay(feature.label, lGroup);
+        this.add_overlay(feature.label, lGroup, FALSE);
       }
       else {
         lFeature = this.create_feature(feature);
