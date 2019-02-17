@@ -84,7 +84,7 @@ trait LeafletSettingsElementsTrait {
         'shadowAnchor' => ['x' => NULL, 'y' => NULL],
         'popupAnchor' => ['x' => NULL, 'y' => NULL],
       ],
-      'map_markercluster' => [
+      'leaflet_markercluster' => [
         'control' => 0,
         'options' => '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds": false}',
       ],
@@ -488,7 +488,7 @@ trait LeafletSettingsElementsTrait {
     ] : NULL;
     $map['settings']['scrollWheelZoom'] = $options['disable_wheel'] ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : []);
-    $map['settings']['map_markercluster'] = isset($options['map_markercluster']) ? $options['map_markercluster'] : NULL;
+    $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
   }
 
   /**
@@ -502,16 +502,15 @@ trait LeafletSettingsElementsTrait {
   protected function setMapMarkerclusterElement(array &$element, array $settings) {
 
     $default_settings = $this::getDefaultSettings();
-
     $leaflet_markercluster_submodule_warning = $this->t("<u>Note</u>: This functionality and settings are related to the Leaflet Markercluster submodule, present inside the Leaflet module itself.<br><u>(DON'T USE the external self standing Leaflet Markecluster module).</u>");
 
-    $element['map_markercluster'] = [
+    $element['leaflet_markercluster'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Marker Clustering'),
     ];
 
     if ($this->moduleHandler->moduleExists('leaflet_markercluster')) {
-      $element['map_markercluster']['control'] = [
+      $element['leaflet_markercluster']['control'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable the functionality of the @markeclusterer_api_link.', [
           '@markeclusterer_api_link' => $this->link->generate($this->t('Leaflet Markercluster Js Library'), Url::fromUri('https://github.com/Leaflet/Leaflet.markercluster', [
@@ -519,38 +518,38 @@ trait LeafletSettingsElementsTrait {
             'attributes' => ['target' => 'blank'],
           ])),
         ]),
-        '#default_value' => isset($settings['map_markercluster']['control']) ? $settings['map_markercluster']['control'] : $default_settings['map_markercluster']['control'],
+        '#default_value' => isset($settings['leaflet_markercluster']['control']) ? $settings['leaflet_markercluster']['control'] : $default_settings['leaflet_markercluster']['control'],
         '#description' => $this->t("@leaflet_markercluster_submodule_warning", [
           '@leaflet_markercluster_submodule_warning' => $leaflet_markercluster_submodule_warning,
         ]),
         '#return_value' => 1,
       ];
-      $element['map_markercluster']['options'] = [
+      $element['leaflet_markercluster']['options'] = [
         '#type' => 'textarea',
         '#rows' => 4,
         '#title' => $this->t('Marker Cluster Additional Options'),
         '#description' => $this->t('An object literal of additional marker cluster options, that comply with the Leaflet Markercluster Js Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
-        '#default_value' => isset($settings['map_markercluster']['options']) ? $settings['map_markercluster']['options'] : $default_settings['map_markercluster']['options'],
-        '#placeholder' => $this::getDefaultSettings()['map_markercluster']['options'],
+        '#default_value' => isset($settings['leaflet_markercluster']['options']) ? $settings['leaflet_markercluster']['options'] : $default_settings['leaflet_markercluster']['options'],
+        '#placeholder' => $default_settings['leaflet_markercluster']['options'],
         '#element_validate' => [[get_class($this), 'jsonValidate']],
       ];
       if (isset($this->fieldDefinition)) {
-        $element['map_markercluster']['options']['#states'] = [
+        $element['leaflet_markercluster']['options']['#states'] = [
           'visible' => [
-            ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map_markercluster][control]"]' => ['checked' => TRUE],
+            ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_markercluster][control]"]' => ['checked' => TRUE],
           ],
         ];
       }
       else {
-        $element['map_markercluster']['options']['#states'] = [
+        $element['leaflet_markercluster']['options']['#states'] = [
           'visible' => [
-            ':input[name="style_options[map_markercluster][control]"]' => ['checked' => TRUE],
+            ':input[name="style_options[leaflet_markercluster][control]"]' => ['checked' => TRUE],
           ],
         ];
       }
     }
     else {
-      $element['map_markercluster']['markup'] = [
+      $element['leaflet_markercluster']['markup'] = [
         '#markup' => $this->t("Enable the Leaflet Markecluster submodule to activate this functionality.<br>@leaflet_markercluster_submodule_warning", [
           '@leaflet_markercluster_submodule_warning' => $leaflet_markercluster_submodule_warning,
         ]),

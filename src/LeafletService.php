@@ -71,7 +71,7 @@ class LeafletService {
   public function leafletRenderMap(array $map, array $features = [], $height = '400px') {
     $map_id = isset($map['id']) ? $map['id'] : Html::getUniqueId('leaflet_map');
     $attached_libraries = ['leaflet/leaflet-drupal', 'leaflet/general'];
-    if ($this->moduleHandler->moduleExists('leaflet_markercluster') && isset($map['settings']['map_markercluster']) && $map['settings']['map_markercluster']['control']) {
+    if ($this->moduleHandler->moduleExists('leaflet_markercluster') && isset($map['settings']['leaflet_markercluster']) && $map['settings']['leaflet_markercluster']['control']) {
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster';
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster-drupal';
     }
