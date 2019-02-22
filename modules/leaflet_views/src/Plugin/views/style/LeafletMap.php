@@ -478,7 +478,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             // Remove empty icon options so that they might be replaced by the
             // ones set by the hook_leaflet_map_info.
             foreach ($this->options['icon'] as $k => $icon_option) {
-              if (empty($icon_option) || (is_array($icon_option) && $this->leafletService::multipleEmpty($icon_option))) {
+              if (empty($icon_option) || (is_array($icon_option) && $this->leafletService->multipleEmpty($icon_option))) {
                 unset($this->options['icon'][$k]);
               }
             }

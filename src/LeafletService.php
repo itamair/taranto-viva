@@ -327,7 +327,7 @@ class LeafletService {
    * @return bool
    *   The bool result.
    */
-  public static function multipleEmpty(array $array) {
+  public function multipleEmpty(array $array) {
     foreach ($array as $value) {
       if (empty($value)) {
         continue;
