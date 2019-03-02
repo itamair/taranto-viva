@@ -64,7 +64,7 @@ trait LeafletSettingsElementsTrait {
       'hide_empty_map' => 0,
       'disable_wheel' => 0,
       'reset_map' => [
-        'control' => TRUE,
+        'control' => 0,
         'position' => 'topright',
       ],
       'popup' => FALSE,
@@ -148,6 +148,15 @@ trait LeafletSettingsElementsTrait {
       '#default_value' => $settings['disable_wheel'],
       '#return_value' => 1,
     ];
+
+    $elements['fullscreen_control'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Fullscreen Control'),
+      '#description' => $this->t('Enable the Fullscreen View of the Map.'),
+      '#default_value' => $settings['fullscreen_control'],
+      '#return_value' => 1,
+    ];
+
   }
 
   /**
