@@ -117,6 +117,11 @@
       this.attributionControl.addAttribution(this.map_definition.attribution.text);
     }
 
+    // Add Fullscreen Control, if requested.
+    if (this.settings.fullscreen_control) {
+      this.lMap.addControl(new L.Control.Fullscreen());
+    }
+
     // allow other modules to get access to the map object using jQuery's trigger method
     $(document).trigger('leaflet.map', [this.map_definition, this.lMap, this]);
   };

@@ -63,6 +63,7 @@ trait LeafletSettingsElementsTrait {
       'height' => 400,
       'hide_empty_map' => 0,
       'disable_wheel' => 0,
+      'fullscreen_control' => 1,
       'reset_map' => [
         'control' => 0,
         'position' => 'topright',
@@ -503,6 +504,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['scrollWheelZoom'] = $options['disable_wheel'] ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
     $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
+    $map['settings']['fullscreen_control'] = isset($options['fullscreen_control']) ? $options['fullscreen_control'] : $default_settings['fullscreen_control'];
     $map['settings']['reset_map'] = isset($options['reset_map']) ? $options['reset_map'] : $default_settings['reset_map'];
   }
 
