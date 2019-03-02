@@ -325,6 +325,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Generate the Leaflet Map General Settings.
     $this->generateMapGeneralSettings($form, $this->options);
 
+    // Generate the Leaflet Map Reset Control.
+    $this->setResetMapControl($form, $this->options);
+
     // Generate the Leaflet Map Position Form Element.
     $map_position_options = $this->options['map_position'];
     $form['map_position'] = $this->generateMapPositionElement($map_position_options);

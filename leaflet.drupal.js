@@ -33,8 +33,19 @@
             // Set map position features.
             $container.data('leaflet').fitbounds();
 
+            data.map.start_center = $container.data('leaflet').lMap.getCenter();
+            data.map.start_zoom = $container.data('leaflet').lMap.getZoom();
+
             // Add the leaflet map to our settings object to make it accessible
             data.lMap = $container.data('leaflet').lMap;
+
+            if (data.map.settings.reset_map.control) {
+              // Create the DIV to hold the control and call the mapResetControl()
+              // constructor passing in this DIV.
+              var mapResetControlDiv = document.createElement('div');
+              $container.data('leaflet').map_reset_control(mapResetControlDiv, data).addTo(data.lMap);
+            }
+
           }
           else {
             // If we already had a map instance, add new features.
@@ -94,7 +105,7 @@
 
     // Set initial view, fallback to displaying the whole world.
     if (this.settings.center && this.settings.zoom) {
-      this.lMap.setView(new L.LatLng(this.settings.center.lat, this.settings.center.lng), this.settings.zoom);
+      this.lMap.setView(new L.LatLng(this.settings.center.lat, this.settings.center.lon), this.settings.zoom);
     }
     else {
       this.lMap.fitWorld();
@@ -164,10 +175,10 @@
 
       // dealing with a layer group
       if (feature.group) {
-        var lGroup = this.create_feature_group(feature);
+        var lGroup = self.create_feature_group(feature);
         for (var groupKey in feature.features) {
           var groupFeature = feature.features[groupKey];
-          lFeature = this.create_feature(groupFeature);
+          lFeature = self.create_feature(groupFeature);
           if (lFeature !== undefined) {
             if (groupFeature.popup) {
               lFeature.bindPopup(groupFeature.popup);
@@ -180,7 +191,7 @@
         this.add_overlay(feature.label, lGroup, FALSE);
       }
       else {
-        lFeature = this.create_feature(feature);
+        lFeature = self.create_feature(feature);
         if (lFeature !== undefined) {
           if (lFeature.setStyle) {
             lFeature.setStyle(Drupal.Leaflet.path);
@@ -417,7 +428,7 @@
   };
 
   Drupal.Leaflet.prototype.create_json = function (json) {
-    lJSON = new L.GeoJSON();
+    var lJSON = new L.GeoJSON();
 
     lJSON.options.onEachFeature = function(feature, layer){
       for (var layer_id in layer._layers) {
@@ -453,6 +464,41 @@
       }
 
     }
+  };
+
+  Drupal.Leaflet.prototype.map_reset_control = function(controlDiv, data) {
+    var control = new L.Control({position:data.map.settings.reset_map.position});
+    control.onAdd = function() {
+      // Set CSS for the control border.
+      var controlUI = L.DomUtil.create('div','resetzoom')
+      controlUI.style.backgroundColor = '#fff';
+      controlUI.style.border = '2px solid #fff';
+      controlUI.style.borderRadius = '3px';
+      controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.margin = '6px';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = Drupal.t('Click to reset the map to its initial state');
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior.
+      var controlText = document.createElement('div');
+      controlText.style.color = 'rgb(25,25,25)';
+      controlText.style.fontSize = '1.1em';
+      controlText.style.lineHeight = '28px';
+      controlText.style.paddingLeft = '5px';
+      controlText.style.paddingRight = '5px';
+      controlText.innerHTML = Drupal.t('Reset Map');
+      controlUI.appendChild(controlText);
+
+      L.DomEvent
+        .disableClickPropagation(controlUI)
+        .addListener(controlUI, 'click', function() {
+          data.lMap.setView(data.map.start_center,data.map.start_zoom);
+        },controlUI);
+      return controlUI;
+    };
+    return control;
   };
 
 })(jQuery, Drupal, drupalSettings);
