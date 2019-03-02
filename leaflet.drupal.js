@@ -33,19 +33,8 @@
             // Set map position features.
             $container.data('leaflet').fitbounds();
 
-            data.map.start_center = $container.data('leaflet').lMap.getCenter();
-            data.map.start_zoom = $container.data('leaflet').lMap.getZoom();
-
             // Add the leaflet map to our settings object to make it accessible
             data.lMap = $container.data('leaflet').lMap;
-
-            if (data.map.settings.reset_map.control) {
-              // Create the DIV to hold the control and call the mapResetControl()
-              // constructor passing in this DIV.
-              var mapResetControlDiv = document.createElement('div');
-              $container.data('leaflet').map_reset_control(mapResetControlDiv, data).addTo(data.lMap);
-            }
-
           }
           else {
             // If we already had a map instance, add new features.
@@ -54,6 +43,22 @@
               $container.data('leaflet').add_features(data.features);
             }
           }
+
+          // At the end of the Map center and zoom settings set (once) the
+          // start center and the start zoom, and initialize the reset_map
+          // control
+          $container.data('leaflet').lMap.on('moveend', function() {
+            if(!data.map.start_center && !data.map.start_zoom ) {
+              data.map.start_center = $container.data('leaflet').lMap.getCenter();
+              data.map.start_zoom = $container.data('leaflet').lMap.getZoom();
+              if (data.map.settings.reset_map.control) {
+                // Create the DIV to hold the control and call the mapResetControl()
+                // constructor passing in this DIV.
+                var mapResetControlDiv = document.createElement('div');
+                $container.data('leaflet').map_reset_control(mapResetControlDiv, data).addTo(data.lMap);
+              }
+            }
+          });
         });
       });
     }
