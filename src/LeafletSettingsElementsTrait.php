@@ -499,7 +499,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['maxZoom'] = isset($options['map_position']['maxZoom']) ? (int) $options['map_position']['maxZoom'] : (isset($map['settings']['maxZoom']) ? $map['settings']['maxZoom'] : $default_settings['settings']['maxZoom']);
     $map['settings']['center'] = (isset($options['map_position']['center']['lat']) && isset($options['map_position']['center']['lon'])) ? [
       'lat' => floatval($options['map_position']['center']['lat']),
-      'lng' => floatval($options['map_position']['center']['lon']),
+      'lon' => floatval($options['map_position']['center']['lon']),
     ] : $default_settings['map_position']['center'];
     $map['settings']['scrollWheelZoom'] = $options['disable_wheel'] ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
