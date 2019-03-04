@@ -362,12 +362,12 @@
         // Success loading image.
         function(){
           marker.icon.iconSize = marker.icon.iconSize || {};
-          marker.icon.iconSize.x = marker.icon.iconSize.x || self.naturalWidth;
-          marker.icon.iconSize.y = marker.icon.iconSize.y || self.naturalHeight;
+          marker.icon.iconSize.x = marker.icon.iconSize.x || this.naturalWidth;
+          marker.icon.iconSize.y = marker.icon.iconSize.y || this.naturalHeight;
           if (marker.icon.shadowUrl) {
             marker.icon.shadowSize = marker.icon.shadowSize || {};
-            marker.icon.shadowSize.x = marker.icon.shadowSize.x || self.naturalWidth;
-            marker.icon.shadowSize.y = marker.icon.shadowSize.y || self.naturalHeight;
+            marker.icon.shadowSize.x = marker.icon.shadowSize.x || this.naturalWidth;
+            marker.icon.shadowSize.y = marker.icon.shadowSize.y || this.naturalHeight;
           }
           options.icon = self.create_icon(marker.icon);
           lMarker.setIcon(options.icon);
