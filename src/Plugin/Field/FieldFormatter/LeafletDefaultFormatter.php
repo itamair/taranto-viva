@@ -297,19 +297,20 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Set Map additional map Settings.
     $this->setAdditionalMapOptions($map, $settings);
 
+    // Get token context.
+    $token_context = [
+      'field' => $items,
+      $this->fieldDefinition->getTargetEntityTypeId() => $items->getEntity(),
+    ];
+
     $features = [];
     foreach ($items as $delta => $item) {
 
       $points = $this->leafletService->leafletProcessGeofield($item->value);
       $feature = $points[0];
 
-      // Eventually set the popup content.
+      // Eventually set the popup content.q
       if ($settings['popup']) {
-        // Get token context.
-        $token_context = [
-          'field' => $items,
-          $this->fieldDefinition->getTargetEntityTypeId() => $items->getEntity(),
-        ];
         // Construct the renderable array for popup title / text.
         $build = [];
         if ($this->getSetting('popup_content')) {
@@ -339,6 +340,8 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
       // Eventually set the custom icon.
       if (!empty($settings['icon']['iconUrl'])) {
+        $settings['icon']['iconUrl'] = count($settings['icon']['iconUrl']) > 0 ? $this->token->replace($settings['icon']['iconUrl'], $token_context) : '';
+        $settings['icon']['shadowUrl'] = count($settings['icon']['shadowUrl']) > 0 ? $this->token->replace($settings['icon']['shadowUrl'], $token_context) : '';
         $feature['icon'] = $settings['icon'];
       }
 

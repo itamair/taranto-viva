@@ -281,6 +281,8 @@ trait LeafletSettingsElementsTrait {
    */
   protected function generateIconFormElement(array $icon_options) {
 
+    $icon_url_description = $this->t('Can be an absolute or relative URL.<br><b>Note: </b> Using Tokens it is possible to dynamically define the Marker Icon output, with the composition of Marker Icon paths including entity properties or fields values.');
+
     $element = [
       '#type' => 'fieldset',
       '#title' => $this->t('Map Icon'),
@@ -293,31 +295,33 @@ trait LeafletSettingsElementsTrait {
 
     $element['iconUrl'] = [
       '#title' => $this->t('Icon URL'),
-      '#description' => $this->t('Can be an absolute or relative URL.'),
+      '#description' => $icon_url_description,
       '#type' => 'textfield',
+      '#size' => 125,
       '#default_value' => isset($icon_options['iconUrl']) ? $icon_options['iconUrl'] : NULL,
     ];
 
     $element['shadowUrl'] = [
       '#title' => $this->t('Icon Shadow URL'),
-      '#description' => $this->t('Can be an absolute or relative URL.'),
+      '#description' => $icon_url_description,
       '#type' => 'textfield',
+      '#size' => 125,
       '#default_value' => isset($icon_options['shadowUrl']) ? $icon_options['shadowUrl'] : NULL,
     ];
 
     if (method_exists($this, 'getProvider') && $this->getProvider() == 'leaflet_views') {
+      $twig_link = $this->link->generate('Twig', Url::fromUri('http://twig.sensiolabs.org/documentation', [
+        'absolute' => TRUE,
+        'attributes' => ['target' => 'blank'],
+      ])
+      );
 
-      $icon_url_description = $this->t('Can be an absolute or relative URL. You may include <a href="@url" target="_blank">Twig</a>. You may enter data from this view as per the "Replacement patterns" below.<br><b>Note: </b> Using Tokens it is possible to dynamically define the Marker Icon output, with the composition of Marker Icon paths including entity properties or fields values.', [
-        '@url' => CoreUrl::fromUri('http://twig.sensiolabs.org/documentation')
-          ->toString(),
+      $icon_url_description .= '<br>' . $this->t('You may include @twig_link. You may enter data from this view as per the "Replacement patterns" below.', [
+        '@twig_link' => $twig_link,
       ]);
 
       $element['iconUrl']['#description'] = $icon_url_description;
-      $element['iconUrl']['#type'] = "textarea";
-
       $element['shadowUrl']['#description'] = $icon_url_description;
-      $element['shadowUrl']['#type'] = "textarea";
-
 
       // Setup the tokens for views fields.
       // Code is snatched from Drupal\views\Plugin\views\field\FieldPluginBase.
