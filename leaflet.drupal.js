@@ -195,6 +195,9 @@
           var groupFeature = feature.features[groupKey];
           lFeature = self.create_feature(groupFeature);
           if (lFeature !== undefined) {
+            if (lFeature.setStyle) {
+              lFeature.setStyle(Drupal.Leaflet.path);
+            }
             if (groupFeature.popup) {
               lFeature.bindPopup(groupFeature.popup);
             }
