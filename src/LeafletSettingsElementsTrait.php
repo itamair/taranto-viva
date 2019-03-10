@@ -296,16 +296,16 @@ trait LeafletSettingsElementsTrait {
     $element['iconUrl'] = [
       '#title' => $this->t('Icon URL'),
       '#description' => $icon_url_description,
-      '#type' => 'textfield',
-      '#size' => 125,
+      '#type' => 'textarea',
+      '#rows' => 3,
       '#default_value' => isset($icon_options['iconUrl']) ? $icon_options['iconUrl'] : NULL,
     ];
 
     $element['shadowUrl'] = [
       '#title' => $this->t('Icon Shadow URL'),
       '#description' => $icon_url_description,
-      '#type' => 'textfield',
-      '#size' => 125,
+      '#type' => 'textarea',
+      '#rows' => 3,
       '#default_value' => isset($icon_options['shadowUrl']) ? $icon_options['shadowUrl'] : NULL,
     ];
 
