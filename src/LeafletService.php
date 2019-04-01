@@ -222,6 +222,7 @@ class LeafletService {
       case 'multilinestring':
         if ($datum['type'] == 'multilinestring') {
           $datum['type'] = 'multipolyline';
+          $datum['multipolyline'] = TRUE;
         }
         /* @var \GeometryCollection $geom */
         $components = $geom->getComponents();
