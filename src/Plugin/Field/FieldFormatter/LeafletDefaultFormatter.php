@@ -294,6 +294,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Add a specific map id.
     $map['id'] = Html::getUniqueId("leaflet_map_{$entity_type}_{$bundle}_{$entity_id}_{$field->getName()}");
 
+    // Get and set the Geofield cardinality.
+    $map['geofield_cardinality'] = $this->fieldDefinition->getFieldStorageDefinition()->getCardinality();
+
     // Set Map additional map Settings.
     $this->setAdditionalMapOptions($map, $settings);
 
@@ -308,8 +311,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
       $points = $this->leafletService->leafletProcessGeofield($item->value);
       $feature = $points[0];
+      $feature['entity_id'] = $entity_id;
 
-      // Eventually set the popup content.q
+      // Eventually set the popup content.
       if ($settings['popup']) {
         // Construct the renderable array for popup title / text.
         $build = [];
