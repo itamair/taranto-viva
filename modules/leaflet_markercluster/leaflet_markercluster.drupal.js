@@ -3,7 +3,7 @@
  */
 
 (function ($) {
-  Drupal.Leaflet.prototype.add_features = function (features, initial) {
+  Drupal.Leaflet.prototype.add_features = function (mapid, features, initial) {
 
     var leaflet_markercluster_options = this.settings.leaflet_markercluster.options && this.settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.settings.leaflet_markercluster.options) : {};
     var cluster_layer = new L.MarkerClusterGroup(leaflet_markercluster_options);
@@ -20,7 +20,7 @@
           lFeature = this.create_feature(groupFeature);
           if (lFeature !== undefined) {
             if (lFeature.setStyle) {
-              lFeature.setStyle(Drupal.Leaflet.path);
+              lFeature.setStyle(Drupal.Leaflet[mapid].path);
             }
             if (groupFeature.popup) {
               lFeature.bindPopup(groupFeature.popup);
@@ -36,7 +36,7 @@
         lFeature = this.create_feature(feature);
         if (lFeature !== undefined) {
           if (lFeature.setStyle) {
-            lFeature.setStyle(Drupal.Leaflet.path);
+            lFeature.setStyle(Drupal.Leaflet[mapid].path);
             collections_cluster_layers[i] = new L.MarkerClusterGroup(leaflet_markercluster_options);
             collections_cluster_layers[i].addLayer(lFeature);
             if (feature.popup) {

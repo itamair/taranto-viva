@@ -3,8 +3,21 @@
   Drupal.behaviors.leaflet = {
     attach: function (context, settings) {
 
-      // Attach leaflet ajax popup listeners.
-      $(document).on('leaflet.map', function (e, settings, lMap) {
+      // Once the Leaflet Map is loaded with its features.
+      $(document).on('leaflet.map', function (e, settings, lMap, mapid) {
+        // Set the start center and the start zoom, and initialize the reset_map control.
+        if(!Drupal.Leaflet[mapid].start_center && !Drupal.Leaflet[mapid].start_zoom ) {
+          Drupal.Leaflet[mapid].start_center = lMap.getCenter();
+          Drupal.Leaflet[mapid].start_zoom = lMap.getZoom();
+          if (settings.settings.reset_map && settings.settings.reset_map.control) {
+            // Create the DIV to hold the control and call the mapResetControl()
+            // constructor passing in this DIV.
+            var mapResetControlDiv = document.createElement('div');
+            Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid, settings.settings.reset_map.position).addTo(lMap);
+          }
+        }
+
+        // Attach leaflet ajax popup listeners.
         lMap.on('popupopen', function (e) {
           var content = $('[data-leaflet-ajax-popup]', e.popup._contentNode);
           if (content.length) {
@@ -36,7 +49,7 @@
               Drupal.Leaflet[mapid].path = data.map.settings.path && data.map.settings.path.length > 0 ? JSON.parse(data.map.settings.path) : {};
 
               // Add Leaflet Map Features.
-              $container.data('leaflet').add_features(data.features, true);
+              $container.data('leaflet').add_features(mapid, data.features, true);
             }
 
             // Set map position features.
@@ -44,31 +57,18 @@
 
             // Add the leaflet map to our settings object to make it accessible
             data.lMap = $container.data('leaflet').lMap;
-
-            // At the end of the first Map set (once) set the start center and the
-            // start zoom, and initialize the reset_map control.
-            if(!Drupal.Leaflet[mapid].start_center && !Drupal.Leaflet[mapid].start_zoom ) {
-              Drupal.Leaflet[mapid].start_center = data.lMap.getCenter();
-              Drupal.Leaflet[mapid].start_zoom = data.lMap.getZoom();
-              if (data.map.settings.reset_map.control) {
-                // Create the DIV to hold the control and call the mapResetControl()
-                // constructor passing in this DIV.
-                var mapResetControlDiv = document.createElement('div');
-                Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid, data.map.settings.reset_map.position).addTo(data.lMap);
-              }
-            }
           }
           else {
             // If we already had a map instance, add new features.
             // @todo Does this work? Needs testing.
             if (data.features !== undefined) {
-              $container.data('leaflet').add_features(data.features);
+              $container.data('leaflet').add_features(mapid, data.features);
             }
           }
 
           // After having initialized the Leaflet Map and added features,
           // allow other modules to get access to it via trigger.
-          $(document).trigger('leaflet.map', [data.map, data.lMap, mapid]);
+          $(document).trigger('leaflet.map', [data.map, data.lMap, data.mapid]);
 
         });
       });
@@ -197,7 +197,7 @@
     }
   };
 
-  Drupal.Leaflet.prototype.add_features = function (features, initial) {
+  Drupal.Leaflet.prototype.add_features = function (mapid, features, initial) {
     var self = this;
     for (var i = 0; i < features.length; i++) {
       var feature = features[i];
@@ -211,7 +211,7 @@
           lFeature = self.create_feature(groupFeature);
           if (lFeature !== undefined) {
             if (lFeature.setStyle) {
-              lFeature.setStyle(Drupal.Leaflet.path);
+              lFeature.setStyle(Drupal.Leaflet[mapid].path);
             }
             if (groupFeature.popup) {
               lFeature.bindPopup(groupFeature.popup);
@@ -227,7 +227,7 @@
         lFeature = self.create_feature(feature);
         if (lFeature !== undefined) {
           if (lFeature.setStyle) {
-            lFeature.setStyle(Drupal.Leaflet.path);
+            lFeature.setStyle(Drupal.Leaflet[mapid].path);
           }
           self.lMap.addLayer(lFeature);
 
