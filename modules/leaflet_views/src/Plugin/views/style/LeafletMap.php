@@ -564,9 +564,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               $data = array_merge($data, $points);
             }
             catch (\Exception $e) {
-              watchdog_exception('geofield_map', $e);
-              if ($this->currentUser->hasPermission('configure geofield_map')) {
-                $this->messenger->addError($this->t('This Geofield Map cannot be rendered due to bad configuration in the GeofieldMap View Style (@log: @message)', [
+              watchdog_exception('leaflet', $e);
+              if ($this->currentUser->hasPermission('configure leaflet')) {
+                $this->messenger->addError($this->t('This Leaflet Map cannot be rendered due to bad configuration in the Leaflet Map View Style (@log: @message)', [
                   '@message' => $e->getMessage(),
                 ]));
               }
