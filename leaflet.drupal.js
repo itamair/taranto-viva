@@ -34,41 +34,31 @@
       $.each(settings.leaflet, function (m, data) {
         $('#' + data.mapid, context).each(function () {
           var $container = $(this);
+          var mapid = data.mapid;
 
-          // If the attached context contains any leaflet maps, make sure we have a Drupal.leaflet_widget object.
-          if ($container.data('leaflet') === undefined) {
-            $container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(data.mapid), data.mapid, data.map));
-            if (data.features.length > 0) {
-              var mapid = data.mapid;
+          $container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(mapid), mapid, data.map));
+          if (data.features.length > 0) {
 
-              // Initialize the Drupal.Leaflet.[data.mapid] object,
-              // for possible external interaction.
-              Drupal.Leaflet[mapid].markers = {}
+            // Initialize the Drupal.Leaflet.[data.mapid] object,
+            // for possible external interaction.
+            Drupal.Leaflet[mapid].markers = {}
 
-              // Define the Drupal.Leaflet.path object.
-              Drupal.Leaflet[mapid].path = data.map.settings.path && data.map.settings.path.length > 0 ? JSON.parse(data.map.settings.path) : {};
+            // Define the Drupal.Leaflet.path object.
+            Drupal.Leaflet[mapid].path = data.map.settings.path && data.map.settings.path.length > 0 ? JSON.parse(data.map.settings.path) : {};
 
-              // Add Leaflet Map Features.
-              $container.data('leaflet').add_features(mapid, data.features, true);
-            }
-
-            // Set map position features.
-            $container.data('leaflet').fitbounds();
-
-            // Add the leaflet map to our settings object to make it accessible
-            data.lMap = $container.data('leaflet').lMap;
+            // Add Leaflet Map Features.
+            $container.data('leaflet').add_features(mapid, data.features, true);
           }
-          else {
-            // If we already had a map instance, add new features.
-            // @todo Does this work? Needs testing.
-            if (data.features !== undefined) {
-              $container.data('leaflet').add_features(mapid, data.features);
-            }
-          }
+
+          // Set map position features.
+          $container.data('leaflet').fitbounds();
+
+          // Add the leaflet map to our settings object to make it accessible
+          data.lMap = $container.data('leaflet').lMap;
 
           // After having initialized the Leaflet Map and added features,
           // allow other modules to get access to it via trigger.
-          $(document).trigger('leaflet.map', [data.map, data.lMap, data.mapid]);
+          $(document).trigger('leaflet.map', [data.map, data.lMap, mapid]);
 
         });
       });
