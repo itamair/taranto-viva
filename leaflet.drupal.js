@@ -36,7 +36,10 @@
           var $container = $(this);
           var mapid = data.mapid;
 
-          $container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(mapid), mapid, data.map));
+          // If the attached context contains any leaflet maps, make sure we have a Drupal.leaflet_widget object.
+          if ($container.data('leaflet') === undefined) {
+
+            $container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(mapid), mapid, data.map));
           if (data.features.length > 0) {
 
             // Initialize the Drupal.Leaflet.[data.mapid] object,
@@ -55,6 +58,15 @@
 
           // Add the leaflet map to our settings object to make it accessible
           data.lMap = $container.data('leaflet').lMap;
+          }
+
+          else {
+            // If we already had a map instance, add new features.
+            // @todo Does this work? Needs testing.
+            if (data.features !== undefined) {
+              $container.data('leaflet').add_features(mapid, data.features);
+            }
+          }
 
           // After having initialized the Leaflet Map and added features,
           // allow other modules to get access to it via trigger.
