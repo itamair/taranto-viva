@@ -521,7 +521,12 @@
     }
   };
 
+  Drupal.Leaflet.prototype.map_reset = function (mapid) {
+    Drupal.Leaflet[mapid].lMap.setView(Drupal.Leaflet[mapid].start_center, Drupal.Leaflet[mapid].start_zoom);
+  };
+
   Drupal.Leaflet.prototype.map_reset_control = function(controlDiv, mapid, reset_map_position) {
+    var self = this;
     var control = new L.Control({position: reset_map_position});
     control.onAdd = function() {
       // Set CSS for the control border.
@@ -550,7 +555,7 @@
       L.DomEvent
         .disableClickPropagation(controlUI)
         .addListener(controlUI, 'click', function() {
-          Drupal.Leaflet[mapid].lMap.setView(Drupal.Leaflet[mapid].start_center, Drupal.Leaflet[mapid].start_zoom);
+          self.map_reset(mapid);
         },controlUI);
       return controlUI;
     };
