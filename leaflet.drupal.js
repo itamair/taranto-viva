@@ -162,7 +162,7 @@
     // at least two base layers or at least one overlay.
     if (self.layer_control == null && self.settings.layerControl && (count_layers(self.base_layers) > 1 || count_layers(self.overlays) > 0)) {
       // Instantiate layer control, using settings.layerControl as settings.
-      self.layer_control = new L.Control.Layers(self.base_layers, self.overlays, self.settings.layerControl);
+      self.layer_control = new L.Control.Layers(self.base_layers, self.overlays, self.settings.layerControlOptions);
       self.lMap.addControl(self.layer_control);
     }
   };
