@@ -331,9 +331,19 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *   The entity sources list.
    */
   protected function getAvailableEntitySources() {
+    if ($base_entity_type = $this->view->getBaseEntityType()) {
+      $label = $base_entity_type->getLabel();
+    }
+    else {
+      // Fallback to the base table key.
+      $base_tables = array_keys($this->view->getBaseTables());
+      // A view without a base table should never happen (just in case).
+      $label = $base_tables[0] ?? $this->t('Unknown');
+    }
+
     $options = [
       '__base_table' => new TranslatableMarkup('View Base Entity (@entity_type)', [
-        '@entity_type' => $this->view->getBaseEntityType()->getLabel(),
+        '@entity_type' => $label,
       ]),
     ];
 
@@ -458,7 +468,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $form['entity_source'] = [
         '#type' => 'select',
         '#title' => new TranslatableMarkup('Entity Source'),
-        '#description' => new TranslatableMarkup('Select which Entity should be used as Geofield Mapping base Entity.<br><u>Leave as "View Base Entity" to rely on default Views behaviour, and don\'t specifically needed otherwise</u>.'),
+        '#description' => new TranslatableMarkup('Select which Entity should be used as Leaflet Mapping base Entity.<br><u>Leave as "View Base Entity" to rely on default Views behaviour, and don\'t specifically needed otherwise</u>.'),
         '#options' => $entity_sources,
         '#default_value' => !empty($this->options['entity_source']) ? $this->options['entity_source'] : '__base_table',
         '#ajax' => [
