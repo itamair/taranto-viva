@@ -331,9 +331,19 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *   The entity sources list.
    */
   protected function getAvailableEntitySources() {
+    if ($base_entity_type = $this->view->getBaseEntityType()) {
+      $label = $base_entity_type->getLabel();
+    }
+    else {
+      // Fallback to the base table key.
+      $base_tables = array_keys($this->view->getBaseTables());
+      // A view without a base table should never happen (just in case).
+      $label = $base_tables[0] ?? $this->t('Unknown');
+    }
+
     $options = [
       '__base_table' => new TranslatableMarkup('View Base Entity (@entity_type)', [
-        '@entity_type' => $this->view->getBaseEntityType()->getLabel(),
+        '@entity_type' => $label,
       ]),
     ];
 
