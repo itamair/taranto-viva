@@ -518,7 +518,12 @@
       if (self.bounds.length === 1 && self.settings.zoom) {
         self.lMap.setZoom(self.settings.zoom);
       }
+
+      if (self.settings.zoomFiner) {
+        self.lMap.setZoom(self.lMap.getZoom() + self.settings.zoomFiner);
+      }
     }
+
   };
 
   Drupal.Leaflet.prototype.map_reset = function (mapid) {
