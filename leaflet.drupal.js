@@ -512,18 +512,22 @@
     // Fit Bounds if both them and features exist, and the Map Position in not forced.
     if (!self.settings.map_position_force && self.bounds.length > 0) {
       Drupal.Leaflet[mapid].lMap.fitBounds(new L.LatLngBounds(self.bounds));
+      var z = Drupal.Leaflet[mapid].lMap.getZoom();
 
       // In case of single result use the custom Map Zoom set.
       if (self.bounds.length === 1 && self.settings.zoom) {
         Drupal.Leaflet[mapid].lMap.setZoom(self.settings.zoom);
       }
 
-      if (self.settings.zoomFiner && self.settings.zoomFiner !== 0) {
+      var z = Drupal.Leaflet[mapid].lMap.getZoom();
+
+      if (!self.settings.map_position_force && self.settings.zoomFiner && self.settings.zoomFiner !== 0) {
         // In case of zooFiner, we need to hard inject the start map state,
         // as the setZoom method seem not to work.
-        Drupal.Leaflet[mapid].lMap.setZoom(Drupal.Leaflet[mapid].lMap.getZoom() + self.settings.zoomFiner);
+        var zoom_fined = z + self.settings.zoomFiner;
+        Drupal.Leaflet[mapid].lMap.setZoom(zoom_fined);
+        Drupal.Leaflet[mapid].start_zoom = zoom_fined;
         Drupal.Leaflet[mapid].start_center = Drupal.Leaflet[mapid].lMap.getCenter();
-        Drupal.Leaflet[mapid].start_zoom = Drupal.Leaflet[mapid].lMap.getZoom() + self.settings.zoomFiner;
       }
     }
 
