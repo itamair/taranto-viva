@@ -11,11 +11,11 @@
           Drupal.Leaflet[mapid].start_zoom = Drupal.Leaflet[mapid].lMap.getZoom();
         }
 
-        if (settings.settings.reset_map && settings.settings.reset_map.control) {
+        if (settings.settings.reset_map && settings.settings.reset_map.control && !Drupal.Leaflet[mapid].reset_control) {
           // Create the DIV to hold the control and call the mapResetControl()
           // constructor passing in this DIV.
           var mapResetControlDiv = document.createElement('div');
-          Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid, settings.settings.reset_map.position).addTo(Drupal.Leaflet[mapid].lMap);
+          Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid, settings.settings.reset_map.position).addTo(Drupal.Leaflet[mapid].lMap);
         }
 
         // Attach leaflet ajax popup listeners.
@@ -533,16 +533,18 @@
         Drupal.Leaflet[mapid].lMap.setZoom(self.settings.zoom);
       }
 
-      var z = Drupal.Leaflet[mapid].lMap.getZoom();
+      var start_zoom = Drupal.Leaflet[mapid].lMap.getZoom();
 
+      // In case of map initial position not forced, and zooFiner not null/neutral,
+      // adapt the Map Zoom and the Start Zoom accordingly.
       if (!self.settings.map_position_force && self.settings.zoomFiner && self.settings.zoomFiner !== 0) {
-        // In case of zooFiner, we need to hard inject the start map state,
-        // as the setZoom method seem not to work.
-        var zoom_fined = z + self.settings.zoomFiner;
-        Drupal.Leaflet[mapid].lMap.setZoom(zoom_fined);
-        Drupal.Leaflet[mapid].start_zoom = zoom_fined;
-        Drupal.Leaflet[mapid].start_center = Drupal.Leaflet[mapid].lMap.getCenter();
+        Drupal.Leaflet[mapid].lMap.setZoom(start_zoom);
+        start_zoom =+ self.settings.zoomFiner;
       }
+
+      // Set the map start zoom and center.
+      Drupal.Leaflet[mapid].start_zoom = start_zoom;
+      Drupal.Leaflet[mapid].start_center = Drupal.Leaflet[mapid].lMap.getCenter();
     }
 
   };
