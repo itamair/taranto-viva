@@ -512,7 +512,6 @@
     // Fit Bounds if both them and features exist, and the Map Position in not forced.
     if (!self.settings.map_position_force && self.bounds.length > 0) {
       Drupal.Leaflet[mapid].lMap.fitBounds(new L.LatLngBounds(self.bounds));
-      var z = Drupal.Leaflet[mapid].lMap.getZoom();
 
       // In case of single result use the custom Map Zoom set.
       if (self.bounds.length === 1 && self.settings.zoom) {

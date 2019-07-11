@@ -149,6 +149,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
 
+    $default_settings = self::getDefaultSettings();
     $settings = $this->getSettings();
 
     $form['#tree'] = TRUE;
@@ -165,7 +166,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         '#type' => 'checkbox',
         '#title' => $this->t('Multiple Maps'),
         '#description' => $this->t('Check this option if you want to render a single Map for every single Geo Point.'),
-        '#default_value' => $this->getSetting('multiple_map'),
+        '#default_value' => $settings['multiple_map'],
         '#return_value' => 1,
       ];
     }
@@ -180,14 +181,14 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       '#title' => $this->t('Popup Infowindow'),
       '#description' => $this->t('Show a Popup Infowindow on Marker click, with custom content.'),
       '#type' => 'checkbox',
-      '#default_value' => $this->getSetting('popup'),
+      '#default_value' => $settings['popup'],
     ];
 
     $elements['popup_content'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Popup content'),
       '#description' => $this->t('Define the custom content for the Pop Infowindow. If empty the Content Title will be output.<br>See "REPLACEMENT PATTERNS" below for available replacements.'),
-      '#default_value' => $this->getSetting('popup_content'),
+      '#default_value' => $settings['popup_content'],
       '#states' => [
         'visible' => [
           'input[name="fields[' . $field_name . '][settings_edit_form][settings][popup]"]' => ['checked' => TRUE],
@@ -230,11 +231,11 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $this->setResetMapControl($elements, $settings);
 
     // Generate the Leaflet Map Position Form Element.
-    $map_position_options = $this->getSetting('map_position');
+    $map_position_options = $settings['map_position'];
     $elements['map_position'] = $this->generateMapPositionElement($map_position_options);
 
     // Generate Icon form element.
-    $icon = $this->getSetting('icon');
+    $icon = $settings['icon'];
     $elements['icon'] = $this->generateIconFormElement($icon);
 
     // Set Map Marker Cluster Element.
