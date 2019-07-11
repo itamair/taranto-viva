@@ -33,6 +33,13 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
   use LeafletSettingsElementsTrait;
 
   /**
+   * The Default Settings.
+   *
+   * @var array
+   */
+  protected $defaultSettings;
+
+  /**
    * Leaflet service.
    *
    * @var \Drupal\Leaflet\LeafletService
@@ -110,6 +117,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     LinkGeneratorInterface $link_generator
   ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
+    $this->defaultSettings = self::getDefaultSettings();
     $this->leafletService = $leaflet_service;
     $this->token = $token;
     $this->renderer = $renderer;
@@ -149,7 +157,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
 
-    $default_settings = self::getDefaultSettings();
     $settings = $this->getSettings();
 
     $form['#tree'] = TRUE;

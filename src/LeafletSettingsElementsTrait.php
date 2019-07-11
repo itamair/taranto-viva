@@ -275,7 +275,7 @@ trait LeafletSettingsElementsTrait {
       '#min' => -5,
       '#step' => 0,
       '#description' => $this->t('Value that might/will be added to default Fit Markers Bounds Zoom. (-5 / +5)'),
-      '#default_value' => $map_position_options['zoomFiner'] ?? $default_settings['map_position']['zoomFiner'],
+      '#default_value' => $map_position_options['zoomFiner'] ?? $this->defaultSettings['map_position']['zoomFiner'],
       '#states' => [
         'invisible' => [
           $force_checkbox_selector => ['checked' => TRUE],

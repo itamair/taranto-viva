@@ -50,6 +50,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   use LeafletSettingsElementsTrait;
 
   /**
+   * The Default Settings.
+   *
+   * @var array
+   */
+  protected $defaultSettings;
+
+  /**
    * The Entity source property.
    *
    * @var string
@@ -155,6 +162,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    */
   protected $fieldTypeManager;
 
+
   /**
    * Constructs a LeafletMap style instance.
    *
@@ -202,6 +210,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
+    $this->defaultSettings = self::getDefaultSettings();
     $this->entityManager = $entity_manager;
     $this->entityFieldManager = $entity_field_manager;
     $this->entityDisplay = $entity_display;
