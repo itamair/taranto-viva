@@ -431,8 +431,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
 
-    $default_settings = self::getDefaultSettings();
-
     // If data source changed then apply the changes.
     if ($form_state->get('entity_source')) {
       $this->options['entity_source'] = $form_state->get('entity_source');
