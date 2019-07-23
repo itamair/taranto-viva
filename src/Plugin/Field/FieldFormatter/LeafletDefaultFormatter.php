@@ -3,6 +3,8 @@
 namespace Drupal\leaflet\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Render\RenderContext;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -314,6 +316,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       $this->fieldDefinition->getTargetEntityTypeId() => $items->getEntity(),
     ];
 
+    $results = [];
     $features = [];
     foreach ($items as $delta => $item) {
 
@@ -323,18 +326,29 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
       // Eventually set the popup content.
       if ($settings['popup']) {
-        // Construct the renderable array for popup title / text.
+        // Construct the renderable array for popup title / text. As we later
+        // convert that to plain text, losing attachments and cacheability, save
+        // them to $results.
         $build = [];
         if ($this->getSetting('popup_content')) {
-          $popup_content = $this->token->replace($this->getSetting('popup_content'), $token_context);
+          $bubbleable_metadata = new BubbleableMetadata();
+          $popup_content = $this->token->replace($this->getSetting('popup_content'), $token_context, [], $bubbleable_metadata);
           $build[] = [
             '#markup' => $popup_content,
           ];
+          $bubbleable_metadata->applyTo($results);
         }
 
-        // We need a string for using it inside the popup.
-        $build = $this->renderer->renderPlain($build);
-        $feature['popup'] = !empty($build) ? $build : $entity->label();;
+        // We need a string for using it inside the popup. Save attachments and
+        // cacheability to $results.
+        $render_context = new RenderContext();
+        $rendered = $this->renderer->executeInRenderContext($render_context, function () use (&$build) {
+          return $this->renderer->render($build, TRUE);
+        });
+        $feature['popup'] = !empty($rendered) ? $rendered : $entity->label();
+        if (!$render_context->isEmpty()) {
+          $render_context->update($results);
+        }
       }
 
       // Add/merge eventual map icon definition from hook_leaflet_map_info.
@@ -368,7 +382,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Allow other modules to add/alter the map js settings.
     $this->moduleHandler->alter('leaflet_default_map_formatter', $js_settings, $items);
 
-    $results = [];
     if (!empty($settings['multiple_map'])) {
       foreach ($js_settings['features'] as $k => $feature) {
         $map = $js_settings['map'];

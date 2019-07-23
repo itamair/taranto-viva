@@ -23,12 +23,16 @@
           var content = $('[data-leaflet-ajax-popup]', e.popup._contentNode);
           if (content.length) {
             var url = content.data('leaflet-ajax-popup');
-            $.get(url, function(response) {
-              if (response) {
-                e.popup.setContent(response)
-              }
-            });
+            Drupal.ajax({url: url}).execute();
           }
+        });
+
+        // Attach drupal behaviors on new content.
+        Drupal.Leaflet[mapid].lMap.on('popupopen', function(e) {
+          var element = e.popup._contentNode;
+          $(element).once('leaflet-popup-behaviors-attached').each(function () {
+            Drupal.attachBehaviors(this, drupalSettings);
+          })
         });
       });
 

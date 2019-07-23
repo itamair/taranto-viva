@@ -4,9 +4,12 @@ namespace Drupal\leaflet_views\Plugin\views\style;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\leaflet_views\Controller\LeafletAjaxPopupController;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
 use Drupal\Core\Url;
@@ -665,6 +668,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     $data = [];
 
+    // Collect bubbleable metadata when doing early rendering.
+    $build_for_bubbleable_metadata = [];
+
     // Always render the map, otherwise ...
     $leaflet_map_style = !isset($this->options['leaflet_map']) ? $this->options['map'] : $this->options['leaflet_map'];
     $map = leaflet_map_get_info($leaflet_map_style);
@@ -754,18 +760,26 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               case '#rendered_entity':
                 $build = $this->entityManager->getViewBuilder($entity->getEntityTypeId())
                   ->view($entity, $this->options['view_mode'], $langcode);
-                $description = $this->renderer->renderPlain($build);
+                $render_context = new RenderContext();
+                $description = $this->renderer->executeInRenderContext($render_context, function () use (&$build) {
+                  return $this->renderer->render($build, TRUE);
+                });
+                if (!$render_context->isEmpty()) {
+                  $render_context->update($build_for_bubbleable_metadata);
+                }
                 break;
 
               case '#rendered_entity_ajax':
                 $parameters = [
-                  'entity_type' => $entity->getEntityTypeId(),
+                  'entity_type' => $entity_type,
                   'entity' => $entity->id(),
                   'view_mode' => $this->options['view_mode'],
                   'langcode' => $langcode,
                 ];
                 $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters, ['absolute' => TRUE]);
-                $description = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s"></div>', $url->toString());
+                $description = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s" %s></div>',
+                  $url->toString(), LeafletAjaxPopupController::getPopupIdentifierAttribute($entity_type, $entity->id(), $this->options['view_mode'], $langcode));
+                $build_for_bubbleable_metadata['#attached']['library'][] = 'drupal/ajax';
                 break;
 
               default:
@@ -851,7 +865,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Allow other modules to add/alter the map js settings.
     $this->moduleHandler->alter('leaflet_map_view_style', $js_settings, $this);
 
-    return $this->leafletService->leafletRenderMap($js_settings['map'], $js_settings['features'], $this->options['height'] . 'px');
+    $build = $this->leafletService->leafletRenderMap($js_settings['map'], $js_settings['features'], $this->options['height'] . 'px');
+    BubbleableMetadata::createFromRenderArray($build)
+      ->merge(BubbleableMetadata::createFromRenderArray($build_for_bubbleable_metadata))
+      ->applyTo($build);
+    return $build;
   }
 
   /**
