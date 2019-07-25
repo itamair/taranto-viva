@@ -30,7 +30,7 @@
         // Attach drupal behaviors on new content.
         Drupal.Leaflet[mapid].lMap.on('popupopen', function(e) {
           var element = e.popup._contentNode;
-          $(element).once('leaflet-popup-behaviors-attached').each(function () {
+          $(element).each(function () {
             Drupal.attachBehaviors(this, drupalSettings);
           })
         });
