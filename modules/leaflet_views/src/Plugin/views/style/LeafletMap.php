@@ -779,7 +779,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters, ['absolute' => TRUE]);
                 $description = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s" %s></div>',
                   $url->toString(), LeafletAjaxPopupController::getPopupIdentifierAttribute($entity_type, $entity->id(), $this->options['view_mode'], $langcode));
-                $build_for_bubbleable_metadata['#attached']['library'][] = 'core/drupal.ajax';
                 break;
 
               default:
