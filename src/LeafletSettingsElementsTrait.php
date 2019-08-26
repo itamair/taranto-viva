@@ -18,33 +18,6 @@ use Drupal\Component\Serialization\Json;
 trait LeafletSettingsElementsTrait {
 
   /**
-   * Google Map Types Options.
-   *
-   * @var array
-   */
-  protected $gMapTypesOptions = [
-    'roadmap' => 'Roadmap',
-    'satellite' => 'Satellite',
-    'hybrid' => 'Hybrid',
-    'terrain' => 'Terrain',
-  ];
-
-  /**
-   * Google Map Types Options.
-   *
-   * @var array
-   */
-  protected $infowindowFieldTypesOptions = [
-    'string_long',
-    'string',
-    'text',
-    'text_long',
-    "text_with_summary",
-  ];
-
-  protected $customMapStylePlaceholder = '[{"elementType":"geometry","stylers":[{"color":"#1d2c4d"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#8ec3b9"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#1a3646"}]},{"featureType":"administrative.country","elementType":"geometry.stroke","stylers":[{"color":"#4b6878"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"color":"#4b6878"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#0e1626"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#4e6d70"}]}]';
-
-  /**
    * The Link generator Service.
    *
    * @var \Drupal\Core\Utility\LinkGeneratorInterface $this->link
