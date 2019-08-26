@@ -106,6 +106,11 @@
     // Instantiate a new Leaflet map.
     self.lMap = new L.Map(self.mapid, self.settings);
 
+    // Set the public map object, to make it accessible from outside.
+    Drupal.Leaflet[mapid] = {
+      lMap: self.lMap,
+    };
+
     // Add map layers (base and overlay layers).
     var layers = {}, overlays = {};
     var i = 0;
@@ -119,11 +124,11 @@
         case 'overlay':
           var overlay_layer = self.create_layer(layer, key);
           var layer_hidden = (typeof layer.layer_hidden === "undefined") ? false : layer.layer_hidden;
-          self.add_overlay(key, overlay_layer, layer_hidden);
+          self.add_overlay(key, overlay_layer, layer_hidden, mapid);
           break;
 
         default:
-          self.add_base_layer(key, layer, i);
+          self.add_base_layer(key, layer, i, mapid);
           // Only the first base layer needs to be added to the map - all the
           // others are accessed via the layer switcher.
           if (i === 0) {
@@ -153,14 +158,9 @@
       self.lMap.addControl(new L.Control.Fullscreen());
     }
 
-    // Set the public map object, to make it accessible from outside.
-    Drupal.Leaflet[mapid] = {
-      lMap: self.lMap,
-    };
-
   };
 
-  Drupal.Leaflet.prototype.initialise_layer_control = function() {
+  Drupal.Leaflet.prototype.initialise_layer_control = function(mapid) {
     var self = this;
     var count_layers = function(obj) {
       // Browser compatibility: Chrome, IE 9+, FF 4+, or Safari 5+.
@@ -170,14 +170,14 @@
 
     // Only add a layer switcher if it is enabled in settings, and we have
     // at least two base layers or at least one overlay.
-    if (self.layer_control == null && self.settings.layerControl && (count_layers(self.base_layers) > 1 || count_layers(self.overlays) > 0)) {
+    if (Drupal.Leaflet[mapid].layer_control == null && self.settings.layerControl && (count_layers(self.base_layers) > 1 || count_layers(self.overlays) > 0)) {
       // Instantiate layer control, using settings.layerControl as settings.
-      self.layer_control = new L.Control.Layers(self.base_layers, self.overlays, self.settings.layerControlOptions);
-      self.lMap.addControl(self.layer_control);
+      Drupal.Leaflet[mapid].layer_control = new L.Control.Layers(self.base_layers, self.overlays, self.settings.layerControlOptions);
+      self.lMap.addControl(Drupal.Leaflet[mapid].layer_control);
     }
   };
 
-  Drupal.Leaflet.prototype.add_base_layer = function(key, definition, i) {
+  Drupal.Leaflet.prototype.add_base_layer = function(key, definition, i, mapid) {
     var self = this;
     var map_layer = self.create_layer(definition, key);
     self.base_layers[key] = map_layer;
@@ -185,29 +185,32 @@
     if (i === 0) {
       self.lMap.addLayer(map_layer);
     }
-    if (self.layer_control == null) {
-      self.initialise_layer_control();
+    if (Drupal.Leaflet[mapid].layer_control == null) {
+      self.initialise_layer_control(mapid);
     }
     else {
       // If we already have a layer control, add the new base layer to it.
-      self.layer_control.addBaseLayer(map_layer, key);
+      Drupal.Leaflet[mapid].layer_control.addBaseLayer(map_layer, key);
     }
+    Drupal.Leaflet[mapid].base_layers = self.base_layers;
   };
 
-  Drupal.Leaflet.prototype.add_overlay = function(label, layer, layer_hidden) {
+  Drupal.Leaflet.prototype.add_overlay = function(label, layer, layer_hidden, mapid) {
     var self = this;
     self.overlays[label] = layer;
     if (!layer_hidden) {
-      self.lMap.addLayer(layer);
+      Drupal.Leaflet[mapid].layer_control.lMap.addLayer(layer);
     }
 
-    if (self.layer_control == null) {
-      self.initialise_layer_control();
+    if (Drupal.Leaflet[mapid].layer_control == null) {
+      self.initialise_layer_control(mapid);
     }
     else {
       // If we already have a layer control, add the new overlay to it.
-      self.layer_control.addOverlay(layer, label);
+      Drupal.Leaflet[mapid].layer_control.addOverlay(layer, label);
     }
+    Drupal.Leaflet[mapid].overlays = self.overlays;
+
   };
 
   Drupal.Leaflet.prototype.add_features = function(mapid, features, initial) {
