@@ -11,11 +11,20 @@
           Drupal.Leaflet[mapid].start_zoom = Drupal.Leaflet[mapid].lMap.getZoom();
         }
 
+        // Add the Map Reset Control if requested.
         if (settings.settings.reset_map && settings.settings.reset_map.control && !Drupal.Leaflet[mapid].reset_control) {
           // Create the DIV to hold the control and call the mapResetControl()
           // constructor passing in this DIV.
           var mapResetControlDiv = document.createElement('div');
-          Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid, settings.settings.reset_map.position).addTo(Drupal.Leaflet[mapid].lMap);
+          Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
+        }
+
+        // Add the Map Geocoder Control if requested.
+        if (Drupal.Leaflet.prototype.map_geocoder_control) {
+          var mapGeocoderControlDiv = document.createElement('div');
+          Drupal.Leaflet[mapid].geocoder_control = Drupal.Leaflet.prototype.map_geocoder_control(mapGeocoderControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
+          var geocoder_settings = drupalSettings.leaflet[mapid].map.settings.geocoder.settings;
+          Drupal.Leaflet.prototype.map_geocoder_control.autocomplete(mapid, geocoder_settings);
         }
 
         // Attach leaflet ajax popup listeners.
@@ -560,9 +569,10 @@
     Drupal.Leaflet[mapid].lMap.setView(Drupal.Leaflet[mapid].start_center, Drupal.Leaflet[mapid].start_zoom);
   };
 
-  Drupal.Leaflet.prototype.map_reset_control = function(controlDiv, mapid, reset_map_position) {
+  Drupal.Leaflet.prototype.map_reset_control = function(controlDiv, mapid) {
     var self = this;
-    var control = new L.Control({position: reset_map_position});
+    var reset_map_control_settings = drupalSettings.leaflet[mapid].map.settings.reset_map;
+    var control = new L.Control({position: reset_map_control_settings.position});
     control.onAdd = function() {
       // Set CSS for the control border.
       var controlUI = L.DomUtil.create('div','resetzoom')
