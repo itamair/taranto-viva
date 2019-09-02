@@ -165,7 +165,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    */
   protected $fieldTypeManager;
 
-
   /**
    * Constructs a LeafletMap style instance.
    *
@@ -598,6 +597,10 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->options);
+
+    // Set Map Geocoder Control Element, if the Geocoder Module exists,
+    // otherwise output a tip on Geocoder Module Integration.
+    $this->setGeocoderMapControl($form, $this->options);
   }
 
   /**
@@ -840,8 +843,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
             foreach ($points as &$point) {
               // Allow modules to adjust the marker.
-              \Drupal::moduleHandler()
-                ->alter('leaflet_views_feature', $point, $result, $this->view->rowPlugin);
+              \Drupal::moduleHandler()->alter('leaflet_views_feature', $point, $result, $this->view->rowPlugin);
             }
             // Add new points to the whole basket.
             $data = array_merge($data, $points);

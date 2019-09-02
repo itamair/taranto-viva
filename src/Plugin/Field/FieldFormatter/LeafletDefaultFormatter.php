@@ -253,6 +253,10 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($elements, $settings);
 
+    // Set Map Geocoder Control Element, if the Geocoder Module exists,
+    // otherwise output a tip on Geocoder Module Integration.
+    $this->setGeocoderMapControl($elements, $settings);
+
     return $elements;
   }
 
