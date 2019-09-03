@@ -2,6 +2,7 @@
 
 namespace Drupal\leaflet;
 
+use Drupal\Core\Session\AccountInterface;
 use Drupal\geofield\GeoPHP\GeoPHPInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Component\Utility\Html;
@@ -13,6 +14,13 @@ use Drupal\Core\Utility\LinkGeneratorInterface;
  * Provides a  LeafletService class.
  */
 class LeafletService {
+
+  /**
+   * Current user service.
+   *
+   * @var \Drupal\Core\Session\AccountInterface
+   */
+  protected $currentUser;
 
   /**
    * The geoPhpWrapper service.
@@ -38,6 +46,8 @@ class LeafletService {
   /**
    * GeofieldMapWidget constructor.
    *
+   * @param \Drupal\Core\Session\AccountInterface $current_user
+   *   Current user service.
    * @param \Drupal\geofield\GeoPHP\GeoPHPInterface $geophp_wrapper
    *   The geoPhpWrapper.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
@@ -46,10 +56,12 @@ class LeafletService {
    *   The Link Generator service.
    */
   public function __construct(
+    AccountInterface $current_user,
     GeoPHPInterface $geophp_wrapper,
     ModuleHandlerInterface $module_handler,
     LinkGeneratorInterface $link_generator
   ) {
+    $this->currentUser = $current_user;
     $this->geoPhpWrapper = $geophp_wrapper;
     $this->moduleHandler = $module_handler;
     $this->link = $link_generator;
@@ -80,6 +92,25 @@ class LeafletService {
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster';
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster-drupal';
     }
+
+    // Add the Leaflet Geocoder library and functionalities, if requested,
+    // and the user has access to Geocoder Api Enpoints.
+    if ($this->moduleHandler->moduleExists('geocoder')
+      && isset($map['settings']['geocoder'])
+      && $map['settings']['geocoder']['control']
+      && $this->currentUser->hasPermission('access geocoder api endpoints')) {
+      $attached_libraries[] = 'leaflet/leaflet.geocoder';
+
+      // Set the $map['settings']['geocoder']['providers'] as the enabled ones.
+      $enabled_providers = [];
+      foreach ($map['settings']['geocoder']['settings']['providers'] as $plugin_id => $plugin) {
+        if (!empty($plugin['checked'])) {
+          $enabled_providers[] = $plugin_id;
+        }
+      }
+      $map['settings']['geocoder']['settings']['providers'] = $enabled_providers;
+    }
+
     $settings[$map_id] = [
       'mapid' => $map_id,
       'map' => $map,
