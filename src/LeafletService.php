@@ -96,6 +96,7 @@ class LeafletService {
     // Add the Leaflet Geocoder library and functionalities, if requested,
     // and the user has access to Geocoder Api Enpoints.
     if ($this->moduleHandler->moduleExists('geocoder')
+      && class_exists('\Drupal\geocoder\Controller\GeocoderApiEnpoints')
       && isset($map['settings']['geocoder'])
       && $map['settings']['geocoder']['control']
       && $this->currentUser->hasPermission('access geocoder api endpoints')) {

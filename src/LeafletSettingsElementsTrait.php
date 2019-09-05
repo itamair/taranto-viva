@@ -651,7 +651,7 @@ trait LeafletSettingsElementsTrait {
   protected function setGeocoderMapControl(array &$element, array $settings) {
     // Set Map Geocoder Control Element, if the Geocoder Module exists,
     // otherwise output a tip on Geocoder Module Integration.
-    if ($this->moduleHandler->moduleExists('geocoder')) {
+    if ($this->moduleHandler->moduleExists('geocoder') && class_exists('\Drupal\geocoder\Controller\GeocoderApiEnpoints')) {
       $default_settings = $this::getDefaultSettings();
       $element['geocoder'] = [
         '#type' => 'fieldset',
@@ -777,7 +777,7 @@ trait LeafletSettingsElementsTrait {
     }
     else {
       $element['geocoder'] = [
-        '#markup' => $this->t('<strong>Note: </strong>tt is possible to enable a <u>Geocoder controller on the Leaflet Map</u> throughout the @geocoder_module_link integration.', [
+        '#markup' => $this->t('<strong>Note: </strong>it is possible to enable a <u>Geocoder controller on the Leaflet Map</u> throughout the @geocoder_module_link integration (version higher than 8.x-2.3 and 8.x-3.0-alpha2).', [
           '@geocoder_module_link' => $this->link->generate('Geocoder Module', Url::fromUri('https://www.drupal.org/project/geocoder', ['attributes' => ['target' => 'blank']])),
         ]),
       ];
