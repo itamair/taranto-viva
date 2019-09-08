@@ -755,7 +755,7 @@ trait LeafletSettingsElementsTrait {
         '#type' => 'textarea',
         '#rows' => 4,
         '#title' => $this->t('Geocoder Control Specific Options'),
-        '#description' => $this->t('An object literal of specific Geocoder options.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+        '#description' => $this->t('This settings would override general Geocoder Providers options.<br>An object literal of specific Geocoder options.The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
         '#default_value' => isset($settings['geocoder']['settings']['options']) ? $settings['geocoder']['settings']['options'] : $default_settings['geocoder']['settings']['options'],
         '#placeholder' => '{"googlemaps":{"locale": "it", "region": "it"}, "nominatim":{"locale": "it"}}',
         '#element_validate' => [[get_class($this), 'jsonValidate']],

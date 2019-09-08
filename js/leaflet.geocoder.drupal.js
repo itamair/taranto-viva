@@ -1,10 +1,25 @@
 (function($, Drupal, drupalSettings) {
 
-  Drupal.Leaflet.prototype.geocode = function(address, providers) {
+  Drupal.Leaflet.prototype.query_url_serialize = function(obj, prefix) {
+    var str = [], p;
+    for (p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        var k = prefix ? prefix + "[" + p + "]" : p,
+          v = obj[p];
+        str.push((v !== null && typeof v === "object") ?
+          Drupal.Leaflet.prototype.query_url_serialize(v, k) :
+          encodeURIComponent(k) + "=" + encodeURIComponent(v));
+      }
+    }
+    return str.join("&");
+  };
+
+  Drupal.Leaflet.prototype.geocode = function(address, providers, options) {
     var base_url = drupalSettings.path.baseUrl;
     var geocode_path = base_url + 'geocoder/api/geocode';
+    options = Drupal.Leaflet.prototype.query_url_serialize(options);
     return $.ajax({
-      url: geocode_path + '?address=' +  encodeURIComponent(address) + '&geocoder=' + providers,
+      url: geocode_path + '?address=' +  encodeURIComponent(address) + '&geocoder=' + providers + '&' + options,
       type:"GET",
       contentType:"application/json; charset=utf-8",
       dataType: "json",
@@ -39,6 +54,7 @@
 
   Drupal.Leaflet.prototype.map_geocoder_control.autocomplete = function(mapid, geocoder_settings) {
     var providers = geocoder_settings.providers.toString();
+    var options = geocoder_settings.options;
     $('#' + mapid + '--geocoder-control').autocomplete({
       // @todo Set a dynamic params.geocoder_min_terms
       autoFocus: true,
@@ -47,7 +63,7 @@
       // This bit uses the geocoder to fetch address values.
       source: function (request, response) {
         // Execute the geocoder.
-        $.when(Drupal.Leaflet.prototype.geocode(request.term, providers).then(
+        $.when(Drupal.Leaflet.prototype.geocode(request.term, providers, options).then(
           // On Resolve/Success.
           function (results) {
             response($.map(results, function (item) {

@@ -9,6 +9,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\LinkGeneratorInterface;
+use Drupal\Component\Serialization\Json;
 
 /**
  * Provides a  LeafletService class.
@@ -110,6 +111,9 @@ class LeafletService {
         }
       }
       $map['settings']['geocoder']['settings']['providers'] = $enabled_providers;
+      $map['settings']['geocoder']['settings']['options'] = [
+        'options' => JSON::decode($map['settings']['geocoder']['settings']['options']),
+      ];
     }
 
     $settings[$map_id] = [
