@@ -850,12 +850,15 @@ trait LeafletSettingsElementsTrait {
    *   The form state.
    */
   public static function validateGeocoderProviders(array $element, FormStateInterface &$form_state) {
-    $providers = is_array($element['#value']) ? array_filter($element['#value'], function ($value) {
-      return isset($value['checked']) && TRUE == $value['checked'];
-    }) : [];
+    $form_state_input = $form_state->getUserInput();
+    if ($form_state_input['style_options']['geocoder']['control']) {
+      $providers = is_array($element['#value']) ? array_filter($element['#value'], function ($value) {
+        return isset($value['checked']) && TRUE == $value['checked'];
+      }) : [];
 
-    if (empty($providers)) {
-      $form_state->setError($element, t('The Geocode Origin option needs at least one geocoder plugin selected.'));
+      if (empty($providers)) {
+        $form_state->setError($element, t('The Geocode Origin option needs at least one geocoder plugin selected.'));
+      }
     }
   }
 
