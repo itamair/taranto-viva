@@ -216,15 +216,15 @@ class LeafletService {
    *   The return array.
    */
   private function leafletProcessGeometry(\Geometry $geom) {
-    $datum = array('type' => strtolower($geom->geometryType()));
+    $datum = ['type' => strtolower($geom->geometryType())];
 
     switch ($datum['type']) {
       case 'point':
-        $datum = array(
+        $datum = [
           'type' => 'point',
           'lat' => $geom->getY(),
           'lon' => $geom->getX(),
-        );
+        ];
         break;
 
       case 'linestring':
@@ -232,10 +232,10 @@ class LeafletService {
         $components = $geom->getComponents();
         /* @var \Geometry $component */
         foreach ($components as $component) {
-          $datum['points'][] = array(
+          $datum['points'][] = [
             'lat' => $component->getY(),
             'lon' => $component->getX(),
-          );
+          ];
         }
         break;
 
@@ -247,10 +247,10 @@ class LeafletService {
         $components = $geom->getComponents();
         /* @var \Geometry $component */
         foreach ($components as $component) {
-          $datum['points'][] = array(
+          $datum['points'][] = [
             'lat' => $component->getY(),
             'lon' => $component->getX(),
-          );
+          ];
         }
         break;
 
@@ -267,10 +267,10 @@ class LeafletService {
           $subcomponents = $component->getComponents();
           /* @var \Geometry $subcomponent */
           foreach ($subcomponents as $subcomponent) {
-            $datum['component'][$key]['points'][] = array(
+            $datum['component'][$key]['points'][] = [
               'lat' => $subcomponent->getY(),
               'lon' => $subcomponent->getX(),
-            );
+            ];
           }
           unset($subcomponent);
         }
@@ -291,10 +291,10 @@ class LeafletService {
           $subcomponents = $component->getComponents();
           /* @var \Geometry $subcomponent */
           foreach ($subcomponents as $subcomponent) {
-            $datum['component'][$key]['points'][] = array(
+            $datum['component'][$key]['points'][] = [
               'lat' => $subcomponent->getY(),
               'lon' => $subcomponent->getX(),
-            );
+            ];
           }
         }
         break;
@@ -360,7 +360,7 @@ class LeafletService {
   }
 
   /**
-   * Check if an array has all his values empty.
+   * Check if an array has all values empty.
    *
    * @param array $array
    *   The array to check.
