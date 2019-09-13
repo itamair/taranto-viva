@@ -875,7 +875,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Allow other modules to add/alter the map js settings.
     $this->moduleHandler->alter('leaflet_map_view_style', $js_settings, $this);
 
-    $build = $this->leafletService->leafletRenderMap($js_settings['map'], $js_settings['features'], $this->options['height'] . 'px');
+    $map_height = !empty($this->options['height']) ? $this->options['height'] . $this->options['height_unit'] : '';
+    $build = $this->leafletService->leafletRenderMap($js_settings['map'], $js_settings['features'], $map_height);
     BubbleableMetadata::createFromRenderArray($build)
       ->merge(BubbleableMetadata::createFromRenderArray($build_for_bubbleable_metadata))
       ->applyTo($build);

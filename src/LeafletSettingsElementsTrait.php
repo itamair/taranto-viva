@@ -46,6 +46,7 @@ trait LeafletSettingsElementsTrait {
       'multiple_map' => 0,
       'leaflet_map' => 'OSM Mapnik',
       'height' => 400,
+      'height_unit' => 'px',
       'hide_empty_map' => 0,
       'disable_wheel' => 0,
       'fullscreen_control' => 1,
@@ -128,7 +129,18 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Map Height'),
       '#type' => 'number',
       '#default_value' => $settings['height'],
-      '#field_suffix' => $this->t('px'),
+      '#description' => $this->t('Note: This can be left empty to make the Map fill its parent container height.'),
+    ];
+
+    $elements['height_unit'] = [
+      '#title' => t('Map height unit'),
+      '#type' => 'select',
+      '#options' => [
+        'px' => t('px'),
+        '%' => t('%'),
+      ],
+      '#default_value' => $settings['height_unit'],
+      '#description' => t("Whether height is absolute (pixels) or relative (percent).<br><strong>Note:</strong> In case of Percent the Leaflet Map should be wrapped in a container element with defined Height, otherwise won't show up."),
     ];
 
     $elements['hide_empty_map'] = [
