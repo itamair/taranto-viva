@@ -397,6 +397,21 @@
     return icon;
   };
 
+  Drupal.Leaflet.prototype.create_divicon = function (options) {
+    var html_class = options.html_class || '';
+    var icon = new L.DivIcon({html: options.html, className: html_class});
+
+    // override applicable marker defaults
+    if (options.iconSize) {
+      icon.options.iconSize = new L.Point(parseInt(options.iconSize.x, 10), parseInt(options.iconSize.y, 10));
+    }
+    if (options.iconAnchor) {
+      icon.options.iconAnchor = new L.Point(parseFloat(options.iconAnchor.x), parseFloat(options.iconAnchor.y));
+    }
+
+    return icon;
+  };
+
   Drupal.Leaflet.prototype.create_point = function(marker) {
     var self = this;
     var latLng = new L.LatLng(marker.lat, marker.lon);
@@ -421,24 +436,30 @@
     lMarker = new L.Marker(latLng, options);
 
     if (marker.icon) {
-      checkImage(marker.icon.iconUrl,
-        // Success loading image.
-        function() {
-          marker.icon.iconSize = marker.icon.iconSize || {};
-          marker.icon.iconSize.x = marker.icon.iconSize.x || this.naturalWidth;
-          marker.icon.iconSize.y = marker.icon.iconSize.y || this.naturalHeight;
-          if (marker.icon.shadowUrl) {
-            marker.icon.shadowSize = marker.icon.shadowSize || {};
-            marker.icon.shadowSize.x = marker.icon.shadowSize.x || this.naturalWidth;
-            marker.icon.shadowSize.y = marker.icon.shadowSize.y || this.naturalHeight;
-          }
-          options.icon = self.create_icon(marker.icon);
-          lMarker.setIcon(options.icon);
-        },
-        // Error loading image.
-        function(err) {
-          console.log("Leaflet: The Icon Image doesn't exist at the requested path: " + marker.icon.iconUrl);
-        });
+      if (marker.icon.iconType && marker.icon.iconType === 'html' && marker.icon.html) {
+        options.icon = self.create_divicon(marker.icon);
+        lMarker.setIcon(options.icon);
+      }
+      else if (marker.icon.iconUrl) {
+        checkImage(marker.icon.iconUrl,
+          // Success loading image.
+          function() {
+            marker.icon.iconSize = marker.icon.iconSize || {};
+            marker.icon.iconSize.x = marker.icon.iconSize.x || this.naturalWidth;
+            marker.icon.iconSize.y = marker.icon.iconSize.y || this.naturalHeight;
+            if (marker.icon.shadowUrl) {
+              marker.icon.shadowSize = marker.icon.shadowSize || {};
+              marker.icon.shadowSize.x = marker.icon.shadowSize.x || this.naturalWidth;
+              marker.icon.shadowSize.y = marker.icon.shadowSize.y || this.naturalHeight;
+            }
+            options.icon = self.create_icon(marker.icon);
+            lMarker.setIcon(options.icon);
+          },
+          // Error loading image.
+          function(err) {
+            console.log("Leaflet: The Icon Image doesn't exist at the requested path: " + marker.icon.iconUrl);
+          });
+      }
     }
 
     return lMarker;

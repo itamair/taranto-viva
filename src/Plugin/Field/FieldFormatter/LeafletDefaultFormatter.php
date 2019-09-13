@@ -368,8 +368,15 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         $settings['icon'] = array_replace($map['icon'], $settings['icon']);
       }
 
-      // Eventually set the custom icon.
-      if (!empty($settings['icon']['iconUrl'])) {
+      $icon_type = isset($settings['icon']['iconType']) ? $settings['icon']['iconType'] : 'marker';
+
+      // Eventually set the custom icon as DivIcon or Icon Url.
+      if ($icon_type === 'html' && !empty($settings['icon']['html'])) {
+        $settings['icon']['html'] = $this->token->replace($settings['icon']['html'], $token_context);
+        $settings['icon']['html_class'] = isset($settings['icon']['html_class']) ? $settings['icon']['html_class'] : '';
+        $feature['icon'] = $settings['icon'];
+      }
+      elseif (!empty($settings['icon']['iconUrl'])) {
         $settings['icon']['iconUrl'] = !empty($settings['icon']['iconUrl']) > 0 ? $this->token->replace($settings['icon']['iconUrl'], $token_context) : '';
         $settings['icon']['shadowUrl'] = !empty($settings['icon']['shadowUrl']) > 0 ? $this->token->replace($settings['icon']['shadowUrl'], $token_context) : '';
         $feature['icon'] = $settings['icon'];
