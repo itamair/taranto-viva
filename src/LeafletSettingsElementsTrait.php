@@ -851,7 +851,13 @@ trait LeafletSettingsElementsTrait {
    */
   public static function validateGeocoderProviders(array $element, FormStateInterface &$form_state) {
     $form_state_input = $form_state->getUserInput();
-    if ($form_state_input['style_options']['geocoder']['control']) {
+    if (isset($form_state_input['style_options'])) {
+      $geocoder_control = $form_state_input['style_options']['geocoder']['control'];
+    }
+    if (isset($form_state_input['fields'])) {
+      $geocoder_control = $form_state_input['fields'][$element['#array_parents'][1]]['settings_edit_form']['settings']['geocoder']['control'];
+    }
+    if (isset($geocoder_control) && $geocoder_control) {
       $providers = is_array($element['#value']) ? array_filter($element['#value'], function ($value) {
         return isset($value['checked']) && TRUE == $value['checked'];
       }) : [];
