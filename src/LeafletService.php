@@ -45,7 +45,7 @@ class LeafletService {
   protected $link;
 
   /**
-   * GeofieldMapWidget constructor.
+   * LeafletService constructor.
    *
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   Current user service.
