@@ -393,7 +393,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Allow other modules to add/alter the map js settings.
     $this->moduleHandler->alter('leaflet_default_map_formatter', $js_settings, $items);
 
-    $map_height = !empty($this->options['height']) ? $this->options['height'] . $this->options['height_unit'] : '';
+    $map_height = !empty($settings['height']) ? $settings['height'] . $settings['height_unit'] : '';
 
     if (!empty($settings['multiple_map'])) {
       foreach ($js_settings['features'] as $k => $feature) {
