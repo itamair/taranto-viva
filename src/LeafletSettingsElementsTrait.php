@@ -310,7 +310,7 @@ trait LeafletSettingsElementsTrait {
    */
   protected function generateIconFormElement(array $icon_options) {
 
-    $token_replacement_disclaimer = $this->t('<b>Note: </b> Using Tokens/Replacement Patterns it is possible to dynamically define the Marker Icon output, with the composition of Marker Icon paths including entity properties or fields values.');
+    $token_replacement_disclaimer = $this->t('<b>Note: </b> Using <strong>Replacement Patterns</strong> it is possible to dynamically define the Marker Icon output, with the composition of Marker Icon paths including entity properties or fields values.');
     $icon_url_description = $this->t('Can be an absolute or relative URL. <b>If left empty the default Leaflet Marker will be used.</b><br>@token_replacement_disclaimer', [
       '@token_replacement_disclaimer' => $token_replacement_disclaimer,
     ]);
