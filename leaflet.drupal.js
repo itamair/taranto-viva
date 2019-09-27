@@ -59,9 +59,6 @@
             // for possible external interaction.
             Drupal.Leaflet[mapid].markers = {}
 
-            // Define the Drupal.Leaflet.path object.
-            Drupal.Leaflet[mapid].path = data.map.settings.path && data.map.settings.path.length > 0 ? JSON.parse(data.map.settings.path) : {};
-
             // Add Leaflet Map Features.
             $container.data('leaflet').add_features(mapid, data.features, true);
           }
@@ -105,8 +102,6 @@
     this.start_zoom = null;
     this.layer_control = null;
     this.markers = {};
-    this.path = {};
-
     this.initialise(mapid);
   };
 
@@ -236,7 +231,8 @@
           lFeature = self.create_feature(groupFeature);
           if (lFeature !== undefined) {
             if (lFeature.setStyle) {
-              lFeature.setStyle(Drupal.Leaflet[mapid].path);
+              feature.path = feature.path ? JSON.parse(feature.path) : {};
+              lFeature.setStyle(feature.path);
             }
             if (groupFeature.popup) {
               lFeature.bindPopup(groupFeature.popup);
@@ -252,7 +248,8 @@
         lFeature = self.create_feature(feature);
         if (lFeature !== undefined) {
           if (lFeature.setStyle) {
-            lFeature.setStyle(Drupal.Leaflet[mapid].path);
+            feature.path = feature.path ? JSON.parse(feature.path) : {};
+            lFeature.setStyle(feature.path);
           }
           self.lMap.addLayer(lFeature);
 
