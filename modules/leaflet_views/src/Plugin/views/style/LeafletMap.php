@@ -824,6 +824,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               $this->options['icon'] = array_replace($map['icon'], $this->options['icon']);
             }
 
+            // Define possible tokens.
             $tokens = [];
             foreach ($this->rendered_fields[$result->index] as $field_name => $field_value) {
               $tokens[$field_name] = $field_value;
