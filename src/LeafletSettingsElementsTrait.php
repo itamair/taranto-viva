@@ -76,7 +76,7 @@ trait LeafletSettingsElementsTrait {
         'shadowSize' => ['x' => NULL, 'y' => NULL],
         'shadowAnchor' => ['x' => NULL, 'y' => NULL],
         'popupAnchor' => ['x' => NULL, 'y' => NULL],
-        'iconHtml' => '<div></div>',
+        'html' => '<div></div>',
         'html_class' => 'leaflet-map-divicon',
       ],
       'leaflet_markercluster' => [
