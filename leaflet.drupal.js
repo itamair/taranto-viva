@@ -312,7 +312,7 @@
     if (feature.options) {
       for (var option in feature.options) {
         if (feature.options.hasOwnProperty(option)) {
-          options[option] = feature.options.option;
+          options[option] = feature.options[option];
         }
       }
       lFeature.setStyle(options);
