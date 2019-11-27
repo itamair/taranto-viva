@@ -203,7 +203,7 @@
     var self = this;
     self.overlays[label] = layer;
     if (!layer_hidden) {
-      Drupal.Leaflet[mapid].layer_control.lMap.addLayer(layer);
+      Drupal.Leaflet[mapid].lMap.addLayer(layer);
     }
 
     if (Drupal.Leaflet[mapid].layer_control == null) {
@@ -242,7 +242,7 @@
         }
 
         // Add the group to the layer switcher.
-        self.add_overlay(feature.label, lGroup, FALSE);
+        self.add_overlay(feature.label, lGroup, false, mapid);
       }
       else {
         lFeature = self.create_feature(feature);
