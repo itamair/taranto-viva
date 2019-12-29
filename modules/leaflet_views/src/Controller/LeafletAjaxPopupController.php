@@ -68,7 +68,7 @@ class LeafletAjaxPopupController extends ControllerBase {
   }
 
   /**
-   * Leaflet Ajax Popup build callback..
+   * Leaflet Ajax Popup build callback.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity whose build to return.
@@ -83,21 +83,22 @@ class LeafletAjaxPopupController extends ControllerBase {
   public function popupBuild(EntityInterface $entity, $view_mode, $langcode = NULL) {
     $entity_view_builder = $this->entityManager->getViewBuilder($entity->getEntityTypeId());
     $build = $entity_view_builder->view($entity, $view_mode, $langcode);
-    $response = new AjaxResponse();
-    $response->addCommand(new ReplaceCommand($this->getPopupIdentifierSelector($entity->getEntityTypeId(), $entity->id(), $view_mode, $langcode), $build));
+    $response = new HtmlResponse();
+    $response->addCacheableDependency($entity);
+    $response->setContent($this->renderer->renderPlain($build));
     return $response;
   }
 
   /**
    * Get popup identifier.
    *
-   * @param $entityType
+   * @param string $entityType
    *   The entity type.
-   * @param $entityId
+   * @param int $entityId
    *   The entity id.
-   * @param $viewMode
+   * @param string $viewMode
    *   The view mode.
-   * @param $langcode
+   * @param string $langcode
    *   The langcode.
    *
    * @return string
@@ -110,13 +111,13 @@ class LeafletAjaxPopupController extends ControllerBase {
   /**
    * Get popup identifier attribute.
    *
-   * @param $entityType
+   * @param string $entityType
    *   The entity type.
-   * @param $entityId
+   * @param int $entityId
    *   The entity id.
-   * @param $viewMode
+   * @param string $viewMode
    *   The view mode.
-   * @param $langcode
+   * @param string $langcode
    *   The langcode.
    *
    * @return string
@@ -129,13 +130,13 @@ class LeafletAjaxPopupController extends ControllerBase {
   /**
    * Get popup identifier selector.
    *
-   * @param $entityType
+   * @param string $entityType
    *   The entity type.
-   * @param $entityId
+   * @param int $entityId
    *   The entity id.
-   * @param $viewMode
+   * @param string $viewMode
    *   The view mode.
-   * @param $langcode
+   * @param string $langcode
    *   The langcode.
    *
    * @return string
