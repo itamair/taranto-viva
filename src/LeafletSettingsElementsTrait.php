@@ -50,6 +50,7 @@ trait LeafletSettingsElementsTrait {
       'hide_empty_map' => 0,
       'disable_wheel' => 0,
       'fullscreen_control' => 1,
+      'gesture_handling' => 1,
       'reset_map' => [
         'control' => 0,
         'position' => 'topright',
@@ -169,6 +170,19 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Fullscreen Control'),
       '#description' => $this->t('Enable the Fullscreen View of the Map.'),
       '#default_value' => $settings['fullscreen_control'],
+      '#return_value' => 1,
+    ];
+
+    $elements['gesture_handling'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Gesture Handling'),
+      '#description' => $this->t('Enable the @gesture_handling_link functionality for the Map.', [
+        '@gesture_handling_link' => $this->link->generate($this->t('Leaflet Gesture Handling Library'), Url::fromUri('https://github.com/elmarquis/Leaflet.GestureHandling', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#default_value' => $settings['gesture_handling'],
       '#return_value' => 1,
     ];
 
@@ -603,6 +617,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
     $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
     $map['settings']['fullscreen_control'] = isset($options['fullscreen_control']) ? $options['fullscreen_control'] : $default_settings['fullscreen_control'];
+    $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
     $map['settings']['reset_map'] = isset($options['reset_map']) ? $options['reset_map'] : $default_settings['reset_map'];
     $map['settings']['geocoder'] = isset($options['geocoder']) ? $options['geocoder'] : $default_settings['geocoder'];
   }
