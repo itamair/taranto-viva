@@ -50,7 +50,7 @@ trait LeafletSettingsElementsTrait {
       'hide_empty_map' => 0,
       'disable_wheel' => 0,
       'fullscreen_control' => 1,
-      'gesture_handling' => 1,
+      'gesture_handling' => 0,
       'reset_map' => [
         'control' => 0,
         'position' => 'topright',
