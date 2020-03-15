@@ -12,6 +12,7 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Leaflet\LeafletService;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Utility\Token;
 use Drupal\core\Render\Renderer;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -47,6 +48,13 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    * @var \Drupal\Leaflet\LeafletService
    */
   protected $leafletService;
+
+  /**
+   * The EntityField Manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
+   */
+  protected $entityFieldManager;
 
   /**
    * The token service.
@@ -95,6 +103,8 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    *   Any third party settings settings.
    * @param \Drupal\Leaflet\LeafletService $leaflet_service
    *   The Leaflet service.
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
+   *   The Entity Field Manager.
    * @param \Drupal\core\Utility\Token $token
    *   The token service.
    * @param \Drupal\core\Render\Renderer $renderer
@@ -113,6 +123,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $view_mode,
     array $third_party_settings,
     LeafletService $leaflet_service,
+    EntityFieldManagerInterface $entity_field_manager,
     Token $token,
     Renderer $renderer,
     ModuleHandlerInterface $module_handler,
@@ -121,6 +132,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
     $this->defaultSettings = self::getDefaultSettings();
     $this->leafletService = $leaflet_service;
+    $this->entityFieldManager = $entity_field_manager;
     $this->token = $token;
     $this->renderer = $renderer;
     $this->moduleHandler = $module_handler;
@@ -140,6 +152,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       $configuration['view_mode'],
       $configuration['third_party_settings'],
       $container->get('leaflet.service'),
+      $container->get('entity_field.manager'),
       $container->get('token'),
       $container->get('renderer'),
       $container->get('module_handler'),
@@ -239,8 +252,8 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $elements['map_position'] = $this->generateMapPositionElement($map_position_options);
 
     // Generate Icon form element.
-    $icon = $settings['icon'];
-    $elements['icon'] = $this->generateIconFormElement($icon);
+    $icon_options = $settings['icon'];
+    $elements['icon'] = $this->generateIconFormElement($icon_options, $form);
 
     // Set Map Marker Cluster Element.
     $this->setMapMarkerclusterElement($elements, $settings);

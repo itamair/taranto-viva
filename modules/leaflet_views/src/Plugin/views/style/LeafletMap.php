@@ -31,7 +31,6 @@ use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
 use Drupal\views\Plugin\views\PluginBase;
 use Drupal\views\Views;
-use Drupal\Component\Serialization\Json;
 
 /**
  * Style plugin to render a View output as a Leaflet map.
@@ -530,11 +529,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       '#type' => 'select',
       '#title' => $this->t('Title Field'),
       '#description' => $this->t('Choose the field which will appear as a title on tooltips.'),
-      '#options' => array_merge(['' => ''], $this->viewFields),
+      '#options' => array_merge(['' => ' - None - '], $this->viewFields),
       '#default_value' => $this->options['name_field'],
     ];
 
-    $desc_options = array_merge(['' => ''], $this->viewFields);
+    $desc_options = array_merge(['' => ' - None - '], $this->viewFields);
     // Add an option to render the entire entity using a view mode.
     if ($this->entityType) {
       $desc_options += [
@@ -590,7 +589,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     // Generate Icon form element.
     $icon_options = $this->options['icon'];
-    $form['icon'] = $this->generateIconFormElement($icon_options);
+    $form['icon'] = $this->generateIconFormElement($icon_options, $form);
 
     // Set Map Marker Cluster Element.
     $this->setMapMarkerclusterElement($form, $this->options);
