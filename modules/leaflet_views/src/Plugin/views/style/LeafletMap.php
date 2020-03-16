@@ -789,28 +789,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 $description = !empty($this->options['description_field']) ? $this->rendered_fields[$result->index][$this->options['description_field']] : '';
             }
 
-            // Relates the feature with its entity id, so that it might be
-            // referenced from outside.
-            foreach ($features as &$feature) {
-              $feature['entity_id'] = $entity->id();
-            }
-
-            // Attach pop-ups if we have a description field.
-            if (isset($description)) {
-              foreach ($features as &$feature) {
-                $feature['popup'] = $description;
-              }
-            }
-
-            // Attach also titles, they might be used later on.
-            if ($this->options['name_field']) {
-              foreach ($features as &$feature) {
-                // Decode any entities because JS will encode them again and
-                // we don't want double encoding.
-                $feature['label'] = !empty($this->options['name_field']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']])) : '';
-              }
-            }
-
             // Merge eventual map icon definition from hook_leaflet_map_info.
             if (!empty($map['icon'])) {
               $this->options['icon'] = $this->options['icon'] ?: [];
@@ -833,37 +811,52 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
             $icon_type = isset($this->options['icon']['iconType']) ? $this->options['icon']['iconType'] : 'marker';
 
-            // Eventually set the custom icon as DivIcon or Icon Url.
-            if ($icon_type === 'marker' && !empty($this->options['icon']['iconUrl'])
-              || $icon_type === 'html' && !empty($this->options['icon']['html'])) {
-              foreach ($features as &$feature) {
-                if ($feature['type'] === 'point' && $icon_type === 'html' && !empty($this->options['icon']['html'])) {
-                  $feature['icon'] = $this->options['icon'];
-                  $feature['icon']['html'] = $this->viewsTokenReplace($this->options['icon']['html'], $tokens);
-                  $feature['icon']['html_class'] = $this->options['icon']['html_class'];
-                }
-                elseif ($feature['type'] === 'point' && !empty($this->options['icon']['iconUrl'])) {
-                  $feature['icon'] = $this->options['icon'];
-                  $feature['icon']['iconUrl'] = $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens);
-                  if (!empty($this->options['icon']['shadowUrl'])) {
-                    $feature['icon']['shadowUrl'] = $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens);
-                  }
+            // Relates the feature with additional properties.
+            foreach ($features as &$feature) {
+
+              // Add its entity id, so that it might be referenced from outside.
+              $feature['entity_id'] = $entity->id();
+              // Attach pop-ups if we have a description field.
+              if (isset($description)) {
+                $feature['popup'] = $description;
+              }
+              // Attach also titles, they might be used later on.
+              if ($this->options['name_field']) {
+                // Decode any entities because JS will encode them again and
+                // we don't want double encoding.
+                $feature['label'] = !empty($this->options['name_field']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']])) : '';
+              }
+
+              // Eventually set the custom Marker icon (DivIcon or Icon Url) .
+              if ($feature['type'] === 'point' && isset($this->options['icon'])) {
+                $feature['icon'] = $this->options['icon'];
+                switch ($icon_type) {
+                  case 'html':
+                    $feature['icon']['html'] = $this->viewsTokenReplace($this->options['icon']['html'], $tokens);
+                    $feature['icon']['html_class'] = $this->options['icon']['html_class'];
+                    break;
+
+                  default:
+                    if (!empty($this->options['icon']['iconUrl'])) {
+                      $feature['icon']['iconUrl'] = $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens);
+                      if (!empty($this->options['icon']['shadowUrl'])) {
+                        $feature['icon']['shadowUrl'] = $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens);
+                      }
+                    }
+                    break;
                 }
               }
-            }
 
-            // Associate dynamic path properties (token based) to each feature,
-            // in case of not point.
-            foreach ($features as &$feature) {
+              // Associate dynamic path properties (token based) to each
+              // feature, in case of not point.
               if ($feature['type'] !== 'point') {
                 $feature['path'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['path'], $tokens));
               }
-            }
 
-            foreach ($features as &$feature) {
               // Allow modules to adjust the marker.
               \Drupal::moduleHandler()->alter('leaflet_views_feature', $feature, $result, $this->view->rowPlugin);
             }
+
             // Add new points to the whole basket.
             $data = array_merge($data, $features);
           }
