@@ -827,13 +827,18 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 $feature['label'] = !empty($this->options['name_field']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']])) : '';
               }
 
-              // Eventually set the custom Marker icon (DivIcon or Icon Url) .
+              // Eventually set the custom Marker icon (DivIcon, Icon Url or
+              // Circle Marker).
               if ($feature['type'] === 'point' && isset($this->options['icon'])) {
                 $feature['icon'] = $this->options['icon'];
                 switch ($icon_type) {
                   case 'html':
                     $feature['icon']['html'] = $this->viewsTokenReplace($this->options['icon']['html'], $tokens);
                     $feature['icon']['html_class'] = $this->options['icon']['html_class'];
+                    break;
+
+                  case 'circle_marker':
+                    $feature['icon']['options'] = $this->viewsTokenReplace($this->options['icon']['circle_marker_options'], $tokens);
                     break;
 
                   default:

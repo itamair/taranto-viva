@@ -427,14 +427,20 @@
       img.onerror = logError;
     }
 
-    lMarker = new L.Marker(latLng, options);
-
     if (marker.icon) {
       if (marker.icon.iconType && marker.icon.iconType === 'html' && marker.icon.html) {
+        lMarker = new L.Marker(latLng, options);
         options.icon = self.create_divicon(marker.icon);
         lMarker.setIcon(options.icon);
       }
+      else if (marker.icon.iconType && marker.icon.iconType === 'circle_marker') {
+        options = marker.icon.options ? JSON.parse(marker.icon.options) : {};
+        options.radius = options.radius ? parseInt(options['radius']) : 10;
+
+          lMarker = new L.CircleMarker(latLng, options);
+      }
       else if (marker.icon.iconUrl) {
+        lMarker = new L.Marker(latLng, options);
         checkImage(marker.icon.iconUrl,
           // Success loading image.
           function() {

@@ -366,7 +366,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       // Add/merge eventual map icon definition from hook_leaflet_map_info.
       if (!empty($map['icon'])) {
         $settings['icon'] = $settings['icon'] ?: [];
-        // Remove empty icon options so that they might be replaced by the
+        // Remove empty icon options so thxat they might be replaced by the
         // ones set by the hook_leaflet_map_info.
         foreach ($settings['icon'] as $k => $icon_option) {
           if (empty($icon_option) || (is_array($icon_option) && $this->leafletService->multipleEmpty($icon_option))) {
@@ -378,16 +378,29 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
       $icon_type = isset($settings['icon']['iconType']) ? $settings['icon']['iconType'] : 'marker';
 
-      // Eventually set the custom icon as DivIcon or Icon Url.
-      if ($feature['type'] === 'point' && $icon_type === 'html' && !empty($settings['icon']['html'])) {
-        $settings['icon']['html'] = $this->token->replace($settings['icon']['html'], $token_context);
-        $settings['icon']['html_class'] = isset($settings['icon']['html_class']) ? $settings['icon']['html_class'] : '';
+      // Eventually set the custom Marker icon (DivIcon, Icon Url or
+      // Circle Marker).
+      if ($feature['type'] === 'point' && isset($settings['icon'])) {
         $feature['icon'] = $settings['icon'];
-      }
-      elseif ($feature['type'] === 'point' && !empty($settings['icon']['iconUrl'])) {
-        $settings['icon']['iconUrl'] = !empty($settings['icon']['iconUrl']) > 0 ? $this->token->replace($settings['icon']['iconUrl'], $token_context) : '';
-        $settings['icon']['shadowUrl'] = !empty($settings['icon']['shadowUrl']) > 0 ? $this->token->replace($settings['icon']['shadowUrl'], $token_context) : '';
-        $feature['icon'] = $settings['icon'];
+        switch ($icon_type) {
+          case 'html':
+            $feature['icon']['html'] = $this->token->replace($settings['icon']['html'], $token_context);
+            $feature['icon']['html_class'] = isset($settings['icon']['html_class']) ? $settings['icon']['html_class'] : '';
+            break;
+
+          case 'circle_marker':
+            $feature['icon']['options'] = $this->token->replace($settings['icon']['circle_marker_options'], $token_context);
+            break;
+
+          default:
+            if (!empty($settings['icon']['iconUrl'])) {
+              $feature['icon']['iconUrl'] = !empty($settings['icon']['iconUrl']) > 0 ? $this->token->replace($settings['icon']['iconUrl'], $token_context) : '';
+              if (!empty($settings['icon']['shadowUrl'])) {
+                $feature['icon']['shadowUrl'] = !empty($settings['icon']['shadowUrl']) > 0 ? $this->token->replace($settings['icon']['shadowUrl'], $token_context) : '';
+              }
+            }
+            break;
+        }
       }
 
       // Associate dynamic path properties (token based) to the feature,

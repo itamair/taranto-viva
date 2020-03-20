@@ -90,13 +90,7 @@ trait LeafletSettingsElementsTrait {
         'popupAnchor' => ['x' => NULL, 'y' => NULL],
         'html' => '<div></div>',
         'html_class' => 'leaflet-map-divicon',
-        'circle_marker' => [
-          'radius_type' => 'fixed_value',
-          'radius_fixed_value' => 10,
-          'radius_field_value' => 0,
-          'radius_replacement_tokens' => '',
-          'options' => '{"color": "red", "fillColor": "#f03", "fillOpacity": 0.5}',
-        ],
+        'circle_marker_options' => '{"radius": 100, "color": "red", "fillColor": "#f03", "fillOpacity": 0.5}',
       ],
       'leaflet_markercluster' => [
         'control' => 0,
@@ -438,109 +432,19 @@ trait LeafletSettingsElementsTrait {
       ],
     ];
 
-    $element['circle_marker'] = [
-      '#type' => 'fieldset',
-      '#title' => t('Circle Radius'),
-      '#states' => [
-        'visible' => [
-          $icon_type => ['value' => 'circle_marker'],
-        ],
-      ],
-    ];
-
-    // Define circle marker field_value possible options,
-    // for the Formatter or the View.
-    $circle_value_fields_options = [0 => "- " . $this->t('None') . " -"];
-    if (isset($this->fieldDefinition)) {
-      $circle_marker_radius_type = ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][icon][circle_marker][radius_type]"]';
-      $entity_fields = $this->entityFieldManager->getFieldDefinitions($this->fieldDefinition->getTargetEntityTypeId(), $this->fieldDefinition->getTargetBundle());
-      foreach ($entity_fields as $k => $entity_field) {
-        if ($entity_field instanceof FieldConfigInterface && in_array($entity_field->get('field_type'), $this->leafletCircleRadiusFieldTypesOptions)) {
-          /* @var \Drupal\field\FieldConfigInterface $entity_field */
-          $circle_value_fields_options[$k] = $entity_field->label();
-        }
-      }
-    }
-    else {
-      $circle_marker_radius_type = ':input[name="style_options[icon][circle_marker][radius_type]"]';
-      $entity_fields = $this->viewFields;
-      /* @var \Drupal\Core\StringTranslation\TranslatableMarkup $entity_field */
-      foreach ($entity_fields as $k => $entity_field) {
-        $circle_value_fields_options[$k] = $entity_field->render();
-      }
-    }
-
-    $element['circle_marker']['radius_type'] = [
-      '#type' => 'select',
-      '#description' => t('Choose the way the Marker Radius should be defined (fixed or dynamic).'),
-      '#default_value' => isset($icon_options['circle_marker']['radius_type']) ? $icon_options['circle_marker']['radius_type'] : $default_settings['icon']['circle_marker']['radius_type'],
-      '#options' => [
-        'fixed_value' => $this->t('Fixed Value/Number'),
-        'numeric_field' => $this->t('Dynamic Value from a Numeric Field'),
-        'replacement_tokens' => $this->t('Dynamic Value through Token/Replacement Patterns'),
-      ],
-    ];
-
-    $circle_radius_value_title = $this->t('Radius of the circle marker, in pixels');
-
-    $element['circle_marker']['radius_fixed_value'] = [
-      '#title' => $circle_radius_value_title,
-      '#type' => 'number',
-      '#min' => 1,
-      '#size' => 2,
-      '#description' => t('Choose a fixed Numeric value.'),
-      '#default_value' => isset($icon_options['circle_marker']['radius_fixed_value']) ? $icon_options['circle_marker']['radius_fixed_value'] : $default_settings['icon']['circle_marker']['radius_fixed_value'],
-      '#states' => [
-        'visible' => [
-          $circle_marker_radius_type => ['value' => 'fixed_value'],
-        ],
-      ],
-    ];
-
-    $element['circle_marker']['radius_field_value'] = [
-      '#title' => $circle_radius_value_title,
-      '#type' => 'select',
-      '#description' => t('Choose a Numeric field @numeric_field_warning.', [
-        '@numeric_field_warning' => !isset($this->fieldDefinition) ? $this->t('(<b>Note: </b>the choice of a not Numeric field will fallback into a fixed Default Circle Marker)') : '',
-      ]),
-      '#default_value' => isset($icon_options['circle_marker']['radius_field_value']) ? $icon_options['circle_marker']['radius_field_value'] : $default_settings['icon']['circle_marker']['radius_field_value'],
-      '#options' => $circle_value_fields_options,
-      '#states' => [
-        'visible' => [
-          $circle_marker_radius_type => ['value' => 'numeric_field'],
-        ],
-      ],
-    ];
-
-    $circle_marker_replacement_tokens_description = $this->t('<b>Note: </b> Use <strong>Replacement Patterns</strong> to define a Formula that will dynamically define the Circle Marker Radius value.<br>Be sure to use a composition of numeric values that would output a numeric result. Otherwise the final result might be unpredictable and different from the expected one.');
-    $element['circle_marker']['radius_replacement_tokens'] = [
-      '#title' => $circle_radius_value_title,
-      '#type' => 'textfield',
-      '#size' => 160,
-      '#maxlength' => 200,
-      '#rows' => 1,
-      '#description' => $circle_marker_replacement_tokens_description,
-      '#default_value' => isset($icon_options['circle_marker']['radius_replacement_tokens']) ? $icon_options['circle_marker']['radius_replacement_tokens'] : $default_settings['icon']['circle_marker']['radius_replacement_tokens'],
-      '#states' => [
-        'visible' => [
-          $circle_marker_radius_type => ['value' => 'replacement_tokens'],
-        ],
-      ],
-    ];
-
-    $element['circle_marker']['options'] = [
+    $element['circle_marker_options'] = [
       '#type' => 'textarea',
       '#rows' => 2,
       '#title' => $this->t('Circle Marker Options'),
-      '#description' => $this->t('An object literal of Circle Marker options, that comply with the @leaflet_circle_marker_object.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br><b>Note: </b> Use <strong>Replacement Patterns</strong> to input dynamic values.', [
+      '#description' => $this->t('An object literal of Circle Marker options, that comply with the @leaflet_circle_marker_object.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br><b>Note: </b> Use <strong>Replacement Patterns</strong> to input dynamic values.<br>Empty value will fallback to default Leaflet Circle Marker style.', [
         '@leaflet_circle_marker_object' => $this->link->generate('Leaflet Circle Marker object', Url::fromUri('https://leafletjs.com/reference-1.6.0.html#circlemarker', [
           'absolute' => TRUE,
           'attributes' => ['target' => 'blank'],
         ])
         ),
       ]),
-      '#default_value' => isset($icon_options['circle_marker']['options']) ? $icon_options['circle_marker']['options'] : '',
-      '#placeholder' => $default_settings['icon']['circle_marker']['options'],
+      '#default_value' => isset($icon_options['circle_marker_options']) ? $icon_options['circle_marker_options'] : $default_settings['icon']['circle_marker_options'],
+      '#placeholder' => $default_settings['icon']['circle_marker_options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
 
