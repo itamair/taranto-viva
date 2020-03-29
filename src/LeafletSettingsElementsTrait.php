@@ -446,6 +446,11 @@ trait LeafletSettingsElementsTrait {
       '#default_value' => isset($icon_options['circle_marker_options']) ? $icon_options['circle_marker_options'] : $default_settings['icon']['circle_marker_options'],
       '#placeholder' => $default_settings['icon']['circle_marker_options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
+      '#states' => [
+        'visible' => [
+          $icon_type => ['value' => 'circle_marker'],
+        ],
+      ],
     ];
 
     if (method_exists($this, 'getProvider') && $this->getProvider() == 'leaflet_views') {
