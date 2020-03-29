@@ -461,6 +461,10 @@
             console.log("Leaflet: The Icon Image doesn't exist at the requested path: " + marker.icon.iconUrl);
           });
       }
+      else {
+        // Fallback to Leaflet default marker.
+        lMarker = new L.Marker(latLng);
+      }
     }
 
     return lMarker;
