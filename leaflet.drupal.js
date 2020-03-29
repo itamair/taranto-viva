@@ -50,15 +50,15 @@
           // If the attached context contains any leaflet maps, make sure we have a Drupal.leaflet_widget object.
           if ($container.data('leaflet') === undefined) {
             $container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(mapid), mapid, data.map));
-          if (data.features.length > 0) {
+            if (data.features.length > 0) {
 
-            // Initialize the Drupal.Leaflet.[data.mapid] object,
-            // for possible external interaction.
-            Drupal.Leaflet[mapid].markers = {}
+              // Initialize the Drupal.Leaflet.[data.mapid] object,
+              // for possible external interaction.
+              Drupal.Leaflet[mapid].markers = {}
 
-            // Add Leaflet Map Features.
-            $container.data('leaflet').add_features(mapid, data.features, true);
-          }
+              // Add Leaflet Map Features.
+              $container.data('leaflet').add_features(mapid, data.features, true);
+            }
 
             // Add the leaflet map to our settings object to make it accessible.
             // @NOTE: This is used by the Leaflet Widget module.
@@ -108,9 +108,7 @@
     self.lMap = new L.Map(self.mapid, self.settings);
 
     // Set the public map object, to make it accessible from outside.
-    Drupal.Leaflet[mapid] = {
-      lMap: self.lMap,
-    };
+    Drupal.Leaflet[mapid] = {};
 
     // Add map layers (base and overlay layers).
     var layers = {}, overlays = {};
@@ -158,6 +156,9 @@
     if (self.settings.fullscreen_control) {
       self.lMap.addControl(new L.Control.Fullscreen());
     }
+
+    // Finally define the l.Map property, to make it accessible from outside.
+    Drupal.Leaflet[mapid].lMap = self.lMap;
 
   };
 
@@ -561,16 +562,20 @@
   // @NOTE: This method used by Leaflet Markecluster module (don't remove/rename)
   Drupal.Leaflet.prototype.fitbounds = function(mapid) {
     var self = this;
+    var start_zoom;
     // Fit Bounds if both them and features exist, and the Map Position in not forced.
     if (!self.settings.map_position_force && self.bounds.length > 0) {
-      Drupal.Leaflet[mapid].lMap.fitBounds(new L.LatLngBounds(self.bounds));
+      var bounds = new L.LatLngBounds(self.bounds);
+      Drupal.Leaflet[mapid].lMap.fitBounds(bounds);
 
       // In case of single result use the custom Map Zoom set.
       if (self.bounds.length === 1 && self.settings.zoom) {
-        Drupal.Leaflet[mapid].lMap.setZoom(self.settings.zoom);
+        start_zoom = self.settings.zoom;
+        Drupal.Leaflet[mapid].lMap.setZoom(start_zoom);
       }
-
-      var start_zoom = Drupal.Leaflet[mapid].lMap.getZoom();
+      else {
+        start_zoom = Drupal.Leaflet[mapid].lMap.getBoundsZoom(bounds);
+      }
 
       // In case of map initial position not forced, and zooFiner not null/neutral,
       // adapt the Map Zoom and the Start Zoom accordingly.
@@ -581,7 +586,7 @@
 
       // Set the map start zoom and center.
       Drupal.Leaflet[mapid].start_zoom = start_zoom;
-      Drupal.Leaflet[mapid].start_center = Drupal.Leaflet[mapid].lMap.getCenter();
+      Drupal.Leaflet[mapid].start_center = bounds.getCenter();
     }
 
   };
@@ -606,6 +611,7 @@
       controlUI.style.textAlign = 'center';
       controlUI.title = Drupal.t('Click to reset the map to its initial state');
       controlUI.id = 'leaflet-map--' + mapid + '--reset-control';
+      controlUI.disabled = true;
       controlDiv.appendChild(controlUI);
 
       // Set CSS for the control interior.
