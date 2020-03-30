@@ -89,7 +89,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    */
   protected $usesRowPlugin = TRUE;
 
-
   /**
    * The Entity type manager service.
    *
