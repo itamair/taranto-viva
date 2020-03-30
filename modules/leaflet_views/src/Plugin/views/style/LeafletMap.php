@@ -80,11 +80,15 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   protected $entityInfo;
 
   /**
-   * Does the style plugin for itself support to add fields to it's output.
-   *
-   * @var bool
+   * {@inheritdoc}
    */
   protected $usesFields = TRUE;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected $usesRowPlugin = TRUE;
+
 
   /**
    * The Entity type manager service.
@@ -539,6 +543,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $desc_options += [
         '#rendered_entity' => $this->t('< @entity entity >', ['@entity' => $this->entityType]),
         '#rendered_entity_ajax' => $this->t('< @entity entity via ajax >', ['@entity' => $this->entityType]),
+        '#rendered_view_fields' => $this->t('# Rendered View Fields (with field label, format, classes, etc)'),
       ];
     }
 
@@ -784,8 +789,14 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 $map['settings']['ajaxPoup'] = TRUE;
                 break;
 
+              case '#rendered_view_fields':
+                // Normal rendering via view/row fields (with labels options, formatters, classes, etc.).
+                $renderedRow = $this->view->rowPlugin->render($result);
+                $description = !empty($this->options['description_field']) ? $this->renderer->render($renderedRow) : '';
+                break;
+
               default:
-                // Normal rendering via fields.
+                // Row rendering of single specified field value (without labels).
                 $description = !empty($this->options['description_field']) ? $this->rendered_fields[$result->index][$this->options['description_field']] : '';
             }
 
