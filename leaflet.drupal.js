@@ -435,10 +435,14 @@
         lMarker.setIcon(options.icon);
       }
       else if (marker.icon.iconType && marker.icon.iconType === 'circle_marker') {
-        options = marker.icon.options ? JSON.parse(marker.icon.options) : {};
-        options.radius = options.radius ? parseInt(options['radius']) : 10;
-
-          lMarker = new L.CircleMarker(latLng, options);
+        try {
+          options = marker.icon.options ? JSON.parse(marker.icon.options) : {};
+          options.radius = options.radius ? parseInt(options['radius']) : 10;
+        }
+        catch (e) {
+          options = {};
+        }
+        lMarker = new L.CircleMarker(latLng, options);
       }
       else if (marker.icon.iconUrl) {
         lMarker = new L.Marker(latLng, options);

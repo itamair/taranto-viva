@@ -843,19 +843,19 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 $feature['icon'] = $this->options['icon'];
                 switch ($icon_type) {
                   case 'html':
-                    $feature['icon']['html'] = $this->viewsTokenReplace($this->options['icon']['html'], $tokens);
+                    $feature['icon']['html'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['html'], $tokens));
                     $feature['icon']['html_class'] = $this->options['icon']['html_class'];
                     break;
 
                   case 'circle_marker':
-                    $feature['icon']['options'] = $this->viewsTokenReplace($this->options['icon']['circle_marker_options'], $tokens);
+                    $feature['icon']['options'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['circle_marker_options'], $tokens));
                     break;
 
                   default:
                     if (!empty($this->options['icon']['iconUrl'])) {
-                      $feature['icon']['iconUrl'] = $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens);
+                      $feature['icon']['iconUrl'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens));
                       if (!empty($this->options['icon']['shadowUrl'])) {
-                        $feature['icon']['shadowUrl'] = $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens);
+                        $feature['icon']['shadowUrl'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens));
                       }
                     }
                     break;
