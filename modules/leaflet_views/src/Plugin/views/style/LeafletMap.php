@@ -790,8 +790,10 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
               case '#rendered_view_fields':
                 // Normal rendering via view/row fields (with labels options, formatters, classes, etc.).
-                $renderedRow = $this->view->rowPlugin->render($result);
-                $description = !empty($this->options['description_field']) ? $this->renderer->render($renderedRow) : '';
+                $renderRow = [
+                  "markup" => $this->view->rowPlugin->render($result),
+                ];
+                $description = !empty($this->options['description_field']) ? $this->renderer->renderPlain($renderRow) : '';
                 break;
 
               default:
