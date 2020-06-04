@@ -782,7 +782,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                   'view_mode' => $this->options['view_mode'],
                   'langcode' => $langcode,
                 ];
-                $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters, ['absolute' => TRUE]);
+                $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters);
                 $description = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s" %s></div>',
                   $url->toString(), LeafletAjaxPopupController::getPopupIdentifierAttribute($entity_type, $entity->id(), $this->options['view_mode'], $langcode));
                 $map['settings']['ajaxPoup'] = TRUE;
