@@ -233,9 +233,7 @@
               lFeature.setStyle(feature.path);
             }
             if (groupFeature.popup) {
-              lFeature.bindPopup(groupFeature.popup, {
-                maxWidth: "auto"
-              });
+              lFeature.bindPopup(groupFeature.popup);
             }
             lGroup.addLayer(lFeature);
           }
@@ -254,9 +252,7 @@
           self.lMap.addLayer(lFeature);
 
           if (feature.popup) {
-            lFeature.bindPopup(feature.popup, {
-              maxWidth: "auto"
-            });
+            lFeature.bindPopup(feature.popup);
           }
         }
       }
@@ -558,9 +554,7 @@
         layer._leaflet_id = feature.properties.leaflet_id;
       }
       if (feature.properties.popup) {
-        layer.bindPopup(feature.properties.popup, {
-          maxWidth: "auto"
-        });
+        layer.bindPopup(feature.properties.popup);
       }
     };
 
