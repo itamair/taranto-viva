@@ -119,7 +119,7 @@ class LeafletService {
       }
       $map['settings']['geocoder']['settings']['providers'] = $enabled_providers;
       $map['settings']['geocoder']['settings']['options'] = [
-        'options' => JSON::decode($map['settings']['geocoder']['settings']['options']),
+        'options' => Json::decode($map['settings']['geocoder']['settings']['options']),
       ];
     }
 
