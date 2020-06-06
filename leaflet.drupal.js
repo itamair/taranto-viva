@@ -3,45 +3,6 @@
   Drupal.behaviors.leaflet = {
     attach: function(context, settings) {
 
-      // Once the Leaflet Map is loaded with its features.
-      $(document).on('leaflet.map', function(e, settings, lMap, mapid) {
-        // Set the start center and the start zoom, and initialize the reset_map control.
-        if (!Drupal.Leaflet[mapid].start_center && !Drupal.Leaflet[mapid].start_zoom) {
-          Drupal.Leaflet[mapid].start_center = Drupal.Leaflet[mapid].lMap.getCenter();
-          Drupal.Leaflet[mapid].start_zoom = Drupal.Leaflet[mapid].lMap.getZoom();
-        }
-
-        // Add the Map Reset Control if requested.
-        if (settings.settings.reset_map && settings.settings.reset_map.control && !Drupal.Leaflet[mapid].reset_control) {
-          // Create the DIV to hold the control and call the mapResetControl()
-          // constructor passing in this DIV.
-          var mapResetControlDiv = document.createElement('div');
-          Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
-        }
-
-        // Add the Map Geocoder Control if requested.
-        if (Drupal.Leaflet.prototype.map_geocoder_control) {
-          var mapGeocoderControlDiv = document.createElement('div');
-          Drupal.Leaflet[mapid].geocoder_control = Drupal.Leaflet.prototype.map_geocoder_control(mapGeocoderControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
-          var geocoder_settings = drupalSettings.leaflet[mapid].map.settings.geocoder.settings;
-          Drupal.Leaflet.prototype.map_geocoder_control.autocomplete(mapid, geocoder_settings);
-        }
-
-        // Attach leaflet ajax popup listeners.
-        Drupal.Leaflet[mapid].lMap.on('popupopen', function(e) {
-          var element = e.popup._contentNode;
-          var content = $('[data-leaflet-ajax-popup]', element);
-          if (content.length) {
-            var url = content.data('leaflet-ajax-popup');
-            Drupal.ajax({url: url}).execute();
-          }
-          // Attach drupal behaviors on new content.
-          $(element).each(function () {
-            Drupal.attachBehaviors(this, drupalSettings);
-          })
-        });
-      });
-
       $.each(settings.leaflet, function(m, data) {
         $('#' + data.mapid, context).each(function() {
           var $container = $(this);
@@ -85,6 +46,48 @@
       });
     }
   };
+
+  // Once the Leaflet Map is loaded with its features.
+  $(document).on('leaflet.map', function(e, settings, lMap, mapid) {
+
+    // Executes once per mapid.
+    $(document).once('leaflet_map_event_' + mapid).each(function() {
+      // Set the start center and the start zoom, and initialize the reset_map control.
+      if (!Drupal.Leaflet[mapid].start_center && !Drupal.Leaflet[mapid].start_zoom) {
+        Drupal.Leaflet[mapid].start_center = Drupal.Leaflet[mapid].lMap.getCenter();
+        Drupal.Leaflet[mapid].start_zoom = Drupal.Leaflet[mapid].lMap.getZoom();
+      }
+
+      // Add the Map Reset Control if requested.
+      if (settings.settings.reset_map && settings.settings.reset_map.control && !Drupal.Leaflet[mapid].reset_control) {
+        // Create the DIV to hold the control and call the mapResetControl()
+        // constructor passing in this DIV.
+        var mapResetControlDiv = document.createElement('div');
+        Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
+      }
+
+      // Add the Map Geocoder Control if requested.
+      if (Drupal.Leaflet.prototype.map_geocoder_control) {
+        var mapGeocoderControlDiv = document.createElement('div');
+        Drupal.Leaflet[mapid].geocoder_control = Drupal.Leaflet.prototype.map_geocoder_control(mapGeocoderControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
+        var geocoder_settings = drupalSettings.leaflet[mapid].map.settings.geocoder.settings;
+        Drupal.Leaflet.prototype.map_geocoder_control.autocomplete(mapid, geocoder_settings);
+      }
+
+      // Attach leaflet ajax popup listeners.
+      Drupal.Leaflet[mapid].lMap.on('popupopen', function(e) {
+        var element = e.popup._contentNode;
+        var content = $('[data-leaflet-ajax-popup]', element);
+        if (content.length) {
+          var url = content.data('leaflet-ajax-popup');
+          Drupal.ajax({url: url}).execute().done(function () {
+            // Attach drupal behaviors on new content.
+            Drupal.attachBehaviors(element, drupalSettings);
+          });
+        }
+      });
+    });
+  });
 
   Drupal.Leaflet = function(container, mapid, map_definition) {
     this.container = container;
