@@ -22,9 +22,10 @@ leaflet-drupal:
   js:
     leaflet.drupal.js: {}
   dependencies:
-    - leaflet/leaflet
     - core/jquery
+    - core/jquery.once
     - core/drupal
+    - leaflet/leaflet
 
 # Control Fullscreen
 leaflet.fullscreen:
