@@ -339,6 +339,9 @@
   Drupal.Leaflet.prototype.create_layer = function(layer, key) {
     let self = this;
     let map_layer = new L.TileLayer(layer.urlTemplate);
+    if (layer.type === 'wms') {
+      map_layer = new L.tileLayer.wms(layer.urlTemplate, layer.options);
+    }
     map_layer._leaflet_id = key;
 
     if (layer.options) {
