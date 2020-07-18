@@ -1,0 +1,8 @@
+name: Leaflet Geoman Widget
+description: Provides a Leaflet Map Widget for geometries editing/drawing in GeoJson Format, powered by the Leaflet-Geoman js library
+core_version_requirement: ^8.8 || ^9
+type: module
+package: Geofield
+dependencies:
+  - leaflet:leaflet
+  - drupal:views

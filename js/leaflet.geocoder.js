@@ -54,6 +54,8 @@
   Drupal.Leaflet.prototype.map_geocoder_control.autocomplete = function(mapid, geocoder_settings) {
     var providers = geocoder_settings.providers.toString();
     var options = geocoder_settings.options;
+    var map = Drupal.Leaflet[mapid].lMap;
+    var zoom = geocoder_settings.zoom || 14;
     $('#' + mapid + '--leaflet--geocoder-control').autocomplete({
       autoFocus: true,
       minLength: geocoder_settings.min_terms || 4,
@@ -82,10 +84,13 @@
       },
       // This bit is executed upon selection of an address.
       select: function (event, ui) {
-        var map = Drupal.Leaflet[mapid].lMap;
-        var zoom = geocoder_settings.zoom || 14;
         var position = L.latLng(ui.item.lat, ui.item.lng);
         map.setView(position, zoom);
+        // If leaflet-geoman functionalities and controls existing on the map,
+        // then disableGlobalEditMode;
+        // if(map.pm) {
+        //   map.pm.disableGlobalEditMode();
+        // }
         if (geocoder_settings.popup) {
           L.popup().setLatLng(position)
             .setContent('<div class="leaflet-geocoder-popup">' + ui.item.value + '</div>')
