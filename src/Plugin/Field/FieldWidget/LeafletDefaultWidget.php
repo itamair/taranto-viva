@@ -12,6 +12,7 @@ use Drupal\geofield\WktGeneratorInterface;
 use Drupal\leaflet\LeafletService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Utility\LinkGeneratorInterface;
 
 /**
  * Plugin implementation of the "leaflet_widget" widget.
@@ -42,6 +43,13 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
+  /**
+   * The Link generator Service.
+   *
+   * @var \Drupal\Core\Utility\LinkGeneratorInterface
+   */
+  protected $link;
 
   /**
    * Get maps available for use with Leaflet.
@@ -75,6 +83,8 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
    *   The Leaflet service.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
+   * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
+   *   The Link Generator service.
    */
   public function __construct(
     $plugin_id,
@@ -85,7 +95,8 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     GeoPHPInterface $geophp_wrapper,
     WktGeneratorInterface $wkt_generator,
     LeafletService $leaflet_service,
-    ModuleHandlerInterface $module_handler
+    ModuleHandlerInterface $module_handler,
+    LinkGeneratorInterface $link_generator
   ) {
     parent::__construct(
       $plugin_id,
@@ -98,6 +109,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     );
     $this->leafletService = $leaflet_service;
     $this->moduleHandler = $module_handler;
+    $this->link = $link_generator;
   }
 
   /**
@@ -113,7 +125,8 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       $container->get('geofield.geophp'),
       $container->get('geofield.wkt_generator'),
       $container->get('leaflet.service'),
-      $container->get('module_handler')
+      $container->get('module_handler'),
+      $container->get('link_generator')
     );
   }
 
