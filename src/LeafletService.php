@@ -87,12 +87,12 @@ class LeafletService {
     $attached_libraries = ['leaflet/general', 'leaflet/leaflet-drupal'];
 
     // Add the Leaflet Fullscreen library, if requested.
-    if (isset($map['settings']['fullscreen_control'])) {
+    if (!empty($map['settings']['fullscreen_control'])) {
       $attached_libraries[] = 'leaflet/leaflet.fullscreen';
     }
 
     // Add the Leaflet Gesture Handling library, if requested.
-    if (isset($map['settings']['gestureHandling'])) {
+    if (!empty($map['settings']['gestureHandling'])) {
       $attached_libraries[] = 'leaflet/leaflet.gesture_handling';
     }
 
@@ -104,7 +104,7 @@ class LeafletService {
 
     // Add the Leaflet Geocoder library and functionalities, if requested,
     // and the user has access to Geocoder Api Enpoints.
-    if (isset($map['settings']['geocoder']['control'])) {
+    if (!empty($map['settings']['geocoder']['control'])) {
       $this->setGeocoderControlSettings($map['settings']['geocoder'], $attached_libraries);
     }
 
