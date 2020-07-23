@@ -144,12 +144,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
           'lon' => 0.0,
         ],
         'auto_center' => TRUE,
-        'zoom' => [
-          'start' => 6,
-          'focus' => 12,
-          'min' => 0,
-          'max' => 22,
-        ],
+        'map_position' => self::getDefaultSettings()['map_position'],
         'locate' => TRUE,
         'scroll_zoom_enabled' => TRUE,
         'fullscreen_control' => TRUE,
@@ -223,45 +218,11 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#description' => t("This option overrides the widget's default center."),
       '#default_value' => $map_settings['auto_center'] ?? $default_settings['map']['auto_center'],
     ];
-    $form['map']['zoom'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Zoom Settings'),
-    ];
-    $form['map']['zoom']['start'] = [
-      '#type' => 'number',
-      '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
-      '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
-      '#title' => $this->t('Start Zoom level'),
-      '#description' => $this->t('The initial Zoom level for an empty Geofield.'),
-      '#default_value' => $map_settings['zoom']['start'] ?? $default_settings['map']['zoom']['start'],
-      '#element_validate' => [[get_class($this), 'zoomLevelValidate']],
-    ];
-    $form['map']['zoom']['focus'] = [
-      '#type' => 'number',
-      '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
-      '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
-      '#title' => $this->t('Focus Zoom level'),
-      '#description' => $this->t('The Zoom level for an assigned Geofield or for Geocoding operations results.'),
-      '#default_value' => $map_settings['zoom']['focus'] ?? $default_settings['map']['zoom']['focus'],
-      '#element_validate' => [[get_class($this), 'zoomLevelValidate']],
-    ];
-    $form['map']['zoom']['min'] = [
-      '#type' => 'number',
-      '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
-      '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
-      '#title' => $this->t('Min Zoom level'),
-      '#description' => $this->t('The Minimum Zoom level for the Map.'),
-      '#default_value' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
-    ];
-    $form['map']['zoom']['max'] = [
-      '#type' => 'number',
-      '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
-      '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
-      '#title' => $this->t('Max Zoom level'),
-      '#description' => $this->t('The Maximum Zoom level for the Map.'),
-      '#default_value' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
-      '#element_validate' => [[get_class($this), 'maxZoomLevelValidate']],
-    ];
+
+    // Generate the Leaflet Map Position Form Element.
+    $map_position_options = $map_settings['map_position'] ?? $default_settings['map']['map_position'];
+    $form['map']['map_position'] = $this->generateMapPositionElement($map_position_options);
+
     $form['map']['locate'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Automatically locate user current position'),
@@ -414,10 +375,8 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $js_settings = [];
     $map = leaflet_map_get_info($map_settings['leaflet_map'] ?? $default_settings['map']['leaflet_map']);
     $map['context'] = 'widget';
-    $map['settings']['center'] = $map_settings['center'] ?? $default_settings['map']['center'];;
-    $map['settings']['zoom'] = $map_settings['zoom']['start'] ?? $default_settings['map']['zoom']['start'];
-    $map['settings']['reset_map'] = $this->getSetting('reset_map') ?? $default_settings['reset_map'];
-    $map['settings']['geocoder'] = $this->getSetting('geocoder') ?? $default_settings['geocoder'];
+    // Set Map additional map Settings.
+    $this->setAdditionalMapOptions($map, $map_settings);
 
     // Attach class to wkt input element, so we can find it in js.
     $json_element_name = 'leaflet-widget-input';
@@ -454,6 +413,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $js_settings['toolbarSettings'] = $this->getSetting('toolbar') ?? $default_settings['toolbar'];
     $js_settings['scrollZoomEnabled'] = !empty($map_settings['scroll_zoom_enabled']) ? $map_settings['scroll_zoom_enabled'] : FALSE;
     $js_settings['geocoder'] = $this->getSetting('geocoder');
+    $js_settings['map_position'] = $map_settings['map_position'];
 
     // Leaflet.widget plugin.
     $element['map']['#attached']['library'][] = 'leaflet/leaflet-widget';
@@ -467,47 +427,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     }
 
     return $element;
-  }
-
-  /**
-   * Form element validation handler for a Map Zoom level.
-   *
-   * {@inheritdoc}
-   */
-  public static function zoomLevelValidate($element, FormStateInterface &$form_state) {
-    // Get to the actual values in a form tree.
-    $parents = $element['#parents'];
-    $values = $form_state->getValues();
-    for ($i = 0; $i < count($parents) - 1; $i++) {
-      $values = $values[$parents[$i]];
-    }
-    // Check the initial map zoom level.
-    $zoom = $element['#value'];
-    $min_zoom = $values['min'];
-    $max_zoom = $values['max'];
-    if ($zoom < $min_zoom || $zoom > $max_zoom) {
-      $form_state->setError($element, t('The @zoom_field should be between the Minimum and the Maximum Zoom levels.', ['@zoom_field' => $element['#title']]));
-    }
-  }
-
-  /**
-   * Form element validation handler for the Map Max Zoom level.
-   *
-   * {@inheritdoc}
-   */
-  public static function maxZoomLevelValidate($element, FormStateInterface &$form_state) {
-    // Get to the actual values in a form tree.
-    $parents = $element['#parents'];
-    $values = $form_state->getValues();
-    for ($i = 0; $i < count($parents) - 1; $i++) {
-      $values = $values[$parents[$i]];
-    }
-    // Check the max zoom level.
-    $min_zoom = $values['min'];
-    $max_zoom = $element['#value'];
-    if ($max_zoom && $max_zoom <= $min_zoom) {
-      $form_state->setError($element, t('The Max Zoom level should be above the Minimum Zoom level.'));
-    }
   }
 
 }

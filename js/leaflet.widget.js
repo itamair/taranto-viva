@@ -188,18 +188,39 @@
 
       // Pan the map to the feature
       if (this.settings.autoCenter) {
+        let start_zoom;
+        let start_center;
         if (obj.getBounds !== undefined && typeof obj.getBounds === 'function') {
           // For objects that have defined bounds or a way to get them
           let bounds = obj.getBounds();
           this.map.fitBounds(bounds);
           // Update the map start zoom and center, for correct working of Map Reset control.
-          Drupal.Leaflet[this.settings.map_id].start_zoom = this.map.getBoundsZoom(bounds);
-          Drupal.Leaflet[this.settings.map_id].start_center = bounds.getCenter();;
+          start_zoom = this.map.getBoundsZoom(bounds);
+          start_center = bounds.getCenter();
+
+          // In case of MAp Zoom Forced, use the custom Map Zoom set.
+          if (this.settings.map_position.force && this.settings.map_position.zoom) {
+            start_zoom = this.settings.map_position.zoom;
+            this.map.setZoom(start_zoom );
+          }
+
         } else if (obj.getLatLng !== undefined && typeof obj.getLatLng === 'function') {
           this.map.panTo(obj.getLatLng());
           // Update the map start center, for correct working of Map Reset control.
-          Drupal.Leaflet[this.settings.map_id].start_center = this.map.getCenter();
+          start_center = this.map.getCenter();
+          start_zoom = this.map.getZoom();
         }
+
+        // In case of map initial position not forced, and zooFiner not null/neutral,
+        // adapt the Map Zoom and the Start Zoom accordingly.
+        if (!this.settings.map_position.force && this.settings.map_position.hasOwnProperty('zoomFiner') && this.settings.map_position['zoomFiner'] !== 0) {
+          start_zoom += parseFloat(this.settings.map_position['zoomFiner']);
+          this.map.setZoom(start_zoom);
+        }
+
+        Drupal.Leaflet[this.settings.map_id].start_zoom = start_zoom;
+        Drupal.Leaflet[this.settings.map_id].start_center = start_center;
+
       }
     } catch (error) {
       if (window.console) console.error(error.message);

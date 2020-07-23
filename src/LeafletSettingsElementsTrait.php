@@ -216,7 +216,8 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Starting Map State'),
     ];
 
-    $force_checkbox_selector = ':input[name="fields[field_geofield][settings_edit_form][settings][map_position][force]"]';
+    $force_checkbox_selector = ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map_position][force]"]';
+    $force_checkbox_selector_widget = ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map][map_position][force]"]';
     if ($this instanceof ViewsPluginInterface) {
       $force_checkbox_selector = ':input[name="style_options[map_position][force]"]';
     }
@@ -226,11 +227,13 @@ trait LeafletSettingsElementsTrait {
       'html_tag' => [
         '#type' => 'html_tag',
         '#tag' => 'div',
-        '#value' => $this->t('These settings will be applied in case of single Marker Map (otherwise the Zoom will be set to Fit Markers bounds).'),
+        '#value' => $this->t('These settings will be applied in case of single Marker Map (otherwise the Zoom will be set to Fit Elements bounds).'),
       ],
       '#states' => [
         'invisible' => [
-          $force_checkbox_selector => ['checked' => TRUE],
+          [$force_checkbox_selector => ['checked' => TRUE]],
+          'or',
+          [$force_checkbox_selector_widget => ['checked' => TRUE]],
         ],
       ],
     ];
@@ -313,11 +316,13 @@ trait LeafletSettingsElementsTrait {
       '#max' => 5,
       '#min' => -5,
       '#step' => 1,
-      '#description' => $this->t('Value that might/will be added to default Fit Markers Bounds Zoom. (-5 / +5)'),
+      '#description' => $this->t('Value that might/will be added to default Fit Elements Bounds Zoom. (-5 / +5)'),
       '#default_value' => $map_position_options['zoomFiner'] ?? $this->defaultSettings['map_position']['zoomFiner'],
       '#states' => [
         'invisible' => [
-          $force_checkbox_selector => ['checked' => TRUE],
+          [$force_checkbox_selector => ['checked' => TRUE]],
+          'or',
+          [$force_checkbox_selector_widget => ['checked' => TRUE]],
         ],
       ],
     ];
@@ -654,7 +659,7 @@ trait LeafletSettingsElementsTrait {
       'lat' => floatval($options['map_position']['center']['lat']),
       'lon' => floatval($options['map_position']['center']['lon']),
     ] : $default_settings['map_position']['center'];
-    $map['settings']['scrollWheelZoom'] = $options['disable_wheel'] ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
+    $map['settings']['scrollWheelZoom'] = !empty($options['disable_wheel']) ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
     $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
     $map['settings']['fullscreen_control'] = isset($options['fullscreen_control']) ? $options['fullscreen_control'] : $default_settings['fullscreen_control'];
