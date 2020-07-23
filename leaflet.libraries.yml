@@ -20,7 +20,7 @@ leaflet:
 leaflet-drupal:
   version: VERSION
   js:
-    leaflet.drupal.js: {}
+    js/leaflet.drupal.js: {}
   dependencies:
     - core/jquery
     - core/jquery.once

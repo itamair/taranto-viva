@@ -571,13 +571,13 @@
   Drupal.Leaflet.prototype.fitbounds = function(mapid) {
     let self = this;
     let start_zoom;
-    // Fit Bounds if both them and features exist, and the Map Position in not forced.
-    if (!self.settings.map_position_force && self.bounds.length > 0) {
+    // Fit Bounds if both them and features exist.
+    if (self.bounds.length > 0) {
       let bounds = new L.LatLngBounds(self.bounds);
       Drupal.Leaflet[mapid].lMap.fitBounds(bounds);
 
-      // In case of single result use the custom Map Zoom set.
-      if (self.bounds.length === 1 && self.settings.zoom) {
+      // In case of single result, or MAp Zoom Forced, use the custom Map Zoom set.
+      if ((self.bounds.length === 1 || self.settings.map_position_force) && self.settings.zoom) {
         start_zoom = self.settings.zoom;
         Drupal.Leaflet[mapid].lMap.setZoom(start_zoom);
       }
