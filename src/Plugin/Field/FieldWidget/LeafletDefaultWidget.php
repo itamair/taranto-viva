@@ -223,20 +223,20 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#description' => t("This option overrides the widget's default center."),
       '#default_value' => $map_settings['auto_center'] ?? $default_settings['map']['auto_center'],
     ];
-    $form['zoom'] = [
+    $form['map']['zoom'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Zoom Settings'),
     ];
-    $form['zoom']['start'] = [
+    $form['map']['zoom']['start'] = [
       '#type' => 'number',
       '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
       '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
       '#title' => $this->t('Start Zoom level'),
       '#description' => $this->t('The initial Zoom level for an empty Geofield.'),
-      '#default_value' => $map_settings['zoom']['star   t'] ?? $default_settings['map']['zoom']['start'],
+      '#default_value' => $map_settings['zoom']['start'] ?? $default_settings['map']['zoom']['start'],
       '#element_validate' => [[get_class($this), 'zoomLevelValidate']],
     ];
-    $form['zoom']['focus'] = [
+    $form['map']['zoom']['focus'] = [
       '#type' => 'number',
       '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
       '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
@@ -245,7 +245,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#default_value' => $map_settings['zoom']['focus'] ?? $default_settings['map']['zoom']['focus'],
       '#element_validate' => [[get_class($this), 'zoomLevelValidate']],
     ];
-    $form['zoom']['min'] = [
+    $form['map']['zoom']['min'] = [
       '#type' => 'number',
       '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
       '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
@@ -253,7 +253,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#description' => $this->t('The Minimum Zoom level for the Map.'),
       '#default_value' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
     ];
-    $form['zoom']['max'] = [
+    $form['map']['zoom']['max'] = [
       '#type' => 'number',
       '#min' => $map_settings['zoom']['min'] ?? $default_settings['map']['zoom']['min'],
       '#max' => $map_settings['zoom']['max'] ?? $default_settings['map']['zoom']['max'],
