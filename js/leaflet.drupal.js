@@ -570,33 +570,36 @@
   // @NOTE: This method used by Leaflet Markecluster module (don't remove/rename)
   Drupal.Leaflet.prototype.fitbounds = function(mapid) {
     let self = this;
-    let start_zoom;
+    let start_zoom, start_center;
     // Fit Bounds if both them and features exist.
     if (self.bounds.length > 0) {
       let bounds = new L.LatLngBounds(self.bounds);
       Drupal.Leaflet[mapid].lMap.fitBounds(bounds);
+      start_center = bounds.getCenter();
 
-      // In case of single result, or MAp Zoom Forced, use the custom Map Zoom set.
+      // In case of single result, or Map Zoom Forced, use the custom Map Zoom.
       if ((self.bounds.length === 1 || self.settings.map_position_force) && self.settings.zoom) {
         start_zoom = self.settings.zoom;
         Drupal.Leaflet[mapid].lMap.setZoom(start_zoom);
+        // In case of Map Center Forced, use it.
+        if (self.settings.center && self.settings.map_position_force) {
+          start_center = L.latLng(self.settings.center);
+          Drupal.Leaflet[mapid].lMap.setView(start_center);
+        }
       }
       else {
         start_zoom = Drupal.Leaflet[mapid].lMap.getBoundsZoom(bounds);
       }
-
       // In case of map initial position not forced, and zooFiner not null/neutral,
       // adapt the Map Zoom and the Start Zoom accordingly.
       if (!self.settings.map_position_force && self.settings.hasOwnProperty('zoomFiner') && self.settings['zoomFiner'] !== 0) {
         start_zoom += parseFloat(self.settings['zoomFiner']);
         Drupal.Leaflet[mapid].lMap.setZoom(start_zoom);
       }
-
-      // Set the map start zoom and center.
-      Drupal.Leaflet[mapid].start_zoom = start_zoom;
-      Drupal.Leaflet[mapid].start_center = bounds.getCenter();
     }
-
+    // Set the map start zoom and center.
+    Drupal.Leaflet[mapid].start_zoom = start_zoom;
+    Drupal.Leaflet[mapid].start_center = start_center;
   };
 
   Drupal.Leaflet.prototype.map_reset = function(mapid) {

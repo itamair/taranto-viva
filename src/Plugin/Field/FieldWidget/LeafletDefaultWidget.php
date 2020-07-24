@@ -138,11 +138,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     return [
       'map' => [
         'leaflet_map' => array_shift($base_layers),
-        'height' => 300,
-        'center' => [
-          'lat' => 0.0,
-          'lon' => 0.0,
-        ],
+        'height' => 400,
         'auto_center' => TRUE,
         'map_position' => self::getDefaultSettings()['map_position'],
         'locate' => TRUE,
@@ -193,24 +189,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#type' => 'textfield',
       '#required' => TRUE,
       '#default_value' => $map_settings['height'] ?? $default_settings['map']['height'],
-    ];
-    $form['map']['center'] = [
-      '#type' => 'fieldset',
-      '#collapsed' => TRUE,
-      '#collapsible' => TRUE,
-      '#title' => 'Default map center',
-    ];
-    $form['map']['center']['lat'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Latitude'),
-      '#default_value' => $map_settings['center']['lat'] ?? $default_settings['map']['lat'],
-      '#required' => TRUE,
-    ];
-    $form['map']['center']['lon'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Longtitude'),
-      '#default_value' => $map_settings['center']['lon'] ?? $default_settings['map']['lon'],
-      '#required' => TRUE,
     ];
     $form['map']['auto_center'] = [
       '#type' => 'checkbox',

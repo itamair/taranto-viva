@@ -247,44 +247,37 @@ trait LeafletSettingsElementsTrait {
       '#return_value' => 1,
     ];
 
-    if ($this instanceof ViewsPluginInterface) {
-      $element['#title'] = $this->t('Custom Map Center & Zoom');
-      $element['description']['#value'] = $this->t('These settings will be applied in case of empty Map.');
-      $element['force']['#title'] = $this->t('Force Map Center & Zoom');
-    }
-    else {
-      $element['force']['#title'] = $this->t('Force Map Zoom');
-    }
+    $element['#title'] = $this->t('Custom Map Center & Zoom');
+    $element['description']['#value'] = $this->t('These settings will be applied in case of empty Map.');
+    $element['force']['#title'] = $this->t('Force Map Center & Zoom');
 
-    if ($this instanceof ViewsPluginInterface) {
-      $element['center'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Map Center'),
-        'lat' => [
-          '#title' => $this->t('Latitude'),
-          '#type' => 'number',
-          '#step' => 'any',
-          '#size' => 4,
-          '#default_value' => $map_position_options['center']['lat'],
-          '#required' => FALSE,
-        ],
-        'lon' => [
-          '#title' => $this->t('Longitude'),
-          '#type' => 'number',
-          '#step' => 'any',
-          '#size' => 4,
-          '#default_value' => $map_position_options['center']['lon'],
-          '#required' => FALSE,
-        ],
-      ];
-    }
+    $element['center'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Map Center'),
+      'lat' => [
+        '#title' => $this->t('Latitude'),
+        '#type' => 'number',
+        '#step' => 'any',
+        '#size' => 4,
+        '#default_value' => $map_position_options['center']['lat'] ?? $this->getDefaultSettings()['map_position']['center']['lat'],
+        '#required' => FALSE,
+      ],
+      'lon' => [
+        '#title' => $this->t('Longitude'),
+        '#type' => 'number',
+        '#step' => 'any',
+        '#size' => 4,
+        '#default_value' => $map_position_options['center']['lon'] ?? $this->getDefaultSettings()['map_position']['center']['lon'],
+        '#required' => FALSE,
+      ],
+    ];
 
     $element['zoom'] = [
       '#title' => $this->t('Zoom'),
       '#type' => 'number',
       '#min' => 0,
       '#max' => 22,
-      '#default_value' => $map_position_options['zoom'],
+      '#default_value' => $map_position_options['zoom'] ?? $this->getDefaultSettings()['map_position']['zoom'],
       '#required' => TRUE,
       '#element_validate' => [[get_class($this), 'zoomLevelValidate']],
     ];
@@ -298,7 +291,7 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'number',
       '#min' => 0,
       '#max' => 22,
-      '#default_value' => $map_position_options['minZoom'],
+      '#default_value' => $map_position_options['minZoom'] ?? $this->getDefaultSettings()['map_position']['minZoom'],
       '#required' => TRUE,
     ];
 
@@ -307,7 +300,7 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'number',
       '#min' => 1,
       '#max' => 22,
-      '#default_value' => $map_position_options['maxZoom'],
+      '#default_value' => $map_position_options['maxZoom'] ?? $this->getDefaultSettings()['map_position']['maxZoom'],
       '#element_validate' => [[get_class($this), 'maxZoomLevelValidate']],
       '#required' => TRUE,
     ];
@@ -319,7 +312,7 @@ trait LeafletSettingsElementsTrait {
       '#min' => -5,
       '#step' => 1,
       '#description' => $this->t('Value that might/will be added to default Fit Elements Bounds Zoom. (-5 / +5)'),
-      '#default_value' => $map_position_options['zoomFiner'] ?? $this->defaultSettings['map_position']['zoomFiner'],
+      '#default_value' => $map_position_options['zoomFiner'] ?? $this->getDefaultSettings()['map_position']['zoomFiner'],
       '#states' => [
         'invisible' => [
           [$force_checkbox_selector => ['checked' => TRUE]],
