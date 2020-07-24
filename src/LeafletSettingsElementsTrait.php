@@ -216,9 +216,11 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Starting Map State'),
     ];
 
-    $force_checkbox_selector = ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map_position][force]"]';
-    $force_checkbox_selector_widget = ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map][map_position][force]"]';
-    if ($this instanceof ViewsPluginInterface) {
+    if (isset($this->fieldDefinition)) {
+      $force_checkbox_selector = ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map_position][force]"]';
+      $force_checkbox_selector_widget = ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map][map_position][force]"]';
+    }
+    elseif ($this instanceof ViewsPluginInterface) {
       $force_checkbox_selector = ':input[name="style_options[map_position][force]"]';
     }
 
