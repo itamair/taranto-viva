@@ -391,7 +391,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $js_settings['toolbarSettings'] = $this->getSetting('toolbar') ?? $default_settings['toolbar'];
     $js_settings['scrollZoomEnabled'] = !empty($map_settings['scroll_zoom_enabled']) ? $map_settings['scroll_zoom_enabled'] : FALSE;
     $js_settings['geocoder'] = $this->getSetting('geocoder');
-    $js_settings['map_position'] = $map_settings['map_position'];
+    $js_settings['map_position'] = $map_settings['map_position'] ?? [];
 
     // Leaflet.widget plugin.
     $element['map']['#attached']['library'][] = 'leaflet/leaflet-widget';

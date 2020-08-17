@@ -198,7 +198,7 @@
           start_zoom = this.map.getBoundsZoom(bounds);
           start_center = bounds.getCenter();
 
-          // In case of MAp Zoom Forced, use the custom Map Zoom set.
+          // In case of Map Zoom Forced, use the custom Map Zoom set.
           if (this.settings.map_position.force && this.settings.map_position.zoom) {
             start_zoom = this.settings.map_position.zoom;
             this.map.setZoom(start_zoom );
