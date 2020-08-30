@@ -232,11 +232,11 @@ trait LeafletSettingsElementsTrait {
         '#value' => $this->t('These settings will be applied in case of single Marker Map (otherwise the Zoom will be set to Fit Elements bounds).'),
       ],
       '#states' => [
-        'invisible' => [
+        'invisible' => isset($force_checkbox_selector_widget) ? [
           [$force_checkbox_selector => ['checked' => TRUE]],
           'or',
           [$force_checkbox_selector_widget => ['checked' => TRUE]],
-        ],
+        ] : [$force_checkbox_selector => ['checked' => TRUE]],
       ],
     ];
 
@@ -314,11 +314,11 @@ trait LeafletSettingsElementsTrait {
       '#description' => $this->t('Value that might/will be added to default Fit Elements Bounds Zoom. (-5 / +5)'),
       '#default_value' => $map_position_options['zoomFiner'] ?? $this->getDefaultSettings()['map_position']['zoomFiner'],
       '#states' => [
-        'invisible' => [
+        'invisible' => isset($force_checkbox_selector_widget) ? [
           [$force_checkbox_selector => ['checked' => TRUE]],
           'or',
           [$force_checkbox_selector_widget => ['checked' => TRUE]],
-        ],
+        ] : [$force_checkbox_selector => ['checked' => TRUE]],
       ],
     ];
 
