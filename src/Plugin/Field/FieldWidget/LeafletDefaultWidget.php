@@ -344,17 +344,24 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     FormStateInterface $form_state
   ) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
+    $settings = $this->getSettings();
 
     // Determine map settings and add map element.
     $map_settings = $this->getSetting('map');
     $default_settings = self::defaultSettings();
 
+
     $input_settings = $this->getSetting('input');
     $js_settings = [];
     $map = leaflet_map_get_info($map_settings['leaflet_map'] ?? $default_settings['map']['leaflet_map']);
     $map['context'] = 'widget';
+
+    // Extend options to reset_map and geocoder to uniform with Leafket
+    // Formatter and Leaflet View processing.
+    $options = array_merge($map_settings, ['reset_map' => $this->getSetting('reset_map')], ['geocoder' => $this->getSetting('geocoder')]);
+
     // Set Map additional map Settings.
-    $this->setAdditionalMapOptions($map, $map_settings);
+    $this->setAdditionalMapOptions($map, $options);
 
     // Attach class to wkt input element, so we can find it in js.
     $json_element_name = 'leaflet-widget-input';
