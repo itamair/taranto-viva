@@ -213,9 +213,9 @@
 
         // In case of map initial position not forced, and zooFiner not null/neutral,
         // adapt the Map Zoom and the Start Zoom accordingly.
-        if (!this.settings.map_position.force && this.settings.map_position.hasOwnProperty('zoomFiner') && this.settings.map_position['zoomFiner'] !== 0) {
+        if (!this.settings.map_position.force && this.settings.map_position.hasOwnProperty('zoomFiner') && parseInt(this.settings.map_position['zoomFiner']) !== 0) {
           start_zoom += parseFloat(this.settings.map_position['zoomFiner']);
-          this.map.setZoom(start_zoom);
+          this.map.setView(start_center, start_zoom);
         }
 
         Drupal.Leaflet[this.settings.map_id].start_zoom = start_zoom;
