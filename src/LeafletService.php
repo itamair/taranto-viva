@@ -305,24 +305,6 @@ class LeafletService {
   }
 
   /**
-   * Pre Process the MapSettings.
-   *
-   * Performs some preprocess on the maps settings before sending to js.
-   *
-   * @param array $map_settings
-   *   The map settings.
-   */
-  public function preProcessMapSettings(array &$map_settings) {
-    // Generate correct Absolute iconUrl & shadowUrl, if not external.
-    if (!empty($map_settings['icon']['iconUrl'])) {
-      $map_settings['icon']['iconUrl'] = $this->pathToAbsolute($map_settings['icon']['iconUrl']);
-    }
-    if (!empty($map_settings['icon']['shadowUrl'])) {
-      $map_settings['icon']['shadowUrl'] = $this->pathToAbsolute($map_settings['icon']['shadowUrl']);
-    }
-  }
-
-  /**
    * Leaflet Icon Documentation Link.
    *
    * @return \Drupal\Core\GeneratedLink
@@ -349,6 +331,38 @@ class LeafletService {
       $path = Url::fromUri('base:', ['absolute' => TRUE])->toString() . $path;
     }
     return $path;
+  }
+
+  /**
+   * Set Feature Icon Size If Empty.
+   *
+   * @param $feature
+   */
+  public function setFeatureIconUrlSizeIfEmpty(&$feature): void {
+    if (isset($feature["icon"]["iconSize"]) && empty($feature["icon"]["iconSize"]["x"]) && empty($feature["icon"]["iconSize"]["y"])
+    && $this->fileExists($feature["icon"]["iconUrl"]) ) {
+      $iconSize = getimagesize($feature["icon"]["iconUrl"]);
+      $feature["icon"]["iconSize"]["x"] = $iconSize[0];
+      $feature["icon"]["iconSize"]["y"] = $iconSize[1];
+    }
+  }
+
+  /**
+   * Check if a file exists.
+   *
+   * @param string $fileUrl
+   *   The file url.
+   *
+   * @return bool
+   *   The bool result.
+   */
+  public function fileExists($fileUrl) {
+    $file_headers = @get_headers($fileUrl);
+    if ((stripos($file_headers[0],"404 Not Found") == 0)
+      && (stripos($file_headers[0], "302 Found") == 0 && stripos($file_headers[7],"404 Not Found") == 0)) {
+      return TRUE;
+    }
+    return FALSE;
   }
 
   /**

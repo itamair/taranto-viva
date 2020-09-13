@@ -171,9 +171,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-
     $settings = $this->getSettings();
-
     $form['#tree'] = TRUE;
 
     // Get the Cardinality set for the Formatter Field.
@@ -287,9 +285,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $this->setExistingZoomSettings();
     $settings = $this->getSettings();
 
-    // Performs some preprocess on the leaflet map settings.
-    $this->leafletService->preProcessMapSettings($settings);
-
     // Always render the map, even if we do not have any data.
     $map = leaflet_map_get_info($settings['leaflet_map']);
 
@@ -303,7 +298,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $this->setAdditionalMapOptions($map, $settings);
 
     // Get token context.
-    $token_context = [
+    $tokens = [
       'field' => $items,
       $this->fieldDefinition->getTargetEntityTypeId() => $items->getEntity(),
     ];
@@ -324,7 +319,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         $build = [];
         if ($this->getSetting('popup_content')) {
           $bubbleable_metadata = new BubbleableMetadata();
-          $popup_content = $this->token->replace($this->getSetting('popup_content'), $token_context, ['clear' => TRUE], $bubbleable_metadata);
+          $popup_content = $this->token->replace($this->getSetting('popup_content'), $tokens, ['clear' => TRUE], $bubbleable_metadata);
           $build[] = [
             '#markup' => $popup_content,
           ];
@@ -364,19 +359,29 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         $feature['icon'] = $settings['icon'];
         switch ($icon_type) {
           case 'html':
-            $feature['icon']['html'] = $this->token->replace($settings['icon']['html'], $token_context);
+            $feature['icon']['html'] = $this->token->replace($settings['icon']['html'], $tokens);
             $feature['icon']['html_class'] = isset($settings['icon']['html_class']) ? $settings['icon']['html_class'] : '';
             break;
 
           case 'circle_marker':
-            $feature['icon']['options'] = $this->token->replace($settings['icon']['circle_marker_options'], $token_context);
+            $feature['icon']['options'] = $this->token->replace($settings['icon']['circle_marker_options'], $tokens);
             break;
 
           default:
             if (!empty($settings['icon']['iconUrl'])) {
-              $feature['icon']['iconUrl'] = !empty($settings['icon']['iconUrl']) > 0 ? $this->token->replace($settings['icon']['iconUrl'], $token_context) : '';
-              if (!empty($settings['icon']['shadowUrl'])) {
-                $feature['icon']['shadowUrl'] = !empty($settings['icon']['shadowUrl']) > 0 ? $this->token->replace($settings['icon']['shadowUrl'], $token_context) : '';
+              $feature['icon']['iconUrl'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['icon']['iconUrl'], $tokens));
+              if (!empty($feature['icon']['iconUrl'])) {
+                // Generate Absolute iconUrl , if not external.
+                $feature['icon']['iconUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['iconUrl']);
+                // Set the Feature IconSize to the IconUrl Image sizes (if empty).
+                $this->leafletService-> setFeatureIconUrlSizeIfEmpty($feature);
+              }
+            }
+            if (!empty($settings['icon']['shadowUrl'])) {
+              $feature['icon']['shadowUrl'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['icon']['shadowUrl'], $tokens));
+              if (!empty($feature['icon']['shadowUrl'])) {
+                // Generate Absolute shadowUrl, if not external.
+                $feature['icon']['shadowUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['shadowUrl']);
               }
             }
             break;
@@ -386,8 +391,11 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       // Associate dynamic path properties (token based) to the feature,
       // in case of not point.
       if ($feature['type'] !== 'point') {
-        $feature['path'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['path'], $token_context));
+        $feature['path'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['path'], $tokens));
       }
+
+      // Allow modules to adjust the marker.
+      $this->moduleHandler->alter('leaflet_formatter_feature', $feature, $item, $entity);
 
       $features[] = $feature;
     }

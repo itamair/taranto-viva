@@ -669,9 +669,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * Renders the View.
    */
   public function render() {
-    // Performs some preprocess on the leaflet map settings.
-    $this->leafletService->preProcessMapSettings($this->options);
-
     $data = [];
 
     // Collect bubbleable metadata when doing early rendering.
@@ -859,8 +856,17 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                   default:
                     if (!empty($this->options['icon']['iconUrl'])) {
                       $feature['icon']['iconUrl'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens));
-                      if (!empty($this->options['icon']['shadowUrl'])) {
-                        $feature['icon']['shadowUrl'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens));
+                      // Generate correct Absolute iconUrl & shadowUrl, if not external.
+                      if (!empty($feature['icon']['iconUrl'])) {
+                        $feature['icon']['iconUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['iconUrl']);
+                        // Set the Feature IconSize to the IconUrl Image sizes (if empty).
+                        $this->leafletService-> setFeatureIconUrlSizeIfEmpty($feature);
+                      }
+                    }
+                    if (!empty($this->options['icon']['shadowUrl'])) {
+                      $feature['icon']['shadowUrl'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens));
+                      if (!empty($feature['icon']['shadowUrl'])) {
+                        $feature['icon']['shadowUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['shadowUrl']);
                       }
                     }
                     break;
@@ -874,7 +880,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               }
 
               // Allow modules to adjust the marker.
-              \Drupal::moduleHandler()->alter('leaflet_views_feature', $feature, $result, $this->view->rowPlugin);
+              $this->moduleHandler->alter('leaflet_views_feature', $feature, $result, $this->view->rowPlugin);
             }
 
             // Add new points to the whole basket.
