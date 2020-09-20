@@ -17,7 +17,6 @@ use Drupal\Core\Utility\Token;
 use Drupal\core\Render\Renderer;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Url;
 use Drupal\Core\Utility\LinkGeneratorInterface;
 
 /**
@@ -229,9 +228,12 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $map_position_options = $settings['map_position'];
     $elements['map_position'] = $this->generateMapPositionElement($map_position_options);
 
+    // Generate the Leaflet Map weight/zIndex Form Element.
+    $elements['weight'] = $this->generateWeightElement($settings['weight']);
+
     // Generate Icon form element.
     $icon_options = $settings['icon'];
-    $elements['icon'] = $this->generateIconFormElement($icon_options, $form);
+    $elements['icon'] = $this->generateIconFormElement($icon_options);
 
     // Set Map Marker Cluster Element.
     $this->setMapMarkerclusterElement($elements, $settings);
@@ -310,6 +312,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       $points = $this->leafletService->leafletProcessGeofield($item->value);
       $feature = $points[0];
       $feature['entity_id'] = $entity_id;
+
+      // Add its entity id, so that it might be referenced from outside.
+      $feature['weight'] = !empty($settings['zIndex']) ? intval(str_replace(["\n", "\r"], "", $this->token->replace($settings['zIndex'], $tokens))) : NULL;
 
       // Eventually set the popup content.
       if ($settings['popup']) {
@@ -394,11 +399,18 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         $feature['path'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['path'], $tokens));
       }
 
+      // Associate dynamic className property (token based) to icon.
+      $feature['className'] = !empty($settings['className']) ? str_replace(["\n", "\r"], "", $this->token->replace($settings['className'], $tokens)) : '';
+
+
       // Allow modules to adjust the marker.
       $this->moduleHandler->alter('leaflet_formatter_feature', $feature, $item, $entity);
 
       $features[] = $feature;
     }
+
+    // Order the data features based on the 'weight' element.
+    uasort($data, ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
 
     $js_settings = [
       'map' => $map,

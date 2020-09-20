@@ -3,7 +3,6 @@
 namespace Drupal\leaflet;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\field\FieldConfigInterface;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
 use Drupal\Core\Url;
 use Drupal\Component\Serialization\Json;
@@ -79,9 +78,11 @@ trait LeafletSettingsElementsTrait {
         'maxZoom' => 18,
         'zoomFiner' => 0,
       ],
+      'weight' => NULL,
       'icon' => [
         'iconType' => 'marker',
         'iconUrl' => '',
+        'className' => '',
         'iconSize' => ['x' => NULL, 'y' => NULL],
         'iconAnchor' => ['x' => NULL, 'y' => NULL],
         'shadowUrl' => '',
@@ -326,6 +327,26 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
+   * Generate the weight Form Element.
+   *
+   * @param string $weight
+   *   The weight string definition.
+   *
+   * @return array
+   *   The Leaflet weight Form Element.
+   */
+  protected function generateWeightElement($weight) {
+    $default_settings = $this::getDefaultSettings();
+    return [
+      '#title' => $this->t('weight / zIndex Offset'),
+      '#type' => 'textfield',
+      '#size' => 30,
+      '#description' => $this->t('This option supports <b>Replacement Patterns</b> and should end up into an Integer (positive or negative value).<br>This will apply to each Leaflet Feature/Marker result, and might be used to dynamically set its position/visibility on top (or below) of each others.'),
+      '#default_value' => isset($weight) ? $weight : $default_settings['weight'],
+    ];
+  }
+
+  /**
    * Generate the Leaflet Icon Form Element.
    *
    * @param array $icon_options
@@ -395,6 +416,18 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'textarea',
       '#rows' => 3,
       '#default_value' => isset($icon_options['shadowUrl']) ? $icon_options['shadowUrl'] : $default_settings['icon']['shadowUrl'],
+      '#states' => [
+        'visible' => [
+          $icon_type => ['value' => 'marker'],
+        ],
+      ],
+    ];
+
+    $element['className'] = [
+      '#title' => $this->t('Icon Class Name'),
+      '#description' => $this->t('A custom class name to assign to both icon and shadow images.<br>Supports <b>Replacement Patterns</b>'),
+      '#type' => 'textfield',
+      '#default_value' => isset($icon_options['className']) ? $icon_options['className'] : $default_settings['icon']['className'],
       '#states' => [
         'visible' => [
           $icon_type => ['value' => 'marker'],

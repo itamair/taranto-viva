@@ -422,14 +422,12 @@
     let latLng = new L.LatLng(marker.lat, marker.lon);
     self.bounds.push(latLng);
     let lMarker;
-    let tooltip = marker.label ? marker.label.replace(/<[^>]*>/g, '').trim() : '';
+    let marker_title = marker.label ? marker.label.replace(/<[^>]*>/g, '').trim() : '';
     let options = {
-      title: tooltip
+      title: marker_title,
+      className: marker.className || '',
+      alt: marker_title,
     };
-
-    if (marker.alt !== undefined) {
-      options.alt = marker.alt;
-    }
 
     function checkImage(imageSrc, setIcon, logError) {
       let img = new Image();

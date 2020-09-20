@@ -591,9 +591,12 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $map_position_options = $this->options['map_position'];
     $form['map_position'] = $this->generateMapPositionElement($map_position_options);
 
+    // Generate the Leaflet Map weight/zIndex Form Element.
+    $form['weight'] = $this->generateWeightElement($this->options['weight']);
+
     // Generate Icon form element.
     $icon_options = $this->options['icon'];
-    $form['icon'] = $this->generateIconFormElement($icon_options, $form);
+    $form['icon'] = $this->generateIconFormElement($icon_options);
 
     // Set Map Marker Cluster Element.
     $this->setMapMarkerclusterElement($form, $this->options);
@@ -826,8 +829,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             // Relates the feature with additional properties.
             foreach ($features as &$feature) {
 
+              // Attach pop-ups if we have a description field.
               // Add its entity id, so that it might be referenced from outside.
               $feature['entity_id'] = $entity->id();
+
+              // Add its entity id, so that it might be referenced from outside.
+              $feature['weight'] = !empty($this->options['zIndex']) ? intval(str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['zIndex'], $tokens))) : NULL;
+
               // Attach pop-ups if we have a description field.
               if (isset($description)) {
                 $feature['popup'] = $description;
@@ -879,6 +887,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 $feature['path'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['path'], $tokens));
               }
 
+              // Associate dynamic className property (token based) to icon.
+              $feature['icon']['className'] = !empty($this->options['icon']['className']) ? str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['className'], $tokens)) : '';
+
               // Allow modules to adjust the marker.
               $this->moduleHandler->alter('leaflet_views_feature', $feature, $result, $this->view->rowPlugin);
             }
@@ -895,6 +906,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     if (empty($data) && !empty($this->options['hide_empty_map'])) {
       return [];
     }
+
+    // Order the data features based on the 'weight' element.
+    uasort($data, ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
 
     $js_settings = [
       'map' => $map,
