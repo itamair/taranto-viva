@@ -361,6 +361,22 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       // Eventually set the custom Marker icon (DivIcon, Icon Url or
       // Circle Marker).
       if ($feature['type'] === 'point' && isset($settings['icon'])) {
+
+        // Transforms Icon Options that support Replacement Patterns/Tokens.
+        if (!empty($settings["icon"]["iconSize"]["x"])) {
+          $settings["icon"]["iconSize"]["x"] = $this->token->replace($settings["icon"]["iconSize"]["x"], $tokens);
+        }
+        if (!empty($settings["icon"]["iconSize"]["y"])) {
+          $settings["icon"]["iconSize"]["y"] = $this->token->replace($settings["icon"]["iconSize"]["y"], $tokens);
+        }
+        if (!empty($settings["icon"]["shadowSize"]["x"])) {
+          $settings["icon"]["shadowSize"]["x"] = $this->token->replace($settings["icon"]["shadowSize"]["x"], $tokens);
+        }
+        if (!empty($settings["icon"]["shadowSize"]["y"])) {
+          $settings["icon"]["shadowSize"]["y"] = $this->token->replace($settings["icon"]["shadowSize"]["y"], $tokens);
+        }
+
+        // Set Feature Icon properties.
         $feature['icon'] = $settings['icon'];
         switch ($icon_type) {
           case 'html':
@@ -379,7 +395,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
                 // Generate Absolute iconUrl , if not external.
                 $feature['icon']['iconUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['iconUrl']);
                 // Set the Feature IconSize to the IconUrl Image sizes (if empty).
-                $this->leafletService-> setFeatureIconUrlSizeIfEmpty($feature);
               }
             }
             if (!empty($settings['icon']['shadowUrl'])) {
@@ -389,6 +404,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
                 $feature['icon']['shadowUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['shadowUrl']);
               }
             }
+            // Set the Feature IconSize and ShadowSize to the IconUrl or
+            // ShadowUrl Image sizes (if empty or invalid).
+            $this->leafletService-> setFeatureIconSizesIfEmptyOrInvalid($feature);
             break;
         }
       }

@@ -619,13 +619,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     if (!empty($style_options['height']) && (!is_numeric($style_options['height']) || $style_options['height'] <= 0)) {
       $form_state->setError($form['height'], $this->t('Map height needs to be a positive number.'));
     }
-    $icon_options = isset($style_options['icon']) ? $style_options['icon'] : [];
-    if (!empty($icon_options['iconSize']['x']) && (!is_numeric($icon_options['iconSize']['x']) || $icon_options['iconSize']['x'] <= 0)) {
-      $form_state->setError($form['icon']['iconSize']['x'], $this->t('Icon width needs to be a positive number.'));
-    }
-    if (!empty($icon_options['iconSize']['y']) && (!is_numeric($icon_options['iconSize']['y']) || $icon_options['iconSize']['y'] <= 0)) {
-      $form_state->setError($form['icon']['iconSize']['y'], $this->t('Icon height needs to be a positive number.'));
-    }
   }
 
   /**
@@ -850,6 +843,22 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               // Eventually set the custom Marker icon (DivIcon, Icon Url or
               // Circle Marker).
               if ($feature['type'] === 'point' && isset($this->options['icon'])) {
+
+                // Transforms Icon Options that support Replacement Patterns/Tokens.
+                if (!empty($this->options["icon"]["iconSize"]["x"])) {
+                  $this->options["icon"]["iconSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["x"], $tokens);
+                }
+                if (!empty($this->options["icon"]["iconSize"]["y"])) {
+                  $this->options["icon"]["iconSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["y"], $tokens);
+                }
+                if (!empty($this->options["icon"]["shadowSize"]["x"])) {
+                  $this->options["icon"]["shadowSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["x"], $tokens);
+                }
+                if (!empty($this->options["icon"]["shadowSize"]["y"])) {
+                  $this->options["icon"]["shadowSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["y"], $tokens);
+                }
+
+                // Set Feature Icon properties.
                 $feature['icon'] = $this->options['icon'];
                 switch ($icon_type) {
                   case 'html':
@@ -867,8 +876,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       // Generate correct Absolute iconUrl & shadowUrl, if not external.
                       if (!empty($feature['icon']['iconUrl'])) {
                         $feature['icon']['iconUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['iconUrl']);
-                        // Set the Feature IconSize to the IconUrl Image sizes (if empty).
-                        $this->leafletService-> setFeatureIconUrlSizeIfEmpty($feature);
                       }
                     }
                     if (!empty($this->options['icon']['shadowUrl'])) {
@@ -877,6 +884,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                         $feature['icon']['shadowUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['shadowUrl']);
                       }
                     }
+
+                    // Set the Feature IconSize and ShadowSize to the IconUrl or
+                    // ShadowUrl Image sizes (if empty or invalid).
+                    $this->leafletService-> setFeatureIconSizesIfEmptyOrInvalid($feature);
+
                     break;
                 }
               }

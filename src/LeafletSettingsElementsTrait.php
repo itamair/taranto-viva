@@ -543,18 +543,20 @@ trait LeafletSettingsElementsTrait {
     $element['iconSize'] = [
       '#title' => $this->t('Icon Size'),
       '#type' => 'fieldset',
-      '#description' => $this->t("Size of the icon image in pixels (if empty the natural icon image size will be used).<br>Note: Both the values shouldn't be null to be valid."),
+      '#description' => $this->t("Size of the icon image in pixels (if empty the natural icon image size will be used).<br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)"),
     ];
 
     $element['iconSize']['x'] = [
       '#title' => $this->t('Width'),
-      '#type' => 'number',
+      '#type' => 'textfield',
+      '#size' => 30,
       '#default_value' => isset($icon_options['iconSize']['x']) ? $icon_options['iconSize']['x'] : NULL,
     ];
 
     $element['iconSize']['y'] = [
       '#title' => $this->t('Height'),
-      '#type' => 'number',
+      '#type' => 'textfield',
+      '#size' => 30,
       '#default_value' => isset($icon_options['iconSize']['y']) ? $icon_options['iconSize']['y'] : NULL,
     ];
 
@@ -568,30 +570,36 @@ trait LeafletSettingsElementsTrait {
     $element['iconAnchor']['x'] = [
       '#title' => $this->t('X'),
       '#type' => 'number',
+      '#min' => -1000,
+      '#max' => 1000,
       '#default_value' => isset($icon_options['iconAnchor']) ? $icon_options['iconAnchor']['x'] : NULL,
     ];
 
     $element['iconAnchor']['y'] = [
       '#title' => $this->t('Y'),
       '#type' => 'number',
+      '#min' => -1000,
+      '#max' => 1000,
       '#default_value' => isset($icon_options['iconAnchor']) ? $icon_options['iconAnchor']['y'] : NULL,
     ];
 
     $element['shadowSize'] = [
       '#title' => $this->t('Shadow Size'),
       '#type' => 'fieldset',
-      '#description' => $this->t("Size of the shadow image in pixels (if empty the natural shadow image size will be used). <br>Note: Both the values shouldn't be null to be valid."),
+      '#description' => $this->t("Size of the shadow image in pixels (if empty the natural shadow image size will be used). <br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)"),
     ];
 
     $element['shadowSize']['x'] = [
       '#title' => $this->t('Width'),
-      '#type' => 'number',
+      '#type' => 'textfield',
+      '#size' => 30,
       '#default_value' => isset($icon_options['shadowSize']['x']) ? $icon_options['shadowSize']['x'] : NULL,
     ];
 
     $element['shadowSize']['y'] = [
       '#title' => $this->t('Height'),
-      '#type' => 'number',
+      '#type' => 'textfield',
+      '#size' => 30,
       '#default_value' => isset($icon_options['shadowSize']['y']) ? $icon_options['shadowSize']['y'] : NULL,
     ];
 
@@ -604,12 +612,16 @@ trait LeafletSettingsElementsTrait {
     $element['shadowAnchor']['x'] = [
       '#title' => $this->t('X'),
       '#type' => 'number',
+      '#min' => -1000,
+      '#max' => 1000,
       '#default_value' => isset($icon_options['shadowAnchor']) ? $icon_options['shadowAnchor']['x'] : NULL,
     ];
 
     $element['shadowAnchor']['y'] = [
       '#title' => $this->t('Y'),
       '#type' => 'number',
+      '#min' => -1000,
+      '#max' => 1000,
       '#default_value' => isset($icon_options['shadowAnchor']) ? $icon_options['shadowAnchor']['y'] : NULL,
     ];
 
@@ -623,12 +635,16 @@ trait LeafletSettingsElementsTrait {
     $element['popupAnchor']['x'] = [
       '#title' => $this->t('X'),
       '#type' => 'number',
+      '#min' => -1000,
+      '#max' => 1000,
       '#default_value' => isset($icon_options['popupAnchor']) ? $icon_options['popupAnchor']['x'] : NULL,
     ];
 
     $element['popupAnchor']['y'] = [
       '#title' => $this->t('Y'),
       '#type' => 'number',
+      '#min' => -1000,
+      '#max' => 1000,
       '#default_value' => isset($icon_options['popupAnchor']) ? $icon_options['popupAnchor']['y'] : NULL,
     ];
 
