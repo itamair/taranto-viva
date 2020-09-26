@@ -429,13 +429,6 @@
       alt: marker_title,
     };
 
-    function checkImage(imageSrc, setIcon, logError) {
-      let img = new Image();
-      img.src = imageSrc;
-      img.onload = setIcon;
-      img.onerror = logError;
-    }
-
     lMarker = new L.Marker(latLng, options);
 
     if (marker.icon) {
