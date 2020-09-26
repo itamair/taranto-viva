@@ -843,23 +843,23 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               // Eventually set the custom Marker icon (DivIcon, Icon Url or
               // Circle Marker).
               if ($feature['type'] === 'point' && isset($this->options['icon'])) {
+                // Set Feature Icon properties.
+                $feature['icon'] = $this->options['icon'];
 
                 // Transforms Icon Options that support Replacement Patterns/Tokens.
                 if (!empty($this->options["icon"]["iconSize"]["x"])) {
-                  $this->options["icon"]["iconSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["x"], $tokens);
+                  $feature['icon']["iconSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["x"], $tokens);
                 }
                 if (!empty($this->options["icon"]["iconSize"]["y"])) {
-                  $this->options["icon"]["iconSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["y"], $tokens);
+                  $feature['icon']["iconSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["y"], $tokens);
                 }
                 if (!empty($this->options["icon"]["shadowSize"]["x"])) {
-                  $this->options["icon"]["shadowSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["x"], $tokens);
+                  $feature['icon']["shadowSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["x"], $tokens);
                 }
                 if (!empty($this->options["icon"]["shadowSize"]["y"])) {
-                  $this->options["icon"]["shadowSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["y"], $tokens);
+                  $feature['icon']["shadowSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["y"], $tokens);
                 }
 
-                // Set Feature Icon properties.
-                $feature['icon'] = $this->options['icon'];
                 switch ($icon_type) {
                   case 'html':
                     $feature['icon']['html'] = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon']['html'], $tokens));

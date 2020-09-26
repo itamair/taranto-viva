@@ -362,22 +362,23 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       // Circle Marker).
       if ($feature['type'] === 'point' && isset($settings['icon'])) {
 
-        // Transforms Icon Options that support Replacement Patterns/Tokens.
-        if (!empty($settings["icon"]["iconSize"]["x"])) {
-          $settings["icon"]["iconSize"]["x"] = $this->token->replace($settings["icon"]["iconSize"]["x"], $tokens);
-        }
-        if (!empty($settings["icon"]["iconSize"]["y"])) {
-          $settings["icon"]["iconSize"]["y"] = $this->token->replace($settings["icon"]["iconSize"]["y"], $tokens);
-        }
-        if (!empty($settings["icon"]["shadowSize"]["x"])) {
-          $settings["icon"]["shadowSize"]["x"] = $this->token->replace($settings["icon"]["shadowSize"]["x"], $tokens);
-        }
-        if (!empty($settings["icon"]["shadowSize"]["y"])) {
-          $settings["icon"]["shadowSize"]["y"] = $this->token->replace($settings["icon"]["shadowSize"]["y"], $tokens);
-        }
-
         // Set Feature Icon properties.
         $feature['icon'] = $settings['icon'];
+
+        // Transforms Icon Options that support Replacement Patterns/Tokens.
+        if (!empty($settings["icon"]["iconSize"]["x"])) {
+          $feature['icon']["iconSize"]["x"] = $this->token->replace($settings["icon"]["iconSize"]["x"], $tokens);
+        }
+        if (!empty($settings["icon"]["iconSize"]["y"])) {
+          $feature['icon']["iconSize"]["y"] = $this->token->replace($settings["icon"]["iconSize"]["y"], $tokens);
+        }
+        if (!empty($settings["icon"]["shadowSize"]["x"])) {
+          $feature['icon']["shadowSize"]["x"] = $this->token->replace($settings["icon"]["shadowSize"]["x"], $tokens);
+        }
+        if (!empty($settings["icon"]["shadowSize"]["y"])) {
+          $feature['icon']["shadowSize"]["y"] = $this->token->replace($settings["icon"]["shadowSize"]["y"], $tokens);
+        }
+
         switch ($icon_type) {
           case 'html':
             $feature['icon']['html'] = $this->token->replace($settings['icon']['html'], $tokens);
@@ -428,7 +429,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     }
 
     // Order the data features based on the 'weight' element.
-    uasort($data, ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
+    uasort($features, ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
 
     $js_settings = [
       'map' => $map,
