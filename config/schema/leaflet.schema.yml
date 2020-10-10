@@ -13,24 +13,6 @@ field.formatter.settings.leaflet_formatter_default:
     height:
       type: integer
       label: 'Map height'
-    zoom:
-      type: integer
-      label: 'Zoom'
-    minPossibleZoom:
-      type: integer
-      label: 'Min possible zoom'
-    maxPossibleZoom:
-      type: integer
-      label: 'Max possible zoom'
-    minZoom:
-      type: integer
-      label: 'Min zoom'
-    maxZoom:
-      type: integer
-      label: 'Max zoom'
-    popup:
-      type: boolean
-      label: 'Popup'
     height_unit:
       type: string
       label: 'Height unit'
@@ -56,16 +38,12 @@ field.formatter.settings.leaflet_formatter_default:
         position:
           type: string
           label: 'Position'
-    leaflet_markercluster:
-      type: mapping
-      label: 'Leaflet Markercluster'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
+    popup:
+      type: boolean
+      label: 'Popup'
+    popup_content:
+      type: text
+      label: 'Popup Content'
     map_position:
       type: mapping
       label: 'Map Position'
@@ -95,75 +73,75 @@ field.formatter.settings.leaflet_formatter_default:
         zoomFiner:
           type: integer
           label: 'Zoom finer'
-    path:
-      type: text
-      label: 'Path'
-    popup_content:
-      type: text
-      label: 'Popup Content'
+    weight:
+      type: string
+      label: 'Weight'
     icon:
       type: mapping
       label: 'Map icon'
       mapping:
+        iconType:
+          type: string
+          label: 'Icon type'
         iconUrl:
           type: string
           label: 'Icon URL'
         shadowUrl:
           type: string
           label: 'Shadow URL'
+        className:
+          type: string
+          label: 'Icon class'
         iconSize:
           type: mapping
           label: 'Icon size'
           mapping:
             x:
-              type: integer
+              type: string
               label: 'Width'
             y:
-              type: integer
+              type: string
               label: 'Height'
         iconAnchor:
           type: mapping
           label: 'Icon anchor'
           mapping:
             x:
-              type: integer
+              type: string
               label: 'Width'
             y:
-              type: integer
+              type: string
               label: 'Height'
         shadowSize:
           type: mapping
           label: 'Shadow anchor'
           mapping:
             x:
-              type: integer
+              type: string
               label: 'Width'
             y:
-              type: integer
+              type: string
               label: 'Height'
         shadowAnchor:
           type: mapping
           label: 'Shadow anchor'
           mapping:
             x:
-              type: integer
+              type: string
               label: 'Width'
             y:
-              type: integer
+              type: string
               label: 'Height'
         popupAnchor:
           type: mapping
           label: 'Popup anchor'
           mapping:
             x:
-              type: integer
+              type: string
               label: 'Width'
             y:
-              type: integer
+              type: string
               label: 'Height'
-        iconType:
-          type: string
-          label: 'Icon type'
         html:
           type: string
           label: 'HTML'
@@ -173,6 +151,19 @@ field.formatter.settings.leaflet_formatter_default:
         circle_marker_options:
           type: string
           label: 'Circle marker options'
+    leaflet_markercluster:
+      type: mapping
+      label: 'Leaflet Markercluster'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+    path:
+      type: text
+      label: 'Path'
     geocoder:
       type: mapping
       label: 'Gecoder map control'

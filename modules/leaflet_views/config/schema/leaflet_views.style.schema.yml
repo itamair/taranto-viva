@@ -82,6 +82,9 @@ views.style.leaflet_map:
         zoomFiner:
           type: integer
           label: 'Zoomfiner'
+    weight:
+      type: string
+      label: 'Weight'
     icon:
       type: mapping
       label: 'Map icon'
@@ -94,16 +97,10 @@ views.style.leaflet_map:
           label: 'Icon URL'
         shadowUrl:
           type: string
-          label: 'Icon shadow URL'
-        html:
+          label: 'Shadow URL'
+        className:
           type: string
-          label: 'HTML'
-        html_class:
-          type: string
-          label: 'HTML class'
-        circle_marker_options:
-          type: string
-          label: 'Circle marker options'
+          label: 'Icon class'
         iconSize:
           type: mapping
           label: 'Icon size'
@@ -120,40 +117,59 @@ views.style.leaflet_map:
           mapping:
             x:
               type: string
-              label: 'X'
+              label: 'Width'
             y:
               type: string
-              label: 'Y'
+              label: 'Height'
         shadowSize:
           type: mapping
-          label: 'Shadow size'
+          label: 'Shadow anchor'
           mapping:
             x:
               type: string
-              label: 'X'
+              label: 'Width'
             y:
               type: string
-              label: 'Y'
+              label: 'Height'
         shadowAnchor:
           type: mapping
           label: 'Shadow anchor'
           mapping:
             x:
               type: string
-              label: 'X'
+              label: 'Width'
             y:
               type: string
-              label: 'Y'
+              label: 'Height'
         popupAnchor:
           type: mapping
           label: 'Popup anchor'
           mapping:
             x:
               type: string
-              label: 'X'
+              label: 'Width'
             y:
               type: string
-              label: 'Y'
+              label: 'Height'
+        html:
+          type: string
+          label: 'HTML'
+        html_class:
+          type: string
+          label: 'HTML class'
+        circle_marker_options:
+          type: string
+          label: 'Circle marker options'
+    leaflet_markercluster:
+      type: mapping
+      label: 'Leaflet Markercluster'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
     path:
       type: string
       label: 'Path'
