@@ -53,22 +53,22 @@ trait LeafletSettingsElementsTrait {
    */
   public static function getDefaultSettings() {
     return [
-      'multiple_map' => 0,
+      'multiple_map' => FALSE,
       'leaflet_map' => 'OSM Mapnik',
       'height' => 400,
       'height_unit' => 'px',
-      'hide_empty_map' => 0,
-      'disable_wheel' => 0,
-      'fullscreen_control' => 1,
-      'gesture_handling' => 0,
+      'hide_empty_map' => FALSE,
+      'disable_wheel' => FALSE,
+      'fullscreen_control' => TRUE,
+      'gesture_handling' => FALSE,
       'reset_map' => [
-        'control' => 0,
+        'control' => FALSE,
         'position' => 'topright',
       ],
       'popup' => FALSE,
       'popup_content' => '',
       'map_position' => [
-        'force' => 0,
+        'force' => FALSE,
         'center' => [
           'lat' => 0,
           'lon' => 0,
@@ -99,7 +99,7 @@ trait LeafletSettingsElementsTrait {
       ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2"}',
       'geocoder' => [
-        'control' => 0,
+        'control' => FALSE,
         'settings' => [
           'position' => 'topright',
           'input_size' => 25,
@@ -107,7 +107,7 @@ trait LeafletSettingsElementsTrait {
           'min_terms' => 4,
           'delay' => 800,
           'zoom' => 16,
-          'popup' => 0,
+          'popup' => FALSE,
           'options' => '',
         ],
       ],
