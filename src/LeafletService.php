@@ -96,7 +96,7 @@ class LeafletService {
       $attached_libraries[] = 'leaflet/leaflet.gesture_handling';
     }
 
-    // Add the Leaflet Markecluster library and functionalities, if requested.
+    // Add the Leaflet Markercluster library and functionalities, if requested.
     if ($this->moduleHandler->moduleExists('leaflet_markercluster') && isset($map['settings']['leaflet_markercluster']) && $map['settings']['leaflet_markercluster']['control']) {
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster';
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster-drupal';
