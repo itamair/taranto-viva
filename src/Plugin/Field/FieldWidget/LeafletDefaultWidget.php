@@ -364,7 +364,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     FormStateInterface $form_state
   ) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
-    $settings = $this->getSettings();
 
     // Determine map settings and add map element.
     $map_settings = $this->getSetting('map');
@@ -401,6 +400,9 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       $js_settings['locate'] = TRUE;
       unset($map['settings']['center']);
     }
+
+    // Allow other modules to add/alter the map js settings.
+    $this->moduleHandler->alter('leaflet_default_widget', $map, $this);
 
     $element['map'] = $this->leafletService->leafletRenderMap($map, [], $map_settings['height'] . 'px');
     $element['map']['#weight'] = -1;
