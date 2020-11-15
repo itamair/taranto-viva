@@ -15,7 +15,7 @@
 
               // Initialize the Drupal.Leaflet.[data.mapid] object,
               // for possible external interaction.
-              Drupal.Leaflet[mapid].markers = {}
+              Drupal.Leaflet[mapid].markers = {};
 
               // Add Leaflet Map Features.
               $container.data('leaflet').add_features(mapid, data.features, true);
@@ -43,9 +43,6 @@
           $(document).trigger('leafletMapInit', [data.map, data.lMap, mapid]);
           // (Keep also the pre-existing event for back port compatibility)
           $(document).trigger('leaflet.map', [data.map, data.lMap, mapid]);
-
-
-
         });
       });
     }
@@ -501,7 +498,7 @@
       let latlngs = [];
       let polygon = multipolygon.component[x];
       for (let i = 0; i < polygon.points.length; i++) {
-        let latlng = [polygon.points[i].lat, polygon.points[i].lon];
+        let latlng = new L.LatLng(polygon.points[i].lat, polygon.points[i].lon);
         latlngs.push(latlng);
         self.bounds.push(latlng);
       }
@@ -556,7 +553,7 @@
   };
 
   // Set Map position, fitting Bounds in case of more than one feature.
-  // @NOTE: This method used by Leaflet Markecluster module (don't remove/rename)
+  // @NOTE: This method used by Leaflet Markercluster module (don't remove/rename)
   Drupal.Leaflet.prototype.fitbounds = function(mapid) {
     let self = this;
     let start_zoom, start_center;
