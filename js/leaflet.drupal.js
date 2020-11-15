@@ -418,7 +418,8 @@
     let lMarker;
     let tooltip = marker.label ? marker.label.replace(/<[^>]*>/g, '').trim() : '';
     let options = {
-      title: tooltip
+      title: tooltip,
+      alt: 'Marker icon' + (tooltip ? ' for ' + tooltip : ''),
     };
 
     if (marker.alt !== undefined) {
