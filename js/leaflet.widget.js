@@ -148,6 +148,9 @@
     let self = this;
     let value = $(this.json_selector, this.container).val();
 
+    // Always clear the layers in drawnItems on map updates.
+    this.drawnItems.clearLayers();
+
     // Nothing to do if we don't have any data.
     if (value.length === 0) {
 
@@ -156,20 +159,8 @@
         this.map.locate({setView: true, maxZoom: 18});
       }
 
-      // Remove all Layers from the Map.
-      this.drawnItems.eachLayer(function(layer) {
-        this.map.removeLayer(layer);
-      }, this);
-
-      // Clear Layer Group.
-      this.drawnItems.clearLayers();
       return;
     }
-
-    // Remove all Layers from the Map.
-    this.drawnItems.eachLayer(function(layer) {
-      this.map.removeLayer(layer);
-    }, this);
 
     try {
       let obj = L.geoJson(JSON.parse(value), {style: function (feature) {
