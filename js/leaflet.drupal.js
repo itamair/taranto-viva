@@ -225,7 +225,7 @@
 
       // dealing with a layer group
       if (feature.group) {
-        let lGroup = self.create_feature_group(feature);
+        let lGroup = self.create_feature_group();
         for (let groupKey in feature.features) {
           let groupFeature = feature.features[groupKey];
           lFeature = self.create_feature(groupFeature);
@@ -285,7 +285,7 @@
 
       case 'polygon':
         lFeature = self.create_polygon(feature);
-        break
+        break;
 
       case 'multipolygon':
         lFeature = self.create_multipolygon(feature);
