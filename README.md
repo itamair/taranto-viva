@@ -69,6 +69,8 @@ The map height, expressed in css units.
 ###Tips & Tricks
 
 - ####Bind events on geojson (json) features
+  @see: https://www.drupal.org/project/leaflet/issues/3186029
+
   $features[] = [
     'type' => 'json',
     'json' => $geojson,
