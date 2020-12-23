@@ -296,7 +296,7 @@
         break;
 
       case 'json':
-        lFeature = self.create_json(feature.json);
+        lFeature = self.create_json(feature.json, feature.events);
         break;
 
       case 'multipoint':
@@ -528,7 +528,7 @@
     }
   };
 
-  Drupal.Leaflet.prototype.create_json = function(json) {
+  Drupal.Leaflet.prototype.create_json = function(json, events) {
     let lJSON = new L.GeoJSON();
 
     lJSON.options.onEachFeature = function(feature, layer) {
@@ -545,6 +545,11 @@
       }
       if (feature.properties.popup) {
         layer.bindPopup(feature.properties.popup);
+      }
+      for (e in events) {
+        layerParam = {};
+        layerParam[e] = eval(events[e]);
+        layer.on(layerParam);
       }
     };
 
