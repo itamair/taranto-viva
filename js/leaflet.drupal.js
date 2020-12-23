@@ -267,7 +267,7 @@
     $(document).trigger('leaflet.features', [initial || false, self])
   };
 
-  Drupal.Leaflet.prototype.create_feature_group = function(feature) {
+  Drupal.Leaflet.prototype.create_feature_group = function() {
     return new L.LayerGroup();
   };
 
@@ -612,7 +612,7 @@
     let control = new L.Control({position: reset_map_control_settings.position});
     control.onAdd = function() {
       // Set CSS for the control border.
-      let controlUI = L.DomUtil.create('div','resetzoom')
+      let controlUI = L.DomUtil.create('div','resetzoom');
       controlUI.style.backgroundColor = '#fff';
       controlUI.style.border = '2px solid #fff';
       controlUI.style.borderRadius = '3px';
