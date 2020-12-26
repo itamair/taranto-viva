@@ -569,13 +569,14 @@
   Drupal.Leaflet.prototype.fitbounds = function(mapid) {
     let self = this;
     let start_zoom = self.settings.zoom;
-    let start_center = new L.LatLng(self.settings.center.lat, self.settings.center.lon);
+    // Note: self.settings.center might not be defined in case of Leaflet widget and Automatically locate user current position.
+    let start_center = self.settings.center ? new L.LatLng(self.settings.center.lat, self.settings.center.lon) : null;
 
     //  Check whether the Zoom and Center are to be forced to use the input settings
-    if (self.settings.map_position_force) {
+    if (start_center && self.settings.map_position_force) {
       //  Set the Zoom and Center to values provided by the input settings
       Drupal.Leaflet[mapid].lMap.setView(start_center, start_zoom);
-    } else {
+    } else if (start_center ) {
       if (self.bounds.length === 0) {
         //  No features - set the Zoom and Center to values provided by the input settings, if specified
         Drupal.Leaflet[mapid].lMap.setView(start_center, start_zoom);
