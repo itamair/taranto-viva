@@ -16,6 +16,7 @@
               // Initialize the Drupal.Leaflet.[data.mapid] object,
               // for possible external interaction.
               Drupal.Leaflet[mapid].markers = {};
+              Drupal.Leaflet[mapid].features = {};
 
               // Add Leaflet Map Features.
               $container.data('leaflet').add_features(mapid, data.features, true);
@@ -102,7 +103,6 @@
     this.start_center = null;
     this.start_zoom = null;
     this.layer_control = null;
-    this.markers = {};
     this.initialise(mapid);
   };
 
@@ -329,9 +329,11 @@
           i++;
         }
         Drupal.Leaflet[self.mapid].markers[entity_id + '-' + i] = lFeature;
+        Drupal.Leaflet[self.mapid].features[entity_id + '-' + i] = feature;
       }
       else {
         Drupal.Leaflet[self.mapid].markers[entity_id] = lFeature;
+        Drupal.Leaflet[self.mapid].features[entity_id] = feature;
       }
     }
     return lFeature;
