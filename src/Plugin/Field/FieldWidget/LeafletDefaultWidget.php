@@ -203,10 +203,16 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#required' => TRUE,
       '#default_value' => $map_settings['height'] ?? $default_settings['map']['height'],
     ];
+    $form['map']['locate'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Automatically locate user current position'),
+      '#description' => t("This option initially centers the map to the user position (only in case of empty map)."),
+      '#default_value' => $map_settings['locate'] ?? $default_settings['map']['locate'],
+    ];
     $form['map']['auto_center'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Automatically center map on existing features'),
-      '#description' => t("This option overrides the widget's default center."),
+      '#description' => t("This option overrides the widget's default center (in case of not empty map)."),
       '#default_value' => $map_settings['auto_center'] ?? $default_settings['map']['auto_center'],
     ];
 
@@ -214,12 +220,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $map_position_options = $map_settings['map_position'] ?? $default_settings['map']['map_position'];
     $form['map']['map_position'] = $this->generateMapPositionElement($map_position_options);
 
-    $form['map']['locate'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Automatically locate user current position'),
-      '#description' => t("This option centers the map to the user position."),
-      '#default_value' => $map_settings['locate'] ?? $default_settings['map']['locate'],
-    ];
     $form['map']['scroll_zoom_enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Scroll Wheel Zoom on click'),
@@ -403,7 +403,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
 
     if (!empty($map_settings['locate'])) {
       $js_settings['locate'] = TRUE;
-      unset($map['settings']['center']);
     }
 
     // Allow other modules to add/alter the map js settings.
