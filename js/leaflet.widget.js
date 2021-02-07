@@ -110,7 +110,7 @@
    * Set visibility and readonly attribute of the input element.
    */
   Drupal.leaflet_widget.prototype.update_input_state = function () {
-    $('.form-item.form-type-textarea', this.container).toggle(!this.settings.inputHidden);
+    $('.form-item.form-type-textarea, .form-item.form-type--textarea', this.container).toggle(!this.settings.inputHidden);
     $(this.json_selector, this.container).prop('readonly', this.settings.inputReadonly);
   };
 
