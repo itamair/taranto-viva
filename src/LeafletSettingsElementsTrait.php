@@ -146,9 +146,10 @@ trait LeafletSettingsElementsTrait {
       '#options' => [
         'px' => t('px'),
         '%' => t('%'),
+        'vh' => t('vh'),
       ],
       '#default_value' => $settings['height_unit'],
-      '#description' => t("Whether height is absolute (pixels) or relative (percent).<br><strong>Note:</strong> In case of Percent the Leaflet Map should be wrapped in a container element with defined Height, otherwise won't show up."),
+      '#description' => t("Whether height is absolute (pixels) or relative (percent, vertical height).<br><strong>Note:</strong> In case of Percent the Leaflet Map should be wrapped in a container element with defined Height, otherwise won't show up."),
     ];
 
     $elements['hide_empty_map'] = [
