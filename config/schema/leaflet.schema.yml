@@ -161,6 +161,9 @@ field.formatter.settings.leaflet_formatter_default:
         options:
           type: text
           label: 'Options'
+        include_path:
+          type: boolean
+          label: 'Include Path'
     path:
       type: text
       label: 'Path'

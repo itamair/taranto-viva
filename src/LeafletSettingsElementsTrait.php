@@ -90,6 +90,7 @@ trait LeafletSettingsElementsTrait {
       'leaflet_markercluster' => [
         'control' => FALSE,
         'options' => '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds": false}',
+        'include_path' => FALSE,
       ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
       'geocoder' => [
@@ -777,6 +778,20 @@ trait LeafletSettingsElementsTrait {
         ]),
         '#return_value' => 1,
       ];
+      if (isset($this->fieldDefinition)) {
+        $leaflet_markercluster_visibility = [
+          'visible' => [
+            ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_markercluster][control]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
+      else {
+        $leaflet_markercluster_visibility = [
+          'visible' => [
+            ':input[name="style_options[leaflet_markercluster][control]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
       $element['leaflet_markercluster']['options'] = [
         '#type' => 'textarea',
         '#rows' => 4,
@@ -785,21 +800,21 @@ trait LeafletSettingsElementsTrait {
         '#default_value' => isset($settings['leaflet_markercluster']['options']) ? $settings['leaflet_markercluster']['options'] : $default_settings['leaflet_markercluster']['options'],
         '#placeholder' => $default_settings['leaflet_markercluster']['options'],
         '#element_validate' => [[get_class($this), 'jsonValidate']],
+        '#states' => $leaflet_markercluster_visibility,
       ];
-      if (isset($this->fieldDefinition)) {
-        $element['leaflet_markercluster']['options']['#states'] = [
-          'visible' => [
-            ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_markercluster][control]"]' => ['checked' => TRUE],
-          ],
-        ];
-      }
-      else {
-        $element['leaflet_markercluster']['options']['#states'] = [
-          'visible' => [
-            ':input[name="style_options[leaflet_markercluster][control]"]' => ['checked' => TRUE],
-          ],
-        ];
-      }
+      $element['leaflet_markercluster']['include_path'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Markeclustering of Paths elements'),
+        '#default_value' => $settings['leaflet_markercluster']['include_path'],
+        '#description' => $this->t("Check this options to extend Markerclustering to the Leaflet Map features extending the @path_class_link (Polygon, Polyline, Circle).", [
+          '@path_class_link' => $this->link->generate($this->t('Leaflet Path class'), Url::fromUri('https://leafletjs.com/reference-1.7.1.html#path', [
+            'absolute' => TRUE,
+            'attributes' => ['target' => 'blank'],
+          ])),
+        ]),
+        '#return_value' => 1,
+        '#states' => $leaflet_markercluster_visibility,
+      ];
     }
     else {
       $element['leaflet_markercluster']['markup'] = [
