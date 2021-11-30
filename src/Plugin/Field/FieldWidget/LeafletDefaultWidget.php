@@ -179,6 +179,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'dragMode' => TRUE,
         'cutPolygon' => FALSE,
         'removalMode' => TRUE,
+        'rotateMode'=>FALSE,
       ],
       'reset_map' => self::getDefaultSettings()['reset_map'],
       'path' => self::getDefaultSettings()['path'],
@@ -339,6 +340,12 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#type' => 'checkbox',
       '#title' => $this->t('Adds button to remove layers.'),
       '#default_value' => $toolbar_settings['removalMode'] ?? $default_settings['toolbar']['removalMode'],
+    ];
+
+    $form['toolbar']['rotateMode'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Adds button to rotate layers.'),
+      '#default_value' => $toolbar_settings['rotateMode'] ?? $default_settings['toolbar']['rotateMode'],
     ];
 
     // Generate the Leaflet Map Reset Control.

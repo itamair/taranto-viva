@@ -102,6 +102,9 @@ field.widget.settings.leaflet_widget_default:
         removalMode:
           type: boolean
           label: 'Removal Mode'
+        rotateMode:
+          type: boolean
+          label: 'Rotate Mode'
     reset_map:
       type: mapping
       label: 'Reset map'
