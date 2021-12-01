@@ -6,7 +6,7 @@
   Drupal.Leaflet.prototype.add_features = function (mapid, features, initial) {
 
     var leaflet_markercluster_options = this.settings.leaflet_markercluster.options && this.settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.settings.leaflet_markercluster.options) : {};
-    var leaflet_markercluster_inlcude_path = this.settings.leaflet_markercluster.include_path;
+    var leaflet_markercluster_include_path = this.settings.leaflet_markercluster.include_path;
 
     var cluster_layer = new L.MarkerClusterGroup(leaflet_markercluster_options);
     var collections_cluster_layers = {};
@@ -46,7 +46,7 @@
 
           // If the Leaflet feature is extending the Path class (Polygon,
           // Polyline, Circle) don't add it to Markercluster.
-          if (lFeature.setStyle && !leaflet_markercluster_inlcude_path) {
+          if (lFeature.setStyle && !leaflet_markercluster_include_path) {
             this.lMap.addLayer(lFeature);
             if (feature.popup) {
               lFeature.bindPopup(feature.popup);

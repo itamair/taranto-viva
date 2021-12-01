@@ -570,7 +570,7 @@
   //  5)  Adjust the initial zoom using zoomFiner, if specified
   //  6)  Cater for a map with no features (use input settings for Zoom and Center, if supplied)
   //
-  // @NOTE: This method used by Leaflet Markecluster module (don't remove/rename)
+  // @NOTE: This method used by Leaflet MarkerCluster (don't remove/rename)
   Drupal.Leaflet.prototype.fitbounds = function(mapid) {
     let self = this;
     let start_zoom = self.settings.zoom ? self.settings.zoom : 12;

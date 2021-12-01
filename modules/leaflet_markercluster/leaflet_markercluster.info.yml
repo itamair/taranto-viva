@@ -1,7 +1,0 @@
-name: Leaflet Markercluster
-description: Extends Leaflet with the Markercluster library.
-core_version_requirement: ^8.8 || ^9
-type: module
-package: Geofield
-dependencies:
-  - leaflet:leaflet

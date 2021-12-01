@@ -22,7 +22,7 @@ use Drupal\Core\Utility\Token;
  * @FieldWidget(
  *   id = "leaflet_widget_default",
  *   label = @Translation("Leaflet Map (default)"),
- *   description = @Translation("Provides a Leaflet Widget with Geoman Js Library."),
+ *   description = @Translation("Provides a Leaflet Widget with Geoman JS Library."),
  *   field_types = {
  *     "geofield",
  *   },
