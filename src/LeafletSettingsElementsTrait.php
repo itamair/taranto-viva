@@ -95,6 +95,10 @@ trait LeafletSettingsElementsTrait {
         'control' => FALSE,
         'options' => '{"position":"topleft","pseudoFullscreen":false}',
       ],
+      'locate' => [
+        'control' => FALSE,
+        'options' => '{"position":"topleft","locateOptions":{"enableHighAccuracy":true}}',
+      ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
       'geocoder' => [
         'control' => FALSE,
@@ -735,6 +739,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
     $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
     $map['settings']['fullscreen'] = isset($options['fullscreen']) ? $options['fullscreen'] : NULL;
+    $map['settings']['locate'] = isset($options['locate']) ? $options['locate'] : NULL;
     $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
     $map['settings']['reset_map'] = isset($options['reset_map']) ? $options['reset_map'] : $default_settings['reset_map'];
     $map['settings']['geocoder'] = isset($options['geocoder']) ? $options['geocoder'] : $default_settings['geocoder'];
@@ -828,6 +833,46 @@ trait LeafletSettingsElementsTrait {
       '#description' => $this->t('An object literal of additional fullscreen options, that comply with the Leaflet Fullscreen JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
       '#default_value' => $settings['fullscreen']['options'] ?? $default_settings['fullscreen']['options'],
       '#placeholder' => $default_settings['fullscreen']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+    ];
+  }
+
+  /**
+   * Set Locate Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setLocateElement(array &$element, array $settings) {
+
+    $default_settings = $this::getDefaultSettings();
+
+    $element['locate'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Locate'),
+      '#open' => FALSE,
+    ];
+
+    $element['locate']['control'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable the functionality of the @locate_api_link.', [
+        '@locate_api_link' => $this->link->generate($this->t('Leaflet Locate JS Library'), Url::fromUri('https://github.com/domoritz/leaflet-locatecontrol', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#default_value' => $settings['locate']['control'] ?? $default_settings['locate']['control'],
+      '#return_value' => 1,
+    ];
+    $element['locate']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 4,
+      '#title' => $this->t('Locate Additional Options'),
+      '#description' => $this->t('An object literal of additional locate options, that comply with the Leaflet Locate JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+      '#default_value' => $settings['locate']['options'] ?? $default_settings['locate']['options'],
+      '#placeholder' => $default_settings['locate']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
   }

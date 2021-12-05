@@ -159,7 +159,7 @@
     if (value.length === 0) {
 
       // If no layer available, locate the user position.
-      if (this.settings.locate && !this.settings.map_position.force) {
+      if (this.settings.locate.control && !this.settings.map_position.force) {
         this.map.locate({setView: true, maxZoom: 18});
       }
 

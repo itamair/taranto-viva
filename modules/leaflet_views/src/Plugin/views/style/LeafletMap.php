@@ -609,6 +609,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Set Fullscreen Element.
     $this->setFullscreenElement($form, $this->options);
 
+    // Set Locate Element.
+    $this->setLocateElement($form, $this->options);
+
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->options);
 

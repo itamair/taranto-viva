@@ -241,6 +241,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Set Fullscreen Element.
     $this->setFullscreenElement($elements, $settings);
 
+    // Set Locate Element.
+    $this->setLocateElement($elements, $settings);
+
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($elements, $settings);
 

@@ -105,3 +105,17 @@ leaflet.geocoder:
   dependencies:
     - core/drupal.autocomplete
     - leaflet/leaflet-drupal
+
+leaflet.locate:
+  remote: https://github.com/domoritz/leaflet-locatecontrol
+  license:
+    name: MIT
+    url: https://raw.githubusercontent.com/domoritz/leaflet-locatecontrol/gh-pages/LICENSE
+    gpl-compatible: yes
+  css:
+    component:
+      /libraries/leaflet.locatecontrol/dist/L.Control.Locate.min.css: { minified: true }
+  js:
+    /libraries/leaflet.locatecontrol/dist/L.Control.Locate.min.js: { minified: true }
+  dependencies:
+    - leaflet/leaflet
