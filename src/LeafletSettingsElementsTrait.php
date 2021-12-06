@@ -53,7 +53,6 @@ trait LeafletSettingsElementsTrait {
       'height_unit' => 'px',
       'hide_empty_map' => FALSE,
       'disable_wheel' => FALSE,
-      'gesture_handling' => FALSE,
       'popup' => FALSE,
       'popup_content' => '',
       'map_position' => [
@@ -102,6 +101,10 @@ trait LeafletSettingsElementsTrait {
       'syncview' => [
         'control' => FALSE,
         'options' => '{"latitudeSelector":".geofield-lat","longitudeSelector":".geofield-lon"}',
+      ],
+      'gesture_handling' => [
+        'control' => FALSE,
+        'options' => '{"duration":1000}',
       ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
       'geocoder' => [
@@ -182,19 +185,6 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Disable zoom using mouse wheel'),
       '#description' => $this->t("If enabled, the mouse wheel won't change the zoom level of the map."),
       '#default_value' => $settings['disable_wheel'],
-      '#return_value' => 1,
-    ];
-
-    $elements['gesture_handling'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Gesture Handling'),
-      '#description' => $this->t('Enable the @gesture_handling_link functionality for the Map.', [
-        '@gesture_handling_link' => $this->link->generate($this->t('Leaflet Gesture Handling Library'), Url::fromUri('https://github.com/elmarquis/Leaflet.GestureHandling', [
-          'absolute' => TRUE,
-          'attributes' => ['target' => 'blank'],
-        ])),
-      ]),
-      '#default_value' => $settings['gesture_handling'],
       '#return_value' => 1,
     ];
 
@@ -746,7 +736,8 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['locate'] = isset($options['locate']) ? $options['locate'] : NULL;
     $map['settings']['resetview'] = isset($options['resetview']) ? $options['resetview'] : NULL;
     $map['settings']['syncview'] = isset($options['syncview']) ? $options['syncview'] : NULL;
-    $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
+    $map['settings']['gestureHandling'] = isset($options['gesture_handling']['control']) ? $options['gesture_handling']['control'] : $default_settings['gestureHandling'];
+    $map['settings']['gestureHandlingOptions'] = isset($options['gesture_handling']['options']) ? $options['gesture_handling']['options'] : $default_settings['gestureHandlingOptions'];
     $map['settings']['geocoder'] = isset($options['geocoder']) ? $options['geocoder'] : $default_settings['geocoder'];
   }
 
@@ -958,6 +949,52 @@ trait LeafletSettingsElementsTrait {
       '#description' => $this->t('An object literal of additional sync view options, that comply with the Leaflet Sync View JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
       '#default_value' => $settings['syncview']['options'] ?? $default_settings['syncview']['options'],
       '#placeholder' => $default_settings['syncview']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+    ];
+  }
+
+  /**
+   * Set Gesture Handling Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setGestureHandlingElement(array &$element, array $settings) {
+
+    $default_settings = $this::getDefaultSettings();
+
+    $element['gesture_handling'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Gesture Handling'),
+      '#open' => FALSE,
+    ];
+
+    $element['gesture_handling']['control'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable the functionality of the @gesture_handling_api_link.', [
+        '@gesture_handling_api_link' => $this->link->generate($this->t('Leaflet Gesture Handling JS Libr
+ary'), Url::fromUri('https://github.com/elmarquis/Leaflet.GestureHandling', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#default_value' => $settings['gesture_handling']['control'] ?? $default_settings['gesture_handlin
+g']['control'],
+      '#return_value' => 1,
+    ];
+    $element['gesture_handling']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 4,
+      '#title' => $this->t('Gesture Handling Additional Options'),
+      '#description' => $this->t('An object literal of additional gesture handling options, that comply 
+with the Leaflet Gesture Handling JS Library.<br>The syntax should respect the javascript object notation
+ (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the index
+es and the string values.'),
+      '#default_value' => $settings['gesture_handling']['options'] ?? $default_settings['gesture_handlin
+g']['options'],
+      '#placeholder' => $default_settings['gesture_handling']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
   }

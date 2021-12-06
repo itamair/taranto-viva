@@ -243,6 +243,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
     // Generate the Leaflet Reset View Element.
     $this->setResetViewElement($elements, $settings);
+    
+    // Set Gesture Handling Element.
+    $this->setGestureHandlingElement($elements, $settings);
 
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($elements, $settings);

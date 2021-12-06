@@ -614,6 +614,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     
     // Set Map Sync View Element.
     $this->setSyncViewElement($form, $this->options);
+    
+    // Set Gesture Handling Element.
+    $this->setGestureHandlingElement($form, $this->options);
 
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->options);
