@@ -107,6 +107,11 @@ class LeafletService {
       $attached_libraries[] = 'leaflet/leaflet.locate';
     }
 
+    // Add the Leaflet Reset View library, if requested.
+    if (isset($map['settings']['resetview']) && $map['settings']['resetview']['control']) {
+      $attached_libraries[] = 'leaflet/leaflet.resetview';
+    }
+
     // Add the Leaflet Geocoder library and functionalities, if requested,
     // and the user has access to Geocoder Api Enpoints.
     if (!empty($map['settings']['geocoder']['control'])) {

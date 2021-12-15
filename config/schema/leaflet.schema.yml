@@ -99,16 +99,6 @@ field.widget.settings.leaflet_widget_default:
         rotateMode:
           type: boolean
           label: 'Rotate Mode'
-    reset_map:
-      type: mapping
-      label: 'Reset map'
-      mapping:
-        position:
-          type: string
-          label: 'Position'
-        control:
-          type: boolean
-          label: 'Control'
     fullscreen:
       type: mapping
       label: 'Leaflet Fullscreen'
@@ -122,6 +112,16 @@ field.widget.settings.leaflet_widget_default:
     locate:
       type: mapping
       label: 'Leaflet Locate'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+    resetview:
+      type: mapping
+      label: 'Leaflet Reset View'
       mapping:
         control:
           type: boolean
@@ -203,16 +203,6 @@ field.formatter.settings.leaflet_formatter_default:
     gesture_handling:
       type: boolean
       label: 'Gesture handling'
-    reset_map:
-      type: mapping
-      label: 'Reset map'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        position:
-          type: string
-          label: 'Position'
     popup:
       type: boolean
       label: 'Popup'
@@ -352,6 +342,16 @@ field.formatter.settings.leaflet_formatter_default:
     locate:
       type: mapping
       label: 'Leaflet Locate'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+    resetview:
+      type: mapping
+      label: 'Leaflet Reset View'
       mapping:
         control:
           type: boolean

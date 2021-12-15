@@ -179,10 +179,10 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'removalMode' => TRUE,
         'rotateMode'=>FALSE,
       ],
-      'reset_map' => self::getDefaultSettings()['reset_map'],
-      'locate' => self::getDefaultSettings()['locate'],
-      'path' => self::getDefaultSettings()['path'],
       'fullscreen' => self::getDefaultSettings()['fullscreen'],
+      'locate' => self::getDefaultSettings()['locate'],
+      'resetview' => self::getDefaultSettings()['resetview'],
+      'path' => self::getDefaultSettings()['path'],
       'geocoder' => self::getDefaultSettings()['geocoder'],
     ];
   }
@@ -334,14 +334,14 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#default_value' => $toolbar_settings['rotateMode'] ?? $default_settings['toolbar']['rotateMode'],
     ];
 
-    // Generate the Leaflet Map Reset Control.
-    $this->setResetMapControl($form, $this->getSettings());
-
     // Set Fullscreen Element.
     $this->setFullscreenElement($form, $this->getSettings());
     
     // Set Map Locate Element.
     $this->setLocateElement($form, $this->getSettings());
+
+    // Generate the Leaflet Reset View Element.
+    $this->setResetViewElement($form, $this->getSettings());
 
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->getSettings());
@@ -384,9 +384,9 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
 
     // Extend options to reset_map and geocoder to uniform with Leaflet
     // Formatter and Leaflet View processing.
-    $map_settings['reset_map'] = $this->getSetting('reset_map');
     $map_settings['fullscreen'] = $this->getSetting('fullscreen');
     $map_settings['locate'] = $this->getSetting('locate');
+    $map_settings['resetview'] = $this->getSetting('resetview');
     $map_settings['path'] = $this->getSetting('path');
     $map_settings['geocoder'] = $this->getSetting('geocoder');
 
@@ -427,6 +427,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $js_settings['scrollZoomEnabled'] = !empty($map_settings['scroll_zoom_enabled']) ? $map_settings['scroll_zoom_enabled'] : FALSE;
     $js_settings['fullscreen'] = $this->getSetting('fullscreen');
     $js_settings['locate'] = $this->getSetting('locate');
+    $js_settings['resetview'] = $this->getSetting('resetview');
     $js_settings['path'] = str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $token_context));
     $js_settings['geocoder'] = $this->getSetting('geocoder');
     $js_settings['map_position'] = $map_settings['map_position'] ?? [];

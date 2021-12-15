@@ -234,6 +234,12 @@
         Drupal.Leaflet[this.settings.map_id].start_zoom = start_zoom;
         Drupal.Leaflet[this.settings.map_id].start_center = start_center;
 
+        if (Drupal.Leaflet[this.settings.map_id].resetview_control) {
+          L.Util.setOptions(Drupal.Leaflet[this.settings.map_id].resetview_control, {
+            latlng: start_center,
+            zoom: start_zoom,
+          });
+        }
       }
     } catch (error) {
       if (window.console) console.error(error.message);
