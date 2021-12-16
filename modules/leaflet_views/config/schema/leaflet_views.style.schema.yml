@@ -197,6 +197,16 @@ views.style.leaflet_map:
         options:
           type: text
           label: 'Options'
+    syncview:
+      type: mapping
+      label: 'Leaflet Sync View'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
     path:
       type: string
       label: 'Path'

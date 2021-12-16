@@ -41,7 +41,7 @@ update your `composer.json` as below:
         "require": {
             "drupal/leaflet": "3.0.x-dev",
             "npm-asset/drustack--leaflet.resetview": "~1.1",
-            "npm-asset/drustack--leaflet.syncview": "~1.0",
+            "npm-asset/drustack--leaflet.syncview": "~1.1",
             "npm-asset/geoman-io--leaflet-geoman-free": "~2.11",
             "npm-asset/leaflet": "~1.7",
             "npm-asset/leaflet-fullscreen": "~1.0",

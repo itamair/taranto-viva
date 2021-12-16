@@ -99,6 +99,10 @@ trait LeafletSettingsElementsTrait {
         'control' => FALSE,
         'options' => '{"position":"topleft","title":"Reset view"}',
       ],
+      'syncview' => [
+        'control' => FALSE,
+        'options' => '{"latitudeSelector":".geofield-lat","longitudeSelector":".geofield-lon"}',
+      ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
       'geocoder' => [
         'control' => FALSE,
@@ -741,6 +745,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['fullscreen'] = isset($options['fullscreen']) ? $options['fullscreen'] : NULL;
     $map['settings']['locate'] = isset($options['locate']) ? $options['locate'] : NULL;
     $map['settings']['resetview'] = isset($options['resetview']) ? $options['resetview'] : NULL;
+    $map['settings']['syncview'] = isset($options['syncview']) ? $options['syncview'] : NULL;
     $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
     $map['settings']['geocoder'] = isset($options['geocoder']) ? $options['geocoder'] : $default_settings['geocoder'];
   }
@@ -913,6 +918,46 @@ trait LeafletSettingsElementsTrait {
       '#description' => $this->t('An object literal of additional resetview options, that comply with the Leaflet Reset View JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
       '#default_value' => $settings['resetview']['options'] ?? $default_settings['resetview']['options'],
       '#placeholder' => $default_settings['resetview']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+    ];
+  }
+
+  /**
+   * Set Map Sync View Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setSyncViewElement(array &$element, array $settings) {
+
+    $default_settings = $this::getDefaultSettings();
+
+    $element['syncview'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Sync View'),
+      '#open' => FALSE,
+    ];
+
+    $element['syncview']['control'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable the functionality of the @syncview_api_link.', [
+        '@syncview_api_link' => $this->link->generate($this->t('Leaflet Sync View JS Library'), Url::fromUri('https://github.com/drustack/Leaflet.SyncView', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#default_value' => $settings['syncview']['control'] ?? $default_settings['syncview']['control'],
+      '#return_value' => 1,
+    ];
+    $element['syncview']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 4,
+      '#title' => $this->t('Sync View Additional Options'),
+      '#description' => $this->t('An object literal of additional sync view options, that comply with the Leaflet Sync View JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+      '#default_value' => $settings['syncview']['options'] ?? $default_settings['syncview']['options'],
+      '#placeholder' => $default_settings['syncview']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
   }

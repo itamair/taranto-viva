@@ -359,6 +359,16 @@ field.formatter.settings.leaflet_formatter_default:
         options:
           type: text
           label: 'Options'
+    syncview:
+      type: mapping
+      label: 'Leaflet Sync View'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
     path:
       type: text
       label: 'Path'
