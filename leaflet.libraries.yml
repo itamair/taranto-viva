@@ -5,7 +5,7 @@ general:
       css/leaflet_general.css: {}
 
 leaflet:
-  remote: http://leafletjs.com/
+  remote: https://github.com/Leaflet/Leaflet
   license:
     name: Leaflet-License
     url: https://github.com/Leaflet/Leaflet/blob/master/LICENSE
