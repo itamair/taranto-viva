@@ -1,22 +1,24 @@
 general:
-  version: VERSION
+  version: 1.x
   css:
     component:
       css/leaflet_general.css: {}
 
 leaflet:
   remote: http://leafletjs.com/
+  version: 1.4.0
   license:
     name: Leaflet-License
-    url: https://github.com/Leaflet/Leaflet/blob/master/LICENSE
+    url: https://github.com/Leaflet/Leaflet/blob/v1.4.0/LICENSE
     gpl-compatible: true
   js:
-    /libraries/leaflet/dist/leaflet.js: {}
+    js/leaflet/dist/leaflet.js: {}
   css:
     component:
-      /libraries/leaflet/dist/leaflet.css: {}
+      js/leaflet/dist/leaflet.css: {}
 
 leaflet-drupal:
+  version: VERSION
   js:
     js/leaflet.drupal.js: {}
   dependencies:
@@ -25,39 +27,18 @@ leaflet-drupal:
     - core/drupal
     - leaflet/leaflet
 
-leaflet-markercluster:
-  remote: https://github.com/Leaflet/Leaflet.markercluster
-  license:
-    name: MIT-License
-    url: https://github.com/Leaflet/Leaflet.markercluster/blob/master/MIT-LICENCE.txt
-    gpl-compatible: true
-  js:
-    /libraries/leaflet.markercluster/dist/leaflet.markercluster.js: {}
-  css:
-    component:
-      /libraries/leaflet.markercluster/dist/MarkerCluster.css: {}
-      /libraries/leaflet.markercluster/dist/MarkerCluster.Default.css: {}
-  dependencies:
-    - leaflet/leaflet
-
-leaflet-markercluster-drupal:
-  version: VERSION
-  js:
-    js/leaflet.markercluster.drupal.js: {}
-  dependencies:
-    - leaflet/leaflet-drupal
-
 leaflet-geoman:
+  version: 2.x
   css:
     theme:
-      /libraries/geoman-io--leaflet-geoman-free/dist/leaflet-geoman.css: {}
+      '//unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css': {type: external, minified: true}
   js:
-    /libraries/geoman-io--leaflet-geoman-free/dist/leaflet-geoman.min.js: { minified: true }
+    '//unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js': {type: external, minified: true}
   dependencies:
     - leaflet/leaflet
 
 leaflet-widget:
-  version: VERSION
+  version: 1.x
   js:
     js/leaflet.widget.js: {}
   dependencies:
@@ -67,36 +48,40 @@ leaflet-widget:
 
 # Control Fullscreen
 leaflet.fullscreen:
+  header: true
   remote: https://github.com/Leaflet/Leaflet.fullscreen
+  version: '1.0.2'
   license:
     name: ISC License
     url: https://github.com/Leaflet/Leaflet.fullscreen/blob/gh-pages/LICENSE
     gpl-compatible: true
   css:
     component:
-      /libraries/leaflet-fullscreen/dist/Leaflet.fullscreen.min.css: { minified: true }
+      'https://cdn.jsdelivr.net/npm/leaflet-fullscreen@1.0.2/dist/leaflet.fullscreen.min.css': { type: external}
   js:
-    /libraries/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js: { minified: true }
+    'https://cdn.jsdelivr.net/npm/leaflet-fullscreen@1.0.2/dist/Leaflet.fullscreen.min.js': { type: external, minified: true }
   dependencies:
     - leaflet/leaflet
 
 # Gesture Handling Leaflet Library
 leaflet.gesture_handling:
+  header: true
   remote: https://github.com/elmarquis/Leaflet.GestureHandling
+  version: '1.0.1'
   license:
     name: MIT License
     url: https://raw.githubusercontent.com/elmarquis/Leaflet.GestureHandling/master/LICENSE
     gpl-compatible: no
   css:
     component:
-      /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css: { minified: true}
+      'https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css': { type: external}
   js:
-    /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js: { minified: true }
+    'https://unpkg.com/leaflet-gesture-handling': { type: external, minified: true }
   dependencies:
     - leaflet/leaflet
 
 leaflet.geocoder:
-  version: VERSION
+  version: 1.x
   css:
     component:
       css/leaflet_geocoder.css: {}

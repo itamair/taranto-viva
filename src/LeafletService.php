@@ -97,9 +97,9 @@ class LeafletService {
     }
 
     // Add the Leaflet Markercluster library and functionalities, if requested.
-    if (isset($map['settings']['leaflet_markercluster']) && $map['settings']['leaflet_markercluster']['control']) {
-      $attached_libraries[] = 'leaflet/leaflet-markercluster';
-      $attached_libraries[] = 'leaflet/leaflet-markercluster-drupal';
+    if ($this->moduleHandler->moduleExists('leaflet_markercluster') && isset($map['settings']['leaflet_markercluster']) && $map['settings']['leaflet_markercluster']['control']) {
+      $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster';
+      $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster-drupal';
     }
 
     // Add the Leaflet Geocoder library and functionalities, if requested,

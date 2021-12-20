@@ -756,45 +756,73 @@ trait LeafletSettingsElementsTrait {
   protected function setMapMarkerclusterElement(array &$element, array $settings) {
 
     $default_settings = $this::getDefaultSettings();
+    $leaflet_markercluster_submodule_warning = $this->t("<u>Note</u>: This functionality and settings are related to the Leaflet Markercluster submodule, present inside the Leaflet module itself.<br><u>(DON'T USE the external self standing Leaflet Markecluster module).</u>");
 
     $element['leaflet_markercluster'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => $this->t('Marker Clustering'),
-      '#open' => FALSE,
     ];
 
-    $element['leaflet_markercluster']['control'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable the functionality of the @markerclusterer_api_link.', [
-        '@markerclusterer_api_link' => $this->link->generate($this->t('Leaflet Markercluster JS Library'), Url::fromUri('https://github.com/Leaflet/Leaflet.markercluster', [
-          'absolute' => TRUE,
-          'attributes' => ['target' => 'blank'],
-        ])),
-      ]),
-      '#default_value' => $settings['leaflet_markercluster']['control'] ?? $default_settings['leaflet_markercluster']['control'],
-      '#return_value' => 1,
-    ];
-    $element['leaflet_markercluster']['options'] = [
-      '#type' => 'textarea',
-      '#rows' => 4,
-      '#title' => $this->t('Marker Cluster Additional Options'),
-      '#description' => $this->t('An object literal of additional marker cluster options, that comply with the Leaflet Markercluster JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
-      '#default_value' => $settings['leaflet_markercluster']['options'] ?? $default_settings['leaflet_markercluster']['options'],
-      '#placeholder' => $default_settings['leaflet_markercluster']['options'],
-      '#element_validate' => [[get_class($this), 'jsonValidate']],
-    ];
-    $element['leaflet_markercluster']['include_path'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Enable Markerclustering of Paths elements'),
-      '#default_value' => $settings['leaflet_markercluster']['include_path'] ?? $default_settings['leaflet_markercluster']['include_path'],
-      '#description' => $this->t("Check this options to extend Markerclustering to the Leaflet Map features extending the @path_class_link (Polygon, Polyline, Circle).", [
-        '@path_class_link' => $this->link->generate($this->t('Leaflet Path class'), Url::fromUri('https://leafletjs.com/reference-1.7.1.html#path', [
-          'absolute' => TRUE,
-          'attributes' => ['target' => 'blank'],
-        ])),
-      ]),
-      '#return_value' => 1,
-    ];
+    if ($this->moduleHandler->moduleExists('leaflet_markercluster')) {
+      $element['leaflet_markercluster']['control'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable the functionality of the @markeclusterer_api_link.', [
+          '@markeclusterer_api_link' => $this->link->generate($this->t('Leaflet Markercluster Js Library'), Url::fromUri('https://github.com/Leaflet/Leaflet.markercluster', [
+            'absolute' => TRUE,
+            'attributes' => ['target' => 'blank'],
+          ])),
+        ]),
+        '#default_value' => $settings['leaflet_markercluster']['control'] ?? $default_settings['leaflet_markercluster']['control'],
+        '#description' => $this->t("@leaflet_markercluster_submodule_warning", [
+          '@leaflet_markercluster_submodule_warning' => $leaflet_markercluster_submodule_warning,
+        ]),
+        '#return_value' => 1,
+      ];
+      if (isset($this->fieldDefinition)) {
+        $leaflet_markercluster_visibility = [
+          'visible' => [
+            ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_markercluster][control]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
+      else {
+        $leaflet_markercluster_visibility = [
+          'visible' => [
+            ':input[name="style_options[leaflet_markercluster][control]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
+      $element['leaflet_markercluster']['options'] = [
+        '#type' => 'textarea',
+        '#rows' => 4,
+        '#title' => $this->t('Marker Cluster Additional Options'),
+        '#description' => $this->t('An object literal of additional marker cluster options, that comply with the Leaflet Markercluster Js Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+        '#default_value' => $settings['leaflet_markercluster']['options'] ?? $default_settings['leaflet_markercluster']['options'],
+        '#placeholder' => $default_settings['leaflet_markercluster']['options'],
+        '#element_validate' => [[get_class($this), 'jsonValidate']],
+        '#states' => $leaflet_markercluster_visibility,
+      ];
+      $element['leaflet_markercluster']['include_path'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Enable Markeclustering of Paths elements'),
+        '#default_value' => $settings['leaflet_markercluster']['include_path'] ?? $default_settings['leaflet_markercluster']['include_path'],
+        '#description' => $this->t("Check this options to extend Markerclustering to the Leaflet Map features extending the @path_class_link (Polygon, Polyline, Circle).", [
+          '@path_class_link' => $this->link->generate($this->t('Leaflet Path class'), Url::fromUri('https://leafletjs.com/reference-1.7.1.html#path', [
+            'absolute' => TRUE,
+            'attributes' => ['target' => 'blank'],
+          ])),
+        ]),
+        '#return_value' => 1,
+        '#states' => $leaflet_markercluster_visibility,
+      ];
+    }
+    else {
+      $element['leaflet_markercluster']['markup'] = [
+        '#markup' => $this->t("Enable the Leaflet Markecluster submodule to activate this functionality.<br>@leaflet_markercluster_submodule_warning", [
+          '@leaflet_markercluster_submodule_warning' => $leaflet_markercluster_submodule_warning,
+        ]),
+      ];
+    }
   }
 
   /**
