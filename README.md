@@ -27,19 +27,7 @@ To download the required JS libraries with composer, you will need to
 update your `composer.json` as below:
 
     {
-        "extra": {
-            "installer-paths": {
-                "libraries/{$name}": [
-                    "type:bower-asset",
-                    "type:drupal-library",
-                    "type:npm-asset"
-                ]
-            },
-            "installer-types": [
-                "bower-asset",
-                "npm-asset"
-            ]
-        },
+        ...
         "repositories": {
             "asset": {
                 "type": "composer",
@@ -60,6 +48,20 @@ update your `composer.json` as below:
             "npm-asset/leaflet-gesture-handling": "~1.2",
             "npm-asset/leaflet.locatecontrol": "~0.76",
             "npm-asset/leaflet.markercluster": "~1.5"
+        },
+        "extra": {
+            "installer-paths": {
+                "web/libraries/{$name}": [
+                    "type:bower-asset",
+                    "type:drupal-library",
+                    "type:npm-asset"
+                ]
+            },
+            "installer-types": [
+                "bower-asset",
+                "npm-asset"
+            ],
+        ...
         }
     }
 
