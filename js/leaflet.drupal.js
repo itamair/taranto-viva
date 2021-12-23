@@ -158,10 +158,8 @@
     }
 
     // Add Fullscreen Control, if requested.
-    if (self.settings.fullscreen.control) {
-      L.control.fullscreen(
-        JSON.parse(self.settings.fullscreen.options)
-      ).addTo(self.lMap);
+    if (self.settings.fullscreen_control) {
+      self.lMap.addControl(new L.Control.Fullscreen());
     }
 
   };

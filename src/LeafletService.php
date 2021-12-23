@@ -87,7 +87,7 @@ class LeafletService {
     $attached_libraries = ['leaflet/general', 'leaflet/leaflet-drupal'];
 
     // Add the Leaflet Fullscreen library, if requested.
-    if (isset($map['settings']['fullscreen']) && $map['settings']['fullscreen']['control']) {
+    if (!empty($map['settings']['fullscreen_control'])) {
       $attached_libraries[] = 'leaflet/leaflet.fullscreen';
     }
 

@@ -52,6 +52,9 @@ field.widget.settings.leaflet_widget_default:
         scroll_zoom_enabled:
           type: integer
           label: 'Scroll zoom enabled'
+        fullscreen_control:
+          type: integer
+          label: 'Full screen control'
     input:
       type: mapping
       label: 'Input'
@@ -112,16 +115,6 @@ field.widget.settings.leaflet_widget_default:
         control:
           type: boolean
           label: 'Control'
-    fullscreen:
-      type: mapping
-      label: 'Leaflet Fullscreen'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
     path:
       type: text
       label: 'Path'
@@ -193,6 +186,9 @@ field.formatter.settings.leaflet_formatter_default:
     disable_wheel:
       type: boolean
       label: 'Disable wheel'
+    fullscreen_control:
+      type: boolean
+      label: 'Fullscreen control'
     gesture_handling:
       type: boolean
       label: 'Gesture handling'
@@ -332,16 +328,6 @@ field.formatter.settings.leaflet_formatter_default:
         include_path:
           type: boolean
           label: 'Include Path'
-    fullscreen:
-      type: mapping
-      label: 'Leaflet Fullscreen'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
     path:
       type: text
       label: 'Path'

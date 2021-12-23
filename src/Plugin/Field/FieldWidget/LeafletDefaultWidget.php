@@ -162,6 +162,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'map_position' => self::getDefaultSettings()['map_position'],
         'locate' => TRUE,
         'scroll_zoom_enabled' => TRUE,
+        'fullscreen_control' => TRUE,
       ],
       'input' => [
         'show' => TRUE,
@@ -182,7 +183,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       ],
       'reset_map' => self::getDefaultSettings()['reset_map'],
       'path' => self::getDefaultSettings()['path'],
-      'fullscreen' => self::getDefaultSettings()['fullscreen'],
       'geocoder' => self::getDefaultSettings()['geocoder'],
     ];
   }
@@ -232,6 +232,14 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#title' => $this->t('Enable Scroll Wheel Zoom on click'),
       '#description' => t("This option enables zooming by mousewheel as soon as the user clicked on the map."),
       '#default_value' => $map_settings['scroll_zoom_enabled'] ?? $default_settings['map']['scroll_zoom_enabled'],
+    ];
+
+    $form['map']['fullscreen_control'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Fullscreen Control'),
+      '#description' => $this->t('Enable the Fullscreen View of the Map.'),
+      '#default_value' => $map_settings['fullscreen_control'] ?? $default_settings['map']['fullscreen_control'],
+      '#return_value' => 1,
     ];
 
     $input_settings = $this->getSetting('input');
@@ -343,9 +351,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // Generate the Leaflet Map Reset Control.
     $this->setResetMapControl($form, $this->getSettings());
 
-    // Set Fullscreen Element.
-    $this->setFullscreenElement($form, $this->getSettings());
-
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->getSettings());
 
@@ -385,15 +390,12 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       $this->fieldDefinition->getTargetEntityTypeId() => $items->getEntity(),
     ];
 
-    // Extend options to reset_map and geocoder to uniform with Leaflet
+    // Extend options to reset_map and geocoder to uniform with Leafket
     // Formatter and Leaflet View processing.
-    $map_settings['reset_map'] = $this->getSetting('reset_map');
-    $map_settings['fullscreen'] = $this->getSetting('fullscreen');
-    $map_settings['path'] = $this->getSetting('path');
-    $map_settings['geocoder'] = $this->getSetting('geocoder');
+    $options = array_merge($map_settings, ['reset_map' => $this->getSetting('reset_map')], ['path' => $this->getSetting('path')], ['geocoder' => $this->getSetting('geocoder')]);
 
     // Set Map additional map Settings.
-    $this->setAdditionalMapOptions($map, $map_settings);
+    $this->setAdditionalMapOptions($map, $options);
 
     // Attach class to wkt input element, so we can find it in js.
     $json_element_name = 'leaflet-widget-input';
@@ -431,7 +433,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $js_settings['inputReadonly'] = !empty($input_settings['readonly']);
     $js_settings['toolbarSettings'] = $this->getSetting('toolbar') ?? $default_settings['toolbar'];
     $js_settings['scrollZoomEnabled'] = !empty($map_settings['scroll_zoom_enabled']) ? $map_settings['scroll_zoom_enabled'] : FALSE;
-    $js_settings['fullscreen'] = $this->getSetting('fullscreen');
     $js_settings['path'] = str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $token_context));
     $js_settings['geocoder'] = $this->getSetting('geocoder');
     $js_settings['map_position'] = $map_settings['map_position'] ?? [];
