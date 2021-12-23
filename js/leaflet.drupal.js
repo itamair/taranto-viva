@@ -174,13 +174,6 @@
       ).addTo(self.lMap);
     }
 
-    // Add Sync View Control, if requested.
-    if (self.settings.syncview.control) {
-      L.control.syncView(
-        JSON.parse(self.settings.syncview.options)
-      ).addTo(self.lMap);
-    }
-
   };
 
   Drupal.Leaflet.prototype.initialise_layer_control = function(mapid) {
