@@ -183,7 +183,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       'locate' => self::getDefaultSettings()['locate'],
       'resetview' => self::getDefaultSettings()['resetview'],
       'path' => self::getDefaultSettings()['path'],
-      'gesture_handling' => self::getDefaultSettings()['gesture_handling'],
       'geocoder' => self::getDefaultSettings()['geocoder'],
     ];
   }
@@ -344,9 +343,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // Generate the Leaflet Reset View Element.
     $this->setResetViewElement($form, $this->getSettings());
 
-    // Set Gesture Handling Element.
-    $this->setGestureHandlingElement($form, $this->getSettings());
-
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->getSettings());
 
@@ -391,7 +387,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $map_settings['fullscreen'] = $this->getSetting('fullscreen');
     $map_settings['locate'] = $this->getSetting('locate');
     $map_settings['resetview'] = $this->getSetting('resetview');
-    $map_settings['gesture_handling'] = $this->getSetting('gesture_handling');
     $map_settings['path'] = $this->getSetting('path');
     $map_settings['geocoder'] = $this->getSetting('geocoder');
 
@@ -433,8 +428,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $js_settings['fullscreen'] = $this->getSetting('fullscreen');
     $js_settings['locate'] = $this->getSetting('locate');
     $js_settings['resetview'] = $this->getSetting('resetview');
-    $js_settings['gestureHandling'] = $this->getSetting('gesture_handling')['control'] ?? $default_settings['gesture_handling']['control'];
-    $js_settings['gestureHandlingOptions'] = $this->getSetting('gesture_handling')['options'] ?? $default_settings['gesture_handling']['options'];
     $js_settings['path'] = str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $token_context));
     $js_settings['geocoder'] = $this->getSetting('geocoder');
     $js_settings['map_position'] = $map_settings['map_position'] ?? [];

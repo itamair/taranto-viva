@@ -129,16 +129,6 @@ field.widget.settings.leaflet_widget_default:
         options:
           type: text
           label: 'Options'
-    gesture_handling:
-      type: mapping
-      label: 'Gesture Handling'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
     path:
       type: text
       label: 'Path'
@@ -210,6 +200,9 @@ field.formatter.settings.leaflet_formatter_default:
     disable_wheel:
       type: boolean
       label: 'Disable wheel'
+    gesture_handling:
+      type: boolean
+      label: 'Gesture handling'
     popup:
       type: boolean
       label: 'Popup'
@@ -369,16 +362,6 @@ field.formatter.settings.leaflet_formatter_default:
     syncview:
       type: mapping
       label: 'Leaflet Sync View'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
-    gesture_handling:
-      type: mapping
-      label: 'Gesture Handling'
       mapping:
         control:
           type: boolean

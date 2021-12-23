@@ -37,6 +37,9 @@ views.style.leaflet_map:
     disable_wheel:
       type: boolean
       label: 'Disable wheel'
+    gesture_handling:
+      type: boolean
+      label: 'Gesture handling'
     reset_map:
       type: mapping
       label: 'Reset map'
@@ -197,16 +200,6 @@ views.style.leaflet_map:
     syncview:
       type: mapping
       label: 'Leaflet Sync View'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
-    gesture_handling:
-      type: mapping
-      label: 'Gesture Handling'
       mapping:
         control:
           type: boolean
