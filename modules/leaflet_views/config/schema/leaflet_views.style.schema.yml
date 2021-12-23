@@ -177,16 +177,6 @@ views.style.leaflet_map:
         options:
           type: text
           label: 'Options'
-    locate:
-      type: mapping
-      label: 'Leaflet Locate'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
     path:
       type: string
       label: 'Path'

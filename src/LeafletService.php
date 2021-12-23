@@ -102,11 +102,6 @@ class LeafletService {
       $attached_libraries[] = 'leaflet/leaflet-markercluster-drupal';
     }
 
-    // Add the Leaflet Locate library, if requested.
-    if (isset($map['settings']['locate']) && $map['settings']['locate']['control']) {
-      $attached_libraries[] = 'leaflet/leaflet.locate';
-    }
-
     // Add the Leaflet Geocoder library and functionalities, if requested,
     // and the user has access to Geocoder Api Enpoints.
     if (!empty($map['settings']['geocoder']['control'])) {

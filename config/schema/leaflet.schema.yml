@@ -14,6 +14,9 @@ field.widget.settings.leaflet_widget_default:
         height:
           type: integer
           label: 'Height'
+        locate:
+          type: integer
+          label: 'Locale'
         auto_center:
           type: integer
           label: 'Automatically center map'
@@ -112,16 +115,6 @@ field.widget.settings.leaflet_widget_default:
     fullscreen:
       type: mapping
       label: 'Leaflet Fullscreen'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
-    locate:
-      type: mapping
-      label: 'Leaflet Locate'
       mapping:
         control:
           type: boolean
@@ -342,16 +335,6 @@ field.formatter.settings.leaflet_formatter_default:
     fullscreen:
       type: mapping
       label: 'Leaflet Fullscreen'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
-    locate:
-      type: mapping
-      label: 'Leaflet Locate'
       mapping:
         control:
           type: boolean

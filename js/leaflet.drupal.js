@@ -164,13 +164,6 @@
       ).addTo(self.lMap);
     }
 
-    // Add Locate Control, if requested.
-    if (self.settings.locate.control) {
-      L.control.locate(
-        JSON.parse(self.settings.locate.options)
-      ).addTo(self.lMap);
-    }
-
   };
 
   Drupal.Leaflet.prototype.initialise_layer_control = function(mapid) {

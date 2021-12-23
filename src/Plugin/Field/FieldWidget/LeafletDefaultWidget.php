@@ -160,6 +160,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'height' => 400,
         'auto_center' => TRUE,
         'map_position' => self::getDefaultSettings()['map_position'],
+        'locate' => TRUE,
         'scroll_zoom_enabled' => TRUE,
       ],
       'input' => [
@@ -180,7 +181,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'rotateMode'=>FALSE,
       ],
       'reset_map' => self::getDefaultSettings()['reset_map'],
-      'locate' => self::getDefaultSettings()['locate'],
       'path' => self::getDefaultSettings()['path'],
       'fullscreen' => self::getDefaultSettings()['fullscreen'],
       'geocoder' => self::getDefaultSettings()['geocoder'],
@@ -209,6 +209,12 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#type' => 'textfield',
       '#required' => TRUE,
       '#default_value' => $map_settings['height'] ?? $default_settings['map']['height'],
+    ];
+    $form['map']['locate'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Automatically locate user current position'),
+      '#description' => t("This option initially centers the map to the user position (only in case of empty map)."),
+      '#default_value' => $map_settings['locate'] ?? $default_settings['map']['locate'],
     ];
     $form['map']['auto_center'] = [
       '#type' => 'checkbox',
@@ -339,9 +345,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
 
     // Set Fullscreen Element.
     $this->setFullscreenElement($form, $this->getSettings());
-    
-    // Set Map Locate Element.
-    $this->setLocateElement($form, $this->getSettings());
 
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->getSettings());
@@ -386,7 +389,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // Formatter and Leaflet View processing.
     $map_settings['reset_map'] = $this->getSetting('reset_map');
     $map_settings['fullscreen'] = $this->getSetting('fullscreen');
-    $map_settings['locate'] = $this->getSetting('locate');
     $map_settings['path'] = $this->getSetting('path');
     $map_settings['geocoder'] = $this->getSetting('geocoder');
 
@@ -399,6 +401,10 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // Set the readonly for styling, if readonly.
     if (isset($input_settings["readonly"]) &&  $input_settings["readonly"]) {
       $element['value']['#attributes']['class'][] = "readonly";
+    }
+
+    if (!empty($map_settings['locate'])) {
+      $js_settings['locate'] = TRUE;
     }
 
     // Allow other modules to add/alter the map js settings.
@@ -426,7 +432,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $js_settings['toolbarSettings'] = $this->getSetting('toolbar') ?? $default_settings['toolbar'];
     $js_settings['scrollZoomEnabled'] = !empty($map_settings['scroll_zoom_enabled']) ? $map_settings['scroll_zoom_enabled'] : FALSE;
     $js_settings['fullscreen'] = $this->getSetting('fullscreen');
-    $js_settings['locate'] = $this->getSetting('locate');
     $js_settings['path'] = str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $token_context));
     $js_settings['geocoder'] = $this->getSetting('geocoder');
     $js_settings['map_position'] = $map_settings['map_position'] ?? [];
