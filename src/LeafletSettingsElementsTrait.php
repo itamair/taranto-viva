@@ -54,6 +54,10 @@ trait LeafletSettingsElementsTrait {
       'hide_empty_map' => FALSE,
       'disable_wheel' => FALSE,
       'gesture_handling' => FALSE,
+      'reset_map' => [
+        'control' => FALSE,
+        'position' => 'topright',
+      ],
       'popup' => FALSE,
       'popup_content' => '',
       'map_position' => [
@@ -94,10 +98,6 @@ trait LeafletSettingsElementsTrait {
       'locate' => [
         'control' => FALSE,
         'options' => '{"position":"topleft","locateOptions":{"enableHighAccuracy":true}}',
-      ],
-      'resetview' => [
-        'control' => FALSE,
-        'options' => '{"position":"topleft","title":"Reset view"}',
       ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
       'geocoder' => [
@@ -740,8 +740,8 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
     $map['settings']['fullscreen'] = isset($options['fullscreen']) ? $options['fullscreen'] : NULL;
     $map['settings']['locate'] = isset($options['locate']) ? $options['locate'] : NULL;
-    $map['settings']['resetview'] = isset($options['resetview']) ? $options['resetview'] : NULL;
     $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
+    $map['settings']['reset_map'] = isset($options['reset_map']) ? $options['reset_map'] : $default_settings['reset_map'];
     $map['settings']['geocoder'] = isset($options['geocoder']) ? $options['geocoder'] : $default_settings['geocoder'];
   }
 
@@ -878,43 +878,49 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
-   * Set Reset View Element.
+   * Set Map MarkerCluster Element.
    *
    * @param array $element
    *   The Form element to alter.
    * @param array $settings
    *   The Form Settings.
    */
-  protected function setResetViewElement(array &$element, array $settings) {
-
+  protected function setResetMapControl(array &$element, array $settings) {
     $default_settings = $this::getDefaultSettings();
 
-    $element['resetview'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Reset View'),
-      '#open' => FALSE,
+    $element['reset_map'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Reset Map Control'),
     ];
 
-    $element['resetview']['control'] = [
+    $element['reset_map']['control'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Enable the functionality of the @resetview_api_link.', [
-        '@resetview_api_link' => $this->link->generate($this->t('Leaflet Reset View JS Library'), Url::fromUri('https://github.com/hswong3i/Leaflet.ResetView', [
-          'absolute' => TRUE,
-          'attributes' => ['target' => 'blank'],
-        ])),
-      ]),
-      '#default_value' => $settings['resetview']['control'] ?? $default_settings['resetview']['control'],
-      '#return_value' => 1,
+      '#title' => $this->t('Enable Map Reset Control'),
+      '#description' => $this->t('This will show a "Reset Map" button to reset the Map to its initial center & zoom state<br><b><u>Warning: </u></b>Due to an issue in the Leaflet library (@see https://github.com/Leaflet/Leaflet/issues/6172) the Map Reset control doesn\'t work correctly in Fitting Bounds of coordinates having mixed positive and negative values of latitude &longitudes.<br>In this case the Map will be Reset to the default set Map Center.'),
+      '#default_value' => isset($settings['reset_map']['control']) ? $settings['reset_map']['control'] : $default_settings['reset_map']['control'],
     ];
-    $element['resetview']['options'] = [
-      '#type' => 'textarea',
-      '#rows' => 4,
-      '#title' => $this->t('Reset View Additional Options'),
-      '#description' => $this->t('An object literal of additional resetview options, that comply with the Leaflet Reset View JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
-      '#default_value' => $settings['resetview']['options'] ?? $default_settings['resetview']['options'],
-      '#placeholder' => $default_settings['resetview']['options'],
-      '#element_validate' => [[get_class($this), 'jsonValidate']],
+
+    $element['reset_map']['position'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Position'),
+      '#options' => $this->controlPositionsOptions,
+      '#default_value' => isset($settings['reset_map']['position']) ? $settings['reset_map']['position'] : $default_settings['reset_map']['position'],
     ];
+
+    if (isset($this->fieldDefinition)) {
+      $element['reset_map']['position']['#states'] = [
+        'visible' => [
+          ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][reset_map][control]"]' => ['checked' => TRUE],
+        ],
+      ];
+    }
+    else {
+      $element['reset_map']['position']['#states'] = [
+        'visible' => [
+          ':input[name="style_options[reset_map][control]"]' => ['checked' => TRUE],
+        ],
+      ];
+    }
   }
 
   /**

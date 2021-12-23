@@ -60,15 +60,12 @@
         Drupal.Leaflet[mapid].start_zoom = Drupal.Leaflet[mapid].lMap.getZoom();
       }
 
-      // Add the Reset View Control if requested.
-      if (settings.settings.resetview && settings.settings.resetview.control && !Drupal.Leaflet[mapid].resetview_control) {
-        Drupal.Leaflet[mapid].resetview_control = L.control.resetView(
-            JSON.parse(settings.settings.resetview.options)
-        ).addTo(Drupal.Leaflet[mapid].lMap);
-        L.Util.setOptions(Drupal.Leaflet[mapid].resetview_control, {
-            latlng: Drupal.Leaflet[mapid].start_center,
-            zoom: Drupal.Leaflet[mapid].start_zoom,
-        });
+      // Add the Map Reset Control if requested.
+      if (settings.settings.reset_map && settings.settings.reset_map.control && !Drupal.Leaflet[mapid].reset_control) {
+        // Create the DIV to hold the control and call the mapResetControl()
+        // constructor passing in this DIV.
+        let mapResetControlDiv = document.createElement('div');
+        Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
       }
 
       // Add the Map Geocoder Control if requested.
@@ -623,6 +620,49 @@
       Drupal.Leaflet[mapid].start_center = start_center;
     }
 
+  };
+
+  Drupal.Leaflet.prototype.map_reset = function(mapid) {
+    Drupal.Leaflet[mapid].lMap.setView(Drupal.Leaflet[mapid].start_center, Drupal.Leaflet[mapid].start_zoom);
+  };
+
+  Drupal.Leaflet.prototype.map_reset_control = function(controlDiv, mapid) {
+    let self = this;
+    let reset_map_control_settings = drupalSettings.leaflet[mapid].map.settings.reset_map;
+    let control = new L.Control({position: reset_map_control_settings.position});
+    control.onAdd = function() {
+      // Set CSS for the control border.
+      let controlUI = L.DomUtil.create('div','resetzoom');
+      controlUI.style.backgroundColor = '#fff';
+      controlUI.style.border = '2px solid #fff';
+      controlUI.style.borderRadius = '3px';
+      controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.margin = '6px';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = Drupal.t('Click to reset the map to its initial state');
+      controlUI.id = 'leaflet-map--' + mapid + '--reset-control';
+      controlUI.disabled = true;
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior.
+      let controlText = document.createElement('div');
+      controlText.style.color = 'rgb(25,25,25)';
+      controlText.style.fontSize = '1.1em';
+      controlText.style.lineHeight = '28px';
+      controlText.style.paddingLeft = '5px';
+      controlText.style.paddingRight = '5px';
+      controlText.innerHTML = Drupal.t('Reset Map');
+      controlUI.appendChild(controlText);
+
+      L.DomEvent
+        .disableClickPropagation(controlUI)
+        .addListener(controlUI, 'click', function() {
+          self.map_reset(mapid);
+        },controlUI);
+      return controlUI;
+    };
+    return control;
   };
 
 })(jQuery, Drupal, drupalSettings);

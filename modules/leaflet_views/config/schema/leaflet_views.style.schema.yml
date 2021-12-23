@@ -187,16 +187,6 @@ views.style.leaflet_map:
         options:
           type: text
           label: 'Options'
-    resetview:
-      type: mapping
-      label: 'Leaflet Reset View'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
     path:
       type: string
       label: 'Path'

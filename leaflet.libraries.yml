@@ -117,17 +117,5 @@ leaflet.locate:
       /libraries/leaflet.locatecontrol/dist/L.Control.Locate.min.css: { minified: true }
   js:
     /libraries/leaflet.locatecontrol/dist/L.Control.Locate.min.js: { minified: true }
-
-leaflet.resetview:
-  remote: https://github.com/drustack/Leaflet.ResetView
-  license:
-    name: Apache-2.0
-    url: https://raw.githubusercontent.com/drustack/Leaflet.ResetView/master/LICENSE
-    gpl-compatible: yes
-  css:
-    component:
-      /libraries/drustack--leaflet.resetview/dist/L.Control.ResetView.min.css: { minified: true }
-  js:
-    /libraries/drustack--leaflet.resetview/dist/L.Control.ResetView.min.js: { minified: true }
   dependencies:
     - leaflet/leaflet
