@@ -24,7 +24,13 @@ project package root (where the main composer.json file is sited):
 ### Download Required JS Libraries
 
 To download the required JS libraries with composer, you will need to
-update your `composer.json` as below:
+update your `composer.json` as below.
+**Note**: the `oomphinc/composer-installers-extender` library is needed to
+include the `npm-asset` libraries and inject them into the "libraries" folder.
+In this "how to" it is assumed your "libraries" folder is located under
+the "web" folder (as usual in the
+[Composer template for Drupal projects](https://github.com/drupal-composer/drupal-project)).
+Adjust it accordingly to your specific setup if not your case.
 
     {
         ...
@@ -40,6 +46,7 @@ update your `composer.json` as below:
         },
         "require": {
             "drupal/leaflet": "3.0.x-dev",
+            "oomphinc/composer-installers-extender": "^2.0"
             "npm-asset/drustack--leaflet.resetview": "~1.0",
             "npm-asset/drustack--leaflet.syncview": "~1.0",
             "npm-asset/geoman-io--leaflet-geoman-free": "~2.11",
