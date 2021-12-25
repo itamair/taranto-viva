@@ -1,4 +1,4 @@
-# Leaflet
+## Leaflet (3.x)
 
 **Leaflet** module provides integration with [Leaflet map scripting
 library](http://leafletjs.com).
@@ -7,87 +7,60 @@ It is based and dependant from:
 
   - the [Leaflet JS library](http://leafletjs.com);
   - the [Geofield](https://www.drupal.org/project/geofield) Module;
+  - other additional Leaflet Js sub-libraries;
 
 ## Installation
 
-### Download the Drupal Leaflet Module
+The **3.x branch** of the Leaflet module requires the modules itself and all its
+dependencies to be required using Composer, according to the Drupal 8 & 9+ best
+practices of
+[Using Composer to manage Drupal site dependencies](https://www.drupal.org/docs/develop/using-composer/using-composer-to-manage-drupal-site-dependencies),
 
-[Using Composer to manage Drupal site
-dependencies](https://www.drupal.org/docs/develop/using-composer/using-composer-to-manage-drupal-site-dependencies),
-which will also download the required [Geofield
-Module](https://www.drupal.org/project/geofield) dependency and GeoPHP
-library. It is done simply running the following command from your
-project package root (where the main composer.json file is sited):
+### Precondition: properly download Required Leaflet JS Libraries first.
 
-    composer require drupal/leaflet
-
-### Download Required JS Libraries
-
-To download the required JS libraries with composer, you will need to
+To download the required Leaflet JS libraries with composer, you need to first
 update your `composer.json` as below.
-**Note**: the `oomphinc/composer-installers-extender` library is needed to
-include the `npm-asset` libraries and inject them into the "libraries" folder.
-In this "how to" it is assumed your "libraries" folder is located under
+
+```
+    {
+        ...
+        "extra": {
+            "installer-paths": {
+                "web/libraries/{$name}": [
+                    "type:drupal-library",
+                ]
+            },
+            "merge-plugin": {
+                "include": [
+                    "web/modules/contrib/leaflet/composer.libraries.json"
+                ]
+            }
+        ...
+        }
+    }
+```
+**Note**: We assume your "libraries" folder is located under
 the "web" folder (as usual in the
 [Composer template for Drupal projects](https://github.com/drupal-composer/drupal-project)).
 Adjust it accordingly to your specific setup if not your case.
 
-    {
-        ...
-        "repositories": {
-            "asset": {
-                "type": "composer",
-                "url": "https://asset-packagist.org"
-            },
-            "drupal": {
-                "type": "composer",
-                "url": "https://packages.drupal.org/8"
-            }
-        },
-        "require": {
-            "drupal/leaflet": "3.0.x-dev",
-            "oomphinc/composer-installers-extender": "^2.0"
-            "npm-asset/drustack--leaflet.resetview": "~1.0",
-            "npm-asset/drustack--leaflet.syncview": "~1.0",
-            "npm-asset/geoman-io--leaflet-geoman-free": "~2.11",
-            "npm-asset/leaflet": "~1.7",
-            "npm-asset/leaflet-fullscreen": "~1.0",
-            "npm-asset/leaflet-gesture-handling": "~1.2",
-            "npm-asset/leaflet.locatecontrol": "~0.76",
-            "npm-asset/leaflet.markercluster": "~1.5"
-        },
-        "extra": {
-            "installer-paths": {
-                "web/libraries/{$name}": [
-                    "type:bower-asset",
-                    "type:drupal-library",
-                    "type:npm-asset"
-                ]
-            },
-            "installer-types": [
-                "bower-asset",
-                "npm-asset"
-            ],
-        ...
-        }
-    }
+Then be sure to require/add in your composer.json both the following packages:
+- composer/installers
+(`composer require composer/installers`)
 
-#### TMP Addition for adding specific drupal-libraries requirements
-directly in the Drupal Leaflet module itself.
+- wikimedia/composer-merge-plugin
+(`composer require wikimedia/composer-merge-plugin`)
 
-Run `composer require wikimedia/composer-merge-plugin`
+### Download/Require the Drupal Leaflet Module
 
-Update the root `composer.json` file. For example:
+It is done simply running the following command from your
+project package root (where the main composer.json file is sited):
 
-```
-    "extra": {
-        "merge-plugin": {
-            "include": [
-                "web/modules/contrib/leaflet/composer.libraries.json"
-            ]
-        }
-    }
-```
+    composer require drupal/leaflet:3.0.x-dev
+
+which will also download the required [Geofield
+Module](https://www.drupal.org/project/geofield) dependency and GeoPHP
+library.
 
 ## Usage
 
