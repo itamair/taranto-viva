@@ -104,7 +104,7 @@
     "brunob/leaflet.fullscreen": "2.2.0",
     "elmarquis/Leaflet.GestureHandling": "1.2.2",
     "domoritz/leaflet-locatecontrol": "0.76.0",
-    "drustack/leaflet.resetview": "1.1.1",
+    "drustack/Leaflet.ResetView": "0.0.9",
     "drustack/Leaflet.SyncView": "1.1.1"
   }
 }
