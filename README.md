@@ -31,6 +31,9 @@ you need to first to update your `composer.json` as below to include the
                     "type:drupal-library",
                 ]
             },
+            "installer-types": [
+               "drupal-library"
+            ],
         ...
         }
     }
