@@ -34,6 +34,11 @@ you need to first to update your `composer.json` as below to include the
             "installer-types": [
                "drupal-library"
             ],
+            "merge-plugin": {
+                "include": [
+                    "web/modules/contrib/leaflet/composer.libraries.json"
+                ]
+            }
         ...
         }
     }
@@ -43,9 +48,12 @@ the "web" folder (as usual in the
 [Composer template for Drupal projects](https://github.com/drupal-composer/drupal-project)).
 Adjust it accordingly to your specific setup if not your case.
 
-Then be sure to require/add in your composer.json the following package:
+Then be sure to require/add in your composer.json both the following packages:
 - composer/installers
 (`composer require composer/installers`)
+-
+- wikimedia/composer-merge-plugin
+    (`composer require wikimedia/composer-merge-plugin`)
 
 ### Download/Require the Drupal Leaflet Module
 
