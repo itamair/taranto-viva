@@ -72,6 +72,23 @@ Adjust it accordingly to your specific setup if not your case.
         }
     }
 
+#### TMP Addition for adding specific drupal-libraries requirements
+directly in the Drupal Leaflet module itself.
+
+Run `composer require wikimedia/composer-merge-plugin`
+
+Update the root `composer.json` file. For example:
+
+```
+    "extra": {
+        "merge-plugin": {
+            "include": [
+                "web/modules/contrib/leaflet/composer.libraries.json"
+            ]
+        }
+    }
+```
+
 ## Usage
 
 Enable the **Leaflet** module to be able to use:
