@@ -4,10 +4,10 @@
       "type": "package",
       "package": {
         "name": "leaflet/leaflet",
-        "version": "1.5.3",
+        "version": "1.5.1",
         "type": "drupal-library",
         "dist": {
-          "url": "https://github.com/Leaflet/Leaflet/archive/refs/tags/v1.5.3.zip",
+          "url": "https://github.com/Leaflet/Leaflet/archive/refs/tags/v1.5.1.zip",
           "type": "zip"
         }
       }
@@ -38,7 +38,7 @@
     }
   },
   "require": {
-    "leaflet/leaflet": "1.5.3",
+    "leaflet/leaflet": "1.5.1",
     "leaflet/leaflet.markercluster": "1.5.3",
     "drustack/leaflet.resetview": "1.1.1"
   }
