@@ -18,8 +18,9 @@ practices of
 
 ### Precondition: properly download Required Leaflet JS Libraries first.
 
-To download the required Leaflet JS libraries with composer, you need to first
-update your `composer.json` as below.
+To download in the "libraries" folder the required Leaflet JS libraries,
+you need to first to update your `composer.json` as below to include the
+"type:drupal-library" in the "installer-paths".
 
 ```
     {
@@ -30,11 +31,6 @@ update your `composer.json` as below.
                     "type:drupal-library",
                 ]
             },
-            "merge-plugin": {
-                "include": [
-                    "web/modules/contrib/leaflet/composer.libraries.json"
-                ]
-            }
         ...
         }
     }
@@ -44,21 +40,18 @@ the "web" folder (as usual in the
 [Composer template for Drupal projects](https://github.com/drupal-composer/drupal-project)).
 Adjust it accordingly to your specific setup if not your case.
 
-Then be sure to require/add in your composer.json both the following packages:
+Then be sure to require/add in your composer.json the following package:
 - composer/installers
 (`composer require composer/installers`)
 
-- wikimedia/composer-merge-plugin
-(`composer require wikimedia/composer-merge-plugin`)
-
 ### Download/Require the Drupal Leaflet Module
 
-It is done simply running the following command from your
-project package root (where the main composer.json file is sited):
+Rung the following command from your project package root
+(where the main composer.json file is sited):
 
     composer require drupal/leaflet:3.0.x-dev
 
-which will also download the required [Geofield
+That will also download the required [Geofield
 Module](https://www.drupal.org/project/geofield) dependency and GeoPHP
 library.
 
