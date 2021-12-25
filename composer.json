@@ -62,7 +62,7 @@
             "type": "package",
             "package": {
                 "name": "leaflet/leaflet.markercluster",
-                "version": "1.5.3",
+                "version": "v1.5.3",
                 "type": "drupal-library",
                 "dist": {
                     "url": "https://github.com/Leaflet/Leaflet.markercluster/archive/refs/tags/v1.5.3.zip",
