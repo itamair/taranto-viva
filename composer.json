@@ -50,7 +50,7 @@
             "type": "package",
             "package": {
                 "name": "leaflet/leaflet",
-                "version": "1.5.1",
+                "version": "v1.5.1",
                 "type": "drupal-library",
                 "dist": {
                     "url": "https://github.com/Leaflet/Leaflet/archive/refs/tags/v1.5.1.zip",
@@ -145,7 +145,7 @@
     },
     "require": {
         "drupal/geofield": "^1.31",
-        "leaflet/leaflet": "1.5.1",
+        "leaflet/leaflet": "v1.5.1",
         "leaflet/leaflet.markercluster": "1.5.3",
         "geoman-io/leaflet-geoman-free": "2.11.4",
         "brunob/leaflet.fullscreen": "2.2.0",
