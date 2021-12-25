@@ -146,6 +146,7 @@
     "require": {
         "drupal/geofield": "^1.31",
         "leaflet/leaflet": "v1.4.0",
+        "leaflet/leaflet.markercluster": "v1.5.3",
         "geoman-io/leaflet-geoman-free": "2.11.4",
         "brunob/leaflet.fullscreen": "2.2.0",
         "elmarquis/Leaflet.GestureHandling": "1.2.2",
