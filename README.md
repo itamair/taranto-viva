@@ -11,20 +11,19 @@ It is based and dependant from:
 [leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster),
 [leaflet-geoman](https://github.com/geoman-io/leaflet-geoman), and more ...);
 
-This 3.0.x branch
-The **3.0.x branch** is experimental as it is requiring all its
-dependencies using Composer, according to the Drupal 8 & 9+ best
-practices (@see
+This **3.0.x branch** is experimental and not formally supported.
+Its focus is to require all its dependencies using Composer, according to the
+Drupal 8 & 9+ best practices (@see
 [Using Composer to manage Drupal site dependencies](https://www.drupal.org/docs/develop/using-composer/using-composer-to-manage-drupal-site-dependencies)).
-
 
 ## Installation
 
-### Precondition: proper setup to download required Leaflet JS Libraries.
+#### Proper setup of composer.json to download required Leaflet JS Libraries.
 
-First you need to update your `composer.json` as below to include the
-"type:drupal-library" in the "installer-paths", and properly download Leaflet
-JS libraries in the "libraries" folder (via the composer-merge-plugin package):
+First you need to update your `composer.json` in your project root as below to
+include the "type:drupal-library" in the "installer-paths", and properly
+download Leaflet JS libraries in the "libraries" folder
+(via the composer-merge-plugin package):
 
 ```
     {
