@@ -35,8 +35,8 @@ leaflet-markercluster:
     /libraries/Leaflet.markercluster/dist/leaflet.markercluster.js: {}
   css:
     component:
-      /libraries/Leaflet.markercluster/dist/MarkerCluster.css: {}
-      /libraries/Leaflet.markercluster/dist/MarkerCluster.Default.css: {}
+      /libraries/leaflet.markercluster/dist/MarkerCluster.css: {}
+      /libraries/leaflet.markercluster/dist/MarkerCluster.Default.css: {}
   dependencies:
     - leaflet/leaflet
 
@@ -50,9 +50,9 @@ leaflet-markercluster-drupal:
 leaflet-geoman:
   css:
     theme:
-      /libraries/geoman-io--leaflet-geoman-free/dist/leaflet-geoman.css: {}
+      /libraries/leaflet-geoman-free/dist/leaflet-geoman.css: {}
   js:
-    /libraries/geoman-io--leaflet-geoman-free/dist/leaflet-geoman.min.js: { minified: true }
+    /libraries/leaflet-geoman-free/dist/leaflet-geoman.min.js: { minified: true }
   dependencies:
     - leaflet/leaflet
 
@@ -74,9 +74,9 @@ leaflet.fullscreen:
     gpl-compatible: true
   css:
     component:
-      /libraries/Leaflet.fullscreen/dist/leaflet.fullscreen.css: {}
+      /libraries/leaflet.fullscreen/dist/leaflet.fullscreen.css: {}
   js:
-    /libraries/Leaflet.fullscreen/dist/Leaflet.fullscreen.min.js: { minified: true }
+    /libraries/leaflet.fullscreen/dist/Leaflet.fullscreen.min.js: { minified: true }
   dependencies:
     - leaflet/leaflet
 

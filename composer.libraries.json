@@ -36,10 +36,10 @@
         }
       }
     },
-    "Leaflet/Leaflet.fullscreen": {
+    "leaflet/leaflet.fullscreen": {
       "type": "package",
       "package": {
-        "name": "Leaflet/Leaflet.fullscreen",
+        "name": "leaflet/leaflet.fullscreen",
         "version": "1.0.2",
         "type": "drupal-library",
         "dist": {
@@ -48,10 +48,10 @@
         }
       }
     },
-    "elmarquis/Leaflet.GestureHandling": {
+    "elmarquis/leaflet.GestureHandling": {
       "type": "package",
       "package": {
-        "name": "elmarquis/Leaflet.GestureHandling",
+        "name": "elmarquis/leaflet.gestureHandling",
         "version": "1.2.2",
         "type": "drupal-library",
         "dist": {
@@ -72,10 +72,10 @@
         }
       }
     },
-    "drustack/Leaflet.ResetView": {
+    "drustack/leaflet.resetView": {
       "type": "package",
       "package": {
-        "name": "drustack/Leaflet.ResetView",
+        "name": "drustack/leaflet.resetView",
         "version": "0.0.9",
         "type": "drupal-library",
         "dist": {
@@ -84,10 +84,10 @@
         }
       }
     },
-    "drustack/Leaflet.SyncView": {
+    "drustack/leaflet.syncView": {
       "type": "package",
       "package": {
-        "name": "drustack/Leaflet.SyncView",
+        "name": "drustack/leaflet.syncView",
         "version": "1.1.1",
         "type": "drupal-library",
         "dist": {
@@ -101,10 +101,10 @@
     "leaflet/leaflet": "1.5.1",
     "leaflet/leaflet.markercluster": "1.4.1",
     "geoman-io/leaflet-geoman-free": "2.11.4",
-    "Leaflet/Leaflet.fullscreen": "1.0.2",
-    "elmarquis/Leaflet.GestureHandling": "1.2.2",
+    "leaflet/leaflet.fullscreen": "1.0.2",
+    "elmarquis/leaflet.gestureHandling": "1.2.2",
     "domoritz/leaflet-locatecontrol": "0.76.0",
-    "drustack/Leaflet.ResetView": "0.0.9",
-    "drustack/Leaflet.SyncView": "1.1.1"
+    "drustack/leaflet.resetView": "0.0.9",
+    "drustack/leaflet.syncView": "1.1.1"
   }
 }
