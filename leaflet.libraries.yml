@@ -92,7 +92,7 @@ leaflet.gesture_handling:
     component:
       /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css: { minified: true}
   js:
-    /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.js: { minified: true }
+    /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js: { minified: true }
   dependencies:
     - leaflet/leaflet
 
