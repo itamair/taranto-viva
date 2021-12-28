@@ -24,18 +24,6 @@
         }
       }
     },
-    "geoman-io/leaflet-geoman-free": {
-      "type": "package",
-      "package": {
-        "name": "geoman-io/leaflet-geoman-free",
-        "version": "2.11.4",
-        "type": "drupal-library",
-        "dist": {
-          "url": "https://github.com/geoman-io/leaflet-geoman/archive/refs/tags/2.11.4.zip",
-          "type": "zip"
-        }
-      }
-    },
     "leaflet/leaflet.fullscreen": {
       "type": "package",
       "package": {
@@ -48,7 +36,7 @@
         }
       }
     },
-    "elmarquis/leaflet.GestureHandling": {
+    "elmarquis/leaflet.gestureHandling": {
       "type": "package",
       "package": {
         "name": "elmarquis/leaflet.gestureHandling",
@@ -100,7 +88,6 @@
   "require": {
     "leaflet/leaflet": "1.5.1",
     "leaflet/leaflet.markercluster": "1.4.1",
-    "geoman-io/leaflet-geoman-free": "2.11.4",
     "leaflet/leaflet.fullscreen": "1.0.2",
     "elmarquis/leaflet.gestureHandling": "1.2.2",
     "domoritz/leaflet-locatecontrol": "0.76.0",

@@ -48,11 +48,12 @@ leaflet-markercluster-drupal:
     - leaflet/leaflet-drupal
 
 leaflet-geoman:
+  version: 2.x
   css:
     theme:
-      /libraries/leaflet-geoman-free/dist/leaflet-geoman.css: {}
+      '//unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css': {type: external, minified: true}
   js:
-    /libraries/leaflet-geoman-free/dist/leaflet-geoman.min.js: { minified: true }
+    '//unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js': {type: external, minified: true}
   dependencies:
     - leaflet/leaflet
 
@@ -91,7 +92,7 @@ leaflet.gesture_handling:
     component:
       /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css: { minified: true}
   js:
-    /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.js: { minified: true }
+    /libraries/leaflet-gesture-handling/dist/leaflet-gesture-handling.js: { minified: true }
   dependencies:
     - leaflet/leaflet
 
