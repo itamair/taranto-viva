@@ -74,9 +74,9 @@ leaflet.fullscreen:
     gpl-compatible: true
   css:
     component:
-      /libraries/leaflet-fullscreen/dist/Leaflet.fullscreen.min.css: { minified: true }
+      /libraries/Leaflet.fullscreen/dist/leaflet.fullscreen.css: {}
   js:
-    /libraries/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js: { minified: true }
+    /libraries/Leaflet.fullscreen/dist/Leaflet.fullscreen.min.js: { minified: true }
   dependencies:
     - leaflet/leaflet
 
