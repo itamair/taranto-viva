@@ -16,10 +16,10 @@
       "type": "package",
       "package": {
         "name": "leaflet/leaflet.markercluster",
-        "version": "1.5.3",
+        "version": "1.4.1",
         "type": "drupal-library",
         "dist": {
-          "url": "https://github.com/Leaflet/Leaflet.markercluster/archive/refs/tags/v1.5.3.zip",
+          "url": "https://github.com/Leaflet/Leaflet.markercluster/archive/v1.4.1.zip",
           "type": "zip"
         }
       }
@@ -99,7 +99,7 @@
   },
   "require": {
     "leaflet/leaflet": "1.5.1",
-    "leaflet/leaflet.markercluster": "1.5.3",
+    "leaflet/leaflet.markercluster": "1.4.1",
     "geoman-io/leaflet-geoman-free": "2.11.4",
     "Leaflet/Leaflet.fullscreen": "1.0.2",
     "elmarquis/Leaflet.GestureHandling": "1.2.2",
