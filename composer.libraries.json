@@ -40,7 +40,7 @@
       "type": "package",
       "package": {
         "name": "Leaflet/Leaflet.fullscreen",
-        "version": "v1.0.2",
+        "version": "1.0.2",
         "type": "drupal-library",
         "dist": {
           "url": "https://github.com/Leaflet/Leaflet.fullscreen/archive/refs/tags/v1.0.2.zip",
@@ -101,7 +101,7 @@
     "leaflet/leaflet": "1.5.1",
     "leaflet/leaflet.markercluster": "1.5.3",
     "geoman-io/leaflet-geoman-free": "2.11.4",
-    "Leaflet/Leaflet.fullscreen": "2.2.0",
+    "Leaflet/Leaflet.fullscreen": "1.0.2",
     "elmarquis/Leaflet.GestureHandling": "1.2.2",
     "domoritz/leaflet-locatecontrol": "0.76.0",
     "drustack/Leaflet.ResetView": "0.0.9",
