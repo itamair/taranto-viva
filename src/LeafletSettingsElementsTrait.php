@@ -734,6 +734,12 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['scrollWheelZoom'] = !empty($options['disable_wheel']) ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
     $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
     $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
+
+    // For "fullscreen" element/option, eventually fallback to previous
+    // "fullscreen_control" settings, if existing.
+    if (!$options["fullscreen"]["control"] && !empty($options["fullscreen_control"])) {
+      $options["fullscreen"]["control"] = TRUE;
+    }
     $map['settings']['fullscreen'] = isset($options['fullscreen']) ? $options['fullscreen'] : NULL;
     $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
     $map['settings']['reset_map'] = isset($options['reset_map']) ? $options['reset_map'] : $default_settings['reset_map'];
@@ -753,9 +759,8 @@ trait LeafletSettingsElementsTrait {
     $default_settings = $this::getDefaultSettings();
 
     $element['leaflet_markercluster'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => $this->t('Marker Clustering'),
-      '#open' => TRUE,
     ];
 
     $element['leaflet_markercluster']['control'] = [
@@ -805,9 +810,8 @@ trait LeafletSettingsElementsTrait {
     $default_settings = $this::getDefaultSettings();
 
     $element['fullscreen'] = [
-      '#type' => 'details',
+      '#type' => 'fieldset',
       '#title' => $this->t('Fullscreen'),
-      '#open' => TRUE,
     ];
 
     $element['fullscreen']['control'] = [
@@ -818,7 +822,9 @@ trait LeafletSettingsElementsTrait {
           'attributes' => ['target' => 'blank'],
         ])),
       ]),
-      '#default_value' => $settings['fullscreen']['control'] ?? $default_settings['fullscreen']['control'],
+      // For "fullscreen" element/option, eventually fallback to previous
+      // "fullscreen_control" settings, if existing.
+      '#default_value' => $settings['fullscreen']['control'] ?: $settings["fullscreen_control"] ?? $default_settings['fullscreen']['control'],
       '#return_value' => 1,
     ];
     $element['fullscreen']['options'] = [
