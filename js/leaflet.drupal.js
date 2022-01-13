@@ -151,12 +151,6 @@
       self.lMap.fitWorld();
     }
 
-    // Add attribution.
-    if (self.settings.attributionControl && self.map_definition.attribution) {
-      self.lMap.attributionControl.setPrefix(self.map_definition.attribution.prefix);
-      self.attributionControl.addAttribution(self.map_definition.attribution.text);
-    }
-
     // Add Fullscreen Control, if requested.
     if (self.settings.fullscreen && self.settings.fullscreen.control) {
       L.control.fullscreen(
