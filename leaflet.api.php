@@ -174,7 +174,7 @@ function hook_leaflet_default_widget_alter(array &$map_settings, LeafletDefaultW
  *   The Content Entity base of the formatter.
  */
 function hook_leaflet_formatter_feature_alter(array $feature, GeofieldItem $item, ContentEntityBase $entity) {
-  // Make custom alterations to $map_settings, eventually using the $items
+  // Make custom alterations to $feature, eventually using the $items
   // context.
 }
 
