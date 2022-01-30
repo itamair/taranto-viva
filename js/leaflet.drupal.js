@@ -83,6 +83,15 @@
         if (content.length) {
           let url = content.data('leaflet-ajax-popup');
           Drupal.ajax({url: url}).execute().done(function () {
+
+            // Copy the html we received via AJAX to the popup, so we won't
+            // have to make another AJAX call (#see 3258780).
+            e.popup.setContent(element.innerHTML);
+
+            //Call update() so Leaflet refreshes the map, panning it if
+            // necessary to bring the full popup into view (#see 3258780).
+            e.popup.update();
+
             // Attach drupal behaviors on new content.
             Drupal.attachBehaviors(element, drupalSettings);
           });
