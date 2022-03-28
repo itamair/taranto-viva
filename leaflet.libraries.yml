@@ -26,6 +26,7 @@ leaflet-drupal:
     - core/jquery.once
     - core/drupal
     - leaflet/leaflet
+    - leaflet/leaflet-geoman
 
 leaflet-geoman:
   version: 2.x
@@ -44,7 +45,7 @@ leaflet-widget:
   dependencies:
     - core/jquery
     - leaflet/general
-    - leaflet/leaflet-geoman
+    - leaflet/leaflet-drupal
 
 # Control Fullscreen
 leaflet.fullscreen:
