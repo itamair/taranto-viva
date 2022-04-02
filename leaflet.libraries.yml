@@ -43,6 +43,7 @@ leaflet-widget:
     js/leaflet.widget.js: {}
   dependencies:
     - core/jquery
+    - leaflet/general
     - leaflet/leaflet-drupal
     - leaflet/leaflet-geoman
 
