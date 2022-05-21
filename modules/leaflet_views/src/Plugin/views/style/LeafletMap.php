@@ -718,7 +718,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
             // For proper processing make sure the geofield_value is created as
             // an array, also if single value.
-            $geofield_value = (array) $this->getFieldValue($result->index, $geofield_name);
+            $geofield_value = $this->view->field[$geofield_name] ? (array) $this->getFieldValue($id, $geofield_name) : [];
 
             // Allow other modules to add/alter the $geofield_value
             // and the $map.
@@ -853,7 +853,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 $tokens = [];
                 foreach ($this->rendered_fields[$result->index] as $field_name => $field_value) {
                   $tokens[$field_name] = $field_value;
-                  $tokens["{{ $field_name }}"] = $field_value;
                 }
 
                 $icon_type = isset($this->options['icon']['iconType']) ? $this->options['icon']['iconType'] : 'marker';
