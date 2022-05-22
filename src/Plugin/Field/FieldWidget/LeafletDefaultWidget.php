@@ -318,7 +318,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
 
     $form['toolbar']['drawCircle'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Adds button to draw circle. (unsupported by GeoJSON'),
+      '#title' => $this->t('Adds button to draw circle. (unsupported by GeoJSON)'),
       '#default_value' => $toolbar_settings['drawCircle'] ?? $default_settings['toolbar']['drawCircle'],
       '#disabled' => TRUE,
     ];
