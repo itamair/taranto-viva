@@ -14,8 +14,8 @@
 
       // dealing with a layer group
       if (feature.group) {
-        var lGroup = this.create_feature_group(feature);
-        for (var groupKey in feature.features) {
+        let lGroup = new L.MarkerClusterGroup(leaflet_markercluster_options);
+        for (let groupKey in feature.features) {
           let groupFeature = feature.features[groupKey];
           lFeature = this.create_feature(groupFeature);
           if (lFeature !== undefined) {
