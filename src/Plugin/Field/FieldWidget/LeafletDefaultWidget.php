@@ -187,6 +187,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'drawRectangle' => TRUE,
         'drawPolygon' => TRUE,
         'drawCircle' => FALSE,
+        'drawText' => FALSE,
         'editMode' => TRUE,
         'dragMode' => TRUE,
         'cutPolygon' => FALSE,
@@ -320,6 +321,13 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       '#type' => 'checkbox',
       '#title' => $this->t('Adds button to draw circle. (unsupported by GeoJSON)'),
       '#default_value' => $toolbar_settings['drawCircle'] ?? $default_settings['toolbar']['drawCircle'],
+      '#disabled' => TRUE,
+    ];
+
+    $form['toolbar']['drawText'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Adds button to draw text. (unsupported by GeoJSON)'),
+      '#default_value' => $toolbar_settings['drawText'] ?? $default_settings['toolbar']['drawText'],
       '#disabled' => TRUE,
     ];
 
