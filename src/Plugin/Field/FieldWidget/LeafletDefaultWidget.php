@@ -167,7 +167,8 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
    */
   public static function defaultSettings() {
     $base_layers = self::getLeafletMaps();
-    return [
+    // Inherit basic defaultSettings from GeofieldDefaultWidget:
+    return array_merge(parent::defaultSettings(), [
       'map' => [
         'leaflet_map' => array_shift($base_layers),
         'height' => 400,
@@ -198,13 +199,15 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       'path' => self::getDefaultSettings()['path'],
       'fullscreen' => self::getDefaultSettings()['fullscreen'],
       'geocoder' => self::getDefaultSettings()['geocoder'],
-    ];
+    ]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
+    // Inherit basic settings form from GeofieldDefaultWidget:
+    $form = parent::settingsForm($form, $form_state);
     $map_settings = $this->getSetting('map');
     $default_settings = self::defaultSettings();
     $form['map'] = [
