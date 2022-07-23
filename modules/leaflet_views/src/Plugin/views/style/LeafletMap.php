@@ -2,6 +2,7 @@
 
 namespace Drupal\leaflet_views\Plugin\views\style;
 
+use Drupal\search_api\Plugin\views\ResultRow;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\Render\BubbleableMetadata;
@@ -771,7 +772,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               }
               elseif ($result instanceof ResultRow) {
                 $id = $result->_item->getId();
-                $search_api_id_parts =  explode(':', $result->_item->getId());
+                $search_api_id_parts = explode(':', $result->_item->getId());
                 $id_parts = explode('/', $search_api_id_parts[1]);
                 $entity_id = $id_parts[1] ?? NULL;
                 $entity_type = $id_parts[0] ?? NULL;
@@ -799,7 +800,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                     // @see: https://www.drupal.org/project/leaflet/issues/3048089
                     $map['geofield_cardinality'] = -1;
                   }
-                } else {
+                }
+                else {
                   $map['geofield_cardinality'] = -1;
                 }
 
