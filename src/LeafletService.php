@@ -398,7 +398,7 @@ class LeafletService {
    */
   public function fileExists($fileUrl) {
     $file_headers = @get_headers($fileUrl);
-    if (isset($file_headers)
+    if (!empty($file_headers[0])
       && (stripos($file_headers[0], "404 Not Found") == 0)
       && (stripos($file_headers[0], "403 Forbidden") == 0)
       && (stripos($file_headers[0], "302 Found") == 0 && isset($file_headers[7]) && stripos($file_headers[7], "404 Not Found") == 0)) {
