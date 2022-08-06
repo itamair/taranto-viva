@@ -318,26 +318,10 @@ class LeafletService {
   }
 
   /**
-   * Generate an Absolute Url from a string Path.
-   *
-   * @param string $path
-   *   The path string to generate.
-   *
-   * @return string
-   *   The absolute $path
-   */
-  public function pathToAbsolute($path) {
-    if (!UrlHelper::isExternal($path)) {
-      $path = Url::fromUri('base:', ['absolute' => TRUE])->toString() . $path;
-    }
-    return $path;
-  }
-
-  /**
    * Set Feature Icon Size & Shadow Size If Empty or Invalid.
    *
    * @param array $feature
-   *   The feature array.
+   *   The feature.
    */
   public function setFeatureIconSizesIfEmptyOrInvalid(array &$feature) {
     if (isset($feature["icon"]["iconSize"])

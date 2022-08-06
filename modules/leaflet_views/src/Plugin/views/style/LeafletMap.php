@@ -956,25 +956,18 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                         break;
 
                       default:
+                        // Apply Token Replacements to iconUrl & shadowUrl.
                         if (!empty($this->options['icon']['iconUrl'])) {
                           $feature['icon']['iconUrl'] = str_replace([
                             "\n",
                             "\r",
                           ], "", $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens));
-                          // Generate correct Absolute iconUrl & shadowUrl,
-                          // if not external.
-                          if (!empty($feature['icon']['iconUrl'])) {
-                            $feature['icon']['iconUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['iconUrl']);
-                          }
                         }
                         if (!empty($this->options['icon']['shadowUrl'])) {
                           $feature['icon']['shadowUrl'] = str_replace([
                             "\n",
                             "\r",
                           ], "", $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens));
-                          if (!empty($feature['icon']['shadowUrl'])) {
-                            $feature['icon']['shadowUrl'] = $this->leafletService->pathToAbsolute($feature['icon']['shadowUrl']);
-                          }
                         }
 
                         // Set Feature IconSize and ShadowSize to the IconUrl
