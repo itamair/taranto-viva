@@ -90,6 +90,7 @@ leaflet.geocoder:
   version: 1.x
   css:
     component:
+      /core/modules/system/css/components/autocomplete-loading.module.css: { weight: -10 }
       css/leaflet_geocoder.css: {}
   js:
     js/leaflet.geocoder.js: {}
