@@ -962,12 +962,20 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                             "\n",
                             "\r",
                           ], "", $this->viewsTokenReplace($this->options['icon']['iconUrl'], $tokens));
+                          // Generate correct Absolute iconUrl & shadowUrl,
+                          // if not external.
+                          if (!empty($feature['icon']['iconUrl'])) {
+                            $feature['icon']['iconUrl'] = $this->leafletService->generateAbsoluteString($feature['icon']['iconUrl']);
+                          }
                         }
                         if (!empty($this->options['icon']['shadowUrl'])) {
                           $feature['icon']['shadowUrl'] = str_replace([
                             "\n",
                             "\r",
                           ], "", $this->viewsTokenReplace($this->options['icon']['shadowUrl'], $tokens));
+                          if (!empty($feature['icon']['shadowUrl'])) {
+                            $feature['icon']['shadowUrl'] = $this->leafletService->generateAbsoluteString($feature['icon']['shadowUrl']);
+                          }
                         }
 
                         // Set Feature IconSize and ShadowSize to the IconUrl
