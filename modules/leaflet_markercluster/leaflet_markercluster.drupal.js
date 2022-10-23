@@ -3,7 +3,7 @@
  */
 
 (function($, Drupal) {
-  Drupal.Leaflet.prototype.add_markercluster_features = function (features, initial) {
+  Drupal.Leaflet.prototype.add_features = function (features, initial) {
     const leaflet_markercluster_options = this.map_settings.leaflet_markercluster.options && this.map_settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.map_settings.leaflet_markercluster.options) : {};
     const leaflet_markercluster_include_path = this.map_settings.leaflet_markercluster.include_path;
 

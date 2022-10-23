@@ -175,25 +175,28 @@
     // Only add a layer switcher if it is enabled in settings, and we have
     // at least two base layers or at least one overlay.
     if (this.layer_control == null && ((this.map_settings.layerControl && count_layers(this.base_layers) > 1 || count_layers(this.overlays) > 0))) {
+      const base_layers = count_layers(this.base_layers) > 1 ? this.base_layers : [];
       // Instantiate layer control, using settings.layerControl as settings.
-      this.layer_control = new L.Control.Layers(this.base_layers, [], this.map_settings.layerControlOptions);
+      this.layer_control = new L.Control.Layers(base_layers, [], this.map_settings.layerControlOptions);
       this.lMap.addControl(this.layer_control);
     }
   };
 
   Drupal.Leaflet.prototype.add_base_layer = function(key, definition, i) {
-    let map_layer = this.create_layer(definition, key);
-    this.base_layers[key] = map_layer;
+    let base_layer = this.create_layer(definition, key);
+    this.base_layers[key] = base_layer;
+
     // Only the first base layer needs to be added to the map - all the others are accessed via the layer switcher.
     if (i === 0) {
-      this.lMap.addLayer(map_layer);
+      this.lMap.addLayer(base_layer);
     }
+
+    // Initialise the Layer Control, if not yet.
     if (this.layer_control == null) {
       this.initialise_layer_control();
-    }
-    else {
-      // If we already have a layer control, add the new base layer to it.
-      this.layer_control.addBaseLayer(map_layer, key);
+    } else {
+      // Add the new base layer to layer_control.
+      this.layer_control.addBaseLayer(base_layer, key);
     }
   };
 
@@ -218,7 +221,7 @@
     }
 
     // Add the Overlay to the Layer Control only if there is a Label.
-    if (label) {
+    if (label && this.layer_control) {
       // If we already have a layer control, add the new overlay to it.
       this.layer_control.addOverlay(layer, label);
     }
@@ -226,10 +229,6 @@
   };
 
   Drupal.Leaflet.prototype.add_features = function(features, initial) {
-    if (this.map_settings['leaflet_markercluster'].control) {
-      this.add_markercluster_features(features, initial)
-    }
-    else {
     for (let i = 0; i < features.length; i++) {
       let feature = features[i];
       let lFeature;
@@ -277,7 +276,6 @@
       // Allow others to do something with the feature that was just added to the map.
       $(document).trigger('leaflet.feature', [lFeature, feature, this]);
     }
-  }
 
     // Allow plugins to do things after features have been added.
     $(document).trigger('leaflet.features', [initial || false, this])
