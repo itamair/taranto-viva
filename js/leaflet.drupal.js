@@ -294,22 +294,22 @@
         break;
 
       case 'linestring':
-        lFeature = this.create_linestring(feature);
+        lFeature = this.create_linestring(feature, this.map_settings['leaflet_markercluster']['include_path']);
         this.bounds.push(lFeature.getBounds().getSouthWest(), lFeature.getBounds().getNorthEast());
         break;
 
       case 'polygon':
-        lFeature = this.create_polygon(feature);
+        lFeature = this.create_polygon(feature, this.map_settings['leaflet_markercluster']['include_path']);
         this.bounds.push(lFeature.getBounds().getSouthWest(), lFeature.getBounds().getNorthEast());
         break;
 
       case 'multipolygon':
-        lFeature = this.create_multipolygon(feature);
+        lFeature = this.create_multipolygon(feature, this.map_settings['leaflet_markercluster']['include_path']);
         this.bounds.push(lFeature.getBounds().getSouthWest(), lFeature.getBounds().getNorthEast());
         break;
 
       case 'multipolyline':
-        lFeature = this.create_multipoly(feature);
+        lFeature = this.create_multipoly(feature, this.map_settings['leaflet_markercluster']['include_path']);
         this.bounds.push(lFeature.getBounds().getSouthWest(), lFeature.getBounds().getNorthEast());
         break;
 
@@ -485,13 +485,13 @@
     return lMarker;
   };
 
-  Drupal.Leaflet.prototype.create_linestring = function(polyline) {
+  Drupal.Leaflet.prototype.create_linestring = function(polyline, clusterable = false) {
     let latlngs = [];
     for (let i = 0; i < polyline.points.length; i++) {
       let latlng = new L.LatLng(polyline.points[i].lat, polyline.points[i].lon);
       latlngs.push(latlng);
     }
-    return new L.PolylineClusterable(latlngs);
+    return clusterable ? new L.PolylineClusterable(latlngs) : new L.Polyline(latlngs);
   };
 
   Drupal.Leaflet.prototype.create_collection = function(collection) {
@@ -502,16 +502,16 @@
     return layers;
   };
 
-  Drupal.Leaflet.prototype.create_polygon = function(polygon) {
+  Drupal.Leaflet.prototype.create_polygon = function(polygon, clusterable = false) {
     let latlngs = [];
     for (let i = 0; i < polygon.points.length; i++) {
       let latlng = new L.LatLng(polygon.points[i].lat, polygon.points[i].lon);
       latlngs.push(latlng);
     }
-    return new L.PolygonClusterable(latlngs);
+    return clusterable ? new L.PolygonClusterable(latlngs) : new L.Polygon(latlngs);
   };
 
-  Drupal.Leaflet.prototype.create_multipolygon = function(multipolygon) {
+  Drupal.Leaflet.prototype.create_multipolygon = function(multipolygon, clusterable = false) {
     let polygons = [];
     for (let x = 0; x < multipolygon.component.length; x++) {
       let latlngs = [];
@@ -522,10 +522,10 @@
       }
       polygons.push(latlngs);
     }
-    return new L.PolygonClusterable(polygons);
+    return clusterable ? new L.PolygonClusterable(polygons) : new L.Polygon(polygons);
   };
 
-  Drupal.Leaflet.prototype.create_multipoly = function(multipoly) {
+  Drupal.Leaflet.prototype.create_multipoly = function(multipoly, clusterable = false) {
     let polygons = [];
     for (let x = 0; x < multipoly.component.length; x++) {
       let latlngs = [];
@@ -537,10 +537,10 @@
       polygons.push(latlngs);
     }
     if (multipoly.multipolyline) {
-      return new L.PolylineClusterable(polygons);
+      return clusterable ? new L.PolylineClusterable(polygons) : new L.Polyline(polygons);
     }
     else {
-      return new L.PolygonClusterable(polygons);
+      return clusterable ? new L.PolygonClusterable(polygons) : new L.Polygon(polygons);
     }
   };
 
