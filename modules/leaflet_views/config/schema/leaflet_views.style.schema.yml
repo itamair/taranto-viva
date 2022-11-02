@@ -18,10 +18,27 @@ views.style.leaflet_map:
       label: 'Submit label for entity source'
     name_field:
       type: string
-      label: 'Name field'
-    description_field:
-      type: string
-      label: 'Description field'
+      label: 'Simple Tooltip'
+    leaflet_tooltip:
+      type: mapping
+      label: 'Tooltip Source'
+      mapping:
+        value:
+          type: string
+          label: 'Value'
+        options:
+          type: text
+          label: 'Tooltip Options'
+    leaflet_popup:
+      type: mapping
+      label: 'Popup Source'
+      mapping:
+        value:
+          type: string
+          label: 'Value'
+        options:
+          type: text
+          label: 'Popup Options'
     view_mode:
       type: string
       label: 'View mode'

@@ -32,7 +32,8 @@
 
             // Set the Popup to the single groupFeature.
             if (groupFeature.popup) {
-              lFeature.bindPopup(groupFeature.popup);
+              const popup_options = groupFeature.popup.options ? JSON.parse(groupFeature.popup.options) : {};
+              lFeature.bindPopup(groupFeature.popup.value, popup_options);
             }
 
             // If the Leaflet feature is extending the Path class (Polygon,
@@ -77,7 +78,8 @@
 
           // Set the Popup to the Feature.
           if (feature.popup) {
-            lFeature.bindPopup(feature.popup);
+            const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
+            lFeature.bindPopup(feature.popup.value, popup_options);
           }
           // Allow others to do something with the feature that was just added to the map
           $(document).trigger('leaflet.feature', [lFeature, feature, this]);

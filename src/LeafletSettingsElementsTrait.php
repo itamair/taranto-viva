@@ -60,6 +60,15 @@ trait LeafletSettingsElementsTrait {
       ],
       'popup' => FALSE,
       'popup_content' => '',
+      'leaflet_popup' => [
+        'value' => '',
+        'options' => '{"maxWidth":"300","minWidth":"50", "autoPan": true}',
+        'view_mode' => 'full',
+      ],
+      'leaflet_tooltip' => [
+        'value' => '',
+        'options' => '{"permanent":false,"direction":"center"}',
+      ],
       'map_position' => [
         'force' => FALSE,
         'center' => [
@@ -743,6 +752,120 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
     $map['settings']['reset_map'] = isset($options['reset_map']) ? $options['reset_map'] : $default_settings['reset_map'];
     $map['settings']['geocoder'] = isset($options['geocoder']) ? $options['geocoder'] : $default_settings['geocoder'];
+  }
+
+  /**
+   * Set Tooltip Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   * @param array $view_fields
+   *   The view fields.
+   */
+  protected function setTooltipElement(array &$element, array $settings, array $view_fields) {
+    $default_settings = $this::getDefaultSettings();
+    $element['leaflet_tooltip'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Leaflet Tooltip'),
+    ];
+
+    $element['leaflet_tooltip']['value'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Tooltip Source'),
+      '#options' => array_merge(['' => ' - None - '], $view_fields),
+      '#default_value' => $settings['leaflet_tooltip']['value'] ?? $default_settings['leaflet_tooltip']['value'],
+      '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
+    ];
+
+    if (isset($this->fieldDefinition)) {
+      $leaflet_tooltip_visibility = [
+        'invisible' => [
+          'select[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_tooltip][value]"]' => ['value' => ''],
+        ],
+      ];
+    }
+    else {
+      $leaflet_tooltip_visibility = [
+        'invisible' => [
+          'select[name="style_options[leaflet_tooltip][value]' => ['value' => ''],
+        ],
+      ];
+    }
+    $element['leaflet_tooltip']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 2,
+      '#title' => $this->t('Tooltip Options'),
+      '#description' => $this->t('An object literal of additional options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br><u>Note: if omitted, the "offset" option will be set on top of the feature icon size.</u>'),
+      '#default_value' => $settings['leaflet_tooltip']['options'] ?? $default_settings['leaflet_tooltip']['options'],
+      '#placeholder' => $default_settings['leaflet_tooltip']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+      '#states' => $leaflet_tooltip_visibility,
+    ];
+  }
+
+  /**
+   * Set Popup Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   * @param array $view_fields
+   *   The view fields.
+   * @param string $entity_type
+   *   The entity type.
+   */
+  protected function setPopupElement(array &$element, array $settings, array $view_fields, string $entity_type) {
+    $default_settings = $this::getDefaultSettings();
+    $element['leaflet_popup'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Leaflet Popup'),
+    ];
+
+    $popup_options = array_merge(['' => ' - None - '], $view_fields);
+    // Add an option to render the entire entity using a view mode.
+    if ($this->entityType) {
+      $popup_options += [
+        '#rendered_entity' => $this->t('< @entity entity >', ['@entity' => $entity_type]),
+        '#rendered_entity_ajax' => $this->t('< @entity entity via ajax >', ['@entity' => $entity_type]),
+        '#rendered_view_fields' => $this->t('# Rendered View Fields (with field label, format, classes, etc)'),
+      ];
+    }
+
+    $element['leaflet_popup']['value'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Popup Source'),
+      '#options' => $popup_options,
+      '#default_value' => $settings['leaflet_popup']['value'] ?? $default_settings['leaflet_popup']['value'],
+      '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
+    ];
+
+    if (isset($this->fieldDefinition)) {
+      $leaflet_popup_visibility = [
+        'invisible' => [
+          'select[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_popup][value]"]' => ['value' => ''],
+        ],
+      ];
+    }
+    else {
+      $leaflet_popup_visibility = [
+        'invisible' => [
+          'select[name="style_options[leaflet_popup][value]' => ['value' => ''],
+        ],
+      ];
+    }
+    $element['leaflet_popup']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 2,
+      '#title' => $this->t('Popup Options'),
+      '#description' => $this->t('An object literal of additional options, that comply with the Leaflet Popup object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br><u>Note: if omitted, the "offset" option will be set on top of the feature icon size.</u>'),
+      '#default_value' => $settings['leaflet_popup']['options'] ?? $default_settings['leaflet_popup']['options'],
+      '#placeholder' => $default_settings['leaflet_popup']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+      '#states' => $leaflet_popup_visibility,
+    ];
   }
 
   /**

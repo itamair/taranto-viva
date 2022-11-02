@@ -244,8 +244,9 @@
               groupFeature.path = groupFeature.path ? (groupFeature.path instanceof Object ? groupFeature.path : JSON.parse(groupFeature.path)) : {};
               lFeature.setStyle(groupFeature.path);
             }
-            if (groupFeature.popup) {
-              lFeature.bindPopup(groupFeature.popup);
+            if (groupFeature.popup.value) {
+              const popup_options = groupFeature.popup.options ? JSON.parse(groupFeature.popup.options) : {};
+              lFeature.bindPopup(groupFeature.popup.value, popup_options);
             }
             lGroup.addLayer(lFeature);
           }
@@ -267,8 +268,9 @@
           }
           this.lMap.addLayer(lFeature);
 
-          if (feature.popup) {
-            lFeature.bindPopup(feature.popup);
+          if (feature.popup.value) {
+            const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
+            lFeature.bindPopup(feature.popup.value, popup_options);
           }
         }
       }
@@ -327,18 +329,14 @@
         return; // Crash and burn.
     }
 
-    let options = {};
-    if (feature.options) {
-      for (let option in feature.options) {
-        if (feature.options.hasOwnProperty(option)) {
-          options[option] = feature.options[option];
-        }
-      }
-      lFeature.setStyle(options);
+    // Set the Leaflet Tooltip, with its options (if the stripped value is not null).
+    if (feature.tooltip && $(feature.tooltip.value).text().trim()) {
+      const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
+      tooltip_options.offset = tooltip_options.offset ?? [0, feature.icon.iconSize ? -feature.icon.iconSize.y/1.5: 0];
+      lFeature.bindTooltip(feature.tooltip.value, tooltip_options).openTooltip()
     }
 
     if (feature['entity_id']) {
-
       // Generate the markers object index based on entity id (and geofield
       // cardinality), and add the marker to the markers object.
       let entity_id = feature.entity_id;
@@ -444,7 +442,7 @@
   Drupal.Leaflet.prototype.create_point = function(marker) {
     let latLng = new L.LatLng(marker.lat, marker.lon);
     let lMarker;
-    let marker_title = marker.label ? marker.label.replace(/<[^>]*>/g, '').trim() : '';
+    let marker_title = marker.title ? marker.title.replace(/<[^>]*>/g, '').trim() : '';
     let options = {
       title: marker_title,
       className: marker.className || '',
@@ -558,11 +556,12 @@
       if (feature.properties.leaflet_id) {
         layer._leaflet_id = feature.properties.leaflet_id;
       }
-      if (feature.properties.popup) {
-        layer.bindPopup(feature.properties.popup);
+      if (feature.properties.popup.value) {
+        const popup_options = feature.properties.popup.options ? JSON.parse(feature.properties.popup.options) : {};
+        layer.bindPopup(feature.properties.popup.value, popup_options);
       }
       for (e in events) {
-        layerParam = {};
+        let layerParam = {};
         layerParam[e] = eval(events[e]);
         layer.on(layerParam);
       }

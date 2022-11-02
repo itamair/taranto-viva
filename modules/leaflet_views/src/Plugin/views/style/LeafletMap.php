@@ -514,7 +514,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Build the Parent Form.
     parent::buildOptionsForm($form, $form_state);
 
-    $form['#tree'] = TRUE;
     $form['#attached'] = [
       'library' => [
         'leaflet/general',
@@ -685,58 +684,48 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       ];
     }
 
-    // Name field.
+    // Set Leaflet Tooltip Element.
+    $this->setTooltipElement($form, $this->options, $this->viewFields);
+
+    // Set Simple Tooltip.
     $form['name_field'] = [
       '#type' => 'select',
-      '#title' => $this->t('Title Field'),
-      '#description' => $this->t('Choose the field which will appear as a title on tooltips.'),
+      '#title' => $this->t('Simple Tooltip'),
+      '#description' => $this->t('Choose the field which will appear as as Simple Tooltip on mouse over each Leaflet feature.'),
       '#options' => array_merge(['' => ' - None - '], $this->viewFields),
       '#default_value' => $this->options['name_field'],
+      '#states' => [
+        'visible' => [
+          'select[name="style_options[leaflet_tooltip][value]' => ['value' => ''],
+        ],
+      ],
     ];
 
-    $desc_options = array_merge(['' => ' - None - '], $this->viewFields);
-    // Add an option to render the entire entity using a view mode.
-    if ($this->entityType) {
-      $desc_options += [
-        '#rendered_entity' => $this->t('< @entity entity >', ['@entity' => $this->entityType]),
-        '#rendered_entity_ajax' => $this->t('< @entity entity via ajax >', ['@entity' => $this->entityType]),
-        '#rendered_view_fields' => $this->t('# Rendered View Fields (with field label, format, classes, etc)'),
-      ];
+    // Set Leaflet Popup Element.
+    $this->setPopupElement($form, $this->options, $this->viewFields, $this->entityType);
+
+    // Get the human-readable labels for the entity view modes.
+    $view_mode_options = [];
+    foreach ($this->entityDisplay->getViewModes($this->entityType) as $key => $view_mode) {
+      $view_mode_options[$key] = $view_mode['label'];
     }
-
-    $form['description_field'] = [
+    // The View Mode drop-down is visible conditional on "#rendered_entity"
+    // being selected in the Description drop-down above.
+    $form['leaflet_popup']['view_mode'] = [
       '#type' => 'select',
-      '#title' => $this->t('Leaflet Popup Source'),
-      '#description' => $this->t('Choose the field or rendering method which will appear into Leaflet Popup.'),
-      '#required' => FALSE,
-      '#options' => $desc_options,
-      '#default_value' => $this->options['description_field'],
-    ];
-
-    if ($this->entityType) {
-      // Get the human-readable labels for the entity view modes.
-      $view_mode_options = [];
-      foreach ($this->entityDisplay->getViewModes($this->entityType) as $key => $view_mode) {
-        $view_mode_options[$key] = $view_mode['label'];
-      }
-      // The View Mode drop-down is visible conditional on "#rendered_entity"
-      // being selected in the Description drop-down above.
-      $form['view_mode'] = [
-        '#type' => 'select',
-        '#title' => $this->t('Leaflet Popup Source View mode'),
-        '#description' => $this->t('View mode the entity will be displayed in the Leaflet Popup.'),
-        '#options' => $view_mode_options,
-        '#default_value' => $this->options['view_mode'],
-        '#states' => [
-          'visible' => [
-            ':input[name="style_options[description_field]"]' => [
-              ['value' => '#rendered_entity'],
-              ['value' => '#rendered_entity_ajax'],
-            ],
+      '#title' => $this->t('Popup Source View mode'),
+      '#description' => $this->t('View mode the entity will be displayed in the Leaflet Popup.'),
+      '#options' => $view_mode_options,
+      '#default_value' => $this->options['leaflet_popup']['view_mode'],
+      '#states' => [
+        'visible' => [
+          ':input[name="style_options[leaflet_popup][value]"]' => [
+            ['value' => '#rendered_entity'],
+            ['value' => '#rendered_entity_ajax'],
           ],
         ],
-      ];
-    }
+      ],
+    ];
 
     // Generate the Leaflet Map General Settings.
     $this->generateMapGeneralSettings($form, $this->options);
@@ -745,8 +734,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $this->setResetMapControl($form, $this->options);
 
     // Generate the Leaflet Map Position Form Element.
-    $map_position_options = $this->options['map_position'];
-    $form['map_position'] = $this->generateMapPositionElement($map_position_options);
+    $form['map_position'] = $this->generateMapPositionElement($this->options['map_position']);
 
     // Generate the Leaflet Map weight/zIndex Form Element.
     $form['weight'] = $this->generateWeightElement($this->options['weight']);
@@ -974,12 +962,16 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                     }
                   }
 
-                  switch ($this->options['description_field']) {
+                  // Define the popup content with backward compatibility with
+                  // 'description_field' (Leaflet release < 2.x).
+                  $popup_source = !empty($this->options['description_field']) ? $this->options['description_field'] : ($this->options['leaflet_popup']['value'] ?? '');
+
+                  switch ($popup_source) {
                     case '#rendered_entity':
                       $build = $this->entityManager->getViewBuilder($entity_type)
-                        ->view($entity, $this->options['view_mode'], $langcode);
+                        ->view($entity, $this->options['leaflet_popup']['view_mode'], $langcode);
                       $render_context = new RenderContext();
-                      $description = $this->renderer->executeInRenderContext($render_context, function () use (&$build) {
+                      $popup_content = $this->renderer->executeInRenderContext($render_context, function () use (&$build) {
                         return $this->renderer->render($build, TRUE);
                       });
                       if (!$render_context->isEmpty()) {
@@ -991,12 +983,12 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       $parameters = [
                         'entity_type' => $entity_type,
                         'entity' => $entity_id,
-                        'view_mode' => $this->options['view_mode'],
+                        'view_mode' => $this->options['leaflet_popup']['view_mode'],
                         'langcode' => $langcode,
                       ];
                       $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters);
-                      $description = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s" %s></div>',
-                        $url->toString(), LeafletAjaxPopupController::getPopupIdentifierAttribute($entity_type, $entity_id, $this->options['view_mode'], $langcode));
+                      $popup_content = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s" %s></div>',
+                        $url->toString(), LeafletAjaxPopupController::getPopupIdentifierAttribute($entity_type, $entity_id, $this->options['leaflet_popup']['view_mode'], $langcode));
                       $map['settings']['ajaxPoup'] = TRUE;
                       break;
 
@@ -1006,13 +998,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       $render_row = [
                         "markup" => $this->view->rowPlugin->render($result),
                       ];
-                      $description = !empty($this->options['description_field']) ? $this->renderer->renderPlain($render_row) : '';
+                      $popup_content = !empty($this->options['description_field']) ? $this->renderer->renderPlain($render_row) : '';
                       break;
 
                     default:
                       // Row rendering of single specified field value (without
                       // labels).
-                      $description = !empty($this->options['description_field']) ? $this->rendered_fields[$result->index][$this->options['description_field']] : '';
+                      $popup_content = !empty($popup_source) ? $this->rendered_fields[$result->index][$popup_source] : '';
                   }
 
                   // Eventually merge map icon definition
@@ -1038,7 +1030,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
                   $icon_type = isset($this->options['icon']['iconType']) ? $this->options['icon']['iconType'] : 'marker';
 
-                  // Relates the feature with additional properties.
+                  // Relates each result feature with additional properties.
                   foreach ($features as &$feature) {
 
                     // Attach pop-ups if we have a description field.
@@ -1054,14 +1046,23 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                     ], "", $this->viewsTokenReplace($this->options['weight'], $tokens))) : $id;
 
                     // Attach pop-ups if we have a description field.
-                    if (isset($description)) {
-                      $feature['popup'] = $description;
+                    if (isset($popup_content)) {
+                      $feature['popup']['value'] = $popup_content;
+                      $feature['popup']['options'] = $this->options['leaflet_popup'] ? $this->options['leaflet_popup']['options'] : NULL;
                     }
-                    // Attach also titles, they might be used later on.
-                    if ($this->options['name_field']) {
+                    // Attach tooltip data (value & options),
+                    // if tooltip flag is true.
+                    if ($this->options['leaflet_tooltip']['value']) {
+                      $feature['tooltip'] = $this->options['leaflet_tooltip'];
                       // Decode any entities because JS will encode them again,
                       // and we don't want double encoding.
-                      $feature['label'] = !empty($this->options['name_field']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']])) : '';
+                      $feature['tooltip']['value'] = !empty($this->options['leaflet_tooltip']['value']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['leaflet_tooltip']['value']])) : '';
+                    }
+                    // Attach also titles, they might be used later on.
+                    elseif ($this->options['name_field']) {
+                      // Decode any entities because JS will encode them again,
+                      // and we don't want double encoding.
+                      $feature['title'] = !empty($this->options['name_field']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']])) : '';
                     }
 
                     // Eventually set the custom Marker icon (DivIcon, Icon Url
@@ -1225,8 +1226,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $options['data_source'] = ['default' => ''];
     $options['entity_source'] = ['default' => '__base_table'];
     $options['name_field'] = ['default' => ''];
-    $options['description_field'] = ['default' => ''];
-    $options['view_mode'] = ['default' => 'full'];
 
     $leaflet_map_default_settings = [];
     foreach (self::getDefaultSettings() as $k => $setting) {
