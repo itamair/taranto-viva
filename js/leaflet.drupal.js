@@ -47,15 +47,15 @@
             // Create the DIV to hold the control and call the mapResetControl()
             // constructor passing in this DIV.
             let mapResetControlDiv = document.createElement('div');
-            Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.map_reset_control(mapResetControlDiv, mapid).addTo($container.data('leaflet').lMap);
+            Drupal.Leaflet[mapid].reset_control = Drupal.Leaflet.prototype.map_reset_control(mapResetControlDiv, mapid).addTo($container.data('leaflet').lMap);
           }
 
           // Add the Map Geocoder Control if requested.
-          if (Drupal.Leaflet.map_geocoder_control) {
+          if (Drupal.Leaflet.prototype.map_geocoder_control) {
             let mapGeocoderControlDiv = document.createElement('div');
-            Drupal.Leaflet[mapid].geocoder_control = Drupal.Leaflet.map_geocoder_control(mapGeocoderControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
+            Drupal.Leaflet[mapid].geocoder_control = Drupal.Leaflet.prototype.map_geocoder_control(mapGeocoderControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
             let geocoder_settings = drupalSettings.leaflet[mapid].map.settings.geocoder.settings;
-            Drupal.Leaflet.map_geocoder_control.autocomplete(mapid, geocoder_settings);
+            Drupal.Leaflet.prototype.map_geocoder_control.autocomplete(mapid, geocoder_settings);
           }
 
           // Add Fullscreen Control, if requested.
@@ -621,12 +621,12 @@
 
   };
 
-  Drupal.Leaflet.map_reset = function(mapid) {
+  Drupal.Leaflet.prototype.map_reset = function(mapid) {
     Drupal.Leaflet[mapid].lMap.setView(Drupal.Leaflet[mapid].start_center, Drupal.Leaflet[mapid].start_zoom);
   };
 
-  Drupal.Leaflet.map_reset_control = function(controlDiv, mapid) {
-    let reset_map_control_settings = this[mapid].map_settings.reset_map;
+  Drupal.Leaflet.prototype.map_reset_control = function(controlDiv, mapid) {
+    let reset_map_control_settings = drupalSettings.leaflet[mapid].map.settings['reset_map'];
     let control = new L.Control({position: reset_map_control_settings.position});
     control.onAdd = function() {
       // Set CSS for the control border.
@@ -656,7 +656,7 @@
       L.DomEvent
         .disableClickPropagation(controlUI)
         .addListener(controlUI, 'click', function() {
-          Drupal.Leaflet.map_reset(mapid);
+          Drupal.Leaflet.prototype.map_reset(mapid);
         },controlUI);
       return controlUI;
     };

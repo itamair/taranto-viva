@@ -1,6 +1,6 @@
 (function($, Drupal, drupalSettings) {
 
-  Drupal.Leaflet.query_url_serialize = function(obj, prefix) {
+  Drupal.Leaflet.prototype.query_url_serialize = function(obj, prefix) {
     let str = [], p;
     for (p in obj) {
       if (obj.hasOwnProperty(p)) {
@@ -14,10 +14,10 @@
     return str.join("&");
   };
 
-  Drupal.Leaflet.geocode = function(address, providers, options) {
+  Drupal.Leaflet.prototype.geocode = function(address, providers, options) {
     let base_url = drupalSettings.path.baseUrl;
     let geocode_path = base_url + 'geocoder/api/geocode';
-    options = Drupal.Leaflet.query_url_serialize(options);
+    options = Drupal.Leaflet.prototype.query_url_serialize(options);
     return $.ajax({
       url: geocode_path + '?address=' +  encodeURIComponent(address) + '&geocoder=' + providers + '&' + options,
       type:"GET",
@@ -26,7 +26,7 @@
     });
   };
 
-  Drupal.Leaflet.map_geocoder_control = function(controlDiv, mapid) {
+  Drupal.Leaflet.prototype.map_geocoder_control = function(controlDiv, mapid) {
     let geocoder_settings = drupalSettings.leaflet[mapid].map.settings.geocoder.settings;
     let control = new L.Control({position: geocoder_settings.position});
     control.onAdd = function() {
@@ -51,7 +51,7 @@
     return control;
   };
 
-  Drupal.Leaflet.map_geocoder_control.autocomplete = function(mapid, geocoder_settings) {
+  Drupal.Leaflet.prototype.map_geocoder_control.autocomplete = function(mapid, geocoder_settings) {
     let providers = geocoder_settings['providers'].toString();
     let options = geocoder_settings.options;
     let map = Drupal.Leaflet[mapid].lMap;
@@ -65,7 +65,7 @@
         let thisElement = this.element;
         thisElement.addClass('ui-autocomplete-loading');
         // Execute the geocoder.
-        $.when(Drupal.Leaflet.geocode(request.term, providers, options).then(
+        $.when(Drupal.Leaflet.prototype.geocode(request.term, providers, options).then(
           // On Resolve/Success.
           function (results) {
             response($.map(results, function (item) {
