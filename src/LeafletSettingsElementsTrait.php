@@ -789,7 +789,7 @@ trait LeafletSettingsElementsTrait {
     else {
       $leaflet_tooltip_visibility = [
         'invisible' => [
-          'select[name="style_options[leaflet_tooltip][value]' => ['value' => ''],
+          'select[name="style_options[leaflet_tooltip][value]"]' => ['value' => ''],
         ],
       ];
     }
@@ -816,13 +816,18 @@ trait LeafletSettingsElementsTrait {
    *   The view fields.
    * @param string $entity_type
    *   The entity type.
+   * @param array $view_mode_options
+   *   The view modes options list.
    */
-  protected function setPopupElement(array &$element, array $settings, array $view_fields, string $entity_type) {
+  protected function setPopupElement(array &$element, array $settings, array $view_fields, string $entity_type, array $view_mode_options) {
     $default_settings = $this::getDefaultSettings();
     $element['leaflet_popup'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Leaflet Popup'),
     ];
+
+    $popup_source = !empty($settings['description_field']) ? $settings['description_field'] : ($settings['leaflet_popup']['value'] ?? NULL);
+    $popup_view_mode = !empty($settings['view_mode']) ? $settings['view_mode'] : ($settings['leaflet_popup']['view_mode'] ?? NULL);
 
     $popup_options = array_merge(['' => ' - None - '], $view_fields);
     // Add an option to render the entire entity using a view mode.
@@ -838,23 +843,15 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'select',
       '#title' => $this->t('Popup Source'),
       '#options' => $popup_options,
-      '#default_value' => $settings['leaflet_popup']['value'] ?? $default_settings['leaflet_popup']['value'],
+      '#default_value' => $popup_source ?? $default_settings['leaflet_popup']['value'],
       '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
     ];
 
     if (isset($this->fieldDefinition)) {
-      $leaflet_popup_visibility = [
-        'invisible' => [
-          'select[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_popup][value]"]' => ['value' => ''],
-        ],
-      ];
+      $leaflet_popup_selector = 'name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_popup][value]"';
     }
     else {
-      $leaflet_popup_visibility = [
-        'invisible' => [
-          'select[name="style_options[leaflet_popup][value]' => ['value' => ''],
-        ],
-      ];
+      $leaflet_popup_selector = 'name="style_options[leaflet_popup][value]"';
     }
     $element['leaflet_popup']['options'] = [
       '#type' => 'textarea',
@@ -864,8 +861,31 @@ trait LeafletSettingsElementsTrait {
       '#default_value' => $settings['leaflet_popup']['options'] ?? $default_settings['leaflet_popup']['options'],
       '#placeholder' => $default_settings['leaflet_popup']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
-      '#states' => $leaflet_popup_visibility,
+      '#states' => [
+        'invisible' => [
+          'select[' . $leaflet_popup_selector . ']' => ['value' => ''],
+        ],
+      ],
     ];
+
+    // The View Mode drop-down is visible conditional on "#rendered_entity"
+    // being selected in the Description drop-down above.
+    $element['leaflet_popup']['view_mode'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Popup Source View mode'),
+      '#description' => $this->t('View mode the entity will be displayed in the Leaflet Popup.'),
+      '#options' => $view_mode_options,
+      '#default_value' => $popup_view_mode ?? $default_settings['leaflet_popup']['view_mode'],
+      '#states' => [
+        'visible' => [
+          ':input[' . $leaflet_popup_selector . ']' => [
+            ['value' => '#rendered_entity'],
+            ['value' => '#rendered_entity_ajax'],
+          ],
+        ],
+      ],
+    ];
+
   }
 
   /**

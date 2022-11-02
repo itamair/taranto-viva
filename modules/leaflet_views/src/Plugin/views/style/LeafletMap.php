@@ -701,31 +701,14 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       ],
     ];
 
-    // Set Leaflet Popup Element.
-    $this->setPopupElement($form, $this->options, $this->viewFields, $this->entityType);
-
     // Get the human-readable labels for the entity view modes.
     $view_mode_options = [];
     foreach ($this->entityDisplay->getViewModes($this->entityType) as $key => $view_mode) {
       $view_mode_options[$key] = $view_mode['label'];
     }
-    // The View Mode drop-down is visible conditional on "#rendered_entity"
-    // being selected in the Description drop-down above.
-    $form['leaflet_popup']['view_mode'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Popup Source View mode'),
-      '#description' => $this->t('View mode the entity will be displayed in the Leaflet Popup.'),
-      '#options' => $view_mode_options,
-      '#default_value' => $this->options['leaflet_popup']['view_mode'],
-      '#states' => [
-        'visible' => [
-          ':input[name="style_options[leaflet_popup][value]"]' => [
-            ['value' => '#rendered_entity'],
-            ['value' => '#rendered_entity_ajax'],
-          ],
-        ],
-      ],
-    ];
+
+    // Set Leaflet Popup Element.
+    $this->setPopupElement($form, $this->options, $this->viewFields, $this->entityType, $view_mode_options);
 
     // Generate the Leaflet Map General Settings.
     $this->generateMapGeneralSettings($form, $this->options);
@@ -962,14 +945,15 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                     }
                   }
 
-                  // Define the popup content with backward compatibility with
-                  // 'description_field' (Leaflet release < 2.x).
+                  // Define the Popup source and popup view mode with backward
+                  // compatibility with Leaflet release < 2.x.
                   $popup_source = !empty($this->options['description_field']) ? $this->options['description_field'] : ($this->options['leaflet_popup']['value'] ?? '');
+                  $popup_view_mode = !empty($this->options['view_mode']) ? $this->options['view_mode'] : $this->options['leaflet_popup']['view_mode'];
 
                   switch ($popup_source) {
                     case '#rendered_entity':
                       $build = $this->entityManager->getViewBuilder($entity_type)
-                        ->view($entity, $this->options['leaflet_popup']['view_mode'], $langcode);
+                        ->view($entity, $popup_view_mode, $langcode);
                       $render_context = new RenderContext();
                       $popup_content = $this->renderer->executeInRenderContext($render_context, function () use (&$build) {
                         return $this->renderer->render($build, TRUE);
@@ -983,7 +967,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       $parameters = [
                         'entity_type' => $entity_type,
                         'entity' => $entity_id,
-                        'view_mode' => $this->options['leaflet_popup']['view_mode'],
+                        'view_mode' => $popup_view_mode,
                         'langcode' => $langcode,
                       ];
                       $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters);
