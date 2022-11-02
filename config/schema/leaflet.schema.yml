@@ -187,7 +187,7 @@ field.formatter.settings.leaflet_formatter_default:
       label: 'Multiple map'
     leaflet_map:
       type: string
-      label: 'Leaflet map'
+      label: 'Leaflet Map Tiles Layer'
     height:
       type: integer
       label: 'Map height'

@@ -139,7 +139,10 @@ trait LeafletSettingsElementsTrait {
     $leaflet_map = isset($settings['leaflet_map']) ? $settings['leaflet_map'] : $settings['map'];
 
     $elements['leaflet_map'] = [
-      '#title' => $this->t('Leaflet Map'),
+      '#title' => $this->t('Leaflet Map Tiles Layer'),
+      '#description' => $this->t('Choose the @leaflet_map_tiles Layer to start the Map with (@see hook_leaflet_map_info).', [
+        '@leaflet_map_tiles' => $this->link->generate("Leaflet Map Tiles", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
+      ]),
       '#type' => 'select',
       '#options' => $leaflet_map_options,
       '#default_value' => $leaflet_map,
