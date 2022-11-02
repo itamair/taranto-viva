@@ -229,32 +229,37 @@
   };
 
   Drupal.Leaflet.prototype.add_features = function(features, initial) {
+    // Define Map Layers holder.
+    let layers = {};
+
     for (let i = 0; i < features.length; i++) {
       let feature = features[i];
       let lFeature;
 
       // dealing with a layer group
       if (feature.group) {
+        // Define a named Layer Group
+        layers[feature['group_label']] = this.create_feature_group();
         const lGroup = this.create_feature_group();
         for (let groupKey in feature.features) {
           let groupFeature = feature.features[groupKey];
           lFeature = this.create_feature(groupFeature);
           if (lFeature !== undefined) {
             if (lFeature.setStyle) {
-              groupFeature.path = groupFeature.path ? (groupFeature.path instanceof Object ? groupFeature.path : JSON.parse(groupFeature.path)) : {};
-              lFeature.setStyle(groupFeature.path);
+              this.feature_path_set_style(lFeature, groupFeature);
             }
-            if (groupFeature.popup.value) {
-              const popup_options = groupFeature.popup.options ? JSON.parse(groupFeature.popup.options) : {};
-              lFeature.bindPopup(groupFeature.popup.value, popup_options);
-            }
-            lGroup.addLayer(lFeature);
+
+            // Eventually add Popup to the lFeature.
+            this.feature_bind_popup(lFeature, groupFeature);
+
+            // Add the lFeature to the lGroup.
+            layers[feature['group_label']].addLayer(lFeature);
           }
         }
 
         // Add the group to the layer switcher.
         if (feature.group_label) {
-          this.add_overlay(feature.group_label, lGroup, feature['disabled']);
+          this.add_overlay(feature.group_label, layers[feature['group_label']], feature['disabled']);
         }
       }
       else {
@@ -263,15 +268,14 @@
           // If the Leaflet feature is a Path (polygon, polyline, etc.),
           // get and set its path style.
           if (lFeature.setStyle) {
-            feature.path = feature.path ? (feature.path instanceof Object ? feature.path : JSON.parse(feature.path)) : {};
-            lFeature.setStyle(feature.path);
+            this.feature_path_set_style(lFeature, feature);
           }
-          this.lMap.addLayer(lFeature);
 
-          if (feature.popup.value) {
-            const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
-            lFeature.bindPopup(feature.popup.value, popup_options);
-          }
+          // Eventually add Popup to the lFeature.
+          this.feature_bind_popup(lFeature, feature);
+
+          // Add the Leaflet Feature to the Map.
+          this.lMap.addLayer(lFeature);
         }
       }
 
@@ -285,6 +289,49 @@
 
   Drupal.Leaflet.prototype.create_feature_group = function() {
     return new L.featureGroup();
+  };
+
+  /**
+   * Add Leaflet Popup to the Leaflet Feature.
+   *
+   * @param lFeature
+   *   The Leaflet Feature
+   * @param feature
+   *   The Feature coming from Drupal settings.
+   */
+  Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
+    if (feature.popup) {
+      const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
+      lFeature.bindPopup(feature.popup.value, popup_options);
+    }
+  };
+
+  /**
+   * Add Leaflet Tooltip to the Leaflet Feature.
+   * @param lFeature
+   *   The Leaflet Feature
+   * @param feature
+   *   The Feature coming from Drupal settings.
+   */
+  Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
+    // Set the Leaflet Tooltip, with its options (if the stripped value is not null).
+    if (feature.tooltip && $(feature.tooltip.value).text().trim()) {
+      const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
+      tooltip_options.offset = tooltip_options.offset ?? [0, feature.icon.iconSize ? -feature.icon.iconSize.y/1.5: 0];
+      lFeature.bindTooltip(feature.tooltip.value, tooltip_options).openTooltip()
+    }
+  };
+
+  /**
+   * Add Leaflet Tooltip to the Leaflet Feature.
+   * @param lFeature
+   *   The Leaflet Feature
+   * @param feature
+   *   The Feature coming from Drupal settings.
+   */
+  Drupal.Leaflet.prototype.feature_path_set_style = function(lFeature, feature) {
+    const lFeature_path_style = feature.path ? (feature.path instanceof Object ? feature.path : JSON.parse(feature.path)) : {};
+    lFeature.setStyle(lFeature_path_style);
   };
 
   Drupal.Leaflet.prototype.create_feature = function(feature) {
@@ -329,12 +376,11 @@
         return; // Crash and burn.
     }
 
-    // Set the Leaflet Tooltip, with its options (if the stripped value is not null).
-    if (feature.tooltip && $(feature.tooltip.value).text().trim()) {
-      const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
-      tooltip_options.offset = tooltip_options.offset ?? [0, feature.icon.iconSize ? -feature.icon.iconSize.y/1.5: 0];
-      lFeature.bindTooltip(feature.tooltip.value, tooltip_options).openTooltip()
-    }
+    // Eventually add Tooltip to the lFeature.
+    this.feature_bind_tooltip(lFeature, feature);
+
+    // Eventually add Popup to the lFeature.
+    this.feature_bind_popup(lFeature, feature);
 
     if (feature['entity_id']) {
       // Generate the markers object index based on entity id (and geofield
@@ -556,10 +602,10 @@
       if (feature.properties.leaflet_id) {
         layer._leaflet_id = feature.properties.leaflet_id;
       }
-      if (feature.properties.popup.value) {
-        const popup_options = feature.properties.popup.options ? JSON.parse(feature.properties.popup.options) : {};
-        layer.bindPopup(feature.properties.popup.value, popup_options);
-      }
+
+      // Eventually add Popup to the Layer.
+      this.feature_bind_popup(layer, feature.properties);
+
       for (e in events) {
         let layerParam = {};
         layerParam[e] = eval(events[e]);
