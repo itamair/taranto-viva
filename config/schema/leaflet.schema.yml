@@ -213,9 +213,19 @@ field.formatter.settings.leaflet_formatter_default:
         position:
           type: string
           label: 'Position'
+    leaflet_tooltip:
+      type: mapping
+      label: 'Tooltip Source'
+      mapping:
+        value:
+          type: string
+          label: 'Value'
+        options:
+          type: text
+          label: 'Tooltip Options'
     popup:
       type: boolean
-      label: 'Popup'
+      label: 'Leaflet Popup'
     popup_content:
       type: text
       label: 'Popup Content'
@@ -346,10 +356,16 @@ field.formatter.settings.leaflet_formatter_default:
         options:
           type: text
           label: 'Options'
-
     path:
       type: text
       label: 'Path'
+    feature_properties:
+      type: mapping
+      label: 'Feature Additional Properties'
+      mapping:
+        values:
+          type: text
+          label: 'Values'
     geocoder:
       type: mapping
       label: 'Geocoder map control'

@@ -531,8 +531,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $form["grouping"][0]["field"]["#description"] = $this->t("You may optionally specify a field by which to group the Leaflet Map Features by Overlayers, whose visibility could be managed throughout the Leaflet Map Layers Control.<br>Leave blank to not group");
     unset($form["grouping"][0]["rendered_strip"]);
 
-    $form_state->set('this_view', $this);
-
     $form["grouping"][0]["field"]['#ajax'] = [
       'callback' => __CLASS__ . '::updateGrouping0OverlaysOptionsAjax',
       'wrapper' => 'grouping-0-overlays_options-fieldset',
@@ -735,9 +733,15 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($form, $this->options);
 
+    // Set the Feature Additional Properties Element.
+    $this->setFeatureAdditionalPropertiesElement($form, $this->options);
+
     // Set Map Geocoder Control Element, if the Geocoder Module exists,
     // otherwise output a tip on Geocoder Module Integration.
     $this->setGeocoderMapControl($form, $this->options);
+
+    unset($form["#pre_render"]);
+
   }
 
   /**
@@ -1132,6 +1136,14 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       "\n",
                       "\r",
                     ], "", $this->viewsTokenReplace($this->options['icon']['className'], $tokens)) : '';
+
+                    // Add Feature additional Properties (if present).
+                    if (!empty($this->options['feature_properties']['values'])) {
+                      $feature['properties'] = str_replace([
+                        "\n",
+                        "\r",
+                      ], "", $this->viewsTokenReplace($this->options['feature_properties']['values'], $tokens));
+                    }
 
                     // Allow modules to adjust the single feature (marker).
                     $this->moduleHandler->alter('leaflet_views_feature', $feature, $result, $this->view->rowPlugin);

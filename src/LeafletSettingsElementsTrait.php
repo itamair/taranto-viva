@@ -105,6 +105,9 @@ trait LeafletSettingsElementsTrait {
         'options' => '{"position":"topleft","pseudoFullscreen":false}',
       ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
+      'feature_properties' => [
+        'values' => '',
+      ],
       'geocoder' => [
         'control' => FALSE,
         'settings' => [
@@ -141,7 +144,7 @@ trait LeafletSettingsElementsTrait {
     $elements['leaflet_map'] = [
       '#title' => $this->t('Leaflet Map Tiles Layer'),
       '#description' => $this->t('Choose the @leaflet_map_tiles Layer to start the Map with (@see hook_leaflet_map_info).', [
-        '@leaflet_map_tiles' => $this->link->generate("Leaflet Map Tiles", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
+        '@leaflet_map_tiles' => $this->link->generate("Leaflet Js Library Map Tiles", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
       ]),
       '#type' => 'select',
       '#options' => $leaflet_map_options,
@@ -767,19 +770,11 @@ trait LeafletSettingsElementsTrait {
    * @param array $view_fields
    *   The view fields.
    */
-  protected function setTooltipElement(array &$element, array $settings, array $view_fields) {
+  protected function setTooltipElement(array &$element, array $settings, array $view_fields = []) {
     $default_settings = $this::getDefaultSettings();
     $element['leaflet_tooltip'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Leaflet Tooltip'),
-    ];
-
-    $element['leaflet_tooltip']['value'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Tooltip Source'),
-      '#options' => array_merge(['' => ' - None - '], $view_fields),
-      '#default_value' => $settings['leaflet_tooltip']['value'] ?? $default_settings['leaflet_tooltip']['value'],
-      '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
     ];
 
     if (isset($this->fieldDefinition)) {
@@ -796,6 +791,25 @@ trait LeafletSettingsElementsTrait {
         ],
       ];
     }
+
+    if (isset($this->fieldDefinition)) {
+      $element['leaflet_tooltip']['value'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Tooltip Source'),
+        '#default_value' => $settings['leaflet_tooltip']['value'] ?? $default_settings['leaflet_tooltip']['value'],
+        '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
+      ];
+    }
+    elseif (!empty($view_fields)) {
+      $element['leaflet_tooltip']['value'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Tooltip Source'),
+        '#options' => array_merge(['' => ' - None - '], $view_fields),
+        '#default_value' => $settings['leaflet_tooltip']['value'] ?? $default_settings['leaflet_tooltip']['value'],
+        '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
+      ];
+    }
+
     $element['leaflet_tooltip']['options'] = [
       '#type' => 'textarea',
       '#rows' => 2,
@@ -847,7 +861,9 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Popup Source'),
       '#options' => $popup_options,
       '#default_value' => $popup_source ?? $default_settings['leaflet_popup']['value'],
-      '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
+      '#description' => $this->t("Enable and choose content of a @leaflet_popup that will appear on Marker click.", [
+        '@leaflet_popup' => $this->link->generate("Leaflet Popup", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
+      ]),
     ];
 
     if (isset($this->fieldDefinition)) {
@@ -888,7 +904,6 @@ trait LeafletSettingsElementsTrait {
         ],
       ],
     ];
-
   }
 
   /**
@@ -1056,6 +1071,33 @@ trait LeafletSettingsElementsTrait {
         ],
       ];
     }
+  }
+
+  /**
+   * Set Feature additional Properties Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setFeatureAdditionalPropertiesElement(array &$element, array $settings) {
+    $default_settings = $this::getDefaultSettings();
+
+    $element['feature_properties'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Feature Additional Properties'),
+    ];
+
+    $element['feature_properties']['values'] = [
+      '#type' => 'textarea',
+      '#rows' => 3,
+      '#title' => $this->t('Values'),
+      '#description' => $this->t('Add additional key/value(s) that will be added in the "properties" index for each Leaflet Map "feature" (in the drupalSettings js object)<br>An object literal of additional values to be added as sequence of "key":"value".<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>This is as advanced functionality, useful to dynamically alter Leaflet Map and each feature representation/behaviour on the basis of its properties.<br>Supports <b>Replacement Patterns</b>'),
+      '#default_value' => $settings['feature_properties']['values'] ?? $default_settings['feature_properties']['values'],
+      '#placeholder' => '{"content type":"{{ type }}"}',
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+    ];
   }
 
   /**

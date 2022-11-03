@@ -5,6 +5,7 @@ namespace Drupal\leaflet\Plugin\Field\FieldFormatter;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\RenderContext;
+use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -199,9 +200,13 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       ];
     }
 
+    $this->setTooltipElement($elements, $settings);
+
     $elements['popup'] = [
-      '#title' => $this->t('Popup Infowindow'),
-      '#description' => $this->t('Show a Popup Infowindow on Marker click, with custom content.'),
+      '#title' => $this->t('Leaflet Popup'),
+      '#description' => $this->t('Enable a @leaflet_popup that will appear on Marker click.', [
+        '@leaflet_popup' => $this->link->generate("Leaflet Popup", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
+      ]),
       '#type' => 'checkbox',
       '#default_value' => $settings['popup'],
     ];
@@ -209,7 +214,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $elements['popup_content'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Popup content'),
-      '#description' => $this->t('Define the custom content for the Pop Infowindow. If empty the Content Title will be output.<br>See "REPLACEMENT PATTERNS" above for available replacements.'),
+      '#description' => $this->t('Define the custom content for the Leaflet Popup. If empty the Content Title will be output.<br>Supports <b>Replacement Patterns</b>.'),
       '#default_value' => $settings['popup_content'],
       '#states' => [
         'visible' => [
@@ -240,6 +245,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
     // Set Map Geometries Options Element.
     $this->setMapPathOptionsElement($elements, $settings);
+
+    // Set the Feature Additional Properties Element.
+    $this->setFeatureAdditionalPropertiesElement($elements, $settings);
 
     // Set Map Geocoder Control Element, if the Geocoder Module exists,
     // otherwise output a tip on Geocoder Module Integration.
@@ -418,6 +426,14 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
       // Associate dynamic className property (token based) to icon.
       $feature['className'] = !empty($settings['className']) ? str_replace(["\n", "\r"], "", $this->token->replace($settings['className'], $tokens)) : '';
+
+      // Add Feature additional Properties (if present).
+      if (!empty($settings['feature_properties']['values'])) {
+        $feature['properties'] = str_replace([
+          "\n",
+          "\r",
+        ], "", $this->token->replace($settings['feature_properties']['values'], $tokens));
+      }
 
       // Allow modules to adjust the marker.
       $this->moduleHandler->alter('leaflet_formatter_feature', $feature, $item, $entity);
