@@ -54,12 +54,22 @@ trait LeafletSettingsElementsTrait {
       'hide_empty_map' => FALSE,
       'disable_wheel' => FALSE,
       'gesture_handling' => FALSE,
-      'reset_map' => [
-        'control' => FALSE,
-        'position' => 'topright',
-      ],
+      // @TODO Keep this for backword compatibility with Leaflet < 2.x.
       'popup' => FALSE,
+      // @TODO Keep this for backword compatibility with Leaflet < 2.x.
       'popup_content' => '',
+      // ...
+      'leaflet_popup' => [
+        'value' => '',
+        'options' => '{"maxWidth":"300","minWidth":"50", "autoPan": true}',
+        'view_mode' => 'full',
+        'control' => FALSE,
+        'content' => '',
+      ],
+      'leaflet_tooltip' => [
+        'value' => '',
+        'options' => '{"permanent":false,"direction":"center"}',
+      ],
       'map_position' => [
         'force' => FALSE,
         'center' => [
@@ -89,18 +99,31 @@ trait LeafletSettingsElementsTrait {
       'leaflet_markercluster' => [
         'control' => FALSE,
         'options' => '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds": false}',
+        'excluded' => FALSE,
         'include_path' => FALSE,
       ],
       'fullscreen' => [
         'control' => FALSE,
         'options' => '{"position":"topleft","pseudoFullscreen":false}',
       ],
+      'reset_map' => [
+        'control' => FALSE,
+        'options' => '{"position": "topleft", "title": "Reset View"}',
+      ],
+      'locate' => [
+        'control' => FALSE,
+        'options' => '{"position": "topright", "setView": "untilPanOrZoom", "returnToPrevBounds":true, "keepCurrentZoomLevel": true, "strings": {"title": "Locate my position"}}',
+        'automatic' => FALSE,
+      ],
       'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
+      'feature_properties' => [
+        'values' => '',
+      ],
       'geocoder' => [
         'control' => FALSE,
         'settings' => [
           'position' => 'topright',
-          'input_size' => 25,
+          'input_size' => 20,
           'providers' => [],
           'min_terms' => 4,
           'delay' => 800,
@@ -130,7 +153,10 @@ trait LeafletSettingsElementsTrait {
     $leaflet_map = isset($settings['leaflet_map']) ? $settings['leaflet_map'] : $settings['map'];
 
     $elements['leaflet_map'] = [
-      '#title' => $this->t('Leaflet Map'),
+      '#title' => $this->t('Leaflet Map Tiles Layer'),
+      '#description' => $this->t('Choose the @leaflet_map_tiles Layer to start the Map with (@see hook_leaflet_map_info).', [
+        '@leaflet_map_tiles' => $this->link->generate("Leaflet Js Library Map Tiles", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
+      ]),
       '#type' => 'select',
       '#options' => $leaflet_map_options,
       '#default_value' => $leaflet_map,
@@ -162,19 +188,6 @@ trait LeafletSettingsElementsTrait {
       '#description' => $this->t('Check this option not to render the Map at all, if empty (no output results).'),
       '#default_value' => $settings['hide_empty_map'],
       '#return_value' => 1,
-      '#states' => [
-        'invisible' => [
-          ':input[name="fields[field_geofield][settings_edit_form][settings][multiple_map]"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-
-    $elements['disable_wheel'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Disable zoom using mouse wheel'),
-      '#description' => $this->t("If enabled, the mouse wheel won't change the zoom level of the map."),
-      '#default_value' => $settings['disable_wheel'],
-      '#return_value' => 1,
     ];
 
     $elements['gesture_handling'] = [
@@ -190,6 +203,18 @@ trait LeafletSettingsElementsTrait {
       '#return_value' => 1,
     ];
 
+    $elements['disable_wheel'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Disable zoom using mouse wheel'),
+      '#description' => $this->t("If enabled, the mouse wheel won't change the zoom level of the map."),
+      '#default_value' => $settings['disable_wheel'],
+      '#return_value' => 1,
+      '#states' => [
+        'invisible' => [
+          ':input[name="style_options[gesture_handling]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
   }
 
   /**
@@ -205,7 +230,7 @@ trait LeafletSettingsElementsTrait {
 
     $element = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Starting Map State'),
+      '#title' => $this->t('Custom Map Center & Zoom'),
     ];
 
     if (isset($this->fieldDefinition)) {
@@ -239,7 +264,6 @@ trait LeafletSettingsElementsTrait {
       '#return_value' => 1,
     ];
 
-    $element['#title'] = $this->t('Custom Map Center & Zoom');
     $element['description']['#value'] = $this->t('These settings will be applied in case of empty Map.');
     $element['force']['#title'] = $this->t('Force Map Center & Zoom');
 
@@ -731,18 +755,206 @@ trait LeafletSettingsElementsTrait {
       'lon' => floatval($options['map_position']['center']['lon']),
     ] : $default_settings['map_position']['center'];
     $map['settings']['scrollWheelZoom'] = !empty($options['disable_wheel']) ? !(bool) $options['disable_wheel'] : (isset($map['settings']['scrollWheelZoom']) ? $map['settings']['scrollWheelZoom'] : TRUE);
-    $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
-    $map['settings']['leaflet_markercluster'] = isset($options['leaflet_markercluster']) ? $options['leaflet_markercluster'] : NULL;
 
-    // For "fullscreen" element/option, eventually fallback to previous
-    // "fullscreen_control" settings, if existing.
-    if (!$options["fullscreen"]["control"] && !empty($options["fullscreen_control"])) {
-      $options["fullscreen"]["control"] = TRUE;
+    $map['settings']['path'] = isset($options['path']) && !empty($options['path']) ? $options['path'] : (isset($map['path']) ? Json::encode($map['path']) : Json::encode($default_settings['path']));
+
+    $map['settings']['leaflet_markercluster'] = $options['leaflet_markercluster'] ?? $default_settings['leaflet_markercluster'];
+    $map['settings']['fullscreen'] = $options['fullscreen'] ?? $default_settings['fullscreen'];
+    $map['settings']['gestureHandling'] = $options['gesture_handling'] ?? $default_settings['gesture_handling'];
+    $map['settings']['reset_map'] = $options['reset_map'] ?? $default_settings['reset_map'];
+    $map['settings']['locate'] = $options['locate'] ?? $default_settings['locate'];
+    $map['settings']['geocoder'] = $options['geocoder'] ?? $default_settings['geocoder'];
+  }
+
+  /**
+   * Set Tooltip Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   * @param array $view_fields
+   *   The view fields.
+   */
+  protected function setTooltipElement(array &$element, array $settings, array $view_fields = []) {
+    $default_settings = $this::getDefaultSettings();
+    $element['leaflet_tooltip'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Leaflet Tooltip'),
+    ];
+
+    if (isset($this->fieldDefinition)) {
+      $leaflet_tooltip_visibility = [
+        'invisible' => [
+          'select[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_tooltip][value]"]' => ['value' => ''],
+        ],
+      ];
     }
-    $map['settings']['fullscreen'] = isset($options['fullscreen']) ? $options['fullscreen'] : NULL;
-    $map['settings']['gestureHandling'] = isset($options['gesture_handling']) ? $options['gesture_handling'] : $default_settings['gesture_handling'];
-    $map['settings']['reset_map'] = isset($options['reset_map']) ? $options['reset_map'] : $default_settings['reset_map'];
-    $map['settings']['geocoder'] = isset($options['geocoder']) ? $options['geocoder'] : $default_settings['geocoder'];
+    else {
+      $leaflet_tooltip_visibility = [
+        'invisible' => [
+          'select[name="style_options[leaflet_tooltip][value]"]' => ['value' => ''],
+        ],
+      ];
+    }
+
+    if (isset($this->fieldDefinition)) {
+      $element['leaflet_tooltip']['value'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Tooltip Source'),
+        '#rows' => 2,
+        '#default_value' => $settings['leaflet_tooltip']['value'] ?? $default_settings['leaflet_tooltip']['value'],
+        '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
+      ];
+    }
+    elseif (!empty($view_fields)) {
+      $element['leaflet_tooltip']['value'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Tooltip Source'),
+        '#options' => array_merge(['' => ' - None - '], $view_fields),
+        '#default_value' => $settings['leaflet_tooltip']['value'] ?? $default_settings['leaflet_tooltip']['value'],
+        '#description' => $this->t("Use this to insert a Leaflet JS Library Tooltip (Feature by Feature)."),
+      ];
+    }
+
+    $element['leaflet_tooltip']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 3,
+      '#title' => $this->t('Tooltip Options'),
+      '#description' => $this->t('An object literal of options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+      '#default_value' => $settings['leaflet_tooltip']['options'] ?? $default_settings['leaflet_tooltip']['options'],
+      '#placeholder' => $default_settings['leaflet_tooltip']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+      '#states' => $leaflet_tooltip_visibility,
+    ];
+  }
+
+  /**
+   * Set Popup Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   * @param array $view_fields
+   *   The view fields.
+   * @param string $entity_type
+   *   The entity type.
+   * @param array $view_mode_options
+   *   The view modes options list.
+   */
+  protected function setPopupElement(array &$element, array $settings, array $view_fields = [], string $entity_type = NULL, array $view_mode_options = []) {
+    $default_settings = $this::getDefaultSettings();
+    $element['leaflet_popup'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Leaflet Popup'),
+    ];
+
+    if (isset($this->fieldDefinition)) {
+      $leaflet_popup_selector = 'fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][leaflet_popup][control]';
+
+      // Define the Popup Control and Popup Content with backward
+      // compatibility with Leaflet release < 2.x.
+      $popup_control = !empty($settings['popup']) ? $settings['popup'] : ($settings['leaflet_popup']['control'] ?? NULL);
+      $popup_content = !empty($settings['popup_content']) ? $settings['popup_content'] : ($settings['leaflet_popup']['content'] ?? NULL);
+
+      $element['leaflet_popup']['control'] = [
+        '#title' => $this->t('Enable Leaflet Popup'),
+        '#description' => $this->t('Enable a @leaflet_popup that will appear on Marker click.', [
+          '@leaflet_popup' => $this->link->generate("Leaflet Popup", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
+        ]),
+        '#type' => 'checkbox',
+        '#default_value' => $popup_control ?? $default_settings['leaflet_popup']['control'],
+      ];
+
+      $element['leaflet_popup']['content'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Popup content'),
+        '#rows' => 2,
+        '#description' => $this->t('Define the custom content for the Leaflet Popup. If empty the Content Title will be output.<br>Supports <b>Replacement Patterns</b>.'),
+        '#default_value' => $popup_content ?? $default_settings['leaflet_popup']['content'],
+        '#states' => [
+          'visible' => [
+            'input[name="' . $leaflet_popup_selector . '"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+
+      $element['leaflet_popup']['options'] = [
+        '#type' => 'textarea',
+        '#title' => $this->t('Popup Options'),
+        '#rows' => 3,
+        '#description' => $this->t('An object literal of options, that comply with the Leaflet Popup object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br><u>Note: if omitted, the "offset" option will be set on top of the feature icon size.</u>'),
+        '#default_value' => $settings['leaflet_popup']['options'] ?? $default_settings['leaflet_popup']['options'],
+        '#placeholder' => $default_settings['leaflet_popup']['options'],
+        '#element_validate' => [[get_class($this), 'jsonValidate']],
+        '#states' => [
+          'visible' => [
+            'input[name="' . $leaflet_popup_selector . '"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+    }
+    else {
+      $leaflet_popup_selector = 'style_options[leaflet_popup][value]';
+
+      $popup_options = array_merge(['' => ' - None - '], $view_fields);
+      // Add an option to render the entire entity using a view mode.
+      if ($this->entityType) {
+        $popup_options += [
+          '#rendered_entity' => $this->t('< @entity entity >', ['@entity' => $entity_type]),
+          '#rendered_entity_ajax' => $this->t('< @entity entity via ajax >', ['@entity' => $entity_type]),
+          '#rendered_view_fields' => $this->t('# Rendered View Fields (with field label, format, classes, etc)'),
+        ];
+      }
+
+      // Define the Popup source and Popup view mode with backward
+      // compatibility with Leaflet release < 2.x.
+      $popup_source = !empty($settings['description_field']) ? $settings['description_field'] : ($settings['leaflet_popup']['value'] ?? NULL);
+      $popup_view_mode = !empty($settings['view_mode']) ? $settings['view_mode'] : ($settings['leaflet_popup']['view_mode'] ?? NULL);
+
+      $element['leaflet_popup']['value'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Popup Source'),
+        '#options' => $popup_options,
+        '#default_value' => $popup_source ?? $default_settings['leaflet_popup']['value'],
+        '#description' => $this->t("Enable and choose content of a @leaflet_popup that will appear on Marker click.", [
+          '@leaflet_popup' => $this->link->generate("Leaflet Popup", Url::fromUri("https://leafletjs.com/reference.html#tilelayer", ['attributes' => ['target' => 'blank']])),
+        ]),
+      ];
+
+      // The View Mode drop-down is visible conditional on "#rendered_entity"
+      // being selected in the Description drop-down above.
+      $element['leaflet_popup']['view_mode'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Popup Source View mode'),
+        '#description' => $this->t('View mode the entity will be displayed in the Leaflet Popup.'),
+        '#options' => $view_mode_options,
+        '#default_value' => $popup_view_mode ?? $default_settings['leaflet_popup']['view_mode'],
+        '#states' => [
+          'visible' => [
+            ':input[name="' . $leaflet_popup_selector . '"]' => [
+              ['value' => '#rendered_entity'],
+              ['value' => '#rendered_entity_ajax'],
+            ],
+          ],
+        ],
+      ];
+      $element['leaflet_popup']['options'] = [
+        '#type' => 'textarea',
+        '#rows' => 3,
+        '#title' => $this->t('Popup Options'),
+        '#description' => $this->t('An object literal of options, that comply with the Leaflet Popup object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br><u>Note: if omitted, the "offset" option will be set on top of the feature icon size.</u>'),
+        '#default_value' => $settings['leaflet_popup']['options'] ?? $default_settings['leaflet_popup']['options'],
+        '#placeholder' => $default_settings['leaflet_popup']['options'],
+        '#element_validate' => [[get_class($this), 'jsonValidate']],
+        '#states' => [
+          'invisible' => [
+            'select[name="' . $leaflet_popup_selector . '"]' => ['value' => ''],
+          ],
+        ],
+      ];
+    }
   }
 
   /**
@@ -752,8 +964,10 @@ trait LeafletSettingsElementsTrait {
    *   The Form element to alter.
    * @param array $settings
    *   The Form Settings.
+   * @param array $view_fields
+   *   The view fields.
    */
-  protected function setMapMarkerclusterElement(array &$element, array $settings) {
+  protected function setMapMarkerclusterElement(array &$element, array $settings, array $view_fields = []) {
 
     $default_settings = $this::getDefaultSettings();
     $leaflet_markercluster_submodule_warning = $this->t("<u>Note</u>: This functionality and settings are related to the Leaflet Markercluster submodule, present inside the Leaflet module itself.<br><u>(DON'T USE the external self standing Leaflet Markecluster module).</u>");
@@ -766,7 +980,7 @@ trait LeafletSettingsElementsTrait {
     if ($this->moduleHandler->moduleExists('leaflet_markercluster')) {
       $element['leaflet_markercluster']['control'] = [
         '#type' => 'checkbox',
-        '#title' => $this->t('Enable the functionality of the @markeclusterer_api_link.', [
+        '#title' => $this->t('Enable @markeclusterer_api_link functionality.', [
           '@markeclusterer_api_link' => $this->link->generate($this->t('Leaflet Markercluster Js Library'), Url::fromUri('https://github.com/Leaflet/Leaflet.markercluster', [
             'absolute' => TRUE,
             'attributes' => ['target' => 'blank'],
@@ -792,16 +1006,32 @@ trait LeafletSettingsElementsTrait {
           ],
         ];
       }
+
+      // Add the Markecluster Excluded flag element, in case of View Fields.
+      if (!empty($view_fields)) {
+        $element['leaflet_markercluster']['excluded'] = [
+          '#type' => 'select',
+          '#title' => $this->t('Exclude flag'),
+          '#options' => array_merge([0 => 'No'], $view_fields),
+          '#default_value' => $settings['leaflet_markercluster']['excluded'] ?? $default_settings['leaflet_markercluster']['excluded'],
+          '#description' => $this->t("Choose a View Field as option to dynamically exclude a Leaflet Feature from being Marker Clustered (not Empty/FALSE/NULL instances/values will be excluded)."),
+          '#states' => $leaflet_markercluster_visibility,
+        ];
+      }
+
       $element['leaflet_markercluster']['options'] = [
         '#type' => 'textarea',
         '#rows' => 4,
         '#title' => $this->t('Marker Cluster Additional Options'),
-        '#description' => $this->t('An object literal of additional marker cluster options, that comply with the Leaflet Markercluster Js Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+        '#description' => $this->t('An object literal of options, that comply with the Leaflet Markercluster Js Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
         '#default_value' => $settings['leaflet_markercluster']['options'] ?? $default_settings['leaflet_markercluster']['options'],
         '#placeholder' => $default_settings['leaflet_markercluster']['options'],
         '#element_validate' => [[get_class($this), 'jsonValidate']],
         '#states' => $leaflet_markercluster_visibility,
       ];
+
+
+
       $element['leaflet_markercluster']['include_path'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Enable Markeclustering of Paths elements'),
@@ -850,16 +1080,16 @@ trait LeafletSettingsElementsTrait {
           'attributes' => ['target' => 'blank'],
         ])),
       ]),
-      // For "fullscreen" element/option, eventually fallback to previous
-      // "fullscreen_control" settings, if existing.
-      '#default_value' => $settings['fullscreen']['control'] ?: $settings["fullscreen_control"] ?? $default_settings['fullscreen']['control'],
+      // Eventually fallback to previous "fullscreen_control" settings,
+      // for backword compatibility with Leaflet < 2.x.
+      '#default_value' => $settings['fullscreen']['control'] ?? $default_settings['fullscreen']['control'],
       '#return_value' => 1,
     ];
     $element['fullscreen']['options'] = [
       '#type' => 'textarea',
       '#rows' => 4,
       '#title' => $this->t('Fullscreen Additional Options'),
-      '#description' => $this->t('An object literal of additional fullscreen options, that comply with the Leaflet Fullscreen JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+      '#description' => $this->t('An object literal of options, that comply with the Leaflet Fullscreen JS Library.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
       '#default_value' => $settings['fullscreen']['options'] ?? $default_settings['fullscreen']['options'],
       '#placeholder' => $default_settings['fullscreen']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
@@ -867,49 +1097,158 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
-   * Set Map MarkerCluster Element.
+   * Set Reset Map View Control Element.
    *
    * @param array $element
    *   The Form element to alter.
    * @param array $settings
    *   The Form Settings.
    */
-  protected function setResetMapControl(array &$element, array $settings) {
+  protected function setResetMapViewControl(array &$element, array $settings) {
     $default_settings = $this::getDefaultSettings();
 
     $element['reset_map'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Reset Map Control'),
+      '#title' => $this->t('Reset Map View Control'),
     ];
 
     $element['reset_map']['control'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Enable Map Reset Control'),
-      '#description' => $this->t('This will show a "Reset Map" button to reset the Map to its initial center & zoom state<br><b><u>Warning: </u></b>Due to an issue in the Leaflet library (@see https://github.com/Leaflet/Leaflet/issues/6172) the Map Reset control doesn\'t work correctly in Fitting Bounds of coordinates having mixed positive and negative values of latitude &longitudes.<br>In this case the Map will be Reset to the default set Map Center.'),
+      '#title' => $this->t('Enable @reset_map_view_link functionality.', [
+        '@reset_map_view_link' => $this->link->generate($this->t('Reset Map View Leaflet Plugin'), Url::fromUri('https://github.com/drustack/Leaflet.ResetView', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#description' => $this->t('This enables a "Reset Map View" control to reset the Map to its initial center & zoom state<br><b><u>Warning: </u></b>Due to an issue in the Leaflet library (@see https://github.com/Leaflet/Leaflet/issues/6172) the Map Reset control doesn\'t work correctly in Fitting Bounds of coordinates having mixed positive and negative values of latitude &longitudes.<br>In this case the Map will be Reset to the default set Map Center.'),
       '#default_value' => isset($settings['reset_map']['control']) ? $settings['reset_map']['control'] : $default_settings['reset_map']['control'],
+      '#return_value' => 1,
     ];
 
-    $element['reset_map']['position'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Position'),
-      '#options' => $this->controlPositionsOptions,
-      '#default_value' => isset($settings['reset_map']['position']) ? $settings['reset_map']['position'] : $default_settings['reset_map']['position'],
+    $element['reset_map']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 4,
+      '#title' => $this->t('Reset Map View Options'),
+      '#description' => $this->t('An object literal of options, that comply with the Leaflet.ResetView Plugin<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+      '#default_value' => $settings['reset_map']['options'] ?? $default_settings['reset_map']['options'],
+      '#placeholder' => $default_settings['reset_map']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
 
     if (isset($this->fieldDefinition)) {
-      $element['reset_map']['position']['#states'] = [
+      $element['reset_map']['options']['#states'] = [
         'visible' => [
           ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][reset_map][control]"]' => ['checked' => TRUE],
         ],
       ];
     }
     else {
-      $element['reset_map']['position']['#states'] = [
+      $element['reset_map']['options']['#states'] = [
         'visible' => [
           ':input[name="style_options[reset_map][control]"]' => ['checked' => TRUE],
         ],
       ];
     }
+
+  }
+
+  /**
+   * Set Locate Control Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setLocateControl(array &$element, array $settings) {
+    $default_settings = $this::getDefaultSettings();
+
+    if (isset($this->fieldDefinition)) {
+      $leaflet_locate_visibility = [
+        'visible' => [
+          ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][locate][control]"]' => ['checked' => TRUE],
+        ],
+      ];
+    }
+    else {
+      $leaflet_locate_visibility = [
+        'visible' => [
+          ':input[name="style_options[locate][control]"]' => ['checked' => TRUE],
+        ],
+      ];
+    }
+
+    $element['locate'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Locate and Show User Position'),
+    ];
+
+    $element['locate']['control'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable @locate_link functionality.', [
+        '@locate_link' => $this->link->generate($this->t('Locate Leaflet Plugin'), Url::fromUri('https://github.com/domoritz/leaflet-locatecontrol', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#description' => $this->t('This enables a "Locate User Position" control to geolocate the user.'),
+      '#default_value' => isset($settings['locate']['control']) ? $settings['locate']['control'] : $default_settings['locate']['control'],
+    ];
+
+    $element['locate']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 4,
+      '#title' => $this->t('Locate Options'),
+      '#description' => $this->t('An object literal of options, that comply with the Locate Leaflet Plugin<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+      '#default_value' => $settings['locate']['options'] ?? $default_settings['locate']['options'],
+      '#placeholder' => $default_settings['locate']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+      '#states' => $leaflet_locate_visibility,
+    ];
+
+    // Define the Automatic Locate Settings
+    // for backwardcompatibility with Leaflet release < 2.x.
+    $automatic_locate_settings = !empty($settings['map']['locate']) ? $settings['map']['locate'] : ($settings['locate']['automatic'] ?? NULL);
+
+    $element['locate']['automatic'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Automatically locate & show user current position.'),
+      '#description' => $this->t("This option initially centers the map to the user position (only if the Map Center is not forced)."),
+      '#default_value' => $automatic_locate_settings ?? $default_settings['locate']['automatic'],
+      '#states' => $leaflet_locate_visibility,
+    ];
+
+    if ($this->getPluginId() === 'leaflet_widget_default') {
+      $element['locate']['automatic']['#description'] .= '<br>' . $this->t('<u>NOTE:</u> This will work only in case of Empty Map / New Insert.');
+    }
+
+  }
+
+  /**
+   * Set Feature additional Properties Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setFeatureAdditionalPropertiesElement(array &$element, array $settings) {
+    $default_settings = $this::getDefaultSettings();
+
+    $element['feature_properties'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Feature Additional Properties'),
+    ];
+
+    $element['feature_properties']['values'] = [
+      '#type' => 'textarea',
+      '#rows' => 3,
+      '#title' => $this->t('Values'),
+      '#description' => $this->t('Add additional key/value(s) that will be added in the "properties" index for each Leaflet Map "feature" (in the drupalSettings js object)<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>This is as advanced functionality, useful to dynamically alter Leaflet Map and each feature representation/behaviour on the basis of its properties.<br>Supports <b>Replacement Patterns</b>'),
+      '#default_value' => $settings['feature_properties']['values'] ?? $default_settings['feature_properties']['values'],
+      '#placeholder' => '{"content type":"{{ type }}"}',
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+    ];
   }
 
   /**
@@ -1022,12 +1361,11 @@ trait LeafletSettingsElementsTrait {
         '#description' => $this->t('Check this to open a Popup on the Map (with the found Address) upon the Geocode Focus.'),
       ];
 
-
       $element['geocoder']['settings']['options'] = [
         '#type' => 'textarea',
         '#rows' => 4,
         '#title' => $this->t('Geocoder Control Specific Options'),
-        '#description' => $this->t('This settings would override general Geocoder Providers options. (<u>Note: This would work only for Geocoder 2.x branch/version.</u>)<br>An object literal of specific Geocoder options.The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+        '#description' => $this->t('This settings would override general Geocoder Providers options. (<u>Note: This would work only for Geocoder 2.x branch/version.</u>)<br>An object literal of specific Geocoder options. The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
         '#default_value' => isset($settings['geocoder']['settings']['options']) ? $settings['geocoder']['settings']['options'] : $default_settings['geocoder']['settings']['options'],
         '#placeholder' => '{"googlemaps":{"locale": "it", "region": "it"}, "nominatim":{"locale": "it"}}',
         '#element_validate' => [[get_class($this), 'jsonValidate']],

@@ -207,6 +207,22 @@ class LeafletService {
 
     $attached_libraries = ['leaflet/general', 'leaflet/leaflet-drupal'];
 
+    // Add the Leaflet Reset View library, if requested.
+    if (isset($map['settings']['reset_map']) && $map['settings']['reset_map']['control']) {
+      $attached_libraries[] = 'leaflet/leaflet.reset_map_view';
+    }
+
+    // Add the Leaflet Locate library, if requested.
+    if (isset($map['settings']['locate']) && !empty($map['settings']['locate']['control'])) {
+      $attached_libraries[] = 'leaflet/leaflet.locatecontrol';
+    }
+
+    // Add the Leaflet Geocoder library and functionalities, if requested,
+    // and the user has access to Geocoder Api Enpoints.
+    if (!empty($map['settings']['geocoder']['control'])) {
+      $this->setGeocoderControlSettings($map['settings']['geocoder'], $attached_libraries);
+    }
+
     // Add the Leaflet Fullscreen library, if requested.
     if (isset($map['settings']['fullscreen']) && $map['settings']['fullscreen']['control']) {
       $attached_libraries[] = 'leaflet/leaflet.fullscreen';
@@ -221,12 +237,6 @@ class LeafletService {
     if ($this->moduleHandler->moduleExists('leaflet_markercluster') && isset($map['settings']['leaflet_markercluster']) && $map['settings']['leaflet_markercluster']['control']) {
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster';
       $attached_libraries[] = 'leaflet_markercluster/leaflet-markercluster-drupal';
-    }
-
-    // Add the Leaflet Geocoder library and functionalities, if requested,
-    // and the user has access to Geocoder Api Enpoints.
-    if (!empty($map['settings']['geocoder']['control'])) {
-      $this->setGeocoderControlSettings($map['settings']['geocoder'], $attached_libraries);
     }
 
     $settings[$map_id] = [

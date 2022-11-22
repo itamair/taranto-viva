@@ -1,6 +1,6 @@
 name: Leaflet
-description: Integration with the Leaflet map scripting library.
-core_version_requirement: ^8.8 || ^9 || ^10
+description: Featured Integration with the Leaflet map scripting library.
+core_version_requirement: ^9 || ^10
 type: module
 package: Geofield
 dependencies:

@@ -1,74 +1,94 @@
 /**
- * We are overriding the adding features functionality of the Leaflet module.
+ * Override the adding features functionality of the Leaflet module,
+ * with Marker Clustering logics.
  */
 
-(function ($) {
-  Drupal.Leaflet.prototype.add_features = function (mapid, features, initial) {
-    const leaflet_markercluster_options = this.settings.leaflet_markercluster.options && this.settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.settings.leaflet_markercluster.options) : {};
-    const leaflet_markercluster_inlcude_path = this.settings.leaflet_markercluster.include_path;
+(function($, Drupal) {
 
-    const cluster_layer = new L.MarkerClusterGroup(leaflet_markercluster_options);
+  /**
+   * Add Leaflet Features with Marker Clustering to the Leaflet Map.
+   *
+   * @param features
+   *   Features List definition.
+   * @param initial
+   *   Boolean to identify initial status.
+   */
+  Drupal.Leaflet.prototype.add_features = function (features, initial) {
+    const leaflet_markercluster_options = this.map_settings.leaflet_markercluster.options && this.map_settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.map_settings.leaflet_markercluster.options) : {};
+    const leaflet_markercluster_include_path = this.map_settings.leaflet_markercluster.include_path;
+
+    // Define Map Layers holder.
+    let layers = {
+      // Define a base Layer Group, to hold all (ungrouped) Features Layers.
+      _base: this.create_feature_group()
+    };
+
+    // Define Map Clusters holder.
+    let clusters = {
+      // Define a base Layer Cluster, to hold all (ungrouped) Clustered Layers.
+      _base: new L.MarkerClusterGroup(leaflet_markercluster_options)
+    };
+
     for (let i = 0; i < features.length; i++) {
       let feature = features[i];
       let lFeature;
-
-      // dealing with a layer group
+      // In case of a Features Group.
       if (feature.group) {
-        let lGroup = new L.MarkerClusterGroup(leaflet_markercluster_options);
+        // Define a named Layer Group, to hold all unClustered Features Layers.
+        layers[feature['group_label']] = this.create_feature_group();
+        // Define a new Layer Group Cluster, to hold specific Group Layers.
+        clusters[feature['group_label']] = new L.MarkerClusterGroup(leaflet_markercluster_options);
+        // Define every single Leaflet Feature of the Group.
         for (let groupKey in feature.features) {
           let groupFeature = feature.features[groupKey];
           lFeature = this.create_feature(groupFeature);
           if (lFeature !== undefined) {
-            if (lFeature.setStyle) {
-              feature.path = feature.path ? (feature.path instanceof Object ? feature.path : JSON.parse(feature.path)) : {};
-              lFeature.setStyle(feature.path);
+                        // If the Leaflet feature is extending the Path class (Polygon,
+            // Polyline, Circle) don't add it to Markercluster if not requested,
+            // and don't add it if specifically requested not to.
+            if ((lFeature.setStyle && !leaflet_markercluster_include_path) || groupFeature['markercluster_excluded']) {
+              layers[feature['group_label']].addLayer(lFeature);
             }
-            if (groupFeature.popup) {
-              lFeature.bindPopup(groupFeature.popup);
+            else {
+              // Add the single Leaflet Feature to the Layer Group Cluster.
+              clusters[feature['group_label']].addLayer(lFeature);
             }
-            lGroup.addLayer(lFeature);
+
+            // Allow others to do something with the feature that was just added to the map
+            $(document).trigger('leaflet.feature', [lFeature, groupFeature, this]);
           }
         }
 
-        // Correctly handle the groups here
-        this.add_overlay(feature.label, lGroup, false, mapid);
+        // Add the Group Label Cluster Layer and/or the Group Label Base Layer as Overlay to the Map.
+        if (layers[feature['group_label']].getLayers().length > 0 || clusters[feature['group_label']].getLayers().length > 0) {
+          this.add_overlay(feature['group_label'], L.featureGroup([layers[feature['group_label']], clusters[feature['group_label']]]), feature['disabled']);
+        }
       }
       else {
         lFeature = this.create_feature(feature);
         if (lFeature !== undefined) {
 
-          if (lFeature.setStyle) {
-            feature.path = feature.path ? (feature.path instanceof Object ? feature.path : JSON.parse(feature.path)) : {};
-            lFeature.setStyle(feature.path);
-          }
-
           // If the Leaflet feature is extending the Path class (Polygon,
-          // Polyline, Circle) don't add it to Markercluster.
-          if (lFeature.setStyle && !leaflet_markercluster_inlcude_path) {
-            this.lMap.addLayer(lFeature);
-            if (feature.popup) {
-              lFeature.bindPopup(feature.popup);
-            }
+          // Polyline, Circle) don't add it to Markercluster if not requested,
+          // and don't add it if specifically requested not to.
+          if ((lFeature.setStyle && !leaflet_markercluster_include_path) || feature['markercluster_excluded']) {
+            layers._base.addLayer(lFeature);
           }
           else {
-            // this.lMap.addLayer(lFeature);
-            cluster_layer.addLayer(lFeature);
-            if (feature.popup) {
-              lFeature.bindPopup(feature.popup);
-            }
+            clusters._base.addLayer(lFeature);
           }
+
+          // Allow others to do something with the feature that was just added to the map
+          $(document).trigger('leaflet.feature', [lFeature, feature, this]);
         }
       }
-
-      // Allow others to do something with the feature that was just added to the map
-      $(document).trigger('leaflet.feature', [lFeature, feature, this]);
     }
 
-    // Add all markers to the map
-    this.lMap.addLayer(cluster_layer)
+    // Add lBaseCluster to the map
+    this.add_overlay(null, L.featureGroup([layers._base, clusters._base]), false);
 
     // Allow plugins to do things after features have been added.
     $(document).trigger('leaflet.features', [initial || false, this])
   };
 
-})(jQuery);
+})(jQuery, Drupal);

@@ -14,9 +14,6 @@ field.widget.settings.leaflet_widget_default:
         height:
           type: integer
           label: 'Height'
-        locate:
-          type: integer
-          label: 'Locale'
         auto_center:
           type: integer
           label: 'Automatically center map'
@@ -110,14 +107,27 @@ field.widget.settings.leaflet_widget_default:
           label: 'Rotate Mode'
     reset_map:
       type: mapping
-      label: 'Reset map'
+      label: 'Reset Map View'
       mapping:
-        position:
-          type: string
-          label: 'Position'
         control:
           type: boolean
           label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+    locate:
+      type: mapping
+      label: 'Locate User Position'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+        automatic:
+          type: boolean
+          label: 'Automatically locate user current position'
     fullscreen:
       type: mapping
       label: 'Leaflet Fullscreen'
@@ -187,7 +197,7 @@ field.formatter.settings.leaflet_formatter_default:
       label: 'Multiple map'
     leaflet_map:
       type: string
-      label: 'Leaflet map'
+      label: 'Leaflet Map Tiles Layer'
     height:
       type: integer
       label: 'Map height'
@@ -205,20 +215,58 @@ field.formatter.settings.leaflet_formatter_default:
       label: 'Gesture handling'
     reset_map:
       type: mapping
-      label: 'Reset map'
+      label: 'Reset Map View'
       mapping:
         control:
           type: boolean
           label: 'Control'
-        position:
+        options:
+          type: text
+          label: 'Options'
+    locate:
+      type: mapping
+      label: 'Locate User Position'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+        automatic:
+          type: boolean
+          label: 'Automatically locate user current position'
+    leaflet_tooltip:
+      type: mapping
+      label: 'Tooltip Source'
+      mapping:
+        value:
           type: string
-          label: 'Position'
+          label: 'Value'
+        options:
+          type: text
+          label: 'Tooltip Options'
+    # @TODO Keep this for backword compatibility with Leaflet < 2.x.
     popup:
       type: boolean
-      label: 'Popup'
+      label: 'Leaflet Popup'
+    # @TODO Keep this for backword compatibility with Leaflet < 2.x.
     popup_content:
       type: text
       label: 'Popup Content'
+    leaflet_popup:
+      type: mapping
+      label: 'Leaflet Popup'
+      mapping:
+        control:
+          type: string
+          label: 'Enable'
+        content:
+          type: text
+          label: 'Popup content'
+        options:
+          type: text
+          label: 'Popup Options'
     map_position:
       type: mapping
       label: 'Map Position'
@@ -333,6 +381,9 @@ field.formatter.settings.leaflet_formatter_default:
         options:
           type: text
           label: 'Options'
+        excluded:
+          type: text
+          label: 'Exclude flag'
         include_path:
           type: boolean
           label: 'Include Path'
@@ -346,10 +397,16 @@ field.formatter.settings.leaflet_formatter_default:
         options:
           type: text
           label: 'Options'
-
     path:
       type: text
       label: 'Path'
+    feature_properties:
+      type: mapping
+      label: 'Feature Additional Properties'
+      mapping:
+        values:
+          type: text
+          label: 'Values'
     geocoder:
       type: mapping
       label: 'Geocoder map control'
