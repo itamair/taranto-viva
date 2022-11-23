@@ -15,6 +15,8 @@ It is dependant on the Drupal [Geofield](https://www.drupal.org/project/geofield
 - Leaflet Tooltips and Popups;
 - Leaflet Multi Maps Base Layers Control;
 - Leaflet Overlays Control via Drupal Views Grouping;
+- Dynamic Markers Icons and Paths/Geometries Styling, with tokens and
+replacement patterns
 - Markerclustering,via [Leaflet.markercluster plugin](https://github.com/Leaflet/Leaflet.markercluster);
 - Leaflet Gesture handling, via [Leaflet.GestureHandling plugin](https://github.com/elmarquis/Leaflet.GestureHandling);
 - Reset Map View Control via [Leaflet.ResetView plugin](https://github.com/drustack/Leaflet.ResetView);
@@ -22,6 +24,7 @@ It is dependant on the Drupal [Geofield](https://www.drupal.org/project/geofield
 - User Location Control, via [Leaflet.Locate plugin](https://github.com/domoritz/leaflet-locatecontrol);
 - Feature Additional Properties settings for advanced / dynamic customisation of
   Leaflet Map and Features rendering logics;
+- Address Search Geocoding with Autocomplete integration (requires  Geocoder module);
 - Token and Replacement Patterns in Leaflet components settings;
 - Multiple Leaflet maps (mixed of Leaflet Formatters, Views and Widgets) on the
 same page;
