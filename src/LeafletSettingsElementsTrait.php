@@ -1246,7 +1246,7 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Values'),
       '#description' => $this->t('Add additional key/value(s) that will be added in the "properties" index for each Leaflet Map "feature" (in the drupalSettings js object)<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>This is as advanced functionality, useful to dynamically alter Leaflet Map and each feature representation/behaviour on the basis of its properties.<br>Supports <b>Replacement Patterns</b>'),
       '#default_value' => $settings['feature_properties']['values'] ?? $default_settings['feature_properties']['values'],
-      '#placeholder' => '{"content type":"{{ type }}"}',
+      '#placeholder' => '{"content_type":"{{ type }}"}',
       '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
   }
