@@ -88,7 +88,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   /**
    * {@inheritdoc}
    */
-  protected $usesRowPlugin = FALSE;
+  protected $usesRowPlugin = TRUE;
 
   /**
    * The Entity type manager service.
@@ -992,7 +992,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       $render_row = [
                         "markup" => $this->view->rowPlugin->render($result),
                       ];
-                      $popup_content = !empty($this->options['description_field']) ? $this->renderer->renderPlain($render_row) : '';
+                      $popup_content = $this->renderer->renderPlain($render_row);
                       break;
 
                     default:
