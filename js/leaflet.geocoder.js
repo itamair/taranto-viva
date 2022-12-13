@@ -7,7 +7,7 @@
         let k = prefix ? prefix + "[" + p + "]" : p,
           v = obj[p];
         str.push((v !== null && typeof v === "object") ?
-          Drupal.Leaflet.query_url_serialize(v, k) :
+          Drupal.Leaflet.prototype.query_url_serialize(v, k) :
           encodeURIComponent(k) + "=" + encodeURIComponent(v));
       }
     }
