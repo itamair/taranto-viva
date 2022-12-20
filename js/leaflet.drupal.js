@@ -325,6 +325,9 @@
           if (lFeature !== undefined) {
             // Add the lFeature to the lGroup.
             layers[feature['group_label']].addLayer(lFeature);
+
+            // Allow others to do something with the feature that was just added to the map.
+            $(document).trigger('leaflet.feature', [lFeature, groupFeature, this]);
           }
         }
 
@@ -336,11 +339,11 @@
         if (lFeature !== undefined) {
           // Add the Leaflet Feature to the Map.
           this.lMap.addLayer(lFeature);
+
+          // Allow others to do something with the feature that was just added to the map.
+          $(document).trigger('leaflet.feature', [lFeature, feature, this]);
         }
       }
-
-      // Allow others to do something with the feature that was just added to the map.
-      $(document).trigger('leaflet.feature', [lFeature, feature, this]);
     }
 
     // Allow plugins to do things after features have been added.
@@ -383,7 +386,7 @@
     // Set the Leaflet Tooltip, with its options (if the stripped value is not null).
     if (feature.tooltip && feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
       const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
-      lFeature.bindTooltip(feature.tooltip.value, tooltip_options).openTooltip()
+      lFeature.bindTooltip(feature.tooltip.value, tooltip_options);
     }
   };
 
@@ -447,15 +450,14 @@
   }
 
   /**
-   * Generates a Leaflet Feature (Point r Geometry)
-   * with Leaflet adds on (Tooltip, Popup, Path Styles, etc.)
+   * Generates a Leaflet Geometry (Point or Geometry)
    *
    * @param feature
    *   The feature definition coming from Drupal backend.
    * @returns {*}
-   *   The generated Leaflet Feature.
+   *   The generated Leaflet Geometry.
    */
-  Drupal.Leaflet.prototype.create_feature = function(feature) {
+  Drupal.Leaflet.prototype.create_geometry = function(feature, map_settings = NULL) {
     let lFeature;
     switch (feature.type) {
       case 'point':
@@ -463,19 +465,19 @@
         break;
 
       case 'linestring':
-        lFeature = this.create_linestring(feature, this.map_settings['leaflet_markercluster']['include_path']);
+        lFeature = this.create_linestring(feature, map_settings ? map_settings['leaflet_markercluster']['include_path'] : false);
         break;
 
       case 'polygon':
-        lFeature = this.create_polygon(feature, this.map_settings['leaflet_markercluster']['include_path']);
+        lFeature = this.create_polygon(feature, map_settings ? map_settings['leaflet_markercluster']['include_path'] : false);
         break;
 
       case 'multipolygon':
-        lFeature = this.create_multipolygon(feature, this.map_settings['leaflet_markercluster']['include_path']);
+        lFeature = this.create_multipolygon(feature, map_settings ? map_settings['leaflet_markercluster']['include_path'] : false);
         break;
 
       case 'multipolyline':
-        lFeature = this.create_multipoly(feature, this.map_settings['leaflet_markercluster']['include_path']);
+        lFeature = this.create_multipoly(feature, map_settings ? map_settings['leaflet_markercluster']['include_path'] : false);
         break;
 
       case 'json':
@@ -488,8 +490,24 @@
         break;
 
       default:
-        return; // Crash and burn.
+        lFeature = {};
     }
+    return lFeature;
+  }
+
+  /**
+   * Generates a Leaflet Feature (Point or Geometry)
+   * with Leaflet adds on (Tooltip, Popup, Path Styles, etc.)
+   *
+   * @param feature
+   *   The feature definition coming from Drupal backend.
+   * @returns {*}
+   *   The generated Leaflet Feature.
+   */
+  Drupal.Leaflet.prototype.create_feature = function(feature) {
+
+    const map_settings = this.map_settings ?? NULL;
+    let lFeature = this.create_geometry(feature, map_settings);
 
     // Eventually add Tooltip to the lFeature.
     this.feature_bind_tooltip(lFeature, feature);
@@ -844,7 +862,7 @@
         this.lMap.setView(start_center, start_zoom);
       } else {
         //  Set the Zoom and Center by using the Leaflet fitBounds function
-        let bounds = new L.LatLngBounds(this.bounds);
+        const bounds = new L.LatLngBounds(this.bounds);
         this.lMap.fitBounds(bounds);
         start_center = bounds.getCenter();
         start_zoom = this.lMap.getBoundsZoom(bounds);
