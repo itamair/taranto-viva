@@ -454,10 +454,13 @@
    *
    * @param feature
    *   The feature definition coming from Drupal backend.
+   * @param map_settings
+   *   The map_settings if defined, false otherwise..
+   *
    * @returns {*}
    *   The generated Leaflet Geometry.
    */
-  Drupal.Leaflet.prototype.create_geometry = function(feature, map_settings = NULL) {
+  Drupal.Leaflet.prototype.create_geometry = function(feature, map_settings = false) {
     let lFeature;
     switch (feature.type) {
       case 'point':
