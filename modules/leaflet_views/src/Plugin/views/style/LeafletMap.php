@@ -354,17 +354,18 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           $entity_type = NULL;
         }
         $field_storage_definitions = $this->entityFieldManager->getFieldStorageDefinitions($entity_type);
-        $field_storage_definition = $field_storage_definitions[$handler->definition['field_name']];
-
-        $type = $field_storage_definition->getType();
-        try {
-          $definition = $this->fieldTypeManager->getDefinition($type);
-          if (is_a($definition['class'], '\Drupal\geofield\Plugin\Field\FieldType\GeofieldItem', TRUE)) {
-            $fields_geo_data[$field_id] = $label;
+        if (array_key_exists($handler->definition['field_name'], $field_storage_definitions)) {
+          $field_storage_definition = $field_storage_definitions[$handler->definition['field_name']];
+          $type = $field_storage_definition->getType();
+          try {
+            $definition = $this->fieldTypeManager->getDefinition($type);
+            if (is_a($definition['class'], '\Drupal\geofield\Plugin\Field\FieldType\GeofieldItem', TRUE)) {
+              $fields_geo_data[$field_id] = $label;
+            }
           }
-        }
-        catch (\Exception $e) {
-          watchdog_exception("Leaflet Map - Get Available data sources", $e);
+          catch (\Exception $e) {
+            watchdog_exception("Leaflet Map - Get Available data sources", $e);
+          }
         }
       }
     }
@@ -1158,6 +1159,12 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                         "\n",
                         "\r",
                       ], "", strip_tags($this->rendered_fields[$result->index][$this->options['leaflet_markercluster']['excluded']])));
+                    }
+
+                    // Eventually Add the belonging Group Label/Name to each
+                    // Feature, for possible based logics.
+                    if (count($view_results_groups) > 1) {
+                      $feature['group_label'] = $group_label;
                     }
 
                     // Allow modules to adjust the single feature (marker).

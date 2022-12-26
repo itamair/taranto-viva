@@ -327,7 +327,7 @@
             layers[feature['group_label']].addLayer(lFeature);
 
             // Allow others to do something with the feature that was just added to the map.
-            $(document).trigger('leaflet.feature', [lFeature, groupFeature, this]);
+            $(document).trigger('leaflet.feature', [lFeature, groupFeature, this, layers]);
           }
         }
 
