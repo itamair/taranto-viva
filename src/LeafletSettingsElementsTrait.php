@@ -54,11 +54,10 @@ trait LeafletSettingsElementsTrait {
       'hide_empty_map' => FALSE,
       'disable_wheel' => FALSE,
       'gesture_handling' => FALSE,
-      // @TODO Keep this for backword compatibility with Leaflet < 2.x.
+      // @todo Keep this for backword compatibility with Leaflet < 2.x.
       'popup' => FALSE,
-      // @TODO Keep this for backword compatibility with Leaflet < 2.x.
+      // @todo Keep this for backword compatibility with Leaflet < 2.x.
       'popup_content' => '',
-      // ...
       'leaflet_popup' => [
         'value' => '',
         'options' => '{"maxWidth":"300","minWidth":"50", "autoPan": true}',
@@ -1029,8 +1028,6 @@ trait LeafletSettingsElementsTrait {
         '#element_validate' => [[get_class($this), 'jsonValidate']],
         '#states' => $leaflet_markercluster_visibility,
       ];
-
-
 
       $element['leaflet_markercluster']['include_path'] = [
         '#type' => 'checkbox',
