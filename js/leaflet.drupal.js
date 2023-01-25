@@ -51,7 +51,8 @@
           // Add the Map Geocoder Control if requested.
           if (!Drupal.Leaflet[mapid].geocoder_control && Drupal.Leaflet.prototype.map_geocoder_control) {
             let mapGeocoderControlDiv = document.createElement('div');
-            Drupal.Leaflet[mapid].geocoder_control = Drupal.Leaflet.prototype.map_geocoder_control(mapGeocoderControlDiv, mapid).addTo(Drupal.Leaflet[mapid].lMap);
+            Drupal.Leaflet[mapid].geocoder_control = Drupal.Leaflet.prototype.map_geocoder_control(mapGeocoderControlDiv, mapid);
+            Drupal.Leaflet[mapid].geocoder_control.addTo(Drupal.Leaflet[mapid].lMap)
             let geocoder_settings = drupalSettings.leaflet[mapid].map.settings.geocoder.settings;
             Drupal.Leaflet.prototype.map_geocoder_control.autocomplete(mapid, geocoder_settings);
           }
