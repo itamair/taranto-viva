@@ -67,7 +67,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
    *
    * @var \Drupal\Core\Language\LanguageManagerInterface
    */
-  private $languageManager;
+  protected $languageManager;
 
   /**
    * Get maps available for use with Leaflet.
@@ -402,6 +402,12 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     /* @var \Drupal\Core\Field\FieldDefinitionInterface $field */
     $field = $items->getFieldDefinition();
 
+    // Get token context.
+    $tokens = [
+      'field' => $items,
+      $field->getTargetEntityTypeId() => $items->getEntity(),
+    ];
+
     // Determine the widget map, default and input settings.
     $map_settings = $this->getSetting('map');
     $default_settings = self::defaultSettings();
@@ -430,7 +436,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $map_settings = array_merge($map_settings, [
       'reset_map' => $this->getSetting('reset_map'),
       'fullscreen' => $this->getSetting('fullscreen'),
-      'path' => $this->getSetting('path'),
+      'path' => str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $tokens)),
       'geocoder' => $this->getSetting('geocoder'),
       'locate' => $this->getSetting('locate'),
     ]);
