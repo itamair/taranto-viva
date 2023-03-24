@@ -115,6 +115,19 @@ field.widget.settings.leaflet_widget_default:
         options:
           type: text
           label: 'Options'
+    fullscreen:
+      type: mapping
+      label: 'Leaflet Fullscreen'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+    path:
+      type: text
+      label: 'Path'
     locate:
       type: mapping
       label: 'Locate User Position'
@@ -128,20 +141,6 @@ field.widget.settings.leaflet_widget_default:
         automatic:
           type: boolean
           label: 'Automatically locate user current position'
-    fullscreen:
-      type: mapping
-      label: 'Leaflet Fullscreen'
-      mapping:
-        control:
-          type: boolean
-          label: 'Control'
-        options:
-          type: text
-          label: 'Options'
-
-    path:
-      type: text
-      label: 'Path'
     geocoder:
       type: mapping
       label: 'Gecoder map control'

@@ -169,7 +169,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
   public static function defaultSettings() {
     $base_layers = self::getLeafletMaps();
 
-    $options = array_merge(parent::defaultSettings(), [
+    return array_merge(parent::defaultSettings(), [
       'map' => [
         'leaflet_map' => array_shift($base_layers),
         'height' => 400,
@@ -195,12 +195,37 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'removalMode' => TRUE,
         'rotateMode' => FALSE,
       ],
+      'reset_map' => [
+        'control' => FALSE,
+        'options' => '{"position": "topleft", "title": "Reset View"}',
+      ],
+      'fullscreen' => [
+        'control' => FALSE,
+        'options' => '{"position":"topleft","pseudoFullscreen":false}',
+      ],
+      'path' => '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}',
+      'feature_properties' => [
+        'values' => '',
+      ],
+      'locate' => [
+        'control' => FALSE,
+        'options' => '{"position": "topright", "setView": "untilPanOrZoom", "returnToPrevBounds":true, "keepCurrentZoomLevel": true, "strings": {"title": "Locate my position"}}',
+        'automatic' => FALSE,
+      ],
+      'geocoder' => [
+        'control' => FALSE,
+        'settings' => [
+          'position' => 'topright',
+          'input_size' => 20,
+          'providers' => [],
+          'min_terms' => 4,
+          'delay' => 800,
+          'zoom' => 16,
+          'popup' => FALSE,
+          'options' => '',
+        ],
+      ],
     ]);
-    $leaflet_map_default_settings = [];
-    foreach (self::getDefaultSettings() as $k => $setting) {
-      $leaflet_map_default_settings[$k] = $setting;
-    }
-    return $options + $leaflet_map_default_settings;
   }
 
   /**
