@@ -452,3 +452,10 @@ field.formatter.settings.leaflet_formatter_default:
             options:
               type: string
               label: 'Options'
+    map_lazy_load:
+      type: mapping
+      label: Map lazy load
+      mapping:
+        lazy_load:
+          type: boolean
+          label: Lazy load

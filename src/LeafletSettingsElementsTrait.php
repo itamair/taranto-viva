@@ -131,6 +131,9 @@ trait LeafletSettingsElementsTrait {
           'options' => '',
         ],
       ],
+      'map_lazy_load' => [
+        'lazy_load' => 0,
+      ],
     ];
   }
 
@@ -770,6 +773,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['reset_map'] = $options['reset_map'] ?? $default_settings['reset_map'];
     $map['settings']['locate'] = $options['locate'] ?? $default_settings['locate'];
     $map['settings']['geocoder'] = $options['geocoder'] ?? $default_settings['geocoder'];
+    $map['settings']['map_lazy_load'] = $options['map_lazy_load'] ?? $default_settings['map_lazy_load'];
   }
 
   /**
@@ -1396,6 +1400,29 @@ trait LeafletSettingsElementsTrait {
         ]),
       ];
     }
+  }
+
+  /**
+   * Set Map Lazy Load Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setMapLazyLoad(array &$element, array $settings) {
+    $element['map_lazy_load'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Lazy Loading'),
+    ];
+
+    $element['map_lazy_load']['lazy_load'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Lazy load map'),
+      '#description' => $this->t("If checked, the map will be loaded when it enters the user's viewport. This can be useful to reduce unnecessary load time or API calls."),
+      '#default_value' => !empty($settings['map_lazy_load']['lazy_load']) ? $settings['map_lazy_load']['lazy_load'] : 0,
+      '#return_value' => 1,
+    ];
   }
 
   /**

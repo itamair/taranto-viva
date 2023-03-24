@@ -238,6 +238,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // otherwise output a tip on Geocoder Module Integration.
     $this->setGeocoderMapControl($form, $settings);
 
+    // Set Map Lazy Load Element.
+    $this->setMapLazyLoad($form, $settings);
+
     return $form;
   }
 

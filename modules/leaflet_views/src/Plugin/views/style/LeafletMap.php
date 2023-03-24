@@ -747,6 +747,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // otherwise output a tip on Geocoder Module Integration.
     $this->setGeocoderMapControl($form, $this->options);
 
+    // Set Map Lazy Load Element.
+    $this->setMapLazyLoad($form, $this->options);
+
     unset($form["#pre_render"]);
 
   }
