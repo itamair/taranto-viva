@@ -92,14 +92,14 @@
 
                 // On leaflet-ajax-popup selector, fetch and set Ajax content.
                 let element = e.popup._contentNode;
-                let content = $('[data-leaflet-ajax-popup]', element);
+                let content = $('*[data-leaflet-ajax-popup]', element);
                 if (content.length) {
                   let url = content.data('leaflet-ajax-popup');
-                  Drupal.ajax({url: url}).execute().done(function () {
+                  Drupal.ajax({url: url}).execute().done(function (data) {
 
                     // Copy the html we received via AJAX to the popup, so we won't
                     // have to make another AJAX call (#see 3258780).
-                    e.popup.setContent(element.innerHTML);
+                    e.popup.setContent(data[0].data);
 
                     // Attach drupal behaviors on new content.
                     Drupal.attachBehaviors(element, drupalSettings);
