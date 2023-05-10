@@ -7,17 +7,18 @@
       // generation.
       $.each(settings.leaflet, function(m, data) {
 
-        $('#' + data['mapid'], context).each(function () {
+        // Ensure the Leaflet Behavior is attached only once to each Leaflet map
+        // id element.
+        // @see https://www.drupal.org/project/leaflet/issues/3314762#comment-15044223
+        const leaflet_elements = $(once('behaviour-leaflet', '#' + data['mapid']));
+        leaflet_elements.each(function () {
           let map_container = $(this);
           let mapid = data['mapid'];
 
           // Function to load the Leaflet Map, based on the provided mapid.
           function loadMap(mapid) {
             // Process a new Leaflet Map only if the map container is empty.
-            // Avoid reprocessing a Leaflet Mao already initialised.
-            // This could happen with Big Pipe that triggers Drupal Behaviours
-            // more than once
-            // @see https://www.drupal.org/project/leaflet/issues/3337537
+            // Avoid reprocessing a Leaflet Map already initialised.
             if (map_container.data('leaflet') === undefined) {
               map_container.data('leaflet', new Drupal.Leaflet(L.DomUtil.get(mapid), mapid, data.map));
               if (data.features.length > 0) {
