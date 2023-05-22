@@ -222,11 +222,21 @@ views.style.leaflet_map:
       mapping:
         control:
           type: boolean
-          label: 'Control'
+          label: 'Enable Geocoder map control'
         settings:
           type: mapping
-          label: 'Geocoder'
+          label: 'Geocoder settings'
           mapping:
+            autocomplete:
+              type: mapping
+              label: 'Autocomplete'
+              mapping:
+                placeholder:
+                  type: string
+                  label: 'Placeholder'
+                title:
+                  type: string
+                  label: 'Title'
             position:
               type: string
               label: 'Path'

@@ -121,6 +121,10 @@ trait LeafletSettingsElementsTrait {
       'geocoder' => [
         'control' => FALSE,
         'settings' => [
+          'autocomplete' => [
+            'placeholder' => 'Search Address',
+            'title' => 'Search an Address on the Map',
+          ],
           'position' => 'topright',
           'input_size' => 20,
           'providers' => [],
@@ -1296,6 +1300,22 @@ trait LeafletSettingsElementsTrait {
       $element['geocoder']['settings'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Geocoder Settings'),
+      ];
+
+      $element['geocoder']['settings']['autocomplete'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Map Control - Geocoder'),
+        'placeholder' => [
+          '#title' => $this->t('Autocomplete field placeholder attribute'),
+          '#type' => 'textfield',
+          '#default_value' => $settings['geocoder']['settings']['autocomplete']['placeholder'] ?? $default_settings['geocoder']['settings']['autocomplete']['placeholder'],
+        ],
+        'title' => [
+          '#title' => $this->t('Autocomplete field title attribute'),
+          '#type' => 'textfield',
+          '#description' => $this->t('Adds a tooltip that appears hovering the mouse over the input element.'),
+          '#default_value' => $settings['geocoder']['settings']['autocomplete']['title'] ?? $default_settings['geocoder']['settings']['autocomplete']['title'],
+        ],
       ];
 
       $element['geocoder']['settings']['position'] = [
