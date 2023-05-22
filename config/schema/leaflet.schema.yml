@@ -34,6 +34,9 @@ field.widget.settings.leaflet_widget_default:
                 lon:
                   type: float
                   label: 'Lon'
+            zoomControlPosition:
+              type: string
+              label: 'Position'
             zoom:
               type: integer
               label: 'Zoom'
@@ -293,6 +296,9 @@ field.formatter.settings.leaflet_formatter_default:
             lon:
               type: float
               label: 'Longitude'
+        zoomControlPosition:
+          type: string
+          label: 'Position'
         zoom:
           type: integer
           label: 'Zoom'

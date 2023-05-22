@@ -241,6 +241,7 @@
       this.lMap.fitWorld();
     }
 
+    // Set the position of the Zoom Control.
     this.lMap.zoomControl.setPosition(this.map_settings.zoomControlPosition);
 
     // Set to refresh when first in viewport to avoid missing visibility.
