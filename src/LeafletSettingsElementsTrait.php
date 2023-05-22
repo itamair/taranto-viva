@@ -75,6 +75,7 @@ trait LeafletSettingsElementsTrait {
           'lat' => 0,
           'lon' => 0,
         ],
+        'zoomControlPosition' => 'topleft',
         'zoom' => 12,
         'minZoom' => 1,
         'maxZoom' => 18,
@@ -293,6 +294,13 @@ trait LeafletSettingsElementsTrait {
         '#default_value' => $map_position_options['center']['lon'] ?? $this->getDefaultSettings()['map_position']['center']['lon'],
         '#required' => FALSE,
       ],
+    ];
+
+    $element['zoomControlPosition'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Zoom control position'),
+      '#options' => $this->controlPositionsOptions,
+      '#default_value' => $map_position_options['zoomControlPosition'] ?? $this->getDefaultSettings()['map_position']['zoomControlPosition']
     ];
 
     $element['zoom'] = [
@@ -762,6 +770,8 @@ trait LeafletSettingsElementsTrait {
     if ($map['settings']['minZoom'] === $map['settings']['maxZoom']) {
       $map['settings']['zoomControl'] = FALSE;
     }
+
+    $map['settings']['zoomControlPosition'] = $options['map_position']['zoomControlPosition'] ?? $default_settings['map_position']['zoomControlPosition'];
 
     $map['settings']['center'] = (isset($options['map_position']['center']['lat']) && isset($options['map_position']['center']['lon'])) ? [
       'lat' => floatval($options['map_position']['center']['lat']),
