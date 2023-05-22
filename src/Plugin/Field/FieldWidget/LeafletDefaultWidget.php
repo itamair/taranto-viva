@@ -199,6 +199,10 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'control' => FALSE,
         'options' => '{"position": "topleft", "title": "Reset View"}',
       ],
+      'map_scale' => [
+        'control' => FALSE,
+        'options' => '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}',
+      ],
       'fullscreen' => [
         'control' => FALSE,
         'options' => '{"position":"topleft","pseudoFullscreen":false}',
@@ -391,6 +395,9 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // Generate the Leaflet Map Reset Control.
     $this->setResetMapViewControl($form, $this->getSettings());
 
+    // Generate the Leaflet Map Scale Control.
+    $this->setMapScaleControl($form, $this->getSettings());
+
     // Set Fullscreen Element.
     $this->setFullscreenElement($form, $this->getSettings());
 
@@ -460,6 +467,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // to uniform with Leaflet Formatter and Leaflet View processing.
     $map_settings = array_merge($map_settings, [
       'reset_map' => $this->getSetting('reset_map'),
+      'map_scale' => $this->getSetting('map_scale'),
       'fullscreen' => $this->getSetting('fullscreen'),
       'path' => str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $tokens)),
       'geocoder' => $this->getSetting('geocoder'),

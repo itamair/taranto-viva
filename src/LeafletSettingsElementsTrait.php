@@ -110,6 +110,10 @@ trait LeafletSettingsElementsTrait {
         'control' => FALSE,
         'options' => '{"position": "topleft", "title": "Reset View"}',
       ],
+      'map_scale' => [
+        'control' => FALSE,
+        'options' => '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}',
+      ],
       'locate' => [
         'control' => FALSE,
         'options' => '{"position": "topright", "setView": "untilPanOrZoom", "returnToPrevBounds":true, "keepCurrentZoomLevel": true, "strings": {"title": "Locate my position"}}',
@@ -785,6 +789,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['fullscreen'] = $options['fullscreen'] ?? $default_settings['fullscreen'];
     $map['settings']['gestureHandling'] = $options['gesture_handling'] ?? $default_settings['gesture_handling'];
     $map['settings']['reset_map'] = $options['reset_map'] ?? $default_settings['reset_map'];
+    $map['settings']['map_scale'] = $options['map_scale'] ?? $default_settings['map_scale'];
     $map['settings']['locate'] = $options['locate'] ?? $default_settings['locate'];
     $map['settings']['geocoder'] = $options['geocoder'] ?? $default_settings['geocoder'];
     $map['settings']['map_lazy_load'] = $options['map_lazy_load'] ?? $default_settings['map_lazy_load'];
@@ -1168,6 +1173,62 @@ trait LeafletSettingsElementsTrait {
       $element['reset_map']['options']['#states'] = [
         'visible' => [
           ':input[name="style_options[reset_map][control]"]' => ['checked' => TRUE],
+        ],
+      ];
+    }
+
+  }
+
+  /**
+   * Set Map Scale Control Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setMapScaleControl(array &$element, array $settings) {
+    $default_settings = $this::getDefaultSettings();
+
+    $element['map_scale'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Map Scale Control'),
+    ];
+
+    $element['map_scale']['control'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable @map_scale_link.', [
+        '@map_scale_link' => $this->link->generate($this->t('Map Scale Control'), Url::fromUri('https://leafletjs.com/reference.html#control-scale', [
+          'absolute' => TRUE,
+          'attributes' => ['target' => 'blank'],
+        ])),
+      ]),
+      '#description' => $this->t('A simple scale control that shows the scale of the current center of screen in metric (m/km) and imperial (mi/ft) systems.'),
+      '#default_value' => isset($settings['map_scale']['control']) ? $settings['map_scale']['control'] : $default_settings['map_scale']['control'],
+      '#return_value' => 1,
+    ];
+
+    $element['map_scale']['options'] = [
+      '#type' => 'textarea',
+      '#rows' => 4,
+      '#title' => $this->t('Map Scale Options'),
+      '#description' => $this->t('An object literal of options, that comply with the Leaflet Map Scale Options.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.'),
+      '#default_value' => $settings['map_scale']['options'] ?? $default_settings['map_scale']['options'],
+      '#placeholder' => $default_settings['map_scale']['options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
+    ];
+
+    if (isset($this->fieldDefinition)) {
+      $element['map_scale']['options']['#states'] = [
+        'visible' => [
+          ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][map_scale][control]"]' => ['checked' => TRUE],
+        ],
+      ];
+    }
+    else {
+      $element['map_scale']['options']['#states'] = [
+        'visible' => [
+          ':input[name="style_options[map_scale][control]"]' => ['checked' => TRUE],
         ],
       ];
     }

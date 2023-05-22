@@ -69,6 +69,12 @@
                 Drupal.Leaflet[mapid].reset_view_control = L.control.resetView(map_reset_view_options).addTo(map_container.data('leaflet').lMap);
               }
 
+              // Add and Initialise the Map Scale Control if requested.
+              if (!Drupal.Leaflet[mapid].map_scale_control && map_container.data('leaflet').map_settings.map_scale && map_container.data('leaflet').map_settings.map_scale.control) {
+                const map_scale_options = map_container.data('leaflet').map_settings.map_scale.options ? JSON.parse(map_container.data('leaflet').map_settings.map_scale.options) : {};
+                Drupal.Leaflet[mapid].map_scale_control = L.control.scale(map_scale_options).addTo(map_container.data('leaflet').lMap);
+              }
+
               // Add the Locate Control if requested.
               if (!Drupal.Leaflet[mapid].locate_control && map_container.data('leaflet').map_settings.locate && map_container.data('leaflet').map_settings.locate.control) {
                 let locate_options = map_container.data('leaflet').map_settings.locate.options ? JSON.parse(map_container.data('leaflet').map_settings.locate.options) : {};

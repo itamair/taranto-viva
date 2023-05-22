@@ -118,6 +118,16 @@ field.widget.settings.leaflet_widget_default:
         options:
           type: text
           label: 'Options'
+    map_scale:
+      type: mapping
+      label: 'Map Scale Control'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
     fullscreen:
       type: mapping
       label: 'Leaflet Fullscreen'
@@ -228,6 +238,16 @@ field.formatter.settings.leaflet_formatter_default:
     reset_map:
       type: mapping
       label: 'Reset Map View'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+    map_scale:
+      type: mapping
+      label: 'Map Scale Control'
       mapping:
         control:
           type: boolean
