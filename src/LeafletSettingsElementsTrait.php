@@ -418,8 +418,8 @@ trait LeafletSettingsElementsTrait {
       '#title' => t('Icon Source'),
       '#default_value' => isset($icon_options['iconType']) ? $icon_options['iconType'] : $default_settings['icon']['iconType'],
       '#options' => [
-        'marker' => 'Icon Image Url/Path',
-        'html' => 'Field (html DivIcon)',
+        'marker' => $this->t('Icon Image Url/Path'),
+        'html' => $this->t('Field (html DivIcon)'),
         'circle_marker' => $this->t('Circle Marker (@more_info)', [
           '@more_info' => $this->link->generate('more info', Url::fromUri('https://leafletjs.com/reference.html#circlemarker', [
             'absolute' => TRUE,
