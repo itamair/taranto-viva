@@ -1213,9 +1213,15 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           $features_groups[] = $group;
         }
       }
-
-      // Order the data features groups based on the 'weight' element.
-      uasort($features_group, ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
+      
+      // Order the data features based on the 'weight' element.
+      if ($features_group && count($features_group) > 1) {
+        // Order the data features groups based on the 'weight' element.
+        uasort($features_group, [
+          'Drupal\Component\Utility\SortArray',
+          'sortByWeightElement',
+        ]);
+      }
 
       // Define the Js Settings.
       // Features is defined as Features Groups or single Features in case of a
