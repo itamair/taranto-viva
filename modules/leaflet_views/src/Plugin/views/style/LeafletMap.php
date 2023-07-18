@@ -341,12 +341,12 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   protected function getAvailableDataSources() {
     $fields_geo_data = [];
 
-    /* @var \Drupal\views\Plugin\views\ViewsHandlerInterface $handler) */
+    /** @var \Drupal\views\Plugin\views\ViewsHandlerInterface $handler) */
     foreach ($this->displayHandler->getHandlers('field') as $field_id => $handler) {
       $label = $handler->adminLabel() ?: $field_id;
       $this->viewFields[$field_id] = $label;
       if (is_a($handler, '\Drupal\views\Plugin\views\field\EntityField')) {
-        /* @var \Drupal\views\Plugin\views\field\EntityField $handler */
+        /** @var \Drupal\views\Plugin\views\field\EntityField $handler */
         try {
           $entity_type = $handler->getEntityType();
         }
@@ -915,7 +915,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                 // Render the entity with the selected view mode.
                 if (!empty($entity_id) && !empty($entity_type)) {
                   // Get and set (if not set) the Geofield cardinality.
-                  /* @var \Drupal\Core\Field\FieldItemList $geofield_entity */
+                  /** @var \Drupal\Core\Field\FieldItemList $geofield_entity */
                   if (!isset($map['geofield_cardinality']) && isset($entity)) {
                     try {
                       $geofield_entity = $entity->get($geofield_name);
@@ -950,7 +950,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                   ];
                   if (isset($dynamic_renderers[$rendering_language])) {
                     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-                    $langcode = isset($result->$entity_type_langcode_attribute) ? $result->$entity_type_langcode_attribute : $entity_language;
+                    $langcode = $result->$entity_type_langcode_attribute ?? $entity_language;
                   }
                   else {
                     if (strpos($rendering_language, '***LANGUAGE_') !== FALSE) {
@@ -1029,7 +1029,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                     $tokens[$field_name] = $field_value;
                   }
 
-                  $icon_type = isset($this->options['icon']['iconType']) ? $this->options['icon']['iconType'] : 'marker';
+                  $icon_type = $this->options['icon']['iconType'] ?? 'marker';
 
                   // Relates each result feature with additional properties.
                   foreach ($features as &$feature) {
@@ -1184,8 +1184,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             }
           }
         }
+
         // Order the data features based on the 'weight' element.
-        uasort($features_group, ['Drupal\Component\Utility\SortArray', 'sortByWeightElement']);
+        uasort($features_group, [
+          'Drupal\Component\Utility\SortArray',
+          'sortByWeightElement',
+        ]
+        );
 
         // Generate Features Groups in case of Grouping.
         if (count($view_results_groups) > 1) {
