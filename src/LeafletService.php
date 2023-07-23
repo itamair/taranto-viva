@@ -491,8 +491,8 @@ class LeafletService {
           case "svg":
             if ($xml = simplexml_load_file($icon_url)) {
               $attr = $xml->attributes();
-              $feature["icon"]["iconSize"]["x"] = $attr->width->__toString();
-              $feature["icon"]["iconSize"]["y"] = $attr->height->__toString();
+              $feature["icon"]["iconSize"]["x"] = isset($attr->width) ? $attr->width->__toString() : 40;
+              $feature["icon"]["iconSize"]["y"] = isset($attr->height) ? $attr->height->__toString() : 40;
             }
             break;
 
