@@ -2,7 +2,8 @@
 
 namespace Drupal\leaflet_views\Plugin\views\style;
 
-use Drupal\search_api\Plugin\views\ResultRow;
+use Drupal\search_api\Plugin\views\ResultRow as SearchApiResultRow;
+use Drupal\views\ResultRow;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\Render\BubbleableMetadata;
@@ -311,7 +312,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   public function getFieldValue($index, $field) {
     $result = $this->view->result[$index];
 
-    if ($result instanceof ResultRow) {
+    if ($result instanceof SearchApiResultRow) {
       $search_api_field = $result->_item->getField($field, FALSE);
       if ($search_api_field !== NULL) {
         $values = $search_api_field->getValues();
@@ -326,10 +327,16 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       }
     }
 
-    $this->view->row_index = $index;
-    $value = isset($this->view->field[$field]) ? $this->view->field[$field]->getValue($this->view->result[$index]) : NULL;
-    unset($this->view->row_index);
-    return $value;
+    // Check and return values coming from normal View or Search Api View,
+    // or return NULL Otherwise.
+    if (isset($this->view->field[$field]) &&
+      ($this->view->result[$index] instanceof ResultRow || $this->view->result[$index] instanceof SearchApiResultRow)
+    ) {
+      return $this->view->field[$field]->getValue($this->view->result[$index]);
+    }
+    else {
+      return NULL;
+    }
   }
 
   /**
@@ -903,7 +910,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                     $entity_language = $entity->language()->getId();
                   }
                 }
-                elseif ($result instanceof ResultRow) {
+                elseif ($result instanceof SearchApiResultRow) {
                   $id = $result->_item->getId();
                   $search_api_id_parts = explode(':', $result->_item->getId());
                   $id_parts = explode('/', $search_api_id_parts[1]);
