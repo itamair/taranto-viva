@@ -235,6 +235,9 @@ field.formatter.settings.leaflet_formatter_default:
     gesture_handling:
       type: boolean
       label: 'Gesture handling'
+    fitbounds_options:
+      type: text
+      label: 'FitBounds Options'
     reset_map:
       type: mapping
       label: 'Reset Map View'
