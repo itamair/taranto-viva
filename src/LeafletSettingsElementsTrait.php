@@ -54,6 +54,7 @@ trait LeafletSettingsElementsTrait {
       'hide_empty_map' => FALSE,
       'disable_wheel' => FALSE,
       'gesture_handling' => FALSE,
+      'fitbounds_options' => '{"padding":[0,0]}',
       // @todo Keep this for backword compatibility with Leaflet < 2.x.
       'popup' => FALSE,
       // @todo Keep this for backword compatibility with Leaflet < 2.x.
@@ -225,6 +226,35 @@ trait LeafletSettingsElementsTrait {
           ':input[name="style_options[gesture_handling]"]' => ['checked' => TRUE],
         ],
       ],
+    ];
+  }
+
+  /**
+   * Set FitBounds Options Element.
+   *
+   * @param array $element
+   *   The Form element to alter.
+   * @param array $settings
+   *   The Form Settings.
+   */
+  protected function setFitBoundsOptionsElement(array &$element, array $settings) {
+    $default_settings = $this::getDefaultSettings();
+
+    $fitbounds_options_description = $this->t('Set here options that will be applied when fitBounds is triggered (e.g. Zoom, Pan, Padding).<br>Refer to the @fitbounds_options_documentation.', [
+      '@fitbounds_options_documentation' => $this->link->generate($this->t('Leaflet Fitbound Options Documentation'), Url::fromUri('https://leafletjs.com/reference.html#fitbounds-options', [
+        'absolute' => TRUE,
+        'attributes' => ['target' => 'blank'],
+      ])),
+    ]);
+
+    $element['fitbounds_options'] = [
+      '#type' => 'textarea',
+      '#rows' => 3,
+      '#title' => $this->t('FitBounds Options'),
+      '#description' => $fitbounds_options_description,
+      '#default_value' => $settings['fitbounds_options'] ?? $default_settings['fitbounds_options'],
+      '#placeholder' => $default_settings['fitbounds_options'],
+      '#element_validate' => [[get_class($this), 'jsonValidate']],
     ];
   }
 
@@ -791,6 +821,7 @@ trait LeafletSettingsElementsTrait {
     $map['settings']['reset_map'] = $options['reset_map'] ?? $default_settings['reset_map'];
     $map['settings']['map_scale'] = $options['map_scale'] ?? $default_settings['map_scale'];
     $map['settings']['locate'] = $options['locate'] ?? $default_settings['locate'];
+    $map['settings']['fitbounds_options'] = $options['fitbounds_options'] ?? $default_settings['fitbounds_options'];
     $map['settings']['geocoder'] = $options['geocoder'] ?? $default_settings['geocoder'];
     $map['settings']['map_lazy_load'] = $options['map_lazy_load'] ?? $default_settings['map_lazy_load'];
   }

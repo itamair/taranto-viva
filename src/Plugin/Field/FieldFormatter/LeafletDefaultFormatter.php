@@ -208,6 +208,9 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     // Generate the Leaflet Map General Settings.
     $this->generateMapGeneralSettings($form, $settings);
 
+    // Set the FitBounds Options Element.
+    $this->setFitBoundsOptionsElement($form, $settings);
+
     // Generate the Leaflet Map Reset Control.
     $this->setResetMapViewControl($form, $settings);
 

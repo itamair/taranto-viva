@@ -722,6 +722,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Generate the Leaflet Map General Settings.
     $this->generateMapGeneralSettings($form, $this->options);
 
+    // Set the FitBoundsOptions Element.
+    $this->setFitBoundsOptionsElement($form, $this->options);
+
     // Generate the Leaflet Map Reset Control.
     $this->setResetMapViewControl($form, $this->options);
 

@@ -864,7 +864,8 @@
       } else {
         //  Set the Zoom and Center by using the Leaflet fitBounds function
         const bounds = new L.LatLngBounds(this.bounds);
-        this.lMap.fitBounds(bounds);
+        const fitbounds_options = this.map_settings.fitbounds_options ? JSON.parse(this.map_settings.fitbounds_options) : {};
+        this.lMap.fitBounds(bounds, fitbounds_options);
         start_center = bounds.getCenter();
         start_zoom = this.lMap.getBoundsZoom(bounds);
 
