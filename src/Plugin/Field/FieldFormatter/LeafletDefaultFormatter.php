@@ -379,6 +379,18 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         if (!empty($settings["icon"]["iconSize"]["y"])) {
           $feature['icon']["iconSize"]["y"] = $this->token->replace($settings["icon"]["iconSize"]["y"], $tokens);
         }
+        if (!empty($settings["icon"]["iconAnchor"]["x"])) {
+          $feature['icon']["iconAnchor"]["x"] = $this->token->replace($settings["icon"]["iconAnchor"]["x"], $tokens);
+        }
+        if (!empty($settings["icon"]["iconAnchor"]["y"])) {
+          $feature['icon']["iconAnchor"]["y"] = $this->token->replace($settings["icon"]["iconAnchor"]["y"], $tokens);
+        }
+        if (!empty($settings["icon"]["popupAnchor"]["x"])) {
+          $feature['icon']["popupAnchor"]["x"] = $this->token->replace($settings["icon"]["popupAnchor"]["x"], $tokens);
+        }
+        if (!empty($settings["icon"]["popupAnchor"]["y"])) {
+          $feature['icon']["popupAnchor"]["y"] = $this->token->replace($settings["icon"]["popupAnchor"]["y"], $tokens);
+        }
         if (!empty($settings["icon"]["shadowSize"]["x"])) {
           $feature['icon']["shadowSize"]["x"] = $this->token->replace($settings["icon"]["shadowSize"]["x"], $tokens);
         }

@@ -1091,6 +1091,18 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       if (!empty($this->options["icon"]["iconSize"]["y"])) {
                         $feature['icon']["iconSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["y"], $tokens);
                       }
+                      if (!empty($this->options["icon"]["iconAnchor"]["x"])) {
+                        $feature['icon']["iconAnchor"]["x"] = $this->viewsTokenReplace($this->options["icon"]["iconAnchor"]["x"], $tokens);
+                      }
+                      if (!empty($this->options["icon"]["iconAnchor"]["y"])) {
+                        $feature['icon']["iconAnchor"]["y"] = $this->viewsTokenReplace($this->options["icon"]["iconAnchor"]["y"], $tokens);
+                      }
+                      if (!empty($this->options["icon"]["popupAnchor"]["x"])) {
+                        $feature['icon']["popupAnchor"]["x"] = $this->viewsTokenReplace($this->options["icon"]["popupAnchor"]["x"], $tokens);
+                      }
+                      if (!empty($this->options["icon"]["popupAnchor"]["y"])) {
+                        $feature['icon']["popupAnchor"]["y"] = $this->viewsTokenReplace($this->options["icon"]["popupAnchor"]["y"], $tokens);
+                      }
                       if (!empty($this->options["icon"]["shadowSize"]["x"])) {
                         $feature['icon']["shadowSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["x"], $tokens);
                       }

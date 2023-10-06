@@ -404,7 +404,7 @@ trait LeafletSettingsElementsTrait {
     return [
       '#title' => $this->t('Weight / zIndex Offset'),
       '#type' => 'textfield',
-      '#size' => 30,
+      '#size' => 20,
       '#description' => $this->t('This option supports <b>Replacement Patterns</b> and should end up into an Integer (positive or negative value).<br>This will apply to each Leaflet Feature/Marker result, and might be used to dynamically set its position/visibility on top (or below) of each others (features with higher value will be rendered as last, and thus on top)<br>Note: this is not driving the "zIndex" css style of the features output on the Map, but only setting their rendering order.'),
       '#default_value' => $weight ?? $default_settings['weight'],
     ];
@@ -607,20 +607,20 @@ trait LeafletSettingsElementsTrait {
     $element['iconSize'] = [
       '#title' => $this->t('Icon Size'),
       '#type' => 'fieldset',
-      '#description' => $this->t("Size of the icon image in pixels (if empty the natural icon image size will be used).<br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)"),
+      '#description' => $this->t("Size of the icon image in pixels (if empty the natural icon image size will be used).<br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)<br>Both the values shouldn't be null to be valid"),
     ];
 
     $element['iconSize']['x'] = [
       '#title' => $this->t('Width'),
       '#type' => 'textfield',
-      '#size' => 30,
+      '#size' => 20,
       '#default_value' => $icon_options['iconSize']['x'] ?? NULL,
     ];
 
     $element['iconSize']['y'] = [
       '#title' => $this->t('Height'),
       '#type' => 'textfield',
-      '#size' => 30,
+      '#size' => 20,
       '#default_value' => $icon_options['iconSize']['y'] ?? NULL,
     ];
 
@@ -628,22 +628,20 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Icon Anchor'),
       '#type' => 'fieldset',
       '#collapsible' => FALSE,
-      '#description' => $this->t("The coordinates of the 'tip' of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker\'s geographical location.<br>Note: Both the values shouldn't be null to be valid."),
+      '#description' => $this->t("The coordinates of the 'tip' of the icon (relative to its top left corner). The icon will be aligned so that this point is at the marker\'s geographical location.<br>Both the values shouldn't be null to be valid.<br>These support <b>Replacement Patterns</b> and should end up into an Integer (positive value)."),
     ];
 
     $element['iconAnchor']['x'] = [
       '#title' => $this->t('X'),
-      '#type' => 'number',
-      '#min' => -1000,
-      '#max' => 1000,
+      '#type' => 'textfield',
+      '#size' => 20,
       '#default_value' => isset($icon_options['iconAnchor']) ? $icon_options['iconAnchor']['x'] : NULL,
     ];
 
     $element['iconAnchor']['y'] = [
       '#title' => $this->t('Y'),
-      '#type' => 'number',
-      '#min' => -1000,
-      '#max' => 1000,
+      '#type' => 'textfield',
+      '#size' => 20,
       '#default_value' => isset($icon_options['iconAnchor']) ? $icon_options['iconAnchor']['y'] : NULL,
     ];
 
@@ -656,36 +654,34 @@ trait LeafletSettingsElementsTrait {
     $element['shadowSize']['x'] = [
       '#title' => $this->t('Width'),
       '#type' => 'textfield',
-      '#size' => 30,
+      '#size' => 20,
       '#default_value' => $icon_options['shadowSize']['x'] ?? NULL,
     ];
 
     $element['shadowSize']['y'] = [
       '#title' => $this->t('Height'),
       '#type' => 'textfield',
-      '#size' => 30,
+      '#size' => 20,
       '#default_value' => $icon_options['shadowSize']['y'] ?? NULL,
     ];
 
     $element['shadowAnchor'] = [
       '#title' => $this->t('Shadow Anchor'),
       '#type' => 'fieldset',
-      '#description' => $this->t("The coordinates of the 'tip' of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).<br>Note: Both the values shouldn't be null to be valid."),
+      '#description' => $this->t("The coordinates of the 'tip' of the shadow (relative to its top left corner) (the same as iconAnchor if not specified).<br>Both the values shouldn't be null to be valid.<br>These support <b>Replacement Patterns</b> and should end up into an Integer (positive value)."),
     ];
 
     $element['shadowAnchor']['x'] = [
       '#title' => $this->t('X'),
-      '#type' => 'number',
-      '#min' => -1000,
-      '#max' => 1000,
+      '#type' => 'textfield',
+      '#size' => 20,
       '#default_value' => isset($icon_options['shadowAnchor']) ? $icon_options['shadowAnchor']['x'] : NULL,
     ];
 
     $element['shadowAnchor']['y'] = [
       '#title' => $this->t('Y'),
-      '#type' => 'number',
-      '#min' => -1000,
-      '#max' => 1000,
+      '#type' => 'textfield',
+      '#size' => 20,
       '#default_value' => isset($icon_options['shadowAnchor']) ? $icon_options['shadowAnchor']['y'] : NULL,
     ];
 
@@ -693,22 +689,20 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Popup Anchor'),
       '#type' => 'fieldset',
       '#collapsible' => FALSE,
-      '#description' => $this->t("The coordinates of the point from which popups will 'open', relative to the icon anchor.<br>Note: Both the values shouldn't be null to be valid."),
+      '#description' => $this->t("The coordinates of the point from which popups will 'open', relative to the icon anchor.<br>Both the values shouldn't be null to be valid.<br>These support <b>Replacement Patterns</b> and should end up into an Integer (positive value)."),
     ];
 
     $element['popupAnchor']['x'] = [
       '#title' => $this->t('X'),
-      '#type' => 'number',
-      '#min' => -1000,
-      '#max' => 1000,
+      '#type' => 'textfield',
+      '#size' => 20,
       '#default_value' => isset($icon_options['popupAnchor']) ? $icon_options['popupAnchor']['x'] : NULL,
     ];
 
     $element['popupAnchor']['y'] = [
       '#title' => $this->t('Y'),
-      '#type' => 'number',
-      '#min' => -1000,
-      '#max' => 1000,
+      '#type' => 'textfield',
+      '#size' => 20,
       '#default_value' => isset($icon_options['popupAnchor']) ? $icon_options['popupAnchor']['y'] : NULL,
     ];
 
