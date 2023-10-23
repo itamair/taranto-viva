@@ -526,6 +526,9 @@
         lFeature = this.create_multipoly(feature, map_settings ? map_settings['leaflet_markercluster']['include_path'] : false);
         break;
 
+      // In case of singular cases where feature.type is json we use this.create_json method.
+      // @see https://www.drupal.org/project/leaflet/issues/3377403
+      // @see https://www.drupal.org/project/leaflet/issues/3186029
       case 'json':
         lFeature = this.create_json(feature.json, feature.events);
         break;
@@ -845,6 +848,10 @@
 
   /**
    * Leaflet Geo JSON Creator.
+   *
+   * In case of singular cases where feature.type is json we use this.create_json method.
+   * @see https://www.drupal.org/project/leaflet/issues/3377403
+   * @see https://www.drupal.org/project/leaflet/issues/3186029
    *
    * @param json
    *   The json input.
