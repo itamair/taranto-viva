@@ -854,6 +854,7 @@
    */
   Drupal.Leaflet.prototype.create_json = function(json, events) {
     let lJSON = new L.GeoJSON();
+    const self = this;
 
     lJSON.options.onEachFeature = function(feature, layer) {
       for (let layer_id in layer._layers) {
@@ -868,10 +869,10 @@
       }
 
       // Eventually add Tooltip to the lFeature.
-      this.feature_bind_tooltip(layer, feature.properties);
+      self.feature_bind_tooltip(layer, feature.properties);
 
       // Eventually add Popup to the Layer.
-      this.feature_bind_popup(layer, feature.properties);
+      self.feature_bind_popup(layer, feature.properties);
 
       for (e in events) {
         let layerParam = {};
