@@ -33,6 +33,7 @@ use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
 use Drupal\views\Plugin\views\PluginBase;
 use Drupal\views\Views;
+use Drupal\search_api\Plugin\search_api\data_type\value\TextValue;
 
 /**
  * Style plugin to render a View output as a Leaflet map.
@@ -313,15 +314,18 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $result = $this->view->result[$index];
 
     if ($result instanceof SearchApiResultRow) {
-      $search_api_field = $result->_item->getField($field, FALSE);
+      $real_geofield_name = $this->view->field[$field]->field;
+      $search_api_field = $result->_item->getField($real_geofield_name);
       if ($search_api_field !== NULL) {
         $values = $search_api_field->getValues();
       }
 
       if (!empty($values)) {
         foreach ($values as $key => $value) {
-          [$lat, $lon] = explode(',', $value);
-          $values[$key] = sprintf('POINT(%s %s)', $lon, $lat);
+          if ($value instanceof TextValue) {
+            $value = $value->getText();
+          }
+          $values[$key] = $value;
         }
         return $values;
       }
