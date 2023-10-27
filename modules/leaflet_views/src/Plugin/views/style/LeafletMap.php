@@ -2,6 +2,7 @@
 
 namespace Drupal\leaflet_views\Plugin\views\style;
 
+use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\search_api\Plugin\views\ResultRow as SearchApiResultRow;
 use Drupal\views\ResultRow;
 use Drupal\Component\Utility\NestedArray;
@@ -52,6 +53,7 @@ use Drupal\search_api\Plugin\search_api\data_type\value\TextValue;
  */
 class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterface {
 
+  use LoggerChannelTrait;
   use LeafletSettingsElementsTrait;
 
   /**
@@ -272,7 +274,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           $this->entityType = $this->entityInfo->id();
         }
         catch (\Exception $e) {
-          watchdog_exception('geofield_map', $e);
+          $this->getLogger('Leaflet View')->warning($e->getMessage());
         }
       }
     }
@@ -299,7 +301,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
               $this->entityInfo = $this->entityManager->getDefinition($this->entityType);
             }
             catch (\Exception $e) {
-              watchdog_exception('leaflet', $e);
+              $this->getLogger('Leaflet View')->warning($e->getMessage());
             }
           }
         }
@@ -375,7 +377,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             }
           }
           catch (\Exception $e) {
-            watchdog_exception("Leaflet Map - Get Available data sources", $e);
+            $this->getLogger('Leaflet View')->warning('No available data sources. Error: ' . $e->getMessage());
           }
         }
       }
