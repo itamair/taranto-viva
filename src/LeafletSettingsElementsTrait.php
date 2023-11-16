@@ -77,7 +77,7 @@ trait LeafletSettingsElementsTrait {
           'lon' => 0,
         ],
         'zoomControlPosition' => 'topleft',
-        'zoom' => 12,
+        'zoom' => 5,
         'minZoom' => 1,
         'maxZoom' => 18,
         'zoomFiner' => 0,
