@@ -443,6 +443,12 @@
    */
   Drupal.Leaflet.prototype.set_feature_path_style = function(lFeature, feature) {
     const lFeature_path_style = feature.path ? (feature.path instanceof Object ? feature.path : JSON.parse(feature.path)) : {};
+    // Make sure that the weight property is cast into integer, for avoiding
+    // polygons eventually disappearing with pan and zooming.
+    // @see: https://stackoverflow.com/a/65892728/5451394
+    if (lFeature_path_style.hasOwnProperty('weight')) {
+      lFeature_path_style.weight = parseInt(lFeature_path_style.weight);
+    }
     lFeature.setStyle(lFeature_path_style);
   };
 
