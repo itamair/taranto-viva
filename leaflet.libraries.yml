@@ -17,6 +17,35 @@ leaflet:
     component:
       js/leaflet/dist/leaflet.css: {}
 
+
+# MapLibre GL JS
+maplibre-gl-js:
+  remote: https://maplibre.org/
+  version: 3.6.2
+  license:
+    name: MapLibre-Js License
+    url: https://github.com/maplibre/maplibre-gl-js/blob/main/LICENSE.txt
+  js:
+    https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js: { type: external }
+  css:
+    component:
+      https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css: { type: external }
+  dependencies:
+    - leaflet/leaflet
+
+# MapLibre GL Leaflet,
+# for enabling in Leaflet map any vector tile source usable by MapLibre GL JS
+maplibre-gl-leaflet:
+  remote: https://github.com/maplibre/maplibre-gl-leaflet
+  version: 0.0.20
+  license:
+    name: MapLibre-GL-Leaflet ISC License
+    url: https://github.com/maplibre/maplibre-gl-leaflet/blob/main/LICENSE
+  js:
+    https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.20/leaflet-maplibre-gl.js: { type: external }
+  dependencies:
+    - leaflet/maplibre-gl-js
+
 leaflet-drupal:
   version: VERSION
   js:

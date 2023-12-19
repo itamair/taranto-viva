@@ -222,6 +222,16 @@ class LeafletService {
 
     $attached_libraries = ['leaflet/general', 'leaflet/leaflet-drupal'];
 
+    // Check for the definition of a vector type layer
+    // and eventually add MapLibre GL Leaflet library.
+    $map_layers = $map["layers"];
+    foreach ($map_layers as $layer) {
+      if (isset($layer["type"]) &&  $layer["type"] === 'vector') {
+        $attached_libraries[] = 'leaflet/maplibre-gl-leaflet';
+        break;
+      }
+    }
+
     // Add the intersection_observer library, if lazy load is enabled.
     if (isset($map['settings']['map_lazy_load']) && $map['settings']['map_lazy_load']['lazy_load']) {
       $attached_libraries[] = 'leaflet/intersection_observer';

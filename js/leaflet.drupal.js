@@ -596,17 +596,28 @@
    */
   Drupal.Leaflet.prototype.create_layer = function(layer, key) {
     let self = this;
-    let map_layer = new L.TileLayer(layer.urlTemplate);
-    if (layer.type === 'wms') {
-      map_layer = new L.tileLayer.wms(layer.urlTemplate, layer.options);
-    }
-    map_layer._leaflet_id = key;
+    let map_layer;
+    const layer_type = layer.type ?? 'base';
+    const urlTemplate = layer.urlTemplate ?? '';
+    const layer_options =  layer.options ?? {};
 
-    if (layer.options) {
-      for (let option in layer.options) {
-        map_layer.options[option] = layer.options[option];
-      }
+    switch (layer_type) {
+      case 'wms':
+        map_layer = new L.tileLayer.wms(urlTemplate, layer_options);
+        break;
+
+      case 'vector':
+        map_layer = new L.maplibreGL({
+          'style': urlTemplate,
+          'attribution': layer_options.attribution ?? ''
+        });
+        break;
+
+      default:
+        map_layer = new L.tileLayer(urlTemplate, layer_options);
     }
+
+    map_layer._leaflet_id = key;
 
     // Layers served from TileStream need this correction in the y coordinates.
     // TODO: Need to explore this more and find a more elegant solution.
