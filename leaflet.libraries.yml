@@ -26,7 +26,10 @@ maplibre-gl-js:
     name: MapLibre-Js License
     url: https://github.com/maplibre/maplibre-gl-js/blob/main/LICENSE.txt
   js:
-    js/maplibre-gl-js-3.6.2/maplibre-gl.js: {}
+    # Inject the maplibre-gl.js disallowing its aggregation (preprocess: false),
+    # that somehow breaks the Leaflet Map rendering
+    # @see: https://www.drupal.org/project/leaflet/issues/3410672
+    js/maplibre-gl-js-3.6.2/maplibre-gl.js: { preprocess: false }
   css:
     component:
       js/maplibre-gl-js-3.6.2/maplibre-gl.css: {}
