@@ -446,6 +446,13 @@ class LeafletService {
     if (!empty($icon_url) && isset($feature["icon"]["iconSize"])
       && (empty(intval($feature["icon"]["iconSize"]["x"])) || empty(intval($feature["icon"]["iconSize"]["y"])))) {
 
+      // Eventually sanitise the $uri if it is starting with a slash.
+      if (mb_substr($icon_url, 0, 1) == '/') {
+        $icon_url = ltrim( $icon_url, '/');
+      }
+
+      $icon_url = $this->generateAbsoluteString($icon_url, FALSE);
+
       // Use the cached IconSize if present for this Icon Url.
       $leaflet_iconsize_cache = &drupal_static("leaflet_iconsize_cache:$icon_url");
       if (is_array($leaflet_iconsize_cache) && array_key_exists('x', $leaflet_iconsize_cache) && array_key_exists('y', $leaflet_iconsize_cache)) {
