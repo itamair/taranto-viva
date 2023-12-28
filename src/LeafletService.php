@@ -640,11 +640,6 @@ class LeafletService {
     // file server.
     $this->moduleHandler->alter('file_url', $uri);
 
-    // Eventually sanitise the $uri if it is starting with a slash.
-    if (mb_substr($uri, 0, 1) == '/') {
-      $uri = ltrim( $uri, '/');
-    }
-
     $scheme = StreamWrapperManager::getScheme($uri);
 
     if (!$scheme) {
