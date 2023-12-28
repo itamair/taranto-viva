@@ -451,7 +451,7 @@ class LeafletService {
         $icon_url = ltrim( $icon_url, '/');
       }
 
-      $icon_url = $this->generateAbsoluteString($icon_url, FALSE);
+      $icon_url = $this->generateAbsoluteString($icon_url);
 
       // Use the cached IconSize if present for this Icon Url.
       $leaflet_iconsize_cache = &drupal_static("leaflet_iconsize_cache:$icon_url");
@@ -463,20 +463,19 @@ class LeafletService {
         $file_parts = pathinfo($icon_url);
         switch ($file_parts['extension']) {
           case "svg":
-            if ($xml = simplexml_load_file($icon_url)) {
-              $attr = $xml->attributes();
-              $icon_size_x = intval($attr->width) > 1 ? intval($attr->width) : 40;
-              $icon_size_y = intval($attr->height) > 1 ? intval($attr->height) : 40;
-              if (intval($feature["icon"]["iconSize"]["x"]) === 0 && intval($feature["icon"]["iconSize"]["y"]) > 1) {
-                $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"] * $icon_size_x / $icon_size_y);
-              }
-              else if (intval($feature["icon"]["iconSize"]["x"]) > 1 && intval($feature["icon"]["iconSize"]["y"]) === 0) {
-                $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"] * $icon_size_y / $icon_size_x);
-              }
-              else {
-                $feature["icon"]["iconSize"]["x"] = $icon_size_x;
-                $feature["icon"]["iconSize"]["y"] = $icon_size_y;
-              }
+            $xml = simplexml_load_file($icon_url);
+            $attr = $xml ? $xml->attributes() : NULL;
+            $icon_size_x = !is_null($attr) && intval($attr->width) > 1 ? intval($attr->width) : 40;
+            $icon_size_y = !is_null($attr) && intval($attr->height) > 1 ? intval($attr->height) : 40;
+            if (intval($feature["icon"]["iconSize"]["x"]) === 0 && intval($feature["icon"]["iconSize"]["y"]) > 1) {
+              $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"] * $icon_size_x / $icon_size_y);
+            }
+            else if (intval($feature["icon"]["iconSize"]["x"]) > 1 && intval($feature["icon"]["iconSize"]["y"]) === 0) {
+              $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"] * $icon_size_y / $icon_size_x);
+            }
+            else {
+              $feature["icon"]["iconSize"]["x"] = $icon_size_x;
+              $feature["icon"]["iconSize"]["y"] = $icon_size_y;
             }
             break;
 
@@ -503,6 +502,13 @@ class LeafletService {
     if (!empty($shadow_url) && isset($feature["icon"]["shadowSize"])
       && (empty(intval($feature["icon"]["shadowSize"]["x"])) || empty(intval($feature["icon"]["shadowSize"]["y"])))) {
 
+      // Eventually sanitise the $uri if it is starting with a slash.
+      if (mb_substr($shadow_url, 0, 1) == '/') {
+        $shadow_url = ltrim( $shadow_url, '/');
+      }
+
+      $shadow_url = $this->generateAbsoluteString($shadow_url);
+
       // Use the cached ShadowSize if present for this Shadow Url.
       $leaflet_shadowsize_cache = &drupal_static("leaflet_shadowsize_cache:$icon_url", NULL);
       if (is_array($leaflet_shadowsize_cache) && array_key_exists('x', $leaflet_shadowsize_cache) && array_key_exists('y', $leaflet_shadowsize_cache)) {
@@ -513,20 +519,19 @@ class LeafletService {
         $file_parts = pathinfo($shadow_url);
         switch ($file_parts['extension']) {
           case "svg":
-            if ($xml = simplexml_load_file($shadow_url)) {
-              $attr = $xml->attributes();
-              $shadow_size_x = intval($attr->width) > 1 ? intval($attr->width) : 40;
-              $shadow_size_y = intval($attr->height) > 1 ? intval($attr->height) : 40;
-              if (intval($feature["icon"]["shadowSize"]["x"]) === 0 && intval($feature["icon"]["shadowSize"]["y"]) > 1) {
-                $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"] * $shadow_size_x / $shadow_size_y);
-              }
-              else if (intval($feature["icon"]["shadowSize"]["x"]) > 1 && intval($feature["icon"]["shadowSize"]["y"]) === 0) {
-                $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"] * $shadow_size_y / $shadow_size_x);
-              }
-              else {
-                $feature["icon"]["shadowSize"]["x"] = $shadow_size_x;
-                $feature["icon"]["shadowSize"]["y"] = $shadow_size_y;
-              }
+            $xml = simplexml_load_file($icon_url);
+            $attr = $xml ? $xml->attributes() : NULL;
+            $shadow_size_x = !is_null($attr) && intval($attr->width) > 1 ? intval($attr->width) : 40;
+            $shadow_size_y = !is_null($attr) && intval($attr->height) > 1 ? intval($attr->height) : 40;
+            if (intval($feature["icon"]["shadowSize"]["x"]) === 0 && intval($feature["icon"]["shadowSize"]["y"]) > 1) {
+              $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"] * $shadow_size_x / $shadow_size_y);
+            }
+            else if (intval($feature["icon"]["shadowSize"]["x"]) > 1 && intval($feature["icon"]["shadowSize"]["y"]) === 0) {
+              $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"] * $shadow_size_y / $shadow_size_x);
+            }
+            else {
+              $feature["icon"]["shadowSize"]["x"] = $shadow_size_x;
+              $feature["icon"]["shadowSize"]["y"] = $shadow_size_y;
             }
             break;
 
