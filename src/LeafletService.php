@@ -470,13 +470,18 @@ class LeafletService {
           case "svg":
             $xml = simplexml_load_file($icon_url);
             $attr = $xml ? $xml->attributes() : NULL;
-            $icon_size_x = !is_null($attr) && intval($attr->width) > 1 ? intval($attr->width) : 40;
-            $icon_size_y = !is_null($attr) && intval($attr->height) > 1 ? intval($attr->height) : 40;
-            if (intval($feature["icon"]["iconSize"]["x"]) === 0 && intval($feature["icon"]["iconSize"]["y"]) > 1) {
-              $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"] * $icon_size_x / $icon_size_y);
+            \Drupal::logger('my_module')->notice('473: ' .  $attr);
+            $icon_size_x = !is_null($attr) && !empty($attr->width) ? intval($attr->width->__toString()) : 40;
+            \Drupal::logger('my_module')->notice('475: ' .  $attr->width);
+            \Drupal::logger('my_module')->notice('476: ' .  $icon_size_x);
+            $icon_size_y = !is_null($attr) && !empty($attr->height) ? intval($attr->height->__toString()) : 40;
+            \Drupal::logger('my_module')->notice('478: ' .  $attr->height);
+            \Drupal::logger('my_module')->notice('479: ' .  $icon_size_y);
+            if (empty($feature["icon"]["iconSize"]["x"]) && !empty($feature["icon"]["iconSize"]["y"])) {
+              $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"]) * $icon_size_x / $icon_size_y;
             }
-            else if (intval($feature["icon"]["iconSize"]["x"]) > 1 && intval($feature["icon"]["iconSize"]["y"]) === 0) {
-              $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"] * $icon_size_y / $icon_size_x);
+            else if (!empty($feature["icon"]["iconSize"]["x"]) && empty($feature["icon"]["iconSize"]["y"])) {
+              $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"]) * $icon_size_y / $icon_size_x;
             }
             else {
               $feature["icon"]["iconSize"]["x"] = $icon_size_x;
@@ -486,11 +491,11 @@ class LeafletService {
 
           default:
             if ($iconSize = getimagesize($icon_url)) {
-              if (intval($feature["icon"]["iconSize"]["x"]) === 0  && intval($feature["icon"]["iconSize"]["y"]) > 1) {
-                $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"] * $iconSize[0] / $iconSize[1]);
+              if (empty($feature["icon"]["iconSize"]["x"])  && !empty($feature["icon"]["iconSize"]["y"])) {
+                $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"]) * $iconSize[0] / $iconSize[1];
               }
-              else if (intval($feature["icon"]["iconSize"]["x"]) > 1  && intval($feature["icon"]["iconSize"]["y"]) === 0) {
-                $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"] * $iconSize[1] / $iconSize[0]);
+              else if (!empty($feature["icon"]["iconSize"]["x"])  && empty($feature["icon"]["iconSize"]["y"])) {
+                $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"]) * $iconSize[1] / $iconSize[0];
               }
               else {
                 $feature["icon"]["iconSize"]["x"] = $iconSize[0];
@@ -526,13 +531,13 @@ class LeafletService {
           case "svg":
             $xml = simplexml_load_file($icon_url);
             $attr = $xml ? $xml->attributes() : NULL;
-            $shadow_size_x = !is_null($attr) && intval($attr->width) > 1 ? intval($attr->width) : 40;
-            $shadow_size_y = !is_null($attr) && intval($attr->height) > 1 ? intval($attr->height) : 40;
-            if (intval($feature["icon"]["shadowSize"]["x"]) === 0 && intval($feature["icon"]["shadowSize"]["y"]) > 1) {
-              $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"] * $shadow_size_x / $shadow_size_y);
+            $shadow_size_x = !is_null($attr) && !empty($attr->width) ? intval($attr->width->__toString()) : 40;
+            $shadow_size_y = !is_null($attr) && !empty($attr->height) ? intval($attr->height->__toString()) : 40;
+            if (empty($feature["icon"]["shadowSize"]["x"]) && !empty($feature["icon"]["shadowSize"]["y"])) {
+              $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"]) * $shadow_size_x / $shadow_size_y;
             }
-            else if (intval($feature["icon"]["shadowSize"]["x"]) > 1 && intval($feature["icon"]["shadowSize"]["y"]) === 0) {
-              $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"] * $shadow_size_y / $shadow_size_x);
+            else if (!empty($feature["icon"]["shadowSize"]["x"]) && empty($feature["icon"]["shadowSize"]["y"])) {
+              $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"]) * $shadow_size_y / $shadow_size_x;
             }
             else {
               $feature["icon"]["shadowSize"]["x"] = $shadow_size_x;
@@ -542,11 +547,11 @@ class LeafletService {
 
           default:
             if ($shadowSize = getimagesize($shadow_url)) {
-              if (intval($feature["icon"]["shadowSize"]["x"]) === 0 && intval($feature["icon"]["shadowSize"]["y"]) > 1) {
-                $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"] * $shadowSize[0] / $shadowSize[1]);
+              if (empty($feature["icon"]["shadowSize"]["x"]) && !empty($feature["icon"]["shadowSize"]["y"])) {
+                $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"]) * $shadowSize[0] / $shadowSize[1];
               }
-              else if (intval($feature["icon"]["shadowSize"]["x"]) > 1 && intval($feature["icon"]["shadowSize"]["y"]) === 0) {
-                $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"] * $shadowSize[1] / $shadowSize[0]);
+              else if (!empty($feature["icon"]["shadowSize"]["x"]) && empty($feature["icon"]["shadowSize"]["y"])) {
+                $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"]) * $shadowSize[1] / $shadowSize[0];
               }
               else {
                 $feature["icon"]["shadowSize"]["x"] = $shadowSize[0];
