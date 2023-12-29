@@ -102,7 +102,10 @@ class LeafletService {
     //   HTTP and to https://example.com/bar.jpg when viewing an HTTPS page)
     // Both types of relative URIs are characterized by a leading slash, hence
     // we can use a single check.
+    \Drupal::logger('my_module')->notice('105: ' . $base_url);
+    \Drupal::logger('my_module')->notice('106: ' . $uri);
     if (mb_substr($uri, 0, 1) == '/') {
+      \Drupal::logger('my_module')->notice('108: ' . $uri);
       return $uri;
     }
     else {
@@ -446,6 +449,8 @@ class LeafletService {
     if (!empty($icon_url) && isset($feature["icon"]["iconSize"])
       && (intval($feature["icon"]["iconSize"]["x"]) === 0 || intval($feature["icon"]["iconSize"]["y"]) === 0)) {
 
+      \Drupal::logger('my_module')->notice('452: ' .  $icon_url);
+
       // Eventually sanitise the $uri if it is starting with a slash.
       if (mb_substr($icon_url, 0, 1) == '/') {
         $icon_url = ltrim( $icon_url, '/');
@@ -652,10 +657,15 @@ class LeafletService {
     // file server.
     $this->moduleHandler->alter('file_url', $uri);
 
+    \Drupal::logger('my_module')->notice('660: ' . $uri);
+
     $scheme = StreamWrapperManager::getScheme($uri);
 
     if (!$scheme) {
       $baseUrl = $relative ? base_path() : $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost() . base_path();
+      \Drupal::logger('my_module')->notice('666: ' . $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost());
+      \Drupal::logger('my_module')->notice('667: ' . base_path());
+      \Drupal::logger('my_module')->notice('668: ' . $baseUrl);
       return $this->generatePath($baseUrl, $uri);
     }
     elseif ($scheme == 'http' || $scheme == 'https' || $scheme == 'data') {
