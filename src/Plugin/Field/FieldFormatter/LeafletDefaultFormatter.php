@@ -412,11 +412,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
             // Apply Token Replacements to iconUrl & shadowUrl.
             if (!empty($settings['icon']['iconUrl'])) {
               $feature['icon']['iconUrl'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['icon']['iconUrl'], $tokens));
-              // Eventually sanitise the iconUrl
-              // if it is starting with a slash.
-              if (mb_substr($feature['icon']['iconUrl'], 0, 1) == '/') {
-                $feature['icon']['iconUrl'] = ltrim( $feature['icon']['iconUrl'], '/');
-              }
               // Generate correct Absolute iconUrl,
               // if not external.
               if (!empty($feature['icon']['iconUrl'])) {
@@ -425,21 +420,12 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
             }
             if (!empty($settings['icon']['shadowUrl'])) {
               $feature['icon']['shadowUrl'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['icon']['shadowUrl'], $tokens));
-              // Eventually sanitise the shadowUrl
-              // if it is starting with a slash.
-              if (mb_substr($feature['icon']['shadowUrl'], 0, 1) == '/') {
-                $feature['icon']['shadowUrl'] = ltrim( $feature['icon']['shadowUrl'], '/');
-              }
               // Generate correct Absolute shadowUrl,
               // if not external.
               if (!empty($feature['icon']['shadowUrl'])) {
                 $feature['icon']['shadowUrl'] = $this->leafletService->generateAbsoluteString($feature['icon']['shadowUrl']);
               }
             }
-
-            // Set the Feature IconSize and ShadowSize to the IconUrl or
-            // ShadowUrl Image sizes (if empty or invalid).
-            $this->leafletService->setFeatureIconSizesIfEmptyOrInvalid($feature);
             break;
         }
       }
