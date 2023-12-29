@@ -4,6 +4,7 @@ namespace Drupal\leaflet;
 
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\File\Exception\InvalidStreamWrapperException;
+use Drupal\Core\File\FileUrlGeneratorInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManager;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
@@ -67,7 +68,7 @@ class LeafletService {
   protected $requestStack;
 
   /**
-   * The cache backend default service..
+   * The cache backend default service.
    *
    * @var \Drupal\Core\Cache\CacheBackendInterface
    */
@@ -81,52 +82,11 @@ class LeafletService {
   protected $iconSizes = [];
 
   /**
-   * Generate a URL path.
+   * The file URL generator.
    *
-   * @todo switch to this same method of the @file_url_generator Drupal Core
-   *   (since 9.3+) service once we fork on a branch not supporting 8.x anymore.
-   *
-   * @param string $base_url
-   *   The base URL.
-   * @param string $uri
-   *   The URI.
-   *
-   * @return string
-   *   The URL path.
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
    */
-  protected function generatePath(string $base_url, string $uri): string {
-    // Allow for:
-    // - root-relative URIs (e.g. /foo.jpg in http://example.com/foo.jpg)
-    // - protocol-relative URIs (e.g. //bar.jpg, which is expanded to
-    //   http://example.com/bar.jpg by the browser when viewing a page over
-    //   HTTP and to https://example.com/bar.jpg when viewing an HTTPS page)
-    // Both types of relative URIs are characterized by a leading slash, hence
-    // we can use a single check.
-    \Drupal::logger('my_module')->notice('105: ' . $base_url);
-    \Drupal::logger('my_module')->notice('106: ' . $uri);
-    if (mb_substr($uri, 0, 1) == '/') {
-      \Drupal::logger('my_module')->notice('108: ' . $uri);
-      return $uri;
-    }
-    else {
-      // If this is not a properly formatted stream, then it is a shipped
-      // file. Therefore, return the urlencoded URI with the base URL
-      // prepended.
-      $options = UrlHelper::parse($uri);
-      $path = $base_url . UrlHelper::encodePath($options['path']);
-      // Append the query.
-      if ($options['query']) {
-        $path .= '?' . UrlHelper::buildQuery($options['query']);
-      }
-
-      // Append fragment.
-      if ($options['fragment']) {
-        $path .= '#' . $options['fragment'];
-      }
-
-      return $path;
-    }
-  }
+  protected $fileUrlGenerator;
 
   /**
    * LeafletService constructor.
@@ -145,6 +105,8 @@ class LeafletService {
    *   The stream wrapper manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend default service.
+   * @param \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator
+   *    The file URL generator.
    */
   public function __construct(
     AccountInterface $current_user,
@@ -153,7 +115,8 @@ class LeafletService {
     LinkGeneratorInterface $link_generator,
     StreamWrapperManagerInterface $stream_wrapper_manager,
     RequestStack $request_stack,
-    CacheBackendInterface $cache
+    CacheBackendInterface $cache,
+    FileUrlGeneratorInterface $file_url_generator
   ) {
     $this->currentUser = $current_user;
     $this->geoPhpWrapper = $geophp_wrapper;
@@ -162,6 +125,7 @@ class LeafletService {
     $this->streamWrapperManager = $stream_wrapper_manager;
     $this->requestStack = $request_stack;
     $this->cache = $cache;
+    $this->fileUrlGenerator = $file_url_generator;
   }
 
   /**
@@ -295,7 +259,7 @@ class LeafletService {
    *
    * @param mixed $items
    *   A single value or array of geo values, each as a string in any of the
-   *   supported formats or as an array of $item elements, each with a
+   *   supported formats or as an array of $item elements, each with an
    *   $item['wkt'] field.
    *
    * @return array
@@ -308,7 +272,7 @@ class LeafletService {
     }
     $data = [];
     foreach ($items as $item) {
-      // Auto-detect and parse the format (e.g. WKT, JSON etc).
+      // Auto-detect and parse the format (e.g. WKT, JSON etc.).
       /** @var \GeometryCollection $geom */
       if (!($geom = $this->geoPhpWrapper->load($item['wkt'] ?? $item))) {
         continue;
@@ -449,16 +413,8 @@ class LeafletService {
     if (!empty($icon_url) && isset($feature["icon"]["iconSize"])
       && (intval($feature["icon"]["iconSize"]["x"]) === 0 || intval($feature["icon"]["iconSize"]["y"]) === 0)) {
 
-      \Drupal::logger('my_module')->notice('452: ' .  $icon_url);
-
-      // Eventually sanitise the $uri if it is starting with a slash.
-      if (mb_substr($icon_url, 0, 1) == '/') {
-        $icon_url = ltrim( $icon_url, '/');
-      }
-
       $icon_url = $this->generateAbsoluteString($icon_url);
-
-      \Drupal::logger('my_module')->notice('461: ' .  $icon_url);
+      \Drupal::logger('my_module')->notice('420: ' .  $icon_url);
 
       // Use the cached IconSize if present for this Icon Url.
       $leaflet_iconsize_cache = &drupal_static("leaflet_iconsize_cache:$icon_url");
@@ -466,23 +422,18 @@ class LeafletService {
         $feature["icon"]["iconSize"]["x"] = $leaflet_iconsize_cache['x'];
         $feature["icon"]["iconSize"]["y"] = $leaflet_iconsize_cache['y'];
       }
-      elseif ($this->fileExists($icon_url)) {
+       elseif ($this->fileExists($icon_url)) {
         $file_parts = pathinfo($icon_url);
         switch ($file_parts['extension']) {
           case "svg":
             $xml = simplexml_load_file($icon_url);
             $attr = $xml ? $xml->attributes() : NULL;
-            \Drupal::logger('my_module')->notice('473: ' .  $attr);
             $icon_size_x = !is_null($attr) && !empty($attr->width) ? intval($attr->width->__toString()) : 40;
-            \Drupal::logger('my_module')->notice('475: ' .  $attr->width);
-            \Drupal::logger('my_module')->notice('476: ' .  $icon_size_x);
             $icon_size_y = !is_null($attr) && !empty($attr->height) ? intval($attr->height->__toString()) : 40;
-            \Drupal::logger('my_module')->notice('478: ' .  $attr->height);
-            \Drupal::logger('my_module')->notice('479: ' .  $icon_size_y);
             if (empty($feature["icon"]["iconSize"]["x"]) && !empty($feature["icon"]["iconSize"]["y"])) {
               $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"]) * $icon_size_x / $icon_size_y;
             }
-            else if (!empty($feature["icon"]["iconSize"]["x"]) && empty($feature["icon"]["iconSize"]["y"])) {
+            elseif (!empty($feature["icon"]["iconSize"]["x"]) && empty($feature["icon"]["iconSize"]["y"])) {
               $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"]) * $icon_size_y / $icon_size_x;
             }
             else {
@@ -496,7 +447,7 @@ class LeafletService {
               if (empty($feature["icon"]["iconSize"]["x"])  && !empty($feature["icon"]["iconSize"]["y"])) {
                 $feature["icon"]["iconSize"]["x"] = intval($feature["icon"]["iconSize"]["y"]) * $iconSize[0] / $iconSize[1];
               }
-              else if (!empty($feature["icon"]["iconSize"]["x"])  && empty($feature["icon"]["iconSize"]["y"])) {
+              elseif (!empty($feature["icon"]["iconSize"]["x"])  && empty($feature["icon"]["iconSize"]["y"])) {
                 $feature["icon"]["iconSize"]["y"] = intval($feature["icon"]["iconSize"]["x"]) * $iconSize[1] / $iconSize[0];
               }
               else {
@@ -538,7 +489,7 @@ class LeafletService {
             if (empty($feature["icon"]["shadowSize"]["x"]) && !empty($feature["icon"]["shadowSize"]["y"])) {
               $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"]) * $shadow_size_x / $shadow_size_y;
             }
-            else if (!empty($feature["icon"]["shadowSize"]["x"]) && empty($feature["icon"]["shadowSize"]["y"])) {
+            elseif (!empty($feature["icon"]["shadowSize"]["x"]) && empty($feature["icon"]["shadowSize"]["y"])) {
               $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"]) * $shadow_size_y / $shadow_size_x;
             }
             else {
@@ -552,7 +503,7 @@ class LeafletService {
               if (empty($feature["icon"]["shadowSize"]["x"]) && !empty($feature["icon"]["shadowSize"]["y"])) {
                 $feature["icon"]["shadowSize"]["x"] = intval($feature["icon"]["shadowSize"]["y"]) * $shadowSize[0] / $shadowSize[1];
               }
-              else if (!empty($feature["icon"]["shadowSize"]["x"]) && empty($feature["icon"]["shadowSize"]["y"])) {
+              elseif (!empty($feature["icon"]["shadowSize"]["x"]) && empty($feature["icon"]["shadowSize"]["y"])) {
                 $feature["icon"]["shadowSize"]["y"] = intval($feature["icon"]["shadowSize"]["x"]) * $shadowSize[1] / $shadowSize[0];
               }
               else {
@@ -643,14 +594,12 @@ class LeafletService {
   /**
    * Creates an absolute web-accessible URL string.
    *
-   * @todo switch to this same method of the @file_url_generator Drupal Core
-   *   (since 9.3+) service once we fork on a branch not supporting 8.x anymore.
+   * This is a wrapper to the Drupal Core (9.3+) FileUrlGeneratorInterface
+   * generateAbsoluteString method.
    *
    * @param string $uri
    *   The URI to a file for which we need an external URL, or the path to a
    *   shipped file.
-   * @param bool $relative
-   *   Whether to return a relative or absolute URL.
    *
    * @return string
    *   An absolute string containing a URL that may be used to access the
@@ -659,33 +608,8 @@ class LeafletService {
    * @throws \Drupal\Core\File\Exception\InvalidStreamWrapperException
    *   If a stream wrapper could not be found to generate an external URL.
    */
-  public function generateAbsoluteString(string $uri, bool $relative = FALSE): string {
-    // Allow the URI to be altered, e.g. to serve a file from a CDN or static
-    // file server.
-    $this->moduleHandler->alter('file_url', $uri);
-
-    \Drupal::logger('my_module')->notice('660: ' . $uri);
-
-    $scheme = StreamWrapperManager::getScheme($uri);
-
-    if (!$scheme) {
-      $baseUrl = $relative ? base_path() : $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost() . base_path();
-      \Drupal::logger('my_module')->notice('666: ' . $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost());
-      \Drupal::logger('my_module')->notice('667: ' . base_path());
-      \Drupal::logger('my_module')->notice('668: ' . $baseUrl);
-      return $this->generatePath($baseUrl, $uri);
-    }
-    elseif ($scheme == 'http' || $scheme == 'https' || $scheme == 'data') {
-      // Check for HTTP and data URI-encoded URLs so that we don't have to
-      // implement getExternalUrl() for the HTTP and data schemes.
-      return $relative ? $this->transformRelative($uri) : $uri;
-    }
-    elseif ($wrapper = $this->streamWrapperManager->getViaUri($uri)) {
-      // Attempt to return an external URL using the appropriate wrapper.
-      $externalUrl = $wrapper->getExternalUrl();
-      return $relative ? $this->transformRelative($externalUrl) : $externalUrl;
-    }
-    throw new InvalidStreamWrapperException();
+  public function generateAbsoluteString(string $uri): string {
+    return $this->fileUrlGenerator->generateAbsoluteString($uri);
   }
 
   /**
