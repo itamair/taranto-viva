@@ -458,6 +458,8 @@ class LeafletService {
 
       $icon_url = $this->generateAbsoluteString($icon_url);
 
+      \Drupal::logger('my_module')->notice('461: ' .  $icon_url);
+
       // Use the cached IconSize if present for this Icon Url.
       $leaflet_iconsize_cache = &drupal_static("leaflet_iconsize_cache:$icon_url");
       if (is_array($leaflet_iconsize_cache) && array_key_exists('x', $leaflet_iconsize_cache) && array_key_exists('y', $leaflet_iconsize_cache)) {
