@@ -2,7 +2,7 @@
 
 /**
  * @file
- * API documentation for Administration menu.
+ * API documentation for Leaflet module.
  */
 
 use Drupal\Core\Field\FieldItemListInterface;
