@@ -414,7 +414,6 @@ class LeafletService {
       && (intval($feature["icon"]["iconSize"]["x"]) === 0 || intval($feature["icon"]["iconSize"]["y"]) === 0)) {
 
       $icon_url = $this->generateAbsoluteString($icon_url);
-      \Drupal::logger('my_module')->notice('420: ' . $icon_url);
 
       // Use the cached IconSize if present for this Icon Url.
       $leaflet_iconsize_cache = &drupal_static("leaflet_iconsize_cache:$icon_url");
@@ -456,7 +455,8 @@ class LeafletService {
               }
             }
         }
-        // Cache the Leaflet IconSize, so we don't fetch the same icon multiple times.
+        // Cache the Leaflet IconSize, so we don't fetch the same icon multiple
+        // times.
         $leaflet_iconsize_cache = $feature["icon"]["iconSize"];
       }
     }
@@ -464,11 +464,6 @@ class LeafletService {
     $shadow_url = $feature["icon"]["shadowUrl"] ?? NULL;
     if (!empty($shadow_url) && isset($feature["icon"]["shadowSize"])
       && (empty(intval($feature["icon"]["shadowSize"]["x"])) || empty(intval($feature["icon"]["shadowSize"]["y"])))) {
-
-      // Eventually sanitise the $uri if it is starting with a slash.
-      if (mb_substr($shadow_url, 0, 1) == '/') {
-        $shadow_url = ltrim( $shadow_url, '/');
-      }
 
       $shadow_url = $this->generateAbsoluteString($shadow_url);
 
