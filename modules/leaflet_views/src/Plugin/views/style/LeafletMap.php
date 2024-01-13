@@ -1156,6 +1156,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                               $feature['icon']['shadowUrl'] = $this->leafletService->generateAbsoluteString($feature['icon']['shadowUrl']);
                             }
                           }
+
+                          // Set Feature IconSize and ShadowSize to the IconUrl
+                          // or ShadowUrl Image sizes (if empty or invalid).
+                          $this->leafletService->setFeatureIconSizesIfEmptyOrInvalid($feature);
+
                           break;
                       }
                     }
