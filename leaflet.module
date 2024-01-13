@@ -54,7 +54,7 @@ function leaflet_map_get_info($map = NULL) {
     return $map_info;
   }
   else {
-    return isset($map_info[$map]) ? $map_info[$map] : [];
+    return $map_info[$map] ?? [];
   }
 
 }
@@ -64,9 +64,9 @@ function leaflet_map_get_info($map = NULL) {
  */
 function leaflet_leaflet_map_info() {
   return [
-    'OSM Mapnik' =>
+    'default_leaflet_multilayers' =>
       [
-        'label' => 'OSM Mapnik',
+        'label' => '- Default Leaflet Multilayers - ',
         'description' => t('Leaflet default map.'),
         'settings' => [
           'dragging' => TRUE,
@@ -82,10 +82,28 @@ function leaflet_leaflet_map_info() {
           'closePopupOnClick' => TRUE,
         ],
         'layers' => [
-          'earth' => [
+          'OSM Mapnik' => [
             'urlTemplate' => '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             'options' => [
+              'maxZoom' => 19,
               'attribution' => '&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer" target="_blank">OpenStreetMap</a> contributors',
+            ],
+          ],
+          'OpenTopoMap' => [
+            'urlTemplate' => '//{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+            'options' => [
+              "minZoom" => 0,
+              "maxZoom" => 18,
+              "attribution" => 'Kartendaten: © <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, SRTM | Kartendarstellung: © <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+            ],
+          ],
+          'OpenRailwayMap' => [
+            'layer_type' => 'overlay',
+            'layer_hidden' => TRUE,
+            'urlTemplate' => '//tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png',
+            'options' => [
+              'maxZoom' => 19,
+              'attribution' => 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
             ],
           ],
         ],

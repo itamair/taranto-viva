@@ -222,8 +222,8 @@
 
       switch (layer.layer_type) {
         case 'overlay':
-          let overlay_layer = this.create_layer(layer, key);
-          let layer_hidden = (typeof layer.layer_hidden === "undefined") ? false : layer.layer_hidden;
+          const overlay_layer = this.create_layer(layer, key);
+          const layer_hidden = (typeof layer.layer_hidden === "undefined") ? false : layer.layer_hidden;
           this.add_overlay(key, overlay_layer, layer_hidden);
           break;
 
@@ -292,7 +292,7 @@
    *   The layers progressive counter.
    */
   Drupal.Leaflet.prototype.add_base_layer = function(key, definition, i) {
-    let base_layer = this.create_layer(definition, key);
+    const base_layer = this.create_layer(definition, key);
     this.base_layers[key] = base_layer;
 
     // Only the first base layer needs to be added to the map - all the others are accessed via the layer switcher.
@@ -316,11 +316,11 @@
    *   The Overlay Layer Label.
    * @param layer
    *   The Leaflet Overlay.
-   * @param {bool} disabled_layer
+   * @param {bool} hidden_layer
    *   The flag to disable the Layer from the Over Layers Control.
    */
-  Drupal.Leaflet.prototype.add_overlay = function(label, layer, disabled_layer) {
-    if (!disabled_layer) {
+  Drupal.Leaflet.prototype.add_overlay = function(label, layer, hidden_layer) {
+    if (!hidden_layer) {
       this.lMap.addLayer(layer);
     }
 

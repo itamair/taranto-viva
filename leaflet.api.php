@@ -137,11 +137,23 @@ function hook_leaflet_map_info() {
             "attribution" => 'Kartendaten: © <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, SRTM | Kartendarstellung: © <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
           ],
         ],
-        // A Vector Tile definition usable by MapLibre GL Leaflet & Js
+        // A Vector Tile definition usable by MapLibre GL Leaflet & Js.
         // @see https://docs.stadiamaps.com/tutorials/vector-tiles-with-leaflet/
         'Stadia Alidade Smooth Dark Vector' => [
-          // Set vector type for rendering with Vector
+          // Set vector type for rendering with Vector.
           'type' => 'vector',
+          'urlTemplate' => '//tiles.stadiamaps.com/styles/alidade_smooth_dark.json',
+          'options' => [
+            'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+          ],
+        ],
+        // An example Overlay definition, in addition to previous Base Layers.
+        // (@see @3050934: simultaneous multiple layers feature)
+        'OpenRailwayMap' => [
+          // Set layer type as 'overlay'.
+          'layer_type' => 'overlay',
+          // Possibly set it also initially hidden.
+          'layer_hidden' => TRUE,
           'urlTemplate' => '//tiles.stadiamaps.com/styles/alidade_smooth_dark.json',
           'options' => [
             'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
