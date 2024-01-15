@@ -148,7 +148,7 @@ class LeafletService {
 
     // Check for the definition of a vector type layer
     // and eventually add MapLibre GL Leaflet library.
-    $map_layers = $map["layers"];
+    $map_layers = $map["layers"] ?? [];
     foreach ($map_layers as $layer) {
       if (isset($layer["type"]) &&  $layer["type"] === 'vector') {
         $attached_libraries[] = 'leaflet/maplibre-gl-leaflet';
