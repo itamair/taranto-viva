@@ -64,7 +64,7 @@ function leaflet_map_get_info($map = NULL) {
  */
 function leaflet_leaflet_map_info() {
   return [
-    'default_leaflet_multilayers' =>
+    'OSM Mapnik' =>
       [
         'label' => '- Default Leaflet - OSM Mapnik - ',
         'description' => t('Leaflet default map.'),
@@ -82,7 +82,7 @@ function leaflet_leaflet_map_info() {
           'closePopupOnClick' => TRUE,
         ],
         'layers' => [
-          'OSM Mapnik' => [
+          'earth' => [
             'urlTemplate' => '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             'options' => [
               'maxZoom' => 19,
