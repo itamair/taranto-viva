@@ -713,9 +713,17 @@
    * @returns {*}
    */
   Drupal.Leaflet.prototype.create_point = function(marker) {
-    let latLng = new L.LatLng(marker.lat, marker.lon);
+    const latLng = new L.LatLng(marker.lat, marker.lon);
     let lMarker;
-    let marker_title = marker.title ? marker.title.replace(/<[^>]*>/g, '').trim() : '';
+    // Assign the marker title value depending if a Marker simple title or a
+    // Leaflet tooltip was set.
+    let marker_title = '';
+    if (marker.title) {
+      marker_title = marker.title.replace(/<[^>]*>/g, '').trim()
+    }
+    else if (marker.tooltip && marker.tooltip.value) {
+      marker_title = marker.tooltip.value.replace(/<[^>]*>/g, '').trim();
+    }
     let options = {
       title: marker_title,
       className: marker.className || '',
