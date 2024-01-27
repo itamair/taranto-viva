@@ -5,9 +5,9 @@
  * API documentation for Leaflet module.
  */
 
-use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Field\FieldItemInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\geofield\Plugin\Field\FieldWidget\GeofieldBaseWidget;
 
 /**

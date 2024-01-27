@@ -2,39 +2,39 @@
 
 namespace Drupal\leaflet_views\Plugin\views\style;
 
-use Drupal\Core\Logger\LoggerChannelTrait;
-use Drupal\search_api\Plugin\views\ResultRow as SearchApiResultRow;
-use Drupal\views\ResultRow;
+use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelTrait;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\RenderContext;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
-use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Utility\LinkGeneratorInterface;
+use Drupal\Leaflet\LeafletService;
+use Drupal\leaflet\LeafletSettingsElementsTrait;
 use Drupal\leaflet_views\Controller\LeafletAjaxPopupController;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
-use Drupal\Core\Url;
-use Drupal\views\Plugin\views\display\DisplayPluginBase;
-use Drupal\views\Plugin\views\style\StylePluginBase;
-use Drupal\views\ViewExecutable;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Leaflet\LeafletService;
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Utility\LinkGeneratorInterface;
-use Drupal\leaflet\LeafletSettingsElementsTrait;
-use Drupal\views\Plugin\views\PluginBase;
-use Drupal\views\Views;
 use Drupal\search_api\Plugin\search_api\data_type\value\TextValue;
+use Drupal\search_api\Plugin\views\ResultRow as SearchApiResultRow;
+use Drupal\views\Plugin\views\display\DisplayPluginBase;
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\views\Plugin\views\style\StylePluginBase;
+use Drupal\views\ResultRow;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Views;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Style plugin to render a View output as a Leaflet map.
@@ -797,7 +797,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   public static function optionsFormEntitySourceSubmit(array $form, FormStateInterface $form_state) {
     $parents = $form_state->getTriggeringElement()['#parents'];
     array_pop($parents);
-    array_push($parents, 'entity_source');
+    $parents[] = 'entity_source';
 
     // Set the data source selected in the form state and rebuild the form.
     $form_state->set('entity_source', $form_state->getValue($parents));

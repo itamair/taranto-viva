@@ -2,10 +2,10 @@
 
 namespace Drupal\leaflet;
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\views\Plugin\views\ViewsPluginInterface;
-use Drupal\Core\Url;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\views\Plugin\views\ViewsPluginInterface;
 
 /**
  * Class LeafletSettingsElementsTrait.
@@ -1450,14 +1450,16 @@ trait LeafletSettingsElementsTrait {
       $geocoder_provider = \Drupal::service('plugin.manager.geocoder.provider');
       $element['geocoder']['settings']['providers'] = $geocoder_provider->providersPluginsTableList($enabled_providers);
 
-      // Set a validation for the providers selection.
-      $element['geocoder']['settings']['providers']['#element_validate'] = [[get_class($this), 'validateGeocoderProviders']];
+      // Set a validation for the providers' selection.
+      $element['geocoder']['settings']['providers']['#element_validate'] = [
+        [get_class($this), 'validateGeocoderProviders'],
+      ];
 
       $element['geocoder']['settings']['min_terms'] = [
         '#type' => 'number',
         '#default_value' => $settings['geocoder']['settings']['min_terms'] ?? $default_settings['geocoder']['settings']['min_terms'],
         '#title' => $this->t('The (minimum) number of terms for the Geocoder to start processing.'),
-        '#description' => $this->t('Valid values ​​for the widget are between 2 and 10. A too low value (<= 3) will affect the application Geocode Quota usage.<br>Try to increase this value if you are experiencing Quota usage matters.'),
+        '#description' => $this->t('Valid values for the widget are between 2 and 10. A too low value (<= 3) will affect the application Geocode Quota usage.<br>Try to increase this value if you are experiencing Quota usage matters.'),
         '#min' => 2,
         '#max' => 10,
         '#size' => 3,
@@ -1467,7 +1469,7 @@ trait LeafletSettingsElementsTrait {
         '#type' => 'number',
         '#default_value' => $settings['geocoder']['settings']['delay'] ?? $default_settings['geocoder']['settings']['delay'],
         '#title' => $this->t('The delay (in milliseconds) between pressing a key in the Address Input field and starting the Geocoder search.'),
-        '#description' => $this->t('Valid values ​​for the widget are multiples of 100, between 300 and 3000. A too low value (<= 300) will affect / increase the application Geocode Quota usage.<br>Try to increase this value if you are experiencing Quota usage matters.'),
+        '#description' => $this->t('Valid value for the widget are multiples of 100, between 300 and 3000. A too low value (<= 300) will affect / increase the application Geocode Quota usage.<br>Try to increase this value if you are experiencing Quota usage matters.'),
         '#min' => 300,
         '#max' => 3000,
         '#step' => 100,

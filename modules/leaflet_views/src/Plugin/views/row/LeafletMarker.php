@@ -2,22 +2,22 @@
 
 namespace Drupal\leaflet_views\Plugin\views\row;
 
+use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Leaflet\LeafletService;
+use Drupal\views\Entity\Render\EntityTranslationRenderTrait;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\row\RowPluginBase;
 use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
-use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\views\Entity\Render\EntityTranslationRenderTrait;
 use Drupal\views\ViewsData;
-use Drupal\Leaflet\LeafletService;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin which formats a row as a leaflet marker.

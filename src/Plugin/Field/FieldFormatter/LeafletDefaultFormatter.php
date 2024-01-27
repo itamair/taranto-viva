@@ -2,23 +2,23 @@
 
 namespace Drupal\leaflet\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\Core\Render\RenderContext;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Render\RenderContext;
+use Drupal\core\Render\Renderer;
+use Drupal\Core\Utility\LinkGeneratorInterface;
+use Drupal\Core\Utility\Token;
 use Drupal\Leaflet\LeafletService;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Utility\Token;
-use Drupal\core\Render\Renderer;
-use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Utility\LinkGeneratorInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation of the 'leaflet_default' formatter.
