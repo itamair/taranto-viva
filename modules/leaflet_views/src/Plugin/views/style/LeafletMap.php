@@ -1208,12 +1208,15 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                   }
                 }
 
-                // Generate a single Features Group as incremental Features.
-                $features_group = array_merge($features_group, $features);
+                // Increment Features Group with new Features element.
+                $features_group[] = $features;
               }
             }
           }
         }
+
+        // Generate a single Features Group as incremental merged Features.
+        $features_group = array_merge(...$features_group);
 
         // Order the data features based on the 'weight' element.
         uasort($features_group, [
