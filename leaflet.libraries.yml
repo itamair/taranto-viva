@@ -174,4 +174,4 @@ intersection_observer:
     url: https://choosealicense.com/licenses/mit/
     gpl-compatible: true
   js:
-    https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver: { type: external }
+    https://polyfill-fastly.io/v3/polyfill.min.js?features=IntersectionObserver: { type: external }
