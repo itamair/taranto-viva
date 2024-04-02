@@ -313,36 +313,28 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * {@inheritdoc}
    */
   public function getFieldValue($index, $field) {
+    $values = NULL;
     $result = $this->view->result[$index];
 
-    if ($result instanceof SearchApiResultRow) {
+    // Check and return values coming from normal Search API View.
+    if (isset($this->view->field[$field]) && $result instanceof SearchApiResultRow) {
       $real_geofield_name = $this->view->field[$field]->field;
       $search_api_field = $result->_item->getField($real_geofield_name);
       if ($search_api_field !== NULL) {
         $values = $search_api_field->getValues();
-      }
-
-      if (!empty($values)) {
         foreach ($values as $key => $value) {
           if ($value instanceof TextValue) {
-            $value = $value->getText();
+            $values[$key] = $value->getText();
           }
-          $values[$key] = $value;
         }
-        return $values;
       }
-    }
 
-    // Check and return values coming from normal View or Search Api View,
-    // or return NULL Otherwise.
-    if (isset($this->view->field[$field]) &&
-      ($this->view->result[$index] instanceof ResultRow || $this->view->result[$index] instanceof SearchApiResultRow)
-    ) {
-      return $this->view->field[$field]->getValue($this->view->result[$index]);
     }
-    else {
-      return NULL;
+    // Check and return values coming from normal View.
+    else if (isset($this->view->field[$field]) && $result instanceof ResultRow) {
+      $values = (array) $this->view->field[$field]->getValue($result);
     }
+    return $values;
   }
 
   /**
