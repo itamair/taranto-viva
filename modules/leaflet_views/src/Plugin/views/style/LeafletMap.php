@@ -331,7 +331,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     }
     // Check and return values coming from normal View.
-    else if (isset($this->view->field[$field]) && $result instanceof ResultRow) {
+    elseif (isset($this->view->field[$field]) && $result instanceof ResultRow) {
       $values = (array) $this->view->field[$field]->getValue($result);
     }
     return $values;
