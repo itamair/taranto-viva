@@ -164,7 +164,6 @@ leaflet.geocoder:
     - core/drupal.autocomplete
     - leaflet/leaflet-drupal
 
-
 # External IntersectionObserver polyfill
 intersection_observer:
   remote: https://polyfill-fastly.io/v3/polyfill.js
