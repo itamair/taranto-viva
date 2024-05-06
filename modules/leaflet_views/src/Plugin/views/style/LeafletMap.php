@@ -1120,7 +1120,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                           break;
 
                         case 'circle_marker':
-                          $feature['icon']['options'] = str_replace([
+                          $feature['icon']['circle_marker_options'] = str_replace([
                             "\n",
                             "\r",
                           ], "", $this->viewsTokenReplace($this->options['icon']['circle_marker_options'], $tokens));

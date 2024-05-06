@@ -405,7 +405,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
             break;
 
           case 'circle_marker':
-            $feature['icon']['options'] = $this->token->replace($settings['icon']['circle_marker_options'], $tokens);
+            $feature['icon']['circle_marker_options'] = $this->token->replace($settings['icon']['circle_marker_options'], $tokens);
             break;
 
           default:
