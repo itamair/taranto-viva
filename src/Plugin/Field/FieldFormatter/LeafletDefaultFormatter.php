@@ -2,23 +2,23 @@
 
 namespace Drupal\leaflet\Plugin\Field\FieldFormatter;
 
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Render\RenderContext;
+use Drupal\Core\Render\RendererInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Render\BubbleableMetadata;
-use Drupal\Core\Render\RenderContext;
-use Drupal\core\Render\Renderer;
-use Drupal\Core\Utility\LinkGeneratorInterface;
-use Drupal\Core\Utility\Token;
-use Drupal\Leaflet\LeafletService;
+use Drupal\leaflet\LeafletService;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Utility\Token;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Utility\LinkGeneratorInterface;
 
 /**
  * Plugin implementation of the 'leaflet_default' formatter.
@@ -45,7 +45,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
   /**
    * Leaflet service.
    *
-   * @var \Drupal\Leaflet\LeafletService
+   * @var \Drupal\leaflet\LeafletService
    */
   protected $leafletService;
 
@@ -59,14 +59,14 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
   /**
    * The token service.
    *
-   * @var \Drupal\core\Utility\Token
+   * @var \Drupal\Core\Utility\Token
    */
   protected $token;
 
   /**
-   * The renderer service.
+   * The Renderer service property.
    *
-   * @var \Drupal\core\Render\Renderer
+   * @var \Drupal\Core\Render\RendererInterface
    */
   protected $renderer;
 
@@ -100,15 +100,15 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    * @param string $view_mode
    *   The view mode.
    * @param array $third_party_settings
-   *   Any third party settings settings.
-   * @param \Drupal\Leaflet\LeafletService $leaflet_service
+   *   Any third party settings.
+   * @param \Drupal\leaflet\LeafletService $leaflet_service
    *   The Leaflet service.
    * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
    *   The Entity Field Manager.
-   * @param \Drupal\core\Utility\Token $token
+   * @param \Drupal\Core\Utility\Token $token
    *   The token service.
-   * @param \Drupal\core\Render\Renderer $renderer
-   *   The renderer service.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
    * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
@@ -125,7 +125,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     LeafletService $leaflet_service,
     EntityFieldManagerInterface $entity_field_manager,
     Token $token,
-    Renderer $renderer,
+    RendererInterface $renderer,
     ModuleHandlerInterface $module_handler,
     LinkGeneratorInterface $link_generator
   ) {
@@ -143,7 +143,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
+    return new self(
       $plugin_id,
       $plugin_definition,
       $configuration['field_definition'],

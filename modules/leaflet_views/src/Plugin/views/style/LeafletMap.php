@@ -21,20 +21,20 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\LinkGeneratorInterface;
-use Drupal\Leaflet\LeafletService;
+use Drupal\leaflet\LeafletService;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
 use Drupal\leaflet_views\Controller\LeafletAjaxPopupController;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
+use Drupal\views\Plugin\views\display\DisplayPluginBase;
+use Drupal\views\Plugin\views\style\StylePluginBase;
+use Drupal\views\ViewExecutable;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\views\Views;
 use Drupal\search_api\Plugin\search_api\data_type\value\TextValue;
 use Drupal\search_api\Plugin\views\ResultRow as SearchApiResultRow;
-use Drupal\views\Plugin\views\display\DisplayPluginBase;
-use Drupal\views\Plugin\views\PluginBase;
-use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\views\ResultRow;
-use Drupal\views\ViewExecutable;
-use Drupal\views\Views;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Style plugin to render a View output as a Leaflet map.
@@ -133,7 +133,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   /**
    * The Renderer service property.
    *
-   * @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface
+   * @var \Drupal\Core\Render\RendererInterface
    */
   protected $renderer;
 
@@ -147,7 +147,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   /**
    * Leaflet service.
    *
-   * @var \Drupal\Leaflet\LeafletService
+   * @var \Drupal\leaflet\LeafletService
    */
   protected $leafletService;
 
@@ -195,7 +195,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *   The renderer.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
-   * @param \Drupal\Leaflet\LeafletService $leaflet_service
+   * @param \Drupal\leaflet\LeafletService $leaflet_service
    *   The Leaflet service.
    * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
    *   The Link Generator service.
@@ -236,7 +236,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
+    return new self(
       $configuration,
       $plugin_id,
       $plugin_definition,
