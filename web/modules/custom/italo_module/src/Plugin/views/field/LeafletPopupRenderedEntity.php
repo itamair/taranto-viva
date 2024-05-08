@@ -21,24 +21,22 @@ class LeafletPopupRenderedEntity extends RenderedEntity implements CacheableDepe
    * {@inheritdoc}
    */
   public function render(ResultRow $values) {
-    $entity_id = $values->nid;
-    $entity = Node::load($entity_id);
+    $entity = Node::load($values->nid);
     $components = $entity->get('field_components')->getValue();
     $entity = $this->getEntityTranslationByRelationship($entity, $values);
+    $paragraph_id = $values->paragraphs_item_field_data_node__field_components_id_1;
+    $paragraph = Paragraph::load($paragraph_id);
     $new_entity = clone($entity);
-    if ($paragraph_id = $values->paragraphs_item_field_data_node__field_components_id_1 ?? NULL) {
-      $paragraph = Paragraph::load($paragraph_id);
-      if ($paragraph->bundle() == 'geoimage') {
-        $paragraph_id_component = [];
-        foreach ($components as $component) {
-          if ($component['target_id'] === $paragraph_id) {
-            $paragraph_id_component = $component;
-            break;
-          }
+    if ($paragraph->bundle() == 'geoimage') {
+      $paragraph_id_component = [];
+      foreach ($components as $component) {
+        if ($component['target_id'] === $paragraph_id) {
+          $paragraph_id_component = $component;
+          break;
         }
-        if (!empty($paragraph_id_component) && $entity->bundle() === 'territorial_report') {
-          $new_entity = $new_entity->set('field_components', $paragraph_id_component);
-        }
+      }
+      if (!empty($paragraph_id_component) && $entity->bundle() === 'territorial_report') {
+        $new_entity = $new_entity->set('field_components', $paragraph_id_component);
       }
     }
     $build = [];
@@ -55,7 +53,7 @@ class LeafletPopupRenderedEntity extends RenderedEntity implements CacheableDepe
       "entity_view",
       "paragraph",
       "leaflet_popup",
-      $paragraph_id ?? $entity_id,
+      $paragraph_id,
     ];
     return $build;
   }
