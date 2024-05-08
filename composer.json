@@ -49,6 +49,7 @@
         "drupal/geofield": "^1.44",
         "drupal/geofield_map": "^3.0",
         "drupal/graphql_compose": "^2.0",
+        "drupal/image_style_warmer": "^1.2",
         "drupal/image_styles_generator": "^1.2",
         "drupal/jquery_ui": "^1.6",
         "drupal/jsonapi_extras": "^3.23",

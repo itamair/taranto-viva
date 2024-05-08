@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: 7wcI6NyqWC9VsglvfEKjmQ9XY_D7lsTWkq0cRM4Ji7A
+langcode: it
+initial_image_styles:
+  image_map_marker: image_map_marker
+queue_image_styles: {  }
