@@ -400,7 +400,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
         switch ($icon_type) {
           case 'html':
-            $feature['icon']['html'] = $this->token->replace($settings['icon']['html'], $tokens);
+            $feature['icon']['html'] = $this->token->replace($settings['icon']['html'], $tokens, ['clear' => TRUE]);
             $feature['icon']['html_class'] = $settings['icon']['html_class'] ?? '';
             break;
 
