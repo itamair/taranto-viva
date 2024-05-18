@@ -326,6 +326,12 @@ function italo_module_media_insert(MediaInterface $media) {
         $paragraph_geoimage_data['field_exclude_from_map_bounds'] = FALSE;
       }
 
+      // If the Media Project Namespace field is 'Copenhagen Discovery'
+      // (target_id: 55).
+      if ($media->get('field_project_namespace')->target_id == 55) {
+        $paragraph_geoimage_data['field_exclude_from_map_bounds'] = FALSE;
+      }
+
       $paragraph_geoimage = Paragraph::create($paragraph_geoimage_data);
       $paragraph_geoimage->save();
 
@@ -350,6 +356,17 @@ function italo_module_media_insert(MediaInterface $media) {
         // Set the Geoimage Project Namespace field as 'Vaganti'(target_id: 53).
         $geoimage_node_data['field_project_namespace'] = [
           ['target_id' => 53],
+        ];
+        $geoimage_node_data['field_classname'] = 'opacity-75';
+      }
+
+      // If the Media Project Namespace field is 'Copenhagen Discovery'
+      // (target_id: 55).
+      if ($media->get('field_project_namespace')->target_id == 55) {
+        // Set the Geoimage Project Namespace field as 'Copenhagen Discovery'
+        // (target_id: 55).
+        $geoimage_node_data['field_project_namespace'] = [
+          ['target_id' => 55],
         ];
         $geoimage_node_data['field_classname'] = 'opacity-75';
       }
@@ -402,6 +419,13 @@ function italo_module_alter_media_library_importer_media_extra_fields(FileInterf
     // Set the Media Project Namespace field as 'Vaganti' (target_id: 53).
     $extra_fields['field_project_namespace'] = [
       ['target_id' => 53],
+    ];
+  }
+  if (str_contains($file_url, 'Copenhagen')) {
+    // Set the Media Project Namespace field as 'Copenhagen Discovery'
+    // (target_id: 55).
+    $extra_fields['field_project_namespace'] = [
+      ['target_id' => 55],
     ];
   }
 }

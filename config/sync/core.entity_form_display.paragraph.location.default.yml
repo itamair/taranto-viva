@@ -11,6 +11,7 @@ dependencies:
     - field.field.paragraph.location.field_location_type
     - field.field.paragraph.location.field_marker_image
     - field.field.paragraph.location.field_markercluster_exclude
+    - field.field.paragraph.location.field_min_zoom_visibility
     - field.field.paragraph.location.field_title
     - field.field.paragraph.location.field_zindex
     - paragraphs.paragraphs_type.location
@@ -24,7 +25,7 @@ mode: default
 content:
   field_address:
     type: string_textfield
-    weight: 7
+    weight: 8
     region: content
     settings:
       size: 60
@@ -32,7 +33,7 @@ content:
     third_party_settings: {  }
   field_classname:
     type: entity_reference_autocomplete
-    weight: 8
+    weight: 9
     region: content
     settings:
       match_operator: CONTAINS
@@ -42,7 +43,7 @@ content:
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true
@@ -129,10 +130,17 @@ content:
     third_party_settings: {  }
   field_markercluster_exclude:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  field_min_zoom_visibility:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   field_title:
     type: string_textfield
