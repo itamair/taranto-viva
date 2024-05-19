@@ -16,6 +16,7 @@ dependencies:
     - media.type.geoimage
   module:
     - layout_builder
+    - link
     - svg_image
 third_party_settings:
   layout_builder:
@@ -41,6 +42,18 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  geofield_googlemaps_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   created: true
   field_address: true
@@ -50,7 +63,6 @@ hidden:
   field_image_caption: true
   field_place_type: true
   field_project_namespace: true
-  geofield_googlemaps_link: true
   geoimage_caption: true
   langcode: true
   name: true

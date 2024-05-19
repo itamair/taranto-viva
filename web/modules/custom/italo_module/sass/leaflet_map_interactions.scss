@@ -10,7 +10,7 @@
   .leaflet-popup-content {
     width: auto !important;
     position: relative;
-    margin: 10px 10px 10px 10px;
+    margin: 4px;
     .field--name-geoimage-caption {
       padding-left: 0.5rem !important;
       font-size: 0.8rem;
@@ -280,5 +280,52 @@
   }
   &.positive .dot {
     border-color: limegreen;
+  }
+}
+
+// Leaflet Markers Clusters Style overrides
+.leaflet-marker-icon.marker-cluster {
+  div {
+    font-weight: bold;
+  }
+  &.marker-cluster-small {
+    background-color: inherit !important;
+    div {
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+      background-color: rgba(251, 252, 251, 0.76) !important;
+      border: gray solid 1px;
+      span {
+        line-height: 22px;
+      }
+    }
+  }
+  &.marker-cluster-medium {
+    background-color: inherit !important;
+    div {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: rgba(251, 252, 251, 0.76) !important;
+      border: black solid 1px;
+      span {
+        line-height: 30px;
+      }
+    }
+  }
+  &.marker-cluster-large {
+    background-color: inherit !important;
+    z-index: 100 !important;
+    div {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: rgba(251, 252, 251, 0.76) !important;
+      border: black solid 1px;
+      span {
+        line-height: 40px;
+      }
+    }
   }
 }

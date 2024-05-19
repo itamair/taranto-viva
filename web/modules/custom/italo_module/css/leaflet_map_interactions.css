@@ -12,7 +12,7 @@
 .leaflet-popup-content-wrapper .leaflet-popup-content {
   width: auto !important;
   position: relative;
-  margin: 10px 10px 10px 10px;
+  margin: 4px;
   /* Overrides the Olivero olivero_tarantoviva/css/components/text-content.css */
 }
 /* line 14, ../sass/leaflet_map_interactions.scss */
@@ -306,4 +306,58 @@
 /* line 281, ../sass/leaflet_map_interactions.scss */
 .leaflet-container .leaflet-marker-icon.pulsing-marker.positive .dot {
   border-color: limegreen;
+}
+
+/* line 288, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster div {
+  font-weight: bold;
+}
+/* line 291, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-small {
+  background-color: inherit !important;
+}
+/* line 293, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-small div {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: rgba(251, 252, 251, 0.76) !important;
+  border: gray solid 1px;
+}
+/* line 299, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-small div span {
+  line-height: 22px;
+}
+/* line 304, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium {
+  background-color: inherit !important;
+}
+/* line 306, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium div {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: rgba(251, 252, 251, 0.76) !important;
+  border: black solid 1px;
+}
+/* line 312, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-medium div span {
+  line-height: 30px;
+}
+/* line 317, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-large {
+  background-color: inherit !important;
+  z-index: 100 !important;
+}
+/* line 320, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-large div {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgba(251, 252, 251, 0.76) !important;
+  border: black solid 1px;
+}
+/* line 326, ../sass/leaflet_map_interactions.scss */
+.leaflet-marker-icon.marker-cluster.marker-cluster-large div span {
+  line-height: 40px;
 }

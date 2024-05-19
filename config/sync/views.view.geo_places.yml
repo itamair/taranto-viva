@@ -8024,7 +8024,7 @@ display:
             circle_marker_options: '{"radius":20,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
           leaflet_markercluster:
             control: true
-            options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":60,"disableClusteringAtZoom":17}'
+            options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":30,"disableClusteringAtZoom":18}'
             excluded: field_markercluster_exclude
             include_path: 0
           path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"1.0","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
