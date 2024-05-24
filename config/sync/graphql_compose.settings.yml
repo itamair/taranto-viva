@@ -118,8 +118,6 @@ field_config:
         enabled: true
       field_markercluster_exclude:
         enabled: true
-      field_min_zoom_visibility:
-        enabled: true
       field_stroke_opacity:
         enabled: true
       field_stroke_weight:

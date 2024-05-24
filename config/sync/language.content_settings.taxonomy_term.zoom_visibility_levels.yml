@@ -1,0 +1,11 @@
+uuid: 41134bc5-ce8e-46ce-9b94-8a083cb0e0c1
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zoom_visibility_levels
+id: taxonomy_term.zoom_visibility_levels
+target_entity_type_id: taxonomy_term
+target_bundle: zoom_visibility_levels
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,39 @@
+uuid: db9bdcd1-3842-40b0-a812-c1b47f755796
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.zoom_visibility_levels.field_zoom_visibility_range
+    - taxonomy.vocabulary.zoom_visibility_levels
+  module:
+    - range
+    - text
+id: taxonomy_term.zoom_visibility_levels.default
+targetEntityType: taxonomy_term
+bundle: zoom_visibility_levels
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_zoom_visibility_range:
+    type: range_integer
+    label: inline
+    settings:
+      range_separator: '-'
+      thousand_separator: ''
+      range_combine: true
+      field_prefix_suffix: false
+      from_prefix_suffix: false
+      to_prefix_suffix: false
+      combined_prefix_suffix: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  uuid: true

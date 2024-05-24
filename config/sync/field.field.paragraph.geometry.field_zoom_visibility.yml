@@ -1,0 +1,29 @@
+uuid: 16425551-4681-4d43-a692-5fbe4784507a
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_zoom_visibility
+    - paragraphs.paragraphs_type.geometry
+    - taxonomy.vocabulary.zoom_visibility_levels
+id: paragraph.geometry.field_zoom_visibility
+field_name: field_zoom_visibility
+entity_type: paragraph
+bundle: geometry
+label: 'Zoom Visibility'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      zoom_visibility_levels: zoom_visibility_levels
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

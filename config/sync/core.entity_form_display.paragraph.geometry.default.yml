@@ -10,12 +10,12 @@ dependencies:
     - field.field.paragraph.geometry.field_geofield
     - field.field.paragraph.geometry.field_link
     - field.field.paragraph.geometry.field_markercluster_exclude
-    - field.field.paragraph.geometry.field_min_zoom_visibility
     - field.field.paragraph.geometry.field_stroke_color
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
     - field.field.paragraph.geometry.field_title
     - field.field.paragraph.geometry.field_zindex
+    - field.field.paragraph.geometry.field_zoom_visibility
     - paragraphs.paragraphs_type.geometry
   module:
     - color_field
@@ -34,6 +34,7 @@ third_party_settings:
         - field_fill_opacity
         - field_zindex
         - field_min_zoom_visibility
+        - field_zoom_visibility
         - group_settings
       label: Attributes
       region: content
@@ -53,7 +54,7 @@ third_party_settings:
       label: 'Map Bounds & Clustering'
       region: content
       parent_name: group_attributes
-      weight: 16
+      weight: 15
       format_type: fieldset
       format_settings:
         classes: ''
@@ -75,7 +76,7 @@ content:
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
-    weight: 15
+    weight: 7
     region: content
     settings:
       display_label: true
@@ -176,17 +177,10 @@ content:
     third_party_settings: {  }
   field_markercluster_exclude:
     type: boolean_checkbox
-    weight: 16
+    weight: 8
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  field_min_zoom_visibility:
-    type: number
-    weight: 13
-    region: content
-    settings:
-      placeholder: ''
     third_party_settings: {  }
   field_stroke_color:
     type: color_field_widget_html5
@@ -222,6 +216,12 @@ content:
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_zoom_visibility:
+    type: options_select
+    weight: 14
+    region: content
+    settings: {  }
     third_party_settings: {  }
   translation:
     weight: 4

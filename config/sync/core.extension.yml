@@ -103,6 +103,7 @@ module:
   popup_message: 0
   queue_ui: 0
   r4032login: 0
+  range: 0
   rate: 0
   replicate: 0
   replicate_ui: 0

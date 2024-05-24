@@ -1,0 +1,8 @@
+uuid: dd9005dc-265d-472d-a75d-baa013e27497
+langcode: it
+status: true
+dependencies: {  }
+name: 'Zoom Visibility Levels'
+vid: zoom_visibility_levels
+description: ''
+weight: 0

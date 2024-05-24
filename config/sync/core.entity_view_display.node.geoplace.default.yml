@@ -6,11 +6,13 @@ dependencies:
     - field.field.node.geoplace.body
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
+    - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
+    - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
     - views.view.content_locations_addresses_and_google_maps_links
     - views.view.content_media_images
@@ -195,6 +197,16 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
+  field_exclude_from_markercluster:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
   field_geofied_view:
     type: viewfield_default
     label: hidden
@@ -220,6 +232,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_zoom_visibility:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
     region: content
 hidden:
   active_level: true

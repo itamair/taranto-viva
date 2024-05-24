@@ -1,0 +1,35 @@
+uuid: 3a82161f-19ba-4359-a010-6ed8053f202f
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_zoom_visibility_range
+    - taxonomy.vocabulary.zoom_visibility_levels
+  module:
+    - range
+id: taxonomy_term.zoom_visibility_levels.field_zoom_visibility_range
+field_name: field_zoom_visibility_range
+entity_type: taxonomy_term
+bundle: zoom_visibility_levels
+label: 'Zoom Visibility Range'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  field:
+    prefix: ''
+    suffix: ''
+  from:
+    prefix: ''
+    suffix: ''
+  to:
+    prefix: ''
+    suffix: ''
+  combined:
+    prefix: ''
+    suffix: ''
+field_type: range_integer

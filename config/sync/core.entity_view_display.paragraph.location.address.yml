@@ -12,9 +12,9 @@ dependencies:
     - field.field.paragraph.location.field_location_type
     - field.field.paragraph.location.field_marker_image
     - field.field.paragraph.location.field_markercluster_exclude
-    - field.field.paragraph.location.field_min_zoom_visibility
     - field.field.paragraph.location.field_title
     - field.field.paragraph.location.field_zindex
+    - field.field.paragraph.location.field_zoom_visibility
     - paragraphs.paragraphs_type.location
   module:
     - layout_builder
@@ -43,9 +43,9 @@ hidden:
   field_location_type: true
   field_marker_image: true
   field_markercluster_exclude: true
-  field_min_zoom_visibility: true
   field_title: true
   field_zindex: true
+  field_zoom_visibility: true
   geofield_googlemaps_link: true
   geomarker_icon_url: true
   uuid: true

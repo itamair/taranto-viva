@@ -1,20 +1,20 @@
-uuid: c4d73680-a50e-4349-a9dc-d5f176f17321
-langcode: en
+uuid: 4b118687-2800-478b-bc6b-3b3d57e177ec
+langcode: it
 status: true
 dependencies:
   module:
     - field_permissions
-    - paragraphs
+    - node
+    - taxonomy
 third_party_settings:
   field_permissions:
     permission_type: public
-id: paragraph.field_min_zoom_visibility
-field_name: field_min_zoom_visibility
-entity_type: paragraph
-type: integer
+id: node.field_zoom_visibility
+field_name: field_zoom_visibility
+entity_type: node
+type: entity_reference
 settings:
-  unsigned: false
-  size: normal
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1

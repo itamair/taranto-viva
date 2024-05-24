@@ -205,7 +205,8 @@
           // Set Feature visibility, if properties['min_zoom_visibility'] is set.
           if (features.hasOwnProperty(i) && features[i] && features[i]['properties'] && features[i]['properties'].length > 0) {
             const properties = JSON.parse(features[i]['properties']);
-            if (properties['min_zoom_visibility'] && zoomLevel <= properties['min_zoom_visibility']) {
+
+/*            if (properties['min_zoom_visibility'] && zoomLevel <= properties['min_zoom_visibility']) {
               map.removeLayer(markers[i]);
               if (hidden_marker_index === -1) {
                 self.hidden_markers.push(i);
@@ -214,6 +215,36 @@
             else if (markers.hasOwnProperty(i) && hidden_marker_index > -1) {
               markers[i].addTo(map);
               self.hidden_markers.splice(hidden_marker_index, 1);
+            }*/
+
+            // Set Feature Zoom Visibility Range, if properties['min_zoom_visibility'] is set.
+            if (properties['zoom_visibility_range']) {
+              const visibility_range = properties['zoom_visibility_range'].split("-");
+              console.log(zoomLevel);
+              if ( zoomLevel <= parseInt(visibility_range[0]) || zoomLevel > parseInt(visibility_range[1])) {
+                map.removeLayer(markers[i]);
+                if (markers[i].options['group_label'] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]) {
+                  for (let k in Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers) {
+                    if (markers[i].options['group_label'] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].hasOwnProperty('_markerCluster')) {
+                      Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].removeLayer(markers[i]);
+                    }
+                  }
+                }
+                if (hidden_marker_index === -1) {
+                  self.hidden_markers.push(i);
+                }
+              }
+              else if (markers.hasOwnProperty(i) && hidden_marker_index > -1) {
+                markers[i].addTo(map);
+                if (markers[i].options['group_label'] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]) {
+                  for (let k in Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers) {
+                    if (Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].hasOwnProperty('_markerCluster')) {
+                      Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].addLayer(markers[i]);
+                    }
+                  }
+                }
+                self.hidden_markers.splice(hidden_marker_index, 1);
+              }
             }
           }
         }

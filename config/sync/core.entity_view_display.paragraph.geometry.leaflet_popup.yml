@@ -11,12 +11,12 @@ dependencies:
     - field.field.paragraph.geometry.field_geofield
     - field.field.paragraph.geometry.field_link
     - field.field.paragraph.geometry.field_markercluster_exclude
-    - field.field.paragraph.geometry.field_min_zoom_visibility
     - field.field.paragraph.geometry.field_stroke_color
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
     - field.field.paragraph.geometry.field_title
     - field.field.paragraph.geometry.field_zindex
+    - field.field.paragraph.geometry.field_zoom_visibility
     - paragraphs.paragraphs_type.geometry
   module:
     - layout_builder
@@ -37,12 +37,12 @@ hidden:
   field_geofield: true
   field_link: true
   field_markercluster_exclude: true
-  field_min_zoom_visibility: true
   field_stroke_color: true
   field_stroke_opacity: true
   field_stroke_weight: true
   field_title: true
   field_zindex: true
+  field_zoom_visibility: true
   geofield_googlemaps_link: true
   geomarker_icon_url: true
   uuid: true

@@ -66,6 +66,7 @@
         "drupal/popup_message": "^3.0",
         "drupal/queue_ui": "^3.1",
         "drupal/r4032login": "^2.2",
+        "drupal/range": "^1.5",
         "drupal/rate": "^3.0",
         "drupal/replicate": "^1.0",
         "drupal/replicate_ui": "^1.0",
