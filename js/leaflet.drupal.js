@@ -728,6 +728,7 @@
       title: marker_title,
       className: marker.className || '',
       alt: marker_title,
+      group_label: marker.group_label ?? '',
     };
 
     lMarker = new L.Marker(latLng, options);
