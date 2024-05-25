@@ -335,6 +335,11 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         // Decode any entities because JS will encode them again,
         // and we don't want double encoding.
         $feature['tooltip']['value'] = $this->tokenResolvedContent($entity, $settings['leaflet_tooltip']['value'], $tokens, $results);
+
+        // Associate dynamic tooltip options (token based).
+        if (!empty($settings['tooltip']['options'])) {
+          $feature['tooltip']['options'] = $this->tokenResolvedContent($entity, $settings['leaflet_tooltip']['options'], $tokens, $results);
+        }
       }
 
       // Define the Popup Control and Popup Content with backward
@@ -348,6 +353,11 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         // Generate the Popup Content render array transforming the
         // 'popup_content' text area through replacements tokens.
         $feature['popup']['value'] = $this->tokenResolvedContent($entity, $popup_content, $tokens, $results);
+
+        // Associate dynamic popup options (token based).
+        if (!empty($settings['leaflet_popup']['options'])) {
+          $feature['popup']['options'] = $this->tokenResolvedContent($entity, $settings['leaflet_popup']['options'], $tokens, $results);
+        }
       }
 
       // Add/merge eventual map icon definition from hook_leaflet_map_info.

@@ -1069,12 +1069,29 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       // Decode any entities because JS will encode them again,
                       // and we don't want double encoding.
                       $feature['tooltip']['value'] = !empty($this->options['leaflet_tooltip']['value']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['leaflet_tooltip']['value']])) : '';
+
+                      // Associate dynamic tooltip options (token based).
+                      if (!empty($this->options['tooltip']['options'])) {
+                        $feature['tooltip']['options'] = str_replace([
+                          "\n",
+                          "\r",
+                        ], "", $this->viewsTokenReplace($this->options['leaflet_tooltip']['options'], $tokens));
+                      }
                     }
                     // Otherwise eventually attach simple title tooltip.
                     elseif ($this->options['name_field']) {
                       // Decode any entities because JS will encode them again,
                       // and we don't want double encoding.
                       $feature['title'] = !empty($this->options['name_field']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['name_field']])) : '';
+                    }
+
+                    // Associate dynamic popup options (token based).
+                    if (!empty($this->options['leaflet_popup']['options'])) {
+                      // Associate dynamic tooltip options (token based).
+                      $feature['popup']['options'] = str_replace([
+                        "\n",
+                        "\r",
+                      ], "", $this->viewsTokenReplace($this->options['leaflet_popup']['options'], $tokens));
                     }
 
                     // Eventually set the custom Marker icon (DivIcon, Icon Url
