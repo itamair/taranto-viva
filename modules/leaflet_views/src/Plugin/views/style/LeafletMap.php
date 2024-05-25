@@ -1071,7 +1071,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       $feature['tooltip']['value'] = !empty($this->options['leaflet_tooltip']['value']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['leaflet_tooltip']['value']])) : '';
 
                       // Associate dynamic tooltip options (token based).
-                      if (!empty($this->options['tooltip']['options'])) {
+                      if (!empty($this->options['leaflet_tooltip']['options'])) {
                         $feature['tooltip']['options'] = str_replace([
                           "\n",
                           "\r",

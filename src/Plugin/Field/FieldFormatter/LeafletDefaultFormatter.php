@@ -337,7 +337,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         $feature['tooltip']['value'] = $this->tokenResolvedContent($entity, $settings['leaflet_tooltip']['value'], $tokens, $results);
 
         // Associate dynamic tooltip options (token based).
-        if (!empty($settings['tooltip']['options'])) {
+        if (!empty($settings['leaflet_tooltip']['options'])) {
           $feature['tooltip']['options'] = $this->tokenResolvedContent($entity, $settings['leaflet_tooltip']['options'], $tokens, $results);
         }
       }
