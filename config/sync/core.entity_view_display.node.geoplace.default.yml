@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_media_slideshow
+    - field.field.node.geoplace.field_no_popup
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_zoom_visibility
@@ -216,6 +217,16 @@ content:
       empty_view_title: hidden
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_no_popup:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 9
     region: content
   field_project_namespace:
     type: entity_reference_label

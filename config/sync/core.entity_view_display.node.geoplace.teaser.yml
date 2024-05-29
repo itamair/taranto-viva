@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_media_slideshow
+    - field.field.node.geoplace.field_no_popup
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_zoom_visibility
@@ -51,6 +52,7 @@ hidden:
   field_geofied_view: true
   field_link: true
   field_media_slideshow: true
+  field_no_popup: true
   field_project_namespace: true
   field_related_content: true
   field_zoom_visibility: true

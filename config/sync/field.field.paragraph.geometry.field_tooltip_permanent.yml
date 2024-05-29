@@ -1,0 +1,23 @@
+uuid: 22170ccb-4a38-4bbf-98b2-455c40cac63e
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_permanent
+    - paragraphs.paragraphs_type.geometry
+id: paragraph.geometry.field_tooltip_permanent
+field_name: field_tooltip_permanent
+entity_type: paragraph
+bundle: geometry
+label: 'Tooltip Permanent'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

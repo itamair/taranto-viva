@@ -13,6 +13,8 @@ dependencies:
     - field.field.paragraph.location.field_marker_image
     - field.field.paragraph.location.field_markercluster_exclude
     - field.field.paragraph.location.field_title
+    - field.field.paragraph.location.field_tooltip_disabled
+    - field.field.paragraph.location.field_tooltip_permanent
     - field.field.paragraph.location.field_zindex
     - field.field.paragraph.location.field_zoom_visibility
     - paragraphs.paragraphs_type.location
@@ -31,6 +33,8 @@ hidden:
   field_marker_image: true
   field_markercluster_exclude: true
   field_title: true
+  field_tooltip_disabled: true
+  field_tooltip_permanent: true
   field_zindex: true
   field_zoom_visibility: true
   geofield_googlemaps_link: true

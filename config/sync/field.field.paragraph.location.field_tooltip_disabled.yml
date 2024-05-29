@@ -1,0 +1,21 @@
+uuid: a8b9667e-9de6-48a9-a450-7a7aaaaa3357
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_disabled
+    - paragraphs.paragraphs_type.location
+id: paragraph.location.field_tooltip_disabled
+field_name: field_tooltip_disabled
+entity_type: paragraph
+bundle: location
+label: 'Tooltip Disabled'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

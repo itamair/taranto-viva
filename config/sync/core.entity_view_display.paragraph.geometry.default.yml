@@ -14,6 +14,9 @@ dependencies:
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
     - field.field.paragraph.geometry.field_title
+    - field.field.paragraph.geometry.field_tooltip_disabled
+    - field.field.paragraph.geometry.field_tooltip_permanent
+    - field.field.paragraph.geometry.field_tooltip_sticky
     - field.field.paragraph.geometry.field_zindex
     - field.field.paragraph.geometry.field_zoom_visibility
     - paragraphs.paragraphs_type.geometry
@@ -33,7 +36,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 4
+    weight: 6
     region: content
   field_geofield:
     type: leaflet_formatter_default
@@ -144,7 +147,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 6
+    weight: 8
     region: content
   field_markercluster_exclude:
     type: boolean
@@ -154,7 +157,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
   field_title:
     type: string
@@ -164,13 +167,43 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_tooltip_disabled:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_tooltip_permanent:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_tooltip_sticky:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_zoom_visibility:
     type: entity_reference_label
     label: above
     settings:
       link: false
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
 hidden:
   field_arrowed: true

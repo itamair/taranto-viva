@@ -15,6 +15,9 @@ dependencies:
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
     - field.field.paragraph.geometry.field_title
+    - field.field.paragraph.geometry.field_tooltip_disabled
+    - field.field.paragraph.geometry.field_tooltip_permanent
+    - field.field.paragraph.geometry.field_tooltip_sticky
     - field.field.paragraph.geometry.field_zindex
     - field.field.paragraph.geometry.field_zoom_visibility
     - paragraphs.paragraphs_type.geometry
@@ -41,6 +44,9 @@ hidden:
   field_stroke_opacity: true
   field_stroke_weight: true
   field_title: true
+  field_tooltip_disabled: true
+  field_tooltip_permanent: true
+  field_tooltip_sticky: true
   field_zindex: true
   field_zoom_visibility: true
   geofield_googlemaps_link: true

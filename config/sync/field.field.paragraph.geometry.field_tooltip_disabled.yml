@@ -1,0 +1,21 @@
+uuid: bae8563e-86e0-46c3-a5f5-9c117145ac57
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_disabled
+    - paragraphs.paragraphs_type.geometry
+id: paragraph.geometry.field_tooltip_disabled
+field_name: field_tooltip_disabled
+entity_type: paragraph
+bundle: geometry
+label: 'Tooltip Disabled'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,23 @@
+uuid: 53eea8da-81b6-4bd5-9bf0-d7bd62fbe511
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_permanent
+    - paragraphs.paragraphs_type.location
+id: paragraph.location.field_tooltip_permanent
+field_name: field_tooltip_permanent
+entity_type: paragraph
+bundle: location
+label: 'Tooltip Permanent'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

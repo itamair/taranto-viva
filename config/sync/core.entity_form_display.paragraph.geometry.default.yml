@@ -14,6 +14,9 @@ dependencies:
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
     - field.field.paragraph.geometry.field_title
+    - field.field.paragraph.geometry.field_tooltip_disabled
+    - field.field.paragraph.geometry.field_tooltip_permanent
+    - field.field.paragraph.geometry.field_tooltip_sticky
     - field.field.paragraph.geometry.field_zindex
     - field.field.paragraph.geometry.field_zoom_visibility
     - paragraphs.paragraphs_type.geometry
@@ -33,9 +36,12 @@ third_party_settings:
         - field_fill_color
         - field_fill_opacity
         - field_zindex
-        - field_min_zoom_visibility
         - field_zoom_visibility
-        - group_settings
+        - field_tooltip_disabled
+        - field_tooltip_permanent
+        - field_tooltip_sticky
+        - field_markercluster_exclude
+        - field_exclude_from_map_bounds
       label: Attributes
       region: content
       parent_name: ''
@@ -45,21 +51,6 @@ third_party_settings:
         classes: geometry-attributes
         id: ''
         open: true
-        description: ''
-        required_fields: true
-    group_settings:
-      children:
-        - field_exclude_from_map_bounds
-        - field_markercluster_exclude
-      label: 'Map Bounds & Clustering'
-      region: content
-      parent_name: group_attributes
-      weight: 15
-      format_type: fieldset
-      format_settings:
-        classes: ''
-        show_empty_fields: false
-        id: ''
         description: ''
         required_fields: true
 id: paragraph.geometry.default
@@ -76,7 +67,7 @@ content:
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
-    weight: 7
+    weight: 18
     region: content
     settings:
       display_label: true
@@ -108,9 +99,10 @@ content:
           center:
             lat: 40.47
             lon: 17.24
+          zoomControlPosition: topleft
           zoom: 15
           minZoom: 1
-          maxZoom: 20
+          maxZoom: 21
           zoomFiner: 0
         scroll_zoom_enabled: 1
       input:
@@ -146,6 +138,9 @@ content:
       geocoder:
         control: true
         settings:
+          autocomplete:
+            placeholder: 'Search Address'
+            title: 'Search an Address on the Map'
           position: topright
           input_size: 25
           providers:
@@ -153,9 +148,12 @@ content:
               weight: 0
               checked: true
             googlemaps:
-              weight: 1
+              weight: 2
               checked: true
             file:
+              weight: 0
+              checked: false
+            photon:
               weight: 0
               checked: false
           min_terms: 4
@@ -177,7 +175,7 @@ content:
     third_party_settings: {  }
   field_markercluster_exclude:
     type: boolean_checkbox
-    weight: 8
+    weight: 17
     region: content
     settings:
       display_label: true
@@ -210,6 +208,27 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_tooltip_disabled:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_tooltip_permanent:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_tooltip_sticky:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_zindex:
     type: number
     weight: 12
@@ -219,7 +238,7 @@ content:
     third_party_settings: {  }
   field_zoom_visibility:
     type: options_select
-    weight: 14
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -1,0 +1,21 @@
+uuid: 0d2ac4d4-870d-4e1e-947c-4c7d2ca33441
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_sticky
+    - paragraphs.paragraphs_type.geometry
+id: paragraph.geometry.field_tooltip_sticky
+field_name: field_tooltip_sticky
+entity_type: paragraph
+bundle: geometry
+label: 'Tooltip Sticky'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
