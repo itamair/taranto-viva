@@ -27,7 +27,7 @@ Drupal.Leaflet.prototype.extend_map_bounds = function(lFeature, feature) {
 };
 
 /**
- * Add Leaflet Tooltip to the Leaflet Feature.
+ * Add Leaflet Tooltip to the Leaflet Feature (override).
  *
  * Set the Leaflet Tooltip, with its options,
  * but omit in case of geoimage content type.
@@ -36,15 +36,37 @@ Drupal.Leaflet.prototype.extend_map_bounds = function(lFeature, feature) {
  *   The Leaflet Feature
  * @param feature
  *   The Feature coming from Drupal settings.
+ *   The Feature coming from Drupal settings.
  */
 Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
   const feature_properties = feature.hasOwnProperty('properties') ? JSON.parse(feature['properties']) : {};
-  if (feature_properties['content_type'] !== "geoimage" && feature.tooltip && feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
-    const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
+  if (feature_properties['content_type'] !== "geoimage" && !parseInt(feature_properties['tooltip_disabled']) && feature.tooltip && feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
+    let tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
+    // Need to more correctly set the tooltip_options.permanent option.
+    tooltip_options.permanent = tooltip_options.permanent === "true";
+
+    // Need to more correctly set the tooltip_options.sticky option.
+    tooltip_options.sticky = tooltip_options.sticky === "true";
     lFeature.bindTooltip(feature.tooltip.value, tooltip_options).openTooltip()
   }
 };
 
+/**
+ * Add Leaflet Popup to the Leaflet Feature (override).
+ *
+ * @param lFeature
+ * @param lFeature
+ *   The Leaflet Feature
+ * @param feature
+ *   The Feature coming from Drupal settings.
+ */
+Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
+  const feature_properties = feature.hasOwnProperty('properties') ? JSON.parse(feature['properties']) : {};
+  if (!parseInt(feature_properties['no_popup']) && feature.popup) {
+    const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
+    lFeature.bindPopup(feature.popup.value, popup_options);
+  }
+};
 
 (function($, Drupal) {
 
