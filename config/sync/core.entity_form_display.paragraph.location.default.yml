@@ -12,6 +12,7 @@ dependencies:
     - field.field.paragraph.location.field_marker_image
     - field.field.paragraph.location.field_markercluster_exclude
     - field.field.paragraph.location.field_title
+    - field.field.paragraph.location.field_tooltip_class
     - field.field.paragraph.location.field_tooltip_disabled
     - field.field.paragraph.location.field_tooltip_permanent
     - field.field.paragraph.location.field_zindex
@@ -30,6 +31,7 @@ third_party_settings:
         - field_zoom_visibility
         - field_tooltip_permanent
         - field_tooltip_disabled
+        - field_tooltip_class
         - field_markercluster_exclude
         - field_exclude_from_map_bounds
       label: Attributes
@@ -69,7 +71,7 @@ content:
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
-    weight: 11
+    weight: 12
     region: content
     settings:
       display_label: true
@@ -156,7 +158,7 @@ content:
     third_party_settings: {  }
   field_markercluster_exclude:
     type: boolean_checkbox
-    weight: 10
+    weight: 11
     region: content
     settings:
       display_label: true
@@ -168,6 +170,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_tooltip_class:
+    type: options_select
+    weight: 10
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_tooltip_disabled:
     type: boolean_checkbox

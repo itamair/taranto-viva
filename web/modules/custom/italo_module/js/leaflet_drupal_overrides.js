@@ -62,7 +62,7 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
  */
 Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
   const feature_properties = feature.hasOwnProperty('properties') ? JSON.parse(feature['properties']) : {};
-  if (!parseInt(feature_properties['no_popup']) && feature.popup) {
+  if (!parseInt(feature_properties['popup_disabled']) && feature.popup) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
     lFeature.bindPopup(feature.popup.value, popup_options);
   }

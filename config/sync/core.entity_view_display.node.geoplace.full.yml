@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_link
+    - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_no_popup
     - field.field.node.geoplace.field_project_namespace
@@ -60,6 +61,7 @@ hidden:
   field_components: true
   field_exclude_from_markercluster: true
   field_link: true
+  field_map_popup_disabled: true
   field_media_slideshow: true
   field_no_popup: true
   field_project_namespace: true

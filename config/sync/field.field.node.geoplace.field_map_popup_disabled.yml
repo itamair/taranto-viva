@@ -1,0 +1,21 @@
+uuid: 6f0bbfef-8ce9-47ae-a4b1-2352118b9881
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_popup_disabled
+    - node.type.geoplace
+id: node.geoplace.field_map_popup_disabled
+field_name: field_map_popup_disabled
+entity_type: node
+bundle: geoplace
+label: 'Map Popup disabled'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

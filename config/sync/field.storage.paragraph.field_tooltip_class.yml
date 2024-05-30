@@ -1,0 +1,24 @@
+uuid: f327f423-8b7c-4e8c-bde7-3875a94ec86d
+langcode: it
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - paragraphs
+    - taxonomy
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: paragraph.field_tooltip_class
+field_name: field_tooltip_class
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

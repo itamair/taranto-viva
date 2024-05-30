@@ -14,6 +14,7 @@ dependencies:
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
     - field.field.paragraph.geometry.field_title
+    - field.field.paragraph.geometry.field_tooltip_class
     - field.field.paragraph.geometry.field_tooltip_disabled
     - field.field.paragraph.geometry.field_tooltip_permanent
     - field.field.paragraph.geometry.field_tooltip_sticky
@@ -40,6 +41,7 @@ third_party_settings:
         - field_tooltip_disabled
         - field_tooltip_permanent
         - field_tooltip_sticky
+        - field_tooltip_class
         - field_markercluster_exclude
         - field_exclude_from_map_bounds
       label: Attributes
@@ -67,7 +69,7 @@ content:
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
-    weight: 18
+    weight: 19
     region: content
     settings:
       display_label: true
@@ -132,7 +134,7 @@ content:
         options: '{"position":"topleft","pseudoFullscreen":false}'
       path: '{"color":"[paragraph:field_stroke_color]","opacity":"[paragraph:field_stroke_opacity]","stroke":true,"weight":3,"fill":"depends","fillColor":"[paragraph:field_fill_color]","fillOpacity":"[paragraph:field_fill_opacity]","radius":"6"}'
       locate:
-        control: true
+        control: false
         options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
         automatic: false
       geocoder:
@@ -175,7 +177,7 @@ content:
     third_party_settings: {  }
   field_markercluster_exclude:
     type: boolean_checkbox
-    weight: 17
+    weight: 18
     region: content
     settings:
       display_label: true
@@ -207,6 +209,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_tooltip_class:
+    type: options_select
+    weight: 17
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_tooltip_disabled:
     type: boolean_checkbox

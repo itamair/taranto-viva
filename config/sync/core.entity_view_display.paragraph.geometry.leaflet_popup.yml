@@ -15,6 +15,7 @@ dependencies:
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
     - field.field.paragraph.geometry.field_title
+    - field.field.paragraph.geometry.field_tooltip_class
     - field.field.paragraph.geometry.field_tooltip_disabled
     - field.field.paragraph.geometry.field_tooltip_permanent
     - field.field.paragraph.geometry.field_tooltip_sticky
@@ -44,6 +45,7 @@ hidden:
   field_stroke_opacity: true
   field_stroke_weight: true
   field_title: true
+  field_tooltip_class: true
   field_tooltip_disabled: true
   field_tooltip_permanent: true
   field_tooltip_sticky: true

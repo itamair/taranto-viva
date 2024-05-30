@@ -1,0 +1,33 @@
+uuid: 70f4d88b-713a-4815-83e3-e7a08c7bbbba
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_class
+    - paragraphs.paragraphs_type.location
+    - taxonomy.vocabulary.tooltip_class
+  content:
+    - 'taxonomy_term:tooltip_class:26e980c5-aab1-4152-9706-e08c60f6ce0c'
+id: paragraph.location.field_tooltip_class
+field_name: field_tooltip_class
+entity_type: paragraph
+bundle: location
+label: 'Tooltip Class'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 26e980c5-aab1-4152-9706-e08c60f6ce0c
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tooltip_class: tooltip_class
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

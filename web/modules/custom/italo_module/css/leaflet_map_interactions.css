@@ -361,3 +361,25 @@
 .leaflet-marker-icon.marker-cluster.marker-cluster-large div span {
   line-height: 40px;
 }
+
+/* line 335, ../sass/leaflet_map_interactions.scss */
+.leaflet-tooltip.big-and-bold {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* line 340, ../sass/leaflet_map_interactions.scss */
+.leaflet-tooltip.big {
+  font-size: 1.1rem;
+}
+
+/* line 344, ../sass/leaflet_map_interactions.scss */
+.leaflet-tooltip.bold {
+  font-weight: bold;
+}
+
+/* line 348, ../sass/leaflet_map_interactions.scss */
+.leaflet-tooltip.small {
+  font-size: 0.7rem;
+  padding: 3pxx;
+}

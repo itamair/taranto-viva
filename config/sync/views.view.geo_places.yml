@@ -11,7 +11,7 @@ dependencies:
     - field.storage.node.field_category_type
     - field.storage.node.field_classname
     - field.storage.node.field_exclude_from_markercluster
-    - field.storage.node.field_no_popup
+    - field.storage.node.field_map_popup_disabled
     - field.storage.paragraph.field_arrowed
     - field.storage.paragraph.field_classname
     - field.storage.paragraph.field_exclude_from_map_bounds
@@ -23,6 +23,7 @@ dependencies:
     - field.storage.paragraph.field_stroke_opacity
     - field.storage.paragraph.field_stroke_weight
     - field.storage.paragraph.field_title
+    - field.storage.paragraph.field_tooltip_class
     - field.storage.paragraph.field_tooltip_disabled
     - field.storage.paragraph.field_tooltip_permanent
     - field.storage.paragraph.field_tooltip_sticky
@@ -5392,10 +5393,73 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_no_popup:
-          id: field_no_popup
-          table: node__field_no_popup
-          field: field_no_popup
+        field_tooltip_class:
+          id: field_tooltip_class
+          table: paragraph__field_tooltip_class
+          field: field_tooltip_class
+          relationship: field_components
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_map_popup_disabled:
+          id: field_map_popup_disabled
+          table: node__field_map_popup_disabled
+          field: field_map_popup_disabled
           relationship: none
           group_type: group
           admin_label: ''
@@ -6176,7 +6240,7 @@ display:
                 title: 'Search an Address on the Map'
           leaflet_tooltip:
             value: title
-            options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"top","sticky":"{{ field_tooltip_sticky }}"}'
+            options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"top","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           leaflet_popup:
             value: leaflet_popup_rendered_entity
             view_mode: leaflet_popup
@@ -6189,7 +6253,7 @@ display:
             control: 1
             options: '{"position":"topleft","pseudoFullscreen":false}'
           feature_properties:
-            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","no_popup":"{{ field_no_popup }}","tooltip_disabled":"{{ field_tooltip_disabled }}"}'
+            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}"}'
           locate:
             control: 1
             options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"},"cacheLocation":false,"tap":false}'
@@ -6340,7 +6404,7 @@ display:
         - 'config:field.storage.node.field_category_type'
         - 'config:field.storage.node.field_classname'
         - 'config:field.storage.node.field_exclude_from_markercluster'
-        - 'config:field.storage.node.field_no_popup'
+        - 'config:field.storage.node.field_map_popup_disabled'
         - 'config:field.storage.paragraph.field_arrowed'
         - 'config:field.storage.paragraph.field_classname'
         - 'config:field.storage.paragraph.field_exclude_from_map_bounds'
@@ -6352,6 +6416,7 @@ display:
         - 'config:field.storage.paragraph.field_stroke_opacity'
         - 'config:field.storage.paragraph.field_stroke_weight'
         - 'config:field.storage.paragraph.field_title'
+        - 'config:field.storage.paragraph.field_tooltip_class'
         - 'config:field.storage.paragraph.field_tooltip_disabled'
         - 'config:field.storage.paragraph.field_tooltip_permanent'
         - 'config:field.storage.paragraph.field_tooltip_sticky'

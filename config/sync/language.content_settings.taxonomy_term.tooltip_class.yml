@@ -1,0 +1,11 @@
+uuid: 7c67ff34-3c82-4882-bacb-6b080b3e1d43
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tooltip_class
+id: taxonomy_term.tooltip_class
+target_entity_type_id: taxonomy_term
+target_bundle: tooltip_class
+default_langcode: site_default
+language_alterable: false

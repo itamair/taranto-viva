@@ -1,0 +1,33 @@
+uuid: 76778068-bae2-438d-91cc-b242e977e82e
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_class
+    - paragraphs.paragraphs_type.geometry
+    - taxonomy.vocabulary.tooltip_class
+  content:
+    - 'taxonomy_term:tooltip_class:26e980c5-aab1-4152-9706-e08c60f6ce0c'
+id: paragraph.geometry.field_tooltip_class
+field_name: field_tooltip_class
+entity_type: paragraph
+bundle: geometry
+label: 'Tooltip Class'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 26e980c5-aab1-4152-9706-e08c60f6ce0c
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tooltip_class: tooltip_class
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

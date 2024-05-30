@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_link
+    - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_no_popup
     - field.field.node.geoplace.field_project_namespace
@@ -217,6 +218,16 @@ content:
       empty_view_title: hidden
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_map_popup_disabled:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 10
     region: content
   field_no_popup:
     type: boolean

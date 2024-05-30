@@ -1,0 +1,8 @@
+uuid: eead14ba-f554-44f9-9f73-0836018ae6c1
+langcode: it
+status: true
+dependencies: {  }
+name: 'Tooltip class'
+vid: tooltip_class
+description: ''
+weight: 0

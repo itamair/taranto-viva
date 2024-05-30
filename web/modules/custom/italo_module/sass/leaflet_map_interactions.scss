@@ -329,3 +329,23 @@
     }
   }
 }
+
+// Tooltips Classes
+
+.leaflet-tooltip.big-and-bold {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.leaflet-tooltip.big {
+  font-size: 1.1rem;
+}
+
+.leaflet-tooltip.bold {
+  font-weight: bold;
+}
+
+.leaflet-tooltip.small {
+  font-size: 0.7rem;
+  padding: 3pxx
+}
