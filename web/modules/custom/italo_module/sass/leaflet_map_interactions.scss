@@ -5,10 +5,14 @@
   }
 }
 
+// Dynamically extend the Popup Content width according to its image width content.
+.leaflet-popup-width-auto-image .leaflet-popup-content {
+  width: auto !important;
+}
+
 .leaflet-popup-content-wrapper {
   border-radius: 1px;
   .leaflet-popup-content {
-    width: auto !important;
     position: relative;
     margin: 4px;
     .field--name-geoimage-caption {
