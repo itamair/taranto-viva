@@ -45,3 +45,6 @@ phpunit.xml
 
 # Ignore .htaccess
 .htaccess
+
+# Ignore photo_albums folder alias
+photo_albums

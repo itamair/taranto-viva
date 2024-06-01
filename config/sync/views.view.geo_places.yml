@@ -567,7 +567,7 @@ display:
           admin_label: 'field_image: Media'
           plugin_id: standard
           required: false
-      css_class: leaflet-map-page
+      css_class: leaflet-popup-width-auto-image
       use_ajax: true
       group_by: false
       header: {  }
@@ -6244,7 +6244,7 @@ display:
           leaflet_popup:
             value: leaflet_popup_rendered_entity
             view_mode: leaflet_popup
-            options: '{"autoPan":true}'
+            options: '{"autoPan":true,"maxWidth":400}'
           fitbounds_options: '{"padding":[0,0]}'
           map_scale:
             control: 1
@@ -6387,6 +6387,8 @@ display:
         - 'config:core.entity_view_display.node.geoimage.leaflet_popup'
         - 'config:core.entity_view_display.node.geoimage.leaflet_popup_2'
         - 'config:core.entity_view_display.node.geoimage.teaser'
+        - 'config:core.entity_view_display.node.geojson_places.default'
+        - 'config:core.entity_view_display.node.geojson_places.teaser'
         - 'config:core.entity_view_display.node.geoplace.default'
         - 'config:core.entity_view_display.node.geoplace.full'
         - 'config:core.entity_view_display.node.geoplace.geoplace_tile'
@@ -8155,7 +8157,7 @@ display:
           leaflet_markercluster:
             control: true
             options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":60,"disableClusteringAtZoom":17}'
-            excluded: field_markercluster_exclude
+            excluded: '0'
             include_path: 0
           path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"1.0","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
           geocoder:
@@ -8165,7 +8167,7 @@ display:
               input_size: 16
               providers:
                 googlemaps:
-                  weight: '0'
+                  weight: '2'
                   checked: 1
                 arcgisonline:
                   weight: '0'
@@ -8184,11 +8186,6 @@ display:
               autocomplete:
                 placeholder: 'Search Address'
                 title: 'Search an Address on the Map'
-          geojson_app_limit:
-            bounds_zoom_flag: false
-            bounds_zoom_correction: '0'
-            bounds_limit_flag: true
-            max_zoom_out: '0'
           leaflet_tooltip:
             value: title
             options: '{"permanent":false,"direction":"top","sticky":true}'
