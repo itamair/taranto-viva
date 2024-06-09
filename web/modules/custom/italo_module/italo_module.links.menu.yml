@@ -1,5 +1,0 @@
-geocms.settings:
-  route_name: geocms.settings
-  title: 'GeoCMS Settings'
-  parent: system.admin_config_system
-  description: 'Configure GeoCMS Settings'
