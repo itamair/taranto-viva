@@ -4,8 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_image
+    - image.style.map_scaled_cropped_image_800_500
     - node.type.page
   module:
+    - svg_image
     - text
     - user
 _core:
@@ -22,7 +25,24 @@ content:
     third_party_settings: {  }
     weight: 100
     region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: map_scaled_cropped_image_800_500
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: -1
+    region: content
   links:
+    settings: {  }
+    third_party_settings: {  }
     weight: 101
     region: content
 hidden:

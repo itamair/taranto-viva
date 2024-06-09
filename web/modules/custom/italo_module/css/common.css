@@ -169,58 +169,45 @@ a, a.link {
   font-size: 0.8rem;
 }
 
-/* line 166, ../sass/common.scss */
-#popup-message-window {
-  width: 40% !important;
-  height: 80% !important;
-}
-
-@media only screen and (max-width: 1000px) {
-  /* line 172, ../sass/common.scss */
-  #popup-message-window {
-    width: 80% !important;
-    height: 80% !important;
-  }
-}
-/* line 180, ../sass/common.scss */
+/* line 167, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map.form--inline > *,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list.form--inline > * {
   vertical-align: unset;
   margin-block: 0;
 }
-/* line 184, ../sass/common.scss */
+/* line 171, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset {
   border: none;
 }
-/* line 186, ../sass/common.scss */
+/* line 173, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__legend,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__legend {
   display: none;
 }
-/* line 190, ../sass/common.scss */
+/* line 177, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper {
   padding: 0;
 }
-/* line 193, ../sass/common.scss */
+/* line 180, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper .form-item,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper .form-item {
   margin: 0;
   border: none;
 }
-/* line 196, ../sass/common.scss */
+/* line 183, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper .form-item input,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper .form-item input {
   padding: 10px;
 }
 
-/* line 209, ../sass/common.scss */
+/* line 196, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates h2,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates h2 {
   font-size: 1.5rem;
 }
-/* line 212, ../sass/common.scss */
+/* line 199, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content {
   max-height: 300px;
@@ -228,33 +215,81 @@ a, a.link {
   border: 1px solid lightgrey;
   padding: 10px;
 }
-/* line 217, ../sass/common.scss */
+/* line 204, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content > h3,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content > h3 {
   margin-block: 4px;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 222, ../sass/common.scss */
+/* line 209, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content > div,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content > div {
   display: none;
 }
 
-/* line 229, ../sass/common.scss */
+/* line 216, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content {
   max-height: 100px;
   overflow-y: scroll;
   border: 1px solid lightgrey;
   padding: 10px;
 }
-/* line 234, ../sass/common.scss */
+/* line 221, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content > h3 {
   margin-block: 4px;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 239, ../sass/common.scss */
+/* line 226, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content > div {
   display: none;
+}
+
+/* line 233, ../sass/common.scss */
+#popup-message-window {
+  width: 40% !important;
+  height: 80% !important;
+}
+
+@media only screen and (max-width: 640px) {
+  /* line 239, ../sass/common.scss */
+  #popup-message-window {
+    width: 90% !important;
+    padding: 0 8px 10px !important;
+  }
+}
+/* line 246, ../sass/common.scss */
+#popup-message-content {
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+/* line 249, ../sass/common.scss */
+#popup-message-content .text-content {
+  font-family: inherit;
+  font-size: inherit;
+}
+/* line 253, ../sass/common.scss */
+#popup-message-content .field--name-field-image {
+  padding-top: 10px;
+  padding-bottom: var(--sp2);
+}
+/* line 258, ../sass/common.scss */
+#popup-message-content .node__content {
+  padding-block-end: var(--sp0-75);
+}
+
+@media (min-width: 43.75rem) {
+  /* line 265, ../sass/common.scss */
+  #popup-message-content .text-content {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: var(--line-height-base) !important;
+  }
+}
+@media (min-width: 62.5rem) {
+  /* line 274, ../sass/common.scss */
+  #popup-message-content .node__content {
+    padding-block-end: var(--sp0-75);
+  }
 }

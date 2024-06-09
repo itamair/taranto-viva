@@ -36,7 +36,7 @@ content:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
-    weight: 110
+    weight: 4
     region: content
   field_image:
     type: image
@@ -46,8 +46,12 @@ content:
       image_style: large
       image_loading:
         attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
     third_party_settings: {  }
-    weight: -1
+    weight: 1
     region: content
   field_tags:
     type: entity_reference_label
@@ -55,12 +59,12 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 10
+    weight: 2
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 3
     region: content
 hidden:
   langcode: true

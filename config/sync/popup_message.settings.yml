@@ -11,5 +11,5 @@ expire: '0'
 delay: '0'
 close_delay: '0'
 cover_opacity: '70'
-style: black/popup.css
+style: light/popup.css
 visibility: '0'

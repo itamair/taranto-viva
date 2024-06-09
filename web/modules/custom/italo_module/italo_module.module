@@ -10,11 +10,11 @@ use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Field\FieldItemList;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
@@ -571,3 +571,27 @@ function italo_module_config_form_builder($entity_type_id, FieldConfigInterface 
   }
 }
 
+/**
+ * Implements hook_popup_message_parameters_alter().
+ */
+function italo_module_popup_message_parameters_alter(&$popup_message_parameters) {
+  $config = Drupal::config('geocms.settings');
+  $geocms_info_popup_contents = [];
+  if (!empty($config->get('geocms_info_popup_settings.contents'))) {
+    foreach ($config->get('geocms_info_popup_settings.contents') as $id) {
+      $geocms_info_popup_contents[] = Node::load($id['target_id']);
+    }
+  }
+
+  if (!empty($geocms_info_popup_contents)) {
+    $view_mode = 'popup';
+    foreach ($geocms_info_popup_contents as $popup_content) {
+      if ($popup_content instanceof Node) {
+        $build = \Drupal::entityTypeManager()->getViewBuilder('node')->view($popup_content, $view_mode);
+        $output = \Drupal::service('renderer')->renderPlain($build);
+        $popup_message_parameters["body"] = $popup_message_parameters["body"] . $output;
+      }
+
+    }
+  }
+}

@@ -1,38 +1,42 @@
-uuid: c2383b73-4482-4813-8c35-0d48f156916b
+uuid: cd37fcb3-99ef-4e84-b528-860fa87d596f
 langcode: it
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.popup
     - field.field.node.page.body
     - field.field.node.page.field_image
-    - image.style.medium
+    - image.style.map_scaled_cropped_image_800_500
     - node.type.page
   module:
+    - layout_builder
     - svg_image
     - text
     - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
 _core:
-  default_config_hash: cSv5lDnbIgDug475Hdz3woED2XMqYv3awI-J9u1JLbY
-id: node.page.teaser
+  default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
+id: node.page.popup
 targetEntityType: node
 bundle: page
-mode: teaser
+mode: popup
 content:
   body:
-    type: text_summary_or_trimmed
+    type: text_default
     label: hidden
-    settings:
-      trim_length: 600
+    settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 1
     region: content
   field_image:
     type: image
     label: hidden
     settings:
-      image_link: content
-      image_style: medium
+      image_link: ''
+      image_style: map_scaled_cropped_image_800_500
       image_loading:
         attribute: lazy
       svg_attributes:
@@ -40,11 +44,9 @@ content:
         height: null
       svg_render_as_image: true
     third_party_settings: {  }
-    weight: -1
-    region: content
-  links:
-    weight: 101
+    weight: 0
     region: content
 hidden:
   langcode: true
+  links: true
   uuid: true

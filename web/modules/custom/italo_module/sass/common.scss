@@ -162,19 +162,6 @@ a, a.link {
   font-size: 0.8rem;
 }
 
-// Popup Message
-#popup-message-window {
-  width: 40% !important;
-  height: 80% !important;
-}
-
-@media only screen and (max-width: 1000px) {
-  #popup-message-window {
-    width: 80% !important;
-    height: 80% !important;
-  }
-}
-
 #views-exposed-form-geo-places-page-vaganti-map,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list{
   &.form--inline > * {
@@ -242,4 +229,51 @@ a, a.link {
   }
 }
 
+// Popup Message
+#popup-message-window {
+  width: 40% !important;
+  height: 80% !important;
+}
+
+@media only screen and (max-width: 640px) {
+  #popup-message-window {
+    width: 90% !important;
+    padding: 0 8px 10px !important;
+  }
+}
+
+// popup-message-
+#popup-message-content {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  .text-content {
+    font-family:  inherit;
+    font-size: inherit;
+  }
+  .field--name-field-image {
+    padding-top: 10px;
+    padding-bottom: var(--sp2);
+  }
+
+  .node__content {
+    padding-block-end: var(--sp0-75);
+  }
+
+}
+
+@media (min-width: 43.75rem) {
+  #popup-message-content .text-content {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: var(--line-height-base) !important;
+  }
+}
+
+@media (min-width: 62.5rem) {
+  #popup-message-content {
+    .node__content {
+      padding-block-end: var(--sp0-75);
+    }
+  }
+}
 
