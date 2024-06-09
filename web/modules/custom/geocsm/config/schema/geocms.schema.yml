@@ -1,0 +1,13 @@
+geocms.settings:
+  type: config_object
+  label: 'GeoCMS Settings'
+  mapping:
+    contents:
+      type: mapping
+      label: 'GeoCMS Info Popup Settings'
+      mapping:
+        type: sequence
+        label: 'Contents'
+        sequence:
+          type: integer
+          label: 'Content'

@@ -1,0 +1,7 @@
+geocms.settings:
+  path: '/admin/config/system/geocms_settings'
+  defaults:
+    _form:  '\Drupal\geocms\Form\GeoCmsSettingsForm'
+    _title: 'GeoCMS settings'
+  requirements:
+    _permission: 'configure geocms'
