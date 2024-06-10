@@ -1,0 +1,11 @@
+uuid: 0db0af6d-a30e-46e1-96e5-d9b4abd2b2d5
+langcode: it
+status: true
+dependencies:
+  module:
+    - media
+id: media.popup
+label: Popup
+description: ''
+targetEntityType: media
+cache: true

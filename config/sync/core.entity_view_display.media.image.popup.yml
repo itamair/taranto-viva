@@ -1,19 +1,25 @@
-uuid: 527e08d7-12c5-4c1c-af5f-bd580e45b8c9
+uuid: b08ee39c-0a64-4eba-85ac-a3b31b5cf307
 langcode: it
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.popup
     - field.field.media.image.field_image_caption
     - field.field.media.image.field_media_image
     - media.type.image
   module:
+    - layout_builder
     - svg_image
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
 _core:
   default_config_hash: B1a2aBHmUulUZN6HrxITEH1tSResuVjXMBEv1lUBtOo
-id: media.image.default
+id: media.image.popup
 targetEntityType: media
 bundle: image
-mode: default
+mode: popup
 content:
   field_media_image:
     type: image

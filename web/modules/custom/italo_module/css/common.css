@@ -270,9 +270,9 @@ a, a.link {
   font-size: inherit;
 }
 /* line 253, ../sass/common.scss */
-#popup-message-content .field--name-field-image {
+#popup-message-content .field--name-field-image, #popup-message-content .field--name-field-media-image {
   padding-top: 10px;
-  padding-bottom: var(--sp2);
+  padding-bottom: var(--sp1);
 }
 /* line 258, ../sass/common.scss */
 #popup-message-content .node__content {

@@ -5,12 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.popup
     - field.field.node.page.body
-    - field.field.node.page.field_image
-    - image.style.map_scaled_cropped_image_800_500
+    - field.field.node.page.field_media_image
     - node.type.page
   module:
     - layout_builder
-    - svg_image
     - text
     - user
 third_party_settings:
@@ -31,18 +29,12 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_image:
-    type: image
+  field_media_image:
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: map_scaled_cropped_image_800_500
-      image_loading:
-        attribute: lazy
-      svg_attributes:
-        width: null
-        height: null
-      svg_render_as_image: true
+      view_mode: default
+      link: true
     third_party_settings: {  }
     weight: 0
     region: content

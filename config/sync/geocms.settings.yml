@@ -2,4 +2,6 @@ _core:
   default_config_hash: A6B2i2BwyIu6LkH6Mw1_XVVWMK2fldHDlP43LZhFiu4
 langcode: it
 geocms_info_popup_settings:
-  contents: null
+  contents:
+    -
+      target_id: '6846'

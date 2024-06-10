@@ -250,9 +250,9 @@ a, a.link {
     font-family:  inherit;
     font-size: inherit;
   }
-  .field--name-field-image {
+  .field--name-field-image, .field--name-field-media-image {
     padding-top: 10px;
-    padding-bottom: var(--sp2);
+    padding-bottom: var(--sp1);
   }
 
   .node__content {
