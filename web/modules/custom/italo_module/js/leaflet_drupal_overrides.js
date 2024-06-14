@@ -39,15 +39,21 @@ Drupal.Leaflet.prototype.extend_map_bounds = function(lFeature, feature) {
  *   The Feature coming from Drupal settings.
  */
 Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
+  if (!this.permanent_tooltip_features) {
+    this.permanent_tooltip_features = [];
+  }
   const feature_properties = feature.hasOwnProperty('properties') ? JSON.parse(feature['properties']) : {};
   if (feature_properties['content_type'] !== "geoimage" && !parseInt(feature_properties['tooltip_disabled']) && feature.tooltip && feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
     let tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
     // Need to more correctly set the tooltip_options.permanent option.
     tooltip_options.permanent = tooltip_options.permanent === "true";
+    if (tooltip_options.permanent) {
+      this.permanent_tooltip_features.push(lFeature);
+    }
 
     // Need to more correctly set the tooltip_options.sticky option.
     tooltip_options.sticky = tooltip_options.sticky === "true";
-    lFeature.bindTooltip(feature.tooltip.value, tooltip_options).openTooltip()
+    lFeature.bindTooltip(feature.tooltip.value, tooltip_options)
   }
 };
 

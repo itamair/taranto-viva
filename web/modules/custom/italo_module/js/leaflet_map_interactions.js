@@ -3,6 +3,8 @@
   'use strict';
 
   Drupal.behaviors.leafletInteractions = {
+    zoomDefaultIconSize: 18,
+    hidden_markers: [],
     attach: function(context) {
       const self = this;
       // Define a boolean leafletMapInit in the context, so not to perform same
@@ -23,10 +25,18 @@
           // Trigger/Process Initial Actions
           self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
 
+          // Set Overlays Visibility, depending on Map Zoom;
+          self.setOverlaysVisibility(mapid, map);
+
           // Set Actions on every Zoom End
           map.on('zoomend', function () {
             // Markers resize on Zoomend.
             self.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
+
+            // Set Overlays Visibility, depending on Map Zoom;
+            self.setOverlaysVisibility(mapid, map);
+
+            self.setPermanentTooltipVisibility(mapid, map);
           });
 
           // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
@@ -39,7 +49,6 @@
               $("header.site-header").css('z-index', 101);
             }
           });
-
         }
       });
 
@@ -90,8 +99,6 @@
                 });*/
       });
     },
-    zoomDefaultIconSize: 18,
-    hidden_markers: [],
 
     /**
      * Process all Initial Action.
@@ -247,6 +254,45 @@
               }
             }
           }
+        }
+      }
+    },
+
+    /**
+     * Set Overlays Visibility, depending on Map Zoom;
+     *
+     * @param mapid
+     * @param map
+     */
+    setOverlaysVisibility: function(mapid, map) {
+      // Specific Map Overlays visibility on Zoom end.
+      const zoomLevel = map.getZoom();
+      if (zoomLevel > 13) {
+        Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].remove();
+      }
+      else {
+        Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].addTo(map);
+      }
+    },
+
+    /**
+     * Set Overlays Visibility, depending on Map Zoom;
+     *
+     * @param mapid
+     * @param map
+     */
+    setPermanentTooltipVisibility: function(mapid, map) {
+      // Specific Permanent Tooltip visibility on Zoom end.
+      const zoomLevel = map.getZoom();
+      const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features ?? [];
+      if (zoomLevel > 15) {
+        for (const permanent_tooltip_feature of permanent_tooltip_features) {
+          permanent_tooltip_feature.closeTooltip();
+        }
+      }
+      else {
+        for (const permanent_tooltip_feature of permanent_tooltip_features) {
+          permanent_tooltip_feature.openTooltip();
         }
       }
     }
