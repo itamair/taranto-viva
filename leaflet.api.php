@@ -144,7 +144,11 @@ function hook_leaflet_map_info() {
           'type' => 'vector',
           'urlTemplate' => '//tiles.stadiamaps.com/styles/alidade_smooth_dark.json',
           'options' => [
-            'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+            'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+            // Supports Pitch in degrees (optional).
+            'pitch' => '0',
+            // Supports Bearing in degrees (optional).
+            'bearing' => '0',
           ],
         ],
         // An example Overlay definition, in addition to previous Base Layers.

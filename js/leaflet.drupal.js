@@ -609,7 +609,9 @@
       case 'vector':
         map_layer = new L.maplibreGL({
           'style': urlTemplate,
-          'attribution': layer_options.attribution ?? ''
+          'attribution': layer_options.attribution ?? '',
+          'pitch': layer_options.pitch ?? '',
+          'bearing': layer_options.bearing ?? ''
         });
         break;
 
