@@ -1,0 +1,22 @@
+uuid: 7f87a4f7-5153-4b19-aaa8-b01502271777
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.territorial_report
+id: node.territorial_report.status
+field_name: status
+entity_type: node
+bundle: territorial_report
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

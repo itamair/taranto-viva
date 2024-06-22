@@ -73,6 +73,8 @@
         "drupal/single_image_formatter": "^1.6",
         "drupal/slick": "^2.7",
         "drupal/svg_image": "^3.0",
+        "drupal/tmgmt": "^1.15",
+        "drupal/tmgmt_openai": "^1.0@RC",
         "drupal/token": "^1.11",
         "drupal/upgrade_status": "^4.0",
         "drupal/uuid_extra": "^2.0",

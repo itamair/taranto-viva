@@ -1,0 +1,18 @@
+uuid: d859b3bd-e8db-4aae-a311-5b4aa8aa24c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zoom_visibility_levels
+id: taxonomy_term.zoom_visibility_levels.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: zoom_visibility_levels
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

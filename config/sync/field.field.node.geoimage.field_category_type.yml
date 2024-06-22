@@ -15,7 +15,7 @@ bundle: geoimage
 label: 'Category Type'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     target_uuid: c8995fb7-5496-46f9-a00b-a44f2155ef26

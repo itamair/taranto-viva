@@ -1211,7 +1211,7 @@ display:
           table: views
           field: display_link
           plugin_id: display_link
-          label: Table
+          label: Tabella
           empty: true
           display_id: widget_table
       rendering_language: '***LANGUAGE_language_interface***'
@@ -1572,7 +1572,7 @@ display:
           table: views
           field: display_link
           plugin_id: display_link
-          label: Table
+          label: Tabella
           empty: true
           display_id: widget_table
       rendering_language: '***LANGUAGE_language_interface***'

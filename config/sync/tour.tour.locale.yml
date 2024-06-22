@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: Kcx1PIw-KgGbTo5_tOkbI6TWJiP_0Sr7t5T9SuMV2hA
 id: locale
-label: Translation
+label: Traduzione
 module: locale
 routes:
   -
@@ -29,7 +29,7 @@ tips:
   locale-search:
     id: locale-search
     plugin: text
-    label: Search
+    label: Cerca
     weight: 3
     selector: '#edit-string'
     body: 'Enter the specific word or sentence you want to translate, you can also write just a part of a word.'

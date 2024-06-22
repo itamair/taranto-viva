@@ -1,0 +1,30 @@
+uuid: d51b6792-b00a-453c-8957-1292159cbfdb
+langcode: it
+status: true
+dependencies:
+  module:
+    - tmgmt_openai
+name: openai
+label: OpenAI
+description: 'OpenAI Translator service.'
+auto_accept: false
+weight: null
+plugin: openai
+settings:
+  openai_api_service: openai
+  openai_api_key: sk-proj-scZ1m9WTaGWjB7mHqLkDT3BlbkFJQJmKFOn4eVTopkOATE3t
+  openai_api_org: ''
+  openai_api_base_url: ''
+  openai_api_version: ''
+  openai:
+    prompt: 'Translate from %source% into %target% language'
+    model: gpt-4
+    temperature: 0.7
+    max_tokens: 4096
+    max_chunk_tokens: 1024
+    top_p: 1.0
+    frequency_penalty: 0.0
+    presence_penalty: 1
+remote_languages_mappings:
+  en: en
+  it: it

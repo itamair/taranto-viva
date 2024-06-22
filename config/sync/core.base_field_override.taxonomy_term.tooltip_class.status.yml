@@ -1,0 +1,22 @@
+uuid: 3264bab1-4334-4bbb-be2c-3450e6c1eebb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tooltip_class
+id: taxonomy_term.tooltip_class.status
+field_name: status
+entity_type: taxonomy_term
+bundle: tooltip_class
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,22 @@
+uuid: 27dbb811-45c0-41e8-9e9c-19999d53bc2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.territorial_report_type
+id: taxonomy_term.territorial_report_type.status
+field_name: status
+entity_type: taxonomy_term
+bundle: territorial_report_type
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

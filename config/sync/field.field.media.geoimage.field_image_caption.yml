@@ -14,11 +14,12 @@ bundle: geoimage
 label: 'Image Caption'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     value: "<p>Photo Credits: <a href=\"https://www.italomairo.com\">Italo Mairo</a></p>\r\n"
     format: basic_html
 default_value_callback: ''
-settings: {  }
+settings:
+  allowed_formats: {  }
 field_type: text_long

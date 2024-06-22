@@ -1,0 +1,18 @@
+uuid: 5e7a7205-7890-4e16-adaf-91407edf78cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zoom_visibility_levels
+id: taxonomy_term.zoom_visibility_levels.name
+field_name: name
+entity_type: taxonomy_term
+bundle: zoom_visibility_levels
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

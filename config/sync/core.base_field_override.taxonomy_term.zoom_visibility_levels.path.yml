@@ -1,0 +1,20 @@
+uuid: 3fa943eb-b85f-4fb3-bea6-de41cd937b82
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zoom_visibility_levels
+  module:
+    - path
+id: taxonomy_term.zoom_visibility_levels.path
+field_name: path
+entity_type: taxonomy_term
+bundle: zoom_visibility_levels
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

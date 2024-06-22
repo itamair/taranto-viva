@@ -8,7 +8,7 @@ dependencies:
     - slick
 _core:
   default_config_hash: P8ddpAIKtawJDi5SzOwCzVnnNYqONewSTJ6Xn0dW_aQ
-name: 'Basic HTML'
+name: 'HTML di base'
 format: basic_html
 weight: 0
 filters:
@@ -51,7 +51,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <p> <br> <span> <img src alt height width data-entity-type data-entity-uuid data-align data-caption>'
+      allowed_html: '<br> <p> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <cite> <dl> <dt> <dd> <span> <a hreflang href> <blockquote cite> <ul type> <ol type start> <img src alt height width data-entity-type data-entity-uuid data-align data-caption> <strong> <em> <code> <li>'
       filter_html_help: false
       filter_html_nofollow: false
   filter_html_image_secure:
@@ -72,15 +72,25 @@ filters:
     status: false
     weight: 4
     settings:
+      caption:
+        alt: '0'
+        title: '0'
       optionset: default
       layout: ''
       background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_media_style: ''
       loading: ''
-      preload: false
+      box_style: ''
       image_style: ''
       media_switch: ''
       ratio: ''
       thumbnail_style: ''
+      grid: ''
+      grid_medium: ''
+      grid_small: ''
+      style: ''
       skin: ''
       overridables:
         arrows: '0'
@@ -97,3 +107,5 @@ filters:
       thumbnail_effect: ''
       thumbnail_position: ''
       override: false
+      preserve_keys: false
+      visible_items: null

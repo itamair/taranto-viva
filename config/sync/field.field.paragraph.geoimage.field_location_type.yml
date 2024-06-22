@@ -16,7 +16,7 @@ bundle: geoimage
 label: 'Location Type'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     target_uuid: 5f210458-7dd2-4703-aaf8-f9e3a8cf33a8

@@ -1,0 +1,21 @@
+uuid: f0182bd3-846a-4fe8-aebd-73b86c154579
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.territorial_report_type
+  module:
+    - text
+id: taxonomy_term.territorial_report_type.description
+field_name: description
+entity_type: taxonomy_term
+bundle: territorial_report_type
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,18 @@
+uuid: d245cb72-56d0-492a-b291-54784c8dd907
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.territorial_report_type
+id: taxonomy_term.territorial_report_type.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: territorial_report_type
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

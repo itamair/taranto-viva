@@ -1,0 +1,20 @@
+uuid: a3cf0f0e-9f35-42d4-ba14-03ad1bfca6b0
+langcode: it
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - taranto_viva
+id: taranto_viva_languageswitcherinterfacetext
+theme: taranto_viva
+region: primary_menu
+weight: -7
+provider: null
+plugin: 'language_block:language_interface'
+settings:
+  id: 'language_block:language_interface'
+  label: 'Language switcher (Interface text)'
+  label_display: '0'
+  provider: language
+visibility: {  }
