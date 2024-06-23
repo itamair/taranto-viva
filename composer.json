@@ -35,7 +35,7 @@
         "drupal/core-project-message": "^10.1",
         "drupal/core-recommended": "^10.1",
         "drupal/date_filter": "^1.0",
-        "drupal/devel_entity_updates": "^4.1",
+        "drupal/devel_entity_updates": "*",
         "drupal/duplicate_role": "^1.3",
         "drupal/eca": "^1.1",
         "drupal/entity_reference_purger": "^1.0@beta",
@@ -85,7 +85,6 @@
         "drupal/views_slideshow": "^5.0",
         "drupal/views_year_filter": "^2.1",
         "drupal/votingapi": "^3.0@beta",
-        "drush/drush": "^12.4",
         "geocoder-php/arcgis-online-provider": "^4.4",
         "geocoder-php/google-maps-provider": "^4.7",
         "geocoder-php/photon-provider": "^0.6.0",
@@ -166,9 +165,7 @@
         },
         "patches": {
             "drupal/core": {
-                "#2925890 Invalid config structures can result in exceptions when saving a config entity": "https://www.drupal.org/files/issues/2021-11-29/2925890-29.patch",
-                "#3301173 Allow starterkit theme generator tool to clone Olivero": "https://git.drupalcode.org/project/drupal/-/merge_requests/2996.diff",
-                "#2957368 Call to a member function transformDimensions() on null in template_preprocess": "https://www.drupal.org/files/issues/2023-11-21/drupal-2957368-50.patch"
+                "#3384600 Don't hide permissions local tasks on bundles when no permissions are defined": "https://git.drupalcode.org/project/drupal/-/merge_requests/8488/diffs.patch"
             },
             "drupal/viewfield": {
                 "#3381787 Getting PHP errors when setting default value": "https://www.drupal.org/files/issues/2023-08-21/3381787.patch"
