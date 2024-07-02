@@ -164,13 +164,13 @@ leaflet.geocoder:
     - core/drupal.autocomplete
     - leaflet/leaflet-drupal
 
-# External IntersectionObserver polyfill
+# Local IntersectionObserver polyfill
 intersection_observer:
-  remote: https://polyfill-fastly.io/v3/polyfill.js
-  version: 1.x
+  remote: https://github.com/polyfillpolyfill/polyfill-service/blob/main/polyfill-libraries/3.110.1/IntersectionObserver/raw.js
+  version: 3.110.1
   license:
-    name: MIT license
-    url: https://choosealicense.com/licenses/mit/
+    name: MIT License
+    url: https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
     gpl-compatible: true
   js:
-    https://polyfill-fastly.io/v3/polyfill.min.js?features=IntersectionObserver: { type: external }
+    'js/polyfill/polifillIntersectionObserver.js': { minified: true }
