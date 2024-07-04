@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Project Namespace'
 vid: project_namespace
-description: ''
+description: null
 weight: 0
+new_revision: false

@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Tooltip class'
 vid: tooltip_class
-description: ''
+description: null
 weight: 0
+new_revision: false

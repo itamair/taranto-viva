@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Zoom Visibility Levels'
 vid: zoom_visibility_levels
-description: ''
+description: null
 weight: 0
+new_revision: false

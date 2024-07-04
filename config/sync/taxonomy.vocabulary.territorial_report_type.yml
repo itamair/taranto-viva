@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Tipo di Segnalazione Territoriale'
 vid: territorial_report_type
-description: ''
+description: null
 weight: 0
+new_revision: false

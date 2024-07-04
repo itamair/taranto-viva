@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Categorie di Luoghi'
 vid: places_categories
-description: ''
+description: null
 weight: 0
+new_revision: false

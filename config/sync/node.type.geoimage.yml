@@ -10,8 +10,8 @@ third_party_settings:
     parent: ''
 name: 'Geo Image'
 type: geoimage
-description: ''
-help: ''
+description: null
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false
