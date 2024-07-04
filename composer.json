@@ -165,7 +165,8 @@
         },
         "patches": {
             "drupal/core": {
-                "#3384600 Don't hide permissions local tasks on bundles when no permissions are defined": "https://git.drupalcode.org/project/drupal/-/merge_requests/8488/diffs.patch"
+                "#3384600 Don't hide permissions local tasks on bundles when no permissions are defined": "https://git.drupalcode.org/project/drupal/-/merge_requests/8488/diffs.patch",
+                "#2925890 Invalid config structures can result in exceptions when saving a config entity": "https://www.drupal.org/files/issues/2024-06-25/2925890-75.patch"
             },
             "drupal/viewfield": {
                 "#3381787 Getting PHP errors when setting default value": "https://www.drupal.org/files/issues/2023-08-21/3381787.patch"
