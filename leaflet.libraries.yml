@@ -173,4 +173,4 @@ intersection_observer:
     url: https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
     gpl-compatible: true
   js:
-    'js/polyfill/polifillIntersectionObserver.js': { minified: true }
+    'js/polyfill/polifillIntersectionObserver.min.js': { minified: true }
