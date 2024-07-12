@@ -1542,10 +1542,14 @@ trait LeafletSettingsElementsTrait {
       '#title' => $this->t('Lazy Loading'),
     ];
 
+    $intersection_observer_compatibility_link = $this->link->generate('check IntersectionObserver Browser Compatibility', Url::fromUri('https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver#browser_compatibility', ['attributes' => ['target' => 'blank']]));
+
     $element['map_lazy_load']['lazy_load'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Lazy load map'),
-      '#description' => $this->t("If checked, the map will be loaded when it enters the user's viewport. This can be useful to reduce unnecessary load time or API calls."),
+      '#description' => $this->t('If checked, the map will be loaded when it enters the user\'s viewport. This can be useful to reduce unnecessary load time or API calls.<br><u>Note:This will only work with not too old browsers, that support "Intersection Observer API"</u> (link: @intersection_observer_compatibility_link).', [
+        '@intersection_observer_compatibility_link' => $intersection_observer_compatibility_link,
+      ]),
       '#default_value' => !empty($settings['map_lazy_load']['lazy_load']) ? $settings['map_lazy_load']['lazy_load'] : 0,
       '#return_value' => 1,
     ];
