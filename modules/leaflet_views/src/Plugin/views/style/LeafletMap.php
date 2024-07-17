@@ -319,7 +319,10 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Check and return values coming from normal Search API View.
     if (isset($this->view->field[$field]) && $result instanceof SearchApiResultRow) {
       $real_geofield_name = $this->view->field[$field]->field;
-      $search_api_field = $result->_item->getField($real_geofield_name);
+      // @NOTE: The FALSE parameter is used to fix Out of memory issue reported
+      // in comment #32 of issue #3372686.
+      // https://www.drupal.org/project/leaflet/issues/3372686#comment-15682943
+      $search_api_field = $result->_item->getField($real_geofield_name, FALSE);
       if ($search_api_field !== NULL) {
         $values = $search_api_field->getValues();
         foreach ($values as $key => $value) {
