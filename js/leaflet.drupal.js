@@ -813,12 +813,8 @@
    * @returns {*}
    */
   Drupal.Leaflet.prototype.create_polygon = function(polygon, clusterable = false) {
-    let latlngs = [];
-    for (let i = 0; i < polygon.points.length; i++) {
-      let latlng = new L.LatLng(polygon.points[i].lat, polygon.points[i].lon);
-      latlngs.push(latlng);
-    }
-    return clusterable ? new L.PolygonClusterable(latlngs) : new L.Polygon(latlngs);
+    const coordinates = polygon.points ?? [];
+    return clusterable ? new L.PolygonClusterable(coordinates) : new L.Polygon(coordinates);
   };
 
   /**
@@ -832,17 +828,8 @@
    * @returns {*}
    */
   Drupal.Leaflet.prototype.create_multipolygon = function(multipolygon, clusterable = false) {
-    let polygons = [];
-    for (let x = 0; x < multipolygon.component.length; x++) {
-      let latlngs = [];
-      let polygon = multipolygon.component[x];
-      for (let i = 0; i < polygon.points.length; i++) {
-        let latlng = new L.LatLng(polygon.points[i].lat, polygon.points[i].lon);
-        latlngs.push(latlng);
-      }
-      polygons.push(latlngs);
-    }
-    return clusterable ? new L.PolygonClusterable(polygons) : new L.Polygon(polygons);
+    const coordinates = multipolygon.points ?? [];
+    return clusterable ? new L.PolygonClusterable(coordinates) : new L.Polygon(coordinates);
   };
 
   /**

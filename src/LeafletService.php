@@ -310,16 +310,16 @@ class LeafletService {
 
       case 'polygon':
         /** @var \GeometryCollection $geom */
-        $tmp = $geom->getComponents();
-        /** @var \GeometryCollection $geom */
-        $geom = $tmp[0];
-        $components = $geom->getComponents();
-        /** @var \Geometry $component */
-        foreach ($components as $component) {
-          $datum['points'][] = [
-            'lat' => $component->getY(),
-            'lon' => $component->getX(),
-          ];
+        $polygon_components = $geom->getComponents();
+        foreach ($polygon_components as $k => $geom) {
+          $points = $geom->getComponents();
+          /** @var \Geometry $component */
+          foreach ($points as $point) {
+            $datum['points'][$k][] = [
+              'lat' => $point->getY(),
+              'lon' => $point->getX(),
+            ];
+          }
         }
         break;
 
@@ -346,24 +346,20 @@ class LeafletService {
         break;
 
       case 'multipolygon':
-        $components = [];
         /** @var \GeometryCollection $geom */
-        $tmp = $geom->getComponents();
+        $polygons = $geom->getComponents();
         /** @var \GeometryCollection $polygon */
-        foreach ($tmp as $polygon) {
-          $polygon_component = $polygon->getComponents();
-          foreach ($polygon_component as $linestring) {
-            $components[] = $linestring;
-          }
-        }
-        foreach ($components as $key => $component) {
-          $subcomponents = $component->getComponents();
-          /** @var \Geometry $subcomponent */
-          foreach ($subcomponents as $subcomponent) {
-            $datum['component'][$key]['points'][] = [
-              'lat' => $subcomponent->getY(),
-              'lon' => $subcomponent->getX(),
-            ];
+        foreach ($polygons as $j => $polygon) {
+          $polygon_components = $polygon->getComponents();
+          foreach ($polygon_components as $k => $geom) {
+            $points = $geom->getComponents();
+            /** @var \Geometry $component */
+            foreach ($points as $point) {
+              $datum['points'][$j][$k][] = [
+                'lat' => $point->getY(),
+                'lon' => $point->getX(),
+              ];
+            }
           }
         }
         break;
