@@ -157,7 +157,6 @@ display:
         type: none
         options:
           offset: 0
-          items_per_page: 0
       exposed_form:
         type: basic
         options:
@@ -331,11 +330,11 @@ display:
           required: false
       header: {  }
       footer: {  }
+      rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
@@ -349,12 +348,12 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
       block_description: 'Content Media Images'
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'

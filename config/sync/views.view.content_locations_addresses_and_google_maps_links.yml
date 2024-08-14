@@ -402,6 +402,7 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
       block_description: 'Content Addresses and Google Maps Links'
       allow:
@@ -409,7 +410,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
