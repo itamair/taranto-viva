@@ -91,27 +91,14 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
 
   // Override Leaflet.prototype.create_polygon
   Drupal.Leaflet.prototype.create_polygon = function(polygon) {
-    let latlngs = [];
-    for (let i = 0; i < polygon.points.length; i++) {
-      let latlng = new L.LatLng(polygon.points[i].lat, polygon.points[i].lon);
-      latlngs.push(latlng);
-    }
-    return new L.Polygon(latlngs);
+    const coordinates = polygon.points ?? [];
+    return new L.Polygon(coordinates);
   };
 
   // Override Leaflet.prototype.create_multipolygon
   Drupal.Leaflet.prototype.create_multipolygon = function(multipolygon) {
-    let polygons = [];
-    for (let x = 0; x < multipolygon.component.length; x++) {
-      let latlngs = [];
-      let polygon = multipolygon.component[x];
-      for (let i = 0; i < polygon.points.length; i++) {
-        let latlng = new L.LatLng(polygon.points[i].lat, polygon.points[i].lon);
-        latlngs.push(latlng);
-      }
-      polygons.push(latlngs);
-    }
-    return new L.Polygon(polygons);
+    const coordinates = multipolygon.points ?? [];
+    return new L.Polygon(coordinates);
   };
 
   // Override Leaflet.prototype.create_multipoly
