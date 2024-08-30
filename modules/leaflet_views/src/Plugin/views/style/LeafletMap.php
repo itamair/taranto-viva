@@ -1303,6 +1303,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $options['data_source'] = ['default' => ''];
     $options['entity_source'] = ['default' => '__base_table'];
     $options['name_field'] = ['default' => ''];
+    $options['weight'] = ['default' => NULL];
 
     $leaflet_map_default_settings = [];
     foreach (self::getDefaultSettings() as $k => $setting) {
