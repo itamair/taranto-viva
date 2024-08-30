@@ -54,7 +54,7 @@
         "drupal/jquery_ui": "^1.6",
         "drupal/jsonapi_extras": "^3.23",
         "drupal/layout_builder_styles": "^2.0",
-        "drupal/leaflet": "10.2.x-dev@dev",
+        "drupal/leaflet": "10.2.24",
         "drupal/masquerade": "^2.0@RC",
         "drupal/media_entity_image_exif": "^1.0@RC",
         "drupal/media_entity_slideshow": "^2.5",
