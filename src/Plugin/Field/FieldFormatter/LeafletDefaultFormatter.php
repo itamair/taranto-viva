@@ -494,7 +494,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
   /**
    * Sets possibly existing previous settings for the Zoom Form Element.
    */
-  private function setExistingZoomSettings() {
+  protected function setExistingZoomSettings() {
     $settings = $this->getSettings();
     if (isset($settings['zoom'])) {
       $settings['map_position']['zoom'] = (int) $settings['zoom'];
@@ -519,7 +519,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    * @return array
    *   The result render array.
    */
-  private function tokenResolvedContent(EntityInterface $entity, string $element_content, array $tokens, array $results) {
+  protected function tokenResolvedContent(EntityInterface $entity, string $element_content, array $tokens, array $results) {
     // Construct the renderable array for popup title / text. As we later
     // convert that to plain text, losing attachments and cacheability, save
     // them to $results.
