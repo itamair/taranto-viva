@@ -42,7 +42,7 @@ function leaflet_requirements($phase) {
     if (file_exists($library['js'][0]['data'])) {
       $requirements['leaflet']['value'] = \Drupal::translation()
         ->translate('Leaflet @version library installed at @path.', [
-          '@version' => $library['version'],
+          '@version' => $library['version'] ?? '(undefined / missing version)',
           '@path' => $library['js'][0]['data'],
         ]) . ' ' . $maps_info;
       $requirements['leaflet']['severity'] = REQUIREMENT_OK;
