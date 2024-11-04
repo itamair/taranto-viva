@@ -898,7 +898,7 @@
       // Eventually add Popup to the Layer.
       self.feature_bind_popup(layer, feature.properties);
 
-      for (e in events) {
+      for (const e in events) {
         let layerParam = {};
         layerParam[e] = eval(events[e]);
         layer.on(layerParam);
