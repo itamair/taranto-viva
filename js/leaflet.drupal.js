@@ -538,7 +538,7 @@
       // @see https://www.drupal.org/project/leaflet/issues/3377403
       // @see https://www.drupal.org/project/leaflet/issues/3186029
       case 'json':
-        lFeature = this.create_json(feature.json, feature.events);
+        lFeature = this.create_json(feature.json, feature.options, feature.events);
         break;
 
       case 'multipoint':
@@ -872,11 +872,16 @@
    *
    * @param json
    *   The json input.
+   * @param options
+   *   The options array,
+   *   that would reflect the GeoJSON Leaflet Js library options
+   *   https://leafletjs.com/reference.html#geojson
    * @param events
+   *   The events array
    *
    * @returns {*}
    */
-  Drupal.Leaflet.prototype.create_json = function(json, events) {
+  Drupal.Leaflet.prototype.create_json = function(json, options = [], events = []) {
     let lJSON = new L.GeoJSON();
     const self = this;
 
@@ -904,6 +909,12 @@
         layer.on(layerParam);
       }
     };
+
+    for (const option in options) {
+      if (Object.prototype.hasOwnProperty.call(options, option)) {
+        lJSON.options[option] = eval(options[option]);
+      }
+    }
 
     lJSON.addData(json);
     return lJSON;
