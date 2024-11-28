@@ -214,7 +214,7 @@ function hook_leaflet_default_widget_alter(array &$map_settings, GeofieldBaseWid
  * @param \Drupal\Core\Entity\ContentEntityInterface $entity
  *   The Content Entity base of the formatter.
  */
-function hook_leaflet_formatter_feature_alter(array $feature, FieldItemInterface $item, ContentEntityInterface $entity) {
+function hook_leaflet_formatter_feature_alter(array &$feature, FieldItemInterface $item, ContentEntityInterface $entity) {
   // Make custom alterations to $feature, eventually using the $items
   // context.
 }
