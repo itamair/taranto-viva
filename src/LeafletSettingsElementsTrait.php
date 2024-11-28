@@ -337,19 +337,15 @@ trait LeafletSettingsElementsTrait {
     ];
 
     $element['zoom'] = [
-      '#title' => $this->t('Zoom'),
+      '#title' => $this->t('Initial Zoom'),
       '#type' => 'number',
       '#min' => 0,
       '#max' => 22,
-      '#description' => $this->t('The initial Zoom level for the Leaflet Map (when empty or when Forced).<br>Admitted values usually range from 0 (the whole world) to 20 - 22, depending on the max zoom supported by the specific Map Tile in use.<br>As a reference consider Zoom 5 for a large country, 10 for a city, 15 for a road or a district, etc.'),
+      '#description' => $this->t('The initial Zoom level for the Map in case of a Single Marker or when Forced (or when empty).<br><u>In case of multiple Markers/Features, the initial Zoom will automatically set so to extend the Map to the boundaries of all of them.</u><br>Admitted values usually range from 0 (the whole world) to 20 - 22, depending on the max zoom supported by the specific Map Tile in use.'),
       '#default_value' => $map_position_options['zoom'] ?? $this->getDefaultSettings()['map_position']['zoom'],
       '#required' => TRUE,
       '#element_validate' => [[get_class($this), 'zoomLevelValidate']],
     ];
-
-    if ($this instanceof ViewsPluginInterface) {
-      $element['zoom']['#description'] = $this->t('These setting will be applied (anyway) to a single Marker Map.');
-    }
 
     $element['minZoom'] = [
       '#title' => $this->t('Min. Zoom'),
@@ -376,7 +372,7 @@ trait LeafletSettingsElementsTrait {
       '#max' => 5,
       '#min' => -5,
       '#step' => 1,
-      '#description' => $this->t('Value that might/will be added to default Fit Elements Bounds Zoom. (-5 / +5)'),
+      '#description' => $this->t('Use this selector (-5 | +5) to <u>alter with Zoom-Out or Zoom-In the Initial Zoom level in case of multiple Markers/Features on the Map</u>.'),
       '#default_value' => $map_position_options['zoomFiner'] ?? $this->getDefaultSettings()['map_position']['zoomFiner'],
       '#states' => [
         'invisible' => isset($force_checkbox_selector_widget) ? [
