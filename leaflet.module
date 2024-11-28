@@ -80,6 +80,7 @@ function leaflet_leaflet_map_info() {
           'fadeAnimation' => TRUE,
           'zoomAnimation' => TRUE,
           'closePopupOnClick' => TRUE,
+          'worldCopyJump' => TRUE,
         ],
         'layers' => [
           'earth' => [
