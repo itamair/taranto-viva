@@ -17,6 +17,17 @@ use Drupal\views\Plugin\views\ViewsPluginInterface;
 trait LeafletSettingsElementsTrait {
 
   /**
+   * Get maps available for use with Leaflet.
+   */
+  protected static function getLeafletMaps() {
+    $options = [];
+    foreach (leaflet_map_get_info() as $key => $map) {
+      $options[$key] = $map['label'];
+    }
+    return $options;
+  }
+
+  /**
    * Leaflet Controls Positions Options.
    *
    * @var array
@@ -46,9 +57,11 @@ trait LeafletSettingsElementsTrait {
    *   The default settings.
    */
   public static function getDefaultSettings() {
+    $base_layers = self::getLeafletMaps();
+
     return [
       'multiple_map' => FALSE,
-      'leaflet_map' => 'OSM Mapnik',
+      'leaflet_map' => $base_layers['OSM Mapnik'] ? 'OSM Mapnik' : array_shift($base_layers),
       'height' => 400,
       'height_unit' => 'px',
       'hide_empty_map' => FALSE,
