@@ -341,7 +341,7 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'number',
       '#min' => 0,
       '#max' => 22,
-      '#description' => $this->t('The initial Zoom level for the Map in case of a Single Marker or when Forced (or when empty).<br><u>In case of multiple Markers/Features, the initial Zoom will automatically set so to extend the Map to the boundaries of all of them.</u><br>Admitted values usually range from 0 (the whole world) to 20 - 22, depending on the max zoom supported by the specific Map Tile in use.'),
+      '#description' => $this->t('The initial Zoom level for the Map in case of a Single Marker or when Forced (or when empty).<br><u>In case of multiple Markers/Features, the initial Zoom will automatically set so to extend the Map to the boundaries of all of them.</u><br>Admitted values usually range from 0 (the whole world) to 20 - 22, depending on the max zoom supported by the specific Map Tile in use.<br>As a reference consider Zoom 5 for a large country, 10 for a city, 15 for a road or a district.'),
       '#default_value' => $map_position_options['zoom'] ?? $this->getDefaultSettings()['map_position']['zoom'],
       '#required' => TRUE,
       '#element_validate' => [[get_class($this), 'zoomLevelValidate']],
@@ -372,7 +372,7 @@ trait LeafletSettingsElementsTrait {
       '#max' => 5,
       '#min' => -5,
       '#step' => 1,
-      '#description' => $this->t('Use this selector (-5 | +5) to <u>alter with Zoom-Out or Zoom-In the Initial Zoom level in case of multiple Markers/Features on the Map</u>.'),
+      '#description' => $this->t('Use this selector (-5 | +5) to <u>zoom in or out on the Initial Zoom level, in case of multiple Markers/Features on the Map</u>.<br>Example: -2 will zoom out, adding padding around the markers, while 2 will zoom in, leaving out peripheral markers.<br>Note: This will still be constrained according with your Max & Min Zoom settings.'),
       '#default_value' => $map_position_options['zoomFiner'] ?? $this->getDefaultSettings()['map_position']['zoomFiner'],
       '#states' => [
         'invisible' => isset($force_checkbox_selector_widget) ? [
