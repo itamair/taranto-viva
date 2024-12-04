@@ -95,6 +95,7 @@ trait LeafletSettingsElementsTrait {
         'maxZoom' => 18,
         'zoomFiner' => 0,
       ],
+      'weight' => 0,
       'icon' => [
         'iconType' => 'marker',
         'iconUrl' => '',
