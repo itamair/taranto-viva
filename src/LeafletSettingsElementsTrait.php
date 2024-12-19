@@ -1401,10 +1401,7 @@ trait LeafletSettingsElementsTrait {
       $element['geocoder']['access_warning'] = [
         '#type' => 'html_tag',
         '#tag' => 'div',
-        '#value' => $this->t('<strong>Note: </strong>This will show to users with permissions to <u>Access Geocoder Api Url Enpoints.</u>'),
-        '#attributes' => [
-          'style' => 'color: red;',
-        ],
+        '#value' => $this->t('<strong>Note: </strong>This shows up only to users with permissions to <u>Access Geocoder Api Url Enpoints.</u>'),
       ];
 
       $element['geocoder']['settings'] = [
