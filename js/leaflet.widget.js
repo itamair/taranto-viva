@@ -215,16 +215,19 @@
           // For objects that have defined bounds or a way to get them
           let bounds = obj.getBounds();
           this.map.fitBounds(bounds);
-          // Update the map start zoom and center, for correct working of Map Reset control.
-          start_zoom = this.map.getBoundsZoom(bounds);
-          start_center = bounds.getCenter();
 
-          // In case of Map Zoom Forced, use the custom Map Zoom set.
-          if (this.widgetsettings.map_position.force && this.widgetsettings.map_position.zoom) {
+          // In case of Map Bounds collapsed into a Point or Map Zoom Forced,
+          // use the custom Map Start Zoom (if set).
+          if (this.widgetsettings.map_position.zoom &&
+            (bounds.getSouthWest().distanceTo(bounds.getNorthEast()) === 0 || this.widgetsettings.map_position.force)) {
             start_zoom = this.widgetsettings.map_position.zoom;
             this.map.setZoom(start_zoom );
           }
-
+          else {
+            // Update the map start zoom and center, for correct working of Map Reset control.
+            start_zoom = this.map.getBoundsZoom(bounds);
+            start_center = bounds.getCenter();
+          }
         } else if (obj.getLatLng !== undefined && typeof obj.getLatLng === 'function') {
           this.map.panTo(obj.getLatLng());
           // Update the map start center, for correct working of Map Reset control.
