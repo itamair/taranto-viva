@@ -729,7 +729,8 @@
       marker_title = marker.tooltip.value.replace(/<[^>]*>/g, '').trim();
     }
     let options = {
-      title: marker_title,
+      // Define the title (as mouse hover tooltip) only in case the Leaflet Tooltip is not defined.
+      title: marker.title ? marker_title : "",
       className: marker.className || '',
       alt: marker_title,
       group_label: marker.group_label ?? '',
