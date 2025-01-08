@@ -334,6 +334,9 @@ field.formatter.settings.leaflet_formatter_default:
         zoomFiner:
           type: integer
           label: 'Zoom finer'
+    weight:
+      type: string
+      label: 'Weight'
     icon:
       type: mapping
       label: 'Map icon'
