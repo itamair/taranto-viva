@@ -911,7 +911,7 @@ trait LeafletSettingsElementsTrait {
    * @param array $view_mode_options
    *   The view modes options list.
    */
-  protected function setPopupElement(array &$element, array $settings, array $view_fields = [], string $entity_type = NULL, array $view_mode_options = []) {
+  protected function setPopupElement(array &$element, array $settings, array $view_fields = [], string $entity_type = '', array $view_mode_options = []) {
     $default_settings = $this::getDefaultSettings();
     $element['leaflet_popup'] = [
       '#type' => 'fieldset',
