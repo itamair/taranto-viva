@@ -414,7 +414,8 @@
    *   The Feature coming from Drupal settings.
    */
   Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
-    if (feature.popup && feature.popup.value) {
+    // Attach the Popup only if supported and a value is set for it.
+    if (typeof lFeature.bindPopup !== "undefined" && feature.popup && feature.popup.value) {
       const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
       lFeature.bindPopup(feature.popup.value, popup_options);
     }
