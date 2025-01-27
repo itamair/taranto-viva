@@ -1068,7 +1068,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       $feature['tooltip'] = $this->options['leaflet_tooltip'];
                       // Decode any entities because JS will encode them again,
                       // and we don't want double encoding.
-                      $feature['tooltip']['value'] = !empty($this->options['leaflet_tooltip']['value']) ? Html::decodeEntities(($this->rendered_fields[$result->index][$this->options['leaflet_tooltip']['value']])) : '';
+                      $feature['tooltip']['value'] = array_key_exists($this->options['leaflet_tooltip']['value'], $this->rendered_fields[$result->index]) ? Html::decodeEntities($this->rendered_fields[$result->index][$this->options['leaflet_tooltip']['value']]) : '';
 
                       // Associate dynamic tooltip options (token based).
                       if (!empty($this->options['leaflet_tooltip']['options'])) {
