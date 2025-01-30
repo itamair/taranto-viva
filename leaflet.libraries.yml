@@ -68,7 +68,7 @@ leaflet-geoman:
     js/leaflet-geoman-2.18.3-free/dist/leaflet-geoman.min.js: { minified: true }
   css:
     component:
-      js/leaflet-geoman-2.18.3-free/dist/leaflet-geoman.css: {}
+      js/leaflet-geoman-2.18.3-free/dist/leaflet-geoman.css: { minified: true }
   dependencies:
     - leaflet/leaflet
 
