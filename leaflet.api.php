@@ -130,7 +130,7 @@ function hook_leaflet_map_info() {
           ],
         ],
         'OpenTopoMap' => [
-          'urlTemplate' => 'https://tile.opentopomap.org/{z}/{x}/{y}.png',
+          'urlTemplate' => 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
           'options' => [
             "minZoom" => 0,
             "maxZoom" => 18,
