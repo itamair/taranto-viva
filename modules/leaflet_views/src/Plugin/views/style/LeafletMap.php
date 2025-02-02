@@ -462,6 +462,100 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   }
 
   /**
+   * Set Overlay Grouping Form Element.
+   *
+   * @param array $form
+   *   The form
+   * @param array $user_input
+   *   The form user input
+   */
+  protected function setOverlaysGroupingElement(array &$form, array $user_input): void {
+    $form["grouping"] = [
+      '#type' => 'details',
+      '#title' => $this->t("Overlays - Leaflet Grouping"),
+      0 => $form["grouping"][0],
+    ];
+
+    $form["grouping"][0]["field"]["#title"] = $this->t('Grouping field');
+    $form["grouping"][0]["field"]["#description"] = $this->t("You may optionally specify a field by which to group the Leaflet Map Features into Overlays, whose visibility could be managed throughout the Leaflet Map Layers Control.<br>Leave blank to not group");
+    unset($form["grouping"][0]["rendered_strip"]);
+
+    $form["grouping"][0]["field"]['#ajax'] = [
+      'callback' => __CLASS__ . '::updateGrouping0OverlaysOptionsAjax',
+      'wrapper' => 'grouping-0-overlays_options-fieldset',
+      'event' => 'change',
+    ];
+
+    $form["grouping"][0]["rendered"]['#ajax'] = [
+      'callback' => __CLASS__ . '::updateGrouping0OverlaysOptionsAjax',
+      'wrapper' => 'grouping-0-overlays_options-fieldset',
+      'event' => 'change',
+    ];
+
+    // Unset/remove the Grouping Field n.2.
+    // as we don't support it in Leaflet View style map, at the moment.
+    unset($form["grouping"][1]);
+
+    // Overlay Options settings section.
+    $form["grouping"][0]['overlays_options'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Layers options'),
+      '#attributes' => ['id' => 'grouping-0-overlays_options-fieldset'],
+    ];
+
+    // Extract the Layers options depending on the form state.
+    $grouping_0_field = $user_input['style_options']['grouping'][0]['field'] ?? $form["grouping"][0]["field"]["#default_value"];
+    $grouping_0_rendered_option = isset($user_input['style_options']['grouping'][0]) ? ($user_input['style_options']['grouping'][0]['rendered'] ?? FALSE) : $form["grouping"][0]["rendered"]["#default_value"];
+    $overlays_options = self::getOverlaysOptions($this, $grouping_0_field, $grouping_0_rendered_option);
+
+    // Disabled Layers.
+    $form["grouping"][0]['overlays_options']['disabled_overlays'] = count($overlays_options) > 1 ? [
+      '#type' => 'select',
+      '#title' => $this->t('Disabled Layers'),
+      '#description' => $this->t('Choose the Layers that should start as disabled / switched off'),
+      '#options' => $overlays_options,
+      '#default_value' => $this->options["grouping"][0]['overlays_options']['disabled_overlays'],
+      // The #validated setting to TRUE skips the "An illegal choice has been
+      // detected" error message after Ajax refresh.
+      '#validated' => TRUE,
+      '#required' => FALSE,
+      '#multiple' => TRUE,
+      '#size' => count($overlays_options) < 10 ? count($overlays_options) + 1 : 10,
+      '#states' => [
+        'invisible' => [
+          ':input[name="style_options[grouping][0][field]"]' => ['value' => ''],
+        ],
+      ],
+    ] : [
+      '#type' => 'hidden',
+      '#value' => [],
+    ];
+
+    // Disabled Layers.
+    $form["grouping"][0]['overlays_options']['hidden_overlays_controls'] = count($overlays_options) > 1 ? [
+      '#type' => 'select',
+      '#title' => $this->t('Hidden Layers Controls'),
+      '#description' => $this->t('Choose the Layers that will not appear in the Layers Control'),
+      '#options' => $overlays_options,
+      '#default_value' => $this->options["grouping"][0]['overlays_options']['hidden_overlays_controls'],
+      // The #validated setting to TRUE skips the "An illegal choice has been
+      // detected" error message after Ajax refresh.
+      '#validated' => TRUE,
+      '#required' => FALSE,
+      '#multiple' => TRUE,
+      '#size' => count($overlays_options) < 10 ? count($overlays_options) + 1 : 10,
+      '#states' => [
+        'invisible' => [
+          ':input[name="style_options[grouping][0][field]"]' => ['value' => ''],
+        ],
+      ],
+    ] : [
+      '#type' => 'hidden',
+      '#value' => [],
+    ];
+  }
+
+  /**
    * Get the Layers options List from the Grouping Field Settings.
    *
    * @param \Drupal\leaflet_views\Plugin\views\style\LeafletMap $view_style
@@ -533,93 +627,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       ],
     ];
 
-    // Customise for this Leaflet View Style the "grouping" section.
-    $form["grouping"] = [
-      '#type' => 'details',
-      '#title' => $this->t("Leaflet Grouping"),
-      0 => $form["grouping"][0],
-    ];
+    $user_input = $form_state->getUserInput();
 
-    $form["grouping"][0]["field"]["#title"] = $this->t('Grouping field');
-    $form["grouping"][0]["field"]["#description"] = $this->t("You may optionally specify a field by which to group the Leaflet Map Features by Overlayers, whose visibility could be managed throughout the Leaflet Map Layers Control.<br>Leave blank to not group");
-    unset($form["grouping"][0]["rendered_strip"]);
-
-    $form["grouping"][0]["field"]['#ajax'] = [
-      'callback' => __CLASS__ . '::updateGrouping0OverlaysOptionsAjax',
-      'wrapper' => 'grouping-0-overlays_options-fieldset',
-      'event' => 'change',
-    ];
-
-    $form["grouping"][0]["rendered"]['#ajax'] = [
-      'callback' => __CLASS__ . '::updateGrouping0OverlaysOptionsAjax',
-      'wrapper' => 'grouping-0-overlays_options-fieldset',
-      'event' => 'change',
-    ];
-
-    // Unset/remove the Grouping Field n.2.
-    // as we don't support it in Leaflet View style map, at the moment.
-    unset($form["grouping"][1]);
+    // Set Overlay Grouping Form Element.
+    $this->setOverlaysGroupingElement($form, $user_input);
 
     // Get a sublist of geo data fields in the view.
     $fields_geo_data = $this->getAvailableDataSources();
-
-    // Overlay Options settings section.
-    $form["grouping"][0]['overlays_options'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Layers options'),
-      '#attributes' => ['id' => 'grouping-0-overlays_options-fieldset'],
-    ];
-
-    // Extract the Layers options depending on the form state.
-    $grouping_0_field = $form_state->getUserInput()['style_options']['grouping'][0]['field'] ?? $form["grouping"][0]["field"]["#default_value"];
-    $grouping_0_rendered_option = isset($form_state->getUserInput()['style_options']['grouping'][0]) ? ($form_state->getUserInput()['style_options']['grouping'][0]['rendered'] ?? FALSE) : $form["grouping"][0]["rendered"]["#default_value"];
-    $overlays_options = self::getOverlaysOptions($this, $grouping_0_field, $grouping_0_rendered_option);
-
-    // Disabled Layers.
-    $form["grouping"][0]['overlays_options']['disabled_overlays'] = count($overlays_options) > 1 ? [
-      '#type' => 'select',
-      '#title' => $this->t('Disabled Layers'),
-      '#description' => $this->t('Choose the Layers that should start as disabled / switched off'),
-      '#options' => $overlays_options,
-      '#default_value' => $this->options["grouping"][0]['overlays_options']['disabled_overlays'],
-      // The #validated setting to TRUE skips the "An illegal choice has been
-      // detected" error message after Ajax refresh.
-      '#validated' => TRUE,
-      '#required' => FALSE,
-      '#multiple' => TRUE,
-      '#size' => count($overlays_options) < 10 ? count($overlays_options) + 1 : 10,
-      '#states' => [
-        'invisible' => [
-          ':input[name="style_options[grouping][0][field]"]' => ['value' => ''],
-        ],
-      ],
-    ] : [
-      '#type' => 'hidden',
-      '#value' => [],
-    ];
-
-    // Disabled Layers.
-    $form["grouping"][0]['overlays_options']['hidden_overlays_controls'] = count($overlays_options) > 1 ? [
-      '#type' => 'select',
-      '#title' => $this->t('Hidden Layers Controls'),
-      '#description' => $this->t('Choose the Layers that will not appear in the Layers Control'),
-      '#options' => $overlays_options,
-      '#default_value' => $this->options["grouping"][0]['overlays_options']['hidden_overlays_controls'],
-      // The #validated setting to TRUE skips the "An illegal choice has been
-      // detected" error message after Ajax refresh.
-      '#validated' => TRUE,
-      '#required' => FALSE,
-      '#multiple' => TRUE,
-      '#size' => count($overlays_options) < 10 ? count($overlays_options) + 1 : 10,
-      '#states' => [
-        'invisible' => [
-          ':input[name="style_options[grouping][0][field]"]' => ['value' => ''],
-        ],
-      ],
-    ] : [
-      '#type' => 'hidden',
-      '#value' => [],
-    ];
 
     // Check whether we have a geo data field we can work with.
     if (!count($fields_geo_data)) {
