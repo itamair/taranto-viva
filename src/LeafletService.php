@@ -503,24 +503,35 @@ class LeafletService {
   }
 
   /**
-   * Check if a file exists.
+   * Check if a file exists at the given URL.
    *
    * @param string $fileUrl
-   *   The file url.
-   *
-   * @see https://stackoverflow.com/questions/10444059/file-exists-returns-false-even-if-file-exist-remote-url
+   *   The URL of the file to check.
    *
    * @return bool
-   *   The bool result.
+   *   TRUE if the file exists and is accessible, FALSE otherwise.
    */
-  public function fileExists($fileUrl) {
-    $file_headers = @get_headers($fileUrl);
-    if (isset($file_headers) && !empty($file_headers[0])
-      && (stripos($file_headers[0], "404 Not Found") == 0)
-      && (stripos($file_headers[0], "403 Forbidden") == 0)
-      && (stripos($file_headers[0], "302 Found") == 0 && !empty($file_headers[7]) && stripos($file_headers[7], "404 Not Found") == 0)) {
+  public function fileExists(string $fileUrl): bool {
+    $fileHeaders = @get_headers($fileUrl);
+
+    // If headers are not retrieved, the file does not exist.
+    if (empty($fileHeaders)) {
+      return FALSE;
+    }
+
+    // Check the first header for common error codes.
+    $firstHeader = $fileHeaders[0];
+    if (stripos($firstHeader, '200 OK') !== FALSE) {
       return TRUE;
     }
+
+    // Handle redirects (e.g., 302 Found) and check the final response.
+    if (stripos($firstHeader, '302 Found') !== FALSE && !empty($fileHeaders[7])) {
+      $finalHeader = $fileHeaders[7];
+      return stripos($finalHeader, '200 OK') !== FALSE;
+    }
+
+    // If none of the above conditions are met, the file does not exist.
     return FALSE;
   }
 
