@@ -465,15 +465,25 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * Set Overlay Grouping Form Element.
    *
    * @param array $form
-   *   The form
+   *   The form.
    * @param array $user_input
-   *   The form user input
+   *   The form user input.
    */
   protected function setOverlaysGroupingElement(array &$form, array $user_input): void {
+
+    // Preserve the $form["grouping"][0] before unset.
+    $form_grouping_0 = $form["grouping"][0];
+
+    // Unset the all previous $form["grouping"] and regenerate it from scratch,
+    // to:
+    // - place it in the proper order;
+    // - unset/remove the Grouping Field n.2., as we don't support it in
+    // Leaflet View style map, at the moment.
+    unset($form["grouping"]);
     $form["grouping"] = [
       '#type' => 'details',
       '#title' => $this->t("Overlays - Leaflet Grouping"),
-      0 => $form["grouping"][0],
+      0 => $form_grouping_0,
     ];
 
     $form["grouping"][0]["field"]["#title"] = $this->t('Grouping field');
@@ -618,19 +628,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $this->entitySource = $this->options['entity_source'];
     }
 
-    // Build the Parent Form.
-    parent::buildOptionsForm($form, $form_state);
-
     $form['#attached'] = [
       'library' => [
         'leaflet/general',
       ],
     ];
-
-    $user_input = $form_state->getUserInput();
-
-    // Set Overlay Grouping Form Element.
-    $this->setOverlaysGroupingElement($form, $user_input);
 
     // Get a sublist of geo data fields in the view.
     $fields_geo_data = $this->getAvailableDataSources();
@@ -640,13 +642,16 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $form['error'] = [
         '#type' => 'html_tag',
         '#tag' => 'div',
-        '#value' => $this->t('Please add at least one Geofield to the View and come back here to set it as Data Source.'),
+        '#value' => $this->t('Please add at least one Geofield (field type) to the View and come back here to set it as Data Source.'),
         '#attributes' => [
           'class' => ['leaflet-warning'],
         ],
       ];
       return;
     }
+
+    // Build the Parent Form, first.
+    parent::buildOptionsForm($form, $form_state);
 
     $wrapper_id = 'leaflet-map-views-style-options-form-wrapper';
     $form['#prefix'] = '<div id="' . $wrapper_id . '">';
@@ -656,12 +661,12 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $form['data_source'] = [
       '#type' => 'select',
       '#title' => $this->t('Data Source'),
-      '#description' => $this->t('Which Geofield(s) contains geodata you want to map?'),
+      '#description' => $this->t('Which Geofield(s) contains geodata you want to map?<br><b>Note: </b>Only Geofield type fields can be selected.'),
       '#options' => $fields_geo_data,
       '#default_value' => $this->options['data_source'],
       '#required' => TRUE,
       '#multiple' => TRUE,
-      '#size' => count($fields_geo_data),
+      '#size' => count($fields_geo_data) + 1,
     ];
 
     // Get the possible entity sources.
@@ -708,6 +713,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         ],
       ];
     }
+
+    $user_input = $form_state->getUserInput();
+
+    // Set Overlay Grouping Form Element.
+    $this->setOverlaysGroupingElement($form, $user_input);
 
     // Set Leaflet Tooltip Element.
     $this->setTooltipElement($form, $this->options, $this->viewFields);
