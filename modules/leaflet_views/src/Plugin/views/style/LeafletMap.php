@@ -1024,7 +1024,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       $url = Url::fromRoute('leaflet_views.ajax_popup', $parameters);
                       $popup_content = sprintf('<div class="leaflet-ajax-popup" data-leaflet-ajax-popup="%s" %s></div>',
                         $url->toString(), LeafletAjaxPopupController::getPopupIdentifierAttribute($entity_type, $entity_id, $this->options['leaflet_popup']['view_mode'], $langcode));
-                      $map['settings']['ajaxPoup'] = TRUE;
+                      $map['settings']['ajaxPopup'] = TRUE;
                       break;
 
                     case '#rendered_view_fields':
@@ -1309,7 +1309,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $element = $this->leafletService->leafletRenderMap($js_settings['map'], $js_settings['features'], $map_height);
 
       // Add the Core Drupal Ajax library for Ajax Popups.
-      if (isset($map['settings']['ajaxPoup']) && $map['settings']['ajaxPoup']) {
+      if (isset($map['settings']['ajaxPopup']) && $map['settings']['ajaxPopup']) {
         $build_for_bubbleable_metadata['#attached']['library'][] = 'core/drupal.ajax';
       }
       BubbleableMetadata::createFromRenderArray($element)
