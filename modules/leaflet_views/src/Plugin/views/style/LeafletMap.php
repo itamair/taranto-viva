@@ -487,7 +487,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     ];
 
     $form["grouping"][0]["field"]["#title"] = $this->t('Grouping field');
-    $form["grouping"][0]["field"]["#description"] = $this->t("You may optionally specify a field by which to group the Leaflet Map Features into Overlays, whose visibility could be managed throughout the Leaflet Map Layers Control.<br>Leave blank to not group");
+    $form["grouping"][0]["field"]["#description"] = $this->t("You may specify a field by which to group the Leaflet Map Features into Overlays, whose visibility could be managed throughout the Leaflet Map Layers Control.");
     unset($form["grouping"][0]["rendered_strip"]);
 
     $form["grouping"][0]["field"]['#ajax'] = [
