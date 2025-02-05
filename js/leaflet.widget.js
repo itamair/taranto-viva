@@ -215,6 +215,7 @@
           // For objects that have defined bounds or a way to get them
           let bounds = obj.getBounds();
           this.map.fitBounds(bounds);
+          start_center = bounds.getCenter();
 
           // In case of Map Bounds collapsed into a Point or Map Zoom Forced,
           // use the custom Map Start Zoom (if set).
@@ -226,7 +227,6 @@
           else {
             // Update the map start zoom and center, for correct working of Map Reset control.
             start_zoom = this.map.getBoundsZoom(bounds);
-            start_center = bounds.getCenter();
           }
         } else if (obj.getLatLng !== undefined && typeof obj.getLatLng === 'function') {
           this.map.panTo(obj.getLatLng());
