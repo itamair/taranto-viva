@@ -276,9 +276,7 @@
 
     // Only add a layer switcher if it is enabled in settings, and we have
     // at least two base layers or at least one overlay.
-    if (this.layer_control == null &&
-      this.map_settings.layerControl && (count_layers(this.base_layers) > 1 || count_layers(this.overlays) > 0)
-    ) {
+    if (this.layer_control == null && ((this.map_settings.layerControl && count_layers(this.base_layers) > 1 || count_layers(this.overlays) > 0))) {
       const base_layers = count_layers(this.base_layers) > 1 ? this.base_layers : [];
       // Instantiate layer control, using settings.layerControl as settings.
       this.layer_control = new L.Control.Layers(base_layers, [], this.map_settings.layerControlOptions);
