@@ -2,9 +2,10 @@
 
 namespace Drupal\leaflet;
 
+use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\Component\Serialization\Json;
+use Drupal\leaflet\Plugin\Field\FieldWidget\LeafletDefaultWidget;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
 
 /**
@@ -140,6 +141,8 @@ trait LeafletSettingsElementsTrait {
       'geocoder' => [
         'control' => FALSE,
         'settings' => [
+          'set_marker' => FALSE,
+          'popup' => FALSE,
           'autocomplete' => [
             'placeholder' => 'Search Address',
             'title' => 'Search an Address on the Map',
@@ -150,7 +153,6 @@ trait LeafletSettingsElementsTrait {
           'min_terms' => 4,
           'delay' => 800,
           'zoom' => 16,
-          'popup' => FALSE,
           'options' => '',
         ],
       ],
@@ -1406,8 +1408,35 @@ trait LeafletSettingsElementsTrait {
 
       $element['geocoder']['settings'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Autocomplete'),
+        '#title' => $this->t('Settings'),
       ];
+
+      // Option to set a Marker on Geocode, only in case of Leaflet Widget.
+      if ($this instanceof LeafletDefaultWidget) {
+        $element['geocoder']['settings']['set_marker'] = [
+          '#title' => $this->t('<b>Place a Marker on Geocode</b>'),
+          '#type' => 'checkbox',
+          '#default_value' => $settings['geocoder']['settings']['set_marker'] ?? $default_settings['geocoder']['settings']['set_marker'],
+          '#description' => $this->t('Check this to place a Marker on the Map when Geocoding the Address.'),
+        ];
+      }
+
+      $element['geocoder']['settings']['popup'] = [
+        '#title' => $this->t('Open Leaflet Popup on Geocode Focus'),
+        '#type' => 'checkbox',
+        '#default_value' => $settings['geocoder']['settings']['popup'] ?? $default_settings['geocoder']['settings']['popup'],
+        '#description' => $this->t('Check this to open a Popup on the Map (with the found Address) upon the Geocode Focus.'),
+      ];
+
+      // In case of LeafletDefaultWidget, hide the Popup option, if set_marker'
+      // is checked.
+      if ($this instanceof LeafletDefaultWidget && method_exists($this->fieldDefinition, 'getName')) {
+        $element['geocoder']['settings']['popup']['#states'] = [
+          'invisible' => [
+            ':input[name="fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][geocoder][settings][set_marker]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
 
       $element['geocoder']['settings']['autocomplete'] = [
         '#type' => 'fieldset',
@@ -1492,13 +1521,6 @@ trait LeafletSettingsElementsTrait {
         '#max' => 22,
         '#default_value' => $settings['geocoder']['settings']['zoom'] ?? $default_settings['geocoder']['settings']['zoom'],
         '#description' => $this->t('Zoom level to Focus on the Map upon the Geocoder Address selection.'),
-      ];
-
-      $element['geocoder']['settings']['popup'] = [
-        '#title' => $this->t('Open Popup on Geocode Focus'),
-        '#type' => 'checkbox',
-        '#default_value' => $settings['geocoder']['settings']['popup'] ?? $default_settings['geocoder']['settings']['popup'],
-        '#description' => $this->t('Check this to open a Popup on the Map (with the found Address) upon the Geocode Focus.'),
       ];
 
       $element['geocoder']['settings']['options'] = [
