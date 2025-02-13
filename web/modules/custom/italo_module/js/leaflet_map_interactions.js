@@ -14,7 +14,7 @@
       // React on leafletMapInit event.
       // Resizing Markers.
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
-        // If the leafletMapInit bidnn actions didn't run already.
+        // If the leafletMapInit bindings actions didn't run already.
         if (!context.leafletMapInit) {
           context.leafletMapInit = true;
           let map = lMap;

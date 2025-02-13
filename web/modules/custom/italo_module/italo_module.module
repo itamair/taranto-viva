@@ -571,3 +571,13 @@ function italo_module_config_form_builder($entity_type_id, FieldConfigInterface 
   }
 }
 
+/**
+ * Implements hook_library_info_alter().
+ *
+ * Make the leaflet_map_interactions loading before leaflet js library.
+ */
+function italo_module_library_info_alter(&$libraries, $extension) {
+  if ($extension == "leaflet") {
+    $libraries['leaflet']['dependencies'][] = 'italo_module/leaflet_map_interactions';
+  }
+}

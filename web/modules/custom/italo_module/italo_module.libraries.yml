@@ -12,8 +12,9 @@ leaflet_map_interactions:
   js:
     js/leaflet_map_interactions.js: {}
   dependencies:
-    - leaflet/leaflet
-    - geofield_311/geofield_311
+    - core/jquery
+    - core/once
+    - core/drupal
 
 leaflet_geometry_util:
   remote: https://github.com/makinacorpus/Leaflet.GeometryUtil

@@ -3,4 +3,6 @@ geofield_311:
   js:
     js/geofield_311.js: {}
   dependencies:
-    - leaflet/leaflet
+    - core/jquery
+    - core/once
+    - core/drupal
