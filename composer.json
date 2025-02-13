@@ -170,13 +170,6 @@
             },
             "drupal/viewfield": {
                 "#3381787 Getting PHP errors when setting default value": "https://www.drupal.org/files/issues/2023-08-21/3381787.patch"
-            },
-            "drupal/votingapi": {
-                "#3341513 Voting Storages does not check access on entity query": "https://git.drupalcode.org/project/votingapi/-/merge_requests/5.diff"
-            },
-            "drupal/rate": {
-                "#3331890 Voting Storages does not check access on entity query 30": "https://www.drupal.org/files/issues/2023-10-23/3331890-rate-entity-query-access-list-3.0.x-30.patch",
-                "#3331890 Voting Storages does not check access on entity query 31": "https://www.drupal.org/files/issues/2023-10-25/3331890-rate-entity-query-access-list-3.0.x-31.patch.patch"
             }
         }
     },
