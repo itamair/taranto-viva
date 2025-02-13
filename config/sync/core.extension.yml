@@ -8,7 +8,6 @@ module:
   automated_cron: 0
   backup_migrate: 0
   better_exposed_filters: 0
-  big_pipe: 0
   blazy: 0
   block: 0
   block_content: 0
@@ -74,6 +73,7 @@ module:
   jquery_ui_datepicker: 0
   jquery_ui_slider: 0
   jquery_ui_touch_punch: 0
+  js_cookie: 0
   jsonapi: 0
   jsonapi_extras: 0
   language: 0

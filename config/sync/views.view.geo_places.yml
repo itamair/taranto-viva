@@ -6108,7 +6108,7 @@ display:
           grouping:
             -
               field: field_category_type
-              rendered: true
+              rendered: 1
               overlays_options:
                 disabled_overlays:
                   Immagini: Immagini
@@ -6118,32 +6118,46 @@ display:
             field_geofield_1: field_geofield_1
           entity_source: __base_table
           entity_source_submit: 'Update Entity Source'
+          leaflet_tooltip:
+            value: title
+            options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"top","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           name_field: title
+          leaflet_popup:
+            value: leaflet_popup_rendered_entity
+            view_mode: leaflet_popup
+            options: '{"autoPan":true,"maxWidth":400}'
           leaflet_map: multilayers
           height: '80'
           height_unit: vh
-          hide_empty_map: true
-          disable_wheel: false
-          gesture_handling: false
+          hide_empty_map: 1
+          gesture_handling: 0
+          disable_wheel: 0
+          fitbounds_options: '{"padding":[0,0]}'
           reset_map:
-            control: true
+            control: 1
             options: '{"position":"topleft","title":"Reset View"}'
+          map_scale:
+            control: 1
+            options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
           map_position:
-            force: false
+            force: 0
             center:
-              lat: 42.0
-              lon: 12.0
-            zoom: 16
-            minZoom: 10
-            maxZoom: 19
-            zoomFiner: 0
+              lat: '42'
+              lon: '12'
             zoomControlPosition: topleft
+            zoom: '16'
+            minZoom: '10'
+            maxZoom: '19'
+            zoomFiner: '0'
           weight: '{{ field_zindex }}'
           icon:
             iconType: marker
             iconUrl: '{{ geomarker_icon_url }}'
             shadowUrl: ''
             className: '{{ field_classname_1 }}'
+            html: '<div></div>'
+            html_class: leaflet-map-divicon
+            circle_marker_options: '{"radius":20,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
             iconSize:
               x: '{{ field_location_icon_width }}'
               'y': '{{ field_location_icon_width }}'
@@ -6159,24 +6173,33 @@ display:
             popupAnchor:
               x: ''
               'y': ''
-            html: '<div></div>'
-            html_class: leaflet-map-divicon
-            circle_marker_options: '{"radius":20,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
           leaflet_markercluster:
-            control: true
-            options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":20,"disableClusteringAtZoom":17}'
+            control: 1
             excluded: field_exclude_from_markercluster
+            options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":20,"disableClusteringAtZoom":17}'
             include_path: 0
+          fullscreen:
+            control: 1
+            options: '{"position":"topleft","pseudoFullscreen":false}'
           path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"1.0","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
+          feature_properties:
+            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}"}'
+          locate:
+            control: 1
+            options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"},"cacheLocation":false,"tap":false}'
+            automatic: 0
           geocoder:
-            control: false
+            control: 0
             settings:
+              autocomplete:
+                placeholder: 'Search Address'
+                title: 'Search an Address on the Map'
               position: topright
-              input_size: 16
+              input_size: '16'
               providers:
                 googlemaps:
+                  checked: '1'
                   weight: '2'
-                  checked: 1
                 arcgisonline:
                   weight: '0'
                   checked: 0
@@ -6186,34 +6209,11 @@ display:
                 photon:
                   weight: '0'
                   checked: 0
-              min_terms: 4
-              delay: 800
-              zoom: 16
-              popup: true
+              min_terms: '4'
+              delay: '800'
+              zoom: '16'
+              popup: 1
               options: ''
-              autocomplete:
-                placeholder: 'Search Address'
-                title: 'Search an Address on the Map'
-          leaflet_tooltip:
-            value: title
-            options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"top","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
-          leaflet_popup:
-            value: leaflet_popup_rendered_entity
-            view_mode: leaflet_popup
-            options: '{"autoPan":true,"maxWidth":400}'
-          fitbounds_options: '{"padding":[0,0]}'
-          map_scale:
-            control: 1
-            options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
-          fullscreen:
-            control: 1
-            options: '{"position":"topleft","pseudoFullscreen":false}'
-          feature_properties:
-            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}"}'
-          locate:
-            control: 1
-            options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"},"cacheLocation":false,"tap":false}'
-            automatic: 0
           map_lazy_load:
             lazy_load: 1
       row:
@@ -6322,30 +6322,6 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
-        - 'config:core.entity_view_display.node.article.default'
-        - 'config:core.entity_view_display.node.article.rss'
-        - 'config:core.entity_view_display.node.article.teaser'
-        - 'config:core.entity_view_display.node.event.default'
-        - 'config:core.entity_view_display.node.event.full'
-        - 'config:core.entity_view_display.node.event.leaflet_popup'
-        - 'config:core.entity_view_display.node.event.teaser'
-        - 'config:core.entity_view_display.node.geoimage.default'
-        - 'config:core.entity_view_display.node.geoimage.leaflet_popup'
-        - 'config:core.entity_view_display.node.geoimage.leaflet_popup_2'
-        - 'config:core.entity_view_display.node.geoimage.teaser'
-        - 'config:core.entity_view_display.node.geoplace.default'
-        - 'config:core.entity_view_display.node.geoplace.full'
-        - 'config:core.entity_view_display.node.geoplace.geoplace_tile'
-        - 'config:core.entity_view_display.node.geoplace.leaflet_popup'
-        - 'config:core.entity_view_display.node.geoplace.teaser'
-        - 'config:core.entity_view_display.node.page.default'
-        - 'config:core.entity_view_display.node.page.popup'
-        - 'config:core.entity_view_display.node.page.teaser'
-        - 'config:core.entity_view_display.node.territorial_report.default'
-        - 'config:core.entity_view_display.node.territorial_report.full'
-        - 'config:core.entity_view_display.node.territorial_report.geoplace_tile'
-        - 'config:core.entity_view_display.node.territorial_report.leaflet_popup'
-        - 'config:core.entity_view_display.node.territorial_report.teaser'
         - 'config:field.storage.media.field_geofield'
         - 'config:field.storage.node.field_active_type'
         - 'config:field.storage.node.field_category_type'
