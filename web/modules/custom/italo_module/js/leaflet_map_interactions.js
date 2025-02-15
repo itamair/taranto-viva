@@ -268,10 +268,20 @@
       // Specific Map Overlays visibility on Zoom end.
       const zoomLevel = map.getZoom();
       if (zoomLevel > 13) {
-        Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].remove();
+        if(Drupal.Leaflet[mapid].overlays["Zone e Quartieri"]) {
+          Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].remove();
+        }
+        if(Drupal.Leaflet[mapid].overlays["Areas and quarters"]) {
+          Drupal.Leaflet[mapid].overlays["Areas and quarters"].remove();
+        }
       }
       else {
-        Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].addTo(map);
+        if(Drupal.Leaflet[mapid].overlays["Zone e Quartieri"]) {
+          Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].addTo(map);
+        }
+        if(Drupal.Leaflet[mapid].overlays["Areas and quarters"]) {
+          Drupal.Leaflet[mapid].overlays["Areas and quarters"].addTo(map);
+        }
       }
     },
 

@@ -7,6 +7,7 @@ dependencies:
     - filter.format.restricted_html
     - media.type.geoimage
   module:
+    - ai
     - comment
     - contact
     - field_permissions
@@ -35,6 +36,8 @@ permissions:
   - 'access site-wide contact form'
   - 'access toolbar'
   - 'access user profiles'
+  - 'administer ai'
+  - 'administer ai providers'
   - 'cast rate vote on field_comments on node of territorial_report'
   - 'cast rate vote on node of territorial_report'
   - 'create geoimage media'

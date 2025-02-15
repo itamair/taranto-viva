@@ -19,3 +19,4 @@ io:
   threshold: '0'
   disconnect: false
 extras: {  }
+max_region_count: 0

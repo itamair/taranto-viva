@@ -864,6 +864,7 @@ display:
                 advanced:
                   placeholder_text: ''
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
               bundle:
                 plugin_id: default
@@ -871,7 +872,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
               status:
                 plugin_id: default
@@ -879,7 +882,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
               langcode:
                 plugin_id: default
@@ -887,7 +892,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
               field_generate_host_content_value:
                 plugin_id: default
@@ -895,7 +902,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
       access:
         type: perm

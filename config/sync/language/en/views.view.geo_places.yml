@@ -9,3 +9,17 @@ display:
   page_geoplaces_grid:
     display_options:
       title: 'Places of Interest'
+      header:
+        result:
+          content: 'Results @start - @end of @total'
+      menu:
+        title: 'Places of Interest'
+      filters:
+        title:
+          expose:
+            label: Title
+  page_map_taranto_viva:
+    display_options:
+      title: 'Home | Map'
+      menu:
+        title: 'Home | Map'
