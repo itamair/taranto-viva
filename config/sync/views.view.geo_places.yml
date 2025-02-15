@@ -6120,6 +6120,7 @@ display:
               overlays_options:
                 disabled_overlays:
                   Immagini: Immagini
+                  Images: Images
                 hidden_overlays_controls: {  }
           data_source:
             field_geofield: field_geofield
