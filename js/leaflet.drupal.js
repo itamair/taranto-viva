@@ -693,20 +693,7 @@
    */
   Drupal.Leaflet.prototype.create_divicon = function (options) {
     let html_class = options['html_class'] || '';
-    let icon = new L.DivIcon({html: options.html, className: html_class});
-
-    // override applicable marker defaults
-    if (options.iconSize) {
-      icon.options.iconSize = new L.Point(parseInt(options.iconSize.x, 10), parseInt(options.iconSize.y, 10));
-    }
-    if (options.iconAnchor && options.iconAnchor.x && options.iconAnchor.y) {
-      icon.options.iconAnchor = new L.Point(parseInt(options.iconAnchor.x), parseInt(options.iconAnchor.y));
-    }
-    if (options.popupAnchor && !isNaN(options.popupAnchor.x) && !isNaN(options.popupAnchor.y)) {
-      icon.options.popupAnchor = new L.Point(parseInt(options.popupAnchor.x), parseInt(options.popupAnchor.y));
-    }
-
-    return icon;
+    return new L.DivIcon({html: options.html, className: html_class});
   };
 
   /**
