@@ -101,7 +101,7 @@ class LeafletService {
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The stream wrapper manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
-   *   The cache backend default service.
+   *   The cache backend leaflet service.
    * @param \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator
    *   The file URL generator.
    */
@@ -423,10 +423,14 @@ class LeafletService {
       $url = $this->generateAbsoluteString($url);
 
       // Use the cached size if present for this URL.
-      $cache = &drupal_static("$cachePrefix:$url");
-      if (is_array($cache) && array_key_exists('x', $cache) && array_key_exists('y', $cache)) {
-        $feature["icon"][$sizeKey]["x"] = $cache['x'];
-        $feature["icon"][$sizeKey]["y"] = $cache['y'];
+      $page_cache = &drupal_static("$cachePrefix:$url");
+      if (is_array($page_cache) && array_key_exists('x', $page_cache) && array_key_exists('y', $page_cache)) {
+        $feature["icon"][$sizeKey]["x"] = $page_cache['x'];
+        $feature["icon"][$sizeKey]["y"] = $page_cache['y'];
+      }
+      elseif ($cached = $this->cache->get('leaflet_map_icon_size:' . $url)) {
+        $feature["icon"][$sizeKey]["x"] = $cached->data['x'];
+        $feature["icon"][$sizeKey]["y"] = $cached->data['y'];
       }
       elseif ($this->fileExists($url)) {
         $fileParts = pathinfo($url);
@@ -462,8 +466,11 @@ class LeafletService {
               }
             }
         }
-        // Cache the size.
-        $cache = $feature["icon"][$sizeKey];
+        // Set the size in the page cache.
+        $page_cache = $feature["icon"][$sizeKey];
+
+        // Set the feature icon size in the backend cache.
+        $this->cache->set('leaflet_map_icon_size:' . $url, $feature["icon"][$sizeKey]);
       }
     }
   }
