@@ -418,7 +418,7 @@ class LeafletService {
   private function setSizeIfEmptyOrInvalid(array &$feature, string $type, string $urlKey, string $sizeKey, string $cachePrefix) {
     $url = $feature["icon"][$urlKey] ?? NULL;
     if (!empty($url) && isset($feature["icon"][$sizeKey])
-      && intval($feature["icon"][$sizeKey]["x"]) === 0 && intval($feature["icon"][$sizeKey]["y"]) === 0) {
+      && (intval($feature["icon"][$sizeKey]["x"]) === 0 || intval($feature["icon"][$sizeKey]["y"]) === 0)) {
 
       $url = $this->generateAbsoluteString($url);
 
@@ -436,14 +436,30 @@ class LeafletService {
             $attr = $xml ? $xml->attributes() : NULL;
             $size_x = !is_null($attr) && !empty($attr->width) ? intval($attr->width->__toString()) : 40;
             $size_y = !is_null($attr) && !empty($attr->height) ? intval($attr->height->__toString()) : 40;
-            $feature["icon"][$sizeKey]["x"] = $size_x;
-            $feature["icon"][$sizeKey]["y"] = $size_y;
+            if (empty($feature["icon"][$sizeKey]["x"]) && !empty($feature["icon"][$sizeKey]["y"])) {
+              $feature["icon"][$sizeKey]["x"] = intval($feature["icon"][$sizeKey]["y"] * $size_x / $size_y);
+            }
+            elseif (!empty($feature["icon"][$sizeKey]["x"]) && empty($feature["icon"][$sizeKey]["y"])) {
+              $feature["icon"][$sizeKey]["y"] = intval($feature["icon"][$sizeKey]["x"] * $size_y / $size_x);
+            }
+            else {
+              $feature["icon"][$sizeKey]["x"] = $size_x;
+              $feature["icon"][$sizeKey]["y"] = $size_y;
+            }
             break;
 
           default:
             if ($size = getimagesize($url)) {
-              $feature["icon"][$sizeKey]["x"] = $size[0];
-              $feature["icon"][$sizeKey]["y"] = $size[1];
+              if (empty($feature["icon"][$sizeKey]["x"]) && !empty($feature["icon"][$sizeKey]["y"])) {
+                $feature["icon"][$sizeKey]["x"] = intval($feature["icon"][$sizeKey]["y"] * $size[0] / $size[1]);
+              }
+              elseif (!empty($feature["icon"][$sizeKey]["x"]) && empty($feature["icon"][$sizeKey]["y"])) {
+                $feature["icon"][$sizeKey]["y"] = intval($feature["icon"][$sizeKey]["x"] * $size[1] / $size[0]);
+              }
+              else {
+                $feature["icon"][$sizeKey]["x"] = $size[0];
+                $feature["icon"][$sizeKey]["y"] = $size[1];
+              }
             }
         }
         // Cache the size.
