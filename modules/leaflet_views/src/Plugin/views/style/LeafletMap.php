@@ -879,7 +879,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     }
 
     if (!empty($geofield_names) && (!empty($this->view->result) || !$this->options['hide_empty_map'])) {
-      $this->renderFields($this->view->result);
 
       // Group the rows according to the grouping instructions, if specified.
       $view_results_groups = $this->renderGrouping(
