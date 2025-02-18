@@ -11,7 +11,7 @@
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 1px;
+  border-radius: 1px !important;
   .leaflet-popup-content {
     position: relative;
     margin: 4px;

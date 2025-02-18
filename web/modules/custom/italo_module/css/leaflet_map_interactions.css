@@ -11,7 +11,7 @@
 
 /* line 13, ../sass/leaflet_map_interactions.scss */
 .leaflet-popup-content-wrapper {
-  border-radius: 1px;
+  border-radius: 1px !important;
 }
 /* line 15, ../sass/leaflet_map_interactions.scss */
 .leaflet-popup-content-wrapper .leaflet-popup-content {
