@@ -2618,6 +2618,7 @@ display:
           geocoder:
             control: true
             settings:
+              popup: true
               autocomplete:
                 placeholder: 'Search Address'
                 title: 'Search an Address on the Map'
@@ -2639,7 +2640,6 @@ display:
               min_terms: 4
               delay: 800
               zoom: 16
-              popup: true
               options: ''
           map_lazy_load:
             lazy_load: false
@@ -4635,36 +4635,35 @@ display:
           relationship: field_components
           group_type: group
           admin_label: ''
-          plugin_id: field
           label: ''
-          exclude: true
+          exclude: 1
           alter:
-            alter_text: false
+            alter_text: 0
             text: ''
-            make_link: false
+            make_link: 0
             path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
+            absolute: 0
+            external: 0
+            replace_spaces: 0
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: 0
             alt: ''
             rel: ''
             link_class: ''
             prefix: ''
             suffix: ''
             target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
+            nl2br: 0
+            max_length: '0'
+            word_boundary: 1
+            ellipsis: 1
+            more_link: 0
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
-            trim: false
+            strip_tags: 0
+            trim: 0
             preserve_tags: ''
-            html: false
+            html: 0
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -4672,11 +4671,11 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
+          element_default_classes: 1
+          empty: '50'
+          hide_empty: 0
+          empty_zero: 0
+          hide_alter_empty: 1
           click_sort_column: value
           type: number_unformatted
           settings: {  }
@@ -4689,7 +4688,8 @@ display:
           delta_first_last: false
           multi_type: separator
           separator: ', '
-          field_api_classes: false
+          field_api_classes: 0
+          plugin_id: field
         field_arrowed:
           id: field_arrowed
           table: paragraph__field_arrowed
@@ -6113,6 +6113,11 @@ display:
       style:
         type: geofield_311_leaflet_map
         options:
+          data_source:
+            field_geofield: field_geofield
+            field_geofield_1: field_geofield_1
+          entity_source: __base_table
+          entity_source_submit: 'Update Entity Source'
           grouping:
             -
               field: field_category_type
@@ -6122,11 +6127,6 @@ display:
                   Immagini: Immagini
                   Images: Images
                 hidden_overlays_controls: {  }
-          data_source:
-            field_geofield: field_geofield
-            field_geofield_1: field_geofield_1
-          entity_source: __base_table
-          entity_source_submit: 'Update Entity Source'
           leaflet_tooltip:
             value: title
             options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"top","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
@@ -6169,7 +6169,7 @@ display:
             circle_marker_options: '{"radius":20,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
             iconSize:
               x: '{{ field_location_icon_width }}'
-              'y': '{{ field_location_icon_width }}'
+              'y': ''
             iconAnchor:
               x: ''
               'y': ''
@@ -6200,6 +6200,7 @@ display:
           geocoder:
             control: 0
             settings:
+              popup: 1
               autocomplete:
                 placeholder: 'Search Address'
                 title: 'Search an Address on the Map'
@@ -6221,7 +6222,6 @@ display:
               min_terms: '4'
               delay: '800'
               zoom: '16'
-              popup: 1
               options: ''
           map_lazy_load:
             lazy_load: 1
