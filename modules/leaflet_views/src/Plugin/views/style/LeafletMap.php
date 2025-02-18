@@ -1127,10 +1127,10 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                       // Transforms Icon Options that support Replacement
                       // Patterns/Tokens.
                       if (!empty($this->options["icon"]["iconSize"]["x"])) {
-                        $feature['icon']["iconSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["x"], $tokens);
+                        $feature['icon']["iconSize"]["x"] = intval($this->viewsTokenReplace($this->options["icon"]["iconSize"]["x"], $tokens));
                       }
                       if (!empty($this->options["icon"]["iconSize"]["y"])) {
-                        $feature['icon']["iconSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["iconSize"]["y"], $tokens);
+                        $feature['icon']["iconSize"]["y"] = intval($this->viewsTokenReplace($this->options["icon"]["iconSize"]["y"], $tokens));
                       }
                       if (!empty($this->options["icon"]["iconAnchor"]["x"])) {
                         $feature['icon']["iconAnchor"]["x"] = $this->viewsTokenReplace($this->options["icon"]["iconAnchor"]["x"], $tokens);
@@ -1145,10 +1145,10 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
                         $feature['icon']["popupAnchor"]["y"] = $this->viewsTokenReplace($this->options["icon"]["popupAnchor"]["y"], $tokens);
                       }
                       if (!empty($this->options["icon"]["shadowSize"]["x"])) {
-                        $feature['icon']["shadowSize"]["x"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["x"], $tokens);
+                        $feature['icon']["shadowSize"]["x"] = intval($this->viewsTokenReplace($this->options["icon"]["shadowSize"]["x"], $tokens));
                       }
                       if (!empty($this->options["icon"]["shadowSize"]["y"])) {
-                        $feature['icon']["shadowSize"]["y"] = $this->viewsTokenReplace($this->options["icon"]["shadowSize"]["y"], $tokens);
+                        $feature['icon']["shadowSize"]["y"] = intval($this->viewsTokenReplace($this->options["icon"]["shadowSize"]["y"], $tokens));
                       }
 
                       switch ($icon_type) {
