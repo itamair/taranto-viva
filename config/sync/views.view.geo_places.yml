@@ -2590,7 +2590,7 @@ display:
             className: '{{ field_classname_1 }}'
             iconSize:
               x: '{{ field_location_icon_width }}'
-              'y': '{{ field_location_icon_width }}'
+              'y': ''
             iconAnchor:
               x: ''
               'y': ''
@@ -6132,7 +6132,7 @@ display:
             options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"top","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           name_field: title
           leaflet_popup:
-            value: leaflet_popup_rendered_entity
+            value: geomarker_icon_url
             view_mode: leaflet_popup
             options: '{"autoPan":true,"maxWidth":400}'
           leaflet_map: multilayers
