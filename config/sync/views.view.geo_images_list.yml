@@ -114,7 +114,7 @@ display:
           alter:
             alter_text: false
             text: Ciccio
-            make_link: false
+            make_link: true
             path: 'node/{{ nid }}'
             absolute: false
             external: false
