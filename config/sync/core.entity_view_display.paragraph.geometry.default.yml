@@ -79,6 +79,7 @@ content:
         minZoom: 3
         maxZoom: 18
         zoomFiner: -1
+      weight: null
       icon:
         iconType: marker
         iconUrl: ''
@@ -115,6 +116,7 @@ content:
       geocoder:
         control: true
         settings:
+          popup: false
           position: topright
           input_size: 25
           providers:
@@ -130,11 +132,9 @@ content:
           min_terms: 4
           delay: 800
           zoom: 16
-          popup: false
           options: ''
       map_lazy_load:
         lazy_load: false
-      weight: null
     third_party_settings: {  }
     weight: 1
     region: content
