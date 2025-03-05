@@ -139,10 +139,15 @@
                 }
               });
 
-              // NOTE: don't change this trigger arguments print, for back porting
-              // compatibility.
+              // Define and Trigger 'leafletMapInit' event to let other modules
+              // and custom js libraries to bind & rect on Leaflet Map
+              // generation and extend & interact with its definition,
+              // properties and contents / features.
+              // NOTE: don't change this trigger arguments,
+              // to preserve backwards compatibility.
               $(document).trigger('leafletMapInit', [data.map, data.lMap, mapid, data.markers]);
-              // (Keep also the pre-existing event for back port compatibility)
+              // NOTE: Keep also this pre-existing event for backwards
+              // compatibility with Leaflet < 2.1.0.
               $(document).trigger('leaflet.map', [data.map, data.lMap, mapid, data.markers]);
             }
           }
@@ -656,7 +661,7 @@
 
     // Apply Icon properties
     // @see https://leafletjs.com/reference.html#icon
-    
+
     // Icon Size.
     if (options.iconSize) {
       icon_options.iconSize = new L.Point(parseInt(options.iconSize.x), parseInt(options.iconSize.y));
