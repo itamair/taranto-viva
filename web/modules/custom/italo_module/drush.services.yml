@@ -1,0 +1,6 @@
+services:
+ italo_module.commands:
+    class: Drupal\italo_module\Commands\CustomDrushCommands
+    arguments: ['@entity_type.manager']
+    tags:
+      - {name: drush.command}
