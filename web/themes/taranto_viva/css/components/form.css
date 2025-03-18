@@ -155,7 +155,7 @@ tr .form-item,
 
 .form-actions .button,
 .form-actions .action-link {
-  margin-block: var(--sp0-5);
+  margin-block: var(--sp1);
 }
 
 .form-actions .ajax-progress--throbber {
