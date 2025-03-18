@@ -130,7 +130,7 @@ a, a.link {
 /* line 116, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places .field--name-field-address,
 .view-territorial-reports.view-id-territorial_reports .field--name-field-address {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-bottom: 0.2rem;
 }
 

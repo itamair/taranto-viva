@@ -36,7 +36,6 @@ Drupal.Leaflet.prototype.extend_map_bounds = function(lFeature, feature) {
  *   The Leaflet Feature
  * @param feature
  *   The Feature coming from Drupal settings.
- *   The Feature coming from Drupal settings.
  */
 Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
   if (!this.permanent_tooltip_features) {

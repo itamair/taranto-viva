@@ -14,42 +14,39 @@
       // React on leafletMapInit event.
       // Resizing Markers.
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
-        // If the leafletMapInit bindings actions didn't run already.
-        if (!context.leafletMapInit) {
-          context.leafletMapInit = true;
-          let map = lMap;
-          const markers = Drupal.Leaflet[mapid].markers;
-          const features = Drupal.Leaflet[mapid].features;
-          const markersOriginalSizes = self.setMarkersOriginalSizes(markers);
+        context.leafletMapInit = true;
+        let map = lMap;
+        const markers = Drupal.Leaflet[mapid].markers;
+        const features = Drupal.Leaflet[mapid].features;
+        const markersOriginalSizes = self.setMarkersOriginalSizes(markers);
 
-          // Trigger/Process Initial Actions
-          self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
+        // Trigger/Process Initial Actions
+        self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
+
+        // Set Overlays Visibility, depending on Map Zoom;
+        self.setOverlaysVisibility(mapid, map);
+
+        // Set Actions on every Zoom End
+        map.on('zoomend', function () {
+          // Markers resize on Zoomend.
+          self.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
 
           // Set Overlays Visibility, depending on Map Zoom;
           self.setOverlaysVisibility(mapid, map);
 
-          // Set Actions on every Zoom End
-          map.on('zoomend', function () {
-            // Markers resize on Zoomend.
-            self.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
+          self.setPermanentTooltipVisibility(mapid, map);
+        });
 
-            // Set Overlays Visibility, depending on Map Zoom;
-            self.setOverlaysVisibility(mapid, map);
-
-            self.setPermanentTooltipVisibility(mapid, map);
-          });
-
-          // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
-          map.on('fullscreenchange', function () {
-            if (map.isFullscreen()) {
-              // Set to 1 the zIndex of the header not to stay over the fullscreen Leaflet Map.
-              $("header.site-header").css('z-index', 1);
-            } else {
-              // Set to 101 the zIndex of the header to stay over the fullscreen Leaflet Map.
-              $("header.site-header").css('z-index', 101);
-            }
-          });
-        }
+        // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
+        map.on('fullscreenchange', function () {
+          if (map.isFullscreen()) {
+            // Set to 1 the zIndex of the header not to stay over the fullscreen Leaflet Map.
+            $("header.site-header").css('z-index', 1);
+          } else {
+            // Set to 101 the zIndex of the header to stay over the fullscreen Leaflet Map.
+            $("header.site-header").css('z-index', 101);
+          }
+        });
       });
 
       // Interact with each feature created and added to the map.
@@ -213,16 +210,16 @@
           if (features.hasOwnProperty(i) && features[i] && features[i]['properties'] && features[i]['properties'].length > 0) {
             const properties = JSON.parse(features[i]['properties']);
 
-/*            if (properties['min_zoom_visibility'] && zoomLevel <= properties['min_zoom_visibility']) {
-              map.removeLayer(markers[i]);
-              if (hidden_marker_index === -1) {
-                self.hidden_markers.push(i);
-              }
-            }
-            else if (markers.hasOwnProperty(i) && hidden_marker_index > -1) {
-              markers[i].addTo(map);
-              self.hidden_markers.splice(hidden_marker_index, 1);
-            }*/
+            /*            if (properties['min_zoom_visibility'] && zoomLevel <= properties['min_zoom_visibility']) {
+                          map.removeLayer(markers[i]);
+                          if (hidden_marker_index === -1) {
+                            self.hidden_markers.push(i);
+                          }
+                        }
+                        else if (markers.hasOwnProperty(i) && hidden_marker_index > -1) {
+                          markers[i].addTo(map);
+                          self.hidden_markers.splice(hidden_marker_index, 1);
+                        }*/
 
             // Set Feature Zoom Visibility Range, if properties['min_zoom_visibility'] is set.
             if (properties['zoom_visibility_range']) {
@@ -297,12 +294,18 @@
       const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features ?? [];
       if (zoomLevel > 15) {
         for (const permanent_tooltip_feature of permanent_tooltip_features) {
-          permanent_tooltip_feature.closeTooltip();
+          let tooltip = permanent_tooltip_feature.getTooltip();
+          let tooltip_options = tooltip.options;
+          tooltip.options.permanent = false;
+          permanent_tooltip_feature.bindTooltip(tooltip.getContent(), tooltip.options);
         }
       }
       else {
         for (const permanent_tooltip_feature of permanent_tooltip_features) {
-          permanent_tooltip_feature.openTooltip();
+          let tooltip = permanent_tooltip_feature.getTooltip();
+          let tooltip_options = tooltip.options;
+          tooltip.options.permanent = true;
+          permanent_tooltip_feature.bindTooltip(tooltip.getContent(), tooltip.options);
         }
       }
     }
