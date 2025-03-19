@@ -696,7 +696,7 @@ display:
           text_input_required_format: basic_html
           bef:
             general:
-              autosubmit: true
+              autosubmit: false
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_hide: true
@@ -723,6 +723,16 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
+              field_category_type_target_id:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
               status:
                 plugin_id: default
                 advanced:
@@ -737,6 +747,25 @@ display:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+              field_project_namespace_target_id:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+              field_zoom_visibility_target_id:
+                plugin_id: default
+                advanced:
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
@@ -1214,7 +1243,7 @@ display:
           admin_label: author
           plugin_id: standard
           required: true
-      use_ajax: true
+      use_ajax: false
       show_admin_links: false
       header:
         result:

@@ -108,7 +108,7 @@ class ComponentsWithTitleEntityFormatter extends EntityReferenceRevisionsEntityF
       '#title' => [
         $elements_titled ?? '',
       ],
-      '#url' => $parent_entity->toUrl(),
+      '#url' => $parent_entity ? $parent_entity->toUrl() : NULL,
       '#attributes' => [
         'class' => 'node_title',
       ],

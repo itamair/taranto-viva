@@ -39,9 +39,11 @@ dependencies:
     - paragraphs.paragraphs_type.location
     - system.menu.main
     - taxonomy.vocabulary.place_types
+    - taxonomy.vocabulary.places_categories
     - taxonomy.vocabulary.project_namespace
     - user.role.authenticated
   content:
+    - 'taxonomy_term:places_categories:a841baac-2165-4eb1-8954-60c0a0bf78b6'
     - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
     - 'taxonomy_term:project_namespace:fd033224-7769-47a7-a698-8fa79b4f0dd3'
   module:
@@ -3541,7 +3543,22 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
-      sorts: {  }
+      sorts:
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       filters:
         status:
           id: status
@@ -3697,6 +3714,7 @@ display:
           operator: in
           value:
             geoimage: geoimage
+            geometry: geometry
             image: image
             location: location
           group: 1
@@ -3772,6 +3790,52 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_category_type_target_id:
+          id: field_category_type_target_id
+          table: node__field_category_type
+          field: field_category_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: not
+          value:
+            62: 62
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: places_categories
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       filter_groups:
         operator: AND
         groups:
