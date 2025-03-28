@@ -1,4 +1,4 @@
-visibility_pages: 'admin/*'
+visibility_pages: '<front>'
 enable: '1'
 title: 'Taranto Viva Introduction '
 body:
