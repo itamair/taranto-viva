@@ -12,4 +12,4 @@ delay: '0'
 close_delay: '0'
 cover_opacity: '70'
 style: light/popup.css
-visibility: '0'
+visibility: '1'

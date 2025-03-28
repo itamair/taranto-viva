@@ -6093,7 +6093,7 @@ display:
               rendered: 1
               overlays_options:
                 disabled_overlays:
-                  Images: Images
+                  none: none
                 hidden_overlays_controls: {  }
           leaflet_tooltip:
             value: title
