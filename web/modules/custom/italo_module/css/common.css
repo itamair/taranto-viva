@@ -248,48 +248,36 @@ a, a.link {
 
 /* line 233, ../sass/common.scss */
 #popup-message-window {
-  width: 40% !important;
-  height: 90% !important;
+  width: 90% !important;
+  max-width: 800px;
+  height: 70% !important;
 }
 
-@media only screen and (max-width: 800px) {
-  /* line 239, ../sass/common.scss */
+@media only screen and (max-width: 1000px) {
+  /* line 240, ../sass/common.scss */
   #popup-message-window {
-    width: 90% !important;
     padding: 0 20px !important;
   }
 }
-/* line 246, ../sass/common.scss */
-#popup-message-content {
-  font-family: var(--font-sans);
-  font-size: 13px;
+/* line 247, ../sass/common.scss */
+#popup-message-window h1.popup-message-title {
+  margin-top: 4px;
 }
-/* line 249, ../sass/common.scss */
-#popup-message-content .text-content {
+/* line 250, ../sass/common.scss */
+#popup-message-window #popup-message-content {
+  font-size: 16px;
+}
+/* line 253, ../sass/common.scss */
+#popup-message-window #popup-message-content .text-content {
   font-family: inherit;
   font-size: inherit;
 }
-/* line 253, ../sass/common.scss */
-#popup-message-content .field--name-field-image, #popup-message-content .field--name-field-media-image {
+/* line 258, ../sass/common.scss */
+#popup-message-window #popup-message-content .field--name-field-image, #popup-message-window #popup-message-content .field--name-field-media-image {
   padding-top: 10px;
   padding-bottom: var(--sp1);
 }
-/* line 258, ../sass/common.scss */
-#popup-message-content .node__content {
+/* line 263, ../sass/common.scss */
+#popup-message-window #popup-message-content .node__content {
   padding-block-end: var(--sp0-75);
-}
-
-@media (min-width: 43.75rem) {
-  /* line 265, ../sass/common.scss */
-  #popup-message-content .text-content {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: var(--line-height-base) !important;
-  }
-}
-@media (min-width: 62.5rem) {
-  /* line 274, ../sass/common.scss */
-  #popup-message-content .node__content {
-    padding-block-end: var(--sp0-75);
-  }
 }

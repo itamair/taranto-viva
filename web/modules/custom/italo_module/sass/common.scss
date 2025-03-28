@@ -231,49 +231,40 @@ a, a.link {
 
 // Popup Message
 #popup-message-window {
-  width: 40% !important;
-  height: 90% !important;
+  width: 90% !important;
+  max-width: 800px;
+  height: 70% !important
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   #popup-message-window {
-    width: 90% !important;
     padding: 0 20px !important;
   }
 }
 
 // popup-message-
-#popup-message-content {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  .text-content {
-    font-family:  inherit;
-    font-size: inherit;
+#popup-message-window {
+  h1.popup-message-title {
+    margin-top: 4px;
   }
-  .field--name-field-image, .field--name-field-media-image {
-    padding-top: 10px;
-    padding-bottom: var(--sp1);
-  }
-
-  .node__content {
-    padding-block-end: var(--sp0-75);
-  }
-
-}
-
-@media (min-width: 43.75rem) {
-  #popup-message-content .text-content {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: var(--line-height-base) !important;
-  }
-}
-
-@media (min-width: 62.5rem) {
   #popup-message-content {
+    font-size: 16px;
+
+    .text-content {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .field--name-field-image, .field--name-field-media-image {
+      padding-top: 10px;
+      padding-bottom: var(--sp1);
+    }
+
     .node__content {
       padding-block-end: var(--sp0-75);
     }
   }
 }
+
+
 
