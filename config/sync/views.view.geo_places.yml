@@ -38,7 +38,6 @@ dependencies:
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.location
     - system.menu.main
-    - taxonomy.vocabulary.place_types
     - taxonomy.vocabulary.places_categories
     - taxonomy.vocabulary.project_namespace
     - user.role.authenticated
@@ -5986,100 +5985,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: title_op
-            label: 'Search ...'
-            description: ''
-            use_operator: 0
-            operator: title_op
-            operator_limit_selection: 0
-            operator_list: {  }
-            identifier: title
-            required: 0
-            remember: 0
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: 0
-              content_editor: 0
-              vagante_importer: 0
-              administrator: 0
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: node
-          entity_field: title
-          plugin_id: string
-        field_location_type_target_id:
-          id: field_location_type_target_id
-          table: paragraph__field_location_type
-          field: field_location_type_target_id
-          relationship: field_components
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_location_type_target_id_op
-            label: 'Place Type'
-            description: ''
-            use_operator: 0
-            operator: field_location_type_target_id_op
-            operator_limit_selection: 0
-            operator_list: {  }
-            identifier: field_location_type_target_id
-            required: 0
-            remember: 0
-            multiple: 0
-            remember_roles:
-              authenticated: authenticated
-              anonymous: 0
-              content_editor: 0
-              vagante_importer: 0
-              administrator: 0
-            reduce: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: 0
-          type: select
-          limit: true
-          vid: place_types
-          hierarchy: false
-          error_message: 1
-          plugin_id: taxonomy_index_tid
         type_2:
           id: type_2
           table: paragraphs_item_field_data
@@ -6188,7 +6093,6 @@ display:
               rendered: 1
               overlays_options:
                 disabled_overlays:
-                  Immagini: Immagini
                   Images: Images
                 hidden_overlays_controls: {  }
           leaflet_tooltip:

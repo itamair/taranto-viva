@@ -62,6 +62,6 @@ body.is-fixed .container {
 
 @media (min-width: 43.75rem) {
   .main-content__container {
-    padding-block-start: var(--sp3);
+    padding-block-start: var(--sp2);
   }
 }

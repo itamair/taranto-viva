@@ -244,7 +244,7 @@ a, a.link {
 // popup-message-
 #popup-message-window {
   h1.popup-message-title {
-    margin-top: 4px;
+    margin-bottom: 4px;
   }
   #popup-message-content {
     font-size: 16px;
@@ -255,8 +255,7 @@ a, a.link {
     }
 
     .field--name-field-image, .field--name-field-media-image {
-      padding-top: 10px;
-      padding-bottom: var(--sp1);
+      padding-top: 6px;
     }
 
     .node__content {

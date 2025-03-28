@@ -292,7 +292,7 @@
       // Specific Permanent Tooltip visibility on Zoom end.
       const zoomLevel = map.getZoom();
       const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features ?? [];
-      if (zoomLevel > 3) {
+      if (zoomLevel > 15) {
         for (const permanent_tooltip_feature of permanent_tooltip_features) {
           let tooltip = permanent_tooltip_feature.getTooltip();
           let tooltip_options = tooltip.options;

@@ -52,6 +52,6 @@
   padding-block-start: var(--sp);
 
   @media (--md) {
-    padding-block-start: var(--sp3);
+    padding-block-start: var(--sp2);
   }
 }
