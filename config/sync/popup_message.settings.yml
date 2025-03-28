@@ -6,7 +6,7 @@ body:
   format: full_html
 height: '400'
 width: '400'
-check_cookie: '1'
+check_cookie: '0'
 expire: '0'
 delay: '0'
 close_delay: '0'
