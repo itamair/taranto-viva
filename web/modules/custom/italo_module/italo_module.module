@@ -272,7 +272,7 @@ function italo_module_node_view(array &$build, NodeInterface $node, EntityViewDi
     // If the geofields array is not empty, use it to generate the Forced
     // Leaflet Map Bounds, and pass it into attached js drupal settings.
     if (!empty($geofields)) {
-      /** @var Drupal\leaflet\LeafletService $leafletService */
+      /** @var Drupal\leaflet\LeafletServiceOverride $leafletService */
       $leafletService = \Drupal::service('leaflet.service');
       $geofields = $leafletService->leafletProcessGeofield($geofields);
 

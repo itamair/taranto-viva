@@ -1,0 +1,8 @@
+name: Leaflet Override
+description: Provides overrides to the Leaflet module.
+core_version_requirement: ^10 || ^11
+type: module
+package: Geofield
+dependencies:
+  - leaflet:leaflet
+  - pcb:pcb
