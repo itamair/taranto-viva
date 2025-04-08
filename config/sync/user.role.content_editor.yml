@@ -3,6 +3,7 @@ langcode: it
 status: true
 dependencies:
   module:
+    - ai_ckeditor
     - media_library_importer
 id: content_editor
 label: 'Content Editor'
@@ -11,3 +12,4 @@ is_admin: null
 permissions:
   - 'Configure media library importer'
   - 'Import files into media library'
+  - 'use ai ckeditor'
