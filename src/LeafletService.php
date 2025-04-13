@@ -415,7 +415,7 @@ class LeafletService {
    * @param string $cachePrefix
    *   The cache prefix.
    */
-  private function setSizeIfEmptyOrInvalid(array &$feature, string $type, string $urlKey, string $sizeKey, string $cachePrefix) {
+  protected function setSizeIfEmptyOrInvalid(array &$feature, string $type, string $urlKey, string $sizeKey, string $cachePrefix) {
     $url = $feature["icon"][$urlKey] ?? NULL;
     if (!empty($url) && isset($feature["icon"][$sizeKey])
       && (intval($feature["icon"][$sizeKey]["x"]) === 0 || intval($feature["icon"][$sizeKey]["y"]) === 0)) {
