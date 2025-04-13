@@ -280,7 +280,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    *
    * This function is called from parent::view().
    */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
+  public function viewElements(FieldItemListInterface $items, $langcode): array {
 
     /** @var \Drupal\Core\Entity\EntityInterface $entity */
     $entity = $items->getEntity();
@@ -293,7 +293,6 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $entity_type = $entity->getEntityTypeId();
     $bundle = $entity->bundle();
     $entity_id = $entity->id();
-    /** @var \Drupal\Core\Field\FieldDefinitionInterface $field */
     $field = $items->getFieldDefinition();
 
     // Sets/consider possibly existing previous Zoom settings.
@@ -363,7 +362,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       // Add/merge eventual map icon definition from hook_leaflet_map_info.
       if (!empty($map['icon'])) {
         $settings['icon'] = $settings['icon'] ?: [];
-        // Remove empty icon options so thxat they might be replaced by the
+        // Remove empty icon options so that they might be replaced by the
         // ones set by the hook_leaflet_map_info.
         foreach ($settings['icon'] as $k => $icon_option) {
           if (empty($icon_option) || (is_array($icon_option) && $this->leafletService->multipleEmpty($icon_option))) {
@@ -479,7 +478,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     if (!empty($settings['multiple_map'])) {
       foreach ($js_settings['features'] as $k => $feature) {
         $map = $js_settings['map'];
-        $map['id'] = $map['id'] . "-{$k}";
+        $map['id'] = $map['id'] . "-$k";
         $results[] = $this->leafletService->leafletRenderMap($map, [$feature], $map_height);
       }
     }
