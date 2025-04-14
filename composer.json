@@ -116,7 +116,8 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
-            }
+            },
+            "allowed-packages": ["drupal/claude_code"]
         },
         "installer-paths": {
             "web/core": [
@@ -179,6 +180,7 @@
         }
     },
     "require-dev": {
+        "drupal/claude_code": "^1.0",
         "mglaman/phpstan-drupal": "^1.2",
         "phpstan/extension-installer": "^1.3",
         "phpstan/phpstan": "^1.10",

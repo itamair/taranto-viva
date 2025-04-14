@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f9ddea0ff0ec14e7695413d8487142f",
+    "content-hash": "6140ad8b5692775edb548aeed1712cbe",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -13747,6 +13747,38 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "drupal/claude_code",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/claude_code.git",
+                "reference": "ece652afec91eb9f9edad1b4b54892370a784c98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fclaude_code/repository/archive.zip?sha=ece652afec91eb9f9edad1b4b54892370a784c98",
+                "reference": "ece652afec91eb9f9edad1b4b54892370a784c98",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "drupal-scaffold": {
+                    "file-mapping": {
+                        "[project-root]/CLAUDE.md": "assets/CLAUDE.md"
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Quick bootstrap and best practice for Claude Code within a Drupal project.",
+            "support": {
+                "source": "https://git.drupalcode.org/project/claude_code/-/tree/1.0.0"
+            },
+            "time": "2025-04-04T12:51:46+00:00"
+        },
         {
             "name": "phpstan/extension-installer",
             "version": "1.4.3",
