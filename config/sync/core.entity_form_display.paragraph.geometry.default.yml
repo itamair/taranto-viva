@@ -78,7 +78,8 @@ content:
     type: color_field_widget_html5
     weight: 10
     region: content
-    settings: {  }
+    settings:
+      show_extra: false
     third_party_settings: {  }
   field_fill_opacity:
     type: number
@@ -140,6 +141,8 @@ content:
       geocoder:
         control: true
         settings:
+          set_marker: true
+          popup: true
           autocomplete:
             placeholder: 'Search Address'
             title: 'Search an Address on the Map'
@@ -161,7 +164,6 @@ content:
           min_terms: 4
           delay: 800
           zoom: 16
-          popup: true
           options: ''
       geometry_validation: '1'
       feature_properties:
@@ -186,7 +188,8 @@ content:
     type: color_field_widget_html5
     weight: 7
     region: content
-    settings: {  }
+    settings:
+      show_extra: false
     third_party_settings: {  }
   field_stroke_opacity:
     type: number
