@@ -4,7 +4,7 @@ general:
       css/leaflet_general.css: {}
 
 leaflet:
-  remote: http://leafletjs.com/
+  remote: https://leafletjs.com
   version: 1.9.4
   license:
     name: Leaflet-License
