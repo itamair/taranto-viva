@@ -2,55 +2,70 @@
 
   'use strict';
 
+  /**
+   * Leaflet interactions behavior.
+   */
   Drupal.behaviors.leafletInteractions = {
+
+    // Default zoom level for icon sizing.
     zoomDefaultIconSize: 18,
+
+    // Stores markers that are currently hidden.
     hidden_markers: [],
+
+    /**
+     * Attaches the behavior to the context.
+     */
     attach: function(context) {
       const self = this;
+
       // Define a boolean leafletMapInit in the context, so not to perform same
-      // bind actions more than ones
+      // bind actions more than ones.
       context.leafletMapInit = false;
 
       // React on leafletMapInit event.
       // Resizing Markers.
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
+        if (context.leafletMapInit) {
+          return;
+        }
+
         context.leafletMapInit = true;
-        let map = lMap;
-        const markers = Drupal.Leaflet[mapid].markers;
-        const features = Drupal.Leaflet[mapid].features;
+        const map = lMap;
+        const markers = Drupal.Leaflet?.[mapid]?.markers || {};
+        const features = Drupal.Leaflet?.[mapid]?.features || {};
         const markersOriginalSizes = self.setMarkersOriginalSizes(markers);
 
-        // Trigger/Process Initial Actions
+        // Trigger/Process Initial Actions.
         self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
 
-        // Set Overlays Visibility, depending on Map Zoom;
+        // Set Overlays Visibility, depending on Map Zoom.
         self.setOverlaysVisibility(mapid, map);
 
-        // Set Actions on every Zoom End
+        // Set Actions on every Zoom End.
         map.on('zoomend', function () {
           // Markers resize on Zoomend.
           self.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
 
-          // Set Overlays Visibility, depending on Map Zoom;
+          // Set Overlays Visibility, depending on Map Zoom.
           self.setOverlaysVisibility(mapid, map);
 
+          // Set Tooltip Visibility, depending on Map Zoom.
           self.setPermanentTooltipVisibility(mapid, map);
         });
 
         // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
         map.on('fullscreenchange', function () {
-          if (map.isFullscreen()) {
-            // Set to 1 the zIndex of the header not to stay over the fullscreen Leaflet Map.
-            $("header.site-header").css('z-index', 1);
-          } else {
-            // Set to 101 the zIndex of the header to stay over the fullscreen Leaflet Map.
-            $("header.site-header").css('z-index', 101);
-          }
+          // Toggle header z-index based on fullscreen state.
+          $("header.site-header").css('z-index', map.isFullscreen() ? 1 : 101);
         });
       });
 
       // Interact with each feature created and added to the map.
       $(context).on('leaflet.feature', function(e, lFeature, feature, add_features, layers_groups = null) {
+        if (!feature) {
+          return;
+        }
 
         // Add Arrows effect to Paths.
         if (feature.type !== 'point' && feature.path) {
@@ -59,31 +74,48 @@
             lFeature.arrowheads({size: '7%'});
           }
         }
-
         // Pulsing Markers.
-        else if (feature['properties'] && feature['properties'].length > 0) {
-          const properties = JSON.parse(feature['properties']);
-          if ((properties['active_status'] && parseInt(properties['active_status']) === 1) && (properties['active_type'] && properties['active_type'].length > 0)) {
-            const pulsing_type = properties['active_type'];
-            const pulsing_marker = new L.Marker(new L.LatLng(feature.lat, feature.lon), {
-              icon: L.divIcon({
-                className: pulsing_type + ' pulsing-marker',
-                html: '<span class="pulsing-marker dot"></span>',
-              }),
-              iconSize: [100, 100]
-            })
-            if (typeof pulsing_marker !== 'undefined') {
-              Drupal.Leaflet.prototype.feature_bind_popup(pulsing_marker, feature);
-              if (layers_groups && layers_groups.unclustered && feature.group_label && layers_groups.unclustered.hasOwnProperty(feature.group_label)) {
-                pulsing_marker.addTo(layers_groups.unclustered[feature.group_label]);
-              }
-              else if (layers_groups && feature.group_label && layers_groups.hasOwnProperty(feature.group_label)) {
-                pulsing_marker.addTo(layers_groups[feature.group_label]);
-              }
-              else {
-                pulsing_marker.addTo(add_features.lMap);
+        else if (feature.properties && feature.properties.length > 0) {
+          try {
+            const properties = JSON.parse(feature.properties);
+
+            // Check if feature should have a pulsing marker.
+            if (properties['active_status'] &&
+              parseInt(properties['active_status']) === 1 &&
+              properties['active_type'] &&
+              properties['active_type'].length > 0) {
+
+              const pulsing_type = properties['active_type'];
+              const pulsing_marker = new L.Marker(new L.LatLng(feature.lat, feature.lon), {
+                icon: L.divIcon({
+                  className: pulsing_type + ' pulsing-marker',
+                  html: '<span class="pulsing-marker dot"></span>',
+                }),
+                iconSize: [100, 100]
+              });
+
+              // Add the pulsing marker to the map.
+              if (pulsing_marker) {
+                Drupal.Leaflet.prototype.feature_bind_popup(pulsing_marker, feature);
+
+                // Add marker to appropriate layer group.
+                if (layers_groups?.unclustered &&
+                  feature.group_label &&
+                  layers_groups.unclustered.hasOwnProperty(feature.group_label)) {
+                  pulsing_marker.addTo(layers_groups.unclustered[feature.group_label]);
+                }
+                else if (layers_groups &&
+                  feature.group_label &&
+                  layers_groups.hasOwnProperty(feature.group_label)) {
+                  pulsing_marker.addTo(layers_groups[feature.group_label]);
+                }
+                else if (add_features?.lMap) {
+                  pulsing_marker.addTo(add_features.lMap);
+                }
               }
             }
+          } catch (error) {
+            console.warn('Error parsing feature properties:', error);
           }
         }
 
@@ -100,38 +132,70 @@
     /**
      * Process all Initial Action.
      *
-     * @param mapid
-     * @param map
-     * @param features
-     * @param markers
-     * @param markersOriginalSizes
+     * @param {string} mapid
+     *   The map ID.
+     * @param {object} map
+     *   The Leaflet map object.
+     * @param {object} features
+     *   The features collection.
+     * @param {object} markers
+     *   The markers collection.
+     * @param {object} markersOriginalSizes
+     *   Original sizes of markers.
      */
     processInitialActions: function(mapid, map, features, markers, markersOriginalSizes) {
-      const self = this;
       // Trigger an Initial React on Zoom End function.
-      self.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
+      this.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
+
       // Ajax Import all Markers Popups.
-      self.ajaxImportAllMarkersPopups(markers);
+      this.ajaxImportAllMarkersPopups(markers);
     },
 
+    /**
+     * Import all marker popups via AJAX.
+     *
+     * @param {object} markers
+     *   The markers collection.
+     */
     ajaxImportAllMarkersPopups: function(markers) {
-      for (let i in markers) {
-        let popup = markers[i].getPopup();
-        if (popup) {
-          let element = document.createElement('div');
-          element.innerHTML = popup._source._popup._content;
-          let content = $('[data-leaflet-ajax-popup]', element);
-          if (content.length) {
-            let url = content.data('leaflet-ajax-popup');
-            $.get({'url': url}).done(function (response) {
-              // Not super clear where data is coming from (when),
-              // so we check all the following responses indexes.
-              const data = response[1].command === "insert" ? response[1].data : (response[2].command === "insert" ? response[2].data : null);
-              if (data) {
-                popup.setContent(data);
-              }
-            })
-          }
+      if (!markers) {
+        return;
+      }
+
+      for (const i in markers) {
+        if (!markers.hasOwnProperty(i)) {
+          continue;
+        }
+
+        const popup = markers[i].getPopup();
+        if (!popup || !popup._source || !popup._source._popup) {
+          continue;
+        }
+
+        const element = document.createElement('div');
+        element.innerHTML = popup._source._popup._content;
+        const content = $('[data-leaflet-ajax-popup]', element);
+
+        if (content.length) {
+          const url = content.data('leaflet-ajax-popup');
+
+          $.get({url: url}).done(function (response) {
+            // Not super clear where data is coming from (when),
+            // so we check all the following responses indexes.
+            let data = null;
+
+            if (response[1] && response[1].command === "insert") {
+              data = response[1].data;
+            } else if (response[2] && response[2].command === "insert") {
+              data = response[2].data;
+            }
+
+            if (data) {
+              popup.setContent(data);
+            }
+          }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.warn('Failed to load popup content:', textStatus, errorThrown);
+          });
         }
       }
     },
@@ -139,48 +203,69 @@
     /**
      * Update Icon Size.
      *
-     * @param i
-     * @param marker
-     * @param iconSizeRate
-     * @param markersOriginSizes
+     * @param {string} i
+     *   The marker index.
+     * @param {object} marker
+     *   The marker object.
+     * @param {number} iconSizeRate
+     *   The icon size rate.
+     * @param {object} markersOriginSizes
+     *   Original sizes of markers.
      */
     updateIconSize: function(i, marker, iconSizeRate, markersOriginSizes) {
-      let icon = marker.options.icon;
-      icon.options.iconSize.x = Math.ceil( markersOriginSizes[i].x*iconSizeRate);
-      icon.options.iconSize.y = Math.ceil( markersOriginSizes[i].y*iconSizeRate);
-      //icon.options.iconAnchor = new L.Point(icon.options.iconSize.x/2, icon.options.iconSize.y);
+      if (!marker || !marker.options || !marker.options.icon || !markersOriginSizes[i]) {
+        return;
+      }
+
+      const icon = marker.options.icon;
+      if (!icon.options || !icon.options.iconSize) {
+        return;
+      }
+
+      icon.options.iconSize.x = Math.ceil(markersOriginSizes[i].x * iconSizeRate);
+      icon.options.iconSize.y = Math.ceil(markersOriginSizes[i].y * iconSizeRate);
       marker.setIcon(icon);
     },
 
     /**
      * Get IconSizeRate.
      *
-     * @param zoomLevel
+     * @param {number} zoomLevel
+     *   The current zoom level.
      * @returns {number}
+     *   The icon size rate.
      */
     getIconSizeRate: function(zoomLevel) {
-      const self = this;
-      //return Math.exp(Math.sqrt(map.getZoom()));
-      return Math.pow(zoomLevel/self.zoomDefaultIconSize, 3);
+      return Math.pow(zoomLevel / this.zoomDefaultIconSize, 3);
     },
 
     /**
      * Set MarkersOriginalSizes.
      *
-     * @param markers
-     * @returns {{}}
+     * @param {object} markers
+     *   The markers collection.
+     * @returns {object}
+     *   The original marker sizes.
      */
     setMarkersOriginalSizes: function(markers) {
-      let markersOriginalSizes = {};
-      for (let i in markers) {
-        if (markers.hasOwnProperty(i) && !markers[i].setStyle) {
-          let icon = markers[i].options.icon;
+      const markersOriginalSizes = {};
+
+      for (const i in markers) {
+        if (markers.hasOwnProperty(i) &&
+          markers[i] &&
+          !markers[i].setStyle &&
+          markers[i].options &&
+          markers[i].options.icon &&
+          markers[i].options.icon.options &&
+          markers[i].options.icon.options.iconSize) {
+
           markersOriginalSizes[i] = {
-            x: icon.options.iconSize.x,
-            y: icon.options.iconSize.y,
+            x: markers[i].options.icon.options.iconSize.x,
+            y: markers[i].options.icon.options.iconSize.y,
           };
         }
       }
+
       return markersOriginalSizes;
     },
 
@@ -189,127 +274,178 @@
      *
      * Updates Marker Icon Sizes and Show/Hide Features with Zoom Limits.
      *
-     * @param mapid
-     * @param map
-     * @param features
-     * @param markers
-     * @param markersOriginalSizes
+     * @param {string} mapid
+     *   The map ID.
+     * @param {object} map
+     *   The Leaflet map object.
+     * @param {object} features
+     *   The features collection.
+     * @param {object} markers
+     *   The markers collection.
+     * @param {object} markersOriginalSizes
+     *   Original sizes of markers.
      */
     markersResizeOnZoomEnd: function(mapid, map, features, markers, markersOriginalSizes) {
+      if (!map || !features || !markers || !markersOriginalSizes) {
+        return;
+      }
+
       const self = this;
       const zoomLevel = map.getZoom();
       const iconSizeRate = this.getIconSizeRate(zoomLevel);
-      for (let i in markers) {
-        if (markers.hasOwnProperty(i)) {
-          let hidden_marker_index = self.hidden_markers.indexOf(i);
-          // Update Icon size, only in case of Points (setStyle undefined),
-          if (!markers[i].setStyle) {
-            this.updateIconSize(i, markers[i], iconSizeRate, markersOriginalSizes);
-          }
-          // Set Feature visibility, if properties['min_zoom_visibility'] is set.
-          if (features.hasOwnProperty(i) && features[i] && features[i]['properties'] && features[i]['properties'].length > 0) {
-            const properties = JSON.parse(features[i]['properties']);
 
-            /*            if (properties['min_zoom_visibility'] && zoomLevel <= properties['min_zoom_visibility']) {
-                          map.removeLayer(markers[i]);
-                          if (hidden_marker_index === -1) {
-                            self.hidden_markers.push(i);
-                          }
-                        }
-                        else if (markers.hasOwnProperty(i) && hidden_marker_index > -1) {
-                          markers[i].addTo(map);
-                          self.hidden_markers.splice(hidden_marker_index, 1);
-                        }*/
+      for (const i in markers) {
+        if (!markers.hasOwnProperty(i) || !markers[i]) {
+          continue;
+        }
 
-            // Set Feature Zoom Visibility Range, if properties['min_zoom_visibility'] is set.
+        const hidden_marker_index = self.hidden_markers.indexOf(i);
+
+        // Update Icon size, only in case of Points (setStyle undefined).
+        if (!markers[i].setStyle) {
+          this.updateIconSize(i, markers[i], iconSizeRate, markersOriginalSizes);
+        }
+
+        // Set Feature visibility, if properties are available.
+        if (features[i] && features[i].properties && features[i].properties.length > 0) {
+          try {
+            const properties = JSON.parse(features[i].properties);
+
+            // Handle zoom visibility range.
             if (properties['zoom_visibility_range']) {
               const visibility_range = properties['zoom_visibility_range'].split("-");
-              console.log(zoomLevel);
-              if ( zoomLevel <= parseInt(visibility_range[0]) || zoomLevel > parseInt(visibility_range[1])) {
+              const minZoom = parseInt(visibility_range[0], 10);
+              const maxZoom = parseInt(visibility_range[1], 10);
+
+              // Check if marker should be hidden or shown based on zoom level.
+              if (zoomLevel <= minZoom || zoomLevel > maxZoom) {
+                // Hide marker.
                 map.removeLayer(markers[i]);
-                if (markers[i].options['group_label'] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]) {
-                  for (let k in Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers) {
-                    if (markers[i].options['group_label'] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].hasOwnProperty('_markerCluster')) {
-                      Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].removeLayer(markers[i]);
+
+                // Handle marker in cluster.
+                if (markers[i].options &&
+                  markers[i].options.group_label &&
+                  Drupal.Leaflet[mapid] &&
+                  Drupal.Leaflet[mapid].overlays &&
+                  Drupal.Leaflet[mapid].overlays[markers[i].options.group_label]) {
+
+                  const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
+                  for (const k in overlays._layers) {
+                    if (overlays._layers.hasOwnProperty(k) &&
+                      overlays._layers[k] &&
+                      overlays._layers[k]._markerCluster) {
+
+                      overlays._layers[k].removeLayer(markers[i]);
                     }
                   }
                 }
+
+                // Track hidden marker.
                 if (hidden_marker_index === -1) {
                   self.hidden_markers.push(i);
                 }
               }
-              else if (markers.hasOwnProperty(i) && hidden_marker_index > -1) {
+              else if (hidden_marker_index > -1) {
+                // Show marker.
                 markers[i].addTo(map);
-                if (markers[i].options['group_label'] && Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]) {
-                  for (let k in Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers) {
-                    if (Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].hasOwnProperty('_markerCluster')) {
-                      Drupal.Leaflet[mapid].overlays[markers[i].options['group_label']]._layers[k].addLayer(markers[i]);
+
+                // Handle marker in cluster.
+                if (markers[i].options &&
+                  markers[i].options.group_label &&
+                  Drupal.Leaflet[mapid] &&
+                  Drupal.Leaflet[mapid].overlays &&
+                  Drupal.Leaflet[mapid].overlays[markers[i].options.group_label]) {
+
+                  const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
+                  for (const k in overlays._layers) {
+                    if (overlays._layers.hasOwnProperty(k) &&
+                      overlays._layers[k] &&
+                      overlays._layers[k]._markerCluster) {
+
+                      overlays._layers[k].addLayer(markers[i]);
                     }
                   }
                 }
+
+                // Remove from hidden markers.
                 self.hidden_markers.splice(hidden_marker_index, 1);
               }
             }
+          } catch (error) {
+            console.warn('Error parsing feature properties in markersResizeOnZoomEnd:', error);
           }
         }
       }
     },
 
     /**
-     * Set Overlays Visibility, depending on Map Zoom;
+     * Set Overlays Visibility, depending on Map Zoom.
      *
-     * @param mapid
-     * @param map
+     * @param {string} mapid
+     *   The map ID.
+     * @param {object} map
+     *   The Leaflet map object.
      */
     setOverlaysVisibility: function(mapid, map) {
+      if (!map || !Drupal.Leaflet || !Drupal.Leaflet[mapid] || !Drupal.Leaflet[mapid].overlays) {
+        return;
+      }
+
       // Specific Map Overlays visibility on Zoom end.
       const zoomLevel = map.getZoom();
-      if (zoomLevel > 13) {
-        if(Drupal.Leaflet[mapid].overlays["Zone e Quartieri"]) {
-          Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].remove();
-        }
-        if(Drupal.Leaflet[mapid].overlays["Areas and quarters"]) {
-          Drupal.Leaflet[mapid].overlays["Areas and quarters"].remove();
+      const overlays = Drupal.Leaflet[mapid].overlays;
+
+      // Italian layer name.
+      if (overlays["Zone e Quartieri"]) {
+        if (zoomLevel > 13) {
+          overlays["Zone e Quartieri"].remove();
+        } else {
+          overlays["Zone e Quartieri"].addTo(map);
         }
       }
-      else {
-        if(Drupal.Leaflet[mapid].overlays["Zone e Quartieri"]) {
-          Drupal.Leaflet[mapid].overlays["Zone e Quartieri"].addTo(map);
-        }
-        if(Drupal.Leaflet[mapid].overlays["Areas and quarters"]) {
-          Drupal.Leaflet[mapid].overlays["Areas and quarters"].addTo(map);
+
+      // English layer name.
+      if (overlays["Areas and quarters"]) {
+        if (zoomLevel > 13) {
+          overlays["Areas and quarters"].remove();
+        } else {
+          overlays["Areas and quarters"].addTo(map);
         }
       }
     },
 
     /**
-     * Set Overlays Visibility, depending on Map Zoom;
+     * Set Permanent Tooltip Visibility, depending on Map Zoom.
      *
-     * @param mapid
-     * @param map
+     * @param {string} mapid
+     *   The map ID.
+     * @param {object} map
+     *   The Leaflet map object.
      */
     setPermanentTooltipVisibility: function(mapid, map) {
+      if (!map || !Drupal.Leaflet || !Drupal.Leaflet[mapid]) {
+        return;
+      }
+
       // Specific Permanent Tooltip visibility on Zoom end.
       const zoomLevel = map.getZoom();
-      const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features ?? [];
-      if (zoomLevel > 15) {
-        for (const permanent_tooltip_feature of permanent_tooltip_features) {
-          let tooltip = permanent_tooltip_feature.getTooltip();
-          let tooltip_options = tooltip.options;
-          tooltip.options.permanent = false;
-          permanent_tooltip_feature.bindTooltip(tooltip.getContent(), tooltip.options);
+      const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features || [];
+      const isPermanent = zoomLevel <= 15;
+
+      for (const permanent_tooltip_feature of permanent_tooltip_features) {
+        if (!permanent_tooltip_feature) {
+          continue;
         }
-      }
-      else {
-        for (const permanent_tooltip_feature of permanent_tooltip_features) {
-          let tooltip = permanent_tooltip_feature.getTooltip();
-          let tooltip_options = tooltip.options;
-          tooltip.options.permanent = true;
-          permanent_tooltip_feature.bindTooltip(tooltip.getContent(), tooltip.options);
+
+        const tooltip = permanent_tooltip_feature.getTooltip();
+        if (!tooltip) {
+          continue;
         }
+
+        tooltip.options.permanent = isPermanent;
+        permanent_tooltip_feature.bindTooltip(tooltip.getContent(), tooltip.options);
       }
     }
-
   };
 
 })(jQuery, Drupal);
