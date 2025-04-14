@@ -26,15 +26,15 @@ use Drupal\leaflet\LeafletSettingsElementsTrait;
 use Drupal\leaflet_views\Controller\LeafletAjaxPopupController;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
-use Drupal\views\Plugin\views\display\DisplayPluginBase;
-use Drupal\views\Plugin\views\style\StylePluginBase;
-use Drupal\views\ViewExecutable;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\views\Plugin\views\PluginBase;
-use Drupal\views\Views;
 use Drupal\search_api\Plugin\search_api\data_type\value\TextValue;
 use Drupal\search_api\Plugin\views\ResultRow as SearchApiResultRow;
+use Drupal\views\Plugin\views\display\DisplayPluginBase;
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\views\ResultRow;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Views;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Style plugin to render a View output as a Leaflet map.
