@@ -44,4 +44,5 @@ class Geofield311LeafletMap extends LeafletMap {
     }
     return $element;
   }
+
 }

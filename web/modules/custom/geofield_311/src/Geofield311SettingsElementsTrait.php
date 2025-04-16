@@ -102,7 +102,7 @@ trait Geofield311SettingsElementsTrait {
    *   Widget element settings.
    */
   public function setGeojsonAppLimitWidgetElementData(array &$geojson_app_limit, array $settings) {
-    $geojson_app_limit = array_merge($geojson_app_limit, $settings["geojson_app_limit"]);
+    $geojson_app_limit = array_merge($geojson_app_limit, $settings["geojson_app_limit"] ?? []);
   }
 
 }
