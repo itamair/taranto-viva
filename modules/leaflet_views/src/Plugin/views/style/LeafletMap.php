@@ -849,6 +849,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * {@inheritdoc}
    */
   public function render() {
+    $features_group = [];
     $features_groups = [];
     $element = [];
 
@@ -891,7 +892,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       asort($view_results_groups);
 
       // Process results and create features.
-      $this->processResultsGroups($view_results_groups, $features_groups, $map, $leaflet_map_style);
+      $this->processResultsGroups($view_results_groups, $features_group, $features_groups, $map, $leaflet_map_style);
 
       // Order the data features based on the 'weight' element.
       if (isset($features_groups) && count($features_groups) > 1) {
@@ -901,7 +902,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         ]);
       }
 
-      $element = $this->buildMapRenderArray($map, $view_results_groups, $features_groups, $build_for_bubbleable_metadata);
+      $element = $this->buildMapRenderArray($map, $view_results_groups, $features_group, $features_groups, $build_for_bubbleable_metadata);
     }
 
     return $element;
@@ -912,6 +913,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *
    * @param array $view_results_groups
    *   The view results groups.
+   * @param array $features_group
+   *   The features group to populate.
    * @param array $features_groups
    *   The features groups to populate.
    * @param array $map
@@ -919,7 +922,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * @param string $leaflet_map_style
    *   The leaflet map style.
    */
-  protected function processResultsGroups(array $view_results_groups, array &$features_groups, array &$map, string $leaflet_map_style) {
+  protected function processResultsGroups(array $view_results_groups, array &$features_group, array &$features_groups, array &$map, string $leaflet_map_style) {
     foreach ($view_results_groups as $group_label => $view_results_group) {
       $features_group = [];
       // Sanitize the Group Label from Tags and invisible characters.
@@ -1614,6 +1617,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    *   The map configuration.
    * @param array $view_results_groups
    *   The view results groups.
+   * @param array $features_group
+   *   The features groups.
    * @param array $features_groups
    *   The features groups.
    * @param array $build_for_bubbleable_metadata
@@ -1622,13 +1627,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * @return array
    *   The render array.
    */
-  protected function buildMapRenderArray(array $map, array $view_results_groups, array $features_groups, array $build_for_bubbleable_metadata): array {
+  protected function buildMapRenderArray(array $map, array $view_results_groups, array $features_group, array $features_groups, array $build_for_bubbleable_metadata): array {
     // Define the JS Settings.
     // Features is defined as Features Groups or single Features depending
     // on whether grouping is active.
     $js_settings = [
       'map' => $map,
-      'features' => count($view_results_groups) > 1 ? $features_groups : ($features_group ?? []),
+      'features' => count($view_results_groups) > 1 ? $features_groups : $features_group,
     ];
 
     // Allow other modules to add/alter the map js settings.
