@@ -14,13 +14,17 @@ geofield_311.settings:
               type: string
               label: 'Geojson file location'
 
+# Schema for the views style plugins.
 views.style.geofield_311_leaflet_map:
   type: views_style
   label: 'Geofield 311 Leaflet map'
   mapping:
     data_source:
-      type: string
-      label: 'Data source'
+      type: sequence
+      label: 'Data sources'
+      sequence:
+        type: string
+        label: 'Data source'
     entity_source:
       type: string
       label: 'Entity source'
@@ -29,10 +33,27 @@ views.style.geofield_311_leaflet_map:
       label: 'Submit label for entity source'
     name_field:
       type: string
-      label: 'Name field'
-    description_field:
-      type: string
-      label: 'Description field'
+      label: 'Simple Tooltip'
+    leaflet_tooltip:
+      type: mapping
+      label: 'Tooltip Source'
+      mapping:
+        value:
+          type: string
+          label: 'Value'
+        options:
+          type: text
+          label: 'Tooltip Options'
+    leaflet_popup:
+      type: mapping
+      label: 'Popup Source'
+      mapping:
+        value:
+          type: string
+          label: 'Value'
+        options:
+          type: text
+          label: 'Popup Options'
     view_mode:
       type: string
       label: 'View mode'
@@ -51,22 +72,45 @@ views.style.geofield_311_leaflet_map:
     disable_wheel:
       type: boolean
       label: 'Disable wheel'
-    fullscreen_control:
-      type: boolean
-      label: 'Full Screen control'
     gesture_handling:
       type: boolean
       label: 'Gesture handling'
+    fitbounds_options:
+      type: text
+      label: 'FitBounds Options'
     reset_map:
       type: mapping
-      label: 'Reset map'
+      label: 'Reset Map View'
       mapping:
         control:
           type: boolean
           label: 'Control'
-        position:
-          type: string
-          label: 'Position'
+        options:
+          type: text
+          label: 'Options'
+    map_scale:
+      type: mapping
+      label: 'Map Scale Control'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+    locate:
+      type: mapping
+      label: 'Locate User Position'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
+        options:
+          type: text
+          label: 'Options'
+        automatic:
+          type: boolean
+          label: 'Automatically locate user current position'
     map_position:
       type: mapping
       label: 'Map position'
@@ -84,6 +128,9 @@ views.style.geofield_311_leaflet_map:
             lon:
               type: float
               label: 'Longitude'
+        zoomControlPosition:
+          type: string
+          label: 'Position'
         zoom:
           type: integer
           label: 'Zoom'
@@ -181,6 +228,19 @@ views.style.geofield_311_leaflet_map:
         control:
           type: boolean
           label: 'Control'
+        include_path:
+          type: boolean
+          label: 'Include Path'
+        options:
+          type: text
+          label: 'Options'
+    fullscreen:
+      type: mapping
+      label: 'Leaflet Fullscreen'
+      mapping:
+        control:
+          type: boolean
+          label: 'Control'
         options:
           type: text
           label: 'Options'
@@ -193,11 +253,24 @@ views.style.geofield_311_leaflet_map:
       mapping:
         control:
           type: boolean
-          label: 'Control'
+          label: 'Enable Geocoder map control'
         settings:
           type: mapping
-          label: 'Geocoder'
+          label: 'Geocoder settings'
           mapping:
+            popup:
+              type: boolean
+              label: 'Popup'
+            autocomplete:
+              type: mapping
+              label: 'Autocomplete'
+              mapping:
+                placeholder:
+                  type: string
+                  label: 'Placeholder'
+                title:
+                  type: string
+                  label: 'Title'
             position:
               type: string
               label: 'Path'
@@ -225,12 +298,17 @@ views.style.geofield_311_leaflet_map:
             zoom:
               type: integer
               label: 'Zoom'
-            popup:
-              type: boolean
-              label: 'Popup'
             options:
               type: string
               label: 'Options'
+    map_lazy_load:
+      type: mapping
+      label: Map lazy load
+      mapping:
+        lazy_load:
+          type: boolean
+          label: Lazy load
+
     geojson_app_limit:
       type: mapping
       label: 'Geojson App Limit'
