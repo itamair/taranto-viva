@@ -1,0 +1,203 @@
+label: entity_mesh
+display:
+  default:
+    display_title: Default
+    display_options:
+      title: 'Entity Mesh Report'
+      fields:
+        type:
+          label: Type
+        category:
+          label: Category
+        subcategory:
+          label: Subcategory
+        source_entity_type:
+          label: 'Entity Type (Source)'
+        source_entity_id:
+          label: 'Entity ID (Source)'
+        source_entity_langcode:
+          label: 'Entity Langcode (Source)'
+        target_link_type:
+          label: 'Target Type'
+        target_href:
+          label: 'Target Href'
+        target_path:
+          label: 'Target Path'
+        target_scheme:
+          label: Scheme
+        target_entity_type:
+          label: 'Entity Type (Target)'
+        target_entity_id:
+          label: 'Entity ID (Target)'
+        target_entity_langcode:
+          label: 'Entity Langcode (Target)'
+        source_entity_bundle:
+          label: 'Entity Bundle (Source)'
+        target_entity_bundle:
+          label: 'Entity Bundle (Target)'
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Filter
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      filters:
+        category:
+          expose:
+            label: Category
+        subcategory:
+          expose:
+            label: Subcategory
+        source_entity_bundle:
+          expose:
+            label: 'Entity Bundle (Source)'
+        source_entity_langcode:
+          expose:
+            label: 'Entity Langcode (Source)'
+        source_entity_id:
+          expose:
+            label: 'Entity ID (Source)'
+        target_link_type:
+          expose:
+            label: 'Link Type (Target)'
+        target_scheme:
+          expose:
+            label: 'Scheme (Target)'
+        target_href:
+          expose:
+            label: 'Href (Target)'
+        target_entity_type:
+          expose:
+            label: 'Entity Type (Target)'
+        target_entity_bundle:
+          expose:
+            label: 'Entity Bundle (Target)'
+        target_entity_langcode:
+          expose:
+            label: 'Entity Langcode (Target)'
+        target_entity_id:
+          expose:
+            label: 'Entity ID (Target)'
+        target_scheme_1:
+          expose:
+            label: 'Scheme (Target)'
+      header:
+        result:
+          content: 'Showing @start - @end de @total'
+  data_export_entity_mesh:
+    display_title: 'Data export'
+  graph:
+    display_title: Graph
+    display_options:
+      title: 'Entity Mesh'
+      fields:
+        type:
+          label: Type
+        category:
+          label: Category
+        subcategory:
+          label: Subcategory
+        source_entity_type:
+          label: 'Entity Type (Source)'
+        source_entity_bundle:
+          label: 'Entity Bundle (source)'
+        source_entity_id:
+          label: 'Entity ID (Source)'
+        source_entity_langcode:
+          label: 'Entity Langcode (Source)'
+        target_link_type:
+          label: 'Target Link Type'
+        target_href:
+          label: 'Target Href'
+        target_path:
+          label: 'Target Path'
+        target_scheme:
+          label: Scheme
+        target_entity_type:
+          label: 'Entity Type (Target)'
+        target_entity_bundle:
+          label: 'Entity Bundle (Target)'
+        target_entity_id:
+          label: 'Entity ID (Target)'
+        target_entity_langcode:
+          label: 'Entity Langcode (Target)'
+        source_hash_id_1:
+          label: 'Source Hash ID'
+        target_hash_id_1:
+          label: 'Source Hash ID'
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      menu:
+        title: Graph
+      tab_options:
+        title: Graph
+  table:
+    display_title: Table
+    display_options:
+      title: 'Entity Mesh'
+      fields:
+        type:
+          label: Type
+        category:
+          label: Category
+        subcategory:
+          label: Subcategory
+        source_entity_type:
+          label: 'Entity Type (Source)'
+        source_entity_bundle:
+          label: 'Entity Bundle (Source)'
+        source_entity_id:
+          label: 'Entity ID (Source)'
+        source_entity_langcode:
+          label: 'Entity Langcode (Source)'
+        target_link_type:
+          label: 'Target Link Type'
+        target_href:
+          label: 'Target Href'
+        target_path:
+          label: 'Target Path'
+        target_scheme:
+          label: Scheme
+        target_entity_type:
+          label: 'Entity Type (Target)'
+        target_entity_bundle:
+          label: 'Entity Bundle (Target)'
+        target_entity_id:
+          label: 'Entity ID (Target)'
+        target_entity_langcode:
+          label: 'Entity Langcode (Target)'
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      menu:
+        title: Table
+        description: Table
+      tab_options:
+        title: 'Table 1'

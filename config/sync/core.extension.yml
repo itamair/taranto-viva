@@ -31,6 +31,7 @@ module:
   contact: 0
   content_access: 0
   contextual: 0
+  csv_serialization: 0
   date_filter: 0
   datetime: 0
   datetime_range: 0
@@ -50,6 +51,7 @@ module:
   eca_user: 0
   eca_views: 0
   editor: 0
+  entity_mesh: 0
   entity_reference_revisions: 0
   entity_type_clone: 0
   entity_usage: 0
@@ -143,10 +145,12 @@ module:
   viewfield: 0
   views_bulk_edit: 0
   views_bulk_operations: 0
+  views_data_export: 0
   views_slideshow: 0
   views_slideshow_cycle: 0
   views_ui: 0
   votingapi: 0
+  watchdog_statistics: 0
   pathauto: 1
   content_translation: 10
   image_style_warmer: 10

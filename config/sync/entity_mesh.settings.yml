@@ -1,0 +1,5 @@
+_core:
+  default_config_hash: OKKzAPImZgKPVzpZ94j_QgDlarUmXekV9b_blFOl9Jk
+external: true
+internal: true
+process_mesh_using_queue: true

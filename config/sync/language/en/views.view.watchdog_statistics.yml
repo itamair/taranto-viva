@@ -1,0 +1,72 @@
+label: 'Watchdog statistics'
+description: 'Log statistics'
+display:
+  default:
+    display_title: Master
+    display_options:
+      title: Statistics
+      fields:
+        latest_watchdog_id:
+          label: 'Latest WID'
+        nothing:
+          admin_label: Icon
+        severity:
+          label: Severity
+        type:
+          label: Type
+        latest_watchdog_timestamp:
+          label: 'Latest Date'
+        message:
+          label: Message
+          alter:
+            path: 'admin/reports/dblog/event/{{ latest_watchdog_id }}'
+            alt: '{{ message }}'
+        messages_count:
+          label: 'Total messages'
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Filter
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      empty:
+        area:
+          content:
+            value: 'No log messages available.'
+      sorts:
+        messages_count:
+          expose:
+            label: 'Total entries'
+        latest_watchdog_timestamp:
+          expose:
+            label: Date
+      filters:
+        type:
+          expose:
+            label: Type
+        severity:
+          expose:
+            label: Severity
+        timestamp:
+          expose:
+            label: 'Timestamp (from)'
+          group_info:
+            label: Timestamp
+        timestamp_1:
+          expose:
+            label: 'Timestamp (to)'
+  page:
+    display_title: Page
+    display_options:
+      menu:
+        title: 'Log messages statistics'
