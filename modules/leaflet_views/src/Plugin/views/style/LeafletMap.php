@@ -591,7 +591,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         $grouping_rendered_value,
       );
       foreach ($view_results_groups as $group_label => $view_results_group) {
-        $group_label = str_replace(["\n", "\r"], "", strip_tags($group_label));
+        // Sanitize the Group Label from Tags and invisible characters,
+        // making sure that string is given into strip_tags.
+        $group_label = str_replace(["\n", "\r"], "", strip_tags((string) $group_label));
         // Add a Layer Option only if there is a group label value not empty.
         if (!empty($group_label)) {
           $overlays[$group_label] = $group_label;
@@ -925,8 +927,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   protected function processResultsGroups(array $view_results_groups, array &$features_group, array &$features_groups, array &$map, string $leaflet_map_style) {
     foreach ($view_results_groups as $group_label => $view_results_group) {
       $features_group = [];
-      // Sanitize the Group Label from Tags and invisible characters.
-      $group_label = str_replace(["\n", "\r"], "", strip_tags($group_label));
+      // Sanitize the Group Label from Tags and invisible characters,
+      // making sure that string is given into strip_tags.
+      $group_label = str_replace(["\n", "\r"], "", strip_tags((string) $group_label));
 
       // Get geofield names.
       $geofield_names = is_array($this->options['data_source']) ? $this->options['data_source'] : [$this->options['data_source']];
@@ -1397,13 +1400,12 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     if ($this->options['leaflet_markercluster'] &&
         $this->options['leaflet_markercluster']['control'] &&
         !empty($this->options['leaflet_markercluster']['excluded'])) {
-      // $excluded_from_markercluster_option needs to be forced into a string
-      // because is MarkupInterface.
-      $excluded_from_markercluster_option = (string) $this->rendered_fields[$result->index][$this->options['leaflet_markercluster']['excluded']] ?? NULL;
+      $excluded_from_markercluster_option = $this->rendered_fields[$result->index][$this->options['leaflet_markercluster']['excluded']] ?? NULL;
       $feature['markercluster_excluded'] = !empty(str_replace(
         ["\n", "\r"],
         "",
-        strip_tags($excluded_from_markercluster_option)
+        // Make sure that string is given into strip_tags.
+        strip_tags((string) $excluded_from_markercluster_option)
       ));
     }
 
