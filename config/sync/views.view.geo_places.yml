@@ -412,6 +412,7 @@ display:
               rendered: true
               overlays_options:
                 disabled_overlays:
+                  Images: Images
                   Immagini: Immagini
                 hidden_overlays_controls:
                   none: none
@@ -6194,6 +6195,11 @@ display:
               options: ''
           map_lazy_load:
             lazy_load: 1
+          geojson_app_limit:
+            bounds_zoom_flag: 0
+            bounds_zoom_correction: '0'
+            bounds_limit_flag: 0
+            max_zoom_out: '-2'
       row:
         type: fields
         options:
