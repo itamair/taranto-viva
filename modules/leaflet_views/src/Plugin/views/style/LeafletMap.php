@@ -1089,7 +1089,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     string $geofield_name,
     int $id,
     string $group_label,
-    array $view_results_groups
+    array $view_results_groups,
   ) {
     $entity_id = $entity_details['entity_id'];
     $entity_type = $entity_details['entity_type'];
@@ -1348,7 +1348,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     int $id,
     mixed $result,
     string $group_label,
-    array $view_results_groups
+    array $view_results_groups,
   ): void {
     // Add entity id, so it might be referenced from outside.
     $feature['entity_id'] = $entity_id;
