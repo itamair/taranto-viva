@@ -165,7 +165,7 @@ class LeafletMarker extends RowPluginBase implements ContainerFactoryPluginInter
     ModuleHandlerInterface $module_handler,
     ViewsData $view_data,
     LeafletService $leaflet_service,
-    FieldTypePluginManagerInterface $field_type_manager
+    FieldTypePluginManagerInterface $field_type_manager,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 

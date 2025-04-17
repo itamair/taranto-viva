@@ -206,8 +206,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    */
   public function __construct(
     array $configuration,
-          $plugin_id,
-          $plugin_definition,
+    $plugin_id,
+    $plugin_definition,
     EntityTypeManagerInterface $entity_manager,
     EntityFieldManagerInterface $entity_field_manager,
     EntityDisplayRepositoryInterface $entity_display_repository,
@@ -217,7 +217,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     ModuleHandlerInterface $module_handler,
     LeafletService $leaflet_service,
     LinkGeneratorInterface $link_generator,
-    FieldTypePluginManagerInterface $field_type_manager
+    FieldTypePluginManagerInterface $field_type_manager,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 

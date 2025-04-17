@@ -112,7 +112,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     ModuleHandlerInterface $module_handler,
     LinkGeneratorInterface $link_generator,
     Token $token,
-    LanguageManagerInterface $languageManager
+    LanguageManagerInterface $languageManager,
   ) {
     parent::__construct(
       $plugin_id,
@@ -411,7 +411,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $delta,
     array $element,
     array &$form,
-    FormStateInterface $form_state
+    FormStateInterface $form_state,
   ) {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
 

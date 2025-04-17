@@ -113,7 +113,7 @@ class LeafletService {
     StreamWrapperManagerInterface $stream_wrapper_manager,
     RequestStack $request_stack,
     CacheBackendInterface $cache,
-    FileUrlGeneratorInterface $file_url_generator
+    FileUrlGeneratorInterface $file_url_generator,
   ) {
     $this->currentUser = $current_user;
     $this->geoPhpWrapper = $geophp_wrapper;
