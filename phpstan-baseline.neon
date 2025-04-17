@@ -94,13 +94,8 @@ parameters:
 			path: src/LeafletService.php
 
 		-
-			message: "#^Call to method getComponents\\(\\) on an unknown class Geometry\\.$#"
-			count: 2
-			path: src/LeafletService.php
-
-		-
 			message: "#^Call to method getComponents\\(\\) on an unknown class GeometryCollection\\.$#"
-			count: 6
+			count: 8
 			path: src/LeafletService.php
 
 		-
@@ -125,7 +120,7 @@ parameters:
 
 		-
 			message: "#^PHPDoc tag @var for variable \\$geom contains unknown class GeometryCollection\\.$#"
-			count: 5
+			count: 7
 			path: src/LeafletService.php
 
 		-
@@ -140,7 +135,7 @@ parameters:
 
 		-
 			message: "#^PHPDoc tag @var with type GeometryCollection is not subtype of native type Geometry\\.$#"
-			count: 3
+			count: 5
 			path: src/LeafletService.php
 
 		-
