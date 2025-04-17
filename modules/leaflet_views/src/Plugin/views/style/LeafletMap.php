@@ -1183,7 +1183,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     ];
 
     if (isset($dynamic_renderers[$rendering_language])) {
-      /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
       $langcode = $result->$entity_type_langcode_attribute ?? $entity_language;
     }
     else {

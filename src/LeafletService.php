@@ -279,7 +279,7 @@ class LeafletService {
    * Process the Geometry Collection.
    *
    * @param \Geometry $geom
-   *   The Geometry Collection.
+   *   The Geometry.
    *
    * @return array
    *   The return array.
@@ -297,7 +297,6 @@ class LeafletService {
         break;
 
       case 'linestring':
-        /** @var \GeometryCollection $geom */
         $components = $geom->getComponents();
         /** @var \Geometry $component */
         foreach ($components as $component) {
@@ -309,11 +308,10 @@ class LeafletService {
         break;
 
       case 'polygon':
-        /** @var \GeometryCollection $geom */
         $polygon_components = $geom->getComponents();
+        /** @var \GeometryCollection $geom */
         foreach ($polygon_components as $k => $geom) {
           $points = $geom->getComponents();
-          /** @var \Geometry $component */
           foreach ($points as $point) {
             $datum['points'][$k][] = [
               'lat' => $point->getY(),
@@ -353,7 +351,6 @@ class LeafletService {
           $polygon_components = $polygon->getComponents();
           foreach ($polygon_components as $k => $geom) {
             $points = $geom->getComponents();
-            /** @var \Geometry $component */
             foreach ($points as $point) {
               $datum['points'][$j][$k][] = [
                 'lat' => $point->getY(),
