@@ -1264,7 +1264,14 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         $render_row = [
           "markup" => $this->view->rowPlugin->render($result),
         ];
-        $popup_content = $this->renderer->renderInIsolation($render_row);
+        // Render popup content, ensuring backward compatibility
+        // (with Drupal < 10.2).
+        if (method_exists($this->renderer, 'renderInIsolation')) {
+          $popup_content = $this->renderer->renderInIsolation($render_row);
+        }
+        else {
+          $popup_content = $this->renderer->renderPlain($render_row);
+        }
         break;
 
       default:
