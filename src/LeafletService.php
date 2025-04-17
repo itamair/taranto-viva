@@ -297,6 +297,7 @@ class LeafletService {
         break;
 
       case 'linestring':
+        /** @var \GeometryCollection $geom */
         $components = $geom->getComponents();
         /** @var \Geometry $component */
         foreach ($components as $component) {
@@ -308,6 +309,7 @@ class LeafletService {
         break;
 
       case 'polygon':
+        /** @var \GeometryCollection $geom */
         $polygon_components = $geom->getComponents();
         /** @var \GeometryCollection $geom */
         foreach ($polygon_components as $k => $geom) {
