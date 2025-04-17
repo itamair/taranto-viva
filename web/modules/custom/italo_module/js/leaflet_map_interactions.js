@@ -395,7 +395,7 @@
       const zoomLevel = map.getZoom();
       const overlays = Drupal.Leaflet[mapid].overlays;
 
-      // Italian layer name.
+      // Zone e Quartieri.
       if (overlays["Zone e Quartieri"]) {
         if (zoomLevel > 13) {
           overlays["Zone e Quartieri"].remove();
@@ -404,7 +404,7 @@
         }
       }
 
-      // English layer name.
+      // Areas and quarters.
       if (overlays["Areas and quarters"]) {
         if (zoomLevel > 13) {
           overlays["Areas and quarters"].remove();
@@ -412,6 +412,26 @@
           overlays["Areas and quarters"].addTo(map);
         }
       }
+
+      // Images.
+      if (overlays["Images"]) {
+        if (zoomLevel < 16) {
+          overlays["Images"].remove();
+        } else {
+          overlays["Images"].addTo(map);
+          overlays["Images"].addTo(map);
+        }
+      }
+
+      // Immagini.
+      if (overlays["Immagini"]) {
+        if (zoomLevel < 16) {
+          overlays["Immagini"].remove();
+        } else {
+          overlays["Immagini"].addTo(map);
+        }
+      }
+
     },
 
     /**
