@@ -59,6 +59,103 @@
           // Toggle header z-index based on fullscreen state.
           $("header.site-header").css('z-index', map.isFullscreen() ? 1 : 101);
         });
+
+        // Add the Leaflet Watermark.
+        L.Control.Watermark = L.Control.extend({
+          onAdd: function(map) {
+            const img = L.DomUtil.create('img');
+            img.src = 'modules/custom/italo_module/assets/leaflet-logo.png';
+            img.style.width = '100px';
+            return img;
+          },
+
+          onRemove: function(map) {
+            // Nothing to do here
+          }
+        });
+
+        L.control.watermark = function(opts) {
+          return new L.Control.Watermark(opts);
+        }
+
+        L.control.watermark({ position: 'bottomleft' }).addTo(map);
+
+        // Add Images/Immagini toggle control
+        L.Control.ImagesToggle = L.Control.extend({
+          onAdd: function(map) {
+            const container = L.DomUtil.create('div', 'leaflet-control-images-toggle leaflet-bar leaflet-control');
+            const label = L.DomUtil.create('label', 'images-toggle-label', container);
+            const checkbox = L.DomUtil.create('input', 'images-toggle-checkbox', label);
+            const labelText = L.DomUtil.create('span', '', label);
+            
+            // Get overlays from Drupal.Leaflet
+            const overlays = Drupal.Leaflet[mapid].overlays;
+            
+            // Determine language from overlay names
+            const isItalian = overlays["Immagini"] !== undefined;
+            labelText.innerHTML = isItalian ? 'Immagini' : 'Images';
+            
+            checkbox.type = 'checkbox';
+            
+            // Initialize checkbox state based on stored preference or current state
+            const storedState = sessionStorage.getItem('imagesOverlayActive');
+            const overlayName = isItalian ? 'Immagini' : 'Images';
+            
+            if (storedState === null) {
+              // No stored preference, use current map state (visible if zoom ≥ 16)
+              checkbox.checked = map.getZoom() >= 16;
+            } else {
+              // Use stored preference
+              checkbox.checked = storedState !== '0';
+            }
+            
+            // Style the control
+            container.style.backgroundColor = 'white';
+            container.style.padding = '5px 8px';
+            container.style.borderRadius = '4px';
+            container.style.cursor = 'pointer';
+            container.style.boxShadow = '0 1px 5px rgba(0,0,0,0.4)';
+            
+            label.style.display = 'flex';
+            label.style.alignItems = 'center';
+            label.style.gap = '5px';
+            label.style.margin = '0';
+            label.style.cursor = 'pointer';
+            
+            checkbox.style.margin = '0';
+            checkbox.style.cursor = 'pointer';
+            
+            labelText.style.fontWeight = '500';
+            
+            // Prevent map click events
+            L.DomEvent.disableClickPropagation(container);
+            
+            // Toggle overlay when checkbox changes
+            L.DomEvent.on(checkbox, 'change', function() {
+              const overlayName = isItalian ? 'Immagini' : 'Images';
+              if (checkbox.checked) {
+                if (map.getZoom() >= 16 && overlays[overlayName]) {
+                  overlays[overlayName].addTo(map);
+                }
+                sessionStorage.setItem('imagesOverlayActive', '1');
+              } else {
+                if (overlays[overlayName]) {
+                  overlays[overlayName].remove();
+                }
+                sessionStorage.setItem('imagesOverlayActive', '0');
+              }
+            });
+            
+            return container;
+          }
+        });
+        
+        L.control.imagesToggle = function(opts) {
+          return new L.Control.ImagesToggle(opts);
+        }
+        
+        L.control.imagesToggle({ position: 'topright' }).addTo(map);
+
       });
 
       // Interact with each feature created and added to the map.
