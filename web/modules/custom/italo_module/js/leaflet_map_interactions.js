@@ -87,73 +87,93 @@
             const label = L.DomUtil.create('label', 'images-toggle-label', container);
             const checkbox = L.DomUtil.create('input', 'images-toggle-checkbox', label);
             const labelText = L.DomUtil.create('span', '', label);
-            
+
             // Get overlays from Drupal.Leaflet
             const overlays = Drupal.Leaflet[mapid].overlays;
-            
+
             // Determine language from overlay names
             const isItalian = overlays["Immagini"] !== undefined;
-            labelText.innerHTML = isItalian ? 'Immagini' : 'Images';
-            
-            checkbox.type = 'checkbox';
-            
-            // Initialize checkbox state based on stored preference or current state
-            const storedState = sessionStorage.getItem('imagesOverlayActive');
             const overlayName = isItalian ? 'Immagini' : 'Images';
-            
-            if (storedState === null) {
-              // No stored preference, use current map state (visible if zoom ≥ 16)
-              checkbox.checked = map.getZoom() >= 16;
-            } else {
-              // Use stored preference
-              checkbox.checked = storedState !== '0';
-            }
-            
+            labelText.innerHTML = overlayName;
+
+            checkbox.type = 'checkbox';
+
+            // Function to update checkbox state based on overlay visibility
+            const updateCheckboxState = function() {
+              // Check if overlay exists and is on the map
+              if (overlays[overlayName]) {
+                // Check if overlay is currently on the map
+                checkbox.checked = map.hasLayer(overlays[overlayName]);
+              } else {
+                checkbox.checked = false;
+              }
+            };
+
+            // Initialize checkbox state based on current overlay visibility
+            updateCheckboxState();
+
             // Style the control
             container.style.backgroundColor = 'white';
             container.style.padding = '5px 8px';
             container.style.borderRadius = '4px';
             container.style.cursor = 'pointer';
             container.style.boxShadow = '0 1px 5px rgba(0,0,0,0.4)';
-            
+
             label.style.display = 'flex';
             label.style.alignItems = 'center';
             label.style.gap = '5px';
             label.style.margin = '0';
             label.style.cursor = 'pointer';
-            
+
             checkbox.style.margin = '0';
             checkbox.style.cursor = 'pointer';
-            
+
             labelText.style.fontWeight = '500';
-            
+
             // Prevent map click events
             L.DomEvent.disableClickPropagation(container);
-            
+
             // Toggle overlay when checkbox changes
-            L.DomEvent.on(checkbox, 'change', function() {
-              const overlayName = isItalian ? 'Immagini' : 'Images';
+            L.DomEvent.on(checkbox, 'change', function(e) {
+              // Prevent handling the change event recursively
+              L.DomEvent.stopPropagation(e);
+
               if (checkbox.checked) {
-                if (map.getZoom() >= 16 && overlays[overlayName]) {
-                  overlays[overlayName].addTo(map);
+                // Only add if zoom level permits and overlay exists
+                if (map.getZoom() >= 16 && overlays[overlayName] && !map.hasLayer(overlays[overlayName])) {
+                  map.addLayer(overlays[overlayName]);
                 }
                 sessionStorage.setItem('imagesOverlayActive', '1');
               } else {
-                if (overlays[overlayName]) {
-                  overlays[overlayName].remove();
+                // Remove overlay if it exists and is on the map
+                if (overlays[overlayName] && map.hasLayer(overlays[overlayName])) {
+                  map.removeLayer(overlays[overlayName]);
                 }
                 sessionStorage.setItem('imagesOverlayActive', '0');
               }
             });
-            
+
+            // Update checkbox when overlay is added/removed by other means
+            map.on('overlayadd', function(event) {
+              if (event.name === 'Images' || event.name === 'Immagini') {
+                checkbox.checked = true;
+              }
+            });
+
+            map.on('overlayremove', function(event) {
+              if (event.name === 'Images' || event.name === 'Immagini') {
+                checkbox.checked = false;
+              }
+            });
+
             return container;
           }
         });
-        
+
         L.control.imagesToggle = function(opts) {
           return new L.Control.ImagesToggle(opts);
         }
-        
+
         L.control.imagesToggle({ position: 'topright' }).addTo(map);
 
       });
@@ -223,6 +243,7 @@
                   const lat_addition = zoom < 17 ? 12/zoom_pow: 3/zoom_pow;
                   popup.target._map.panTo([popup.target._latlng.lat + lat_addition, popup.target._latlng.lng])
                 });*/
+
       });
     },
 
@@ -510,25 +531,31 @@
         }
       }
 
-      // Images.
-      if (overlays["Images"]) {
-        if (zoomLevel < 16) {
-          overlays["Images"].remove();
-        } else {
-          overlays["Images"].addTo(map);
-          overlays["Images"].addTo(map);
+      // Handle Images/Immagini overlay visibility based on zoom and user preference
+      const imagesOverlayActive = sessionStorage.getItem('imagesOverlayActive');
+      const images_overlays = ['Images', 'Immagini'];
+      images_overlays.forEach(function(value) {
+        if (overlays[value]) {
+          if (zoomLevel < 16) {
+            // Always hide at low zoom levels regardless of preference
+            if (map.hasLayer(overlays[value])) {
+              // Use removeLayer instead of remove() to properly trigger the overlayremove event
+              map.removeLayer(overlays[value]);
+            }
+          } else if (imagesOverlayActive === null || imagesOverlayActive === '1') {
+            // Show only if preference is null (not set) or explicitly set to '1'
+            if (!map.hasLayer(overlays[value])) {
+              // Use addLayer instead of addTo() to properly trigger the overlayadd event
+              map.addLayer(overlays[value]);
+            }
+          } else {
+            // Hide if preference is '0'
+            if (map.hasLayer(overlays[value])) {
+              map.removeLayer(overlays[value]);
+            }
+          }
         }
-      }
-
-      // Immagini.
-      if (overlays["Immagini"]) {
-        if (zoomLevel < 16) {
-          overlays["Immagini"].remove();
-        } else {
-          overlays["Immagini"].addTo(map);
-        }
-      }
-
+      })
     },
 
     /**
