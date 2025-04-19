@@ -60,26 +60,6 @@
           $("header.site-header").css('z-index', map.isFullscreen() ? 1 : 101);
         });
 
-        // Add the Leaflet Watermark.
-        L.Control.Watermark = L.Control.extend({
-          onAdd: function(map) {
-            const img = L.DomUtil.create('img');
-            img.src = 'modules/custom/italo_module/assets/leaflet-logo.png';
-            img.style.width = '100px';
-            return img;
-          },
-
-          onRemove: function(map) {
-            // Nothing to do here
-          }
-        });
-
-        L.control.watermark = function(opts) {
-          return new L.Control.Watermark(opts);
-        }
-
-        L.control.watermark({ position: 'bottomleft' }).addTo(map);
-
         // Add Images/Immagini toggle control
         L.Control.ImagesToggle = L.Control.extend({
           onAdd: function(map) {
