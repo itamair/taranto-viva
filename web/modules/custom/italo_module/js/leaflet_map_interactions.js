@@ -35,6 +35,7 @@
         const markers = Drupal.Leaflet?.[mapid]?.markers || {};
         const features = Drupal.Leaflet?.[mapid]?.features || {};
         const markersOriginalSizes = self.setMarkersOriginalSizes(markers);
+        const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit = 15;
 
         // Trigger/Process Initial Actions.
         self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
@@ -120,7 +121,7 @@
 
               if (checkbox.checked) {
                 // Only add if zoom level permits and overlay exists
-                if (map.getZoom() >= 16 && overlays[overlayName] && !map.hasLayer(overlays[overlayName])) {
+                if (map.getZoom() >= imagesZoomLimit && overlays[overlayName] && !map.hasLayer(overlays[overlayName])) {
                   map.addLayer(overlays[overlayName]);
                 }
                 sessionStorage.setItem('imagesOverlayActive', '1');
@@ -154,7 +155,21 @@
           return new L.Control.ImagesToggle(opts);
         }
 
-        L.control.imagesToggle({ position: 'topright' }).addTo(map);
+        // Add ImagesToggle as the first control in the top-right position
+        const imagesToggleControl = L.control.imagesToggle({ position: 'topright' });
+
+        // Get all existing controls
+        const existingControls = map._controlCorners.topright.children;
+
+        // Add the new control to the map
+        imagesToggleControl.addTo(map);
+
+        // If there are other controls, move our control to be the first one
+        if (existingControls.length > 1) {
+          const controlContainer = map._controlCorners.topright;
+          const ourControl = controlContainer.lastChild;
+          controlContainer.insertBefore(ourControl, controlContainer.firstChild);
+        }
 
       });
 
@@ -516,7 +531,7 @@
       const images_overlays = ['Images', 'Immagini'];
       images_overlays.forEach(function(value) {
         if (overlays[value]) {
-          if (zoomLevel < 16) {
+          if (zoomLevel < Drupal.Leaflet[mapid].imagesZoomLimit) {
             // Always hide at low zoom levels regardless of preference
             if (map.hasLayer(overlays[value])) {
               // Use removeLayer instead of remove() to properly trigger the overlayremove event
