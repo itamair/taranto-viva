@@ -35,7 +35,7 @@
         const markers = Drupal.Leaflet?.[mapid]?.markers || {};
         const features = Drupal.Leaflet?.[mapid]?.features || {};
         const markersOriginalSizes = self.setMarkersOriginalSizes(markers);
-        const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit = 15;
+        const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit = 16;
 
         // Trigger/Process Initial Actions.
         self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
