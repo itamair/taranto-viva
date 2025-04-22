@@ -155,21 +155,36 @@
           return new L.Control.ImagesToggle(opts);
         }
 
-        // Add ImagesToggle as the first control in the top-right position
+        // Create the ImagesToggle control but don't add it to the map yet
         const imagesToggleControl = L.control.imagesToggle({ position: 'topright' });
-
-        // Get all existing controls
-        const existingControls = map._controlCorners.topright.children;
-
-        // Add the new control to the map
-        imagesToggleControl.addTo(map);
-
-        // If there are other controls, move our control to be the first one
-        if (existingControls.length > 1) {
-          const controlContainer = map._controlCorners.topright;
-          const ourControl = controlContainer.lastChild;
-          controlContainer.insertBefore(ourControl, controlContainer.firstChild);
-        }
+        let controlAdded = false;
+        
+        // Function to add or remove the control based on zoom level
+        const updateImagesToggleControl = function() {
+          if (map.getZoom() >= imagesZoomLimit) {
+            if (!controlAdded) {
+              // Add the control to the map
+              imagesToggleControl.addTo(map);
+              
+              // Move our control to be the first one in the top-right
+              const controlContainer = map._controlCorners.topright;
+              const ourControl = controlContainer.lastChild;
+              controlContainer.insertBefore(ourControl, controlContainer.firstChild);
+              
+              controlAdded = true;
+            }
+          } else if (controlAdded) {
+            // Remove the control when zoom is below the limit
+            imagesToggleControl.remove();
+            controlAdded = false;
+          }
+        };
+        
+        // Initial setup based on current zoom
+        updateImagesToggleControl();
+        
+        // Update control visibility when zoom changes
+        map.on('zoomend', updateImagesToggleControl);
 
       });
 
