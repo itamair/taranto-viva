@@ -137,6 +137,7 @@ module:
   token: 0
   toolbar: 0
   tour: 0
+  tracer: 0
   typed_data: 0
   update: 0
   upgrade_status: 0
@@ -151,6 +152,7 @@ module:
   views_ui: 0
   votingapi: 0
   watchdog_statistics: 0
+  webprofiler: 0
   pathauto: 1
   content_translation: 10
   image_style_warmer: 10
