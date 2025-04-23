@@ -3,7 +3,7 @@ name: AI PR Review (Claude with Inline Comments) - @see https://bpekker.dev/ai-c
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: [main, master]
+    branches: [main]
 
 permissions:
   contents: read
