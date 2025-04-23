@@ -46,9 +46,7 @@ class LeafletPopupRenderedEntity extends RenderedEntity implements CacheableDepe
       $view_builder = $this->entityTypeManager->getViewBuilder($this->getEntityTypeId());
       $build += $view_builder->view($new_entity, $this->options['view_mode'], $new_entity->language()->getId());
     }
-    /*    $build["#cache"]["tags"] = [
-          'paragraph:' . $paragraph_id,
-        ];*/
+
     $build["#cache"]["keys"] = [
       "entity_view",
       "paragraph",

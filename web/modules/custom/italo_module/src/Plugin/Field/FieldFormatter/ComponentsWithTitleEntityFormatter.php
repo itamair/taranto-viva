@@ -23,7 +23,7 @@ class ComponentsWithTitleEntityFormatter extends EntityReferenceRevisionsEntityF
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
+  public function viewElements(FieldItemListInterface $items, $langcode): array {
     $view_mode = $this->getSetting('view_mode');
     $elements = [];
 

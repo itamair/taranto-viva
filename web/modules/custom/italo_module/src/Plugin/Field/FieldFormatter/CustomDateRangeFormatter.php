@@ -29,7 +29,7 @@ class CustomDateRangeFormatter extends DateTimeCustomFormatter {
   /**
    * {@inheritdoc}
    */
-  public static function defaultSettings() {
+  public static function defaultSettings(): array {
     return [
       'separator' => '-',
     ] + parent::defaultSettings();
@@ -38,7 +38,7 @@ class CustomDateRangeFormatter extends DateTimeCustomFormatter {
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
+  public function viewElements(FieldItemListInterface $items, $langcode): array {
     // @todo Evaluate removing this method in
     // https://www.drupal.org/node/2793143 to determine if the behavior and
     // markup in the base class implementation can be used instead.
@@ -46,9 +46,9 @@ class CustomDateRangeFormatter extends DateTimeCustomFormatter {
     $separator = $this->getSetting('separator');
 
     foreach ($items as $delta => $item) {
+      /** @var \Drupal\Core\Datetime\DrupalDateTime $start_date */
+      $start_date = $item->start_date;
       if (!empty($item->start_date) && !empty($item->end_date)) {
-        /** @var \Drupal\Core\Datetime\DrupalDateTime $start_date */
-        $start_date = $item->start_date;
         /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
         $end_date = $item->end_date;
 
@@ -64,8 +64,6 @@ class CustomDateRangeFormatter extends DateTimeCustomFormatter {
         }
       }
       else {
-        /** @var \Drupal\Core\Datetime\DrupalDateTime $start_date */
-        $start_date = $item->start_date;
         $elements[$delta] = [
           'start_date' => $this->buildDate($start_date),
           'separator' => ['#plain_text' => ' ' . $separator . ' ' . $this->t('active')],
@@ -85,10 +83,10 @@ class CustomDateRangeFormatter extends DateTimeCustomFormatter {
    * @return array
    *   A render array.
    */
-  protected function buildDate(DrupalDateTime $date) {
+  protected function buildDate(DrupalDateTime $date): array {
     $this->setTimeZone($date);
 
-    $build = [
+    return [
       '#markup' => $this->formatDate($date),
       '#cache' => [
         'contexts' => [
@@ -96,14 +94,12 @@ class CustomDateRangeFormatter extends DateTimeCustomFormatter {
         ],
       ],
     ];
-
-    return $build;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
+  public function settingsForm(array $form, FormStateInterface $form_state): array {
     $form = parent::settingsForm($form, $form_state);
 
     $form['separator'] = [
@@ -119,7 +115,7 @@ class CustomDateRangeFormatter extends DateTimeCustomFormatter {
   /**
    * {@inheritdoc}
    */
-  public function settingsSummary() {
+  public function settingsSummary(): array {
     $summary = parent::settingsSummary();
 
     if ($separator = $this->getSetting('separator')) {
