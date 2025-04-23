@@ -22,14 +22,14 @@ class GeoMarkerIconUrlFieldItemList extends FieldItemList {
    *
    * @var bool
    */
-  protected $isCalculated = FALSE;
+  protected bool $isCalculated = FALSE;
 
   /**
    * {@inheritdoc}
    *
    * Generate the Value for the Geo Marker Icon Url Path.
    */
-  protected function computeValue() {
+  protected function computeValue(): void {
     if (!$this->isCalculated) {
       $entity = $this->getEntity();
       $image_style = NULL;
@@ -79,7 +79,7 @@ class GeoMarkerIconUrlFieldItemList extends FieldItemList {
   protected function getImageValue(FileInterface $file_entity, ?string $image_style): string {
     $image_uri = $file_entity->getFileUri();
     // If there is an image style requested, and it is not an SVG file.
-    if (isset($image_style) && strpos($file_entity->getMimeType(), 'svg') === FALSE) {
+    if (isset($image_style) && !str_contains($file_entity->getMimeType(), 'svg')) {
       $style = ImageStyle::load($image_style);
       $value = \Drupal::service('file_url_generator')
         // Generate Absolute Path to fix the pan of geoimages under their

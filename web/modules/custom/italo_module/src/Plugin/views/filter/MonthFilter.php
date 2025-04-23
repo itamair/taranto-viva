@@ -3,6 +3,7 @@
 namespace Drupal\italo_module\Plugin\views\filter;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\views\Plugin\views\filter\FilterPluginBase;
 
 /**
@@ -15,14 +16,14 @@ class MonthFilter extends FilterPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function adminSummary() {
+  public function adminSummary(): string|TranslatableMarkup {
     return $this->t('Filters nodes by month of publish date.');
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function valueForm(&$form, FormStateInterface $form_state) {
+  protected function valueForm(&$form, FormStateInterface $form_state): void {
     $form['value'] = [
       '#type' => 'select',
       '#title' => $this->t('Month'),
@@ -47,7 +48,7 @@ class MonthFilter extends FilterPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function query() {
+  public function query(): void {
     $this->ensureMyTable();
 
     /** @var \Drupal\views\Plugin\views\query\Sql $query */

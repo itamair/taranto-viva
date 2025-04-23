@@ -24,7 +24,7 @@ class DateRangeActiveStatusFilter extends FilterPluginBase {
   /**
    * {@inheritdoc}
    */
-  protected function defineOptions() {
+  protected function defineOptions(): array {
     $options = parent::defineOptions();
     $options['value'] = [
       'default' => [
@@ -41,7 +41,7 @@ class DateRangeActiveStatusFilter extends FilterPluginBase {
    * is a pattern seen in other filters, 'opStateIs' would be a method that
    * a parent class calls during the query() method.
    */
-  public function operators() {
+  public function operators(): void {
     $operators = [
       'is' => [
         'title' => $this->t('The event is'),
@@ -64,7 +64,7 @@ class DateRangeActiveStatusFilter extends FilterPluginBase {
   /**
    * The form that is show (including the exposed form).
    */
-  protected function valueForm(&$form, FormStateInterface $form_state) {
+  protected function valueForm(&$form, FormStateInterface $form_state): void {
     $exposed_info = $this->exposedInfo();
     $form['value'] = [
       '#tree' => TRUE,
@@ -89,15 +89,15 @@ class DateRangeActiveStatusFilter extends FilterPluginBase {
    * these clauses applied. If the filter is optional, and nothing is selected,
    * this code will never be called.
    */
-  public function query() {
+  public function query(): void {
     $this->ensureMyTable();
     $start_field_name = "$this->tableAlias.$this->realField";
     $end_field_name = substr($start_field_name, 0, -6) . '_end_value';
 
     // Prepare sql clauses for each field.
-    $date_start = $this->query->getDateFormat($this->query->getDateField($start_field_name, TRUE), 'Y-m-d H:i:s', FALSE);
-    $date_end = $this->query->getDateFormat($this->query->getDateField($end_field_name, TRUE), 'Y-m-d H:i:s', FALSE);
-    $date_now = $this->query->getDateFormat('FROM_UNIXTIME(***CURRENT_TIME***)', 'Y-m-d H:i:s', FALSE);
+    $date_start = $this->query->getDateFormat($this->query->getDateField($start_field_name, TRUE), 'Y-m-d H:i:s');
+    $date_end = $this->query->getDateFormat($this->query->getDateField($end_field_name, TRUE), 'Y-m-d H:i:s');
+    $date_now = $this->query->getDateFormat('FROM_UNIXTIME(***CURRENT_TIME***)', 'Y-m-d H:i:s');
 
     switch ($this->value['status']) {
       case 'active':
