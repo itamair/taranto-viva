@@ -19,7 +19,7 @@ class ActiveStatusFieldItemList extends FieldItemList {
    *
    * @var bool
    */
-  protected $isCalculated = FALSE;
+  protected bool $isCalculated = FALSE;
 
   /**
    * {@inheritdoc}

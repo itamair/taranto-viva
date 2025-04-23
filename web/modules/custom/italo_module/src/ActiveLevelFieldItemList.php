@@ -19,14 +19,14 @@ class ActiveLevelFieldItemList extends FieldItemList {
    *
    * @var bool
    */
-  protected $isCalculated = FALSE;
+  protected bool $isCalculated = FALSE;
 
   /**
    * {@inheritdoc}
    *
    * Generate the Active Level Value for specific Content Types.
    */
-  protected function computeValue() {
+  protected function computeValue(): void {
     if (!$this->isCalculated) {
       $entity = $this->getEntity();
       $value = '';
@@ -34,14 +34,14 @@ class ActiveLevelFieldItemList extends FieldItemList {
       if ($entity instanceof NodeInterface && in_array($entity->bundle(), $entity_bundles)) {
         $now = new DrupalDateTime();
         if (is_array($entity->get('field_date_range')->getValue())) {
-          $start_date = DrupalDateTime::createFromFormat('Y-m-d',$entity->get('field_date_range')->value);
+          $start_date = DrupalDateTime::createFromFormat('Y-m-d', $entity->get('field_date_range')->value);
           if ($end_date = $entity->get('field_date_range')->end_value) {
             $end_date = DrupalDateTime::createFromFormat('Y-m-d', $end_date);
             if ($start_date < $now && $now < $end_date) {
               $value = is_array($entity->get('field_active_type')->getValue()) ? $entity->field_active_type->value : '';
             }
           }
-          else if ($start_date < $now) {
+          elseif ($start_date < $now) {
             $value = is_array($entity->get('field_active_type')->getValue()) ? $entity->field_active_type->value : '';
           }
         };

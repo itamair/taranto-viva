@@ -21,14 +21,14 @@ class GeofieldGoogleMapsLinkFieldItemList extends FieldItemList {
    *
    * @var bool
    */
-  protected $isCalculated = FALSE;
+  protected bool $isCalculated = FALSE;
 
   /**
    * {@inheritdoc}
    *
    * Generate the Value for the Geo Marker Icon Url Path.
    */
-  protected function computeValue() {
+  protected function computeValue(): void {
     if (!$this->isCalculated) {
       $entity = $this->getEntity();
       $value0 = '';

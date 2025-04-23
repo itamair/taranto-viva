@@ -73,10 +73,10 @@ class GeoMarkerIconUrlFieldItemList extends FieldItemList {
    * @param string|null $image_style
    *   The Image Style string.
    *
-   * @return array
-   *   The Image value array.
+   * @return string
+   *   The Image value path string.
    */
-  protected function getImageValue(FileInterface $file_entity, ?string $image_style) {
+  protected function getImageValue(FileInterface $file_entity, ?string $image_style): string {
     $image_uri = $file_entity->getFileUri();
     // If there is an image style requested, and it is not an SVG file.
     if (isset($image_style) && strpos($file_entity->getMimeType(), 'svg') === FALSE) {
