@@ -1,5 +1,4 @@
-name: AI PR Review (Claude with Inline Comments)
-ref: https://bpekker.dev/ai-code-review/
+name: AI PR Review (Claude with Inline Comments) - @see https://bpekker.dev/ai-code-review/
 
 on:
   pull_request:
