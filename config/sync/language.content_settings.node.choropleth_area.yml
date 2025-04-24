@@ -1,0 +1,11 @@
+uuid: 28ba0d6d-a1ee-4c0a-a209-08797202ae39
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.choropleth_area
+id: node.choropleth_area
+target_entity_type_id: node
+target_bundle: choropleth_area
+default_langcode: site_default
+language_alterable: false

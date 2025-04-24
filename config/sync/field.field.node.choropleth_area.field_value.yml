@@ -1,0 +1,28 @@
+uuid: ecb76f66-e18b-4597-85eb-cd26eb7ba3a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_value
+    - node.type.choropleth_area
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.choropleth_area.field_value
+field_name: field_value
+entity_type: node
+bundle: choropleth_area
+label: Value
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal
