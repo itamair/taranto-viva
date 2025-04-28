@@ -82,7 +82,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: false
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -212,7 +212,7 @@ display:
             thousand_separator: ''
             decimal_separator: .
             scale: 0
-            prefix_suffix: false
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -437,24 +437,24 @@ display:
               zoom: '16'
               options: ''
           map_lazy_load:
-            lazy_load: 0
+            lazy_load: 1
           choropleth:
             enabled: 1
             data_field: field_value
-            value_format: '%.2f%%'
-            color_scale: sequential-greens
+            value_format: '%f%'
+            color_scale: sequential_greens
             classification: quantile
-            classes: '3'
-            reverse: 1
-            opacity: '1'
-            weight: '3'
+            classes: '5'
+            reverse: 0
+            opacity: '0.7'
+            weight: '1'
             borderColor: '#666'
-            borderOpacity: '0.9'
+            borderOpacity: '0.5'
             legend:
               enabled: 1
-              position: topright
-              title: 'Choropleth Legend'
-              decimals: '0'
+              position: bottomright
+              title: 'Legend Title'
+              decimals: '1'
       row:
         type: fields
       query:
