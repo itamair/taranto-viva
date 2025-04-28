@@ -22,7 +22,12 @@ class LeafletPopupRenderedEntity extends RenderedEntity implements CacheableDepe
    */
   public function render(ResultRow $values) {
     $entity = Node::load($values->nid);
-    $components = $entity->get('field_components')->getValue();
+    try {
+      $components = $entity->get('field_components')->getValue();
+    }
+    catch (\Exception $e) {
+      $components = [];
+    }
     $entity = $this->getEntityTranslationByRelationship($entity, $values);
     $paragraph_id = $values->paragraphs_item_field_data_node__field_components_id_1;
     $paragraph = Paragraph::load($paragraph_id);
