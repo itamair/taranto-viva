@@ -1,16 +1,16 @@
-uuid: b89a3367-7687-442a-8e35-5138e2c93546
-langcode: it
+uuid: e4471d48-6113-4e09-83ab-9d4dc6a459f2
+langcode: en
 status: true
 dependencies:
   module:
-    - media
     - node
-id: node.field_media_image
-field_name: field_media_image
+id: node.field_weight
+field_name: field_weight
 entity_type: node
-type: entity_reference
+type: integer
 settings:
-  target_type: media
+  unsigned: false
+  size: normal
 module: core
 locked: false
 cardinality: 1

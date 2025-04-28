@@ -1,18 +1,19 @@
-uuid: 8fcd2a5a-9331-4fa0-95ee-e3300f1ea079
+uuid: 4a835172-20a1-4baf-88b4-556b5f60f4d3
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.choropleth_area.field_choropleth_geofield
-    - field.field.node.choropleth_area.field_value
-    - field.field.node.choropleth_area.field_weight
-    - node.type.choropleth_area
+    - field.field.node.geofield_entity.field_geofield
+    - field.field.node.geofield_entity.field_media_image
+    - field.field.node.geofield_entity.field_weight
+    - node.type.geofield_entity
   module:
     - leaflet
+    - media_library
     - path
-id: node.choropleth_area.default
+id: node.geofield_entity.default
 targetEntityType: node
-bundle: choropleth_area
+bundle: geofield_entity
 mode: default
 content:
   created:
@@ -21,22 +22,22 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_choropleth_geofield:
+  field_geofield:
     type: leaflet_widget_default
-    weight: 3
+    weight: 2
     region: content
     settings:
       map:
-        leaflet_map: 'OSM Mapnik'
-        height: 400
+        leaflet_map: multilayers
+        height: 700
         auto_center: 1
         map_position:
           force: false
           center:
-            lat: 42.79
-            lon: 14.36
+            lat: 45.0
+            lon: 12.0
           zoomControlPosition: topleft
-          zoom: 7
+          zoom: 5
           minZoom: 1
           maxZoom: 18
           zoomFiner: 0
@@ -46,19 +47,19 @@ content:
         readonly: false
       toolbar:
         position: topright
-        marker: none
-        drawPolyline: false
+        marker: defaultMarker
+        drawPolyline: true
         drawRectangle: true
         drawPolygon: true
         drawCircle: false
         drawText: false
         editMode: true
         dragMode: true
-        cutPolygon: true
+        cutPolygon: false
         removalMode: true
-        rotateMode: true
+        rotateMode: false
       reset_map:
-        control: false
+        control: true
         options: '{"position":"topleft","title":"Reset View"}'
       map_scale:
         control: true
@@ -72,9 +73,9 @@ content:
         options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
         automatic: false
       geocoder:
-        control: false
+        control: true
         settings:
-          set_marker: false
+          set_marker: true
           popup: false
           autocomplete:
             placeholder: 'Search Address'
@@ -84,7 +85,7 @@ content:
           providers:
             arcgisonline:
               weight: 0
-              checked: false
+              checked: true
             file:
               weight: 0
               checked: false
@@ -102,12 +103,12 @@ content:
       feature_properties:
         values: ''
     third_party_settings: {  }
-  field_value:
-    type: number
-    weight: 2
+  field_media_image:
+    type: media_library_widget
+    weight: 3
     region: content
     settings:
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_weight:
     type: number

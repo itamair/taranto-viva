@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.choropleth_area.field_choropleth_geofield
     - field.field.node.choropleth_area.field_value
+    - field.field.node.choropleth_area.field_weight
     - node.type.choropleth_area
   module:
     - user
@@ -22,5 +23,6 @@ content:
 hidden:
   field_choropleth_geofield: true
   field_value: true
+  field_weight: true
   langcode: true
   uuid: true

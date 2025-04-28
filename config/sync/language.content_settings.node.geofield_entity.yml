@@ -1,0 +1,11 @@
+uuid: d234c710-784d-42d3-9dbb-72d618753f07
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geofield_entity
+id: node.geofield_entity
+target_entity_type_id: node
+target_bundle: geofield_entity
+default_langcode: site_default
+language_alterable: false

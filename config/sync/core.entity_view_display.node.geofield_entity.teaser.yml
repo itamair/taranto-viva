@@ -1,0 +1,28 @@
+uuid: 31f71678-680e-4d21-885b-45c221754d0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.geofield_entity.field_geofield
+    - field.field.node.geofield_entity.field_media_image
+    - field.field.node.geofield_entity.field_weight
+    - node.type.geofield_entity
+  module:
+    - user
+id: node.geofield_entity.teaser
+targetEntityType: node
+bundle: geofield_entity
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_geofield: true
+  field_media_image: true
+  field_weight: true
+  langcode: true
+  uuid: true

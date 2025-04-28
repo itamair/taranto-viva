@@ -3,14 +3,21 @@ langcode: it
 status: true
 dependencies:
   config:
+    - field.storage.media.field_geofield
     - field.storage.node.field_choropleth_geofield
+    - field.storage.node.field_geofield
     - field.storage.node.field_value
+    - field.storage.node.field_weight
     - node.type.choropleth_area
+    - node.type.geofield_entity
+    - node.type.geoimage
     - system.menu.main
   module:
     - geofield
     - leaflet_choropleth
+    - media
     - node
+    - paragraphs
     - user
 id: choropleth_map
 label: 'Choropleth Map'
@@ -82,7 +89,135 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_geofield_1:
+          id: field_geofield_1
+          table: node__field_geofield
+          field: field_geofield
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: geofield_default
+          settings:
+            output_format: wkt
+            output_escape: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_geofield:
+          id: field_geofield
+          table: media__field_geofield
+          field: field_geofield
+          relationship: field_geoimage
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: geofield_default
+          settings:
+            output_format: wkt
+            output_escape: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -223,6 +358,68 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        field_weight:
+          id: field_weight
+          table: node__field_weight
+          field: field_weight
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_unformatted
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         nothing:
           id: nothing
           table: views
@@ -272,6 +469,71 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: none
         options:
@@ -328,18 +590,62 @@ display:
           id: type
           table: node_field_data
           field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          operator: in
           value:
             choropleth_area: choropleth_area
+            geoimage: geoimage
+            geofield_entity: geofield_entity
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: leaflet_choropleth_map
         options:
-          grouping: {  }
+          grouping:
+            -
+              field: type
+              rendered: true
+              overlays_options:
+                disabled_overlays: {  }
+                hidden_overlays_controls: {  }
           data_source:
+            field_geofield_1: field_geofield_1
+            field_geofield: field_geofield
             field_choropleth_geofield: field_choropleth_geofield
           entity_source: __base_table
+          entity_source_submit: 'Update Entity Source'
           leaflet_tooltip:
             value: nothing
             options: '{"permanent":true,"direction":"center","sticky":true}'
@@ -371,7 +677,7 @@ display:
             minZoom: '1'
             maxZoom: '18'
             zoomFiner: '0'
-          weight: '0'
+          weight: '{{ field_weight }}'
           icon:
             iconType: marker
             iconUrl: ''
@@ -403,7 +709,7 @@ display:
           fullscreen:
             control: 1
             options: '{"position":"topleft","pseudoFullscreen":false}'
-          path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
+          path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"yellow","fillOpacity":"0.8","radius":"6"}'
           feature_properties:
             values: ''
           locate:
@@ -443,13 +749,13 @@ display:
             data_field: field_value
             value_format: '%f%'
             color_scale: sequential_greens
-            classification: quantile
+            classification: jenks
             classes: '5'
             reverse: 0
-            opacity: '0.7'
-            weight: '1'
-            borderColor: '#666'
-            borderOpacity: '0.5'
+            opacity: '1'
+            weight: '3'
+            borderColor: '#FE3FEF'
+            borderOpacity: '0.8'
             legend:
               enabled: 1
               position: bottomright
@@ -465,7 +771,25 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        field_components:
+          id: field_components
+          table: node__field_components
+          field: field_components
+          relationship: none
+          group_type: group
+          admin_label: 'field_components: Paragraph'
+          plugin_id: standard
+          required: false
+        field_geoimage:
+          id: field_geoimage
+          table: paragraph__field_geoimage
+          field: field_geoimage
+          relationship: field_components
+          group_type: group
+          admin_label: 'field_geoimage: Media'
+          plugin_id: standard
+          required: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -477,8 +801,11 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_geofield'
         - 'config:field.storage.node.field_choropleth_geofield'
+        - 'config:field.storage.node.field_geofield'
         - 'config:field.storage.node.field_value'
+        - 'config:field.storage.node.field_weight'
   page_choropleth_map:
     id: page_choropleth_map
     display_title: 'Choropleth Map Page'
@@ -505,5 +832,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.media.field_geofield'
         - 'config:field.storage.node.field_choropleth_geofield'
+        - 'config:field.storage.node.field_geofield'
         - 'config:field.storage.node.field_value'
+        - 'config:field.storage.node.field_weight'

@@ -1,27 +1,27 @@
-uuid: c3b3381b-6b42-4703-ac89-d84d0b9c35e5
+uuid: e6f3999f-5b67-48ea-a1dc-29a1352b6690
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.choropleth_area.field_choropleth_geofield
-    - field.field.node.choropleth_area.field_value
-    - field.field.node.choropleth_area.field_weight
-    - node.type.choropleth_area
+    - field.field.node.geofield_entity.field_geofield
+    - field.field.node.geofield_entity.field_media_image
+    - field.field.node.geofield_entity.field_weight
+    - node.type.geofield_entity
   module:
     - leaflet
     - user
-id: node.choropleth_area.default
+id: node.geofield_entity.default
 targetEntityType: node
-bundle: choropleth_area
+bundle: geofield_entity
 mode: default
 content:
-  field_choropleth_geofield:
+  field_geofield:
     type: leaflet_formatter_default
     label: hidden
     settings:
       multiple_map: false
       leaflet_map: 'OSM Mapnik'
-      height: 600
+      height: 800
       height_unit: px
       hide_empty_map: false
       disable_wheel: false
@@ -43,7 +43,7 @@ content:
       popup: false
       popup_content: ''
       leaflet_popup:
-        control: '1'
+        control: '0'
         content: ''
         options: '{"maxWidth":"300","minWidth":"50","autoPan":true}'
       map_position:
@@ -121,16 +121,14 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_value:
-    type: number_decimal
-    label: inline
+  field_media_image:
+    type: entity_reference_entity_view
+    label: hidden
     settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
+      view_mode: image
+      link: false
     third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
   field_weight:
     type: number_integer
@@ -144,7 +142,7 @@ content:
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
 hidden:
   langcode: true

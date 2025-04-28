@@ -1,0 +1,28 @@
+uuid: e13a3cb9-329b-4b3c-b45f-3c9113239e7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_weight
+    - node.type.geofield_entity
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geofield_entity.field_weight
+field_name: field_weight
+entity_type: node
+bundle: geofield_entity
+label: Weight
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
