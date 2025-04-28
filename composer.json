@@ -47,6 +47,7 @@
         "drupal/entity_reference_revisions": "^1.10",
         "drupal/entity_type_clone": "^4.0",
         "drupal/entity_usage": "^2.0@beta",
+        "drupal/feeds_ex": "^1.0@beta",
         "drupal/field_group": "^3.4",
         "drupal/field_permissions": "^1.2",
         "drupal/file_delete": "^2.0",
