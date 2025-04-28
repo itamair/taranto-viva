@@ -408,6 +408,22 @@ function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPlu
   if ($group["group_label"] == 'Segnalazione Territoriale') {
     $group["weight"] = -10;
   }
+
+  if ($view_style->getPluginId() == 'leaflet_choropleth_map') {
+    switch ($group["group_label"]) {
+      case 'Geo Image':
+        $group["weight"] = 100;
+        break;
+
+      case 'Geofield Entity':
+        $group["weight"] = 10;
+        break;
+
+      default:
+        $group["weight"] = 5;
+    }
+  }
+
 }
 
 /**
