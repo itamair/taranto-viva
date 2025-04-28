@@ -19,14 +19,14 @@ Drupal.Leaflet.prototype.extend_map_bounds = function(lFeature, feature) {
   const feature_properties = feature.properties ? JSON.parse(feature.properties) : {
     exclude_from_map_bounds: false,
   };
-  
+
   const isExcluded = parseInt(feature_properties.exclude_from_map_bounds);
   const isFirstFeature = Object.keys(this.features).length === 0;
-  
+
   if (isExcluded && !isFirstFeature) {
     return;
   }
-  
+
   if (feature.type === 'point') {
     this.bounds.push([feature.lat, feature.lon]);
   } else {
@@ -50,25 +50,26 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
   if (!this.permanent_tooltip_features) {
     this.permanent_tooltip_features = [];
   }
-  
+
   const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
-  
-  if (feature.tooltip && 
-      feature_properties.content_type !== "geoimage" && 
-      !parseInt(feature_properties.tooltip_disabled) && 
+
+  // Add this overriding tooltip logics only onto geoplace content type.
+  if (feature.tooltip &&
+      feature_properties.content_type !== "geoimage" &&
+      !parseInt(feature_properties.tooltip_disabled) &&
       feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
-    
+
     const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
-    
+
     // Need to more correctly set the tooltip_options.permanent option.
-    tooltip_options.permanent = tooltip_options.permanent === "true";
+    tooltip_options.permanent = tooltip_options.permanent === true || tooltip_options.permanent === "true";
     if (tooltip_options.permanent) {
       this.permanent_tooltip_features.push(lFeature);
     }
 
     // Need to more correctly set the tooltip_options.sticky option.
     tooltip_options.sticky = tooltip_options.sticky === "true";
-    
+
     lFeature.bindTooltip(feature.tooltip.value, tooltip_options);
   }
 };
@@ -83,7 +84,7 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
  */
 Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
   const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
-  
+
   if (!parseInt(feature_properties.popup_disabled) && feature.popup) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
     lFeature.bindPopup(feature.popup.value, popup_options);
@@ -118,7 +119,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     const polygons = multipoly.component.map(polygon => {
       return polygon.points.map(point => new L.LatLng(point.lat, point.lon));
     });
-    
+
     return multipoly.multipolyline ? new L.Polyline(polygons) : new L.Polygon(polygons);
   };
 
