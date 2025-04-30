@@ -333,7 +333,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
         $feature['tooltip'] = $settings['leaflet_tooltip'];
         // Decode any entities because JS will encode them again,
         // and we don't want double encoding.
-        $feature['tooltip']['value'] = $this->tokenResolvedContent($entity, $settings['leaflet_tooltip']['value'], $tokens, $results);
+        $feature['tooltip']['value'] = $this->tokenResolvedContent($entity, (string) $settings['leaflet_tooltip']['value'], $tokens, $results);
 
         // Associate dynamic tooltip options (token based).
         if (!empty($settings['leaflet_tooltip']['options'])) {
