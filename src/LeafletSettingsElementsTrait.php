@@ -878,10 +878,18 @@ trait LeafletSettingsElementsTrait {
       ];
     }
     elseif (!empty($view_fields)) {
+
+      $tooltip_options = array_merge(['' => ' - None - '], $view_fields);
+      if ($this->entityType) {
+        $tooltip_options += [
+          '#rendered_view_fields' => $this->t('# Rendered View Fields (with field label, format, classes, etc)'),
+        ];
+      }
+
       $element['leaflet_tooltip']['value'] = [
         '#type' => 'select',
         '#title' => $this->t('Tooltip Source'),
-        '#options' => array_merge(['' => ' - None - '], $view_fields),
+        '#options' => $tooltip_options,
         '#default_value' => $settings['leaflet_tooltip']['value'] ?? $default_settings['leaflet_tooltip']['value'],
         '#description' => $tooltip_description,
       ];
@@ -965,7 +973,7 @@ trait LeafletSettingsElementsTrait {
         ],
       ];
     }
-    else {
+    elseif (!empty($view_fields)) {
       $leaflet_popup_selector = 'style_options[leaflet_popup][value]';
 
       $popup_options = array_merge(['' => ' - None - '], $view_fields);

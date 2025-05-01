@@ -1364,8 +1364,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       $feature['popup']['options'] = $this->options['leaflet_popup'] ? $this->options['leaflet_popup']['options'] : NULL;
     }
 
-    // Process tooltips.
-    $this->processFeatureTooltips($feature, $tokens, $result);
+    // Process tooltip.
+    $this->processFeatureTooltip($feature, $tokens, $result);
 
     // Associate dynamic popup options (token based).
     if (!empty($this->options['leaflet_popup']['options'])) {
@@ -1426,7 +1426,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   }
 
   /**
-   * Process tooltips for a feature.
+   * Process tooltip for a feature.
    *
    * @param array $feature
    *   The feature to process.
@@ -1435,14 +1435,34 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    * @param mixed $result
    *   The view result.
    */
-  protected function processFeatureTooltips(array &$feature, array $tokens, mixed $result): void {
+  protected function processFeatureTooltip(array &$feature, array $tokens, mixed $result): void {
     // Attach tooltip data (value & options), if tooltip value is not empty.
     if (!empty($this->options['leaflet_tooltip']['value'])) {
       $feature['tooltip'] = $this->options['leaflet_tooltip'];
-      // Decode every entity because JS will encode them again,
-      // and we don't want double encoding.
-      $feature['tooltip']['value'] = array_key_exists($this->options['leaflet_tooltip']['value'], $this->rendered_fields[$result->index]) ?
-        Html::decodeEntities((string) $this->rendered_fields[$result->index][$this->options['leaflet_tooltip']['value']]) : '';
+
+      switch ($feature['tooltip']['value']) {
+        case '#rendered_view_fields':
+          // Normal rendering via view/row fields
+          // (with labels options, formatters, classes, etc.).
+          $render_row = [
+            "markup" => $this->view->rowPlugin->render($result),
+          ];
+          // Render popup content, ensuring backward compatibility
+          // (with Drupal < 10.2).
+          if (method_exists($this->renderer, 'renderInIsolation')) {
+            $feature['tooltip']['value'] = $this->renderer->renderInIsolation($render_row);
+          }
+          else {
+            $feature['tooltip']['value'] = $this->renderer->renderPlain($render_row);
+          }
+          break;
+
+        default:
+          // Decode every entity because JS will encode them again,
+          // and we don't want double encoding.
+          $feature['tooltip']['value'] = array_key_exists($this->options['leaflet_tooltip']['value'], $this->rendered_fields[$result->index]) ?
+            Html::decodeEntities((string) $this->rendered_fields[$result->index][$this->options['leaflet_tooltip']['value']]) : '';
+      }
 
       // Associate dynamic tooltip options (token based).
       if (!empty($this->options['leaflet_tooltip']['options'])) {
