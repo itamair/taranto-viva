@@ -1,4 +1,4 @@
-(function($, Drupal, drupalSettings) {
+(function($, Drupal, drupalSettingsonce, once) {
 
   "use strict";
 
@@ -28,11 +28,14 @@
                 map_container.data('leaflet').add_features(data.features, true);
               }
 
-              // Add the Leaflet map to data settings object to make it accessible.
-              // @NOTE: This is used by the Leaflet Widget module.
+              // Add the Leaflet map to data settings object to make it
+              // accessible and extendable from other Drupal.behaviors attached
+              // functions.
+              // @NOTE: i.e. this is used by the leaflet.widget.js.
               data.lMap = map_container.data('leaflet').lMap;
 
-              // Add the Leaflet Map Markers to data settings object to make it accessible.
+              // Add the Leaflet Map Markers to data settings object to make it
+              // also accessible and extendable.
               data.markers = map_container.data('leaflet').markers;
 
               // Set initial Map position to wrap its defined bounds.
@@ -1098,4 +1101,4 @@
     setLatLng: function () {}
   });
 
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal, drupalSettings, once);
