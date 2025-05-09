@@ -225,8 +225,17 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
+
+    // Fixes possible error related to
+    // Warning: Undefined array key in
+    // Drupal\field ui\Form\EntityDisplayFormBase->copyFrom Values Entity()
+    // @see: https://www.drupal.org/project/office_hours/issues/3413697
+    if (isset($form['#after_build'])) {
+      $form['#after_build'] = NULL;
+    }
+
     // Inherit basic settings form from GeofieldDefaultWidget:
-    $form = parent::settingsForm($form, $form_state);
+    $form = array_merge($form, parent::settingsForm($form, $form_state));
     $map_settings = $this->getSetting('map');
     $default_settings = self::defaultSettings();
 
