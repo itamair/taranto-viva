@@ -4,6 +4,9 @@ field.widget.settings.leaflet_widget_default:
   type: mapping
   label: 'Leaflet widget settings'
   mapping:
+    geometry_validation:
+      type: boolean
+      label: 'Enable Geometry Validation'
     map:
       type: mapping
       label: 'Map'
@@ -141,6 +144,13 @@ field.widget.settings.leaflet_widget_default:
     path:
       type: text
       label: 'Path'
+    feature_properties:
+      type: mapping
+      label: 'Feature Additional Properties'
+      mapping:
+        values:
+          type: text
+          label: 'Values'
     locate:
       type: mapping
       label: 'Locate User Position'

@@ -232,6 +232,13 @@ views.style.leaflet_map:
     path:
       type: string
       label: 'Path'
+    feature_properties:
+      type: mapping
+      label: 'Feature Additional Properties'
+      mapping:
+        values:
+          type: text
+          label: 'Values'
     geocoder:
       type: mapping
       label: 'Geocoder'
