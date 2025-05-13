@@ -101,12 +101,12 @@
     map.pm.addControls(this.widgetsettings.toolbarSettings);
 
     map.on('pm:create', function(event) {
-      const layer = event.layer;
-      this.drawnItems.addLayer(layer);
-      layer.pm.enable({ allowSelfIntersection: false });
+      // Add the new Layer to the drawnItems.
+      this.drawnItems.addLayer(event.layer);
+      // Update Geojson Content text.
       this.update_text();
-      // Listen to changes on the new layer
-      this.add_layer_listeners(layer);
+      // Listen to changes on the new layer.
+      this.add_layer_listeners(event.layer);
     }, this);
 
     // Start updating the Leaflet Map.
