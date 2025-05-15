@@ -86,10 +86,14 @@ leaflet-widget:
   js:
     js/leaflet.widget.js: {}
   dependencies:
-    - core/jquery
-    - leaflet/general
     - leaflet/leaflet-drupal
     - leaflet/leaflet-geoman
+
+leaflet-geojson-overlay:
+  js:
+    js/leaflet.geojson_overlays.js: {}
+  dependencies:
+    - leaflet/leaflet-widget
 
 # Control Fullscreen
 leaflet.fullscreen:
