@@ -125,11 +125,18 @@
     setGeoJsonOverlay(geoJsonContent, geojson_style, lMap, mapId) {
       const LeafletGeoJson = L.geoJson(geoJsonContent,  geojson_style);
       LeafletGeoJson.addTo(lMap);
+      const geoJsonOverlayLabel = Drupal.t('Map (Geojson) Overlays');
       if (Drupal.Leaflet[mapId].layer_control) {
-        Drupal.Leaflet[mapId].layer_control.addOverlay(LeafletGeoJson, 'Map (Geojson) Overlays');
+        Drupal.Leaflet[mapId].layer_control.addOverlay(LeafletGeoJson, geoJsonOverlayLabel);
       }
       else {
-        Drupal.Leaflet[mapId].layer_control = new L.Control.Layers([], {'Map (Geojson) Overlays': LeafletGeoJson}).addTo(Drupal.Leaflet[mapId].lMap);
+        const geoJsonOverlayOptions = {};
+        geoJsonOverlayOptions[geoJsonOverlayLabel] = LeafletGeoJson;
+        Drupal.Leaflet[mapId].layer_control = new L.Control.Layers([], geoJsonOverlayOptions).addTo(Drupal.Leaflet[mapId].lMap);
+        // Move our control to be the first one in the top-right
+        const controlContainer = lMap._controlCorners.topright;
+        const ourControl = controlContainer.lastChild;
+        controlContainer.insertBefore(ourControl, controlContainer.firstChild);
       }
       return LeafletGeoJson;
     },
