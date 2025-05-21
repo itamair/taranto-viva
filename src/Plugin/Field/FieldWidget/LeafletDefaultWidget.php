@@ -266,7 +266,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
         'sources' => [
           'fields' => [],
         ],
-        'path' => '{"color":"#f71ed3","opacity":"1.0","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.3","radius":3}',
+        'path' => '{"color":"#f71ed3","opacity":"1.0","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3}',
         'zoom_to_geojson' => TRUE,
         'snapping' => TRUE,
       ],
