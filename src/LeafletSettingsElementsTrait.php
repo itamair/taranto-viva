@@ -1663,12 +1663,15 @@ trait LeafletSettingsElementsTrait {
       ];
 
       $source_fields_selector = 'fields[' . $this->fieldDefinition->getName() . '][settings_edit_form][settings][geojson_overlays][sources][fields][]';
+      $supported_field_types_text = $this->t('Supported field types: "Text (plain, long)" field (string_long), "Link" field (link), "<a href="https://www.drupal.org/project/json_field" target="blank">Json</a>" field (json).');
 
       if (!empty($string_fields_options)) {
         $element['geojson_overlays']['sources']['fields'] = [
           '#type' => 'select',
           '#title' => $this->t('Fields'),
-          '#description' => $this->t('Choose the entity fields to retrieve GeoJson content from.<br>Supported field types: "Text (plain, long)" field (string_long), "Link" field (link), "<a href="https://www.drupal.org/project/json_field" target="blank">Json</a>" field (json).<br><em><b>Hint:</b> This works great with an internal Link pointing to a <a href="https://www.drupal.org/project/json_field" target="blank">Views Geojson module</a> endpoint/route ...</em>'),
+          '#description' => $this->t('Choose the entity fields to retrieve GeoJson content from.<br>@supported_field_types_text<br><em><b>Hint:</b> This works great with an internal Link pointing to a <a href="https://www.drupal.org/project/json_field" target="blank">Views Geojson module</a> endpoint/route ...</em>', [
+            '@supported_field_types_text' => $supported_field_types_text,
+          ]),
           '#options' => $string_fields_options,
           '#default_value' => $settings['geojson_overlays']['sources']['fields'] ?? [],
           '#multiple' => TRUE,
@@ -1726,7 +1729,9 @@ trait LeafletSettingsElementsTrait {
 
       }
       else {
-        $element['geojson_overlays']['sources']['fields']['no_fields_help']['#markup'] = '<p>' . $this->t('No eligible fields were found for this Entity Type.') . '</p>';
+        $element['geojson_overlays']['sources']['fields']['no_fields_help']['#markup'] = $this->t('<p>No eligible fields were found for this Entity Type.<br>Please add any of the supported fields: @supported_field_types_text</p>', [
+        '@supported_field_types_text' => $supported_field_types_text,
+        ]);
       }
     }
   }
