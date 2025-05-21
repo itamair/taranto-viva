@@ -497,6 +497,8 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $default_settings = self::defaultSettings();
     $input_settings = $this->getSetting('input');
 
+    $user_input = $form_state->getUserInput();
+
     // Get the base Map info.
     $map = leaflet_map_get_info($map_settings['leaflet_map'] ?? $default_settings['map']['leaflet_map']);
 
@@ -515,8 +517,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       $previous_automatic_locate_settings = TRUE;
     }
 
-    // Extend map settings to additional options
-    // to uniform with Leaflet Formatter and Leaflet View processing.
+    // Extend map settings to additional options.
     $map_settings = array_merge($map_settings, [
       'reset_map' => $this->getSetting('reset_map'),
       'map_scale' => $this->getSetting('map_scale'),
@@ -527,23 +528,34 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       'geojson_overlays' => $this->getSetting('geojson_overlays'),
     ]);
 
+    // Add leaflet_widget geojson overlays_info to general Form definition
+    // to attach info for dynamic #ajax interactivity with sources fields.
+    if (isset($map_settings['geojson_overlays']['sources']['fields']) && is_array($map_settings['geojson_overlays']['sources']['fields'])) {
+      $form['#leaflet_widget_geojson_overlays'] = [
+        'sources_fields' => $map_settings['geojson_overlays']['sources']['fields'],
+        'widget_id' => 'edit-' . str_replace('_', '-', $field->getName()) . '-wrapper',
+        'entity_widget_geofield' => $field->getName(),
+      ];
+    }
+
     // Get Geojson Overlays contents.
-    // Use the cached size if present for this URL.
+    // Use the drupal static cache if present and no #ajax triggered form reload
+    // (by and with user input).
     $cachePrefix = $this->getPluginId() . '_geojson_overlay_contents';
     $entity_info = $entity->getEntityTypeId() . '_' . $entity->id();
     $page_cache = &drupal_static("$cachePrefix:$entity_info");
-    if (is_array($page_cache)) {
-      // Set the size in the page cache.
+    if (empty($user_input) && is_array($page_cache)) {
       $geojson_overlays_contents = $page_cache;
     }
-    // Else generate new  Geojson Overlays contents.
+    // Else generate new Geojson Overlays contents.
     else {
-      $geojson_overlays_contents = $this->getGeoJsonOverlayContents($map_settings, $entity);
+      $geojson_overlays_contents = $this->getGeoJsonOverlayContents($map_settings, $user_input, $entity);
+      // And set the page cache for the geojson overlays contents.
       $page_cache = $geojson_overlays_contents;
     }
 
+    // Set the $map_settings['geojson_overlays']['contents'], if not empty.
     if (!empty($geojson_overlays_contents)) {
-      // Set the $map_settings['geojson_overlays']['contents'].
       $map_settings['geojson_overlays']['contents'] = $geojson_overlays_contents;
     }
 
@@ -574,12 +586,12 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $element['map']['#weight'] = -1;
 
     // Add the Map Overlays Text message, eventually.
-    if (!empty($map_settings["geojson_overlays"]["sources"]["fields"])) {
+    if (isset($map_settings["geojson_overlays"]["sources"]["fields"]) && is_array($map_settings["geojson_overlays"]["sources"]["fields"])) {
       $map_overlays_fields_text = implode(", ", $map_settings["geojson_overlays"]["sources"]["fields"]);
-      $map_overlays_text = $this->t('<div class="description">Map (<a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJson</a>) Overlays added and sourced from the following fields: @map_overlays_fields_text.</div>', [
+      $map_overlays_text = $this->t('<div class="description form-item__description">Map (<a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJson</a>) Overlays added and sourced from the following fields: @map_overlays_fields_text.</div>', [
         '@map_overlays_fields_text' => $map_overlays_fields_text,
       ]);
-      $element["map"]['#suffix'] = $map_overlays_text;
+      $element['map']['#suffix'] = $map_overlays_text;
     }
 
     $element['title'] = [
@@ -623,7 +635,6 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     if ($geom = $this->geoPhpWrapper->load($element['value']['#default_value'])) {
       $element['value']['#default_value'] = $geom->out('json');
     }
-
     return $element;
   }
 
@@ -632,104 +643,44 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
    *
    * @param array|null $map_settings
    *   Map Settings.
+   * @param array|null $user_input
+   *   Form State User Input.
    * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
    *   The Widget Entity.
    *
    * @return array|null
    *   The Map Settings array.
    */
-  protected function getGeoJsonOverlayContents(?array $map_settings, EntityInterface $entity): ?array {
+  protected function getGeoJsonOverlayContents(?array $map_settings, array $user_input, EntityInterface $entity): ?array {
     $geojson_overlays_contents = [];
 
     // Add geojson_overlays source Entity Fields contents.
     if (isset($map_settings['geojson_overlays']['sources']['fields']) && is_array($map_settings['geojson_overlays']['sources']['fields'])) {
       foreach ($map_settings['geojson_overlays']['sources']['fields'] as $field) {
         try {
-          $field_values = $entity->get($field)->getValue();
+          $field_values = $user_input[$field] ?? $entity->get($field)->getValue();
           foreach ($field_values as $k => $field_value) {
             // In case of Link field, eventually parse the internal link, and
             // generate an absolute value of it.
             if (isset($field_value['uri'])) {
-              $field_values[$k]['uri'] = Url::fromUri($field_value['uri'], ['absolute' => TRUE])->toString();
+              try {
+                if (str_starts_with($field_value['uri'], '/')) {
+                  $field_values[$k]['uri'] = Url::fromUserInput($field_value['uri'], ['absolute' => TRUE])->toString();
+                }
+                else {
+                  $field_values[$k]['uri'] = Url::fromUri($field_value['uri'], ['absolute' => TRUE])->toString();
+                }
+              }
+              catch (\Exception $e) {
+                unset($field_values[$k]);
+                continue;
+              }
             }
           }
           $geojson_overlays_contents = array_merge($field_values, $geojson_overlays_contents ?? []);
         }
         catch (\Exception $e) {
           $geojson_overlays_contents = [];
-        }
-      }
-    }
-    elseif (isset($map_settings['geojson_overlays']['sources']['fields'])) {
-      $field_value = $entity->get($map_settings['geojson_overlays']['sources']['fields'])->getValue();
-      // In case of Link field, eventually parse the internal link, and
-      // generate an absolute value of it.
-      if (isset($field_value['uri'])) {
-        $field_value = Url::fromUri($field_value['uri'], ['absolute' => TRUE])->toString();
-      }
-      $geojson_overlays_contents = $field_value;
-    }
-
-    // Add geojson_overlays source Entity Reference View contents.
-    if (isset($map_settings['geojson_overlays']['sources']['view']) && is_array($map_settings['geojson_overlays']['sources']['view'])) {
-      $view_settings = $map_settings['geojson_overlays']['sources']['view'];
-      if (!empty($view_settings['view_name'])) {
-        $view_name = $view_settings['view_name'];
-        $display_id = $view_settings['display_name'] ?: 'default';
-        if (!empty($view_settings['arguments'])) {
-          $arguments = $this->processArguments(implode(' ', $view_settings['arguments']), $entity);
-        }
-        else {
-          $arguments = [];
-        }
-
-        // Get the View and check its access.
-        $view = Views::getView($view_name);
-        if (!$view || !$view->access($display_id)) {
-          return $map_settings;
-        }
-
-        // Set arguments if they exist.
-        if (!empty($arguments)) {
-          $view->setArguments($arguments);
-        }
-
-        // Set View Display.
-        $view->setDisplay($display_id);
-
-        // Execute the View.
-        $view->preExecute();
-        $view->execute();
-
-        // Iterate across each View Result and extract Geojson content from
-        // each Geofield field.
-        foreach ($view->result as $rid => $row) {
-          // Skip the present entity, if eventually part of the view results.
-          if ($row->_entity->id() == $entity->id()) {
-            continue;
-          }
-          $result_entity = $row->_entity;
-          if (isset($map_settings["geojson_overlays"]["sources"]["view"]["geofields"]) && is_array($map_settings["geojson_overlays"]["sources"]["view"]["geofields"])) {
-            foreach ($map_settings['geojson_overlays']['sources']['view']['geofields'] as $geofield_field) {
-              try {
-                $geofield_values = $result_entity->get($geofield_field)
-                  ->getValue();
-              }
-              catch (\Exception $e) {
-                $geofield_values = [];
-              }
-              if (is_array($geofield_values)) {
-                foreach ($geofield_values as $key => $geofield_value) {
-                  /** @var \Geometry|null $geom */
-                  $geom = $this->geoPhpWrapper->load($geofield_value['value']);
-                  $geojson_content = $geom->out('geojson');
-                  $geojson_overlays_contents[] = [
-                    'value' => $geojson_content,
-                  ];
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -789,6 +740,22 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     }
 
     return $arguments;
+  }
+
+  /**
+   * Ajax callback to reload the GeoJson Overlays after data source change.
+   *
+   * @param array $form
+   *   The Form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The Form state.
+   *
+   * @return mixed
+   *   The returned result.
+   */
+  public static function updateLeafletWidgetGeoJsonOverlaysAjax(array $form, FormStateInterface $form_state) {
+    $form["field_geofield"]['#id'] = $form["#leaflet_widget_geojson_overlays"]["widget_id"];
+    return $form[$form["#leaflet_widget_geojson_overlays"]["entity_widget_geofield"]];
   }
 
 }

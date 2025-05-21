@@ -13,12 +13,6 @@
 
       // For each Leaflet Map defined in the settings (in the actual document).
       $.each(settings.leaflet, function (mapid, leaflet_settings) {
-        // Reset the geoJson and geoJsonBounds.
-        self.geoJsonBounds = {};
-        self.geoJson = {
-          "type": "FeatureCollection",
-          "features": [],
-        };
         if (!mapid.includes("leaflet-map-widget")) {
           return;
         }
@@ -28,6 +22,14 @@
         // @see https://www.drupal.org/project/leaflet/issues/3314762#comment-15044223
         const leaflet_elements = $(once('behaviour-leaflet-geojson-overlays', '#' + mapid,));
         leaflet_elements.each(function () {
+          // Collect all promises in an array
+          self.promises = [];
+          // Reset the geoJson and geoJsonBounds.
+          self.geoJsonBounds = {};
+          self.geoJson = {
+            "type": "FeatureCollection",
+            "features": [],
+          };
 
           const lMap = leaflet_settings.lMap;
           const map_container = $(this);
@@ -61,7 +63,7 @@
             geojsonFieldOverlay.contents.forEach(function (item, index) {
               // Try to fetch valid json Geojson content.
               try {
-                promises.push(self.processGeoJsonSource(item, geojson_style, lMap, mapid, drupalLeafletWidget, geojsonFieldOverlay));
+                self.promises.push(self.processGeoJsonSource(item, geojson_style, lMap, mapid, drupalLeafletWidget, geojsonFieldOverlay));
               }
               catch (e) {
                 console.error('Error initiating GeoJSON processing:', e);
@@ -69,12 +71,13 @@
             });
 
             // Wait for all GeoJSON sources to be processed
-            Promise.all(promises).then(() => {
-                // Process the GeoJSON overlay if we have features
-                if (self.geoJson.features.length > 0) {
-                  self.processGeoJsonOverlay(self.geoJson, geojson_style, lMap, mapid, drupalLeafletWidget, geojsonFieldOverlay);
-                }
-              }).catch(error => {
+            Promise.all(self.promises ).then(() => {
+              // Process the GeoJSON overlay if we have features
+              if (self.geoJson.features.length > 0) {
+                self.processGeoJsonOverlay(self.geoJson, geojson_style, lMap, mapid, drupalLeafletWidget, geojsonFieldOverlay);
+              }
+            }).catch(e => {
+              console.error('Error initiating Ajax GeoJSON processing:', e);
               // Don't log anything in this case, for now.
               // console.error('Error in GeoJSON processing:', error);
             });
@@ -94,14 +97,27 @@
             .done(function(geoJsonContent) {
               self.geoJson.features.push(geoJsonContent);
               resolve();
-            })
-        } else {
-          // If source is not a URI (likely direct JSON), parse it directly
-          const geoJsonContent = JSON.parse(source);
-          self.geoJson.features.push(geoJsonContent);
+            }).fail(function() {
+             resolve();
+          })
+        }
+        else {
+          if (source.trim().length > 0 && self.isJsonString(source)) {
+            const geoJsonContent = JSON.parse(source);
+            self.geoJson.features.push(geoJsonContent);
+          }
           resolve();
         }
       })
+    },
+
+    isJsonString(str) {
+      try {
+        JSON.parse(str);
+      } catch (e) {
+        return false;
+      }
+      return true;
     },
 
     /**

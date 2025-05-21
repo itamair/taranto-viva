@@ -1611,7 +1611,7 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
-   * Set Map Lazy Load Element.
+   * Set Map Geojson Overlays Element.
    *
    * @param array $element
    *   The Form element to alter.
@@ -1733,8 +1733,6 @@ trait LeafletSettingsElementsTrait {
 
   /**
    * Form element validation handler for a Map Zoom level.
-   *
-   * {@inheritdoc}
    */
   public static function zoomLevelValidate($element, FormStateInterface &$form_state) {
     // Get to the actual values in a form tree.
@@ -1760,8 +1758,6 @@ trait LeafletSettingsElementsTrait {
 
   /**
    * Form element validation handler for the Map Max Zoom level.
-   *
-   * {@inheritdoc}
    */
   public static function maxZoomLevelValidate($element, FormStateInterface &$form_state) {
     // Get to the actual values in a form tree.
@@ -1780,8 +1776,6 @@ trait LeafletSettingsElementsTrait {
 
   /**
    * Form element json format validation handler.
-   *
-   * {@inheritdoc}
    */
   public static function jsonValidate($element, FormStateInterface &$form_state) {
     $element_values_array = Json::decode($element['#value']);
