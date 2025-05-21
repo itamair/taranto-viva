@@ -1,4 +1,4 @@
-(function($, Drupal, drupalSettingsonce, once) {
+(function($, Drupal, drupalSettings, once) {
 
   "use strict";
 
