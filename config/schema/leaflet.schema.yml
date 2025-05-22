@@ -224,7 +224,7 @@ field.widget.settings.leaflet_widget_default:
               label: 'Options'
     geojson_overlays:
       type: mapping
-      label: Geojson Overlay
+      label: GeoJSON Overlay
       mapping:
         sources:
           type: mapping
@@ -238,10 +238,10 @@ field.widget.settings.leaflet_widget_default:
                 label: 'Field Source'
         zoom_to_geojson:
           type: boolean
-          label: 'Zoom to GeoJson'
+          label: 'Zoom to GeoJSON'
         path:
           type: text
-          label: 'GeoJson Overlays Style'
+          label: 'GeoJSON Overlays Style'
         snapping:
           type: boolean
           label: 'Snapping enabled'

@@ -1611,7 +1611,7 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
-   * Set Map Geojson Overlays Element.
+   * Set Map GeoJSON Overlays Element.
    *
    * @param array $element
    *   The Form element to alter.
@@ -1651,8 +1651,8 @@ trait LeafletSettingsElementsTrait {
 
       $element['geojson_overlays'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Map (Geojson) Overlays'),
-        '#description' => $this->t('Use this section to select sources and add <a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJson</a> content Overlays to the Leaflet widget map, that can act as useful drawing (snappable) references.<br>At the moment specific fields of the entity (being edited) can be chosen as sources of content of (or links to) the geojson overlays that should be added.<br><em><b>Hint:</b> Reload the widget after having populated those fields, to have the expected geojson overlays added to the Leaflet map ...</em><br><em><b>Note: </b>Mutliple/Different Geojson Sources are supported, but their content will be merged into a unique GeoJson Overlay on the Leaflet Widget Map.</em>'),
+        '#title' => $this->t('Map (GeoJSON) Overlays'),
+        '#description' => $this->t('Use this section to select sources and add <a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJSON</a> content Overlays to the Leaflet widget map, that can act as useful drawing (snappable) references.<br>At the moment specific fields of the entity (being edited) can be chosen as sources of content of (or links to) the geojson overlays that should be added.<br><em><b>Hint:</b> Reload the widget after having populated those fields, to have the expected geojson overlays added to the Leaflet map ...</em><br><em><b>Note: </b>Mutliple/Different GeoJSON Sources are supported, but their content will be merged into a unique GeoJSON Overlay on the Leaflet Widget Map.</em>'),
         '#description_display' => 'before',
       ];
 
@@ -1669,7 +1669,7 @@ trait LeafletSettingsElementsTrait {
         $element['geojson_overlays']['sources']['fields'] = [
           '#type' => 'select',
           '#title' => $this->t('Fields'),
-          '#description' => $this->t('Choose the entity fields to retrieve GeoJson content from.<br>@supported_field_types_text<br><em><b>Hint:</b> This works great with an internal Link pointing to a <a href="https://www.drupal.org/project/json_field" target="blank">Views Geojson module</a> endpoint/route ...</em>', [
+          '#description' => $this->t('Choose the entity fields to retrieve GeoJSON content from.<br>@supported_field_types_text<br><em><b>Hint:</b> This works great with an internal Link pointing to a <a href="https://www.drupal.org/project/json_field" target="blank">Views GeoJSON module</a> endpoint/route ...</em>', [
             '@supported_field_types_text' => $supported_field_types_text,
           ]),
           '#options' => $string_fields_options,
@@ -1703,8 +1703,8 @@ trait LeafletSettingsElementsTrait {
 
         $element['geojson_overlays']['zoom_to_geojson'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Zoom to GeoJson'),
-          '#description' => $this->t('Check this option to initially Zoom the (new empty) Leaflet Map on the (Geojson) Overlays bounds.'),
+          '#title' => $this->t('Zoom to GeoJSON'),
+          '#description' => $this->t('Check this option to initially Zoom the (new empty) Leaflet Map on the (GeoJSON) Overlays bounds.'),
           '#default_value' => $settings['geojson_overlays']['zoom_to_geojson'] ?? 1,
           '#return_value' => 1,
           '#states' => [
@@ -1717,7 +1717,7 @@ trait LeafletSettingsElementsTrait {
         $element['geojson_overlays']['snapping'] = [
           '#type' => 'checkbox',
           '#title' => $this->t('Snapping enabled'),
-          '#description' => $this->t('Check this option to be able to snap to (Geojson) Overlays markers/vertices, for precision drawing.'),
+          '#description' => $this->t('Check this option to be able to snap to (GeoJSON) Overlays markers/vertices, for precision drawing.'),
           '#default_value' => $settings['geojson_overlays']['snapping'] ?? 1,
           '#return_value' => 1,
           '#states' => [

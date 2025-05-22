@@ -48,7 +48,7 @@
             // and features.
             geojson_style.pmIgnore = true;
 
-            // Enable Geojson Overlays Snapping, if required.
+            // Enable GeoJSON Overlays Snapping, if required.
             if (geojsonFieldOverlay.snapping) {
               geojson_style.snapIgnore = false;
             }
@@ -61,7 +61,7 @@
             const promises = [];
 
             geojsonFieldOverlay.contents.forEach(function (item, index) {
-              // Try to fetch valid json Geojson content.
+              // Try to fetch valid json GeoJSON content.
               try {
                 self.promises.push(self.processGeoJsonSource(item, geojson_style, lMap, mapid, drupalLeafletWidget, geojsonFieldOverlay));
               }
@@ -121,7 +121,7 @@
     },
 
     /**
-     * Set GeoJson Overlay and add it to map.
+     * Set GeoJSON Overlay and add it to map.
      */
     processGeoJsonOverlay(geoJsonContent, geojson_style, lMap, mapid, drupalLeafletWidget, geojsonFieldOverlay) {
       const LeafletGeoJson = this.setGeoJsonOverlay(geoJsonContent, geojson_style, lMap, mapid);
@@ -136,12 +136,12 @@
     },
 
     /**
-     * Set GeoJson Overlay and add it to map.
+     * Set GeoJSON Overlay and add it to map.
      */
     setGeoJsonOverlay(geoJsonContent, geojson_style, lMap, mapId) {
       const LeafletGeoJson = L.geoJson(geoJsonContent,  geojson_style);
       LeafletGeoJson.addTo(lMap).bringToBack();
-      const geoJsonOverlayLabel = Drupal.t('Map (Geojson) Overlays');
+      const geoJsonOverlayLabel = Drupal.t('Map (GeoJSON) Overlays');
       if (Drupal.Leaflet[mapId].layer_control) {
         Drupal.Leaflet[mapId].layer_control.addOverlay(LeafletGeoJson, geoJsonOverlayLabel);
       }
@@ -158,10 +158,10 @@
     },
 
     /**
-     * Set GeoJson Overlay and add to map.
+     * Set GeoJSON Overlay and add to map.
      */
     extendGeoJsonBounds(geoJsonContent) {
-      // Define or extend Geojson bounds to make the Leaflet Map fit them.
+      // Define or extend GeoJSON bounds to make the Leaflet Map fit them.
       if (!$.isEmptyObject(this.geoJsonBounds)) {
         this.geoJsonBounds.extend(geoJsonContent.getBounds());
       }
@@ -171,7 +171,7 @@
     },
 
     /**
-     * Fit GeoJson Bounds and Reset Leaflet initial Map Center and Zoom.
+     * Fit GeoJSON Bounds and Reset Leaflet initial Map Center and Zoom.
      */
     fitMapBoundsAndResetMapInitialView(mapid, map) {
       map.fitBounds(this.geoJsonBounds);

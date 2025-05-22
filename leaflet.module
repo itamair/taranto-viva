@@ -111,7 +111,7 @@ function leaflet_form_alter(&$form, FormStateInterface $form_state) {
       'wrapper' => $form['#leaflet_widget_geojson_overlays']['widget_id'],
       'event' => 'change',
     ];
-    $source_field_text = t('<div><em>Note: This field is acting as source of Leaflet Widget Map Geojson Overlays.</em></div>');
+    $source_field_text = t('<div><em>Note: This field is acting as source of Leaflet Widget Map GeoJSON Overlays.</em></div>');
     foreach ($form['#leaflet_widget_geojson_overlays']['sources_fields'] as $form_field) {
       if (is_string($form_field) && isset($form[$form_field])) {
         foreach (Element::children($form[$form_field]['widget']) as &$widget_index) {

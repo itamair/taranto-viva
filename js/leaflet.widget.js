@@ -103,7 +103,7 @@
     map.on('pm:create', function(event) {
       // Add the new Layer to the drawnItems.
       this.drawnItems.addLayer(event.layer);
-      // Update Geojson Content text.
+      // Update GeoJSON Content text.
       this.update_text();
       // Listen to changes on the new layer.
       this.add_layer_listeners(event.layer);

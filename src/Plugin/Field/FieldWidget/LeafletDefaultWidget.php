@@ -461,7 +461,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // otherwise output a tip on Geocoder Module Integration.
     $this->setGeocoderMapControl($form, $this->getSettings());
 
-    // Set the Map Geojson Overlay Field and Paths Styles.
+    // Set the Map GeoJSON Overlay Field and Paths Styles.
     $this->setMapGeoJsonOverlays($form, $this->getSettings());
 
     return $form;
@@ -538,7 +538,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       ];
     }
 
-    // Get Geojson Overlays contents.
+    // Get GeoJSON Overlays contents.
     // Use the drupal static cache if present and no #ajax triggered form reload
     // (by and with user input).
     $cachePrefix = $this->getPluginId() . '_geojson_overlay_contents';
@@ -547,7 +547,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     if (empty($user_input) && is_array($page_cache)) {
       $geojson_overlays_contents = $page_cache;
     }
-    // Else generate new Geojson Overlays contents.
+    // Else generate new GeoJSON Overlays contents.
     else {
       $geojson_overlays_contents = $this->getGeoJsonOverlayContents($map_settings, $user_input, $entity);
       // And set the page cache for the geojson overlays contents.
@@ -588,7 +588,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // Add the Map Overlays Text message, eventually.
     if (isset($map_settings["geojson_overlays"]["sources"]["fields"]) && is_array($map_settings["geojson_overlays"]["sources"]["fields"])) {
       $map_overlays_fields_text = implode(", ", $map_settings["geojson_overlays"]["sources"]["fields"]);
-      $map_overlays_text = $this->t('<div class="description form-item__description">Map (<a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJson</a>) Overlays added and sourced from the following fields: @map_overlays_fields_text.</div>', [
+      $map_overlays_text = $this->t('<div class="description form-item__description">Map (<a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJSON</a>) Overlays added and sourced from the following fields: @map_overlays_fields_text.</div>', [
         '@map_overlays_fields_text' => $map_overlays_fields_text,
       ]);
       $element['map']['#suffix'] = $map_overlays_text;
@@ -601,7 +601,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     ];
 
     // Alter/customise the Value Title property.
-    $element['value']['#title'] = $this->t('GeoJson Data');
+    $element['value']['#title'] = $this->t('GeoJSON Data');
 
     // Build JS settings for the Leaflet Widget.
     $leaflet_widget_js_settings = [
@@ -622,7 +622,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     // Leaflet.widget plugin.
     $element['map']['#attached']['library'][] = 'leaflet/leaflet-widget';
 
-    // Add the Leaflet Geojson Overlays library, if requested.
+    // Add the Leaflet GeoJSON Overlays library, if requested.
     if (!empty($map_settings['geojson_overlays']['contents'])) {
       $element['map']['#attached']['library'][] = 'leaflet/leaflet-geojson-overlay';
     }
@@ -639,7 +639,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
   }
 
   /**
-   * Get Geojson Overlays contents.
+   * Get GeoJSON Overlays contents.
    *
    * @param array|null $map_settings
    *   Map Settings.
@@ -743,7 +743,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
   }
 
   /**
-   * Ajax callback to reload the GeoJson Overlays after data source change.
+   * Ajax callback to reload the GeoJSON Overlays after data source change.
    *
    * @param array $form
    *   The Form.

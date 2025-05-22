@@ -158,7 +158,7 @@ class LeafletWidgetGeoJsonOverlayTest extends WebDriverTestBase {
 
 
     // Check that geojson overlay settings are present.
-    $this->assertSession()->pageTextContains('Map (Geojson) Overlays');
+    $this->assertSession()->pageTextContains('Map (GeoJSON) Overlays');
     $this->assertSession()->pageTextContains('Sources');
     $this->assertSession()->pageTextContains('Fields');
 
@@ -240,16 +240,16 @@ class LeafletWidgetGeoJsonOverlayTest extends WebDriverTestBase {
     $this->drupalGet("node/add/{$this->contentTypeName}");
 
     $this->submitForm([
-      'title[0][value]' => 'Test Geojson Overlay',
+      'title[0][value]' => 'Test GeoJSON Overlay',
       $this->geoJsonFieldName . '[0][value]' => $sample_geojson,
     ], 'Save');
 
     // Check that node was created.
-    $this->assertSession()->pageTextContains('GeoLocation Test Content Type Test Geojson Overlay has been created.');
+    $this->assertSession()->pageTextContains('GeoLocation Test Content Type Test GeoJSON Overlay has been created.');
 
     // Edit the node to see if the geojson overlay is loaded.
     $node_id = \Drupal::entityQuery('node')
-      ->condition('title', 'Test Geojson Overlay')
+      ->condition('title', 'Test GeoJSON Overlay')
       ->accessCheck(FALSE)
       ->execute();
     $node_id = reset($node_id);
