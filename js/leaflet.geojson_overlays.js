@@ -140,7 +140,7 @@
      */
     setGeoJsonOverlay(geoJsonContent, geojson_style, lMap, mapId) {
       const LeafletGeoJson = L.geoJson(geoJsonContent,  geojson_style);
-      LeafletGeoJson.addTo(lMap);
+      LeafletGeoJson.addTo(lMap).bringToBack();
       const geoJsonOverlayLabel = Drupal.t('Map (Geojson) Overlays');
       if (Drupal.Leaflet[mapId].layer_control) {
         Drupal.Leaflet[mapId].layer_control.addOverlay(LeafletGeoJson, geoJsonOverlayLabel);
