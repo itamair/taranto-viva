@@ -8,7 +8,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\leaflet\Plugin\Field\FieldWidget\LeafletDefaultWidget;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
-use Drupal\views\Views;
 
 /**
  * Class LeafletSettingsElementsTrait.
@@ -787,7 +786,7 @@ trait LeafletSettingsElementsTrait {
    */
   protected function setMapPathOptionsElement(array &$element, array $settings) {
 
-    $path_description = $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style, or the one choosen and defined in leaflet.api/hook_leaflet_map_info, will be used.<br>@token_replacement_disclaimer', [
+    $path_description = $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style, or the one choosen and defined in leaflet.api/hook_leaflet_map_info, will be used.<br>@token_replacement_disclaimer<br>(Note: Single Token or Replacement containing the whole Json specification is supported).', [
       '@polygons_documentation' => $this->link->generate($this->t('Leaflet Path Documentation'), Url::fromUri('https://leafletjs.com/reference.html#path', [
         'absolute' => TRUE,
         'attributes' => ['target' => 'blank'],
@@ -1781,15 +1780,26 @@ trait LeafletSettingsElementsTrait {
 
   /**
    * Form element json format validation handler.
+   *
+   * @param array $element
+   *   The Form Element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The Form State.
    */
   public static function jsonValidate($element, FormStateInterface &$form_state) {
-    $element_values_array = Json::decode($element['#value']);
-    // Check the jsonValue.
-    if (!empty($element['#value']) && $element_values_array == NULL) {
-      $form_state->setError($element, t('The @field field is not valid Json Format.', ['@field' => $element['#title']]));
-    }
-    elseif (!empty($element['#value'])) {
-      $form_state->setValueForElement($element, Json::encode($element_values_array));
+    // Check Json validity only in case the element value is not wrapped by
+    // brackets (Views Replacement) or square brackets (Token).
+    if (preg_match('/^\{.*\}$/', $element['#value']) !== 1 &&
+      preg_match('/^\[.*\]$/', $element['#value']) !== 1
+    ) {
+      $element_values_array = Json::decode($element['#value']);
+      // Check the jsonValue.
+      if (!empty($element['#value']) && $element_values_array == NULL) {
+        $form_state->setError($element, t('The @field field is not valid Json Format.', ['@field' => $element['#title']]));
+      }
+      elseif (!empty($element['#value'])) {
+        $form_state->setValueForElement($element, Json::encode($element_values_array));
+      }
     }
   }
 

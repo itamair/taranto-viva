@@ -445,19 +445,30 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
       // Associate dynamic path properties (token based) to the feature,
       // in case of not point.
       if ($feature['type'] !== 'point') {
-        $feature['path'] = str_replace(["\n", "\r"], "", $this->token->replace($settings['path'], $tokens));
+        $feature['path'] = htmlspecialchars_decode(
+          str_replace([
+            "\n",
+            "\r",
+          ], "", $this->token->replace($settings['path'], $tokens)
+          ),
+        );
       }
 
       // Associate dynamic className property (token based) to icon.
       $feature['className'] = !empty($settings['className']) ?
-        str_replace(["\n", "\r"], "", $this->token->replace($settings['className'], $tokens)) : '';
+        htmlspecialchars_decode(str_replace([
+          "\n",
+          "\r",
+        ], "", $this->token->replace($settings['className'], $tokens)
+        )) : '';
 
       // Add Feature additional Properties (if present).
       if (!empty($settings['feature_properties']['values'])) {
-        $feature['properties'] = str_replace([
+        $feature['properties'] = htmlspecialchars_decode(str_replace([
           "\n",
           "\r",
-        ], "", $this->token->replace($settings['feature_properties']['values'], $tokens));
+        ], "", $this->token->replace($settings['feature_properties']['values'], $tokens)
+        ));
       }
 
       // Allow modules to adjust the marker.

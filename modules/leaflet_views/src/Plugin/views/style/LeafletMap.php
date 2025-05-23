@@ -1382,11 +1382,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Associate dynamic path properties (token based) to each feature,
     // if not point.
     if ($feature['type'] !== 'point') {
-      $feature['path'] = str_replace(
+      $feature['path'] = htmlspecialchars_decode(str_replace(
         ["\n", "\r"],
         "",
         $this->viewsTokenReplace($this->options['path'], $tokens)
-      );
+      ));
     }
 
     // Associate dynamic className property (token based) to icon.
@@ -1395,11 +1395,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
     // Add Feature additional Properties (if present).
     if (!empty($this->options['feature_properties']['values'])) {
-      $feature['properties'] = str_replace(
+      $feature['properties'] = htmlspecialchars_decode(str_replace(
         ["\n", "\r"],
         "",
         $this->viewsTokenReplace($this->options['feature_properties']['values'], $tokens)
-      );
+      ));
     }
 
     // Add eventually the Marker Cluster Exclude Flag.

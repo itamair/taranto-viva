@@ -522,7 +522,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       'reset_map' => $this->getSetting('reset_map'),
       'map_scale' => $this->getSetting('map_scale'),
       'fullscreen' => $this->getSetting('fullscreen'),
-      'path' => str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $tokens)),
+      'path' => htmlspecialchars_decode(str_replace(["\n", "\r"], "", $this->token->replace($this->getSetting('path'), $tokens))),
       'geocoder' => $this->getSetting('geocoder'),
       'locate' => $this->getSetting('locate'),
       'geojson_overlays' => $this->getSetting('geojson_overlays'),
