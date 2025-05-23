@@ -475,8 +475,14 @@
    *   The Feature coming from Drupal settings.
    */
   Drupal.Leaflet.prototype.set_feature_path_style = function(lFeature, feature) {
-    const lFeature_path_style = feature.path ?
-      (feature.path instanceof Object ? feature.path : JSON.parse(feature.path)) : {};
+    let lFeature_path_style;
+    try {
+      lFeature_path_style = feature.path ?
+        (feature.path instanceof Object ? feature.path : JSON.parse(feature.path)) : {};
+    }
+    catch (e) {
+      lFeature_path_style = {};
+    }
 
     // Make sure that the weight property is cast into integer, for avoiding
     // polygons eventually disappearing with pan and zooming.
