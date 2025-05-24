@@ -154,7 +154,7 @@ class LeafletService {
     }
 
     // Add the Leaflet Reset View library, if requested.
-    if (is_array($map['settings']['reset_map']) && array_key_exists('control', $map['settings']['reset_map']) && $map['settings']['reset_map']['control']) {
+    if (isset($map['settings']['reset_map']) && is_array($map['settings']['reset_map']) && array_key_exists('control', $map['settings']['reset_map']) && $map['settings']['reset_map']['control']) {
       $attached_libraries[] = 'leaflet/leaflet.reset_map_view';
     }
 
