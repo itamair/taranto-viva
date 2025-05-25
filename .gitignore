@@ -48,3 +48,5 @@ phpunit.xml
 
 # Ignore photo_albums folder alias
 photo_albums
+
+**/.claude/settings.local.json
