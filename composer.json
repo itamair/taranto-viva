@@ -8,12 +8,47 @@
         "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
         "chat": "https://www.drupal.org/node/314178"
     },
-    "repositories": [
-        {
+    "repositories": {
+        "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        "jsoneditor": {
+            "type": "package",
+            "package": {
+                "name": "josdejong/jsoneditor",
+                "version": "v5.29.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/josdejong/jsoneditor/archive/v5.29.1.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/josdejong/jsoneditor",
+                    "type": "git",
+                    "reference": "v5.29.1"
+                }
+            }
+        },
+        "jquery-jsonview": {
+            "type": "package",
+            "package": {
+                "name": "yesmeck/jquery-jsonview",
+                "version": "v1.2.3",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/yesmeck/jquery-jsonview/archive/v1.2.3.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/yesmeck/jquery-jsonview",
+                    "type": "git",
+                    "reference": "v1.2.3"
+                }
+            }
         }
-    ],
+    },
+
     "require": {
         "ext-json": "*",
         "composer/installers": "^2.0",

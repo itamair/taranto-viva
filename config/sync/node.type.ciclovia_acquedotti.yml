@@ -1,0 +1,18 @@
+uuid: 9215d4ea-80fb-403b-9d33-a45aa9d47cfe
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Ciclovia Acquedotti'
+type: ciclovia_acquedotti
+description: 'Percorsi della Ciclovia degli Acquedotti, come estratti da https://www.cicloviadellacquedotto.it Fonte tracciati: https://www.cicloviadellacquedotto.it/tracciato/'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

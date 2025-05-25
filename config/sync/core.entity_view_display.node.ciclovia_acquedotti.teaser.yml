@@ -1,0 +1,46 @@
+uuid: 8c6903a4-ba93-45d4-8a24-8e10c427ac7b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.ciclovia_acquedotti.body
+    - field.field.node.ciclovia_acquedotti.field_distance_km
+    - field.field.node.ciclovia_acquedotti.field_geofield
+    - field.field.node.ciclovia_acquedotti.field_geofield_path_style
+    - field.field.node.ciclovia_acquedotti.field_gpx_track
+    - field.field.node.ciclovia_acquedotti.field_project_namespace
+    - field.field.node.ciclovia_acquedotti.field_source
+    - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
+    - node.type.ciclovia_acquedotti
+  module:
+    - text
+    - user
+id: node.ciclovia_acquedotti.teaser
+targetEntityType: node
+bundle: ciclovia_acquedotti
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_distance_km: true
+  field_geofield: true
+  field_geofield_path_style: true
+  field_gpx_track: true
+  field_project_namespace: true
+  field_source: true
+  field_tratta_ciclovia_aqp: true
+  langcode: true
+  uuid: true

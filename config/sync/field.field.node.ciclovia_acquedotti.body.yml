@@ -1,0 +1,24 @@
+uuid: c9380cb1-151e-4234-b79d-81c40172cf2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.ciclovia_acquedotti
+  module:
+    - text
+id: node.ciclovia_acquedotti.body
+field_name: body
+entity_type: node
+bundle: ciclovia_acquedotti
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

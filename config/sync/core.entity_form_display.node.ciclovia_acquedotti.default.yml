@@ -1,0 +1,218 @@
+uuid: 4d72402b-d1a5-459c-b397-c4bddaacf2cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ciclovia_acquedotti.body
+    - field.field.node.ciclovia_acquedotti.field_distance_km
+    - field.field.node.ciclovia_acquedotti.field_geofield
+    - field.field.node.ciclovia_acquedotti.field_geofield_path_style
+    - field.field.node.ciclovia_acquedotti.field_gpx_track
+    - field.field.node.ciclovia_acquedotti.field_project_namespace
+    - field.field.node.ciclovia_acquedotti.field_source
+    - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
+    - node.type.ciclovia_acquedotti
+  module:
+    - file
+    - json_field
+    - leaflet
+    - path
+    - text
+id: node.ciclovia_acquedotti.default
+targetEntityType: node
+bundle: ciclovia_acquedotti
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_distance_km:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_geofield:
+    type: leaflet_widget_default
+    weight: 7
+    region: content
+    settings:
+      geometry_validation: true
+      map:
+        leaflet_map: multilayers
+        height: 700
+        auto_center: 1
+        map_position:
+          force: false
+          center:
+            lat: 45.0
+            lon: 12.0
+          zoomControlPosition: topleft
+          zoom: 5
+          minZoom: 1
+          maxZoom: 18
+          zoomFiner: 0
+        scroll_zoom_enabled: 1
+      input:
+        show: true
+        readonly: false
+      toolbar:
+        position: topright
+        marker: defaultMarker
+        drawPolyline: true
+        drawRectangle: true
+        drawPolygon: true
+        drawCircle: false
+        drawText: false
+        editMode: true
+        dragMode: true
+        cutPolygon: false
+        removalMode: true
+        rotateMode: false
+      reset_map:
+        control: true
+        options: '{"position":"topleft","title":"Reset View"}'
+      map_scale:
+        control: true
+        options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
+      fullscreen:
+        control: true
+        options: '{"position":"topleft","pseudoFullscreen":false}'
+      path: '[node:field_geofield_path_style:value]'
+      feature_properties:
+        values: ''
+      locate:
+        control: false
+        options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
+        automatic: false
+      geocoder:
+        control: true
+        settings:
+          set_marker: true
+          popup: false
+          autocomplete:
+            placeholder: 'Search Address'
+            title: 'Search an Address on the Map'
+          position: topright
+          input_size: 20
+          providers:
+            arcgisonline:
+              weight: 0
+              checked: true
+            file:
+              weight: 0
+              checked: false
+            googlemaps:
+              weight: 0
+              checked: false
+            photon:
+              weight: 0
+              checked: false
+          min_terms: 4
+          delay: 800
+          zoom: 16
+          options: ''
+    third_party_settings: {  }
+  field_geofield_path_style:
+    type: json_textarea
+    weight: 8
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_gpx_track:
+    type: file_generic
+    weight: 6
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_project_namespace:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_source:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tratta_ciclovia_aqp:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 11
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 14
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 12
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 9
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  uuid: true

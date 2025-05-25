@@ -1,0 +1,9 @@
+uuid: d4158bd7-22d3-4d79-873d-5e5d2ff9a244
+langcode: it
+status: true
+dependencies: {  }
+name: 'Tratte Ciclovia Acquedotti'
+vid: tratte_ciclovia_acquedotti
+description: null
+weight: 0
+new_revision: false

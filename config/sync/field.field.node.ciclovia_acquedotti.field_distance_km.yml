@@ -1,0 +1,28 @@
+uuid: e67184b7-801d-4680-856f-019d5ef3fdd2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_distance_km
+    - node.type.ciclovia_acquedotti
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_distance_km
+field_name: field_distance_km
+entity_type: node
+bundle: ciclovia_acquedotti
+label: 'Distance km'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: Km
+field_type: decimal

@@ -1,0 +1,43 @@
+uuid: 4e778f01-7d12-47dd-98da-39c9b8aac466
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_namespace
+    - node.type.ciclovia_acquedotti
+    - taxonomy.vocabulary.project_namespace
+  content:
+    - 'taxonomy_term:project_namespace:f601061a-fcef-43f4-8718-91667bcc943e'
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_project_namespace
+field_name: field_project_namespace
+entity_type: node
+bundle: ciclovia_acquedotti
+label: 'Project Namespace'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: f601061a-fcef-43f4-8718-91667bcc943e
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project_namespace: project_namespace
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

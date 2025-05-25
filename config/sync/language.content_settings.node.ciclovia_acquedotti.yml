@@ -1,0 +1,11 @@
+uuid: db6c8a53-892a-4813-b1e0-b15482e58a3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ciclovia_acquedotti
+id: node.ciclovia_acquedotti
+target_entity_type_id: node
+target_bundle: ciclovia_acquedotti
+default_langcode: site_default
+language_alterable: false

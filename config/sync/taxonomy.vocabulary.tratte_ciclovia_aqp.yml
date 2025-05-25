@@ -1,0 +1,9 @@
+uuid: 863fd6ba-ba84-4290-8c24-91d0abbd8308
+langcode: it
+status: true
+dependencies: {  }
+name: 'Tratte Ciclovia AQP'
+vid: tratte_ciclovia_aqp
+description: null
+weight: 0
+new_revision: false

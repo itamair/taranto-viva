@@ -1,0 +1,39 @@
+uuid: 29d493f1-0171-4b9e-90e9-7022818bf882
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tratta_ciclovia_aqp
+    - node.type.ciclovia_acquedotti
+    - taxonomy.vocabulary.tratte_ciclovia_aqp
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
+field_name: field_tratta_ciclovia_aqp
+entity_type: node
+bundle: ciclovia_acquedotti
+label: 'Tratta Ciclovia AQP'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tratte_ciclovia_aqp: tratte_ciclovia_aqp
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

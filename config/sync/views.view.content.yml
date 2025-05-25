@@ -983,7 +983,13 @@ display:
           plugin_id: language
           operator: in
           value:
+            all: all
+            '***LANGUAGE_site_default***': '***LANGUAGE_site_default***'
             '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            en: en
+            it: it
+            und: und
+            zxx: zxx
           group: 1
           exposed: true
           expose:
@@ -1001,6 +1007,8 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              content_editor: '0'
+              vagante_importer: '0'
               administrator: '0'
             reduce: false
           is_grouped: false

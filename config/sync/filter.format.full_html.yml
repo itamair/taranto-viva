@@ -45,6 +45,15 @@ filters:
     status: true
     weight: 9
     settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -10
+    settings:
+      allowed_html: ''
+      filter_html_help: true
+      filter_html_nofollow: false
   filter_htmlcorrector:
     id: filter_htmlcorrector
     provider: filter
@@ -68,7 +77,7 @@ filters:
         title: '0'
       optionset: default
       layout: ''
-      admin_uri: '/en/admin/config/content/formats/manage/full_html?destination=/en/admin/config/content/formats&ajax_form=1&_wrapper_format=drupal_ajax&_wrapper_format=drupal_ajax'
+      admin_uri: '/en/admin/config/content/formats/manage/full_html?destination=/en/admin/config/content/formats&ajax_form=1&_wrapper_format=drupal_ajax'
       background: false
       box_caption: ''
       box_caption_custom: ''

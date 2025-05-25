@@ -1,12 +1,12 @@
-uuid: 81872381-9085-4af3-a2d3-541c30d48555
-langcode: it
+uuid: 119d3e9a-dce7-4ab8-a064-ce43b9d5dfd0
+langcode: en
 status: true
 dependencies:
   module:
     - node
     - taxonomy
-id: node.field_project_namespace
-field_name: field_project_namespace
+id: node.field_tratta_ciclovia_aqp
+field_name: field_tratta_ciclovia_aqp
 entity_type: node
 type: entity_reference
 settings:
