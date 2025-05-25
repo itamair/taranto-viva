@@ -336,7 +336,7 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Temporary
+            format_custom_false: Temporaneo
             format_custom_true: Permanent
         created:
           id: created

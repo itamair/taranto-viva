@@ -1,0 +1,11 @@
+uuid: 5e33c040-cd42-4716-bd82-2f2a4bd7fddf
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry
+target_entity_type_id: node
+target_bundle: geojson_geometry
+default_langcode: site_default
+language_alterable: false

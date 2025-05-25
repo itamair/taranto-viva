@@ -8,9 +8,7 @@ dependencies:
     - field.storage.node.field_geofield
     - field.storage.node.field_value
     - field.storage.node.field_weight
-    - node.type.choropleth_area
-    - node.type.geofield_entity
-    - node.type.geoimage
+    - node.type.geojson_geometry
     - system.menu.main
   module:
     - geofield
@@ -598,9 +596,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            choropleth_area: choropleth_area
-            geoimage: geoimage
-            geofield_entity: geofield_entity
+            geojson_geometry: geojson_geometry
           group: 1
           exposed: false
           expose:
@@ -648,14 +644,14 @@ display:
           entity_source_submit: 'Update Entity Source'
           leaflet_tooltip:
             value: nothing
-            options: '{"permanent":true,"direction":"center","sticky":true}'
+            options: '{"permanent":false,"direction":"top","sticky":true}'
           name_field: ''
           leaflet_popup:
             value: '#rendered_view_fields'
             view_mode: full
             options: '{"maxWidth":"300","minWidth":"50","autoPan":true}'
           leaflet_map: multilayers
-          height: '60'
+          height: '70'
           height_unit: vh
           hide_empty_map: 0
           gesture_handling: 0
@@ -670,10 +666,10 @@ display:
           map_position:
             force: 0
             center:
-              lat: '0'
-              lon: '0'
+              lat: '45'
+              lon: '12'
             zoomControlPosition: topleft
-            zoom: '5'
+            zoom: '6'
             minZoom: '1'
             maxZoom: '18'
             zoomFiner: '0'
@@ -705,7 +701,7 @@ display:
             control: 1
             excluded: '0'
             options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds":false}'
-            include_path: 1
+            include_path: 0
           fullscreen:
             control: 1
             options: '{"position":"topleft","pseudoFullscreen":false}'
@@ -747,20 +743,20 @@ display:
           choropleth:
             enabled: 1
             data_field: field_value
-            value_format: '%f%'
+            value_format: '%d ab/kmq'
             color_scale: sequential_greens
-            classification: jenks
+            classification: quantile
             classes: '5'
             reverse: 0
             opacity: '1'
-            weight: '3'
-            borderColor: '#FE3FEF'
-            borderOpacity: '0.8'
+            weight: '1'
+            borderColor: '#000000'
+            borderOpacity: '0.7'
             legend:
               enabled: 1
               position: bottomright
               title: 'Legend Title'
-              decimals: '1'
+              decimals: '0'
       row:
         type: fields
       query:

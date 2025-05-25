@@ -1,0 +1,136 @@
+uuid: 025f6fec-d1c6-4ccf-8911-8f7fc1bc752b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.geojson_geometry.field_geofield
+    - field.field.node.geojson_geometry.field_value
+    - node.type.geojson_geometry
+  module:
+    - feeds_ex
+    - feeds_log
+    - feeds_tamper
+    - geofield
+    - node
+third_party_settings:
+  feeds_log:
+    status: true
+    operations:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+      cleaned: cleaned
+    items:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+    source: true
+  feeds_tamper:
+    tampers:
+      8d176d03-e404-479c-8d5b-7faf84324aff:
+        uuid: 8d176d03-e404-479c-8d5b-7faf84324aff
+        plugin: random_value_10_100
+        source: '0'
+        weight: 0
+        label: 'Random Value from 10 to 100'
+      536742e1-2281-4374-8928-8109ce322fc3:
+        uuid: 536742e1-2281-4374-8928-8109ce322fc3
+        plugin: array_into_json
+        source: geo_shape_geometry
+        weight: 0
+        label: 'Array into Json'
+id: italian_provinces
+label: 'Italian Provinces from opendatasoft.com'
+description: 'from opendatasoft.com'
+help: 'https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/georef-italy-provincia/records?limit=-1'
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  always_download: false
+  fallback_hub: ''
+  request_timeout: 45
+parser: jsonpath
+parser_configuration:
+  context:
+    value: '$.results.*'
+  source_encoding:
+    - auto
+  display_errors: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: geojson_geometry
+  langcode: en
+  insert_new: 1
+  update_existing: 0
+  update_non_existent: _keep
+  skip_hash_check: false
+  skip_validation: false
+  skip_validation_types: {  }
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  geometry:
+    value: geometry
+    label: geometry
+    machine_name: geometry
+    type: json
+  properties_prov_name:
+    value: properties.prov_name
+    label: properties.prov_name
+    machine_name: properties_prov_name
+    type: json
+  0:
+    value: '0'
+    label: '0'
+    machine_name: '0'
+    type: blank
+  geo_shape_geometry:
+    value: geo_shape.geometry
+    label: geo_shape.geometry
+    machine_name: geo_shape_geometry
+    type: json
+  prov_name:
+    value: prov_name
+    label: prov_name
+    machine_name: prov_name
+    type: json
+  geo_shape_geometry_coordinates:
+    value: geo_shape.geometry.coordinates
+    label: geo_shape.geometry.coordinates
+    machine_name: geo_shape_geometry_coordinates
+    type: json
+mappings:
+  -
+    target: field_geofield
+    map:
+      lat: ''
+      lon: ''
+      value: geo_shape_geometry
+    settings:
+      language: null
+  -
+    target: title
+    map:
+      value: prov_name
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: field_value
+    map:
+      value: '0'
+    settings:
+      language: null
+    unique: {  }

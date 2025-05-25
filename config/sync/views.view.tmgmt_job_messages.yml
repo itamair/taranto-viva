@@ -84,7 +84,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job_item
           plugin_id: tmgmt_entity_label
-          label: Item
+          label: Elemento
           exclude: false
           alter:
             alter_text: false

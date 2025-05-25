@@ -59,12 +59,12 @@ display:
             label: Severity
         timestamp:
           expose:
-            label: 'Timestamp (from)'
+            label: From
           group_info:
             label: Timestamp
         timestamp_1:
           expose:
-            label: 'Timestamp (to)'
+            label: To
   page:
     display_title: Page
     display_options:

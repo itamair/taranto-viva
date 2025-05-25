@@ -1,0 +1,18 @@
+uuid: 49c3bb07-1824-4a11-9175-bfa68a463fcb
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'US States'
+type: us_states
+description: 'Us States from the Leaflet Interactive Choropleth Map page (https://leafletjs.com/examples/choropleth/)'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

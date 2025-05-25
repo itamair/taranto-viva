@@ -1,0 +1,131 @@
+uuid: 5ee238a0-a06b-4005-8720-dc7f9205dce5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.geojson_geometry.field_geofield
+    - field.field.node.geojson_geometry.field_value
+    - node.type.geojson_geometry
+  module:
+    - feeds_ex
+    - feeds_log
+    - feeds_tamper
+    - geofield
+    - node
+third_party_settings:
+  feeds_log:
+    status: true
+    operations:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+      cleaned: cleaned
+    items:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+    source: true
+  feeds_tamper:
+    tampers:
+      92c50258-061f-402a-b6b9-d31222b19826:
+        uuid: 92c50258-061f-402a-b6b9-d31222b19826
+        plugin: array_into_json
+        source: geometry
+        weight: 0
+        label: 'Array into Json'
+      3a5fb5af-92e7-4d6e-b809-cd7613aa4988:
+        uuid: 3a5fb5af-92e7-4d6e-b809-cd7613aa4988
+        plugin: random_value_10_100
+        source: '0'
+        weight: 0
+        label: 'Random Value from 10 to 100'
+id: geojson_import
+label: 'Geojson Import'
+description: ''
+help: ''
+import_period: -1
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  always_download: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: jsonpath
+parser_configuration:
+  context:
+    value: '$.features.*'
+  source_encoding:
+    - auto
+  display_errors: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: geojson_geometry
+  langcode: it
+  insert_new: 1
+  update_existing: 0
+  update_non_existent: _keep
+  skip_hash_check: false
+  skip_validation: false
+  skip_validation_types: {  }
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 0
+custom_sources:
+  geometry:
+    value: geometry
+    label: geometry
+    machine_name: geometry
+    type: json
+  properties_name_long:
+    value: properties.name_long
+    label: properties.name_long
+    machine_name: properties_name_long
+    type: json
+  geometry_coordinates:
+    value: geometry.coordinates
+    label: geometry.coordinates
+    machine_name: geometry_coordinates
+    type: json
+  '':
+    value: ''
+    label: ''
+    machine_name: ''
+    type: blank
+  0:
+    value: '0'
+    label: '0'
+    machine_name: '0'
+    type: blank
+mappings:
+  -
+    target: field_geofield
+    map:
+      lat: ''
+      lon: ''
+      value: geometry
+    settings:
+      language: null
+  -
+    target: title
+    map:
+      value: properties_name_long
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: field_value
+    map:
+      value: '0'
+    settings:
+      language: null
+    unique: {  }

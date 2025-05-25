@@ -520,7 +520,7 @@ display:
           entity_type: node
           entity_field: changed
           plugin_id: field
-          label: Updated
+          label: Aggiornato
           exclude: false
           alter:
             alter_text: false

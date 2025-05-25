@@ -1,0 +1,11 @@
+uuid: f58de151-9cc3-4ce6-ac1e-878afcb1879c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.us_states
+id: node.us_states
+target_entity_type_id: node
+target_bundle: us_states
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,28 @@
+uuid: 29b70dbb-9ca1-4172-8aff-7e1e373805fe
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_value
+    - node.type.italian_province
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.italian_province.field_value
+field_name: field_value
+entity_type: node
+bundle: italian_province
+label: Value
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

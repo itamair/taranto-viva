@@ -419,7 +419,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'No log messages available.'
+            value: 'Nessun messaggio di log disponibile.'
             format: basic_html
           tokenize: false
       sorts:
@@ -550,7 +550,7 @@ display:
           exposed: true
           expose:
             operator_id: timestamp_op
-            label: 'Timestamp (from)'
+            label: Da
             description: ''
             use_operator: false
             operator: timestamp_op
@@ -601,7 +601,7 @@ display:
           exposed: true
           expose:
             operator_id: timestamp_1_op
-            label: 'Timestamp (to)'
+            label: A
             description: ''
             use_operator: false
             operator: timestamp_1_op

@@ -479,10 +479,10 @@ display:
           field: area_text_custom
           relationship: none
           group_type: group
-          admin_label: 'No log messages available.'
+          admin_label: 'Nessun messaggio di log disponibile.'
           plugin_id: text_custom
           empty: true
-          content: 'No log messages available.'
+          content: 'Nessun messaggio di log disponibile.'
           tokenize: false
       sorts:
         wid:

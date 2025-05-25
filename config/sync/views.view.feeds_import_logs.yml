@@ -1,5 +1,5 @@
 uuid: 0fb007ae-1b17-480c-ae90-74b1203389c6
-langcode: en
+langcode: it
 status: true
 dependencies:
   module:
@@ -20,7 +20,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Logs
+      title: Log
       fields:
         import_id:
           id: import_id
@@ -315,7 +315,7 @@ display:
           entity_type: feeds_import_log
           entity_field: sources
           plugin_id: field
-          label: Sources
+          label: Sorgenti
           exclude: false
           alter:
             alter_text: false
@@ -482,6 +482,7 @@ display:
         type: mini
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 30
           total_pages: null
           id: 0
@@ -493,10 +494,9 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Tutte -'
             offset: false
             offset_label: Offset
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -541,7 +541,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Tutte
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -656,7 +656,7 @@ display:
       path: feed/%feeds_feed/log
       menu:
         type: none
-        title: Overview
+        title: Panoramica
         description: ''
         weight: 0
         expanded: false
@@ -665,7 +665,7 @@ display:
         context: '0'
       tab_options:
         type: tab
-        title: Logs
+        title: Log
         description: ''
         weight: 0
     cache_metadata:

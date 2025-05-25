@@ -347,7 +347,7 @@ display:
           entity_type: comment
           entity_field: changed
           plugin_id: field
-          label: Updated
+          label: Aggiornato
           exclude: false
           alter:
             alter_text: false
@@ -695,7 +695,7 @@ display:
           exposed: true
           expose:
             operator_id: combine_op
-            label: 'Author name'
+            label: "Nome dell'autore"
             description: ''
             use_operator: false
             operator: combine_op
@@ -1235,7 +1235,7 @@ display:
           entity_type: comment
           entity_field: changed
           plugin_id: field
-          label: Updated
+          label: Aggiornato
           exclude: false
           alter:
             alter_text: false

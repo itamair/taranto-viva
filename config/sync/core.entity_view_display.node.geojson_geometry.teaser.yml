@@ -1,0 +1,28 @@
+uuid: 04fb9d17-b7a4-492a-9b73-7d7aac9fbbdc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.geojson_geometry.feeds_item
+    - field.field.node.geojson_geometry.field_geofield
+    - field.field.node.geojson_geometry.field_value
+    - node.type.geojson_geometry
+  module:
+    - user
+id: node.geojson_geometry.teaser
+targetEntityType: node
+bundle: geojson_geometry
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_geofield: true
+  field_value: true
+  langcode: true
+  uuid: true

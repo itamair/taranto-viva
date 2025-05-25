@@ -1,0 +1,18 @@
+uuid: 0a24b2a9-0ccd-4316-a2d0-eb5ddb704534
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Italian Province'
+type: italian_province
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

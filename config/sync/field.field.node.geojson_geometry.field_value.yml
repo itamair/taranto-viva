@@ -1,0 +1,28 @@
+uuid: ffec76fe-7e9a-401e-8b78-bb3575011ce4
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_value
+    - node.type.geojson_geometry
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geojson_geometry.field_value
+field_name: field_value
+entity_type: node
+bundle: geojson_geometry
+label: Value
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,30 @@
+uuid: 8758d46b-c4ce-46fe-bf96-8d048ffff834
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.italian_province.feeds_item
+    - field.field.node.italian_province.field_geofield
+    - field.field.node.italian_province.field_prov_code
+    - field.field.node.italian_province.field_value
+    - node.type.italian_province
+  module:
+    - user
+id: node.italian_province.teaser
+targetEntityType: node
+bundle: italian_province
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_geofield: true
+  field_prov_code: true
+  field_value: true
+  langcode: true
+  uuid: true

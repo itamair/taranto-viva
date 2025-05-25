@@ -835,7 +835,7 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Normal
+                title: Normale
                 operator: '='
                 value:
                   value: normal

@@ -1,0 +1,30 @@
+uuid: 75ca784c-c75d-4922-87c9-e5b42e6ea7d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.us_states.body
+    - node.type.us_states
+  module:
+    - text
+    - user
+id: node.us_states.default
+targetEntityType: node
+bundle: us_states
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  uuid: true
