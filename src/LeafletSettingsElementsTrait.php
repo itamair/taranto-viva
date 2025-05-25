@@ -1789,7 +1789,7 @@ trait LeafletSettingsElementsTrait {
   public static function jsonValidate($element, FormStateInterface &$form_state) {
     // Check Json validity only in case the element value is not wrapped by
     // brackets (Views Replacement) or square brackets (Token).
-    if (preg_match('/^\{.*\}$/', $element['#value']) !== 1 &&
+    if (preg_match('/^\{{.*\}}$/', $element['#value']) !== 1 &&
       preg_match('/^\[.*\]$/', $element['#value']) !== 1
     ) {
       $element_values_array = Json::decode($element['#value']);
