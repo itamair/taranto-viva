@@ -158,19 +158,19 @@
         // Create the ImagesToggle control but don't add it to the map yet
         const imagesToggleControl = L.control.imagesToggle({ position: 'topright' });
         let controlAdded = false;
-        
+
         // Function to add or remove the control based on zoom level
         const updateImagesToggleControl = function() {
           if (map.getZoom() >= imagesZoomLimit) {
             if (!controlAdded) {
               // Add the control to the map
               imagesToggleControl.addTo(map);
-              
+
               // Move our control to be the first one in the top-right
               const controlContainer = map._controlCorners.topright;
               const ourControl = controlContainer.lastChild;
               controlContainer.insertBefore(ourControl, controlContainer.firstChild);
-              
+
               controlAdded = true;
             }
           } else if (controlAdded) {
@@ -179,10 +179,10 @@
             controlAdded = false;
           }
         };
-        
+
         // Initial setup based on current zoom
         updateImagesToggleControl();
-        
+
         // Update control visibility when zoom changes
         map.on('zoomend', updateImagesToggleControl);
 
@@ -277,6 +277,9 @@
 
       // Ajax Import all Markers Popups.
       this.ajaxImportAllMarkersPopups(markers);
+
+      // Set Permanent Tooltip Visibility.
+      this.setPermanentTooltipVisibility(mapid, map);
     },
 
     /**
@@ -585,7 +588,7 @@
       const zoomLevel = map.getZoom();
       const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features || [];
       // Set permanent tooltips only between a specific Zoom Range.
-      const isPermanent = zoomLevel > 11 && zoomLevel <= 15;
+      const isPermanent = zoomLevel > 10 && zoomLevel <= 15;
 
       for (const permanent_tooltip_feature of permanent_tooltip_features) {
         if (!permanent_tooltip_feature) {

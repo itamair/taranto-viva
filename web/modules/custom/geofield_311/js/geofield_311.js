@@ -54,7 +54,7 @@
         let myStyle = {
           color: geojsonAppLimitSettings.stroke_color,
           weight: parseInt(geojsonAppLimitSettings.stroke_weight),
-          opacity: 1,
+          opacity: 0.6,
           fillColor: "blue",
           fillOpacity: 0,
           interactive: false,

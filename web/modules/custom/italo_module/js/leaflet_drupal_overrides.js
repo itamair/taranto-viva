@@ -68,7 +68,7 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
     }
 
     // Need to more correctly set the tooltip_options.sticky option.
-    tooltip_options.sticky = tooltip_options.sticky === "true";
+    tooltip_options.sticky = tooltip_options.sticky === true || tooltip_options.sticky === "true";
 
     lFeature.bindTooltip(feature.tooltip.value, tooltip_options);
   }
@@ -85,7 +85,7 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
 Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
   const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
 
-  if (!parseInt(feature_properties.popup_disabled) && feature.popup) {
+  if (!parseInt(feature_properties.popup_disabled) && feature.popup && feature.popup.value) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
     lFeature.bindPopup(feature.popup.value, popup_options);
   }
