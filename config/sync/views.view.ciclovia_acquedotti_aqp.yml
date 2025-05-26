@@ -150,7 +150,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: false
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -456,7 +456,7 @@ display:
             value: '#rendered_view_fields'
             options: '{"permanent":true,"direction":"center"}'
           leaflet_popup:
-            value: ''
+            value: title
             options: '{"maxWidth":"300","minWidth":"50","autoPan":true}'
             view_mode: full
           leaflet_map: multilayers
@@ -520,7 +520,7 @@ display:
             options: '{"position":"topleft","pseudoFullscreen":false}'
           path: '{{ field_geofield_path_style_json_value }}'
           feature_properties:
-            values: ''
+            values: '{"tooltip_disabled":"{{ field_tooltip_disabled }}"}'
           geocoder:
             control: false
             settings:
