@@ -1,0 +1,8 @@
+display:
+  default:
+    display_options:
+      empty:
+        area:
+          content:
+            value: '<p>No Results found</p>'
+            format: basic_html

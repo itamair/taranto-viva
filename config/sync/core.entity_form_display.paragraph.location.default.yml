@@ -20,7 +20,7 @@ dependencies:
     - paragraphs.paragraphs_type.location
   module:
     - field_group
-    - geofield_311
+    - leaflet
     - media_library
 third_party_settings:
   field_group:
@@ -77,64 +77,88 @@ content:
       display_label: true
     third_party_settings: {  }
   field_geofield:
-    type: geofield_311_geofield_map_widget
+    type: leaflet_widget_default
     weight: 12
     region: content
     settings:
-      map_geocoder:
+      geometry_validation: true
+      map:
+        leaflet_map: 'OSM Mapnik'
+        height: 600
+        auto_center: 1
+        map_position:
+          force: false
+          center:
+            lat: 0.0
+            lon: 0.0
+          zoomControlPosition: topleft
+          zoom: 5
+          minZoom: 1
+          maxZoom: 18
+          zoomFiner: 0
+        scroll_zoom_enabled: 1
+      input:
+        show: true
+        readonly: false
+      toolbar:
+        position: topright
+        marker: defaultMarker
+        drawPolyline: false
+        drawRectangle: false
+        drawPolygon: false
+        drawCircle: false
+        drawText: false
+        editMode: false
+        dragMode: false
+        cutPolygon: false
+        removalMode: true
+        rotateMode: false
+      reset_map:
+        control: true
+        options: '{"position":"topleft","title":"Reset View"}'
+      map_scale:
+        control: true
+        options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
+      fullscreen:
+        control: true
+        options: '{"position":"topleft","pseudoFullscreen":false}'
+      path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
+      feature_properties:
+        values: ''
+      locate:
+        control: false
+        options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
+        automatic: false
+      geocoder:
+        control: true
         settings:
+          set_marker: true
+          popup: false
+          autocomplete:
+            placeholder: 'Search Address'
+            title: 'Search an Address on the Map'
+          position: topright
+          input_size: 20
           providers:
-            googlemaps:
-              checked: '1'
-              weight: '0'
             arcgisonline:
-              weight: '0'
-              checked: 0
+              weight: 0
+              checked: true
+            googlemaps:
+              weight: 2
+              checked: true
             file:
-              weight: '0'
-              checked: 0
+              weight: 0
+              checked: false
+            gpx_file:
+              weight: 0
+              checked: false
             photon:
-              weight: '0'
-              checked: 0
-          min_terms: '4'
-          delay: '800'
+              weight: 0
+              checked: false
+          min_terms: 4
+          delay: 800
+          zoom: 16
           options: ''
-        control: 0
-      map_google_places:
-        places_control: '1'
-        places_additional_options: ''
-      map_library: gmap
-      map_type_google: roadmap
-      map_type_leaflet: OpenStreetMap_Mapnik
-      map_type_selector: '1'
-      map_dimensions:
-        width: 100%
-        height: 850px
-      zoom:
-        start: '12'
-        focus: '18'
-        min: '10'
-        max: '22'
-      click_to_find_marker: '1'
-      click_to_place_marker: '1'
-      hide_coordinates: '1'
-      geoaddress_field:
-        field: '0'
-        disabled: '1'
-        hidden: 0
-      geojson_app_limit:
-        bounds_zoom_correction: '0'
-        max_zoom_out: '-2'
-        bounds_zoom_flag: 0
-        bounds_limit_flag: 0
-      default_value:
-        lat: 0.0
-        lon: 0.0
-      click_to_remove_marker: 0
-      html5_geolocation: 0
-      hide_geocode_address: 0
-      map_google_api_key: ''
-      zoom_level: 5
     third_party_settings: {  }
   field_location_icon_width:
     type: number

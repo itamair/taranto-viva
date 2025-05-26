@@ -45,21 +45,20 @@ class LeafletPopupRenderedEntity extends RenderedEntity implements CacheableDepe
         if (!empty($paragraph_id_component) && $entity->bundle() === 'territorial_report') {
           $new_entity = $new_entity->set('field_components', $paragraph_id_component);
         }
-
-        $access = $entity->access('view', NULL, TRUE);
-        $build['#access'] = $access;
-        if ($access->isAllowed()) {
-          $view_builder = $this->entityTypeManager->getViewBuilder($this->getEntityTypeId());
-          $build += $view_builder->view($new_entity, $this->options['view_mode'], $new_entity->language()->getId());
-        }
-
-        $build["#cache"]["keys"] = [
-          "entity_view",
-          "paragraph",
-          "leaflet_popup",
-          $paragraph_id,
-        ];
       }
+      $access = $entity->access('view', NULL, TRUE);
+      $build['#access'] = $access;
+      if ($access->isAllowed()) {
+        $view_builder = $this->entityTypeManager->getViewBuilder($this->getEntityTypeId());
+        $build += $view_builder->view($new_entity, $this->options['view_mode'], $new_entity->language()->getId());
+      }
+
+      $build["#cache"]["keys"] = [
+        "entity_view",
+        "paragraph",
+        "leaflet_popup",
+        $paragraph_id,
+      ];
     }
     return $build;
   }

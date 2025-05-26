@@ -1,0 +1,85 @@
+uuid: 648004b2-1a7f-47b5-b379-a8ad1d40958e
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_geofied_view
+    - node.type.ciclovia_acquedotti
+    - views.view.ciclovia_acquedotto_aqp
+  module:
+    - tmgmt_content
+    - viewfield
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_geofied_view
+field_name: field_geofied_view
+entity_type: node
+bundle: ciclovia_acquedotti
+label: 'Geofied View'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: d62dfc37-0183-404f-873c-038f9d5787d1
+    display_id: block_single_location
+    arguments: '[node:nid]'
+    items_to_display: ''
+    token_help: ''
+default_value_callback: ''
+settings:
+  force_default: true
+  allowed_views:
+    ciclovia_acquedotto_aqp: ciclovia_acquedotto_aqp
+    choropleth_map: '0'
+    ciclovia_acquedotti_aqp: '0'
+    comment: '0'
+    content: '0'
+    content_locations_addresses_and_google_maps_links: '0'
+    content_media_images: '0'
+    block_content: '0'
+    eca_log: '0'
+    entity_mesh_node: '0'
+    entity_mesh: '0'
+    feeds_feed: '0'
+    feeds_import_logs: '0'
+    files: '0'
+    frontpage: '0'
+    geo_images_list: '0'
+    geo_places: '0'
+    graphql_segnalazioni_territoriali: '0'
+    tmgmt_job_overview: '0'
+    media: '0'
+    media_library: '0'
+    paragraphs: '0'
+    paragraphs_media_slideshow: '0'
+    user_admin_people: '0'
+    places_types: '0'
+    rate_widgets_results: '0'
+    comments_recent: '0'
+    content_recent: '0'
+    taxonomy_term: '0'
+    territorial_reports: '0'
+    tmgmt_translation_all_job_items: '0'
+    tmgmt_job_items: '0'
+    tmgmt_job_messages: '0'
+    votingapi_votes: '0'
+    watchdog: '0'
+    watchdog_statistics: '0'
+    who_s_new: '0'
+    who_s_online: '0'
+  allowed_display_types:
+    block: block
+    attachment: '0'
+    data_export: '0'
+    embed: '0'
+    feed: '0'
+    graphql: '0'
+    default: '0'
+    page: '0'
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: viewfield

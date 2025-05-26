@@ -6,20 +6,157 @@ dependencies:
     - field.field.node.ciclovia_acquedotti.body
     - field.field.node.ciclovia_acquedotti.field_components
     - field.field.node.ciclovia_acquedotti.field_distance_km
-    - field.field.node.ciclovia_acquedotti.field_geofield
-    - field.field.node.ciclovia_acquedotti.field_geofield_path_style
-    - field.field.node.ciclovia_acquedotti.field_gpx_track
+    - field.field.node.ciclovia_acquedotti.field_geofied_view
     - field.field.node.ciclovia_acquedotti.field_project_namespace
     - field.field.node.ciclovia_acquedotti.field_source
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
     - node.type.ciclovia_acquedotti
   module:
-    - file
     - italo_module
-    - json_field
-    - leaflet
+    - layout_builder
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          1dc76e65-04d5-433c-9bd8-69adeca21c79:
+            uuid: 1dc76e65-04d5-433c-9bd8-69adeca21c79
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_project_namespace'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          37527c3b-441c-4cc1-a158-0f997ab55b14:
+            uuid: 37527c3b-441c-4cc1-a158-0f997ab55b14
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          c191bfbd-9b48-4844-9fb0-cef60a37301a:
+            uuid: c191bfbd-9b48-4844-9fb0-cef60a37301a
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_source'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          0d1998d1-8da9-428b-bb6c-8620c2bac067:
+            uuid: 0d1998d1-8da9-428b-bb6c-8620c2bac067
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_tratta_ciclovia_aqp'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          65075a12-4b48-4276-9d7e-7f8b8992bc03:
+            uuid: 65075a12-4b48-4276-9d7e-7f8b8992bc03
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_distance_km'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: number_decimal
+                label: inline
+                settings:
+                  thousand_separator: ''
+                  decimal_separator: .
+                  scale: 2
+                  prefix_suffix: true
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          d52f8ce3-2b21-46c8-a02d-b581c61ed284:
+            uuid: d52f8ce3-2b21-46c8-a02d-b581c61ed284
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_components'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: components_with_title_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            weight: 8
+            additional: {  }
+          b5d2a35a-f966-4652-bfee-c7151682a90b:
+            uuid: b5d2a35a-f966-4652-bfee-c7151682a90b
+            region: content
+            configuration:
+              id: 'extra_field_block:node:ciclovia_acquedotti:links'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 9
+            additional: {  }
+          1ca48b53-577a-460e-b6e9-e4d505adf960:
+            uuid: 1ca48b53-577a-460e-b6e9-e4d505adf960
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_geofied_view'
+              label: 'Geofied View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: above
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 10
+            additional: {  }
+        third_party_settings: {  }
 id: node.ciclovia_acquedotti.default
 targetEntityType: node
 bundle: ciclovia_acquedotti
@@ -52,134 +189,6 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
-  field_geofield:
-    type: leaflet_formatter_default
-    label: hidden
-    settings:
-      multiple_map: false
-      leaflet_map: 'OSM Mapnik'
-      height: 800
-      height_unit: px
-      hide_empty_map: false
-      disable_wheel: false
-      gesture_handling: false
-      fitbounds_options: '{"padding":[0,0]}'
-      reset_map:
-        control: false
-        options: '{"position":"topleft","title":"Reset View"}'
-      map_scale:
-        control: false
-        options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
-      locate:
-        control: false
-        options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
-        automatic: false
-      leaflet_tooltip:
-        value: ''
-        options: '{"permanent":false,"direction":"center"}'
-      popup: false
-      popup_content: ''
-      leaflet_popup:
-        control: '0'
-        content: ''
-        options: '{"maxWidth":"300","minWidth":"50","autoPan":true}'
-      map_position:
-        force: false
-        center:
-          lat: 0.0
-          lon: 0.0
-        zoomControlPosition: topleft
-        zoom: 5
-        minZoom: 1
-        maxZoom: 18
-        zoomFiner: 0
-      weight: '0'
-      icon:
-        iconType: marker
-        iconUrl: ''
-        shadowUrl: ''
-        className: ''
-        iconSize:
-          x: ''
-          'y': ''
-        iconAnchor:
-          x: ''
-          'y': ''
-        shadowSize:
-          x: ''
-          'y': ''
-        shadowAnchor:
-          x: ''
-          'y': ''
-        popupAnchor:
-          x: ''
-          'y': ''
-        html: '<div></div>'
-        html_class: leaflet-map-divicon
-        circle_marker_options: '{"radius":100,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
-      leaflet_markercluster:
-        control: false
-        options: '{"spiderfyOnMaxZoom":true,"showCoverageOnHover":true,"removeOutsideVisibleBounds":false}'
-        include_path: false
-      fullscreen:
-        control: false
-        options: '{"position":"topleft","pseudoFullscreen":false}'
-      path: '[node:field_geofield_path_style:value]'
-      feature_properties:
-        values: ''
-      geocoder:
-        control: false
-        settings:
-          popup: false
-          autocomplete:
-            placeholder: 'Search Address'
-            title: 'Search an Address on the Map'
-          position: topright
-          input_size: 20
-          providers:
-            arcgisonline:
-              weight: 0
-              checked: false
-            file:
-              weight: 0
-              checked: false
-            googlemaps:
-              weight: 0
-              checked: false
-            photon:
-              weight: 0
-              checked: false
-          min_terms: 4
-          delay: 800
-          zoom: 16
-          options: ''
-      map_lazy_load:
-        lazy_load: false
-      geojson_overlays:
-        sources:
-          fields: {  }
-        path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
-        zoom_to_geojson: true
-        snapping: true
-    third_party_settings: {  }
-    weight: 6
-    region: content
-  field_geofield_path_style:
-    type: json
-    label: above
-    settings:
-      attach_library: true
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_gpx_track:
-    type: file_default
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    weight: 5
-    region: content
   field_project_namespace:
     type: entity_reference_label
     label: above
@@ -209,5 +218,6 @@ content:
     weight: 9
     region: content
 hidden:
+  field_geofied_view: true
   langcode: true
   uuid: true
