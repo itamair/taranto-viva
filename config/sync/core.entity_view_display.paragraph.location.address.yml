@@ -8,12 +8,14 @@ dependencies:
     - field.field.paragraph.location.field_classname
     - field.field.paragraph.location.field_exclude_from_map_bounds
     - field.field.paragraph.location.field_geofield
+    - field.field.paragraph.location.field_geojson_reference
     - field.field.paragraph.location.field_location_icon_width
     - field.field.paragraph.location.field_location_type
     - field.field.paragraph.location.field_marker_image
     - field.field.paragraph.location.field_markercluster_exclude
     - field.field.paragraph.location.field_title
     - field.field.paragraph.location.field_tooltip_class
+    - field.field.paragraph.location.field_tooltip_direction
     - field.field.paragraph.location.field_tooltip_disabled
     - field.field.paragraph.location.field_tooltip_permanent
     - field.field.paragraph.location.field_zindex
@@ -42,12 +44,14 @@ hidden:
   field_classname: true
   field_exclude_from_map_bounds: true
   field_geofield: true
+  field_geojson_reference: true
   field_location_icon_width: true
   field_location_type: true
   field_marker_image: true
   field_markercluster_exclude: true
   field_title: true
   field_tooltip_class: true
+  field_tooltip_direction: true
   field_tooltip_disabled: true
   field_tooltip_permanent: true
   field_zindex: true

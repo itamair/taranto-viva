@@ -1,0 +1,27 @@
+uuid: 52f7d990-9762-428f-9f64-0e6490e0196c
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_geojson_reference
+    - paragraphs.paragraphs_type.location
+  module:
+    - link
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: paragraph.location.field_geojson_reference
+field_name: field_geojson_reference
+entity_type: paragraph
+bundle: location
+label: 'GeoJSON Reference'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 1
+field_type: link

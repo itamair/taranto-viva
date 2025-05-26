@@ -1,0 +1,19 @@
+uuid: 3aefe73c-1b0b-4e2b-8305-39303b7b67a5
+langcode: it
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_geojson_reference
+field_name: field_geojson_reference
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

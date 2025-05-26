@@ -1,0 +1,39 @@
+uuid: 27e086c1-4326-4156-8ddd-4b89883b2865
+langcode: it
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_tooltip_direction
+field_name: field_tooltip_direction
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: auto
+      label: auto
+    -
+      value: top
+      label: top
+    -
+      value: centre
+      label: center
+    -
+      value: bottom
+      label: bottom
+    -
+      value: left
+      label: left
+    -
+      value: right
+      label: right
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
+    - field.field.paragraph.geometry.field_geojson_reference
     - field.field.paragraph.geometry.field_gpx_track
     - field.field.paragraph.geometry.field_link
     - field.field.paragraph.geometry.field_markercluster_exclude
@@ -46,6 +47,7 @@ third_party_settings:
         - field_tooltip_class
         - field_markercluster_exclude
         - field_exclude_from_map_bounds
+        - field_geojson_reference
       label: Attributes
       region: content
       parent_name: ''
@@ -71,21 +73,21 @@ content:
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
-    weight: 20
+    weight: 19
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_fill_color:
     type: color_field_widget_html5
-    weight: 11
+    weight: 10
     region: content
     settings:
       show_extra: false
     third_party_settings: {  }
   field_fill_opacity:
     type: number
-    weight: 12
+    weight: 11
     region: content
     settings:
       placeholder: ''
@@ -163,6 +165,9 @@ content:
             file:
               weight: 0
               checked: false
+            gpx_file:
+              weight: 0
+              checked: false
             photon:
               weight: 0
               checked: false
@@ -170,6 +175,21 @@ content:
           delay: 800
           zoom: 16
           options: ''
+      geojson_overlays:
+        sources:
+          fields:
+            - field_geojson_reference
+        zoom_to_geojson: true
+        path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
+        snapping: true
+    third_party_settings: {  }
+  field_geojson_reference:
+    type: link_default
+    weight: 20
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_gpx_track:
     type: file_generic
@@ -188,7 +208,7 @@ content:
     third_party_settings: {  }
   field_markercluster_exclude:
     type: boolean_checkbox
-    weight: 19
+    weight: 18
     region: content
     settings:
       display_label: true
@@ -202,7 +222,7 @@ content:
     third_party_settings: {  }
   field_stroke_opacity:
     type: number
-    weight: 10
+    weight: 9
     region: content
     settings:
       placeholder: ''
@@ -224,41 +244,41 @@ content:
     third_party_settings: {  }
   field_tooltip_class:
     type: options_select
-    weight: 18
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   field_tooltip_disabled:
     type: boolean_checkbox
-    weight: 15
+    weight: 14
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_tooltip_permanent:
     type: boolean_checkbox
-    weight: 16
+    weight: 15
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_tooltip_sticky:
     type: boolean_checkbox
-    weight: 17
+    weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_zindex:
     type: number
-    weight: 13
+    weight: 12
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_zoom_visibility:
     type: options_select
-    weight: 14
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }

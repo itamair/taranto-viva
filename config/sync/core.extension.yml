@@ -154,12 +154,12 @@ module:
   views_bulk_edit: 0
   views_bulk_operations: 0
   views_data_export: 0
+  views_geojson: 0
   views_slideshow: 0
   views_slideshow_cycle: 0
   views_ui: 0
   votingapi: 0
   watchdog_statistics: 0
-  webprofiler: 0
   pathauto: 1
   content_translation: 10
   image_style_warmer: 10

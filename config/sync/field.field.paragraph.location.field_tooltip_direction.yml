@@ -1,0 +1,27 @@
+uuid: f1477773-2487-4b38-8655-c25f33c75d7d
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tooltip_direction
+    - paragraphs.paragraphs_type.location
+  module:
+    - options
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: paragraph.location.field_tooltip_direction
+field_name: field_tooltip_direction
+entity_type: paragraph
+bundle: location
+label: 'Tooltip Direction'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: top
+default_value_callback: ''
+settings: {  }
+field_type: list_string

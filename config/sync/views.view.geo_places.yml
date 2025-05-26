@@ -24,6 +24,7 @@ dependencies:
     - field.storage.paragraph.field_stroke_weight
     - field.storage.paragraph.field_title
     - field.storage.paragraph.field_tooltip_class
+    - field.storage.paragraph.field_tooltip_direction
     - field.storage.paragraph.field_tooltip_disabled
     - field.storage.paragraph.field_tooltip_permanent
     - field.storage.paragraph.field_tooltip_sticky
@@ -484,6 +485,8 @@ display:
             control: true
             options: '{"position":"topleft","pseudoFullscreen":false}'
           path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"1.0","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
+          feature_properties:
+            values: '{"content_type":"{{ type }}","min_zoom_visibility":"{{ field_min_zoom_visibility }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}"}'
           geocoder:
             control: true
             settings:
@@ -506,8 +509,6 @@ display:
               options: ''
           map_lazy_load:
             lazy_load: true
-          feature_properties:
-            values: '{"content_type":"{{ type }}","min_zoom_visibility":"{{ field_min_zoom_visibility }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}"}'
       row:
         type: fields
         options:
@@ -2617,6 +2618,8 @@ display:
             control: true
             options: '{"position":"topleft","pseudoFullscreen":false}'
           path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"1.0","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
+          feature_properties:
+            values: '{"content_type":"{{ type }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}"}'
           geocoder:
             control: true
             settings:
@@ -2633,6 +2636,9 @@ display:
                 file:
                   weight: '0'
                   checked: 0
+                gpx_file:
+                  weight: '0'
+                  checked: 0
                 googlemaps:
                   weight: '0'
                   checked: 0
@@ -2645,8 +2651,6 @@ display:
               options: ''
           map_lazy_load:
             lazy_load: false
-          feature_properties:
-            values: '{"content_type":"{{ type }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}"}'
       row:
         type: fields
         options:
@@ -5332,6 +5336,68 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        field_tooltip_direction:
+          id: field_tooltip_direction
+          table: paragraph__field_tooltip_direction
+          field: field_tooltip_direction
+          relationship: field_components
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_key
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_tooltip_sticky:
           id: field_tooltip_sticky
           table: paragraph__field_tooltip_sticky
@@ -6089,7 +6155,6 @@ display:
               rendered: true
               overlays_options:
                 disabled_overlays:
-                  Images: Images
                   Immagini: Immagini
                 hidden_overlays_controls: {  }
           data_source:
@@ -6100,7 +6165,7 @@ display:
           name_field: title
           leaflet_tooltip:
             value: title
-            options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"top","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
+            options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"{{ field_tooltip_direction }}","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           leaflet_popup:
             value: leaflet_popup_rendered_entity
             options: '{"autoPan":true,"maxWidth":400}'
@@ -6182,6 +6247,9 @@ display:
                   weight: '0'
                   checked: 0
                 file:
+                  weight: '0'
+                  checked: 0
+                gpx_file:
                   weight: '0'
                   checked: 0
                 photon:
@@ -6324,6 +6392,7 @@ display:
         - 'config:field.storage.paragraph.field_stroke_weight'
         - 'config:field.storage.paragraph.field_title'
         - 'config:field.storage.paragraph.field_tooltip_class'
+        - 'config:field.storage.paragraph.field_tooltip_direction'
         - 'config:field.storage.paragraph.field_tooltip_disabled'
         - 'config:field.storage.paragraph.field_tooltip_permanent'
         - 'config:field.storage.paragraph.field_tooltip_sticky'
