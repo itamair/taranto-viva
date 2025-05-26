@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.path.field_fill_color
     - field.field.paragraph.path.field_fill_opacity
     - field.field.paragraph.path.field_geofield
+    - field.field.paragraph.path.field_gpx_track
     - field.field.paragraph.path.field_stroke_color
     - field.field.paragraph.path.field_stroke_opacity
     - field.field.paragraph.path.field_stroke_weight
@@ -13,6 +14,7 @@ dependencies:
     - paragraphs.paragraphs_type.path
   module:
     - color_field
+    - file
     - geofield_311
 id: paragraph.path.default
 targetEntityType: paragraph
@@ -29,6 +31,8 @@ content:
       palette: ''
       show_palette_only: '0'
       show_buttons: '0'
+      cancel_text: Cancel
+      choose_text: Choose
       allow_empty: '0'
     third_party_settings: {  }
   field_fill_opacity:
@@ -40,9 +44,10 @@ content:
     third_party_settings: {  }
   field_geofield:
     type: geofield_311_leaflet_widget
-    weight: 6
+    weight: 7
     region: content
     settings:
+      geometry_validation: '1'
       map:
         leaflet_map: 'OSM Mapnik'
         height: '800'
@@ -51,58 +56,87 @@ content:
           center:
             lat: '40.45'
             lon: '17.26'
+          zoomControlPosition: topleft
           zoom: '12'
           minZoom: '3'
           maxZoom: '18'
           zoomFiner: '0'
           force: 0
         scroll_zoom_enabled: '1'
-        fullscreen_control: '1'
-        locate: 0
       input:
         show: '1'
         readonly: 0
       toolbar:
         position: topright
+        marker: defaultMarker
         drawPolyline: '1'
         editMode: '1'
         dragMode: '1'
         removalMode: '1'
-        drawMarker: 0
         drawRectangle: 0
         drawPolygon: 0
         drawCircle: false
-        drawCircleMarker: false
+        drawText: false
         cutPolygon: 0
+        rotateMode: 0
       reset_map:
-        position: topright
+        options: '{"position":"topleft","title":"Reset View"}'
+        control: 0
+      map_scale:
+        options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
+        control: 0
+      fullscreen:
+        options: '{"position":"topleft","pseudoFullscreen":false}'
         control: 0
       path: '{"color":"[paragraph:field_stroke_color:color]","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"[paragraph:field_fill_color:color]","fillOpacity":"0.2"}'
+      locate:
+        options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
+        control: 0
+        automatic: 0
       geocoder:
         control: '1'
         settings:
+          autocomplete:
+            placeholder: 'Search Address'
+            title: 'Search an Address on the Map'
           position: topright
           input_size: '25'
           providers:
             arcgisonline:
               checked: '1'
               weight: '0'
+            googlemaps:
+              checked: '1'
+              weight: '2'
             file:
               weight: '0'
               checked: 0
-            googlemaps:
-              checked: '1'
+            gpx_file:
               weight: '0'
+              checked: 0
+            photon:
+              weight: '0'
+              checked: 0
           min_terms: '4'
           delay: '800'
           zoom: '16'
           options: ''
+          set_marker: 0
           popup: 0
       geojson_app_limit:
-        bounds_zoom_flag: false
-        bounds_zoom_correction: 0
-        bounds_limit_flag: false
-        max_zoom_out: -2
+        bounds_zoom_correction: '0'
+        max_zoom_out: '-2'
+        bounds_zoom_flag: 0
+        bounds_limit_flag: 0
+      feature_properties:
+        values: ''
+    third_party_settings: {  }
+  field_gpx_track:
+    type: file_generic
+    weight: 6
+    region: content
+    settings:
+      progress_indicator: throbber
     third_party_settings: {  }
   field_stroke_color:
     type: color_field_widget_spectrum
@@ -114,6 +148,8 @@ content:
       palette: ''
       show_palette_only: '0'
       show_buttons: '0'
+      cancel_text: Cancel
+      choose_text: Choose
       allow_empty: '0'
     third_party_settings: {  }
   field_stroke_opacity:
@@ -141,3 +177,4 @@ content:
 hidden:
   created: true
   status: true
+  uuid: true

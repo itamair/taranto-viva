@@ -6,12 +6,14 @@ dependencies:
     - field.field.paragraph.path.field_fill_color
     - field.field.paragraph.path.field_fill_opacity
     - field.field.paragraph.path.field_geofield
+    - field.field.paragraph.path.field_gpx_track
     - field.field.paragraph.path.field_stroke_color
     - field.field.paragraph.path.field_stroke_opacity
     - field.field.paragraph.path.field_stroke_weight
     - field.field.paragraph.path.field_title
     - paragraphs.paragraphs_type.path
   module:
+    - file
     - leaflet
 id: paragraph.path.default
 targetEntityType: paragraph
@@ -56,6 +58,7 @@ content:
         minZoom: 1
         maxZoom: 18
         zoomFiner: 0
+      weight: null
       icon:
         iconType: marker
         iconUrl: ''
@@ -91,6 +94,7 @@ content:
       geocoder:
         control: false
         settings:
+          popup: false
           position: topright
           input_size: 25
           providers:
@@ -106,9 +110,15 @@ content:
           min_terms: 4
           delay: 800
           zoom: 16
-          popup: false
           options: ''
-      weight: null
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_gpx_track:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
     third_party_settings: {  }
     weight: 1
     region: content
@@ -126,3 +136,6 @@ hidden:
   field_stroke_color: true
   field_stroke_opacity: true
   field_stroke_weight: true
+  geofield_googlemaps_link: true
+  geomarker_icon_url: true
+  uuid: true

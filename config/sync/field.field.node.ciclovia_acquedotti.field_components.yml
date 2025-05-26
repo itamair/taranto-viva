@@ -1,0 +1,61 @@
+uuid: dd5f61bf-c692-4a5f-b94a-16b42db77cd8
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_components
+    - node.type.ciclovia_acquedotti
+    - paragraphs.paragraphs_type.geoimage
+    - paragraphs.paragraphs_type.geometry
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.location
+  module:
+    - ai_translate
+    - entity_reference_revisions
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_components
+field_name: field_components
+entity_type: node
+bundle: ciclovia_acquedotti
+label: Components
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      geoimage: geoimage
+      geometry: geometry
+      image: image
+      location: location
+    negate: 0
+    target_bundles_drag_drop:
+      from_library:
+        weight: 7
+        enabled: false
+      geoimage:
+        weight: 8
+        enabled: true
+      geometry:
+        weight: 9
+        enabled: true
+      image:
+        weight: 10
+        enabled: true
+      location:
+        weight: 11
+        enabled: true
+      path:
+        weight: 12
+        enabled: false
+field_type: entity_reference_revisions

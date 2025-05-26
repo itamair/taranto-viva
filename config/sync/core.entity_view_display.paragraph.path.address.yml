@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.path.field_fill_color
     - field.field.paragraph.path.field_fill_opacity
     - field.field.paragraph.path.field_geofield
+    - field.field.paragraph.path.field_gpx_track
     - field.field.paragraph.path.field_stroke_color
     - field.field.paragraph.path.field_stroke_opacity
     - field.field.paragraph.path.field_stroke_weight
@@ -27,7 +28,11 @@ hidden:
   field_fill_color: true
   field_fill_opacity: true
   field_geofield: true
+  field_gpx_track: true
   field_stroke_color: true
   field_stroke_opacity: true
   field_stroke_weight: true
   field_title: true
+  geofield_googlemaps_link: true
+  geomarker_icon_url: true
+  uuid: true

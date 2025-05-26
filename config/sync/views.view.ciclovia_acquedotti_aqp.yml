@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_distance_km
     - field.storage.node.field_geofield
     - field.storage.node.field_tratta_ciclovia_aqp
+    - field.storage.paragraph.field_geofield
     - system.menu.main
     - taxonomy.vocabulary.project_namespace
   content:
@@ -15,6 +16,7 @@ dependencies:
     - json_field
     - leaflet_views
     - node
+    - paragraphs
     - taxonomy
     - user
 id: ciclovia_acquedotti_aqp
@@ -345,6 +347,70 @@ display:
           table: views
           field: nothing
           plugin_id: custom
+        field_geofield_1:
+          id: field_geofield_1
+          table: paragraph__field_geofield
+          field: field_geofield
+          relationship: field_components
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: geofield_default
+          settings:
+            output_format: wkt
+            output_escape: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: none
         options:
@@ -450,7 +516,9 @@ display:
           grouping: {  }
           data_source:
             field_geofield: field_geofield
+            field_geofield_1: field_geofield_1
           entity_source: __base_table
+          entity_source_submit: 'Update Entity Source'
           name_field: ''
           leaflet_tooltip:
             value: '#rendered_view_fields'
@@ -562,7 +630,16 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        field_components:
+          id: field_components
+          table: node__field_components
+          field: field_components
+          relationship: none
+          group_type: group
+          admin_label: 'field_components: Paragraph'
+          plugin_id: standard
+          required: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -577,6 +654,7 @@ display:
         - 'config:field.storage.node.field_distance_km'
         - 'config:field.storage.node.field_geofield'
         - 'config:field.storage.node.field_tratta_ciclovia_aqp'
+        - 'config:field.storage.paragraph.field_geofield'
   page_ciclovia_acquedotto:
     id: page_ciclovia_acquedotto
     display_title: 'Page Ciclovia Acquedotto AQP'
@@ -606,3 +684,4 @@ display:
         - 'config:field.storage.node.field_distance_km'
         - 'config:field.storage.node.field_geofield'
         - 'config:field.storage.node.field_tratta_ciclovia_aqp'
+        - 'config:field.storage.paragraph.field_geofield'

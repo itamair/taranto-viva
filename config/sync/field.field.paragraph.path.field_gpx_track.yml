@@ -1,0 +1,31 @@
+uuid: 5e36b12d-46ff-49c6-b86b-28b97864b5a2
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gpx_track
+    - paragraphs.paragraphs_type.path
+  module:
+    - file
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: paragraph.path.field_gpx_track
+field_name: field_gpx_track
+entity_type: paragraph
+bundle: path
+label: 'GPX Track'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: gpx_tracks
+  file_extensions: gpx
+  max_filesize: 10MB
+  description_field: false
+field_type: file

@@ -1,0 +1,23 @@
+uuid: 83b15baa-62d2-4d78-a184-6a8477283194
+langcode: it
+status: true
+dependencies:
+  module:
+    - file
+    - paragraphs
+id: paragraph.field_gpx_track
+field_name: field_gpx_track
+entity_type: paragraph
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,5 +1,5 @@
 langcode: it
 geojson_app_limit:
   file: modules/custom/geofield_311/geojson/prov_taranto.geojson.json
-  stroke_color: '#ff2600'
-  stroke_weight: '2'
+  stroke_color: '#000000'
+  stroke_weight: '1'

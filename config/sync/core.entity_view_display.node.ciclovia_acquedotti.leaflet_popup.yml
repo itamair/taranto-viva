@@ -1,9 +1,9 @@
-uuid: 8c6903a4-ba93-45d4-8a24-8e10c427ac7b
-langcode: en
+uuid: fcb12ddf-690b-4c27-958b-925b9aaf1a0b
+langcode: it
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.leaflet_popup
     - field.field.node.ciclovia_acquedotti.body
     - field.field.node.ciclovia_acquedotti.field_components
     - field.field.node.ciclovia_acquedotti.field_distance_km
@@ -15,20 +15,21 @@ dependencies:
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
     - node.type.ciclovia_acquedotti
   module:
-    - text
+    - entity_reference_revisions
     - user
-id: node.ciclovia_acquedotti.teaser
+id: node.ciclovia_acquedotti.leaflet_popup
 targetEntityType: node
 bundle: ciclovia_acquedotti
-mode: teaser
+mode: leaflet_popup
 content:
-  body:
-    type: text_summary_or_trimmed
+  field_components:
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
-      trim_length: 600
+      view_mode: leaflet_popup
+      link: ''
     third_party_settings: {  }
-    weight: 101
+    weight: 0
     region: content
   links:
     settings: {  }
@@ -36,7 +37,7 @@ content:
     weight: 100
     region: content
 hidden:
-  field_components: true
+  body: true
   field_distance_km: true
   field_geofield: true
   field_geofield_path_style: true

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.ciclovia_acquedotti.body
+    - field.field.node.ciclovia_acquedotti.field_components
     - field.field.node.ciclovia_acquedotti.field_distance_km
     - field.field.node.ciclovia_acquedotti.field_geofield
     - field.field.node.ciclovia_acquedotti.field_geofield_path_style
@@ -16,6 +17,7 @@ dependencies:
     - file
     - json_field
     - leaflet
+    - paragraphs
     - path
     - text
 id: node.ciclovia_acquedotti.default
@@ -25,7 +27,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 3
     region: content
     settings:
       rows: 9
@@ -35,20 +37,39 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_components:
+    type: paragraphs
+    weight: 10
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: location
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
   field_distance_km:
     type: number
-    weight: 5
+    weight: 6
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_geofield:
     type: leaflet_widget_default
-    weight: 7
+    weight: 8
     region: content
     settings:
       geometry_validation: true
@@ -129,7 +150,7 @@ content:
     third_party_settings: {  }
   field_geofield_path_style:
     type: json_textarea
-    weight: 8
+    weight: 9
     region: content
     settings:
       rows: 5
@@ -137,20 +158,20 @@ content:
     third_party_settings: {  }
   field_gpx_track:
     type: file_generic
-    weight: 6
+    weight: 7
     region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
   field_project_namespace:
     type: options_select
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   field_source:
     type: text_textarea
-    weight: 3
+    weight: 4
     region: content
     settings:
       rows: 3
@@ -158,40 +179,40 @@ content:
     third_party_settings: {  }
   field_tratta_ciclovia_aqp:
     type: options_select
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 1
+    weight: 2
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 13
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 11
+    weight: 13
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 14
+    weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 12
+    weight: 14
     region: content
     settings:
       display_label: true
@@ -206,7 +227,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 9
+    weight: 11
     region: content
     settings:
       match_operator: CONTAINS

@@ -5,6 +5,11 @@ dependencies:
   config:
     - field.storage.paragraph.field_fill_opacity
     - paragraphs.paragraphs_type.path
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
 id: paragraph.path.field_fill_opacity
 field_name: field_fill_opacity
 entity_type: paragraph
@@ -15,7 +20,7 @@ required: false
 translatable: false
 default_value:
   -
-    value: 0.5
+    value: 0.0
 default_value_callback: ''
 settings:
   min: 0.0
