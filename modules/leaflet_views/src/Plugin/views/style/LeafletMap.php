@@ -1466,11 +1466,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
       // Associate dynamic tooltip options (token based).
       if (!empty($this->options['leaflet_tooltip']['options'])) {
-        $feature['tooltip']['options'] = str_replace(
+        $feature['tooltip']['options'] = htmlspecialchars_decode(str_replace(
           ["\n", "\r"],
           "",
           $this->viewsTokenReplace($this->options['leaflet_tooltip']['options'], $tokens)
-        );
+        ));
       }
     }
     // Otherwise eventually attach simple title tooltip.

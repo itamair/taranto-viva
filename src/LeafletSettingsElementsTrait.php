@@ -917,7 +917,7 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'textarea',
       '#rows' => 3,
       '#title' => $this->t('Tooltip Options'),
-      '#description' => $this->t('An object literal of options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>Supports <b>Replacement Patterns</b>.'),
+      '#description' => $this->t('An object literal of options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>Supports <b>Replacement Patterns</b><br>(Note: Single Token or Replacement containing the whole Json specification is supported).'),
       '#default_value' => $settings['leaflet_tooltip']['options'] ?? $default_settings['leaflet_tooltip']['options'],
       '#placeholder' => $default_settings['leaflet_tooltip']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
