@@ -8,7 +8,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\leaflet\Plugin\Field\FieldWidget\LeafletDefaultWidget;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
-use Drupal\views\Views;
 
 /**
  * Class LeafletSettingsElementsTrait.
@@ -787,7 +786,7 @@ trait LeafletSettingsElementsTrait {
    */
   protected function setMapPathOptionsElement(array &$element, array $settings) {
 
-    $path_description = $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style, or the one choosen and defined in leaflet.api/hook_leaflet_map_info, will be used.<br>@token_replacement_disclaimer', [
+    $path_description = $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style, or the one choosen and defined in leaflet.api/hook_leaflet_map_info, will be used.<br>@token_replacement_disclaimer<br>(Note: Single Token or Replacement containing the whole Json specification is supported).', [
       '@polygons_documentation' => $this->link->generate($this->t('Leaflet Path Documentation'), Url::fromUri('https://leafletjs.com/reference.html#path', [
         'absolute' => TRUE,
         'attributes' => ['target' => 'blank'],
@@ -918,7 +917,7 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'textarea',
       '#rows' => 3,
       '#title' => $this->t('Tooltip Options'),
-      '#description' => $this->t('An object literal of options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>Supports <b>Replacement Patterns</b>.'),
+      '#description' => $this->t('An object literal of options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>Supports <b>Replacement Patterns</b><br>(Note: Single Token or Replacement containing the whole Json specification is supported).'),
       '#default_value' => $settings['leaflet_tooltip']['options'] ?? $default_settings['leaflet_tooltip']['options'],
       '#placeholder' => $default_settings['leaflet_tooltip']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
@@ -1611,7 +1610,7 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
-   * Set Map Geojson Overlays Element.
+   * Set Map GeoJSON Overlays Element.
    *
    * @param array $element
    *   The Form element to alter.
@@ -1651,8 +1650,8 @@ trait LeafletSettingsElementsTrait {
 
       $element['geojson_overlays'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Map (Geojson) Overlays'),
-        '#description' => $this->t('Use this section to select sources and add <a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJson</a> content Overlays to the Leaflet widget map, that can act as useful drawing (snappable) references.<br>At the moment specific fields of the entity (being edited) can be chosen as sources of content of (or links to) the geojson overlays that should be added.<br><em><b>Hint:</b> Reload the widget after having populated those fields, to have the expected geojson overlays added to the Leaflet map ...</em><br><em><b>Note: </b>Mutliple/Different Geojson Sources are supported, but their content will be merged into a unique GeoJson Overlay on the Leaflet Widget Map.</em>'),
+        '#title' => $this->t('Map (GeoJSON) Overlays'),
+        '#description' => $this->t('Use this section to select sources and add <a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJSON</a> content Overlays to the Leaflet widget map, that can act as useful drawing (snappable) references.<br>At the moment specific fields of the entity (being edited) can be chosen as sources of content of (or links to) the geojson overlays that should be added.<br><em><b>Hint:</b> Reload the widget after having populated those fields, to have the expected geojson overlays added to the Leaflet map ...</em><br><em><b>Note: </b>Mutliple/Different GeoJSON Sources are supported, but their content will be merged into a unique GeoJSON Overlay on the Leaflet Widget Map.</em>'),
         '#description_display' => 'before',
       ];
 
@@ -1669,7 +1668,7 @@ trait LeafletSettingsElementsTrait {
         $element['geojson_overlays']['sources']['fields'] = [
           '#type' => 'select',
           '#title' => $this->t('Fields'),
-          '#description' => $this->t('Choose the entity fields to retrieve GeoJson content from.<br>@supported_field_types_text<br><em><b>Hint:</b> This works great with an internal Link pointing to a <a href="https://www.drupal.org/project/json_field" target="blank">Views Geojson module</a> endpoint/route ...</em>', [
+          '#description' => $this->t('Choose the entity fields to retrieve GeoJSON content from.<br>@supported_field_types_text<br><em><b>Hint:</b> This works great with an internal Link pointing to a <a href="https://www.drupal.org/project/json_field" target="blank">Views GeoJSON module</a> endpoint/route ...</em>', [
             '@supported_field_types_text' => $supported_field_types_text,
           ]),
           '#options' => $string_fields_options,
@@ -1703,8 +1702,8 @@ trait LeafletSettingsElementsTrait {
 
         $element['geojson_overlays']['zoom_to_geojson'] = [
           '#type' => 'checkbox',
-          '#title' => $this->t('Zoom to GeoJson'),
-          '#description' => $this->t('Check this option to initially Zoom the (new empty) Leaflet Map on the (Geojson) Overlays bounds.'),
+          '#title' => $this->t('Zoom to GeoJSON'),
+          '#description' => $this->t('Check this option to initially Zoom the (new empty) Leaflet Map on the (GeoJSON) Overlays bounds.'),
           '#default_value' => $settings['geojson_overlays']['zoom_to_geojson'] ?? 1,
           '#return_value' => 1,
           '#states' => [
@@ -1717,7 +1716,7 @@ trait LeafletSettingsElementsTrait {
         $element['geojson_overlays']['snapping'] = [
           '#type' => 'checkbox',
           '#title' => $this->t('Snapping enabled'),
-          '#description' => $this->t('Check this option to be able to snap to (Geojson) Overlays markers/vertices, for precision drawing.'),
+          '#description' => $this->t('Check this option to be able to snap to (GeoJSON) Overlays markers/vertices, for precision drawing.'),
           '#default_value' => $settings['geojson_overlays']['snapping'] ?? 1,
           '#return_value' => 1,
           '#states' => [
@@ -1781,15 +1780,26 @@ trait LeafletSettingsElementsTrait {
 
   /**
    * Form element json format validation handler.
+   *
+   * @param array $element
+   *   The Form Element.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The Form State.
    */
   public static function jsonValidate($element, FormStateInterface &$form_state) {
-    $element_values_array = Json::decode($element['#value']);
-    // Check the jsonValue.
-    if (!empty($element['#value']) && $element_values_array == NULL) {
-      $form_state->setError($element, t('The @field field is not valid Json Format.', ['@field' => $element['#title']]));
-    }
-    elseif (!empty($element['#value'])) {
-      $form_state->setValueForElement($element, Json::encode($element_values_array));
+    // Check Json validity only in case the element value is not wrapped by
+    // brackets (Views Replacement) or square brackets (Token).
+    if (preg_match('/^\{{.*\}}$/', $element['#value']) !== 1 &&
+      preg_match('/^\[.*\]$/', $element['#value']) !== 1
+    ) {
+      $element_values_array = Json::decode($element['#value']);
+      // Check the jsonValue.
+      if (!empty($element['#value']) && $element_values_array == NULL) {
+        $form_state->setError($element, t('The @field field is not valid Json Format.', ['@field' => $element['#title']]));
+      }
+      elseif (!empty($element['#value'])) {
+        $form_state->setValueForElement($element, Json::encode($element_values_array));
+      }
     }
   }
 

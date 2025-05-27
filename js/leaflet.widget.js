@@ -45,7 +45,14 @@
     this.drawnItems = new L.LayerGroup();
     this.map_container = map_container;
     this.container = $(map_container).parent();
-    this.widgetsettings.path_style = this.map_settings.path ? JSON.parse(this.map_settings.path) : {};
+    try {
+      this.widgetsettings.path_style = this.map_settings.path ? JSON.parse(this.map_settings.path) : {};
+    }
+    catch (e) {
+      this.widgetsettings.path_style = {};
+    }{
+
+    }
     this.json_selector = this.widgetsettings.jsonElement;
 
     if (settings.langcode && lMap.pm) {
