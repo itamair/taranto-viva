@@ -1,0 +1,21 @@
+uuid: bc84d42d-95fd-4ab8-99bb-1c63a69d3f4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tratte_ciclovia_acquedotti
+  module:
+    - text
+id: taxonomy_term.tratte_ciclovia_acquedotti.description
+field_name: description
+entity_type: taxonomy_term
+bundle: tratte_ciclovia_acquedotti
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

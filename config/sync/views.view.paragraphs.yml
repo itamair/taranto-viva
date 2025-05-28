@@ -1,102 +1,29 @@
-uuid: feb6a6d4-0370-41a4-92dc-b56b1e726d19
+uuid: da177bf2-4983-4d7c-bab4-96fb851e52b3
 langcode: it
 status: true
 dependencies:
-  config:
-    - field.storage.paragraph.field_title
   module:
-    - contextual
     - paragraphs
+    - user
     - views_bulk_operations
+_core:
+  default_config_hash: SSxngaKnwPx0YAtrVkm3EFBv1pbdKd6kZwMEiCtoRJc
 id: paragraphs
-label: Paragraphs
+label: Paragrafi
 module: views
-description: ''
+description: 'Find and manage paragraphs.'
 tag: ''
 base_table: paragraphs_item_field_data
 base_field: id
 display:
   default:
     id: default
-    display_title: Default
+    display_title: Master
     display_plugin: default
     position: 0
     display_options:
-      title: Paragraphs
+      title: Paragrafi
       fields:
-        views_bulk_operations_bulk_form:
-          id: views_bulk_operations_bulk_form
-          table: views
-          field: views_bulk_operations_bulk_form
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: views_bulk_operations_bulk_form
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          batch: true
-          batch_size: 10
-          form_step: true
-          ajax_loader: false
-          buttons: false
-          action_title: Action
-          clear_on_exposed: true
-          force_selection_info: false
-          selected_actions:
-            -
-              action_id: views_bulk_edit
-              preconfiguration:
-                add_confirmation: false
-                get_bundles_from_results: true
-            -
-              action_id: views_bulk_operations_delete_entity
-            -
-              action_id: 'entity:publish_action:paragraph'
-              preconfiguration:
-                add_confirmation: false
-            -
-              action_id: 'entity:unpublish_action:paragraph'
-              preconfiguration:
-                add_confirmation: false
         id:
           id: id
           table: paragraphs_item_field_data
@@ -107,7 +34,7 @@ display:
           entity_type: null
           entity_field: id
           plugin_id: field
-          label: ''
+          label: ID
           exclude: false
           alter:
             alter_text: false
@@ -161,15 +88,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_title:
-          id: field_title
-          table: paragraph__field_title
-          field: field_title
+        views_bulk_operations_bulk_form:
+          id: views_bulk_operations_bulk_form
+          table: views
+          field: views_bulk_operations_bulk_form
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: field
-          label: ''
+          plugin_id: views_bulk_operations_bulk_form
+          label: 'Views bulk operations'
           exclude: false
           alter:
             alter_text: false
@@ -202,7 +129,67 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          batch: true
+          batch_size: 10
+          form_step: true
+          ajax_loader: false
+          buttons: false
+          action_title: Action
+          clear_on_exposed: true
+          force_selection_info: false
+          selected_actions: {  }
+        created:
+          id: created
+          table: paragraphs_item_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: paragraph
+          entity_field: created
+          plugin_id: field
+          label: 'Creato il'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -211,8 +198,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
-          settings: {  }
+          type: timestamp_ago
+          settings:
+            granularity: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -223,15 +211,17 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        contextual_links:
-          id: contextual_links
-          table: views
-          field: contextual_links
+        parent_type:
+          id: parent_type
+          table: paragraphs_item_field_data
+          field: parent_type
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: contextual_links
-          label: ''
+          entity_type: paragraph
+          entity_field: parent_type
+          plugin_id: field
+          label: 'Parent type'
           exclude: false
           alter:
             alter_text: false
@@ -264,7 +254,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -272,16 +262,272 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          destination: true
-          fields:
-            id: id
-            field_title: '0'
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        parent_id:
+          id: parent_id
+          table: paragraphs_item_field_data
+          field: parent_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: paragraph
+          entity_field: parent_id
+          plugin_id: field
+          label: Genitore
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        status:
+          id: status
+          table: paragraphs_item_field_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: paragraph
+          entity_field: status
+          plugin_id: field
+          label: Pubblicato
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: yes-no
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        type:
+          id: type
+          table: paragraphs_item_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: paragraph
+          entity_field: type
+          plugin_id: field
+          label: Tipo
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: custom
+          label: Azione
+          exclude: false
+          alter:
+            alter_text: true
+            text: elimina
+            make_link: true
+            path: 'paragraph/{{ id }}/delete'
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: elimina
+            rel: delete
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
       pager:
         type: mini
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 50
+          items_per_page: 200
           total_pages: null
           id: 0
           tags:
@@ -292,7 +538,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Tutte -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -306,8 +552,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'administer paragraphs'
       cache:
         type: tag
         options: {  }
@@ -315,19 +562,48 @@ display:
       sorts: {  }
       arguments: {  }
       filters:
-        status:
-          id: status
+        type:
+          id: type
           table: paragraphs_item_field_data
-          field: status
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: paragraph
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value: {  }
           group: 1
+          exposed: true
           expose:
-            operator: ''
+            operator_id: type_op
+            label: Tipo
+            description: ''
+            use_operator: false
+            operator: type_op
             operator_limit_selection: false
             operator_list: {  }
+            identifier: type
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: table
         options:
@@ -336,33 +612,59 @@ display:
           default_row_class: true
           columns:
             id: id
-            field_title: field_title
-            contextual_links: contextual_links
-            views_bulk_operations_bulk_form: views_bulk_operations_bulk_form
+            uid: uid
+            created: created
+            parent_id: parent_id
+            parent_type: parent_type
+            status: status
+            type: type
           default: '-1'
           info:
             id:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_title:
-              sortable: false
+            uid:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            contextual_links:
-              sortable: false
+            created:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            views_bulk_operations_bulk_form:
+            parent_id:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            parent_type:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            status:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            type:
+              sortable: true
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -383,18 +685,18 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships:
-        reverse__node__field_locations:
-          id: reverse__node__field_locations
-          table: paragraphs_item_field_data
-          field: reverse__node__field_locations
+      relationships: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
           relationship: none
           group_type: group
-          admin_label: field_locations
-          entity_type: paragraph
-          plugin_id: entity_reverse
-          required: false
-      header: {  }
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -402,22 +704,34 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-      tags:
-        - 'config:field.storage.paragraph.field_title'
-  page_1:
-    id: page_1
-    display_title: Page
+        - user.permissions
+      tags: {  }
+  page_admin_paragraphs:
+    id: page_admin_paragraphs
+    display_title: 'Page: paragraphs'
     display_plugin: page
     position: 1
     display_options:
+      display_description: 'Find and manage paragraphs.'
       display_extenders: {  }
-      path: paragraphs
+      path: admin/content/paragraphs
+      menu:
+        type: tab
+        title: Paragrafi
+        description: ''
+        weight: 5
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '1'
     cache_metadata:
       max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
-      tags:
-        - 'config:field.storage.paragraph.field_title'
+        - user.permissions
+      tags: {  }

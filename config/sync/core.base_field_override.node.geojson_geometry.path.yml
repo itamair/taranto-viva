@@ -1,0 +1,20 @@
+uuid: 84392340-8e9b-4489-ac14-52a7c33cb887
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+  module:
+    - path
+id: node.geojson_geometry.path
+field_name: path
+entity_type: node
+bundle: geojson_geometry
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

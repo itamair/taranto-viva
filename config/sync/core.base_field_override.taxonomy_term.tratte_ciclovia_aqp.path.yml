@@ -1,0 +1,20 @@
+uuid: 4927c019-b0ed-48de-8d16-5b4466b5cf2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tratte_ciclovia_aqp
+  module:
+    - path
+id: taxonomy_term.tratte_ciclovia_aqp.path
+field_name: path
+entity_type: taxonomy_term
+bundle: tratte_ciclovia_aqp
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

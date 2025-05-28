@@ -1,0 +1,22 @@
+uuid: d03ed90b-a1ae-4eaf-9abb-ce5ff7363bdc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.choropleth_area
+id: node.choropleth_area.promote
+field_name: promote
+entity_type: node
+bundle: choropleth_area
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

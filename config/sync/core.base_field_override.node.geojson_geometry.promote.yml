@@ -1,0 +1,22 @@
+uuid: ca7e2e21-f648-4828-8542-a1a59463cd55
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry.promote
+field_name: promote
+entity_type: node
+bundle: geojson_geometry
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

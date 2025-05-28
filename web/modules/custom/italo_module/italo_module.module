@@ -45,16 +45,19 @@ function italo_module_page_attachments(array &$page) {
  */
 function italo_module_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
 
-  // NOTE: it looks the following is not needed anynmore, because of the last
-  // improvements we did in the granularity of field_image (now = 1),and the
-  // use of Distinct query option in the view.
-  // Avoiding Paragraphs Duplications in Geoplaces Leaflet Map View.
+  // Avoiding Paragraphs Duplications in Geoplaces Leaflet Map Views.
   // @see https://www.drupal.org/project/paragraphs/issues/2941499
-  if ($view->storage->id() == 'geo_places' && $query instanceof Sql) {
+  // NOTE: it looked the following could not be needed anynmore,
+  // because of the last improvements we did in the granularity of field_image
+  // (now = 1),and the use of Distinct query option in the view,
+  // but still we needed this in the ciclovia_acquedotto_aqp view ... etc.
+  if (in_array($view->storage->id(), [
+    'geo_places',
+    'ciclovia_acquedotto_aqp',
+  ]) && $query instanceof Sql) {
     $query->addField('paragraphs_item_field_data_node__field_components', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data_node__field_components.id');
   }
-
 }
 
 /**

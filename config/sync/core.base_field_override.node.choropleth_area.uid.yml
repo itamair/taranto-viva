@@ -1,0 +1,20 @@
+uuid: 7377332d-8130-4fb7-ac10-f1cb4bddc25c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.choropleth_area
+id: node.choropleth_area.uid
+field_name: uid
+entity_type: node
+bundle: choropleth_area
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

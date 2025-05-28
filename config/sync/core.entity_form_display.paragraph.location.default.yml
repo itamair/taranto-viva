@@ -97,8 +97,8 @@ content:
             lat: 0.0
             lon: 0.0
           zoomControlPosition: topleft
-          zoom: 5
-          minZoom: 1
+          zoom: 15
+          minZoom: 8
           maxZoom: 18
           zoomFiner: 0
         scroll_zoom_enabled: 1
@@ -113,7 +113,7 @@ content:
         drawPolygon: false
         drawCircle: false
         drawText: false
-        editMode: false
+        editMode: true
         dragMode: false
         cutPolygon: false
         removalMode: true
@@ -169,7 +169,7 @@ content:
           fields:
             - field_geojson_reference
         zoom_to_geojson: true
-        path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
+        path: '{"color":"#f71ed3","opacity":"0.8","stroke":true,"weight":4,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
         snapping: true
     third_party_settings: {  }
   field_geojson_reference:

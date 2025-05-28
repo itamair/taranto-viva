@@ -1,0 +1,18 @@
+uuid: 88ca4730-1e43-472a-b6bf-38cc3adcad78
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geofield_entity
+id: node.geofield_entity.created
+field_name: created
+entity_type: node
+bundle: geofield_entity
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

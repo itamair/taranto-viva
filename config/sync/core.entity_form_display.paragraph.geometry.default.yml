@@ -8,7 +8,6 @@ dependencies:
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
-    - field.field.paragraph.geometry.field_geojson_reference
     - field.field.paragraph.geometry.field_gpx_track
     - field.field.paragraph.geometry.field_link
     - field.field.paragraph.geometry.field_markercluster_exclude
@@ -47,7 +46,6 @@ third_party_settings:
         - field_tooltip_class
         - field_markercluster_exclude
         - field_exclude_from_map_bounds
-        - field_geojson_reference
       label: Attributes
       region: content
       parent_name: ''
@@ -108,8 +106,8 @@ content:
             lat: 40.47
             lon: 17.24
           zoomControlPosition: topleft
-          zoom: 15
-          minZoom: 1
+          zoom: 18
+          minZoom: 8
           maxZoom: 21
           zoomFiner: 0
         scroll_zoom_enabled: 1
@@ -177,19 +175,10 @@ content:
           options: ''
       geojson_overlays:
         sources:
-          fields:
-            - field_geojson_reference
+          fields: {  }
         zoom_to_geojson: true
         path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
         snapping: true
-    third_party_settings: {  }
-  field_geojson_reference:
-    type: link_default
-    weight: 20
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
     third_party_settings: {  }
   field_gpx_track:
     type: file_generic

@@ -1,0 +1,20 @@
+uuid: 5646c26a-d1b2-4f6d-ada9-75b13a2a4cd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.italian_province
+id: node.italian_province.uid
+field_name: uid
+entity_type: node
+bundle: italian_province
+label: 'Authored by'
+description: 'The username of the content author.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

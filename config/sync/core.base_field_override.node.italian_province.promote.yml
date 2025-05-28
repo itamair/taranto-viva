@@ -1,0 +1,22 @@
+uuid: 1ae1e3a9-ef5e-430d-9eda-a4c28251731f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.italian_province
+id: node.italian_province.promote
+field_name: promote
+entity_type: node
+bundle: italian_province
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

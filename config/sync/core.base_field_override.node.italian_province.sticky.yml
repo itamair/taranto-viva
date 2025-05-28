@@ -1,0 +1,22 @@
+uuid: b3a2c5c8-031a-4058-aa22-91acd29e29ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.italian_province
+id: node.italian_province.sticky
+field_name: sticky
+entity_type: node
+bundle: italian_province
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

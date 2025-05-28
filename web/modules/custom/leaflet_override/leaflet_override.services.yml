@@ -1,4 +1,7 @@
 services:
+  # This implements the pcb module permanent cache (https://www.drupal.org/project/pcb)
+  # Use the following command to flush the leaflet_permanent cache:
+  # drush pcbf leaflet_permanent && drush cr
   cache.leaflet_permanent:
     class: Drupal\Core\Cache\CacheBackendInterface
     tags:

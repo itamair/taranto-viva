@@ -4,5 +4,5 @@ display:
       empty:
         area:
           content:
-            value: '<p>No Results found</p>'
+            value: "<p>No Results found</p>\r\n"
             format: basic_html

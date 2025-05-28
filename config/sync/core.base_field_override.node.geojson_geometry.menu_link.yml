@@ -1,0 +1,20 @@
+uuid: d3ad34a9-ce8f-4681-9dbb-63a598d9acd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry.menu_link
+field_name: menu_link
+entity_type: node
+bundle: geojson_geometry
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

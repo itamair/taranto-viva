@@ -1,0 +1,18 @@
+uuid: 6c7b9a72-6467-4c4e-a597-ab38d3024eab
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry.changed
+field_name: changed
+entity_type: node
+bundle: geojson_geometry
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

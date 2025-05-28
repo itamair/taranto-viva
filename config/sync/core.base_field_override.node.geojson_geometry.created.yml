@@ -1,0 +1,18 @@
+uuid: 29f68130-a550-4c78-a427-48f39102bcf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry.created
+field_name: created
+entity_type: node
+bundle: geojson_geometry
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

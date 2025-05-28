@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_geofied_view
     - node.type.ciclovia_acquedotti
-    - views.view.ciclovia_acquedotto_aqp
   module:
     - tmgmt_content
     - viewfield
@@ -20,13 +19,7 @@ label: 'Geofied View'
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    target_uuid: d62dfc37-0183-404f-873c-038f9d5787d1
-    display_id: block_single_location
-    arguments: '[node:nid]'
-    items_to_display: ''
-    token_help: ''
+default_value: {  }
 default_value_callback: ''
 settings:
   force_default: true

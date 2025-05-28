@@ -1,0 +1,18 @@
+uuid: 06699b01-e7e4-4136-98fc-99a32a49f84a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.choropleth_area
+id: node.choropleth_area.created
+field_name: created
+entity_type: node
+bundle: choropleth_area
+label: 'Authored on'
+description: 'The date and time that the content was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

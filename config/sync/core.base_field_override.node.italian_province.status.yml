@@ -1,0 +1,22 @@
+uuid: 89652c23-d78d-4eb5-a18f-18d278b2c4d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.italian_province
+id: node.italian_province.status
+field_name: status
+entity_type: node
+bundle: italian_province
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

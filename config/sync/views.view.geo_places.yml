@@ -30,6 +30,7 @@ dependencies:
     - field.storage.paragraph.field_tooltip_sticky
     - field.storage.paragraph.field_zindex
     - field.storage.taxonomy_term.field_zoom_visibility_range
+    - node.type.ciclovia_acquedotti
     - node.type.event
     - node.type.geoimage
     - node.type.geoplace
@@ -45,6 +46,7 @@ dependencies:
   content:
     - 'taxonomy_term:places_categories:a841baac-2165-4eb1-8954-60c0a0bf78b6'
     - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
+    - 'taxonomy_term:project_namespace:f601061a-fcef-43f4-8718-91667bcc943e'
     - 'taxonomy_term:project_namespace:fd033224-7769-47a7-a698-8fa79b4f0dd3'
   module:
     - better_exposed_filters

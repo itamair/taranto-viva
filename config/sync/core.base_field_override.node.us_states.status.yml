@@ -1,0 +1,22 @@
+uuid: 16dc7003-8afe-4ff7-a068-73920e80b074
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.us_states
+id: node.us_states.status
+field_name: status
+entity_type: node
+bundle: us_states
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

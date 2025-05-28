@@ -1,0 +1,20 @@
+uuid: 40f3017c-315d-4f79-b870-0484d01808ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.us_states
+  module:
+    - path
+id: node.us_states.path
+field_name: path
+entity_type: node
+bundle: us_states
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

@@ -1,0 +1,18 @@
+uuid: 36a870d5-af03-4b83-8658-c13d90d008b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tratte_ciclovia_aqp
+id: taxonomy_term.tratte_ciclovia_aqp.name
+field_name: name
+entity_type: taxonomy_term
+bundle: tratte_ciclovia_aqp
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

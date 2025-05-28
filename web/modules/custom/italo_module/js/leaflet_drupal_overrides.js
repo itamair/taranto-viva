@@ -61,6 +61,11 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
 
     const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
 
+    // Set a default tooltip direction property as "top", in case not set.
+    if (!tooltip_options.hasOwnProperty('direction') || tooltip_options.direction.length === 0) {
+      tooltip_options.direction = "top";
+    }
+
     // Need to more correctly set the tooltip_options.permanent option.
     tooltip_options.permanent = tooltip_options.permanent === true || tooltip_options.permanent === "true";
     if (tooltip_options.permanent) {

@@ -1,0 +1,22 @@
+uuid: bf396eb6-4977-47b7-b1ce-7823f45c2e87
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geofield_entity
+id: node.geofield_entity.status
+field_name: status
+entity_type: node
+bundle: geofield_entity
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

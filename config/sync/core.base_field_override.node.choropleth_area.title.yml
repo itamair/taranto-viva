@@ -1,0 +1,18 @@
+uuid: d0401f03-bc82-497a-9126-59754431ba9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.choropleth_area
+id: node.choropleth_area.title
+field_name: title
+entity_type: node
+bundle: choropleth_area
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

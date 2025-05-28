@@ -1,0 +1,18 @@
+uuid: fc22bcc0-fc69-43ea-835e-10b00b58ec82
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry.title
+field_name: title
+entity_type: node
+bundle: geojson_geometry
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -8,6 +8,7 @@ dependencies:
   module:
     - geocoder_field
     - geofield
+    - tmgmt_content
 third_party_settings:
   geocoder_field:
     method: geocode
@@ -17,14 +18,16 @@ third_party_settings:
     disabled: false
     hidden: false
     providers:
-      - photon
       - googlemaps
+      - photon
     dumper: wkt
     delta_handling: default
     failure:
       handling: preserve
       status_message: true
       log: true
+  tmgmt_content:
+    excluded: false
 id: paragraph.location.field_geofield
 field_name: field_geofield
 entity_type: paragraph
@@ -33,18 +36,7 @@ label: Geofield
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    value: 'POINT (17.24 40.464361)'
-    geo_type: Point
-    lon: 17.24
-    lat: 40.464361
-    left: 17.24
-    top: 40.464361
-    right: 17.24
-    bottom: 40.464361
-    geohash: srhq0q3ccpee
-    latlon: '40.464361,17.24'
+default_value: {  }
 default_value_callback: ''
 settings: {  }
 field_type: geofield

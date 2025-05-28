@@ -1,0 +1,22 @@
+uuid: af8cbd28-eb3b-4e60-b1cf-28415b9cb13a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry.sticky
+field_name: sticky
+entity_type: node
+bundle: geojson_geometry
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

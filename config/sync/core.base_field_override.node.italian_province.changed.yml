@@ -1,0 +1,18 @@
+uuid: 6c12e273-d212-4e4e-afd4-8002cd0f9838
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.italian_province
+id: node.italian_province.changed
+field_name: changed
+entity_type: node
+bundle: italian_province
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

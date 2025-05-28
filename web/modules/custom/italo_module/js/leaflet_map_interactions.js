@@ -588,7 +588,7 @@
       const zoomLevel = map.getZoom();
       const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features || [];
       // Set permanent tooltips only between a specific Zoom Range.
-      const isPermanent = zoomLevel > 10 && zoomLevel <= 15;
+      const isPermanent = zoomLevel > 8 && zoomLevel <= 15;
 
       for (const permanent_tooltip_feature of permanent_tooltip_features) {
         if (!permanent_tooltip_feature) {

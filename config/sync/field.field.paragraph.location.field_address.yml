@@ -7,12 +7,13 @@ dependencies:
     - paragraphs.paragraphs_type.location
   module:
     - geocoder_field
+    - tmgmt_content
 third_party_settings:
   geocoder_field:
     method: reverse_geocode
     weight: 2
     field: field_geofield
-    skip_not_empty_value: false
+    skip_not_empty_value: true
     disabled: false
     hidden: false
     providers:
@@ -26,6 +27,8 @@ third_party_settings:
     geocode:
       field: parent_id
       delta_handling: default
+  tmgmt_content:
+    excluded: false
 id: paragraph.location.field_address
 field_name: field_address
 entity_type: paragraph

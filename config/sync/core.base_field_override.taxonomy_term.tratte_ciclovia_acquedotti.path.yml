@@ -1,0 +1,20 @@
+uuid: 52e58f61-3d7a-49d8-a1c9-fd0616b76ef3
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tratte_ciclovia_acquedotti
+  module:
+    - path
+id: taxonomy_term.tratte_ciclovia_acquedotti.path
+field_name: path
+entity_type: taxonomy_term
+bundle: tratte_ciclovia_acquedotti
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

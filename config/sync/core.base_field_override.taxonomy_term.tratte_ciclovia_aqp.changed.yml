@@ -1,0 +1,18 @@
+uuid: ba1b0fdc-da43-424f-af1f-62b74f7a8564
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tratte_ciclovia_aqp
+id: taxonomy_term.tratte_ciclovia_aqp.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: tratte_ciclovia_aqp
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -1,0 +1,22 @@
+uuid: 4e5fb2a4-2d41-4def-8fd0-16c801e13998
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+id: node.geojson_geometry.status
+field_name: status
+entity_type: node
+bundle: geojson_geometry
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

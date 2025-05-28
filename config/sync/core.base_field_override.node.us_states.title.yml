@@ -1,0 +1,18 @@
+uuid: ffad6f6a-1e97-4ff9-922b-e12b018d4c2f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.us_states
+id: node.us_states.title
+field_name: title
+entity_type: node
+bundle: us_states
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

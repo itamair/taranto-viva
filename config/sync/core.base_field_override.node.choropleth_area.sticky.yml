@@ -1,0 +1,22 @@
+uuid: d48126e1-e1ef-4cc1-9e3f-6ca0bad826d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.choropleth_area
+id: node.choropleth_area.sticky
+field_name: sticky
+entity_type: node
+bundle: choropleth_area
+label: 'Sticky at top of lists'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
