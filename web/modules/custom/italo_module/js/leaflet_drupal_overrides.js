@@ -98,6 +98,78 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
 
 (function($, Drupal) {
 
+  /**
+   * Override of Leaflet Point creator, to apply the icon_size_multiplier
+   * property.
+   *
+   * @param feature
+   *   The Marker definition.
+   *
+   * @returns {*}
+   */
+  Drupal.Leaflet.prototype.create_point = function(feature) {
+    let feature_properties;
+    try {
+      feature_properties = JSON.parse(feature.properties);
+    }
+    catch (e) {
+      feature_properties = {};
+    }
+
+    const latLng = new L.LatLng(feature.lat, feature.lon);
+    let lMarker;
+    // Assign the marker title value depending if a Marker simple title or a
+    // Leaflet tooltip was set.
+    let marker_title = '';
+    if (feature.title) {
+      marker_title = feature.title.replace(/<[^>]*>/g, '').trim()
+    }
+    else if (feature.tooltip && feature.tooltip.value) {
+      marker_title = feature.tooltip.value.replace(/<[^>]*>/g, '').trim();
+    }
+    let options = {
+      // Define the title (as mouse hover tooltip) only in case the Leaflet Tooltip is not defined.
+      title: feature.title ? marker_title : "",
+      className: feature.className || '',
+      alt: marker_title,
+      group_label: feature.group_label ?? '',
+    };
+
+    lMarker = new L.Marker(latLng, options);
+
+    if (feature.icon) {
+      if (feature.icon.iconType && feature.icon.iconType === 'html' && feature.icon.html) {
+        let icon = this.create_divicon(feature.icon);
+        lMarker.setIcon(icon);
+      }
+      else if (feature.icon.iconType && feature.icon.iconType === 'circle_marker') {
+        try {
+          options = feature.icon.circle_marker_options ? JSON.parse(feature.icon.circle_marker_options) : {};
+          options.radius = options.radius ? parseInt(options['radius']) : 10;
+        }
+        catch (e) {
+          options = {};
+        }
+        lMarker = new L.CircleMarker(latLng, options);
+      }
+      else if (feature.icon.iconUrl) {
+        feature.icon.iconSize = feature.icon.iconSize || {};
+        const icon_size_multiplier = feature_properties['icon_size_multiplier'] ?? 1;
+        feature.icon.iconSize.x = feature.icon.iconSize.x * icon_size_multiplier || this.naturalWidth;
+        feature.icon.iconSize.y = feature.icon.iconSize.y * icon_size_multiplier || this.naturalHeight;
+        if (feature.icon.shadowUrl) {
+          feature.icon.shadowSize = feature.icon.shadowSize || {};
+          feature.icon.shadowSize.x = feature.icon.shadowSize.x || this.naturalWidth;
+          feature.icon.shadowSize.y = feature.icon.shadowSize.y || this.naturalHeight;
+        }
+        let icon = this.create_icon(feature.icon);
+        lMarker.setIcon(icon);
+      }
+    }
+
+    return lMarker;
+  };
+
   // Override the original leaflet.drupal.js methods not to use the
   // L.PolygonClusterable object.
 
