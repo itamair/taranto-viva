@@ -4595,7 +4595,7 @@ display:
               input_size: 16
               providers:
                 googlemaps:
-                  weight: '0'
+                  weight: '2'
                   checked: 1
                 arcgisonline:
                   weight: '0'
@@ -4621,7 +4621,7 @@ display:
             bounds_limit_flag: false
             max_zoom_out: '-2'
           feature_properties:
-            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}"}'
+            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}","icon_size_multiplier":3}'
       row:
         type: fields
         options:

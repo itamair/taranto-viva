@@ -77,7 +77,7 @@ filters:
         title: '0'
       optionset: default
       layout: ''
-      admin_uri: '/en/admin/config/content/formats/manage/basic_html?destination=/en/admin/config/content/formats&ajax_form=1&_wrapper_format=drupal_ajax'
+      admin_uri: '/it/admin/config/content/formats/manage/basic_html?destination=/it/admin/config/content/formats'
       background: false
       box_caption: ''
       box_caption_custom: ''
