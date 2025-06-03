@@ -3911,7 +3911,7 @@ display:
         type: normal
         title: 'Luoghi di Interesse'
         description: ''
-        weight: -46
+        weight: -48
         expanded: false
         menu_name: main
         parent: ''
@@ -6361,7 +6361,7 @@ display:
         type: normal
         title: 'Home | Mappa'
         description: ''
-        weight: -47
+        weight: -49
         expanded: false
         menu_name: main
         parent: ''
@@ -8225,7 +8225,7 @@ display:
         type: normal
         title: 'I Vaganti (Mappa)'
         description: ''
-        weight: -43
+        weight: -44
         expanded: false
         menu_name: main
         parent: ''

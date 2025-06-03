@@ -590,7 +590,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: 'Scarica il tracciato in formato GeoJSON format: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a>'
+            value: 'Scarica il tracciato in formato GeoJSON: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a>'
             format: full_html
           tokenize: false
       display_extenders: {  }
@@ -4743,7 +4743,7 @@ display:
         type: normal
         title: 'Ciclovia Acquedotto AQP'
         description: null
-        weight: 0
+        weight: -46
         enabled: true
         expanded: false
         menu_name: main

@@ -549,7 +549,7 @@ display:
         type: normal
         title: Immagini
         description: ''
-        weight: -44
+        weight: -47
         expanded: false
         menu_name: main
         parent: ''
@@ -757,7 +757,7 @@ display:
         type: normal
         title: 'I Vaganti (Immagini)'
         description: ''
-        weight: -42
+        weight: -43
         expanded: false
         menu_name: main
         parent: ''

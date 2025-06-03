@@ -8,7 +8,7 @@ slogan: ''
 page:
   403: /user/login
   404: ''
-  front: /ciclovia-acquedotto-aqp
+  front: /main_map
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: it
