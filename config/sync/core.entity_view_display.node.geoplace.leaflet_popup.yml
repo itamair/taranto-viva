@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
+    - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
   module:
@@ -30,6 +31,14 @@ content:
     settings:
       view_mode: leaflet_popup
       link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_sub_title:
+    type: text_header
+    label: hidden
+    settings:
+      level: '3'
     third_party_settings: {  }
     weight: 0
     region: content

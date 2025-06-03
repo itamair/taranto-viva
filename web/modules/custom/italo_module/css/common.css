@@ -279,3 +279,13 @@ a, a.link {
 #popup-message-window #popup-message-content .node__content {
   padding-block-end: var(--sp0-75);
 }
+
+/* line 267, ../sass/common.scss */
+.view-footer {
+  font-size: 0.9rem;
+}
+/* line 269, ../sass/common.scss */
+.view-footer p {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+}

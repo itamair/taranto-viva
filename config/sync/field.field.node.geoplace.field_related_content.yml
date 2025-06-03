@@ -4,7 +4,22 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_related_content
+    - node.type.article
+    - node.type.ciclovia_acquedotti
+    - node.type.event
     - node.type.geoplace
+    - node.type.page
+    - node.type.territorial_report
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
 id: node.geoplace.field_related_content
 field_name: field_related_content
 entity_type: node
@@ -19,10 +34,15 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
+      article: article
+      page: page
+      ciclovia_acquedotti: ciclovia_acquedotti
+      event: event
       geoplace: geoplace
+      territorial_report: territorial_report
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: geoimage
+    auto_create_bundle: ciclovia_acquedotti
 field_type: entity_reference

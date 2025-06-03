@@ -815,7 +815,7 @@ display:
         type: normal
         title: 'Choropleth Map'
         description: ''
-        weight: 100
+        weight: -41
         expanded: false
         menu_name: main
         parent: ''

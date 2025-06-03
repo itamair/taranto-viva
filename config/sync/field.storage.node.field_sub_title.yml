@@ -1,14 +1,17 @@
-uuid: c836d228-5e35-4952-a280-dfce1f310bb7
-langcode: it
+uuid: b0fead48-2750-47be-a9f6-430e6a6f8d43
+langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_map_popup_disabled
-field_name: field_map_popup_disabled
+id: node.field_sub_title
+field_name: field_sub_title
 entity_type: node
-type: boolean
-settings: {  }
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

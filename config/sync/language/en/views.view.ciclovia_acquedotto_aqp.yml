@@ -1,0 +1,24 @@
+label: 'Apulian Aqueduct Cycle Path'
+display:
+  default:
+    display_options:
+      empty:
+        area:
+          content:
+            value: '<p>No Results found</p>'
+            format: basic_html
+      footer:
+        area:
+          content:
+            value: '<p>Data source: <a href="https://www.cicloviadellacquedotto.it/tracciato/" target="blank">Cicloviadellacquedotto.it Website</a></p><p>Useful Links:</p><ul><li><a href="https://www.aqp.it/pianeta-acqua/ciclovia-acquedotto-pugliese" target="blank">Apulian Aqueduct Bikeway Website</a></li><li><a href="https://www.bicitalia.org/it/bicitalia/gli-itinerari-bicitalia/216-bi11-ciclovia-dell-acquedotto-pugliese" target="blank">BICITALIA Apulian Aqueduct Bikeway</a></li></ul>'
+            format: full_html
+        area_1:
+          content:
+            value: '<p>Download the Route in GeoJSON format: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a></p>'
+            format: full_html
+  page_ciclovia_acquedotti:
+    display_title: 'Page Apulian Aqueduct Cycle Path'
+    display_options:
+      title: 'Apulian Aqueduct Cycle Path'
+      menu:
+        title: 'Apulian Aqueduct Cycle Path'

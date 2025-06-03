@@ -566,7 +566,33 @@ display:
       use_ajax: true
       group_by: false
       header: {  }
-      footer: {  }
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: "<p>Fonte dati: <a href=\"https://www.cicloviadellacquedotto.it/tracciato/\" target=\"blank\">Sito cicloviadellacquedotto.it</a></p>\r\n<p>Links utili:</p>\r\n<ul>\r\n<li><a href=\"https://www.aqp.it/pianeta-acqua/ciclovia-acquedotto-pugliese\" target=\"blank\">Sito Acquedotto Pugliese - Ciclovia</a></li>\r\n<li><a href=\"https://www.bicitalia.org/it/bicitalia/gli-itinerari-bicitalia/216-bi11-ciclovia-dell-acquedotto-pugliese\" target=\"blank\">BICITALIA Ciclovia dell'Acquedotto Pugliese</a></li>\r\n</ul>"
+            format: full_html
+          tokenize: false
+        area_1:
+          id: area_1
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: 'Scarica il tracciato in formato GeoJSON format: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a>'
+            format: full_html
+          tokenize: false
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -4716,8 +4742,9 @@ display:
       menu:
         type: normal
         title: 'Ciclovia Acquedotto AQP'
-        description: ''
-        weight: -49
+        description: null
+        weight: 0
+        enabled: true
         expanded: false
         menu_name: main
         parent: ''

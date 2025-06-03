@@ -1,0 +1,26 @@
+uuid: 3e582d72-372f-446c-820c-33f25f7b8eb4
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_popup_disabled
+    - node.type.ciclovia_acquedotti
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_map_popup_disabled
+field_name: field_map_popup_disabled
+entity_type: node
+bundle: ciclovia_acquedotti
+label: 'Map Popup disabled'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

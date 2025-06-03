@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
+    - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
     - views.view.content_locations_addresses_and_google_maps_links
@@ -48,7 +49,7 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
             uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
@@ -64,7 +65,7 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
           7994fea5-edff-4fdf-8178-7605f4ecba98:
             uuid: 7994fea5-edff-4fdf-8178-7605f4ecba98
@@ -87,7 +88,26 @@ third_party_settings:
                   rel: nofollow
                   target: _blank
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
+            additional: {  }
+          f6ce4061-108f-414e-8442-be81e31d9d91:
+            uuid: f6ce4061-108f-414e-8442-be81e31d9d91
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_sub_title'
+              label: 'Sub Title'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_header
+                label: hidden
+                settings:
+                  level: '3'
+                third_party_settings: {  }
+            weight: 2
             additional: {  }
         third_party_settings: {  }
       -
@@ -256,6 +276,7 @@ hidden:
   active_level: true
   field_link: true
   field_media_slideshow: true
+  field_sub_title: true
   geoimage_caption: true
   langcode: true
   links: true

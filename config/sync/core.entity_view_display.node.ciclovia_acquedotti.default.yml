@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.ciclovia_acquedotti.field_components
     - field.field.node.ciclovia_acquedotti.field_distance_km
     - field.field.node.ciclovia_acquedotti.field_geofied_view
+    - field.field.node.ciclovia_acquedotti.field_map_popup_disabled
     - field.field.node.ciclovia_acquedotti.field_project_namespace
     - field.field.node.ciclovia_acquedotti.field_source
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
@@ -156,6 +157,24 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 10
             additional: {  }
+          67351026-4483-456a-9e07-409759692fc1:
+            uuid: 67351026-4483-456a-9e07-409759692fc1
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_map_popup_disabled'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: boolean
+                label: above
+                settings:
+                  format: default
+                  format_custom_false: ''
+                  format_custom_true: ''
+                third_party_settings: {  }
+            weight: 11
+            additional: {  }
         third_party_settings: {  }
 id: node.ciclovia_acquedotti.default
 targetEntityType: node
@@ -188,6 +207,16 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 4
+    region: content
+  field_map_popup_disabled:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 10
     region: content
   field_project_namespace:
     type: entity_reference_label

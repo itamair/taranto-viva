@@ -924,7 +924,7 @@ display:
         type: normal
         title: Segnalazioni
         description: ''
-        weight: -47
+        weight: -45
         expanded: false
         menu_name: main
         parent: ''

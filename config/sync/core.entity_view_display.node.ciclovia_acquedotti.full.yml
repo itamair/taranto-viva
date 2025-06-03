@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.ciclovia_acquedotti.field_components
     - field.field.node.ciclovia_acquedotti.field_distance_km
     - field.field.node.ciclovia_acquedotti.field_geofied_view
+    - field.field.node.ciclovia_acquedotti.field_map_popup_disabled
     - field.field.node.ciclovia_acquedotti.field_project_namespace
     - field.field.node.ciclovia_acquedotti.field_source
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
@@ -39,6 +40,7 @@ hidden:
   body: true
   field_components: true
   field_distance_km: true
+  field_map_popup_disabled: true
   field_project_namespace: true
   field_source: true
   field_tratta_ciclovia_aqp: true
