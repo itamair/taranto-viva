@@ -4741,7 +4741,7 @@ display:
       path: ciclovia-acquedotto-aqp
       menu:
         type: normal
-        title: 'Ciclovia Acquedotto AQP'
+        title: 'Ciclovia Acquedotto'
         description: null
         weight: -46
         enabled: true
