@@ -265,12 +265,12 @@ a, a.link {
 }
 
 .view-header {
-  font-size: 0.9rem;
+  font-size: 1rem !important;
   .text-content {
     line-height: var(--line-height-base) !important;
     font-weight: normal !important;
     font-style: normal !important;
-    font-size: 1rem;
+    font-size: inherit;
     font-family: var(--font-sans), serif !important;
   }
   p {
@@ -280,7 +280,7 @@ a, a.link {
 }
 
 .view-footer {
-  font-size: 0.9rem;
+  font-size: 0.9rem !important;
   p {
     margin-block-start: 0 !important;
     margin-block-end: 0 !important;
