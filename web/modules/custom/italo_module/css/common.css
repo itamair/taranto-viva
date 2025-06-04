@@ -83,7 +83,7 @@ a, a.link {
 
 /* line 75, ../sass/common.scss */
 .view > .view-header {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 1rem !important;
 }
 
 /* line 80, ../sass/common.scss */
@@ -281,11 +281,49 @@ a, a.link {
 }
 
 /* line 267, ../sass/common.scss */
-.view-footer {
+.view-header {
   font-size: 0.9rem;
 }
 /* line 269, ../sass/common.scss */
+.view-header .text-content {
+  line-height: var(--line-height-base) !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 1rem;
+  font-family: var(--font-sans), serif !important;
+}
+/* line 276, ../sass/common.scss */
+.view-header p {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+}
+
+/* line 282, ../sass/common.scss */
+.view-footer {
+  font-size: 0.9rem;
+}
+/* line 284, ../sass/common.scss */
 .view-footer p {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
+}
+
+/* line 290, ../sass/common.scss */
+.text-content {
+  line-height: var(--line-height-base) !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-size: 1rem;
+  font-family: var(--font-sans), serif !important;
+}
+
+/**
+ * @file
+ * Region default layout.
+ */
+@media (min-width: 62.5rem) {
+  /* line 303, ../sass/common.scss */
+  .region > * {
+    margin-block-end: var(--sp2) !important;
+  }
 }

@@ -39,6 +39,7 @@ dependencies:
     - system.menu.main
     - taxonomy.vocabulary.project_namespace
   content:
+    - 'block_content:basic:ae0f0760-ce02-486a-8cd6-7647a3585d70'
     - 'taxonomy_term:project_namespace:f601061a-fcef-43f4-8718-91667bcc943e'
   module:
     - better_exposed_filters
@@ -577,20 +578,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<p>Fonte dati: <a href=\"https://www.cicloviadellacquedotto.it/tracciato/\" target=\"blank\">Sito cicloviadellacquedotto.it</a></p>\r\n<p>Links utili:</p>\r\n<ul>\r\n<li><a href=\"https://www.aqp.it/pianeta-acqua/ciclovia-acquedotto-pugliese\" target=\"blank\">Sito Acquedotto Pugliese - Ciclovia</a></li>\r\n<li><a href=\"https://www.bicitalia.org/it/bicitalia/gli-itinerari-bicitalia/216-bi11-ciclovia-dell-acquedotto-pugliese\" target=\"blank\">BICITALIA Ciclovia dell'Acquedotto Pugliese</a></li>\r\n</ul>"
-            format: full_html
-          tokenize: false
-        area_1:
-          id: area_1
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: false
-          content:
-            value: 'Scarica il tracciato in formato GeoJSON: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a>'
+            value: "<p>Fonte dati: <a href=\"https://www.cicloviadellacquedotto.it/tracciato/\" target=\"blank\">Sito cicloviadellacquedotto.it</a></p>\r\n<p>Scarica il tracciato in formato GeoJSON: <a href=\"/ciclovia_acqueddotto_geojson/v1\" target=\"blank\">GeoJSON API Endpoint (v1)</a></p>"
             format: full_html
           tokenize: false
       display_extenders: {  }
@@ -4735,7 +4723,20 @@ display:
       css_class: 'view-ciclovia-acquedotti leaflet-popup-width-auto-image'
       group_by: false
       display_description: ''
-      header: {  }
+      header:
+        entity_block_content:
+          id: entity_block_content
+          table: views
+          field: entity_block_content
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: entity
+          empty: false
+          target: ae0f0760-ce02-486a-8cd6-7647a3585d70
+          view_mode: default
+          tokenize: true
+          bypass_access: false
       rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
       path: ciclovia-acquedotto-aqp
