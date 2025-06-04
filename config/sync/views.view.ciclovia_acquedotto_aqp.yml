@@ -2301,7 +2301,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: 'Ciclovia Acquedotto AQP'
+      title: 'Ciclovia Acquedotto Pugliese'
       fields:
         title:
           id: title
@@ -4739,10 +4739,10 @@ display:
           bypass_access: false
       rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
-      path: ciclovia-acquedotto-aqp
+      path: ciclovia-acquedotto-pugliese
       menu:
         type: normal
-        title: 'Ciclovia Acquedotto'
+        title: 'Ciclovia Acquedotto Pugliese'
         description: null
         weight: -46
         enabled: true
