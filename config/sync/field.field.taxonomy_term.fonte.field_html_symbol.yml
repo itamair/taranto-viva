@@ -1,0 +1,28 @@
+uuid: 39d1bc9c-43c9-4e41-8879-95ec47888f48
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_html_symbol
+    - filter.format.full_html
+    - taxonomy.vocabulary.fonte
+  module:
+    - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: taxonomy_term.fonte.field_html_symbol
+field_name: field_html_symbol
+entity_type: taxonomy_term
+bundle: fonte
+label: 'Html symbol'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

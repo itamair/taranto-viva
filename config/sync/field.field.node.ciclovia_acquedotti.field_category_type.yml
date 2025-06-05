@@ -1,0 +1,43 @@
+uuid: 2067c1c4-2466-4a76-9d89-6cd47d6babc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category_type
+    - node.type.ciclovia_acquedotti
+    - taxonomy.vocabulary.places_categories
+  content:
+    - 'taxonomy_term:places_categories:68c27eb6-bf0a-409a-93e8-5083bc50d230'
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_category_type
+field_name: field_category_type
+entity_type: node
+bundle: ciclovia_acquedotti
+label: 'Category Type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 68c27eb6-bf0a-409a-93e8-5083bc50d230
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      places_categories: places_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

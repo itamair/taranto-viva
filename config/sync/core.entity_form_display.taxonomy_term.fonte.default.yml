@@ -1,0 +1,78 @@
+uuid: efbc6ade-6a7c-4aa1-a9d5-d7907f03278e
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.fonte.field_html_symbol
+    - field.field.taxonomy_term.fonte.field_link
+    - field.field.taxonomy_term.fonte.field_project_namespace
+    - taxonomy.vocabulary.fonte
+  module:
+    - link
+    - path
+    - text
+id: taxonomy_term.fonte.default
+targetEntityType: taxonomy_term
+bundle: fonte
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_html_symbol:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 4
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_project_namespace:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 5
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  uuid: true

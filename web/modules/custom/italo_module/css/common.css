@@ -308,13 +308,15 @@ a, a.link {
   margin-block-end: 0 !important;
 }
 
-/* line 290, ../sass/common.scss */
-.text-content {
-  line-height: var(--line-height-base) !important;
-  font-weight: normal !important;
-  font-style: normal !important;
-  font-size: 1rem;
-  font-family: var(--font-sans), serif !important;
+/* line 291, ../sass/common.scss */
+.view-fonti table.views-table {
+  margin-block-start: 4px !important;
+  margin-block-end: 4px !important;
+  font-size: inherit !important;
+}
+/* line 296, ../sass/common.scss */
+.view-fonti .views-field-field-html-symbol {
+  width: 100px;
 }
 
 /**
@@ -322,7 +324,7 @@ a, a.link {
  * Region default layout.
  */
 @media (min-width: 62.5rem) {
-  /* line 303, ../sass/common.scss */
+  /* line 306, ../sass/common.scss */
   .region > * {
     margin-block-end: var(--sp2) !important;
   }

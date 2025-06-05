@@ -353,14 +353,18 @@
   padding: 3pxx
 }
 
-
-// Leaflet Tooltips Overrides
-
 // .view-ciclovia-acquedotti
-.view-ciclovia-acquedotti .leaflet-tooltip-top {
-  margin-top: -16px !important;
-}
+.view-ciclovia-acquedotti {
 
-.view-ciclovia-acquedotti .leaflet-tooltip-bottom {
-  margin-top: 16px !important;
+  path:hover {
+    stroke-width: 14;
+  }
+
+  // Leaflet Tooltips Overrides
+  .leaflet-tooltip-top {
+    margin-top: -16px !important;
+  }
+  .leaflet-tooltip-bottom {
+    margin-top: 16px !important;
+  }
 }

@@ -1,0 +1,39 @@
+uuid: a64d41b1-c2f3-4b76-9d70-211e5b1b1ea4
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_project_namespace
+    - taxonomy.vocabulary.fonte
+    - taxonomy.vocabulary.project_namespace
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: taxonomy_term.fonte.field_project_namespace
+field_name: field_project_namespace
+entity_type: taxonomy_term
+bundle: fonte
+label: 'Project Namespace'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project_namespace: project_namespace
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

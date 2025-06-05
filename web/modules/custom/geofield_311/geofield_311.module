@@ -100,6 +100,28 @@ function geofield_311_leaflet_map_info() {
           'subdomains' => [0, 1, 2, 3],
         ],
       ],
+      'Google Hybrid' => [
+        'type' => 'google',
+        'urlTemplate' => '//mt{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+        'options' => [
+          "minZoom" => 0,
+          "maxZoom" => 20,
+          'attribution' => 'Map data &copy; <a href="http://googlemaps.com">Google</a>',
+          'detectRetina' => FALSE,
+          'subdomains' => ['0', '1', '2', '3'],
+        ],
+      ],
+      'Google Terrain' => [
+        'type' => 'google',
+        'urlTemplate' => '//mt{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+        'options' => [
+          "minZoom" => 0,
+          "maxZoom" => 20,
+          'attribution' => 'Map data &copy; <a href="http://googlemaps.com">Google</a>',
+          'detectRetina' => FALSE,
+          'subdomains' => ['0', '1', '2', '3'],
+        ],
+      ],
       'Stamen TonerLite' => [
         'type' => 'vector',
         'urlTemplate' => '//tiles.stadiamaps.com/styles/stamen_toner.json',

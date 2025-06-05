@@ -1,0 +1,9 @@
+uuid: e6f7c939-f0b2-46e0-9b8e-815f4e42fcaf
+langcode: it
+status: true
+dependencies: {  }
+name: 'Fonti Dati'
+vid: fonte
+description: null
+weight: 0
+new_revision: false

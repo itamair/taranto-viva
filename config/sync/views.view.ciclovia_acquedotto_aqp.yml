@@ -8,7 +8,9 @@ dependencies:
     - field.storage.node.field_active_type
     - field.storage.node.field_category_type
     - field.storage.node.field_classname
+    - field.storage.node.field_distance_km
     - field.storage.node.field_exclude_from_markercluster
+    - field.storage.node.field_fonte
     - field.storage.node.field_map_popup_disabled
     - field.storage.paragraph.field_arrowed
     - field.storage.paragraph.field_classname
@@ -38,6 +40,7 @@ dependencies:
     - paragraphs.paragraphs_type.location
     - system.menu.main
     - taxonomy.vocabulary.project_namespace
+    - views.view.fonti
   content:
     - 'block_content:basic:ae0f0760-ce02-486a-8cd6-7647a3585d70'
     - 'taxonomy_term:project_namespace:f601061a-fcef-43f4-8718-91667bcc943e'
@@ -568,6 +571,17 @@ display:
       group_by: false
       header: {  }
       footer:
+        view:
+          id: view
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: view
+          empty: false
+          view_to_insert: 'fonti:block_fonti_ciclovia_acquedotto'
+          inherit_arguments: false
         area:
           id: area
           table: views
@@ -4332,6 +4346,184 @@ display:
           empty_zero: false
           hide_alter_empty: true
           view_mode: leaflet_popup
+        field_fonte:
+          id: field_fonte
+          table: node__field_fonte
+          field: field_fonte
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: '<div>Fonte: {{ field_fonte }}</div>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings:
+            link: false
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_distance_km:
+          id: field_distance_km
+          table: node__field_distance_km
+          field: field_distance_km
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: '<div>Distance: {{ field_distance_km }} km</div>'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            decimal_separator: .
+            scale: 2
+            prefix_suffix: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: custom
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<div>{{ title }}</div>\r\n{{ field_fonte }}\r\n{{ field_distance_km }} "
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
       exposed_form:
         type: bef
         options:
@@ -4520,7 +4712,7 @@ display:
         options:
           grouping:
             -
-              field: field_category_type
+              field: field_fonte
               rendered: true
               overlays_options:
                 disabled_overlays: {  }
@@ -4532,7 +4724,7 @@ display:
           entity_source_submit: 'Update Entity Source'
           name_field: title
           leaflet_tooltip:
-            value: title
+            value: nothing
             options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"{{ field_tooltip_direction }}","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           leaflet_popup:
             value: leaflet_popup_rendered_entity
@@ -4656,6 +4848,7 @@ display:
         filters: false
         filter_groups: false
         header: false
+        footer: false
       relationships:
         field_components:
           id: field_components
@@ -4737,6 +4930,31 @@ display:
           view_mode: default
           tokenize: true
           bypass_access: false
+      footer:
+        area_1:
+          id: area_1
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: '<b>Fonte Dati:</b>'
+            format: full_html
+          tokenize: false
+        view:
+          id: view
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: view
+          empty: false
+          view_to_insert: 'fonti:block_fonti_ciclovia_acquedotto'
+          inherit_arguments: false
       rendering_language: '***LANGUAGE_language_content***'
       display_extenders: {  }
       path: ciclovia-acquedotto-pugliese
@@ -4762,7 +4980,9 @@ display:
         - 'config:field.storage.node.field_active_type'
         - 'config:field.storage.node.field_category_type'
         - 'config:field.storage.node.field_classname'
+        - 'config:field.storage.node.field_distance_km'
         - 'config:field.storage.node.field_exclude_from_markercluster'
+        - 'config:field.storage.node.field_fonte'
         - 'config:field.storage.node.field_map_popup_disabled'
         - 'config:field.storage.paragraph.field_arrowed'
         - 'config:field.storage.paragraph.field_classname'

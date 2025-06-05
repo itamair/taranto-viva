@@ -287,12 +287,15 @@ a, a.link {
   }
 }
 
-.text-content {
-  line-height: var(--line-height-base) !important;
-  font-weight: normal !important;
-  font-style: normal !important;
-  font-size: 1rem;
-  font-family: var(--font-sans), serif !important;
+.view-fonti {
+  table.views-table {
+    margin-block-start: 4px !important;
+    margin-block-end: 4px !important;
+    font-size: inherit !important;
+  }
+  .views-field-field-html-symbol {
+    width: 100px;
+  }
 }
 
 /**

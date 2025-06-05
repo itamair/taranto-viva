@@ -1,13 +1,13 @@
-uuid: 0fdc4ada-26d1-43e7-aece-aba02a825994
-langcode: en
+uuid: 97c786fc-923d-4080-a381-3d9c547dad88
+langcode: it
 status: true
 dependencies:
   module:
-    - node
+    - taxonomy
     - text
-id: node.field_source
-field_name: field_source
-entity_type: node
+id: taxonomy_term.field_html_symbol
+field_name: field_html_symbol
+entity_type: taxonomy_term
 type: text_long
 settings: {  }
 module: text

@@ -4,12 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.ciclovia_acquedotti.body
+    - field.field.node.ciclovia_acquedotti.field_category_type
     - field.field.node.ciclovia_acquedotti.field_components
     - field.field.node.ciclovia_acquedotti.field_distance_km
+    - field.field.node.ciclovia_acquedotti.field_fonte
     - field.field.node.ciclovia_acquedotti.field_geofied_view
     - field.field.node.ciclovia_acquedotti.field_map_popup_disabled
     - field.field.node.ciclovia_acquedotti.field_project_namespace
-    - field.field.node.ciclovia_acquedotti.field_source
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
     - node.type.ciclovia_acquedotti
   module:
@@ -57,21 +58,6 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 1
-            additional: {  }
-          c191bfbd-9b48-4844-9fb0-cef60a37301a:
-            uuid: c191bfbd-9b48-4844-9fb0-cef60a37301a
-            region: content
-            configuration:
-              id: 'field_block:node:ciclovia_acquedotti:field_source'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: text_default
-                label: above
-                settings: {  }
-                third_party_settings: {  }
             weight: 2
             additional: {  }
           0d1998d1-8da9-428b-bb6c-8620c2bac067:
@@ -79,16 +65,19 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:ciclovia_acquedotti:field_tratta_ciclovia_aqp'
+              label: 'Tratta Ciclovia AQP'
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: entity_reference_label
                 label: above
                 settings:
-                  link: true
+                  link: false
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           65075a12-4b48-4276-9d7e-7f8b8992bc03:
             uuid: 65075a12-4b48-4276-9d7e-7f8b8992bc03
@@ -107,7 +96,7 @@ third_party_settings:
                   scale: 2
                   prefix_suffix: true
                 third_party_settings: {  }
-            weight: 4
+            weight: 6
             additional: {  }
           d52f8ce3-2b21-46c8-a02d-b581c61ed284:
             uuid: d52f8ce3-2b21-46c8-a02d-b581c61ed284
@@ -124,7 +113,7 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            weight: 8
+            weight: 7
             additional: {  }
           b5d2a35a-f966-4652-bfee-c7151682a90b:
             uuid: b5d2a35a-f966-4652-bfee-c7151682a90b
@@ -134,7 +123,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 9
+            weight: 8
             additional: {  }
           1ca48b53-577a-460e-b6e9-e4d505adf960:
             uuid: 1ca48b53-577a-460e-b6e9-e4d505adf960
@@ -155,7 +144,7 @@ third_party_settings:
                   always_build_output: false
                   empty_view_title: hidden
                 third_party_settings: {  }
-            weight: 10
+            weight: 9
             additional: {  }
           67351026-4483-456a-9e07-409759692fc1:
             uuid: 67351026-4483-456a-9e07-409759692fc1
@@ -173,7 +162,58 @@ third_party_settings:
                   format_custom_false: ''
                   format_custom_true: ''
                 third_party_settings: {  }
+            weight: 10
+            additional: {  }
+          5b4ab1b9-6b94-45af-ba6f-148bed55b551:
+            uuid: 5b4ab1b9-6b94-45af-ba6f-148bed55b551
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_category_type'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: hidden
+                settings:
+                  link: false
+                third_party_settings: {  }
             weight: 11
+            additional: {  }
+          769426a1-47e1-4895-8903-c1d933a3da6b:
+            uuid: 769426a1-47e1-4895-8903-c1d933a3da6b
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_category_type'
+              label: 'Category Type'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: inline
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          f15b62fe-b560-4297-95e2-9a8f49592a69:
+            uuid: f15b62fe-b560-4297-95e2-9a8f49592a69
+            region: content
+            configuration:
+              id: 'field_block:node:ciclovia_acquedotti:field_fonte'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 5
             additional: {  }
         third_party_settings: {  }
 id: node.ciclovia_acquedotti.default
@@ -187,6 +227,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_category_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 11
     region: content
   field_components:
     type: components_with_title_entity_view
@@ -208,6 +256,14 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
+  field_fonte:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
   field_map_popup_disabled:
     type: boolean
     label: above
@@ -225,13 +281,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_source:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_tratta_ciclovia_aqp:
     type: entity_reference_label

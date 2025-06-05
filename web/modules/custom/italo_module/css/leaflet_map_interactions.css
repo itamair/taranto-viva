@@ -388,12 +388,15 @@
   padding: 3pxx;
 }
 
-/* line 360, ../sass/leaflet_map_interactions.scss */
+/* line 359, ../sass/leaflet_map_interactions.scss */
+.view-ciclovia-acquedotti path:hover {
+  stroke-width: 14;
+}
+/* line 364, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-top {
   margin-top: -16px !important;
 }
-
-/* line 364, ../sass/leaflet_map_interactions.scss */
+/* line 367, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom {
   margin-top: 16px !important;
 }

@@ -1,0 +1,16 @@
+uuid: 0a3857cc-b2d6-45bd-bf67-712f821a96e9
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.fonte
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.fonte
+target_entity_type_id: taxonomy_term
+target_bundle: fonte
+default_langcode: site_default
+language_alterable: false

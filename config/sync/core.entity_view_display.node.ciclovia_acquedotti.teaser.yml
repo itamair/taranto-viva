@@ -5,12 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.ciclovia_acquedotti.body
+    - field.field.node.ciclovia_acquedotti.field_category_type
     - field.field.node.ciclovia_acquedotti.field_components
     - field.field.node.ciclovia_acquedotti.field_distance_km
+    - field.field.node.ciclovia_acquedotti.field_fonte
     - field.field.node.ciclovia_acquedotti.field_geofied_view
     - field.field.node.ciclovia_acquedotti.field_map_popup_disabled
     - field.field.node.ciclovia_acquedotti.field_project_namespace
-    - field.field.node.ciclovia_acquedotti.field_source
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
     - node.type.ciclovia_acquedotti
   module:
@@ -35,12 +36,13 @@ content:
     weight: 100
     region: content
 hidden:
+  field_category_type: true
   field_components: true
   field_distance_km: true
+  field_fonte: true
   field_geofied_view: true
   field_map_popup_disabled: true
   field_project_namespace: true
-  field_source: true
   field_tratta_ciclovia_aqp: true
   langcode: true
   uuid: true

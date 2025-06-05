@@ -1,0 +1,39 @@
+uuid: 6521da91-532b-4b0c-864e-ab63ed56c79b
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fonte
+    - node.type.ciclovia_acquedotti
+    - taxonomy.vocabulary.fonte
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.ciclovia_acquedotti.field_fonte
+field_name: field_fonte
+entity_type: node
+bundle: ciclovia_acquedotti
+label: Fonte
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      fonte: fonte
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
