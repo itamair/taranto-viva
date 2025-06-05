@@ -1,0 +1,28 @@
+uuid: 654a5ac0-c112-4903-a92a-85452bc37b81
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_markercluster
+    - node.type.territorial_report
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.territorial_report.field_exclude_from_markercluster
+field_name: field_exclude_from_markercluster
+entity_type: node
+bundle: territorial_report
+label: 'Exclude from Markercluster'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

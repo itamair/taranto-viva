@@ -1,0 +1,28 @@
+uuid: 2048f6a9-4fa9-4d76-840d-359aa3dd341a
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_map_bounds
+    - node.type.territorial_report
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.territorial_report.field_exclude_from_map_bounds
+field_name: field_exclude_from_map_bounds
+entity_type: node
+bundle: territorial_report
+label: 'Exclude from Map Bounds'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

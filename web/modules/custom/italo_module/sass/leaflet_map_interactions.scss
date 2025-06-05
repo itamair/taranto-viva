@@ -363,8 +363,14 @@
   // Leaflet Tooltips Overrides
   .leaflet-tooltip-top {
     margin-top: -16px !important;
+    &.wider {
+      margin-top: -24px !important;
+    }
   }
   .leaflet-tooltip-bottom {
     margin-top: 16px !important;
+    &.wider {
+      margin-top: 24px !important;
+    }
   }
 }

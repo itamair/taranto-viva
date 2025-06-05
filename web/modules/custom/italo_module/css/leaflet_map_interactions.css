@@ -396,7 +396,15 @@
 .view-ciclovia-acquedotti .leaflet-tooltip-top {
   margin-top: -16px !important;
 }
-/* line 367, ../sass/leaflet_map_interactions.scss */
+/* line 366, ../sass/leaflet_map_interactions.scss */
+.view-ciclovia-acquedotti .leaflet-tooltip-top.wider {
+  margin-top: -24px !important;
+}
+/* line 370, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom {
   margin-top: 16px !important;
+}
+/* line 372, ../sass/leaflet_map_interactions.scss */
+.view-ciclovia-acquedotti .leaflet-tooltip-bottom.wider {
+  margin-top: 24px !important;
 }

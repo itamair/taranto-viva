@@ -10,6 +10,8 @@ dependencies:
     - field.field.node.territorial_report.field_comments
     - field.field.node.territorial_report.field_components
     - field.field.node.territorial_report.field_date_range
+    - field.field.node.territorial_report.field_exclude_from_map_bounds
+    - field.field.node.territorial_report.field_exclude_from_markercluster
     - field.field.node.territorial_report.field_geofied_view
     - field.field.node.territorial_report.field_link
     - field.field.node.territorial_report.field_media_slideshow
@@ -55,6 +57,8 @@ hidden:
   field_category_type: true
   field_comments: true
   field_date_range: true
+  field_exclude_from_map_bounds: true
+  field_exclude_from_markercluster: true
   field_geofied_view: true
   field_link: true
   field_media_slideshow: true

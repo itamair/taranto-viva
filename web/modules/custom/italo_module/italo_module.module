@@ -35,6 +35,7 @@ function italo_module_page_attachments(array &$page) {
   $current_route_name = \Drupal::service('current_route_match')->getRouteName();
   $page['#attached']['library'][] = 'italo_module/common';
   $page['#attached']['library'][] = 'italo_module/leaflet_map_interactions';
+  $page['#attached']['library'][] = 'italo_module/leaflet_images_control';
   // $page['#attached']['library'][] = 'italo_module/leaflet_node_forced_bounds';
   $page['#attached']['library'][] = 'italo_module/leaflet-arrowheads';
   $page['#attached']['library'][] = 'italo_module/leaflet_drupal_overrides';

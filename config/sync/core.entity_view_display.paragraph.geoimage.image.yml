@@ -4,10 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.image
-    - field.field.paragraph.geoimage.field_exclude_from_map_bounds
     - field.field.paragraph.geoimage.field_geoimage
     - field.field.paragraph.geoimage.field_location_type
-    - field.field.paragraph.geoimage.field_markercluster_exclude
     - paragraphs.paragraphs_type.geoimage
 id: paragraph.geoimage.image
 targetEntityType: paragraph
@@ -24,9 +22,7 @@ content:
     weight: 0
     region: content
 hidden:
-  field_exclude_from_map_bounds: true
   field_location_type: true
-  field_markercluster_exclude: true
   geofield_googlemaps_link: true
   geomarker_icon_url: true
   uuid: true

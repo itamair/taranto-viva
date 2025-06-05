@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.geoplace.body
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
+    - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_link
@@ -59,6 +60,7 @@ content:
 hidden:
   field_category_type: true
   field_components: true
+  field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_link: true
   field_map_popup_disabled: true

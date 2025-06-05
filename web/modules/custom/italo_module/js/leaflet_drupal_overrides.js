@@ -61,6 +61,11 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
 
     const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
 
+    // Cleanup tooltip className from commas, to support multivalue class fields.
+    if (tooltip_options.hasOwnProperty('className') && tooltip_options.className.length > 0) {
+      tooltip_options.className = tooltip_options.className.replaceAll(",", "");
+    }
+
     // Set a default tooltip direction property as "top", in case not set.
     if (!tooltip_options.hasOwnProperty('direction') || tooltip_options.direction.length === 0) {
       tooltip_options.direction = "top";

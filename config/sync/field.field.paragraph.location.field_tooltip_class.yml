@@ -6,8 +6,16 @@ dependencies:
     - field.storage.paragraph.field_tooltip_class
     - paragraphs.paragraphs_type.location
     - taxonomy.vocabulary.tooltip_class
-  content:
-    - 'taxonomy_term:tooltip_class:26e980c5-aab1-4152-9706-e08c60f6ce0c'
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
 id: paragraph.location.field_tooltip_class
 field_name: field_tooltip_class
 entity_type: paragraph
@@ -16,9 +24,7 @@ label: 'Tooltip Class'
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    target_uuid: 26e980c5-aab1-4152-9706-e08c60f6ce0c
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'

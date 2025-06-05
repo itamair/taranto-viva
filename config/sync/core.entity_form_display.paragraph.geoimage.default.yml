@@ -3,10 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.geoimage.field_exclude_from_map_bounds
     - field.field.paragraph.geoimage.field_geoimage
     - field.field.paragraph.geoimage.field_location_type
-    - field.field.paragraph.geoimage.field_markercluster_exclude
     - paragraphs.paragraphs_type.geoimage
   module:
     - media_library
@@ -15,13 +13,6 @@ targetEntityType: paragraph
 bundle: geoimage
 mode: default
 content:
-  field_exclude_from_map_bounds:
-    type: boolean_checkbox
-    weight: 5
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_geoimage:
     type: media_library_widget
     weight: 2
@@ -34,13 +25,6 @@ content:
     weight: 0
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_markercluster_exclude:
-    type: boolean_checkbox
-    weight: 6
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
 hidden:
   created: true

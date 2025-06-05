@@ -16,6 +16,13 @@ leaflet_map_interactions:
     - core/once
     - core/drupal
 
+leaflet_images_control:
+  version: 1.x
+  js:
+    js/leaflet_images_control.js: {}
+  dependencies:
+    - italo_module/leaflet_map_interactions
+
 leaflet_geometry_util:
   remote: https://github.com/makinacorpus/Leaflet.GeometryUtil
   version: 0.9.1

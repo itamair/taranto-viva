@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.geoimage.field_classname
     - field.field.node.geoimage.field_components
     - field.field.node.geoimage.field_exclude_from_map_bounds
+    - field.field.node.geoimage.field_exclude_from_markercluster
     - field.field.node.geoimage.field_place_type
     - field.field.node.geoimage.field_project_namespace
     - node.type.geoimage
@@ -51,6 +52,13 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
   field_exclude_from_map_bounds:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_exclude_from_markercluster:
     type: boolean_checkbox
     weight: 3
     region: content

@@ -9,12 +9,12 @@ dependencies:
     - field.storage.node.field_category_type
     - field.storage.node.field_classname
     - field.storage.node.field_distance_km
+    - field.storage.node.field_exclude_from_map_bounds
     - field.storage.node.field_exclude_from_markercluster
     - field.storage.node.field_fonte
     - field.storage.node.field_map_popup_disabled
     - field.storage.paragraph.field_arrowed
     - field.storage.paragraph.field_classname
-    - field.storage.paragraph.field_exclude_from_map_bounds
     - field.storage.paragraph.field_fill_color
     - field.storage.paragraph.field_fill_opacity
     - field.storage.paragraph.field_geofield
@@ -1687,9 +1687,9 @@ display:
           field_api_classes: false
         field_exclude_from_map_bounds:
           id: field_exclude_from_map_bounds
-          table: paragraph__field_exclude_from_map_bounds
+          table: node__field_exclude_from_map_bounds
           field: field_exclude_from_map_bounds
-          relationship: field_components
+          relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
@@ -1730,7 +1730,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '{{ field_exclude_from_map_bounds_1 }}'
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -2297,9 +2297,9 @@ display:
         - 'config:field.storage.node.field_active_type'
         - 'config:field.storage.node.field_category_type'
         - 'config:field.storage.node.field_classname'
+        - 'config:field.storage.node.field_exclude_from_map_bounds'
         - 'config:field.storage.paragraph.field_arrowed'
         - 'config:field.storage.paragraph.field_classname'
-        - 'config:field.storage.paragraph.field_exclude_from_map_bounds'
         - 'config:field.storage.paragraph.field_fill_color'
         - 'config:field.storage.paragraph.field_fill_opacity'
         - 'config:field.storage.paragraph.field_geofield'
@@ -3535,7 +3535,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -3593,9 +3593,9 @@ display:
           field_api_classes: false
         field_exclude_from_map_bounds:
           id: field_exclude_from_map_bounds
-          table: paragraph__field_exclude_from_map_bounds
+          table: node__field_exclude_from_map_bounds
           field: field_exclude_from_map_bounds
-          relationship: field_components
+          relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
@@ -3636,7 +3636,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '{{ field_exclude_from_map_bounds_1 }}'
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -4981,12 +4981,12 @@ display:
         - 'config:field.storage.node.field_category_type'
         - 'config:field.storage.node.field_classname'
         - 'config:field.storage.node.field_distance_km'
+        - 'config:field.storage.node.field_exclude_from_map_bounds'
         - 'config:field.storage.node.field_exclude_from_markercluster'
         - 'config:field.storage.node.field_fonte'
         - 'config:field.storage.node.field_map_popup_disabled'
         - 'config:field.storage.paragraph.field_arrowed'
         - 'config:field.storage.paragraph.field_classname'
-        - 'config:field.storage.paragraph.field_exclude_from_map_bounds'
         - 'config:field.storage.paragraph.field_fill_color'
         - 'config:field.storage.paragraph.field_fill_opacity'
         - 'config:field.storage.paragraph.field_geofield'

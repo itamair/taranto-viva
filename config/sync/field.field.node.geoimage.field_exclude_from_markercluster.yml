@@ -1,0 +1,28 @@
+uuid: 67b31e38-cdb1-42e9-87f2-0ed58e02962b
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_markercluster
+    - node.type.geoimage
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoimage.field_exclude_from_markercluster
+field_name: field_exclude_from_markercluster
+entity_type: node
+bundle: geoimage
+label: 'Exclude from Markercluster'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
