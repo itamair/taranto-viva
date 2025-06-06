@@ -18,7 +18,13 @@ display:
       title: 'Apulian Aqueduct Cycle Route'
       menu:
         title: 'Apulian Aqueduct Cycle Route'
+        description: ''
       fields:
         field_fonte:
           alter:
             text: '<div>Source: {{ field_fonte }}</div>'
+      footer:
+        area_1:
+          content:
+            value: '<p><strong>Data Sources:</strong></p>'
+            format: full_html

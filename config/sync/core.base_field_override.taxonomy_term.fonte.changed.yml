@@ -1,0 +1,18 @@
+uuid: 30c7d503-5b1c-407f-afde-ed7d37fff6d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.fonte
+id: taxonomy_term.fonte.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: fonte
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

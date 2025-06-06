@@ -1,0 +1,20 @@
+uuid: 27c309df-6c35-455e-922b-5f04b52cb7af
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.fonte
+  module:
+    - path
+id: taxonomy_term.fonte.path
+field_name: path
+entity_type: taxonomy_term
+bundle: fonte
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

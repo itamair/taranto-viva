@@ -1,0 +1,22 @@
+uuid: 7edb9a61-cd94-49ee-83b2-7b8263b3e6db
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.fonte
+id: taxonomy_term.fonte.status
+field_name: status
+entity_type: taxonomy_term
+bundle: fonte
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
