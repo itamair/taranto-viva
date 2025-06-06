@@ -2,9 +2,9 @@ _core:
   default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
 langcode: it
 uuid: 9f54ecb2-c0bd-4110-b9aa-eac3689af3d9
-name: taranto-viva.com
+name: Taranto-Viva.com
 mail: itamair@me.com
-slogan: ''
+slogan: 'La città di Taranto nelle mani dei suoi abitanti'
 page:
   403: /user/login
   404: ''

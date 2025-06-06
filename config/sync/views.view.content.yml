@@ -167,7 +167,7 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: field
-          label: 'Content type'
+          label: 'Tipo di contenuto'
           exclude: false
           alter:
             alter_text: false
@@ -912,7 +912,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: 'Content type'
+            label: 'Tipo di contenuto'
             description: ''
             use_operator: false
             operator: type_op

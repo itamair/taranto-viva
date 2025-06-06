@@ -18,7 +18,6 @@ display:
       title: 'Apulian Aqueduct Cycle Route'
       menu:
         title: 'Apulian Aqueduct Cycle Route'
-        description: ''
       fields:
         field_fonte:
           alter:

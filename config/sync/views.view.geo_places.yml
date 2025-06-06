@@ -6289,7 +6289,18 @@ display:
       display_description: ''
       header: {  }
       rendering_language: '***LANGUAGE_language_content***'
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags:
+            title: 'Main Map | [site:name]'
+            description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
+            abstract: '[site:slogan]'
+            geo_position: '40.473402, 17.235560'
+            geo_placename: 'Taranto (Puglia)'
+            geo_region: IT
+            og_site_name: '[site:name]'
+            og_title: '[site:name] | Main Map'
+          tokenize: false
       path: main_map
       menu:
         type: normal

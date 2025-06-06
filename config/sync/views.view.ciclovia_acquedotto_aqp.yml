@@ -4956,7 +4956,19 @@ display:
           view_to_insert: 'fonti:block_fonti_ciclovia_acquedotto'
           inherit_arguments: false
       rendering_language: '***LANGUAGE_language_content***'
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags:
+            title: '[view:title] | [site:name]'
+            description: "The Apulian Aqueduct Cycle Route is a charming cycle route that follows the route of the ancient aqueduct, crossing the uncontaminated nature of Puglia and Basilicata. \r\nAbout 500 km long, it connects Caposele (AV) to Santa Maria di Leuca (LE), offering rural landscapes, historic villages and unique hydraulic engineering works. "
+            abstract: '[site:slogan]'
+            geo_position: '40.473402, 17.235560'
+            geo_placename: 'Taranto (Puglia)'
+            geo_region: IT
+            og_site_name: '[site:name]'
+            og_title: '[view:title] | [site:name] '
+            og_description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
+          tokenize: false
       path: ciclovia-acquedotto-pugliese
       menu:
         type: normal
