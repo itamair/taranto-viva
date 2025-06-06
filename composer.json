@@ -219,9 +219,6 @@
             },
             "drupal/viewfield": {
                 "#3381787 Getting PHP errors when setting default value": "https://www.drupal.org/files/issues/2023-08-21/3381787.patch"
-            },
-            "drupal/views_geojson": {
-                "#3523948 Support for multivalued Geofield field": "https://git.drupalcode.org/project/views_geojson/-/merge_requests/10/diffs.patch"
             }
         }
     },
