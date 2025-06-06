@@ -1,0 +1,32 @@
+uuid: beb97afc-7a6d-4381-b0a5-ecfa4f7aa20c
+langcode: en
+status: true
+dependencies: {  }
+id: GTM-PHJ73VC.6842a363adb736.49412070
+label: GTM-PHJ73VC
+weight: 0
+tag_container_ids:
+  - GTM-PHJ73VC
+advanced_settings:
+  consent_mode: false
+  gtm:
+    GTM-PHJ73VC:
+      data_layer: dataLayer
+      include_classes: false
+      allowlist_classes: ''
+      blocklist_classes: ''
+      include_environment: false
+      environment_id: ''
+      environment_token: ''
+dimensions_metrics: {  }
+conditions: {  }
+events:
+  generate_lead:
+    value: ''
+    currency: ''
+  search: {  }
+  custom: {  }
+  login:
+    method: CMS
+  sign_up:
+    method: CMS
