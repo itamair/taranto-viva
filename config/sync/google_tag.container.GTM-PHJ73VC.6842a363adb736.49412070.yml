@@ -6,18 +6,11 @@ id: GTM-PHJ73VC.6842a363adb736.49412070
 label: GTM-PHJ73VC
 weight: 0
 tag_container_ids:
-  - GTM-PHJ73VC
+  - G-9LH03GHS0J
+  - G-8J713VG0DK
+  - ''
 advanced_settings:
   consent_mode: false
-  gtm:
-    GTM-PHJ73VC:
-      data_layer: dataLayer
-      include_classes: false
-      allowlist_classes: ''
-      blocklist_classes: ''
-      include_environment: false
-      environment_id: ''
-      environment_token: ''
 dimensions_metrics: {  }
 conditions: {  }
 events:
