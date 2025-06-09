@@ -1,0 +1,127 @@
+label: 'Visitors GeoIP'
+description: 'Region and City location reports.'
+display:
+  default:
+    display_title: Default
+    display_options:
+      fields:
+        visitor_id:
+          label: 'Unique visitors'
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+  city_table:
+    display_title: City
+    display_options:
+      fields:
+        location_country_2:
+          label: Abbreviation
+          alter:
+            text: '{{ location_country_2|lower }}'
+        location_region:
+          label: 'Region url'
+        location_city_1:
+          label: 'City url'
+        location_city:
+          label: City
+        location_country:
+          label: Country
+        location_country_1:
+          label: City
+          alter:
+            text: '{{ location_country }} {{ location_city }}, {{ location_country_1 }}'
+            path: 'internal:/visitors/location/city/{{ location_country_2 }}/{{ location_region }}/{{ location_city_1 }}'
+        visitor_id:
+          label: 'Unique visitors'
+      arguments:
+        location_country:
+          exception:
+            title: All
+        location_region:
+          exception:
+            title: All
+  recent_view_table:
+    display_title: 'Recent Views'
+    display_options:
+      fields:
+        visitors_id:
+          label: 'Visitors ID'
+          format_plural_string: !!binary MQNAY291bnQ=
+        visitors_url:
+          label: URL
+        visitors_date_time:
+          label: 'Date Time'
+        visitor_id:
+          label: Visitor
+        nothing:
+          label: Operations
+          alter:
+            text: details
+            path: 'internal:/visitors/hits/{{ visitors_id }}'
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      arguments:
+        location_country:
+          exception:
+            title: All
+        location_region:
+          exception:
+            title: All
+        location_city:
+          exception:
+            title: All
+      filters:
+        visitors_path:
+          expose:
+            label: Path
+      header:
+        result:
+          content: 'Displaying @start - @end of @total'
+  region_table:
+    display_title: Region
+    display_options:
+      fields:
+        location_region_1:
+          label: 'Region link'
+        location_country_2:
+          label: Abbreviation
+          alter:
+            text: '{{ location_country_2|lower }}'
+            path: 'internal:/visitors/location/region/{{ location_country_2 }}/{{ location_region }}'
+        location_country:
+          label: Flag
+        location_region:
+          label: Region
+        location_country_1:
+          label: Region
+          alter:
+            text: '{{location_country }} {{ location_region }}, {{ location_country_1 }} '
+            path: 'internal:/visitors/location/region/{{ location_country_2 }}/{{ location_region_1 }}'
+        visitor_id:
+          label: 'Unique visitors'
+      arguments:
+        location_country:
+          exception:
+            title: All

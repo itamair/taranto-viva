@@ -20,6 +20,8 @@ module:
   bpmn_io: 0
   breakpoint: 0
   cer: 0
+  charts: 0
+  charts_chartjs: 0
   chosen: 0
   chosen_lib: 0
   ckeditor5: 0
@@ -163,6 +165,8 @@ module:
   views_slideshow: 0
   views_slideshow_cycle: 0
   views_ui: 0
+  visitors: 0
+  visitors_geoip: 0
   votingapi: 0
   watchdog_statistics: 0
   pathauto: 1
