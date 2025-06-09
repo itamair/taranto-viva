@@ -84,7 +84,7 @@
         "drupal/entity_usage": "^2.0@beta",
         "drupal/feeds_ex": "^1.0@beta",
         "drupal/feeds_tamper": "^2.0@beta",
-        "drupal/field_group": "^3.4",
+        "drupal/field_group": "^4.0",
         "drupal/field_permissions": "^1.2",
         "drupal/file_delete": "^2.0",
         "drupal/geocoder": "^4.10",

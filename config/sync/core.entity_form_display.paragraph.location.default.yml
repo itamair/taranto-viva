@@ -164,13 +164,6 @@ content:
           delay: 800
           zoom: 16
           options: ''
-      geojson_overlays:
-        sources:
-          fields:
-            - field_geojson_reference
-        zoom_to_geojson: true
-        path: '{"color":"#f71ed3","opacity":"0.8","stroke":true,"weight":4,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
-        snapping: true
     third_party_settings: {  }
   field_geojson_reference:
     type: link_default
