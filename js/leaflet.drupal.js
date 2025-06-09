@@ -462,6 +462,15 @@
     // Set the Leaflet Tooltip, with its options (if the stripped value is not null).
     if (feature.tooltip && feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
       const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
+
+      // Cleanup tooltip className from commas, to support multivalue class fields.
+      if (tooltip_options.hasOwnProperty('className') && tooltip_options.className.length > 0) {
+        tooltip_options.className = tooltip_options.className.replaceAll(",", "");
+      }
+
+      // Need to more correctly set the tooltip_options.permanent option.
+      tooltip_options.permanent = tooltip_options.permanent === true || tooltip_options.permanent === "true";
+
       lFeature.bindTooltip(feature.tooltip.value, tooltip_options);
     }
   };
