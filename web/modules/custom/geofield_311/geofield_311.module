@@ -172,6 +172,6 @@ function geofield_311_leaflet_map_info() {
  */
 function geofield_311_library_info_alter(&$libraries, $extension) {
   if ($extension == "leaflet") {
-    $libraries['leaflet']['dependencies'][] = 'geofield_311/geofield_311';
+    // $libraries['leaflet']['dependencies'][] = 'geofield_311/geofield_311';
   }
 }
