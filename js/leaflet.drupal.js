@@ -798,43 +798,44 @@
   };
 
   /**
-   * Leaflet Point creator.
+   * Leaflet Point (Marker) creator.
    *
-   * @param marker
-   *   The Marker definition.
+   * @param feature
+   *   The feature definition.
    *
    * @returns {*}
    */
-  Drupal.Leaflet.prototype.create_point = function(marker) {
-    const latLng = new L.LatLng(marker.lat, marker.lon);
+  Drupal.Leaflet.prototype.create_point = function(feature) {
+
+    const latLng = new L.LatLng(feature.lat, feature.lon);
     let lMarker;
     // Assign the marker title value depending if a Marker simple title or a
     // Leaflet tooltip was set.
     let marker_title = '';
-    if (marker.title) {
-      marker_title = marker.title.replace(/<[^>]*>/g, '').trim()
+    if (feature.title) {
+      marker_title = feature.title.replace(/<[^>]*>/g, '').trim()
     }
-    else if (marker.tooltip && marker.tooltip.value) {
-      marker_title = marker.tooltip.value.replace(/<[^>]*>/g, '').trim();
+    else if (feature.tooltip && feature.tooltip.value) {
+      marker_title = feature.tooltip.value.replace(/<[^>]*>/g, '').trim();
     }
     let options = {
       // Define the title (as mouse hover tooltip) only in case the Leaflet Tooltip is not defined.
-      title: marker.title ? marker_title : "",
-      className: marker.className || '',
+      title: feature.title ? marker_title : "",
+      className: feature.className ? feature.className.replaceAll(",", "") : '',
       alt: marker_title,
-      group_label: marker.group_label ?? '',
+      group_label: feature.group_label ?? '',
     };
 
     lMarker = new L.Marker(latLng, options);
 
-    if (marker.icon) {
-      if (marker.icon.iconType && marker.icon.iconType === 'html' && marker.icon.html) {
-        let icon = this.create_divicon(marker.icon);
+    if (feature.icon) {
+      if (feature.icon.iconType && feature.icon.iconType === 'html' && feature.icon.html) {
+        let icon = this.create_divicon(feature.icon);
         lMarker.setIcon(icon);
       }
-      else if (marker.icon.iconType && marker.icon.iconType === 'circle_marker') {
+      else if (feature.icon.iconType && feature.icon.iconType === 'circle_marker') {
         try {
-          options = marker.icon.circle_marker_options ? JSON.parse(marker.icon.circle_marker_options) : {};
+          options = feature.icon.circle_marker_options ? JSON.parse(feature.icon.circle_marker_options) : {};
           options.radius = options.radius ? parseInt(options['radius']) : 10;
         }
         catch (e) {
@@ -842,16 +843,16 @@
         }
         lMarker = new L.CircleMarker(latLng, options);
       }
-      else if (marker.icon.iconUrl) {
-        marker.icon.iconSize = marker.icon.iconSize || {};
-        marker.icon.iconSize.x = marker.icon.iconSize.x || this.naturalWidth;
-        marker.icon.iconSize.y = marker.icon.iconSize.y || this.naturalHeight;
-        if (marker.icon.shadowUrl) {
-          marker.icon.shadowSize = marker.icon.shadowSize || {};
-          marker.icon.shadowSize.x = marker.icon.shadowSize.x || this.naturalWidth;
-          marker.icon.shadowSize.y = marker.icon.shadowSize.y || this.naturalHeight;
+      else if (feature.icon.iconUrl) {
+        feature.icon.iconSize = feature.icon.iconSize || {};
+        feature.icon.iconSize.x = feature.icon.iconSize.x || this.naturalWidth;
+        feature.icon.iconSize.y = feature.icon.iconSize.y || this.naturalHeight;
+        if (feature.icon.shadowUrl) {
+          feature.icon.shadowSize = feature.icon.shadowSize || {};
+          feature.icon.shadowSize.x = feature.icon.shadowSize.x || this.naturalWidth;
+          feature.icon.shadowSize.y = feature.icon.shadowSize.y || this.naturalHeight;
         }
-        let icon = this.create_icon(marker.icon);
+        let icon = this.create_icon(feature.icon);
         lMarker.setIcon(icon);
       }
     }
