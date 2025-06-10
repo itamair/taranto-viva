@@ -5,7 +5,7 @@
  * Contains the leaflet.module file.
  */
 
-use \Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 
 /**
@@ -123,7 +123,6 @@ function leaflet_form_alter(&$form, FormStateInterface $form_state) {
             if (isset($form[$form_field]['widget'][$widget_index]['uri'])) {
               $form[$form_field]['widget'][$widget_index]['uri']['#ajax'] = $ajax_array;
               $form[$form_field]['widget'][$widget_index]['uri']['#description'] .= $source_field_text;
-
             }
           }
         }
