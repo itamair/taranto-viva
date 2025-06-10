@@ -1466,11 +1466,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
       // Associate dynamic tooltip options (token based).
       if (!empty($this->options['leaflet_tooltip']['options'])) {
-        $feature['tooltip']['options'] = str_replace(
+        $feature['tooltip']['options'] = htmlspecialchars_decode(str_replace(
           ["\n", "\r"],
           "",
           $this->viewsTokenReplace($this->options['leaflet_tooltip']['options'], $tokens)
-        );
+        ));
       }
     }
     // Otherwise eventually attach simple title tooltip.
@@ -1545,8 +1545,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     foreach ($dimensions as $dimension => $coords) {
       foreach ($coords as $coord) {
         if (!empty($this->options['icon'][$dimension][$coord])) {
-          $value = $this->viewsTokenReplace($this->options['icon'][$dimension][$coord], $tokens);
-          // Convert to integer for size dimensions.
+          $value = str_replace(["\n", "\r"], "", $this->viewsTokenReplace($this->options['icon'][$dimension][$coord], $tokens));
           if (in_array($dimension, ['iconSize', 'shadowSize'])) {
             $feature['icon'][$dimension][$coord] = intval($value);
           }

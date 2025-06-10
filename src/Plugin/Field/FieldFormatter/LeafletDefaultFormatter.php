@@ -536,7 +536,11 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $build = [];
     if (!empty($element_content)) {
       $bubbleable_metadata = new BubbleableMetadata();
-      $content = $this->token->replace($element_content, $tokens, ['clear' => TRUE], $bubbleable_metadata);
+      $content = htmlspecialchars_decode(str_replace([
+        "\n",
+        "\r",
+      ], "",
+        $this->token->replace($element_content, $tokens, ['clear' => TRUE], $bubbleable_metadata)));
       $build[] = [
         '#markup' => $content,
       ];
