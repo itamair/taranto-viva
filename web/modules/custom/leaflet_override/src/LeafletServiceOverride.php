@@ -156,16 +156,19 @@ class LeafletServiceOverride extends LeafletService {
       && (intval($feature["icon"][$sizeKey]["x"]) === 0 || intval($feature["icon"][$sizeKey]["y"]) === 0)) {
 
       $url = $this->generateAbsoluteString($url);
+      $cache_index = $url . '-' . $feature["icon"][$sizeKey]["x"] . '-' . $feature["icon"][$sizeKey]["y"];
 
       // Use the cached size if present for this URL.
-      $page_cache = &drupal_static("$cachePrefix:$url");
+      $page_cache = &drupal_static($cachePrefix . ":" . $cache_index);
       if (is_array($page_cache) && array_key_exists('x', $page_cache) && array_key_exists('y', $page_cache)) {
         $feature["icon"][$sizeKey]["x"] = $page_cache['x'];
         $feature["icon"][$sizeKey]["y"] = $page_cache['y'];
       }
-      elseif ($cached = $this->cachePermanent->get('leaflet_map_icon_size:' . $url)) {
+      elseif ($cached = $this->cachePermanent->get('leaflet_map_icon_size:' . $cache_index)) {
         $feature["icon"][$sizeKey]["x"] = $cached->data['x'];
         $feature["icon"][$sizeKey]["y"] = $cached->data['y'];
+        // Set the size in the page cache.
+        $page_cache = $feature["icon"][$sizeKey];
       }
       elseif ($this->fileExists($url)) {
         $fileParts = pathinfo($url);
@@ -205,7 +208,7 @@ class LeafletServiceOverride extends LeafletService {
         $page_cache = $feature["icon"][$sizeKey];
 
         // Set the feature icon size in the backend cache.
-        $this->cachePermanent->set('leaflet_map_icon_size:' . $url, $feature["icon"][$sizeKey]);
+        $this->cachePermanent->set('leaflet_map_icon_size:' . $cache_index, $feature["icon"][$sizeKey]);
       }
     }
   }

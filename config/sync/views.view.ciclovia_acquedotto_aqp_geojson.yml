@@ -10,7 +10,6 @@ dependencies:
     - node.type.ciclovia_acquedotti
     - taxonomy.vocabulary.fonte
     - taxonomy.vocabulary.project_namespace
-    - user.role.authenticated
   content:
     - 'taxonomy_term:fonte:3f8e324c-5f06-4d6d-bb21-4cd38d3c57de'
     - 'taxonomy_term:project_namespace:f601061a-fcef-43f4-8718-91667bcc943e'
@@ -388,10 +387,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: role
+        type: perm
         options:
-          role:
-            authenticated: authenticated
+          perm: 'access content'
       cache:
         type: tag
         options: {  }
@@ -653,7 +651,7 @@ display:
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_distance_km'
         - 'config:field.storage.node.field_fonte'
@@ -665,7 +663,10 @@ display:
     display_plugin: block
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -673,7 +674,7 @@ display:
         - 'languages:language_interface'
         - url.query_args
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_distance_km'
         - 'config:field.storage.node.field_fonte'
@@ -951,7 +952,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags:
         - 'config:field.storage.node.field_distance_km'
         - 'config:field.storage.node.field_fonte'
