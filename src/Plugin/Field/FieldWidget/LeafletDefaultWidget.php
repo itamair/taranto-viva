@@ -586,7 +586,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $element['map']['#weight'] = -1;
 
     // Add the Map Overlays Text message, eventually.
-    if (isset($map_settings["geojson_overlays"]["sources"]["fields"]) && is_array($map_settings["geojson_overlays"]["sources"]["fields"])) {
+    if (isset($map_settings["geojson_overlays"]["sources"]["fields"]) && is_array($map_settings["geojson_overlays"]["sources"]["fields"]) && count($map_settings["geojson_overlays"]["sources"]["fields"]) > 0) {
       $map_overlays_fields_text = implode(", ", $map_settings["geojson_overlays"]["sources"]["fields"]);
       $map_overlays_text = $this->t('<div class="description form-item__description">Map (<a href="https://en.wikipedia.org/wiki/GeoJSON" target="blank">GeoJSON</a>) Overlays added and sourced from the following fields: @map_overlays_fields_text.</div>', [
         '@map_overlays_fields_text' => $map_overlays_fields_text,
