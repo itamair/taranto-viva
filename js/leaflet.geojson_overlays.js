@@ -55,6 +55,8 @@
 
             // Transform Points into styled Leaflet Circle Markers.
             geojson_style.pointToLayer = function (feature, latlng) {
+              // Eventually unset any dash style for points.
+              geojson_style.dashArray = null;
               return L.circleMarker(latlng, geojson_style);
             }
             // Collect all promises in an array
