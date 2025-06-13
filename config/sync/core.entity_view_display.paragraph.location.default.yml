@@ -5,13 +5,11 @@ dependencies:
   config:
     - field.field.paragraph.location.field_address
     - field.field.paragraph.location.field_classname
-    - field.field.paragraph.location.field_exclude_from_map_bounds
     - field.field.paragraph.location.field_geofield
     - field.field.paragraph.location.field_geojson_reference
     - field.field.paragraph.location.field_location_icon_width
     - field.field.paragraph.location.field_location_type
     - field.field.paragraph.location.field_marker_image
-    - field.field.paragraph.location.field_markercluster_exclude
     - field.field.paragraph.location.field_title
     - field.field.paragraph.location.field_tooltip_class
     - field.field.paragraph.location.field_tooltip_direction
@@ -36,16 +34,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 11
-    region: content
-  field_exclude_from_map_bounds:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 10
     region: content
   field_geofield:
     type: leaflet_formatter_default
@@ -179,16 +167,6 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_markercluster_exclude:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 5
     region: content
   field_title:
     type: string

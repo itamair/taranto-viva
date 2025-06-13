@@ -5,13 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.address
     - field.field.paragraph.geometry.field_arrowed
-    - field.field.paragraph.geometry.field_exclude_from_map_bounds
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
     - field.field.paragraph.geometry.field_gpx_track
     - field.field.paragraph.geometry.field_link
-    - field.field.paragraph.geometry.field_markercluster_exclude
     - field.field.paragraph.geometry.field_stroke_color
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
@@ -36,13 +34,11 @@ mode: address
 content: {  }
 hidden:
   field_arrowed: true
-  field_exclude_from_map_bounds: true
   field_fill_color: true
   field_fill_opacity: true
   field_geofield: true
   field_gpx_track: true
   field_link: true
-  field_markercluster_exclude: true
   field_stroke_color: true
   field_stroke_opacity: true
   field_stroke_weight: true

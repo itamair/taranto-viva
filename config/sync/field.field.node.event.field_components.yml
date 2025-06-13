@@ -9,7 +9,6 @@ dependencies:
     - paragraphs.paragraphs_type.geometry
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.location
-    - paragraphs.paragraphs_type.path
   module:
     - entity_reference_revisions
 id: node.event.field_components
@@ -30,7 +29,6 @@ settings:
       geometry: geometry
       image: image
       location: location
-      path: path
     negate: 0
     target_bundles_drag_drop:
       from_library:

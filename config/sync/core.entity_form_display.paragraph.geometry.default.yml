@@ -4,13 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.geometry.field_arrowed
-    - field.field.paragraph.geometry.field_exclude_from_map_bounds
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
     - field.field.paragraph.geometry.field_gpx_track
     - field.field.paragraph.geometry.field_link
-    - field.field.paragraph.geometry.field_markercluster_exclude
     - field.field.paragraph.geometry.field_stroke_color
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
@@ -65,13 +63,6 @@ content:
   field_arrowed:
     type: boolean_checkbox
     weight: 6
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_exclude_from_map_bounds:
-    type: boolean_checkbox
-    weight: 19
     region: content
     settings:
       display_label: true
@@ -194,13 +185,6 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
-  field_markercluster_exclude:
-    type: boolean_checkbox
-    weight: 18
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   field_stroke_color:
     type: color_field_widget_html5

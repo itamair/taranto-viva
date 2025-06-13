@@ -4,13 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.geometry.field_arrowed
-    - field.field.paragraph.geometry.field_exclude_from_map_bounds
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
     - field.field.paragraph.geometry.field_gpx_track
     - field.field.paragraph.geometry.field_link
-    - field.field.paragraph.geometry.field_markercluster_exclude
     - field.field.paragraph.geometry.field_stroke_color
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
@@ -31,16 +29,6 @@ targetEntityType: paragraph
 bundle: geometry
 mode: default
 content:
-  field_exclude_from_map_bounds:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 8
-    region: content
   field_geofield:
     type: leaflet_formatter_default
     label: hidden
@@ -165,16 +153,6 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 11
-    region: content
-  field_markercluster_exclude:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 9
     region: content
   field_title:
     type: string
