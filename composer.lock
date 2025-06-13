@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7810084935ea7be942028d15fa21040",
+    "content-hash": "89ca744351cbcf2a0ca2ebdc07dae899",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6192,11 +6192,17 @@
         },
         {
             "name": "drupal/leaflet",
-            "version": "dev-10.2.x",
+            "version": "10.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/leaflet.git",
-                "reference": "3a7f9acf7f46f053b2eefc55b07f69297e5b0499"
+                "reference": "10.3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/leaflet-10.3.0.zip",
+                "reference": "10.3.0",
+                "shasum": "f6ce11cd328ff929a1d048d99ac4718361d6c1e7"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10 || ^11",
@@ -6204,15 +6210,12 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-10.2.x": "10.2.x-dev"
-                },
                 "drupal": {
-                    "version": "10.2.48+3-dev",
-                    "datestamp": "1749460454",
+                    "version": "10.3.0",
+                    "datestamp": "1749804082",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -16359,7 +16362,6 @@
         "drupal/entity_usage": 10,
         "drupal/feeds_ex": 10,
         "drupal/feeds_tamper": 10,
-        "drupal/leaflet": 20,
         "drupal/masquerade": 5,
         "drupal/media_entity_image_exif": 5,
         "drupal/viewfield": 10,
