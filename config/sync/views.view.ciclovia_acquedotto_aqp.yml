@@ -568,7 +568,7 @@ display:
           plugin_id: standard
           required: false
       css_class: leaflet-popup-width-auto-image
-      use_ajax: true
+      use_ajax: false
       group_by: false
       header: {  }
       footer:
@@ -4705,6 +4705,56 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: combine
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: Search
+            description: ''
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: combine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              vagante_importer: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: 'Combine fields filter'
+            description: null
+            identifier: combine
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
+          fields:
+            title: title
+            field_title: field_title
+            field_fonte: field_fonte
       filter_groups:
         operator: AND
         groups:
@@ -4755,7 +4805,7 @@ display:
               lat: 42.0
               lon: 12.0
             zoomControlPosition: topleft
-            zoom: 16
+            zoom: 14
             minZoom: 7
             maxZoom: 19
             zoomFiner: 0
