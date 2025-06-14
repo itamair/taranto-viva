@@ -33,6 +33,7 @@ dependencies:
     - node.type.event
     - node.type.geoimage
     - node.type.geoplace
+    - node.type.map_label
     - node.type.territorial_report
     - paragraphs.paragraphs_type.geoimage
     - paragraphs.paragraphs_type.geometry
@@ -6002,6 +6003,7 @@ display:
             event: event
             geoimage: geoimage
             geoplace: geoplace
+            map_label: map_label
             territorial_report: territorial_report
           group: 1
           exposed: false

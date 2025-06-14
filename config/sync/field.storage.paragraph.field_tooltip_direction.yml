@@ -21,6 +21,9 @@ settings:
       value: centre
       label: center
     -
+      value: center
+      label: center
+    -
       value: bottom
       label: bottom
     -

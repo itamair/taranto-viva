@@ -8,6 +8,7 @@
 // Dynamically extend the Popup Content width according to its image width content.
 .leaflet-popup-width-auto-image .leaflet-popup-content {
   width: auto !important;
+  min-width: 200px;
 }
 
 .leaflet-popup-content-wrapper {
@@ -161,7 +162,6 @@
     }
     .field--name-geofield-googlemaps-link {
       display: inline-block;
-      margin-right: 20px;
     }
   }
 }

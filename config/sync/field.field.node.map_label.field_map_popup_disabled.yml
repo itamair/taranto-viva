@@ -1,0 +1,26 @@
+uuid: fb6cefa0-da13-4270-bd37-93866171ed4c
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_popup_disabled
+    - node.type.map_label
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.map_label.field_map_popup_disabled
+field_name: field_map_popup_disabled
+entity_type: node
+bundle: map_label
+label: 'Map Popup disabled'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

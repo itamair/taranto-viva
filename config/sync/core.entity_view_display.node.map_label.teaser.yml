@@ -1,0 +1,44 @@
+uuid: 34b1409a-ac2d-4200-adc2-6b19d4c42930
+langcode: it
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.map_label.body
+    - field.field.node.map_label.field_components
+    - field.field.node.map_label.field_exclude_from_map_bounds
+    - field.field.node.map_label.field_exclude_from_markercluster
+    - field.field.node.map_label.field_map_popup_disabled
+    - field.field.node.map_label.field_project_namespace
+    - field.field.node.map_label.field_zoom_visibility
+    - node.type.map_label
+  module:
+    - text
+    - user
+id: node.map_label.teaser
+targetEntityType: node
+bundle: map_label
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_components: true
+  field_exclude_from_map_bounds: true
+  field_exclude_from_markercluster: true
+  field_map_popup_disabled: true
+  field_project_namespace: true
+  field_zoom_visibility: true
+  langcode: true
+  uuid: true

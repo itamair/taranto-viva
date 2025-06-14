@@ -1,0 +1,24 @@
+uuid: 1c625df3-7bda-4a27-92af-3516ade07295
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.map_label
+  module:
+    - text
+id: node.map_label.body
+field_name: body
+entity_type: node
+bundle: map_label
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

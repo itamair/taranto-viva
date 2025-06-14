@@ -1,0 +1,92 @@
+uuid: a7a7ad41-3468-4fd6-a037-c4a938a8c457
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.map_label.body
+    - field.field.node.map_label.field_components
+    - field.field.node.map_label.field_exclude_from_map_bounds
+    - field.field.node.map_label.field_exclude_from_markercluster
+    - field.field.node.map_label.field_map_popup_disabled
+    - field.field.node.map_label.field_project_namespace
+    - field.field.node.map_label.field_zoom_visibility
+    - node.type.map_label
+  module:
+    - italo_module
+    - text
+    - user
+id: node.map_label.default
+targetEntityType: node
+bundle: map_label
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_components:
+    type: components_with_title_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_exclude_from_map_bounds:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_exclude_from_markercluster:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_map_popup_disabled:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_project_namespace:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_zoom_visibility:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  uuid: true

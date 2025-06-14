@@ -1,0 +1,45 @@
+uuid: f0ba738a-446f-4e8a-9190-fc3643ed5f57
+langcode: it
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.leaflet_popup
+    - field.field.node.map_label.body
+    - field.field.node.map_label.field_components
+    - field.field.node.map_label.field_exclude_from_map_bounds
+    - field.field.node.map_label.field_exclude_from_markercluster
+    - field.field.node.map_label.field_map_popup_disabled
+    - field.field.node.map_label.field_project_namespace
+    - field.field.node.map_label.field_zoom_visibility
+    - node.type.map_label
+  module:
+    - entity_reference_revisions
+    - user
+id: node.map_label.leaflet_popup
+targetEntityType: node
+bundle: map_label
+mode: leaflet_popup
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: leaflet_popup
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_exclude_from_map_bounds: true
+  field_exclude_from_markercluster: true
+  field_map_popup_disabled: true
+  field_project_namespace: true
+  field_zoom_visibility: true
+  langcode: true
+  uuid: true

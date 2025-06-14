@@ -1,0 +1,16 @@
+uuid: b3a41100-9114-4c74-8942-eb76b28d98b3
+langcode: it
+status: true
+dependencies:
+  config:
+    - node.type.map_label
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.map_label
+target_entity_type_id: node
+target_bundle: map_label
+default_langcode: site_default
+language_alterable: true

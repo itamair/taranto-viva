@@ -1,0 +1,28 @@
+uuid: 971b147b-23fa-4af1-b313-5e753771c6de
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_map_bounds
+    - node.type.map_label
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.map_label.field_exclude_from_map_bounds
+field_name: field_exclude_from_map_bounds
+entity_type: node
+bundle: map_label
+label: 'Exclude from Map Bounds'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

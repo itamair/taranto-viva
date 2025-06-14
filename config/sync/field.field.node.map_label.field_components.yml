@@ -1,0 +1,49 @@
+uuid: 6c0f45db-4569-4553-b2be-54e15f0ae180
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_components
+    - node.type.map_label
+    - paragraphs.paragraphs_type.location
+  module:
+    - ai_translate
+    - entity_reference_revisions
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: 'no'
+    translate_references: 'no'
+  tmgmt_content:
+    excluded: false
+id: node.map_label.field_components
+field_name: field_components
+entity_type: node
+bundle: map_label
+label: Components
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      location: location
+    negate: 0
+    target_bundles_drag_drop:
+      geoimage:
+        weight: 8
+        enabled: false
+      geometry:
+        weight: 9
+        enabled: false
+      image:
+        weight: 10
+        enabled: false
+      location:
+        weight: 11
+        enabled: true
+field_type: entity_reference_revisions
