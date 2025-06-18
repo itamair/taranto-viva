@@ -15,25 +15,15 @@ dependencies:
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
     - node.type.ciclovia_acquedotti
   module:
-    - entity_reference_revisions
     - user
 id: node.ciclovia_acquedotti.leaflet_popup
 targetEntityType: node
 bundle: ciclovia_acquedotti
 mode: leaflet_popup
 content:
-  field_components:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: leaflet_popup
-      link: ''
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_distance_km:
     type: number_decimal
-    label: hidden
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -42,25 +32,22 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_tratta_ciclovia_aqp:
+  field_fonte:
     type: entity_reference_label
-    label: hidden
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
     weight: 0
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
-    region: content
 hidden:
   body: true
   field_category_type: true
-  field_fonte: true
+  field_components: true
   field_geofied_view: true
   field_map_popup_disabled: true
   field_project_namespace: true
+  field_tratta_ciclovia_aqp: true
   langcode: true
+  links: true
   uuid: true
