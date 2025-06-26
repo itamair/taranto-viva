@@ -65,6 +65,7 @@ leaflet-drupal:
     - core/jquery
     - core/once
     - core/drupal
+    - core/drupal.ajax
     - leaflet/leaflet
 
 leaflet-geoman:
