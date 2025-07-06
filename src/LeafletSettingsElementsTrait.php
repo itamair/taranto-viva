@@ -176,14 +176,6 @@ trait LeafletSettingsElementsTrait {
       'map_lazy_load' => [
         'lazy_load' => 0,
       ],
-      'geojson_overlays' => [
-        'sources' => [
-          'fields' => [],
-        ],
-        'path' => '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}',
-        'zoom_to_geojson' => TRUE,
-        'snapping' => TRUE,
-      ],
     ];
   }
 
@@ -1691,7 +1683,7 @@ trait LeafletSettingsElementsTrait {
           '#rows' => 3,
           '#description' => $path_description,
           '#default_value' => $settings['geojson_overlays']['path'],
-          '#placeholder' => $this::getDefaultSettings()['geojson_overlays']['path'],
+          '#placeholder' => $this::defaultSettings()['geojson_overlays']['path'],
           '#element_validate' => [[get_class($this), 'jsonValidate']],
           '#states' => [
             'visible' => [
