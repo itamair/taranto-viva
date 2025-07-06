@@ -59,8 +59,8 @@ trait LeafletSettingsElementsTrait {
    *   The translated markup.
    */
   protected function getTokenReplacementDisclaimer(): TranslatableMarkup {
-    return $this->moduleHandler->moduleExists('token') ? $this->t('<b>Note: </b> Using <strong>Tokens or Replacement Patterns</strong> it is possible to dynamically define the Path geometries options, based on the entity properties or fields values.')
-      : $this->t('<b>Note: </b> Using the @token_module_link it is possible to use <strong>Replacement Patterns</strong> and dynamically define the Path geometries options, based on the entity properties or fields values.', [
+    return $this->moduleHandler->moduleExists('token') ? $this->t('Using <strong>Tokens or Replacement Patterns</strong> it is possible to dynamically define the Path geometries options, based on the entity properties or fields values.')
+      : $this->t('Using the @token_module_link it is possible to use <strong>Replacement Patterns</strong> and dynamically define the Path geometries options, based on the entity properties or fields values.', [
         '@token_module_link' => $this->link->generate($this->t('Toke module'), Url::fromUri('https://www.drupal.org/project/token', [
           'absolute' => TRUE,
           'attributes' => ['target' => 'blank'],
@@ -778,7 +778,7 @@ trait LeafletSettingsElementsTrait {
    */
   protected function setMapPathOptionsElement(array &$element, array $settings) {
 
-    $path_description = $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style, or the one choosen and defined in leaflet.api/hook_leaflet_map_info, will be used.<br>@token_replacement_disclaimer<br>(Note: Single Token or Replacement containing the whole Json specification is supported).', [
+    $path_description = $this->t('Set here options that will be applied to the rendering of Map Path Geometries (Lines & Polylines, Polygons, Multipolygons, etc.).<br>Refer to the @polygons_documentation.<br>Note: If empty the default Leaflet path style, or the one choosen and defined in leaflet.api/hook_leaflet_map_info, will be used.<br>@token_replacement_disclaimer<br>Single Token or Replacement containing the whole Json specification are supported.', [
       '@polygons_documentation' => $this->link->generate($this->t('Leaflet Path Documentation'), Url::fromUri('https://leafletjs.com/reference.html#path', [
         'absolute' => TRUE,
         'attributes' => ['target' => 'blank'],
@@ -909,7 +909,7 @@ trait LeafletSettingsElementsTrait {
       '#type' => 'textarea',
       '#rows' => 3,
       '#title' => $this->t('Tooltip Options'),
-      '#description' => $this->t('An object literal of options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>Supports <b>Replacement Patterns</b><br>(Note: Single Token or Replacement containing the whole Json specification is supported).'),
+      '#description' => $this->t('An object literal of options, that comply with the Leaflet Tooltip object definition.<br>The syntax should respect the javascript object notation (json) format.<br>As suggested in the field placeholder, always use double quotes (") both for the indexes and the string values.<br>Supports <b>Replacement Patterns</b><br>Single Token or Replacement containing the whole Json specification are supported.'),
       '#default_value' => $settings['leaflet_tooltip']['options'] ?? $default_settings['leaflet_tooltip']['options'],
       '#placeholder' => $default_settings['leaflet_tooltip']['options'],
       '#element_validate' => [[get_class($this), 'jsonValidate']],
