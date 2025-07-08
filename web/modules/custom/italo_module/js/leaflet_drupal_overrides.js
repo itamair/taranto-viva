@@ -202,8 +202,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
   // Override Leaflet.prototype.create_linestring
   Drupal.Leaflet.prototype.create_linestring = function(polyline) {
     const latlngs = polyline.points.map(point => new L.LatLng(point.lat, point.lon));
-    const myRenderer = L.svg({ padding: 0.5, tolerance: 20 });
-    return new L.Polyline(latlngs, {renderer: myRenderer});
+    return new L.Polyline(latlngs);
   };
 
   // Override Leaflet.prototype.create_polygon
