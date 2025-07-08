@@ -99,7 +99,7 @@
         "drupal/json_field": "^1.4",
         "drupal/jsonapi_extras": "^3.23",
         "drupal/layout_builder_styles": "^2.0",
-        "drupal/leaflet": "^10.3",
+        "drupal/leaflet": "10.3.x-dev@dev",
         "drupal/masquerade": "^2.0@RC",
         "drupal/media_entity_image_exif": "^1.0@RC",
         "drupal/media_entity_slideshow": "^2.5",
