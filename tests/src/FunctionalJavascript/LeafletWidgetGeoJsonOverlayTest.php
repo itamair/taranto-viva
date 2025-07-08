@@ -156,7 +156,6 @@ class LeafletWidgetGeoJsonOverlayTest extends WebDriverTestBase {
     $this->getSession()->getPage()->find('css', '[name="' . $this->geoFieldName . '_settings_edit"]')->click();
     $this->assertSession()->waitForElementVisible('css', '.js-form-item-fields-' . $this->geoFieldName . '-settings-edit-form-settings-geojson-overlays-sources-fields');
 
-
     // Check that geojson overlay settings are present.
     $this->assertSession()->pageTextContains('Map (GeoJSON) Overlays');
     $this->assertSession()->pageTextContains('Sources');

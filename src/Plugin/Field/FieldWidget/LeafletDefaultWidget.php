@@ -22,9 +22,7 @@ use Drupal\geofield\Plugin\GeofieldBackendManager;
 use Drupal\geofield\WktGeneratorInterface;
 use Drupal\leaflet\LeafletService;
 use Drupal\leaflet\LeafletSettingsElementsTrait;
-use Drupal\views\Views;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 
 /**
  * Plugin implementation of the "leaflet_widget" widget.

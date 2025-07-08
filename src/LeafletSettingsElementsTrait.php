@@ -480,12 +480,12 @@ trait LeafletSettingsElementsTrait {
         'marker' => $this->t('Icon Image Url/Path'),
         'html' => $this->t('Field (html DivIcon)'),
         'circle_marker' => $this->t('Circle Marker (@more_info)', [
-            '@more_info' => $this->link->generate('more info', Url::fromUri('https://leafletjs.com/reference.html#circlemarker', [
-              'absolute' => TRUE,
-              'attributes' => ['target' => 'blank'],
-            ])
-            ),
-          ]
+          '@more_info' => $this->link->generate('more info', Url::fromUri('https://leafletjs.com/reference.html#circlemarker', [
+            'absolute' => TRUE,
+            'attributes' => ['target' => 'blank'],
+          ])
+          ),
+        ]
         ),
       ],
     ];
@@ -587,8 +587,8 @@ trait LeafletSettingsElementsTrait {
       );
 
       $icon_url_description .= '<br>' . $this->t('You may include @twig_link. You may enter data from this view as per the "Replacement patterns" below.', [
-          '@twig_link' => $twig_link,
-        ]);
+        '@twig_link' => $twig_link,
+      ]);
 
       $element['iconUrl']['#description'] = $icon_url_description;
       $element['shadowUrl']['#description'] = $icon_url_description;
@@ -1721,7 +1721,7 @@ trait LeafletSettingsElementsTrait {
       }
       else {
         $element['geojson_overlays']['sources']['fields']['no_fields_help']['#markup'] = $this->t('<p>No eligible fields were found for this Entity Type.<br>Please add any of the supported fields: @supported_field_types_text</p>', [
-        '@supported_field_types_text' => $supported_field_types_text,
+          '@supported_field_types_text' => $supported_field_types_text,
         ]);
       }
     }
