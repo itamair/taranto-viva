@@ -412,11 +412,15 @@ function italo_module_media_insert(MediaInterface $media) {
  * Implements hook_leaflet_views_features_alter().
  */
 function italo_module_leaflet_views_features_alter(array &$features, ViewsPluginInterface &$view_style) {
+  // In case of a linestring/polyline duplicate its definition with
+  // transparent stroke & fill and wider stroke so to make polyline more
+  // 'touchable' or tap-friendly.
+  // ref: https://stackoverflow.com/questions/54602793/how-to-make-leaflet-polylines-more-touchable-or-tap-friendly
   foreach ($features as $feature) {
     if (isset($feature['type']) && $feature['type'] === "linestring" && isset($feature['path'])) {
       $transparent_linestring = $feature;
       $transparent_linestring['path'] = '{"opacity":"0","stroke":true,"weight":"20","fillColor":"#000000","fillOpacity":"0.0"}';
-      $transparent_linestring['weight'] = $feature['weight'] - 5;
+      $transparent_linestring['weight'] = $feature['weight'] + 5;
       $features[] = $transparent_linestring;
     }
   }
