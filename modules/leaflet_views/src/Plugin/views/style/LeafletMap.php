@@ -1007,6 +1007,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             $view_results_groups
           );
 
+          // Allow modules to adjust the single features.
+          $this->moduleHandler->alter('leaflet_views_features', $features, $this);
+
           // Increment Features Group with new Features element.
           $features_group[] = $features;
         }
