@@ -409,6 +409,20 @@ function italo_module_media_insert(MediaInterface $media) {
 }
 
 /**
+ * Implements hook_leaflet_views_features_alter().
+ */
+function italo_module_leaflet_views_features_alter(array &$features, ViewsPluginInterface &$view_style) {
+  foreach ($features as $feature) {
+    if (isset($feature['type']) && $feature['type'] === "linestring" && isset($feature['path'])) {
+      $transparent_linestring = $feature;
+      $transparent_linestring['path'] = '{"opacity":"0","stroke":true,"weight":"20","fillColor":"#000000","fillOpacity":"0.0"}';
+      $transparent_linestring['weight'] = $feature['weight'] - 5;
+      $features[] = $transparent_linestring;
+    }
+  }
+}
+
+/**
  * Implements hook_leaflet_views_features_group_alter().
  */
 function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPluginInterface &$view_style) {
