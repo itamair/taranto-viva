@@ -898,7 +898,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
 
       // Order the data features based on the 'weight' element.
       if (isset($features_groups) && count($features_groups) > 1) {
-        uasort($features_groups, [
+        usort($features_groups, [
           'Drupal\Component\Utility\SortArray',
           'sortByWeightElement',
         ]);
@@ -946,7 +946,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         $features_group = array_merge(...$features_group);
 
         // Order the data features based on the 'weight' element.
-        uasort($features_group, [
+        usort($features_group, [
           'Drupal\Component\Utility\SortArray',
           'sortByWeightElement',
         ]);
