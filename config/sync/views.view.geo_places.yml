@@ -6166,7 +6166,7 @@ display:
             options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
           locate:
             control: true
-            options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"initialZoomLevel":16,"flyTo":true,"strings":{"title":"Locate my position"},"cacheLocation":true,"tap":false,"enableHighAccuracy":true}'
+            options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"initialZoomLevel":16,"flyTo":true,"strings":{"title":"Locate my position"},"cacheLocation":true,"tap":false,"enableHighAccuracy":true,"touch_helper":true}'
             automatic: false
           map_position:
             force: false

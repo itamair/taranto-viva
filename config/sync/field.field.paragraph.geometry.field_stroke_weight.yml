@@ -5,6 +5,11 @@ dependencies:
   config:
     - field.storage.paragraph.field_stroke_weight
     - paragraphs.paragraphs_type.geometry
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
 id: paragraph.geometry.field_stroke_weight
 field_name: field_stroke_weight
 entity_type: paragraph
@@ -19,7 +24,7 @@ default_value:
 default_value_callback: ''
 settings:
   min: 0
-  max: 8
+  max: 30
   prefix: ''
   suffix: pixels
 field_type: integer

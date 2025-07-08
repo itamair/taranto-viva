@@ -4841,7 +4841,7 @@ display:
           fullscreen:
             control: true
             options: '{"position":"topleft","pseudoFullscreen":false}'
-          path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"1.0","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
+          path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"{{ field_stroke_opacity }}","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
           geocoder:
             control: false
             settings:
