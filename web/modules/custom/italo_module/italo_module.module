@@ -420,7 +420,7 @@ function italo_module_leaflet_views_features_alter(array &$features, ViewsPlugin
     if (isset($feature['type']) && $feature['type'] === "linestring" && isset($feature['path'])) {
       $transparent_linestring = $feature;
       $transparent_linestring['path'] = '{"opacity":"0","stroke":true,"weight":"20","fillColor":"#000000","fillOpacity":"0.0"}';
-      $transparent_linestring['weight'] = $feature['weight'] + 5;
+      $transparent_linestring['weight'] = $feature['weight'] - 500;
       $features[] = $transparent_linestring;
     }
   }
@@ -430,7 +430,10 @@ function italo_module_leaflet_views_features_alter(array &$features, ViewsPlugin
  * Implements hook_leaflet_views_features_group_alter().
  */
 function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPluginInterface &$view_style) {
-  if ($group["group_label"] == 'Segnalazione Territoriale') {
+  if (in_array(strtolower($group["group_label"]), [
+    'segnalazione territoriale',
+    'territorial report',
+  ])) {
     $group["weight"] = -10;
   }
 
