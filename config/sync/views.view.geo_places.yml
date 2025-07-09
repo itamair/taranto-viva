@@ -6148,8 +6148,8 @@ display:
             value: title
             options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"{{ field_tooltip_direction }}","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           leaflet_popup:
-            value: leaflet_popup_rendered_entity
-            options: '{"autoPan":true,"maxWidth":400}'
+            value: '#rendered_entity_ajax'
+            options: '{"autoPan":true,"minWidth":300}'
             view_mode: leaflet_popup
           leaflet_map: multilayers
           height: '80'

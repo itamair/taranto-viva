@@ -1,15 +1,11 @@
 #leaflet-map-view-geo-media-images-page-geoimages-map {
   .leaflet-popup-content {
-    width: 600px !important;
     margin: 1px;
   }
 }
 
 // Dynamically extend the Popup Content width according to its image width content.
-.leaflet-popup-width-auto-image .leaflet-popup-content {
-  width: auto !important;
-  min-width: 200px;
-}
+
 
 .leaflet-popup-content-wrapper {
   border-radius: 1px !important;
@@ -36,9 +32,6 @@
     }
     .node--type-geoimage {
       margin: 0;
-      img {
-        max-width: 600px !important;
-      }
       .node__content {
         margin: 0;
         padding-bottom: 0 !important;
@@ -49,15 +42,9 @@
     }
     .node--type-geoplace, .node--type-event{
       margin: 12px 8px 0;
-      img {
-        max-width: 300px !important;
-      }
     }
     .node--type-territorial-report {
       margin: 12px 8px 0;
-      img {
-        max-width: 400px !important;
-      }
     }
     .field--type-image img, .field--name-user-picture img {
       margin: 0;

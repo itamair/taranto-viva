@@ -18,6 +18,7 @@ use Drupal\node\NodeInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Field\FieldItemList;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
+use Drupal\views\ResultRow;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\file\FileInterface;
@@ -405,6 +406,24 @@ function italo_module_media_insert(MediaInterface $media) {
     catch (\Exception $e) {
       \Drupal::logger('italo module - media_library_importer')->error($e->getMessage());
     }
+  }
+}
+
+/**
+ * Implements hook_leaflet_views_feature_alter().
+ */
+function italo_module_leaflet_views_feature_alter(array &$feature, ResultRow $row, ?ViewsPluginInterface $rowPlugin = NULL) {
+  switch ($row->_entity->bundle()) {
+    case "geoimage":
+      $feature["popup"]["options"] = '{"autoPan":true,"minWidth":500}';
+      break;
+
+    case "territorial_report":
+      $feature["popup"]["options"] = '{"autoPan":true,"minWidth":400}';
+      break;
+
+    default:
+      $feature["popup"]["options"] = '{"autoPan":true,"minWidth":300}';
   }
 }
 
