@@ -38,7 +38,7 @@ maplibre-gl-js:
     # NOTE (2): we tried to upgrade all this to 5.1.0 but we rolled it back as
     # weird things happening during the pan action (the tiles were not panning,
     # under the features elements) thus we aborted it.
-    js/maplibre-gl-js-3.6.2/maplibre-gl.js: { preprocess: false }
+    js/maplibre-gl-js-3.6.2/maplibre-gl.js: { minified: true, preprocess: false }
   css:
     component:
       js/maplibre-gl-js-3.6.2/maplibre-gl.css: {}
