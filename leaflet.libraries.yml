@@ -24,6 +24,9 @@ maplibre-gl-js:
   license:
     name: MapLibre-Js License
     url: https://github.com/maplibre/maplibre-gl-js/blob/main/LICENSE.txt
+  # js files origin:
+  # - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js
+  # - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js.map
   js:
     # Inject the maplibre-gl.js disallowing its aggregation (preprocess: false),
     # that somehow breaks the Leaflet Map rendering
@@ -39,17 +42,16 @@ maplibre-gl-js:
     # weird things happening during the pan action (the tiles were not panning,
     # under the features elements) thus we aborted it.
     js/maplibre-gl-js-3.6.2/maplibre-gl.js: { minified: true, preprocess: false }
+  # CSS files origin:
+  # - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css
   css:
     component:
-      js/maplibre-gl-js-3.6.2/maplibre-gl.css: {}
+      js/maplibre-gl-js-3.6.2/maplibre-gl.css: { minified: true }
   dependencies:
     - leaflet/leaflet
 
 # MapLibre GL Leaflet,
 # for enabling in Leaflet map any vector tile source usable by MapLibre GL JS
-# js files origin:
-# - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js
-# - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js.map
 maplibre-gl-leaflet:
   remote: https://github.com/maplibre/maplibre-gl-leaflet
   version: 0.0.20
