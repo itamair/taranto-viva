@@ -30,7 +30,7 @@ maplibre-gl-js:
   js:
     js/maplibre-gl-js-5.6.1/maplibre-gl.js: { minified: true }
   # CSS files origin:
-  # - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css
+  # - https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css
   css:
     component:
       js/maplibre-gl-js-5.6.1/maplibre-gl.css: { minified: true }
