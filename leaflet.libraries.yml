@@ -47,6 +47,9 @@ maplibre-gl-js:
 
 # MapLibre GL Leaflet,
 # for enabling in Leaflet map any vector tile source usable by MapLibre GL JS
+# js files origin:
+# - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js
+# - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js.map
 maplibre-gl-leaflet:
   remote: https://github.com/maplibre/maplibre-gl-leaflet
   version: 0.0.20
