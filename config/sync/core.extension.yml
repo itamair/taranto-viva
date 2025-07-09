@@ -136,6 +136,7 @@ module:
   replicate_ui: 0
   rest: 0
   search: 0
+  seckit: 0
   serialization: 0
   shortcut: 0
   single_image_formatter: 0

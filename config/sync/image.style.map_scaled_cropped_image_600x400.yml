@@ -1,0 +1,15 @@
+uuid: 89de8844-2898-438e-b9e7-c6fee258a76c
+langcode: en
+status: true
+dependencies: {  }
+name: map_scaled_cropped_image_600x400
+label: 'Map Scaled & Cropped Image 600×400'
+effects:
+  05db9f33-c26b-47fd-92ea-60af4d17f5ab:
+    uuid: 05db9f33-c26b-47fd-92ea-60af4d17f5ab
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 400
+      anchor: center-center

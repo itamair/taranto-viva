@@ -50,11 +50,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
 hidden:
   active_level: true
   field_category_type: true
@@ -64,5 +59,6 @@ hidden:
   field_place_type: true
   field_project_namespace: true
   langcode: true
+  links: true
   territorial_report_active_level: true
   uuid: true

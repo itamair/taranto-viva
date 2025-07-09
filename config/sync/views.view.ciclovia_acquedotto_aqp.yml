@@ -425,8 +425,8 @@ display:
             options: '{"permanent":false,"direction":"top"}'
           leaflet_popup:
             value: '#rendered_entity'
-            options: '{"autoPan":true}'
             view_mode: leaflet_popup
+            options: '{"autoPan":true}'
           leaflet_map: multilayers
           height: '80'
           height_unit: vh
@@ -475,9 +475,9 @@ display:
             circle_marker_options: '{"radius":20,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
           leaflet_markercluster:
             control: true
-            include_path: false
-            options: '{"spiderfyOnMaxZoom":false,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":60,"disableClusteringAtZoom":17}'
             excluded: field_markercluster_exclude
+            options: '{"spiderfyOnMaxZoom":false,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":60,"disableClusteringAtZoom":17}'
+            include_path: false
           fullscreen:
             control: true
             options: '{"position":"topleft","pseudoFullscreen":false}'
@@ -2166,8 +2166,8 @@ display:
             options: '{"permanent":false,"direction":"top","sticky":true}'
           leaflet_popup:
             value: ''
-            options: '{"autoPan":true}'
             view_mode: leaflet_popup
+            options: '{"autoPan":true}'
           leaflet_map: multilayers
           height: '500'
           height_unit: px
@@ -2221,9 +2221,9 @@ display:
             circle_marker_options: '{"radius":20,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
           leaflet_markercluster:
             control: false
-            include_path: false
-            options: '{"spiderfyOnMaxZoom":false,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":60,"disableClusteringAtZoom":17}'
             excluded: '0'
+            options: '{"spiderfyOnMaxZoom":false,"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":60,"disableClusteringAtZoom":17}'
+            include_path: false
           fullscreen:
             control: true
             options: '{"position":"topleft","pseudoFullscreen":false}'
