@@ -28,20 +28,7 @@ maplibre-gl-js:
   # - https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js
   # - https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js.map
   js:
-    # Inject the maplibre-gl.js disallowing its aggregation (preprocess: false),
-    # that somehow breaks the Leaflet Map rendering
-    # @see: https://www.drupal.org/project/leaflet/issues/3410672
-    # Source: Original js file coming from:
-    # https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js
-    # NOTE: it was removed the last code line
-    # #sourceMappingURL=maplibre-gl.js.map
-    # at the end of the original js file to make the js debugger not look for the
-    # maplibre-gl.js.map file (that is 5 MB big)
-    # and make the all Drupal Leaflet module much lighter.
-    # NOTE (2): we tried to upgrade all this to 5.1.0 but we rolled it back as
-    # weird things happening during the pan action (the tiles were not panning,
-    # under the features elements) thus we aborted it.
-    js/maplibre-gl-js-5.6.1/maplibre-gl.js: { minified: true, preprocess: false }
+    js/maplibre-gl-js-5.6.1/maplibre-gl.js: { minified: true }
   # CSS files origin:
   # - https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css
   css:
