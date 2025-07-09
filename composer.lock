@@ -6196,7 +6196,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/leaflet.git",
-                "reference": "908a2675f1467fd34747ea8045a967586793d4c3"
+                "reference": "8ef3b8f6fd74b9685b96ea13b91472b63f666905"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10 || ^11",
@@ -6208,8 +6208,8 @@
                     "dev-10.3.x": "10.3.x-dev"
                 },
                 "drupal": {
-                    "version": "10.3.5+6-dev",
-                    "datestamp": "1752052375",
+                    "version": "10.3.5+8-dev",
+                    "datestamp": "1752053008",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
