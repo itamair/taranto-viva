@@ -2,7 +2,7 @@ _core:
   default_config_hash: zzgpgFFYVnDh4Bu8k2ZNyNtoVeOOmmjTKvv41SWyRXo
 seckit_xss:
   csp:
-    checkbox: true
+    checkbox: false
     vendor-prefix:
       x: false
       webkit: false
@@ -45,8 +45,8 @@ seckit_fp:
   feature_policy: false
   feature_policy_policy: ''
 seckit_various:
-  from_origin: true
+  from_origin: false
   from_origin_destination: same
-  referrer_policy: true
+  referrer_policy: false
   referrer_policy_policy: no-referrer-when-downgrade
-  disable_autocomplete: true
+  disable_autocomplete: false
