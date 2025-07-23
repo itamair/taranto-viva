@@ -1,0 +1,16 @@
+uuid: 4c3d1f46-6dd2-4445-8aa5-1cf3795087b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.choropleth_categories
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.choropleth_categories
+target_entity_type_id: taxonomy_term
+target_bundle: choropleth_categories
+default_langcode: site_default
+language_alterable: false

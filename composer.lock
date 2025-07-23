@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd353a3979e8303304f2118e64ceacaa",
+    "content-hash": "d77fd283dc13de9f82b2081cdd1c71f6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6257,6 +6257,92 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/leaflet",
                 "issues": "https://www.drupal.org/project/issues/leaflet"
+            }
+        },
+        {
+            "name": "drupal/leaflet_choropleth",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/leaflet_choropleth.git",
+                "reference": "1.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/leaflet_choropleth-1.0.2.zip",
+                "reference": "1.0.2",
+                "shasum": "3e54665818d9fc35d6a549d579949160c96d4e1a"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11",
+                "drupal/leaflet": "^10.3.0",
+                "drupal/leaflet_views": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.2",
+                    "datestamp": "1752933646",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Italo Mairo",
+                    "homepage": "https://www.drupal.org/u/itamair",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides Choropleth Map functionalities for Leaflet maps in Drupal.",
+            "homepage": "https://www.drupal.org/project/leaflet_choroplet",
+            "support": {
+                "source": "https://git.drupalcode.org/project/leaflet_choropleth",
+                "issues": "https://www.drupal.org/project/issues/leaflet_choropleth"
+            }
+        },
+        {
+            "name": "drupal/leaflet_views",
+            "version": "10.3.5",
+            "require": {
+                "drupal/core": "^8.8 || ^9 || ^10 || ^11",
+                "drupal/leaflet": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "drupal": {
+                    "version": "10.3.5",
+                    "datestamp": "1751834089",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "itamair",
+                    "homepage": "https://www.drupal.org/user/1179076"
+                },
+                {
+                    "name": "levelos",
+                    "homepage": "https://www.drupal.org/user/54135"
+                }
+            ],
+            "description": "Views integration for the Leaflet module.",
+            "homepage": "https://www.drupal.org/project/leaflet",
+            "support": {
+                "source": "https://git.drupalcode.org/project/leaflet"
             }
         },
         {

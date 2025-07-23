@@ -1,0 +1,9 @@
+uuid: ea1f2d2f-1908-4104-9197-1c65449701cc
+langcode: en
+status: true
+dependencies: {  }
+name: 'Choropleth Categories'
+vid: choropleth_categories
+description: null
+weight: 0
+new_revision: false
