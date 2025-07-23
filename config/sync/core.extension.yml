@@ -14,6 +14,7 @@ module:
   automated_cron: 0
   backup_migrate: 0
   better_exposed_filters: 0
+  big_pipe: 0
   blazy: 0
   block: 0
   block_content: 0
@@ -100,6 +101,7 @@ module:
   layout_discovery: 0
   leaflet: 0
   leaflet_choropleth: 0
+  leaflet_choropleth_custom: 0
   leaflet_markercluster: 0
   leaflet_override: 0
   leaflet_views: 0
