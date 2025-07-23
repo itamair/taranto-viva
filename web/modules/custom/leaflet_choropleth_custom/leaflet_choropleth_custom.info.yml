@@ -1,0 +1,8 @@
+name: Leaflet Choropleth Custom
+type: module
+description: Extends Leaflet Choropleth module with custom Classification and Color Range plugins.
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - leaflet_choropleth:leaflet_choropleth
+
