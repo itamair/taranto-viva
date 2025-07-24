@@ -527,7 +527,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       '#title' => $this->t('Disabled Layers'),
       '#description' => $this->t('Choose the Layers that should start as disabled / switched off'),
       '#options' => $overlays_options,
-      '#default_value' => $this->options["grouping"][0]['overlays_options']['disabled_overlays'],
+      '#default_value' => $this->options["grouping"][0]['overlays_options']['disabled_overlays'] ?? NULL,
       // The #validated setting to TRUE skips the "An illegal choice has been
       // detected" error message after Ajax refresh.
       '#validated' => TRUE,
@@ -550,7 +550,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
       '#title' => $this->t('Hidden Layers Controls'),
       '#description' => $this->t('Choose the Layers that will not appear in the Layers Control'),
       '#options' => $overlays_options,
-      '#default_value' => $this->options["grouping"][0]['overlays_options']['hidden_overlays_controls'],
+      '#default_value' => $this->options["grouping"][0]['overlays_options']['hidden_overlays_controls'] ?? NULL,
       // The #validated setting to TRUE skips the "An illegal choice has been
       // detected" error message after Ajax refresh.
       '#validated' => TRUE,
