@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
+    - field.field.node.geoplace.field_touristic_value
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
     - views.view.content_locations_addresses_and_google_maps_links
@@ -23,6 +24,7 @@ dependencies:
     - entity_reference_revisions
     - layout_builder
     - layout_discovery
+    - options
     - text
     - user
     - viewfield
@@ -274,6 +276,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_touristic_value:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
     region: content
   field_zoom_visibility:
     type: entity_reference_label

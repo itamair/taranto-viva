@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
+    - field.field.node.geoplace.field_touristic_value
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
   module:
@@ -53,6 +54,7 @@ hidden:
   field_project_namespace: true
   field_related_content: true
   field_sub_title: true
+  field_touristic_value: true
   field_zoom_visibility: true
   geoimage_caption: true
   langcode: true

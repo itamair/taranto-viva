@@ -1,0 +1,27 @@
+uuid: c6cfc2fa-9e56-4aeb-9828-1d709e75ea1c
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_touristic_value
+    - node.type.geoplace
+  module:
+    - options
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_touristic_value
+field_name: field_touristic_value
+entity_type: node
+bundle: geoplace
+label: 'Touristic Value'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings: {  }
+field_type: list_integer
