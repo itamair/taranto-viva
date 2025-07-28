@@ -6261,17 +6261,17 @@
         },
         {
             "name": "drupal/leaflet_choropleth",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/leaflet_choropleth.git",
-                "reference": "1.0.2"
+                "reference": "1.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/leaflet_choropleth-1.0.2.zip",
-                "reference": "1.0.2",
-                "shasum": "3e54665818d9fc35d6a549d579949160c96d4e1a"
+                "url": "https://ftp.drupal.org/files/projects/leaflet_choropleth-1.0.3.zip",
+                "reference": "1.0.3",
+                "shasum": "8c4ee0a86f8397815757b3246bb22c196b801343"
             },
             "require": {
                 "drupal/core": "^10.2 || ^11",
@@ -6281,8 +6281,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.2",
-                    "datestamp": "1752933646",
+                    "version": "1.0.3",
+                    "datestamp": "1753111135",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
