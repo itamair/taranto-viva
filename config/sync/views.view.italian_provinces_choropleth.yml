@@ -395,8 +395,8 @@ display:
           choropleth:
             enabled: true
             data_field: field_value
-            classification: 5_breaks_on_0_100
-            color_scale: sequential_fuchsia
+            classification: standard_deviation
+            color_scale: sequential_greens
             classes: 5
             reverse: false
             path: '{"color":"white","opacity":"1.0","stroke":true,"weight":1,"fillOpacity":"0.8"}'
