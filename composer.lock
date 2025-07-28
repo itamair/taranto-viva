@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "911da4823cb69e92af7e9e464e728f7b",
+    "content-hash": "9cfda9d746477558109d58b2f705869f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8477,65 +8477,6 @@
                 "source": "http://git.drupal.org/project/views_geojson.git",
                 "issues": "https://www.drupal.org/project/issues/views_geojson",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
-        },
-        {
-            "name": "drupal/views_list_sort",
-            "version": "1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/views_list_sort.git",
-                "reference": "8.x-1.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_list_sort-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "a4a3ca80629ea045f6d1d6ed3232ac14e769b910"
-            },
-            "require": {
-                "drupal/core": "^9 || ^10 || ^11"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1745494700",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Volker Killesreiter",
-                    "homepage": "http://www.flowconcept-solutions.de/"
-                },
-                {
-                    "name": "Joel Stein",
-                    "homepage": "https://onfiremedia.com/"
-                },
-                {
-                    "name": "Rodrigo Aguilera",
-                    "homepage": "http://www.rodrigoaguilera.net",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Allows views to be sorted by a list field's allowed values.",
-            "homepage": "https://www.drupal.org/project/views_list_sort",
-            "keywords": [
-                "drupal",
-                "php",
-                "views"
-            ],
-            "support": {
-                "source": "http://git.drupal.org/project/views_list_sort.git",
-                "issues": "https://www.drupal.org/project/issues/views_list_sort"
             }
         },
         {
