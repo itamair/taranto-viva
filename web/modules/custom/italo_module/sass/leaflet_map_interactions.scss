@@ -92,20 +92,9 @@
         .node__title {
           display: none;
         }
-        img {
-          max-width: 340px !important;
-        }
       }
       .node--type-geoplace, .node--type-event {
         margin: 8px;
-        img {
-          max-width: 300px !important;
-        }
-      }
-      .node--type-territorial-report {
-        img {
-          max-width: 340px !important;
-        }
       }
     }
 
