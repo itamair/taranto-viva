@@ -57,7 +57,7 @@ function italo_module_views_query_alter(ViewExecutable $view, QueryPluginBase $q
     'geo_places',
     'ciclovia_acquedotto_aqp',
     'ciclovia_acquedotto_aqp_geojson',
-  ]) && $query instanceof Sql) {
+  ]) && "$view->current_display" !== "page_geoplaces_grid" && $query instanceof Sql) {
     $query->addField('paragraphs_item_field_data_node__field_components', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data_node__field_components.id');
   }
