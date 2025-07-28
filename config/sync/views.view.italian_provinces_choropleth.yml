@@ -391,11 +391,11 @@ display:
               zoom: 16
               options: ''
           map_lazy_load:
-            lazy_load: true
+            lazy_load: false
           choropleth:
             enabled: true
             data_field: field_value
-            classification: 5_breaks_on_0_100
+            classification: custom_issue_3537366
             color_scale: sequential_fuchsia
             classes: 5
             reverse: false
@@ -413,8 +413,8 @@ display:
                 value: '<p><strong>Notes:</strong> Choropleth Map on random Value, for Drupal Leaflet Choropleth demo representation.<br>Author: Italo Mairo (www.italomairo.com)</p>'
                 format: full_html
               notes_after: true
-              decimals: 0
-              item_format: '%min - %max %'
+              decimals: 1
+              item_format: '%min - %max - %value'
       row:
         type: fields
       query:
