@@ -674,38 +674,3 @@ function italo_module_leaflet_choropleth_color_scale_alter(array &$color_scale, 
   }
 
 }
-
-/**
- * Update Location paragraphs to set field_classname to 'horizon' taxonomy term.
- */
-function italo_module_update_8001() {
-  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
-  $taxonomy_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-
-  // Query all Location paragraphs.
-  $query = $paragraph_storage->getQuery()
-    ->condition('type', 'location')
-    ->accessCheck(FALSE);
-  $paragraph_ids = $query->execute();
-
-  if (empty($paragraph_ids)) {
-    return t('No Location paragraphs found to update.');
-  }
-
-  $updated_count = 0;
-  $batch_size = 50;
-  $paragraph_chunks = array_chunk($paragraph_ids, $batch_size);
-
-  foreach ($paragraph_chunks as $chunk) {
-    $paragraphs = $paragraph_storage->loadMultiple($chunk);
-
-    foreach ($paragraphs as $paragraph) {
-      // Set the field_classname to reference taxonomy term ID 105 ('horizon').
-      $paragraph->set('field_classname', ['target_id' => 94]);
-      $paragraph->save();
-      $updated_count++;
-    }
-  }
-
-  return t('Updated @count Location paragraphs with horizon classname taxonomy term.', ['@count' => $updated_count]);
-}
