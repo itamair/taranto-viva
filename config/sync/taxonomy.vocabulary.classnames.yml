@@ -1,0 +1,9 @@
+uuid: 2602ce97-8798-48cd-9d49-37a6fda86e49
+langcode: zxx
+status: true
+dependencies: {  }
+name: Classnames
+vid: classnames
+description: null
+weight: 0
+new_revision: false
