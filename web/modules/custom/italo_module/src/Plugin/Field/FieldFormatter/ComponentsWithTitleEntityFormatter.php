@@ -12,7 +12,7 @@ use Drupal\paragraphs\Entity\Paragraph;
  * @FieldFormatter(
  *   id = "components_with_title_entity_view",
  *   label = @Translation("Components with Title"),
- *   description = @Translation("Display the Components Field with parent Entity Title."),
+ *   description = @Translation("Display the Components Field with parent Entity Title & Subtitle."),
  *   field_types = {
  *     "entity_reference_revisions"
  *   }
@@ -100,7 +100,13 @@ class ComponentsWithTitleEntityFormatter extends EntityReferenceRevisionsEntityF
         '#value' => $parent_entity->label(),
         '#cache' => ['tags' => $parent_entity->getCacheTags()],
       ];
-      $elements_titled = array_merge(array_splice($elements, 0, 1, TRUE), [$title_array], array_splice($elements, 1, 2, TRUE));
+      $subtitle_array = $parent_entity->field_sub_title ? [
+        '#type' => 'html_tag',
+        '#tag' => 'h3',
+        '#value' => $parent_entity->field_sub_title->value,
+        '#cache' => ['tags' => $parent_entity->getCacheTags()],
+      ] : [];
+      $elements_titled = array_merge(array_splice($elements, 0, 1, TRUE), [$title_array], [$subtitle_array], array_splice($elements, 1, 2, TRUE));
     }
 
     return [
