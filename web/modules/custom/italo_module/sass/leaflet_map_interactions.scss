@@ -337,12 +337,14 @@
   padding: 4px;
 }
 
-// .view-ciclovia-acquedotti
-.view-ciclovia-acquedotti {
-
+.leaflet-map-path-hover-highlight {
   path:hover {
     stroke-width: 14;
   }
+}
+
+// .view-ciclovia-acquedotti {
+.view-ciclovia-acquedotti {
 
   // Leaflet Tooltips Overrides
   .leaflet-tooltip-top {

@@ -1,0 +1,14 @@
+label: 'Apulian Aqueduct Cycle Route'
+display:
+  default:
+    display_options:
+      empty:
+        area:
+          content:
+            value: '<p>No Results found</p>'
+            format: basic_html
+      footer:
+        area:
+          content:
+            value: '<p>Data source: <a href="https://www.cicloviadellacquedotto.it/tracciato/" target="blank">Cicloviadellacquedotto.it Website</a></p><p>Download the Route in GeoJSON format: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a></p>'
+            format: full_html
