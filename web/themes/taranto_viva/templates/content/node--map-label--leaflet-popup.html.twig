@@ -84,10 +84,14 @@
   <header class="{{ layout }}">
     {{ title_prefix }}
       {% if label and not page %}
-      <h2{{ title_attributes.addClass('node__title') }}>
-        {{ label }}
-      </h2>
-    {% endif %}
+        <h2{{ title_attributes.addClass('node__title') }}>
+          {% if logged_in %}
+            <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+          {% else %}
+            {{ label }}
+          {% endif %}
+        </h2>
+      {% endif %}
     {{ title_suffix }}
     {% if display_submitted %}
       <div class="node__meta">
