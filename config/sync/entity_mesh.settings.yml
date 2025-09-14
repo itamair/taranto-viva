@@ -1,5 +1,231 @@
 _core:
   default_config_hash: OKKzAPImZgKPVzpZ94j_QgDlarUmXekV9b_blFOl9Jk
-external: true
-internal: true
-process_mesh_using_queue: true
+self_domain_internal: true
+processing_mode: asynchronous
+debug: false
+source_types:
+  node:
+    enabled: true
+    bundles: {  }
+target_types:
+  external:
+    scheme:
+      http: true
+      tel: true
+      mailto: true
+    categories:
+      iframe: true
+  internal:
+    view:
+      enabled: true
+      bundles: {  }
+    backup_migrate_destination:
+      enabled: true
+      bundles: {  }
+    backup_migrate_schedule:
+      enabled: true
+      bundles: {  }
+    backup_migrate_source:
+      enabled: true
+      bundles: {  }
+    backup_migrate_settings:
+      enabled: true
+      bundles: {  }
+    block:
+      enabled: true
+      bundles: {  }
+    block_content:
+      enabled: true
+      bundles: {  }
+    block_content_type:
+      enabled: true
+      bundles: {  }
+    corresponding_reference:
+      enabled: true
+      bundles: {  }
+    comment_type:
+      enabled: true
+      bundles: {  }
+    comment:
+      enabled: true
+      bundles: {  }
+    contact_form:
+      enabled: true
+      bundles: {  }
+    contact_message:
+      enabled: true
+      bundles: {  }
+    eca:
+      enabled: true
+      bundles: {  }
+    eca_model:
+      enabled: true
+      bundles: {  }
+    editor:
+      enabled: true
+      bundles: {  }
+    feeds_subscription:
+      enabled: true
+      bundles: {  }
+    feeds_feed:
+      enabled: true
+      bundles: {  }
+    feeds_feed_type:
+      enabled: true
+      bundles: {  }
+    feeds_import_log:
+      enabled: true
+      bundles: {  }
+    field_config:
+      enabled: true
+      bundles: {  }
+    field_storage_config:
+      enabled: true
+      bundles: {  }
+    file:
+      enabled: true
+      bundles: {  }
+    filter_format:
+      enabled: true
+      bundles: {  }
+    geocoder_provider:
+      enabled: true
+      bundles: {  }
+    google_tag_container:
+      enabled: true
+      bundles: {  }
+    graphql_server:
+      enabled: true
+      bundles: {  }
+    image_style:
+      enabled: true
+      bundles: {  }
+    jsonapi_resource_config:
+      enabled: true
+      bundles: {  }
+    key:
+      enabled: true
+      bundles: {  }
+    key_config_override:
+      enabled: true
+      bundles: {  }
+    configurable_language:
+      enabled: true
+      bundles: {  }
+    language_content_settings:
+      enabled: true
+      bundles: {  }
+    layout_builder_style:
+      enabled: true
+      bundles: {  }
+    layout_builder_style_group:
+      enabled: true
+      bundles: {  }
+    media_type:
+      enabled: true
+      bundles: {  }
+    media:
+      enabled: true
+      bundles: {  }
+    menu_link_content:
+      enabled: true
+      bundles: {  }
+    metatag_defaults:
+      enabled: true
+      bundles: {  }
+    node_type:
+      enabled: true
+      bundles: {  }
+    node:
+      enabled: true
+      bundles: {  }
+    path_alias:
+      enabled: true
+      bundles: {  }
+    rate_widget:
+      enabled: true
+      bundles: {  }
+    rest_resource_config:
+      enabled: true
+      bundles: {  }
+    search_page:
+      enabled: true
+      bundles: {  }
+    shortcut_set:
+      enabled: true
+      bundles: {  }
+    shortcut:
+      enabled: true
+      bundles: {  }
+    slick:
+      enabled: true
+      bundles: {  }
+    action:
+      enabled: true
+      bundles: {  }
+    menu:
+      enabled: true
+      bundles: {  }
+    taxonomy_term:
+      enabled: true
+      bundles: {  }
+    taxonomy_vocabulary:
+      enabled: true
+      bundles: {  }
+    tmgmt_translator:
+      enabled: true
+      bundles: {  }
+    tmgmt_job_item:
+      enabled: true
+      bundles: {  }
+    tmgmt_remote:
+      enabled: true
+      bundles: {  }
+    tmgmt_job:
+      enabled: true
+      bundles: {  }
+    tmgmt_message:
+      enabled: true
+      bundles: {  }
+    user:
+      enabled: true
+      bundles: {  }
+    user_role:
+      enabled: true
+      bundles: {  }
+    vote:
+      enabled: true
+      bundles: {  }
+    vote_result:
+      enabled: true
+      bundles: {  }
+    vote_type:
+      enabled: true
+      bundles: {  }
+    pathauto_pattern:
+      enabled: true
+      bundles: {  }
+    paragraph:
+      enabled: true
+      bundles: {  }
+    paragraphs_type:
+      enabled: true
+      bundles: {  }
+    date_format:
+      enabled: true
+      bundles: {  }
+    entity_form_mode:
+      enabled: true
+      bundles: {  }
+    entity_view_display:
+      enabled: true
+      bundles: {  }
+    entity_form_display:
+      enabled: true
+      bundles: {  }
+    entity_view_mode:
+      enabled: true
+      bundles: {  }
+    base_field_override:
+      enabled: true
+      bundles: {  }

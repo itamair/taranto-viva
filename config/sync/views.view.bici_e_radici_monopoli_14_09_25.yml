@@ -2877,6 +2877,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            geoimage: geoimage
             geoplace: geoplace
             map_label: map_label
           group: 1
