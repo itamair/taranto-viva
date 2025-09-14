@@ -359,34 +359,9 @@ function italo_module_media_insert(MediaInterface $media) {
         ],
       ];
 
-      // If the Media Project Namespace field is 'Vaganti' (target_id: 53).
-      if ($media->get('field_project_namespace')->target_id == 53) {
-        // Set the Geoimage Project Namespace field as 'Vaganti'(target_id: 53).
-        $geoimage_node_data['field_project_namespace'] = [
-          ['target_id' => 53],
-        ];
-        $geoimage_node_data['field_classname'] = 'opacity-75';
-      }
-
-      // If the Media Project Namespace field is
-      // 'Bici e Radici - Monopoli 14/9 2025' (target_id: 95).
-      if ($media->get('field_project_namespace')->target_id == 95) {
-        // Set the Geoimage Project Namespace field as
-        // 'Bici e Radici - Monopoli 14/9 2025'(target_id: 53).
-        $geoimage_node_data['field_project_namespace'] = [
-          ['target_id' => 95],
-        ];
-        $geoimage_node_data['field_classname'] = 'opacity-75';
-      }
-
-      // If the Media Project Namespace field is 'Copenhagen Discovery'
-      // (target_id: 55).
-      if ($media->get('field_project_namespace')->target_id == 55) {
-        // Set the Geoimage Project Namespace field as 'Copenhagen Discovery'
-        // (target_id: 55).
-        $geoimage_node_data['field_project_namespace'] = [
-          ['target_id' => 55],
-        ];
+      // Copy Media Namespaces into corresponding Content Namespaces.
+      if (!empty($media->get('field_project_namespace'))) {
+        $geoimage_node_data['field_project_namespace'] = $media->get('field_project_namespace');
         $geoimage_node_data['field_classname'] = 'opacity-75';
       }
 
@@ -496,9 +471,11 @@ function italo_module_alter_media_library_importer_media_extra_fields(FileInterf
     ];
   }
   if (str_contains($file_url, 'Bici_e_Radici_Monopoli')) {
-    // Set the Media Project Namespace field as 'Copenhagen Discovery'
-    // (target_id: 55).
+    // Set the Media Project Namespace field as
+    // 'Vaganti' (target_id: 53).
+    // 'Bici e Radici - Monopoli 14/9 2025' (target_id: 95).
     $extra_fields['field_project_namespace'] = [
+      ['target_id' => 53],
       ['target_id' => 95],
     ];
   }

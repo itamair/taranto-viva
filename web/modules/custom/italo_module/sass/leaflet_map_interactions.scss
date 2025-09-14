@@ -267,30 +267,31 @@
 .leaflet-marker-icon.marker-cluster {
   div {
     font-weight: bold;
+    font-size: 16px;
   }
   &.marker-cluster-small {
     background-color: inherit !important;
     div {
-      width: 24px;
-      height: 24px;
-      border-radius: 12px;
-      background-color: rgba(251, 252, 251, 0.76) !important;
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: rgb(241, 207, 97) !important;
       border: gray solid 1px;
       span {
-        line-height: 22px;
+        line-height: 26px;
       }
     }
   }
   &.marker-cluster-medium {
     background-color: inherit !important;
     div {
-      width: 30px;
-      height: 30px;
-      border-radius: 15px;
-      background-color: rgba(251, 252, 251, 0.76) !important;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: rgb(246, 139, 80) !important;
       border: black solid 1px;
       span {
-        line-height: 30px;
+        line-height: 36px;
       }
     }
   }
@@ -298,13 +299,14 @@
     background-color: inherit !important;
     z-index: 100 !important;
     div {
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-      background-color: rgba(251, 252, 251, 0.76) !important;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius:30px;
+      background-color: rgb(253, 51, 51) !important;
       border: black solid 1px;
       span {
-        line-height: 40px;
+        line-height: 44px;
       }
     }
   }
