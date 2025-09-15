@@ -435,7 +435,7 @@ function italo_module_leaflet_views_features_alter(array &$features, ViewsPlugin
  * Implements hook_leaflet_views_features_group_alter().
  */
 function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPluginInterface &$view_style) {
-  if (in_array(strtolower($group["group_label"]), [
+  if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
     'segnalazione territoriale',
     'territorial report',
   ])) {
