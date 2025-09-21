@@ -6,7 +6,7 @@ parameters:
   twig.config:
     debug: true
     auto_reload: true # reloads the twig files on every request, so no drush cache clear is required
-    cache: false # No twig internal cache, important: check the example.settings.loca.php to fully fully disable the twig cache
+    cache: false # No twig internal cache, important: check the example.settings.local.php to fully disable the twig cache
   http.response.debug_cacheability_headers: true
 
 services:

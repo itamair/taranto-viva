@@ -9,7 +9,6 @@ dependencies:
     - contact
     - field_permissions
     - filter
-    - graphql
     - media
     - paragraphs_type_permissions
     - popup_message
@@ -29,14 +28,14 @@ permissions:
   - 'access user profiles'
   - 'cast rate vote on node of territorial_report'
   - 'display popup message'
-  - 'execute graphql_compose_server arbitrary graphql requests'
-  - 'execute graphql_compose_server persisted graphql requests'
   - 'search content'
   - 'use text format restricted_html'
   - 'view field_exclude_from_markercluster'
   - 'view field_location_type'
+  - 'view field_markercluster_exclude'
   - 'view media'
   - 'view paragraph content geoimage'
   - 'view paragraph content geometry'
   - 'view paragraph content image'
   - 'view paragraph content location'
+  - 'view paragraph content path'
