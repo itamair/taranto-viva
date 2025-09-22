@@ -4709,28 +4709,7 @@ display:
       style:
         type: geofield_311_leaflet_map
         options:
-          grouping:
-            -
-              field: title
-              rendered: true
-              overlays_options:
-                disabled_overlays:
-                  none: none
-                hidden_overlays_controls:
-                  '70043 Monopoli ITA': '70043 Monopoli ITA'
-                  Attenzione: Attenzione
-                  'Casa Zen': 'Casa Zen'
-                  Ciclabile: Ciclabile
-                  'Contrada Lamandia 52, 70043 Monopoli ITA': 'Contrada Lamandia 52, 70043 Monopoli ITA'
-                  'Contrada Losciale, 70043 Monopoli ITA': 'Contrada Losciale, 70043 Monopoli ITA'
-                  'Contrada Santo Stefano 133c, 70043 Monopoli ITA': 'Contrada Santo Stefano 133c, 70043 Monopoli ITA'
-                  'Frantoio ipogeo': 'Frantoio ipogeo'
-                  Grotte: Grotte
-                  'Partenza (ore 7 am) &amp; Arrivo': 'Partenza (ore 7 am) &amp; Arrivo'
-                  'Porto ghiacciolo': 'Porto ghiacciolo'
-                  'Prestare attenzione, scendere a piedi!': 'Prestare attenzione, scendere a piedi!'
-                  'San Procopio': 'San Procopio'
-                  'Via Vincenzo Bellini, 70043 Monopoli ITA': 'Via Vincenzo Bellini, 70043 Monopoli ITA'
+          grouping: {  }
           data_source:
             field_geofield: field_geofield
             field_geofield_1: field_geofield_1

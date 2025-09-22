@@ -55,7 +55,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  *
  * Note: you should test with the render cache enabled, to ensure the correct
  * cacheability metadata is present. However, in the early stages of
- * development, you \may want to disable it.
+ * development, you may want to disable it.
  *
  * This setting disables the render cache by using the Null cache back-end
  * defined by the development.services.yml file above.
@@ -137,8 +137,8 @@ $settings['skip_permissions_hardening'] = TRUE;
  * configuration synchronization, and dependent configuration will remain
  * intact. This affects only configuration synchronization; single import and
  * export of configuration are not affected.
- *\
- * Drupal does not validate or sanity check the list of excl\\\\\\\\\\\\\\\\\\uded modules. For
+ *
+ * Drupal does not validate or sanity check the list of excluded modules. For
  * instance, it is your own responsibility to never exclude required modules,
  * because it would mean that the exported configuration can not be imported
  * anymore.
