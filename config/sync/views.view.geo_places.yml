@@ -6129,8 +6129,8 @@ display:
             zoomFiner: 0
           weight: '{{ field_zindex }}'
           icon:
-            iconType: html
-            iconUrl: ''
+            iconType: marker
+            iconUrl: '{{ geomarker_icon_url }}'
             shadowUrl: ''
             className: '{{ field_classname_1 }}'
             iconSize:
@@ -6148,7 +6148,7 @@ display:
             popupAnchor:
               x: ''
               'y': ''
-            html: '<div class=''leaflet-icon-wrapper'' style="width:{{ field_location_icon_width }};" ><img src={{ geomarker_icon_url }} width={{ field_location_icon_width }}px></div>'
+            html: '<div></div>'
             html_class: leaflet-map-divicon
             circle_marker_options: '{"radius":20,"color":"red","fillColor":"#f03","fillOpacity":0.5}'
           leaflet_markercluster:
