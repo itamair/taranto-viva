@@ -334,11 +334,12 @@
 // Map marker hover effects
 .leaflet-marker-icon.hovering:hover {
   background: white;
-  border: 1px solid black;
+  //outline: 8px solid white;
   border-radius: 50%;
-  padding: 4px;
+  transition: background 400ms ease-out;
 }
 
+// Map Path/Geometry hover effects
 .leaflet-map-path-hover-highlight {
   path:hover {
     stroke-width: 14;
