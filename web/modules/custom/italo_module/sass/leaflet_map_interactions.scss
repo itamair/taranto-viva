@@ -76,7 +76,7 @@
     }
     @media only screen and (max-width: 992px) {
       min-width: 80px;
-      max-width: 400px;
+      max-width: 300px;
 
       .field--type-text-with-summary, .field--name-body {
         display: none;
@@ -100,13 +100,10 @@
 
     @media only screen and (max-width: 500px) {
       .node--type-geoimage {
-        max-width: 360px !important;
-        margin: 0;
+          max-width: 360px !important;
       }
       .node--type-geoplace, .node--type-event {
-        img {
-          max-width: 220px !important;
-        }
+          max-width: 300px !important;
       }
       .node--type-territorial-report {
         img {
@@ -117,19 +114,13 @@
 
     @media only screen and (max-width: 380px) {
       .node--type-geoimage {
-        img {
-          max-width: 240px !important;
-        }
+          max-width: 300px !important;
       }
       .node--type-geoplace, .node--type-event {
-        img {
-          max-width: 200px !important;
-        }
+          max-width: 300px !important;
       }
       .node--type-territorial-report {
-        img {
-          max-width: 240px !important;
-        }
+          max-width: 300px !important;
       }
     }
     .field--name-field-image-caption {
