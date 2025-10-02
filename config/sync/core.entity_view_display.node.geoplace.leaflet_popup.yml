@@ -52,11 +52,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
 hidden:
   body: true
   field_category_type: true
@@ -71,5 +66,6 @@ hidden:
   field_touristic_value: true
   field_zoom_visibility: true
   langcode: true
+  links: true
   territorial_report_active_level: true
   uuid: true
