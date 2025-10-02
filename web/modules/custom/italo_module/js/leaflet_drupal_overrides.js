@@ -99,7 +99,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
     lFeature.bindPopup(feature.popup.value, popup_options);
 
-    // In case of features add specific googlemaps links to its pop content,
+    // Add googlemaps links to Leaflet pop content.
     lFeature.on('popupopen', function (e) {
       const popup = e.popup;
       const lat = popup.getLatLng().lat;
