@@ -1496,7 +1496,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
    */
   protected function processFeatureIcons(array &$feature, array $tokens): void {
     // Set the custom Marker icon (DivIcon, Icon Url or Circle Marker).
-    if ($feature['type'] === 'point' && isset($this->options['icon'])) {
+    if (in_array($feature['type'], [
+      'point',
+      'multipoint',
+      'geometrycollection',
+    ]) && isset($this->options['icon'])) {
       // Set Feature Icon properties.
       $feature['icon'] = $this->options['icon'];
 

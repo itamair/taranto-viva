@@ -376,7 +376,11 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
 
       // Eventually set the custom Marker icon (DivIcon, Icon Url or
       // Circle Marker).
-      if ($feature['type'] === 'point' && isset($settings['icon'])) {
+      if (in_array($feature['type'], [
+        'point',
+        'multipoint',
+        'geometrycollection',
+      ]) && isset($settings['icon'])) {
 
         // Set Feature Icon properties.
         $feature['icon'] = $settings['icon'];
