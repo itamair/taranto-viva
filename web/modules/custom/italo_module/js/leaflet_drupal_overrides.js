@@ -108,7 +108,6 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
         '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + lat + '%2C' + lng + '" target="_blank">Google Maps</a></div>\n' +
         '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
         '</div>';
-      //popup.setContent('Coordinates: ' +  popup.getLatLng().lng + ' / ' + popup.getLatLng().lat);
       popup.setContent(popup.getContent() + content);
     });
 
