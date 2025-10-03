@@ -899,7 +899,8 @@
   Drupal.Leaflet.prototype.create_collection = function(collection) {
     let layers = new L.featureGroup();
     for (let x = 0; x < collection.component.length; x++) {
-      layers.addLayer(this.create_feature(collection.component[x]));
+      let feature = { ...collection, ...collection.component[x]};
+      layers.addLayer(this.create_feature(feature));
     }
     return layers;
   };
