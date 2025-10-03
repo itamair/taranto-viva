@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d43b75c3b991d74dfdabc11fbf067ec",
+    "content-hash": "2beb249c52bdd7b1b2e6e63c6bd6e3eb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6148,7 +6148,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/leaflet.git",
-                "reference": "dcd49b82d24cb641cb005847d548fcb59345655a"
+                "reference": "0605f774b2f9e80e11f585688bd631132b9d0b05"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10 || ^11",
@@ -6160,8 +6160,8 @@
                     "dev-10.3.x": "10.3.x-dev"
                 },
                 "drupal": {
-                    "version": "10.3.9+2-dev",
-                    "datestamp": "1756981232",
+                    "version": "10.3.9+6-dev",
+                    "datestamp": "1759523971",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -9942,21 +9942,22 @@
         },
         {
             "name": "itamair/geophp",
-            "version": "1.7",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itamair/geoPHP.git",
-                "reference": "c8cf587256cdd1a72a732f59138ee3bfa3372956"
+                "reference": "9e464b5f65a2694789505adc5b8845d51ba2a365"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itamair/geoPHP/zipball/c8cf587256cdd1a72a732f59138ee3bfa3372956",
-                "reference": "c8cf587256cdd1a72a732f59138ee3bfa3372956",
+                "url": "https://api.github.com/repos/itamair/geoPHP/zipball/9e464b5f65a2694789505adc5b8845d51ba2a365",
+                "reference": "9e464b5f65a2694789505adc5b8845d51ba2a365",
                 "shasum": ""
             },
             "require-dev": {
                 "phpunit/phpunit": "4.1.* || 9.5.*"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -9982,9 +9983,10 @@
             "description": "GeoPHP is a open-source native PHP library for doing geometry operations. It is written entirely in PHP and can therefore run on shared hosts. It can read and write a wide variety of formats: WKT (including EWKT), WKB (including EWKB), GeoJSON, KML, GPX, GeoRSS). It works with all Simple-Feature geometries (Point, LineString, Polygon, GeometryCollection etc.) and can be used to get centroids, bounding-boxes, area, and a wide variety of other useful information.",
             "homepage": "https://github.com/itamair/geoPHP",
             "support": {
-                "source": "https://github.com/itamair/geoPHP/tree/1.7"
+                "issues": "https://github.com/itamair/geoPHP/issues",
+                "source": "https://github.com/itamair/geoPHP/tree/master"
             },
-            "time": "2025-05-31T05:12:53+00:00"
+            "time": "2025-10-03T07:54:28+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -16532,7 +16534,14 @@
             "time": "2024-09-04T20:21:43+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "itamair/geophp",
+            "version": "9999999-dev",
+            "alias": "1.8",
+            "alias_normalized": "1.8.0.0"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/ai_provider_deepseek": 15,
@@ -16549,6 +16558,7 @@
         "drupal/media_entity_image_exif": 5,
         "drupal/viewfield": 10,
         "drupal/votingapi": 10,
+        "itamair/geophp": 20,
         "pschocke/google-maps-links": 20
     },
     "prefer-stable": true,
