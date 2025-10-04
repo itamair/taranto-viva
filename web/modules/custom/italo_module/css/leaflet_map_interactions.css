@@ -163,54 +163,58 @@
   font-size: 1rem;
 }
 
-/* line 149, ../sass/leaflet_map_interactions.scss */
-.leaflet-pane .leaflet-marker-icon.up-to-the-top {
-  z-index: 1000 !important;
-}
-/* line 152, ../sass/leaflet_map_interactions.scss */
-.leaflet-pane .leaflet-marker-icon.opacity-50 {
-  border: 3px solid white;
-  opacity: 30% !important;
-}
-/* line 157, ../sass/leaflet_map_interactions.scss */
-.leaflet-pane .leaflet-marker-icon.opacity-50:hover {
-  opacity: 100% !important;
-}
-/* line 160, ../sass/leaflet_map_interactions.scss */
-.leaflet-pane .leaflet-marker-icon.opacity-75 {
-  opacity: 60% !important;
-}
-/* line 163, ../sass/leaflet_map_interactions.scss */
-.leaflet-pane .leaflet-marker-icon.opacity-75:hover {
-  opacity: 100% !important;
-}
-
-/* line 168, ../sass/leaflet_map_interactions.scss */
-.leaflet-marker-icon,
+/* line 148, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon,
 .leaflet-pane > svg path {
   opacity: 80% !important;
 }
-/* line 171, ../sass/leaflet_map_interactions.scss */
-.leaflet-marker-icon:hover,
+/* line 151, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon:hover,
 .leaflet-pane > svg path:hover {
   opacity: 100% !important;
 }
+/* line 154, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon.up-to-the-top,
+.leaflet-pane > svg path.up-to-the-top {
+  z-index: 1000 !important;
+}
+/* line 157, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon.opacity-50,
+.leaflet-pane > svg path.opacity-50 {
+  border: 3px solid white;
+  opacity: 30% !important;
+}
+/* line 162, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon.opacity-50:hover,
+.leaflet-pane > svg path.opacity-50:hover {
+  opacity: 100% !important;
+}
+/* line 165, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon.opacity-75,
+.leaflet-pane > svg path.opacity-75 {
+  opacity: 60% !important;
+}
+/* line 168, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon.opacity-75:hover,
+.leaflet-pane > svg path.opacity-75:hover {
+  opacity: 100% !important;
+}
 
-/* line 178, ../sass/leaflet_map_interactions.scss */
+/* line 175, ../sass/leaflet_map_interactions.scss */
 .leaflet-control-layers-list label {
   margin-bottom: 4px;
 }
-/* line 181, ../sass/leaflet_map_interactions.scss */
+/* line 178, ../sass/leaflet_map_interactions.scss */
 .leaflet-control-layers-list input[type="radio"] {
   margin-right: 4px;
   height: 1.2rem;
   width: 1.2rem;
 }
-/* line 185, ../sass/leaflet_map_interactions.scss */
+/* line 182, ../sass/leaflet_map_interactions.scss */
 .leaflet-control-layers-list input[type="radio"]:checked {
   background-size: 0.6rem;
 }
-/* line 189, ../sass/leaflet_map_interactions.scss */
+/* line 186, ../sass/leaflet_map_interactions.scss */
 .leaflet-control-layers-list input[type="checkbox"] {
   margin-right: 4px;
   height: 1.2rem;
@@ -257,7 +261,7 @@
     margin-left: -60px;
   }
 }
-/* line 237, ../sass/leaflet_map_interactions.scss */
+/* line 234, ../sass/leaflet_map_interactions.scss */
 .leaflet-container .dot {
   border-style: solid;
   display: inline-block;
@@ -275,33 +279,33 @@
   pointer-events: none;
 }
 
-/* line 254, ../sass/leaflet_map_interactions.scss */
+/* line 251, ../sass/leaflet_map_interactions.scss */
 .leaflet-container .leaflet-marker-icon.pulsing-marker {
   z-index: 500 !important;
 }
-/* line 256, ../sass/leaflet_map_interactions.scss */
+/* line 253, ../sass/leaflet_map_interactions.scss */
 .leaflet-container .leaflet-marker-icon.pulsing-marker.negative .dot {
   border-color: orange;
 }
-/* line 259, ../sass/leaflet_map_interactions.scss */
+/* line 256, ../sass/leaflet_map_interactions.scss */
 .leaflet-container .leaflet-marker-icon.pulsing-marker.very_negative .dot {
   border-color: red;
 }
-/* line 262, ../sass/leaflet_map_interactions.scss */
+/* line 259, ../sass/leaflet_map_interactions.scss */
 .leaflet-container .leaflet-marker-icon.pulsing-marker.positive .dot {
   border-color: limegreen;
 }
 
-/* line 269, ../sass/leaflet_map_interactions.scss */
+/* line 266, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster div {
   font-weight: bold;
   font-size: 16px;
 }
-/* line 273, ../sass/leaflet_map_interactions.scss */
+/* line 270, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small {
   background-color: inherit !important;
 }
-/* line 275, ../sass/leaflet_map_interactions.scss */
+/* line 272, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small div {
   width: 30px;
   height: 30px;
@@ -309,15 +313,15 @@
   background-color: #f1cf61 !important;
   border: gray solid 1px;
 }
-/* line 281, ../sass/leaflet_map_interactions.scss */
+/* line 278, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small div span {
   line-height: 26px;
 }
-/* line 286, ../sass/leaflet_map_interactions.scss */
+/* line 283, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium {
   background-color: inherit !important;
 }
-/* line 288, ../sass/leaflet_map_interactions.scss */
+/* line 285, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium div {
   width: 40px;
   height: 40px;
@@ -325,16 +329,16 @@
   background-color: #f68b50 !important;
   border: black solid 1px;
 }
-/* line 294, ../sass/leaflet_map_interactions.scss */
+/* line 291, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium div span {
   line-height: 36px;
 }
-/* line 299, ../sass/leaflet_map_interactions.scss */
+/* line 296, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large {
   background-color: inherit !important;
   z-index: 100 !important;
 }
-/* line 302, ../sass/leaflet_map_interactions.scss */
+/* line 299, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large div {
   color: white;
   width: 60px;
@@ -343,58 +347,59 @@
   background-color: #fd3333 !important;
   border: black solid 1px;
 }
-/* line 309, ../sass/leaflet_map_interactions.scss */
+/* line 306, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large div span {
   line-height: 44px;
 }
 
-/* line 317, ../sass/leaflet_map_interactions.scss */
+/* line 314, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.big-and-bold {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-/* line 322, ../sass/leaflet_map_interactions.scss */
+/* line 319, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.big {
   font-size: 1.1rem;
 }
 
-/* line 326, ../sass/leaflet_map_interactions.scss */
+/* line 323, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.bold {
   font-weight: bold;
 }
 
-/* line 330, ../sass/leaflet_map_interactions.scss */
+/* line 327, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.small {
   font-size: 0.7rem;
   padding: 3pxx;
 }
 
-/* line 336, ../sass/leaflet_map_interactions.scss */
+/* line 333, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.hovering:hover {
-  background: white;
+  background-color: rgba(255, 255, 255, 0.6);
+  opacity: 80%;
   border-radius: 50%;
   transition: background 400ms ease-out;
 }
 
-/* line 345, ../sass/leaflet_map_interactions.scss */
+/* line 343, ../sass/leaflet_map_interactions.scss */
 .leaflet-map-path-hover-highlight path:hover {
   stroke-width: 14;
 }
 
-/* line 354, ../sass/leaflet_map_interactions.scss */
+/* line 352, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-top {
   margin-top: -16px !important;
 }
-/* line 356, ../sass/leaflet_map_interactions.scss */
+/* line 354, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-top.wider {
   margin-top: -24px !important;
 }
-/* line 360, ../sass/leaflet_map_interactions.scss */
+/* line 358, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom {
   margin-top: 16px !important;
 }
-/* line 362, ../sass/leaflet_map_interactions.scss */
+/* line 360, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom.wider {
   margin-top: 24px !important;
 }

@@ -145,7 +145,12 @@
 }
 
 // Customise Leaflet Marker Icons
-.leaflet-pane .leaflet-marker-icon {
+.leaflet-pane .leaflet-marker-icon,
+.leaflet-pane > svg path {
+  opacity: 80% !important;
+  &:hover {
+    opacity: 100% !important;
+  }
   &.up-to-the-top {
     z-index: 1000 !important;
   }
@@ -161,14 +166,6 @@
     opacity: 60% !important;
   }
   &.opacity-75:hover {
-    opacity: 100% !important;
-  }
-}
-
-.leaflet-marker-icon,
-.leaflet-pane > svg path {
-  opacity: 80% !important;
-  &:hover {
     opacity: 100% !important;
   }
 }
@@ -334,7 +331,8 @@
 
 // Map marker hover effects
 .leaflet-marker-icon.hovering:hover {
-  background: white;
+  background-color:rgba(255, 255, 255, 0.6);
+  opacity: 80%;
   //outline: 8px solid white;
   border-radius: 50%;
   transition: background 400ms ease-out;
