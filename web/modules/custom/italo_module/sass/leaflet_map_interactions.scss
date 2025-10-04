@@ -150,6 +150,8 @@
     z-index: 1000 !important;
   }
   &.opacity-50 {
+    //border-radius: 50px;
+    border: 3px solid white;
     opacity: 30% !important;
   }
   &.opacity-50:hover {
@@ -159,6 +161,14 @@
     opacity: 60% !important;
   }
   &.opacity-75:hover {
+    opacity: 100% !important;
+  }
+}
+
+.leaflet-marker-icon,
+.leaflet-pane > svg path {
+  opacity: 80% !important;
+  &:hover {
     opacity: 100% !important;
   }
 }
@@ -354,3 +364,4 @@
     }
   }
 }
+

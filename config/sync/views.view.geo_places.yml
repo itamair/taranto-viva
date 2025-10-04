@@ -4671,7 +4671,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '50'
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -6154,7 +6154,7 @@ display:
           leaflet_markercluster:
             control: true
             include_path: false
-            options: '{"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":20}'
+            options: '{"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":40}'
             excluded: field_exclude_from_markercluster
           fullscreen:
             control: true

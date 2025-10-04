@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 name: image_map_marker
-label: 'Image Map Marker - Height 30'
+label: 'Image Map Marker'
 effects:
   c8f6af0d-74f5-45d4-a7a8-3d4c4eea4f55:
     uuid: c8f6af0d-74f5-45d4-a7a8-3d4c4eea4f55
@@ -11,5 +11,5 @@ effects:
     weight: 1
     data:
       width: null
-      height: 30
+      height: 50
       upscale: false
