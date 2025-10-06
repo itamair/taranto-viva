@@ -56,6 +56,9 @@ settings:
           translate_vocabulary: colors
           use_description: false
           enabled: false
+        ai_ckeditor_modify_prompt:
+          enabled: false
+          provider: null
     ckeditor5_heading:
       enabled_headings:
         - heading2

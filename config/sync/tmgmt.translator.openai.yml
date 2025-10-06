@@ -13,7 +13,7 @@ plugin: ai
 settings:
   model_selection_type: ai_translate
   chat_model: openai__gpt-3.5-turbo
-  tokenizer_model: openai__gpt-4
+  tokenizer_model: openai__gpt-3.5-turbo
   advanced:
     prompt: 'Translate from %source% into %target% language'
     max_tokens: '4096'
