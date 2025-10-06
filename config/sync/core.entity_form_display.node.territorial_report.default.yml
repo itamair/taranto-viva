@@ -280,7 +280,7 @@ content:
     weight: 4
     region: content
     settings:
-      display_label: false
+      display_label: true
     third_party_settings: {  }
   field_source_link:
     type: link_default
