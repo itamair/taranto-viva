@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa96b6dd0f902a1ba415d10bd207a02f",
+    "content-hash": "a2d5662e05667d101e2cd6a1bf88d811",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8334,6 +8334,54 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/uuid_extra"
             }
+        },
+        {
+            "name": "drupal/varbase_ai_agents",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/varbase_ai_agents.git",
+                "reference": "1304beca78f46b8d9628b7364a56211749a2b0ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fvarbase_ai_agents/repository/archive.zip?sha=1304beca78f46b8d9628b7364a56211749a2b0ac",
+                "reference": "1304beca78f46b8d9628b7364a56211749a2b0ac",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/ai": "~1",
+                "drupal/ai_agents": "~1",
+                "drupal/core": "~10 || ~11",
+                "league/commonmark": "*"
+            },
+            "type": "drupal-recipe",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Vardot",
+                    "homepage": "https://www.drupal.org/vardot",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides an AI-powered chatbot for streamlined administration and allows managing multiple agents with distinct functionalities.",
+            "keywords": [
+                "AI Agents",
+                "Varbase recipes",
+                "ai chatbot",
+                "drupal recipe",
+                "drupal recipes",
+                "recipe",
+                "setup AI",
+                "varbase recipe"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/varbase_ai_agents/-/tree/1.0.2"
+            },
+            "time": "2025-01-31T00:46:23+00:00"
         },
         {
             "name": "drupal/viewfield",
