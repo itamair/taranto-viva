@@ -9,7 +9,7 @@ dependencies:
 _core:
   default_config_hash: gLmoA0yjvlXfMRp9ihOhRKSSQQlbdLdvpDkbVwkYPrg
 id: files
-label: Files
+label: File
 module: file
 description: 'Find and manage files.'
 tag: default
@@ -22,7 +22,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Files
+      title: File
       fields:
         views_bulk_operations_bulk_form:
           id: views_bulk_operations_bulk_form
@@ -945,7 +945,7 @@ display:
       path: admin/content/files
       menu:
         type: tab
-        title: Files
+        title: File
         description: ''
         weight: 0
         menu_name: admin

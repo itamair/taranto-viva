@@ -6,6 +6,9 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   ai: 0
+  ai_agents: 0
+  ai_assistant_api: 0
+  ai_chatbot: 0
   ai_ckeditor: 0
   ai_provider_anthropic: 0
   ai_provider_deepseek: 0
