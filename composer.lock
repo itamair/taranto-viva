@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d24146c0ec3c3e826da8e4861eda4c8",
+    "content-hash": "aa96b6dd0f902a1ba415d10bd207a02f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -10437,7 +10437,7 @@
         },
         {
             "name": "itamair/geophp",
-            "version": "dev-master",
+            "version": "1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itamair/geoPHP.git",
@@ -10452,7 +10452,6 @@
             "require-dev": {
                 "phpunit/phpunit": "4.1.* || 9.5.*"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -10479,7 +10478,7 @@
             "homepage": "https://github.com/itamair/geoPHP",
             "support": {
                 "issues": "https://github.com/itamair/geoPHP/issues",
-                "source": "https://github.com/itamair/geoPHP/tree/master"
+                "source": "https://github.com/itamair/geoPHP/tree/1.8"
             },
             "time": "2025-10-03T07:54:28+00:00"
         },
@@ -17533,14 +17532,7 @@
             "time": "2024-09-04T20:21:43+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "itamair/geophp",
-            "version": "9999999-dev",
-            "alias": "1.8",
-            "alias_normalized": "1.8.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/ai": 5,
@@ -17557,7 +17549,6 @@
         "drupal/media_entity_image_exif": 5,
         "drupal/viewfield": 10,
         "drupal/votingapi": 10,
-        "itamair/geophp": 20,
         "pschocke/google-maps-links": 20
     },
     "prefer-stable": true,

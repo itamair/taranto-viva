@@ -141,7 +141,7 @@
         "geocoder-php/arcgis-online-provider": "^4.4",
         "geocoder-php/google-maps-provider": "^4.7",
         "geocoder-php/photon-provider": "^0.6.0",
-        "itamair/geophp": "dev-master as 1.8",
+        "itamair/geophp": "^1.8",
         "pschocke/google-maps-links": "dev-master"
     },
     "conflict": {
