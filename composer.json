@@ -121,6 +121,7 @@
         "drupal/rate": "^3.0",
         "drupal/replicate": "^1.0",
         "drupal/replicate_ui": "^1.0",
+        "drupal/search_api": "^1.39",
         "drupal/seckit": "^2.0",
         "drupal/single_image_formatter": "^1.6",
         "drupal/slick": "^3.0",
