@@ -1,0 +1,29 @@
+uuid: 9f6e6779-6077-4987-a679-3f6bd0c5641c
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_search
+    - ai_vdb_provider_pinecone
+id: pinecone_vector_server
+name: 'Pinecone Vector Server'
+description: ''
+backend: search_api_ai_search
+backend_config:
+  chat_model: openai__gpt-3.5-turbo
+  database: pinecone
+  database_settings:
+    database_name: taranto-viva
+    collection: pinecone_vector_server
+    metric: cosine_similarity
+  embeddings_engine: openai__text-embedding-ada-002
+  embeddings_engine_configuration:
+    set_dimensions: false
+    dimensions: 1024
+  embedding_strategy: contextual_chunks
+  embedding_strategy_configuration:
+    chunk_size: '500'
+    chunk_min_overlap: '100'
+    contextual_content_max_percentage: '30'
+  embedding_strategy_details: ''
+  include_raw_embedding_vector: false

@@ -1,0 +1,32 @@
+uuid: 163b02f5-e0e8-45d5-a6ab-3686aadfe8d9
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_chatbot
+  theme:
+    - taranto_viva
+id: taranto_viva_aichatbot
+theme: taranto_viva
+region: content_below
+weight: 0
+provider: null
+plugin: ai_chatbot_block
+settings:
+  id: ai_chatbot_block
+  label: 'AI Chatbot'
+  label_display: '0'
+  provider: ai_chatbot
+  ai_assistant: taranto_viva_pinecone_searcher
+  bot_name: 'Generic Chatbot'
+  bot_image: /core/misc/druplicon.png
+  use_username: 1
+  default_username: User
+  use_avatar: 1
+  default_avatar: /core/misc/favicon.ico
+  first_message: 'Hello! How can I help you today?'
+  stream: 1
+  toggle_state: remember
+  output_type: markdown
+  show_structured_results: false
+visibility: {  }

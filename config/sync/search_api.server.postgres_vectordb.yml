@@ -1,0 +1,29 @@
+uuid: 76e5f114-ad09-41dc-be70-f11308066c90
+langcode: en
+status: false
+dependencies:
+  module:
+    - ai_search
+    - ai_vdb_provider_postgres
+id: postgres_vectordb
+name: 'PostGres Vector DB'
+description: ''
+backend: search_api_ai_search
+backend_config:
+  chat_model: openai__gpt-3.5-turbo
+  database: postgres
+  database_settings:
+    database_name: pgdb
+    collection: ai_collection
+    metric: cosine_similarity
+  embeddings_engine: openai__text-embedding-3-large
+  embeddings_engine_configuration:
+    set_dimensions: false
+    dimensions: 3072
+  embedding_strategy: contextual_chunks
+  embedding_strategy_configuration:
+    chunk_size: '500'
+    chunk_min_overlap: '100'
+    contextual_content_max_percentage: '30'
+  embedding_strategy_details: ''
+  include_raw_embedding_vector: false

@@ -4,6 +4,7 @@ langcode: it
 log_level: 3
 documentation_domain: 'https://ecaguide.org'
 user: ''
+service_user: ''
 dependency_calculation:
   - bundle
   - field_storage

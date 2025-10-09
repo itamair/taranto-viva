@@ -1,0 +1,35 @@
+uuid: ac5c7f8a-904e-45a9-91ce-e6fdb56505f8
+langcode: en
+status: false
+dependencies:
+  module:
+    - node
+id: ai_pinecone_indexing_test
+name: 'AI Pinecone Indexing Test'
+description: ''
+read_only: false
+field_settings: {  }
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  custom_value: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  delete_on_fail: true
+  index_directly: true
+  track_changes_in_references: true
+server: ''

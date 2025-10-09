@@ -178,7 +178,7 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Blocked
+            format_custom_false: Bloccato
             format_custom_true: Attive
         roles_target_id:
           id: roles_target_id
@@ -616,7 +616,7 @@ display:
                 operator: '='
                 value: '1'
               2:
-                title: Blocked
+                title: Bloccato
                 operator: '='
                 value: '0'
         roles_target_id:

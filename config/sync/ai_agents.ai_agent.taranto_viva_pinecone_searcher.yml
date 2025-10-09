@@ -1,0 +1,35 @@
+uuid: 513c2d23-b774-4080-8e94-378203d0769e
+langcode: en
+status: true
+dependencies: {  }
+id: taranto_viva_pinecone_searcher
+label: 'Taranto Viva Pinecone Searcher'
+description: ''
+system_prompt: "Answer the question based on the context, and if the question can't be answered based on the context, then try to suggest a similar topic that is available in the context.  Try to cite sources to the links in the context when possible."
+secured_system_prompt: null
+tools:
+  'ai_search:rag_search': true
+tool_settings: null
+orchestration_agent: true
+triage_agent: false
+max_loops: 3
+default_information_tools: null
+tool_usage_limits:
+  'ai_search:rag_search':
+    index:
+      values:
+        - ai_pinecone_indexing_test
+      action: force_value
+      hide_property: 1
+    amount:
+      values:
+        - '5'
+      action: force_value
+      hide_property: 1
+    min_score:
+      values:
+        - '0.5'
+      action: force_value
+      hide_property: 1
+exclude_users_role: false
+masquerade_roles: {  }
