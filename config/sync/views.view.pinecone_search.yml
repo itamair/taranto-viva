@@ -208,7 +208,7 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: 'Fulltext search'
+            label: 'Pinecone Search'
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -316,6 +316,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      exposed_block: true
       display_extenders:
         metatag_display_extender:
           metatags: {  }
