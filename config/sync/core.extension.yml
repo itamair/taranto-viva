@@ -10,7 +10,6 @@ module:
   ai_assistant_api: 0
   ai_chatbot: 0
   ai_ckeditor: 0
-  ai_provider_amazeeio: 0
   ai_provider_anthropic: 0
   ai_provider_deepseek: 0
   ai_provider_litellm: 0

@@ -18,12 +18,12 @@ tool_usage_limits:
   'ai_search:rag_search':
     index:
       values:
-        - ai_pinecone_indexing_test
+        - pinecone_index
       action: force_value
       hide_property: 1
     amount:
       values:
-        - '5'
+        - '10'
       action: force_value
       hide_property: 1
     min_score:

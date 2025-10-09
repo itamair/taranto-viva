@@ -4,8 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - search_api.server.pinecone_vector_server
+    - field.storage.node.field_components
+    - field.storage.node.field_sub_title
+    - search_api.server.pinecone_server
   module:
+    - ai_search
     - node
 id: pinecone_index
 name: 'Pinecone Index'
@@ -20,6 +23,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  field_sub_title:
+    label: 'Sub Title'
+    datasource_id: 'entity:node'
+    property_path: field_sub_title
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sub_title
+  target_revision_id:
+    label: 'Components » Paragraph revision ID'
+    datasource_id: 'entity:node'
+    property_path: 'field_components:target_revision_id'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_components
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -28,10 +47,18 @@ field_settings:
     dependencies:
       module:
         - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
 datasource_settings:
   'entity:node':
     bundles:
-      default: true
+      default: false
       selected:
         - geoplace
     languages:
@@ -40,6 +67,10 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  ai_search_score_threshold:
+    weights:
+      postprocess_query: 0
+    minimum_relevance_score: '0.2'
   custom_value: {  }
   entity_type: {  }
   language_with_fallback: {  }
@@ -52,4 +83,4 @@ options:
   delete_on_fail: true
   index_directly: true
   track_changes_in_references: true
-server: pinecone_vector_server
+server: pinecone_server

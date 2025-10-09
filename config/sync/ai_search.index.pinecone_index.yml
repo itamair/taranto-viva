@@ -2,11 +2,17 @@ control_field_max_length: false
 exclude_chunk_from_metadata: false
 indexing_options:
   body:
-    indexing_option: main_content
+    indexing_option: contextual_content
+    max: -1
+  target_revision_id:
+    indexing_option: contextual_content
+    max: -1
+  type:
+    indexing_option: contextual_content
     max: -1
   field_sub_title:
     indexing_option: contextual_content
     max: -1
   title:
-    indexing_option: contextual_content
+    indexing_option: main_content
     max: -1
