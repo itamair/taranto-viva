@@ -1,0 +1,24 @@
+uuid: 6a7b0ca9-ed12-4278-93ec-1ca4545bb9d6
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_typesense
+id: typesense_search_server
+name: 'Typesense Search Server'
+description: ''
+backend: search_api_typesense
+backend_config:
+  nodes:
+    -
+      host: taranto-viva.ddev.site
+      port: '8109'
+      protocol: https
+  admin_api_key: ddev
+  nearest_node_enable: 0
+  nearest_node: null
+  public_endpoint:
+    host: 'https://taranto-viva.ddev.site'
+    port: '8109'
+    protocol: https
+  retry_interval_seconds: '2'

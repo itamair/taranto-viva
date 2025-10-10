@@ -1,6 +1,6 @@
 uuid: d158bd94-6556-4fe9-a546-8df74aa07c6f
 langcode: it
-status: false
+status: true
 dependencies:
   module:
     - search
@@ -11,7 +11,7 @@ _core:
 id: taranto_viva_search_form_narrow
 theme: taranto_viva
 region: primary_menu
-weight: -7
+weight: -9
 provider: null
 plugin: search_form_block
 settings:
