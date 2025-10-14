@@ -53,6 +53,7 @@ function italo_module_views_query_alter(ViewExecutable $view, QueryPluginBase $q
   // because of the last improvements we did in the granularity of field_image
   // (now = 1),and the use of Distinct query option in the view,
   // but still we needed this in the ciclovia_acquedotto_aqp view ... etc.
+  // Content|Nodes based Views.
   if (in_array($view->storage->id(), [
     'geo_places',
     'ciclovia_acquedotto_aqp',
@@ -61,9 +62,11 @@ function italo_module_views_query_alter(ViewExecutable $view, QueryPluginBase $q
     $query->addField('paragraphs_item_field_data_node__field_components', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data_node__field_components.id');
   }
-
+  // Paragraphs based Views.
   if (in_array($view->storage->id(), [
     'taranto_viva_geojson',
+    'taranto_viva_geoplaces_geojson',
+    'taranto_viva_geoimages_geojson',
   ]) && $query instanceof Sql) {
     $query->addField('paragraphs_item_field_data', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data.id');

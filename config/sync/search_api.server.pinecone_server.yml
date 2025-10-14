@@ -1,6 +1,6 @@
 uuid: 7ae6b89d-2067-446b-aa24-8e3bf41cac83
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - ai_search
