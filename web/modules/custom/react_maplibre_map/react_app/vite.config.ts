@@ -11,6 +11,8 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     build: {
+      minify: true,
+      cssMinify: false,
       rollupOptions: {
         output: {
           entryFileNames: 'index.js',
