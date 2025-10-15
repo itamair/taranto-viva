@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
         },
       },
       lib: {
-        entry: path. resolve(__dirname, 'src/main.tsx'),
+        entry: path. resolve(__dirname, 'src/main.jsx'),
         formats: ['es'],
         name: 'index',
       },

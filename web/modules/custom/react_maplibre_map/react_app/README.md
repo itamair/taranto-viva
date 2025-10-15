@@ -1,73 +1,151 @@
-# React + TypeScript + Vite
+# Taranto Viva MapLibre Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that visualizes GeoJSON data from multiple Drupal endpoints using MapLibre GL.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interactive map with OpenStreetMap tiles
+- Multiple GeoJSON data layers with different styling
+- Popup information for map features
+- Responsive design
+- Modular and scalable architecture
 
-## React Compiler
+## Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── config/
+│   ├── GeoJsons.jsx        # GeoJSON endpoint URL configuration
+│   └── layerStyles.js      # Layer styling configurations
+├── hooks/
+│   └── useGeoJsonLayer.js  # Custom hook for GeoJSON layer management
+├── utils/
+│   ├── geojsonUtils.js     # GeoJSON data manipulation utilities
+│   └── layerUtils.js       # MapLibre layer management utilities
+├── App.jsx
+├── Map.jsx                 # Main map component
+└── main.jsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Data Sources
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The application displays data from three Drupal GeoJSON endpoints:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Taranto Viva** (`taranto_viva_geojson`)
+   - URL: https://taranto-viva.ddev.site/it/taranto_viva_geojson
+   - Style: Red points with black border, orange polygons with black border
+
+2. **Geoplaces** (`taranto_viva_geoplaces_geojson`)
+   - URL: https://taranto-viva.ddev.site/en/taranto_viva_geoplaces_geojson
+   - Style: Red points with black border, orange polygons with black border
+
+3. **Geoimages** (`taranto_viva_geoimages_geojson`)
+   - URL: https://taranto-viva.ddev.site/it/taranto_viva_geoimages_geojson
+   - Style: Green points with blue border, green polygons with blue border
+
+## Architecture
+
+### Configuration (`config/`)
+
+- **GeoJsons.jsx**: Centralized endpoint URL management
+- **layerStyles.js**: Reusable style configurations for different layer types
+
+### Custom Hooks (`hooks/`)
+
+- **useGeoJsonLayer**: Manages the lifecycle of a GeoJSON layer including:
+  - Data fetching
+  - Source creation
+  - Layer rendering
+  - Interactivity setup
+  - Cleanup on unmount
+
+### Utilities (`utils/`)
+
+- **geojsonUtils.js**:
+  - `fetchGeoJson()`: Fetch GeoJSON data from URLs
+  - `calculateBounds()`: Calculate map bounds from GeoJSON features
+  - `buildPopupContent()`: Generate HTML for feature popups
+
+- **layerUtils.js**:
+  - `addGeoJsonSource()`: Add GeoJSON source to map
+  - `addPolygonLayers()`: Create polygon fill and outline layers
+  - `addLineStringLayer()`: Create LineString layer
+  - `addPointLayer()`: Create Point layer
+  - `addAllLayers()`: Add all geometry type layers at once
+  - `addLayerInteractivity()`: Setup click handlers and cursors
+  - `removeLayers()`: Clean up layers and sources
+
+## Adding New GeoJSON Endpoints
+
+To add a new GeoJSON endpoint:
+
+1. **Add the URL** in `src/config/GeoJsons.jsx`:
+```javascript
+export const GEOJSON_ENDPOINTS = {
+  // ... existing endpoints
+  newEndpoint: 'https://example.com/geojson'
+};
 ```
+
+2. **Define styling** in `src/config/layerStyles.js` (or use existing style):
+```javascript
+export const LAYER_STYLES = {
+  // ... existing styles
+  newStyle: {
+    point: { /* ... */ },
+    polygon: { /* ... */ },
+    linestring: { /* ... */ }
+  }
+};
+```
+
+3. **Use the hook** in `src/Map.jsx`:
+```javascript
+const newLayer = useGeoJsonLayer({
+  map: mapLoaded ? map.current : null,
+  url: GEOJSON_ENDPOINTS.newEndpoint,
+  sourceId: 'new-data',
+  layerPrefix: 'new',
+  styles: LAYER_STYLES.newStyle
+});
+```
+
+4. **Include in bounds calculation** (optional):
+```javascript
+const allData = [
+  // ... existing layers
+  newLayer.geojsonData
+].filter(Boolean);
+```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm preview
+
+# Run linter
+npm run lint
+```
+
+The application will be available at `http://localhost:5173/`
+
+## Technologies
+
+- React 19.1.1
+- MapLibre GL 5.9.0
+- Vite 7.1.7
+- ESLint for code quality
+
+## Browser Support
+
+Modern browsers with ES6+ support.
