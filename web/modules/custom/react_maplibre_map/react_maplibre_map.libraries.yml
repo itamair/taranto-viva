@@ -1,0 +1,9 @@
+react_maplibre_map_dev:
+  version: 1.x
+  js:
+    "http://localhost:5173/static/js/main.tsx": { type: external, minified: true, async: true }
+
+react_maplibre_map_prod:
+  version: 1.x
+  js:
+    react_app/dist/index.js: { preprocess: false, async: true }
