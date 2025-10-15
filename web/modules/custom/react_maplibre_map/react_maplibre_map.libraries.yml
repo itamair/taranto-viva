@@ -7,3 +7,6 @@ react_maplibre_map_prod:
   version: 1.x
   js:
     react_app/dist/index.js: { preprocess: false, async: true }
+  css:
+    component:
+      react_app/dist/assets/taranto_viva_maplibre.css: {}
