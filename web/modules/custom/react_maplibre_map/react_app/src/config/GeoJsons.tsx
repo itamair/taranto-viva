@@ -8,6 +8,5 @@ export const GEOJSON_ENDPOINTS = {
 };
 
 // Named exports for backward compatibility
-export const taranto_viva_geojson_url = GEOJSON_ENDPOINTS.tarantoViva;
 export const taranto_viva_geoplaces_geojson_url = GEOJSON_ENDPOINTS.tarantoVivaGeoplaces;
 export const taranto_viva_geoimages_geojson_url = GEOJSON_ENDPOINTS.tarantoVivaGeoimages;

@@ -7,7 +7,7 @@ import { buildPopupContent } from './geojsonUtils.js';
  * @param {string} sourceId - The ID for the source.
  * @param {Object} geojsonData - The GeoJSON data.
  */
-export function addGeoJsonSource(map, sourceId, geojsonData) {
+export function addGeoJsonSource(map: maplibregl.Map, sourceId: string, geojsonData: any): void {
   if (!map.getSource(sourceId)) {
     map.addSource(sourceId, {
       type: 'geojson',
@@ -23,7 +23,7 @@ export function addGeoJsonSource(map, sourceId, geojsonData) {
  * @param {string} layerPrefix - Prefix for layer IDs.
  * @param {Object} style - The polygon style configuration.
  */
-export function addPolygonLayers(map, sourceId, layerPrefix, style) {
+export function addPolygonLayers(map: maplibregl.Map, sourceId: string, layerPrefix: string, style: any): string[] {
   const fillLayerId = `${layerPrefix}-polygon-fill`;
   const outlineLayerId = `${layerPrefix}-polygon-outline`;
 
@@ -59,7 +59,7 @@ export function addPolygonLayers(map, sourceId, layerPrefix, style) {
  * @param {string} layerPrefix - Prefix for layer IDs.
  * @param {Object} style - The linestring style configuration.
  */
-export function addLineStringLayer(map, sourceId, layerPrefix, style) {
+export function addLineStringLayer(map: maplibregl.Map, sourceId: string, layerPrefix: string, style: any): string {
   const layerId = `${layerPrefix}-linestring`;
 
   if (!map.getLayer(layerId)) {
@@ -82,7 +82,7 @@ export function addLineStringLayer(map, sourceId, layerPrefix, style) {
  * @param {string} layerPrefix - Prefix for layer IDs.
  * @param {Object} style - The point style configuration.
  */
-export function addPointLayer(map, sourceId, layerPrefix, style) {
+export function addPointLayer(map: maplibregl.Map, sourceId: string, layerPrefix: string, style: any): string {
   const layerId = `${layerPrefix}-points`;
 
   if (!map.getLayer(layerId)) {
@@ -106,8 +106,8 @@ export function addPointLayer(map, sourceId, layerPrefix, style) {
  * @param {Object} styles - The layer styles configuration.
  * @returns {string[]} Array of created layer IDs.
  */
-export function addAllLayers(map, sourceId, layerPrefix, styles) {
-  const layerIds = [];
+export function addAllLayers(map: maplibregl.Map, sourceId: string, layerPrefix: string, styles: any): string[] {
+  const layerIds: string[] = [];
 
   // Add polygon layers
   const polygonLayers = addPolygonLayers(map, sourceId, layerPrefix, styles.polygon);
@@ -129,8 +129,8 @@ export function addAllLayers(map, sourceId, layerPrefix, styles) {
  * @param {maplibregl.Map} map - The map instance.
  * @param {string[]} layerIds - Array of layer IDs to add handlers to.
  */
-export function addLayerInteractivity(map, layerIds) {
-  layerIds.forEach(layerId => {
+export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): void {
+  layerIds.forEach((layerId: string) => {
     // Change cursor on hover
     map.on('mouseenter', layerId, () => {
       map.getCanvas().style.cursor = 'pointer';
@@ -141,7 +141,7 @@ export function addLayerInteractivity(map, layerIds) {
     });
 
     // Add click handler for popups
-    map.on('click', layerId, (e) => {
+    map.on('click', layerId, (e: any) => {
       if (e.features && e.features.length > 0) {
         const feature = e.features[0];
         const properties = feature.properties;
@@ -166,8 +166,8 @@ export function addLayerInteractivity(map, layerIds) {
  * @param {string} sourceId - The ID of the source to remove.
  * @param {string[]} layerIds - Array of layer IDs to remove.
  */
-export function removeLayers(map, sourceId, layerIds) {
-  layerIds.forEach(layerId => {
+export function removeLayers(map: maplibregl.Map, sourceId: string, layerIds: string[]): void {
+  layerIds.forEach((layerId: string) => {
     if (map.getLayer(layerId)) {
       map.removeLayer(layerId);
     }

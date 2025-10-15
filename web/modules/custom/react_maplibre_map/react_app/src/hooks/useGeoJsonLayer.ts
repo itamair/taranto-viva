@@ -1,6 +1,22 @@
 import { useEffect, useState } from 'react';
+import maplibregl from 'maplibre-gl';
 import { fetchGeoJson } from '../utils/geojsonUtils';
 import { addGeoJsonSource, addAllLayers, addLayerInteractivity, removeLayers } from '../utils/layerUtils';
+
+interface UseGeoJsonLayerParams {
+  map: maplibregl.Map | null;
+  url: string;
+  sourceId: string;
+  layerPrefix: string;
+  styles: any;
+  enabled?: boolean;
+}
+
+interface UseGeoJsonLayerReturn {
+  geojsonData: any;
+  loading: boolean;
+  error: string | null;
+}
 
 /**
  * Custom hook for managing a GeoJSON layer on a MapLibre map.
@@ -13,11 +29,11 @@ import { addGeoJsonSource, addAllLayers, addLayerInteractivity, removeLayers } f
  * @param {boolean} params.enabled - Whether the layer should be loaded.
  * @returns {Object} Object containing geojsonData, loading state, and error.
  */
-export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabled = true }) {
-  const [geojsonData, setGeojsonData] = useState(null);
+export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabled = true }: UseGeoJsonLayerParams): UseGeoJsonLayerReturn {
+  const [geojsonData, setGeojsonData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [layerIds, setLayerIds] = useState([]);
+  const [error, setError] = useState<string | null>(null);
+  const [layerIds, setLayerIds] = useState<string[]>([]);
 
   useEffect(() => {
     if (!enabled || !map || !url) {
@@ -36,7 +52,7 @@ export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabl
         // Fetch GeoJSON data
         const data = await fetchGeoJson(url);
 
-        if (!isMounted) return;
+        if (!isMounted || !map) return;
 
         setGeojsonData(data);
 
@@ -55,7 +71,7 @@ export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabl
         if (!isMounted) return;
 
         console.error(`Error loading GeoJSON from ${url}:`, err);
-        setError(err.message);
+        setError(err instanceof Error ? err.message : String(err));
         setLoading(false);
       }
     }

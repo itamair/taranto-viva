@@ -7,8 +7,8 @@ import { useGeoJsonLayer } from './hooks/useGeoJsonLayer';
 import { calculateBounds } from './utils/geojsonUtils';
 
 function Map() {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
+  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const map = useRef<maplibregl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
 
   // Memoize styles to prevent re-creation
@@ -17,7 +17,7 @@ function Map() {
 
   // Initialize map
   useEffect(() => {
-    if (map.current) return; // Initialize map only once
+    if (map.current || !mapContainer.current) return; // Initialize map only once
 
     // Initialize the map centered on Taranto
     map.current = new maplibregl.Map({

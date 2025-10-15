@@ -6,7 +6,7 @@ import maplibregl from 'maplibre-gl';
  * @returns {Promise<Object>} The GeoJSON data.
  * @throws {Error} If the fetch fails.
  */
-export async function fetchGeoJson(url) {
+export async function fetchGeoJson(url: string): Promise<any> {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to fetch GeoJSON from ${url}: ${response.status}`);
@@ -19,46 +19,46 @@ export async function fetchGeoJson(url) {
  * @param {Object} geojsonData - The GeoJSON feature collection.
  * @returns {maplibregl.LngLatBounds|null} The bounds or null if no features.
  */
-export function calculateBounds(geojsonData) {
+export function calculateBounds(geojsonData: any): maplibregl.LngLatBounds | null {
   if (!geojsonData.features || geojsonData.features.length === 0) {
     return null;
   }
 
   const bounds = new maplibregl.LngLatBounds();
 
-  geojsonData.features.forEach((feature) => {
+  geojsonData.features.forEach((feature: any) => {
     const { type, coordinates } = feature.geometry;
 
     switch (type) {
       case 'Point':
-        bounds.extend(coordinates);
+        bounds.extend(coordinates as [number, number]);
         break;
 
       case 'LineString':
-        coordinates.forEach(coord => bounds.extend(coord));
+        coordinates.forEach((coord: [number, number]) => bounds.extend(coord));
         break;
 
       case 'Polygon':
-        coordinates.forEach(ring => {
-          ring.forEach(coord => bounds.extend(coord));
+        coordinates.forEach((ring: [number, number][]) => {
+          ring.forEach((coord: [number, number]) => bounds.extend(coord));
         });
         break;
 
       case 'MultiPolygon':
-        coordinates.forEach(polygon => {
-          polygon.forEach(ring => {
-            ring.forEach(coord => bounds.extend(coord));
+        coordinates.forEach((polygon: [number, number][][]) => {
+          polygon.forEach((ring: [number, number][]) => {
+            ring.forEach((coord: [number, number]) => bounds.extend(coord));
           });
         });
         break;
 
       case 'MultiPoint':
-        coordinates.forEach(coord => bounds.extend(coord));
+        coordinates.forEach((coord: [number, number]) => bounds.extend(coord));
         break;
 
       case 'MultiLineString':
-        coordinates.forEach(line => {
-          line.forEach(coord => bounds.extend(coord));
+        coordinates.forEach((line: [number, number][]) => {
+          line.forEach((coord: [number, number]) => bounds.extend(coord));
         });
         break;
 
@@ -75,7 +75,7 @@ export function calculateBounds(geojsonData) {
  * @param {Object} properties - The feature properties.
  * @returns {string} The HTML string for the popup.
  */
-export function buildPopupContent(properties) {
+export function buildPopupContent(properties: any): string {
   let content = '<div style="font-family: Arial, sans-serif;">';
 
   if (properties.name) {
