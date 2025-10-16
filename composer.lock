@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0db980fdb97f14a4cfaad734bc81c4a2",
+    "content-hash": "e6d330d8e94f3df5bffc3586d670b46e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2725,57 +2725,6 @@
             "homepage": "https://www.drupal.org/project/ai_vdb_provider_pinecone",
             "support": {
                 "source": "https://git.drupalcode.org/project/ai_vdb_provider_pinecone"
-            }
-        },
-        {
-            "name": "drupal/ai_vdb_provider_postgres",
-            "version": "1.0.0-alpha2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/ai_vdb_provider_postgres.git",
-                "reference": "1.0.0-alpha2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai_vdb_provider_postgres-1.0.0-alpha2.zip",
-                "reference": "1.0.0-alpha2",
-                "shasum": "ae3c99c0d103276f70ebadeb8d7123c0611e3d8c"
-            },
-            "require": {
-                "drupal/ai": "^1.1@beta",
-                "drupal/core": "^10.2 || ^11",
-                "drupal/key": "*",
-                "ext-pgsql": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.0.0-alpha2",
-                    "datestamp": "1748339262",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "joshhytr",
-                    "homepage": "https://www.drupal.org/user/3633353"
-                },
-                {
-                    "name": "marcus_johansson",
-                    "homepage": "https://www.drupal.org/user/385947"
-                }
-            ],
-            "description": "Enables the use of a Postgres (pgvector) VDB in the AI module.",
-            "homepage": "https://www.drupal.org/project/ai_vdb_provider_postgres",
-            "support": {
-                "source": "https://git.drupalcode.org/project/ai_vdb_provider_postgres"
             }
         },
         {
@@ -17930,7 +17879,6 @@
         "drupal/ai_provider_deepseek": 15,
         "drupal/ai_tmgmt": 10,
         "drupal/ai_vdb_provider_pinecone": 10,
-        "drupal/ai_vdb_provider_postgres": 15,
         "drupal/auto_entitylabel": 10,
         "drupal/cer": 10,
         "drupal/conditional_fields": 15,
