@@ -122,7 +122,7 @@ function Map() {
   ].filter(Boolean);
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh', padding: '50px', boxSizing: 'border-box' }}>
+    <div style={{ position: 'relative', width: '100%', height: '80vh' }}>
       <div
         ref={mapContainer}
         style={{ width: '100%', height: '100%' }}

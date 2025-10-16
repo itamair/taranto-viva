@@ -11,7 +11,7 @@ _core:
 id: taranto_viva_content
 theme: taranto_viva
 region: content
-weight: 0
+weight: -10
 provider: null
 plugin: system_main_block
 settings:
@@ -19,4 +19,8 @@ settings:
   label: 'Main page content'
   label_display: '0'
   provider: system
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: /test

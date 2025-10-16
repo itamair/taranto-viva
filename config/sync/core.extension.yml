@@ -141,6 +141,7 @@ module:
   r4032login: 0
   range: 0
   rate: 0
+  react_maplibre_map: 0
   replicate: 0
   replicate_ui: 0
   rest: 0
