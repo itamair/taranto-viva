@@ -3,8 +3,8 @@
  */
 
 export const GEOJSON_ENDPOINTS = {
-  tarantoVivaGeoplaces: 'https://taranto-viva.ddev.site/en/taranto_viva_geoplaces_geojson',
-  tarantoVivaGeoimages: 'https://taranto-viva.ddev.site/it/taranto_viva_geoimages_geojson'
+  tarantoVivaGeoplaces: 'https://www.taranto-viva.com/en/taranto_viva_geoplaces_geojson',
+  tarantoVivaGeoimages: 'https://www.taranto-viva.com/it/taranto_viva_geoimages_geojson'
 };
 
 // Named exports for backward compatibility
