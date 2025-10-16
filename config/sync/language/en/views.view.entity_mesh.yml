@@ -18,13 +18,13 @@ display:
         source_entity_langcode:
           label: 'Entity Langcode (Source)'
         target_link_type:
-          label: 'Target Type'
+          label: 'Type (Target)'
         target_href:
-          label: 'Target Href'
-        target_path:
-          label: 'Target Path'
+          label: 'Href (Target)'
         target_scheme:
-          label: Scheme
+          label: 'Scheme (Target)'
+        target_path:
+          label: 'Path (Target)'
         target_entity_type:
           label: 'Entity Type (Target)'
         target_entity_id:
@@ -170,13 +170,13 @@ display:
         source_entity_langcode:
           label: 'Entity Langcode (Source)'
         target_link_type:
-          label: 'Target Link Type'
+          label: 'Link Type (Target)'
         target_href:
-          label: 'Target Href'
-        target_path:
-          label: 'Target Path'
+          label: 'Href (Target)'
         target_scheme:
-          label: Scheme
+          label: 'Scheme (Target)'
+        target_path:
+          label: 'Path (Target)'
         target_entity_type:
           label: 'Entity Type (Target)'
         target_entity_bundle:

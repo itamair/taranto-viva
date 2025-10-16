@@ -1031,7 +1031,7 @@ display:
           exposed: true
           expose:
             operator_id: target_link_type_op
-            label: 'Link Type (Target)'
+            label: 'Target Link Type'
             description: ''
             use_operator: false
             operator: target_link_type_op
@@ -1073,7 +1073,7 @@ display:
           exposed: true
           expose:
             operator_id: target_scheme_op
-            label: 'Scheme (Target)'
+            label: Scheme
             description: ''
             use_operator: false
             operator: target_scheme_op
@@ -1115,7 +1115,7 @@ display:
           exposed: true
           expose:
             operator_id: target_href_op
-            label: 'Href (Target)'
+            label: 'Target Href'
             description: ''
             use_operator: false
             operator: target_href_op
@@ -1325,7 +1325,7 @@ display:
           exposed: true
           expose:
             operator_id: target_scheme_1_op
-            label: 'Scheme (Target)'
+            label: Scheme
             description: ''
             use_operator: false
             operator: target_scheme_1_op
