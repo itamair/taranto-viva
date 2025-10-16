@@ -18,7 +18,6 @@ module:
   ai_tmgmt: 0
   ai_translate: 0
   ai_vdb_provider_pinecone: 0
-  ai_vdb_provider_postgres: 0
   automated_cron: 0
   backup_migrate: 0
   better_exposed_filters: 0
@@ -133,7 +132,6 @@ module:
   path: 0
   path_alias: 0
   pcb: 0
-  pgsql: 0
   photoswipe: 0
   phpass: 0
   popup_message: 0
