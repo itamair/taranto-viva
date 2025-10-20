@@ -13,8 +13,8 @@ export const LAYER_STYLES = {
     },
     polygon: {
       fill: {
-        'fill-color': 'orange',
-        'fill-opacity': 0.5
+        'fill-color': 'blue',
+        'fill-opacity': 0.2
       },
       outline: {
         'line-color': 'black',

@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     build: {
-      minify: true,
+      minify: false,
       cssMinify: false,
       rollupOptions: {
         output: {
