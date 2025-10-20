@@ -1,10 +1,9 @@
 /**
  * GeoJSON endpoint configuration.
  */
-
 export const GEOJSON_ENDPOINTS = {
-  tarantoVivaGeoplaces: 'https://www.taranto-viva.com/en/taranto_viva_geoplaces_geojson',
-  tarantoVivaGeoimages: 'https://www.taranto-viva.com/it/taranto_viva_geoimages_geojson'
+  tarantoVivaGeoplaces: import.meta.env.VITE_TARANTO_VIVA_GEOPLACES_URL,
+  tarantoVivaGeoimages: import.meta.env.VITE_TARANTO_VIVA_GEOIMAGES_URL,
 };
 
 // Named exports for backward compatibility
