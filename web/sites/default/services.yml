@@ -1,0 +1,10 @@
+parameters:
+  # Configure Cross-Site HTTP requests (CORS).
+  # Read https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+  # for more information about the topic in general.
+  # Note: By default the configuration is disabled.
+  cors.config:
+    enabled: true
+    # Configure requests allowed from specific origins. Do not include trailing
+    # slashes with URLs.
+    allowedOrigins: [ '*' ]
