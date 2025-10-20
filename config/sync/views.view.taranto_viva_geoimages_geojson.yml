@@ -293,7 +293,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: 'https://taranto-viva.ddev.site{{ field_media_image }}'
+            text: '{{ field_media_image }}'
             make_link: false
             path: '{{ field_media_image }}'
             absolute: true
@@ -390,7 +390,7 @@ display:
           plugin_id: language
           operator: in
           value:
-            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            '***LANGUAGE_site_default***': '***LANGUAGE_site_default***'
           group: 1
           exposed: false
           expose:
@@ -706,35 +706,6 @@ display:
       tags:
         - 'config:field.storage.media.field_geofield'
         - 'config:field.storage.media.field_media_image'
-  page_geoimages_map:
-    id: page_geoimages_map
-    display_title: 'Geoimages Map'
-    display_plugin: page
-    position: 2
-    display_options:
-      display_description: ''
-      display_extenders:
-        metatag_display_extender:
-          metatags: {  }
-          tokenize: false
-      path: taranto_viva_geoimages_page
-      menu:
-        type: none
-        title: 'Geo Images Map'
-        description: ''
-        weight: 100
-        expanded: false
-        menu_name: main
-        parent: ''
-        context: '0'
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-      tags:
-        - 'config:field.storage.media.field_geofield'
-        - 'config:field.storage.media.field_media_image'
   taranto_viva_geoimages_geojson:
     id: taranto_viva_geoimages_geojson
     display_title: 'GeoJSON export'
@@ -759,7 +730,7 @@ display:
             name_field: title
             description_field: ''
           jsonp_prefix: ''
-      rendering_language: '***LANGUAGE_language_interface***'
+      rendering_language: '***LANGUAGE_entity_translation***'
       display_extenders:
         metatag_display_extender:
           metatags: {  }
@@ -768,6 +739,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
       tags:
         - 'config:field.storage.media.field_geofield'
