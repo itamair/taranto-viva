@@ -76,29 +76,36 @@ export function calculateBounds(geojsonData: any): maplibregl.LngLatBounds | nul
  * @returns {string} The HTML string for the popup.
  */
 export function buildPopupContent(properties: any): string {
-  let content = '<div style="font-family: Arial, sans-serif;">';
 
-  if (properties.name) {
-    content += `<h3 style="margin: 0 0 10px 0; font-size: 16px; font-weight: bold;">${properties.name}</h3>`;
+  let content;
+
+  if (properties.leaflet_popup_rendered_entity) {
+    content = properties.leaflet_popup_rendered_entity;
   }
+  else {
+    content = '<div style="font-family: Arial, sans-serif;">';
 
-  if (properties.field_sub_title) {
-    content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Sottotitolo:</strong> ${properties.field_sub_title}</p>`;
+    if (properties.name) {
+      content += `<h3 style="margin: 0 0 10px 0; font-size: 16px; font-weight: bold;">${properties.name}</h3>`;
+    }
+
+    if (properties.field_sub_title) {
+      content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Sottotitolo:</strong> ${properties.field_sub_title}</p>`;
+    }
+
+    if (properties.field_category_type) {
+      content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Categoria:</strong> ${properties.field_category_type}</p>`;
+    }
+
+    if (properties.image_url) {
+      content += `<div><img src="${ properties.image_url }" alt="properties.name"></div>`;
+    }
+
+    if (properties.weblink) {
+      content += `<p style="margin: 5px 0; font-size: 12px;"><a href="${properties.weblink}" >view more</a></p>`;
+    }
+    content += '</div>';
   }
-
-  if (properties.field_category_type) {
-    content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Categoria:</strong> ${properties.field_category_type}</p>`;
-  }
-
-  if (properties.image) {
-    content += `<div><img src="${ properties.image }" alt="properties.name"></div>`;
-  }
-
-  if (properties.weblink) {
-    content += `<p style="margin: 5px 0; font-size: 12px;"><a href="${properties.weblink}" >view more</a></p>`;
-  }
-
-  content += '</div>';
 
   return content;
 }

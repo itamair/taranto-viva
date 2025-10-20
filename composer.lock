@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d77f8c4c18be1ef0367719d1b310611",
+    "content-hash": "20ea8a19b98632b3e207533b529eb361",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8983,6 +8983,59 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/viewfield",
                 "issues": "https://www.drupal.org/project/issues/viewfield"
+            }
+        },
+        {
+            "name": "drupal/views_base_url",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_base_url.git",
+                "reference": "2.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_base_url-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "9e834e55c0bc548f6d2354a7fa602040ff1b3127"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9 || ^10 || ^11",
+                "php": ">=7.3.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.1.0",
+                    "datestamp": "1757413923",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mably",
+                    "homepage": "https://www.drupal.org/user/3375160"
+                },
+                {
+                    "name": "rjjakes",
+                    "homepage": "https://www.drupal.org/user/3457245"
+                },
+                {
+                    "name": "subhojit777",
+                    "homepage": "https://www.drupal.org/user/1812492"
+                }
+            ],
+            "description": "Global views field that provides site's base url",
+            "homepage": "https://www.drupal.org/project/views_base_url",
+            "support": {
+                "source": "https://git.drupalcode.org/project/views_base_url"
             }
         },
         {
