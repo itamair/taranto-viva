@@ -680,3 +680,25 @@ function italo_module_leaflet_choropleth_color_scale_alter(array &$color_scale, 
   }
 
 }
+
+/**
+ * Hook that alters the template_preprocess_image for image.html.twig.
+ *
+ * Generates Absolute Urls for img src attribute, so to make this work also
+ * with decoupled references.
+ */
+function italo_module_preprocess_image(array &$variables) {
+
+  // List of images styles for which to alter/force the Absolute Images Src
+  // Urls generation.
+  $images_styles_to_alter = [
+    'map_scaled_cropped_image_400_300',
+    'map_scaled_cropped_image_600x400',
+  ];
+
+  /** @var \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator */
+  $file_url_generator = \Drupal::service('file_url_generator');
+  if (!empty($variables['uri']) && (empty($images_styles_to_alter) || in_array($variables["style_name"], $images_styles_to_alter))) {
+    $variables['attributes']['src'] = $file_url_generator->generateAbsoluteString($variables['uri']);
+  }
+}
