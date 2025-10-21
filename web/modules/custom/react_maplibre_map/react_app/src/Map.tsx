@@ -126,7 +126,8 @@ function Map() {
 
     allData.forEach(data => {
       const bounds = calculateBounds(data);
-      if (bounds) {
+      // Extend existing bounds with not empty new ones.
+      if (bounds && !bounds.isEmpty()) {
         combinedBounds.extend(bounds);
         hasFeatures = true;
       }

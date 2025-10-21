@@ -29,41 +29,44 @@ export function calculateBounds(geojsonData: any): maplibregl.LngLatBounds | nul
   geojsonData.features.forEach((feature: any) => {
     const { type, coordinates } = feature.geometry;
 
-    switch (type) {
-      case 'Point':
-        bounds.extend(coordinates as [number, number]);
-        break;
+    // In case the new feature is not excluded from map bounds.
+    if (feature.properties.field_exclude_from_map_bounds != 1) {
+      switch (type) {
+        case 'Point':
+          bounds.extend(coordinates as [number, number]);
+          break;
 
-      case 'LineString':
-        coordinates.forEach((coord: [number, number]) => bounds.extend(coord));
-        break;
+        case 'LineString':
+          coordinates.forEach((coord: [number, number]) => bounds.extend(coord));
+          break;
 
-      case 'Polygon':
-        coordinates.forEach((ring: [number, number][]) => {
-          ring.forEach((coord: [number, number]) => bounds.extend(coord));
-        });
-        break;
-
-      case 'MultiPolygon':
-        coordinates.forEach((polygon: [number, number][][]) => {
-          polygon.forEach((ring: [number, number][]) => {
+        case 'Polygon':
+          coordinates.forEach((ring: [number, number][]) => {
             ring.forEach((coord: [number, number]) => bounds.extend(coord));
           });
-        });
-        break;
+          break;
 
-      case 'MultiPoint':
-        coordinates.forEach((coord: [number, number]) => bounds.extend(coord));
-        break;
+        case 'MultiPolygon':
+          coordinates.forEach((polygon: [number, number][][]) => {
+            polygon.forEach((ring: [number, number][]) => {
+              ring.forEach((coord: [number, number]) => bounds.extend(coord));
+            });
+          });
+          break;
 
-      case 'MultiLineString':
-        coordinates.forEach((line: [number, number][]) => {
-          line.forEach((coord: [number, number]) => bounds.extend(coord));
-        });
-        break;
+        case 'MultiPoint':
+          coordinates.forEach((coord: [number, number]) => bounds.extend(coord));
+          break;
 
-      default:
-        console.warn(`Unsupported geometry type: ${type}`);
+        case 'MultiLineString':
+          coordinates.forEach((line: [number, number][]) => {
+            line.forEach((coord: [number, number]) => bounds.extend(coord));
+          });
+          break;
+
+        default:
+          console.warn(`Unsupported geometry type: ${type}`);
+      }
     }
   });
 
