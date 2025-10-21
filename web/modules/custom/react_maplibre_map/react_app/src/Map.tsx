@@ -50,6 +50,32 @@ function Map() {
       zoom: 12
     });
 
+    // Add Navigation Controls to the Map.
+    map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
+
+    // Add Locate user Control
+    map.current.addControl(
+      new maplibregl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      }), 'top-right');
+
+    // Add Full Screen Control
+    map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
+
+    // Add Globe Control
+    // map.current.addControl(new maplibregl.GlobeControl(), 'top-left');
+
+    // Add Terrain Control
+/*    map.current.addControl(new maplibregl.TerrainControl(
+      {
+        source: "terrain"
+      }
+    ), 'top-left');*/
+
+
     map.current.on('load', () => {
       setMapLoaded(true);
     });
