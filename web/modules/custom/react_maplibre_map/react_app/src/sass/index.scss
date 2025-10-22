@@ -65,10 +65,10 @@ button:focus-visible {
     position: relative;
     padding: 8px 8px 8px 8px;
     .node--type-geoimage {
-      max-width: 800px;
+      max-width: 400px;
     }
     .node--type-geoplace {
-      max-width: 300px;
+      max-width: 240px;
     }
     .node__content {
       padding-block-end: 0 !important;

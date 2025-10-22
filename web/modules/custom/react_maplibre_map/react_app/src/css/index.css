@@ -82,11 +82,11 @@ button:focus-visible {
 }
 /* line 67, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content .node--type-geoimage {
-  max-width: 800px;
+  max-width: 400px;
 }
 /* line 70, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content .node--type-geoplace {
-  max-width: 300px;
+  max-width: 240px;
 }
 /* line 73, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content .node__content {
