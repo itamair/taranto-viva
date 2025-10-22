@@ -87,15 +87,19 @@ export function addPointLayer(map: maplibregl.Map, sourceId: string, layerPrefix
   const layerId = `${layerPrefix}-points`;
 
   if (!map.getLayer(layerId)) {
+
     map.addLayer({
       id: layerId,
       type: 'circle',
       source: sourceId,
       // Filter to only show points without custom marker icons
-      filter: [
+      filter: import.meta.env.VITE_CUSTOM_MARKERS == 1 ? [
         'all',
         ['==', '$type', 'Point'],
         ['!has', 'geomarker_icon_url']
+      ] : [
+        'all',
+        ['==', '$type', 'Point']
       ],
       paint: style
     });

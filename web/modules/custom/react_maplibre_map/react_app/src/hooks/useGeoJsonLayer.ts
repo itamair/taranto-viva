@@ -69,8 +69,10 @@ export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabl
         // Add interactivity
         addLayerInteractivity(map, createdLayerIds);
 
+        const custom_markers_data = import.meta.env.VITE_CUSTOM_MARKERS == 1 ? data : {};
+
         // Add custom markers for points with geomarker_icon_url
-        const markers = addCustomMarkers(map, data, markerContainerWidth);
+        const markers = addCustomMarkers(map, custom_markers_data, markerContainerWidth);
         setCustomMarkers(markers);
 
         setLoading(false);
