@@ -136,6 +136,11 @@ export function addAllLayers(map: maplibregl.Map, sourceId: string, layerPrefix:
  * @param {string[]} layerIds - Array of layer IDs to add handlers to.
  */
 export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): void {
+  // Initialize popup reference if not exists
+  if (!(map as any)._customMarkerPopup) {
+    (map as any)._customMarkerPopup = null;
+  }
+
   layerIds.forEach((layerId: string) => {
     // Change cursor on hover
     map.on('mouseenter', layerId, () => {
@@ -154,12 +159,24 @@ export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): 
 
         // Check if popup should be disabled
         if (properties.field_map_popup_disabled != 1) {
-          const popupContent = buildPopupContent(properties);
+          // Close existing popup if any
+          if ((map as any)._customMarkerPopup) {
+            (map as any)._customMarkerPopup.remove();
+          }
 
-          new maplibregl.Popup()
+          const popupContent = buildPopupContent(properties);
+          const popup = new maplibregl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(popupContent)
             .addTo(map);
+
+          // Store reference to current popup
+          (map as any)._customMarkerPopup = popup;
+
+          // Clear reference when popup is closed
+          popup.on('close', () => {
+            (map as any)._customMarkerPopup = null;
+          });
         }
       }
     });
@@ -182,6 +199,11 @@ export function addCustomMarkers(
 
   if (!geojsonData || !geojsonData.features) {
     return markers;
+  }
+
+  // Store reference to current popup on the map object to manage single popup
+  if (!(map as any)._customMarkerPopup) {
+    (map as any)._customMarkerPopup = null;
   }
 
   geojsonData.features.forEach((feature: any) => {
@@ -233,8 +255,14 @@ export function addCustomMarkers(
       if (feature.properties.field_map_popup_disabled != 1) {
         containerDiv.addEventListener('click', (e) => {
           e.stopPropagation(); // Prevent event from bubbling to map
+
+          // Close existing popup if any
+          if ((map as any)._customMarkerPopup) {
+            (map as any)._customMarkerPopup.remove();
+          }
+
           const popupContent = buildPopupContent(feature.properties);
-          new maplibregl.Popup({
+          const popup = new maplibregl.Popup({
             closeButton: true,
             closeOnClick: true,
             maxWidth: '300px'
@@ -242,6 +270,14 @@ export function addCustomMarkers(
             .setLngLat(coordinates)
             .setHTML(popupContent)
             .addTo(map);
+
+          // Store reference to current popup
+          (map as any)._customMarkerPopup = popup;
+
+          // Clear reference when popup is closed
+          popup.on('close', () => {
+            (map as any)._customMarkerPopup = null;
+          });
         });
       }
 
