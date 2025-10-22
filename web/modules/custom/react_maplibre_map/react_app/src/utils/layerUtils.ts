@@ -231,9 +231,14 @@ export function addCustomMarkers(
 
       // Add click handler for popup if enabled
       if (feature.properties.field_map_popup_disabled != 1) {
-        containerDiv.addEventListener('click', () => {
+        containerDiv.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent event from bubbling to map
           const popupContent = buildPopupContent(feature.properties);
-          new maplibregl.Popup()
+          new maplibregl.Popup({
+            closeButton: true,
+            closeOnClick: true,
+            maxWidth: '300px'
+          })
             .setLngLat(coordinates)
             .setHTML(popupContent)
             .addTo(map);
