@@ -65,10 +65,13 @@ button:focus-visible {
     position: relative;
     padding: 8px 8px 8px 8px;
     .node--type-geoimage {
-      max-width: 400px;
+      max-width: 460px;
     }
-    .node--type-geoplace {
-      max-width: 240px;
+    .node--type-geoplace, .node--type-event  {
+      max-width: 360px;
+    }
+    .node--type-territorial-report {
+      max-width: 360px;
     }
     .node__content {
       padding-block-end: 0 !important;
@@ -87,6 +90,34 @@ button:focus-visible {
     }
     div.field.field--name-field-components > * {
       margin-bottom: 2px
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .maplibregl-popup-content {
+      .node--type-geoimage {
+        max-width: 400px !important;
+      }
+      .node--type-geoplace, .node--type-event {
+        max-width: 300px !important;
+      }
+      .node--type-territorial-report {
+        max-width: 300px !important;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 560px) {
+    .maplibregl-popup-content {
+      .node--type-geoimage {
+        max-width: 240px !important;
+      }
+      .node--type-geoplace, .node--type-event {
+        max-width: 200px !important;
+      }
+      .node--type-territorial-report {
+          max-width: 200px !important;
+      }
     }
   }
 }
