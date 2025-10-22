@@ -77,6 +77,7 @@ export function addLineStringLayer(map: maplibregl.Map, sourceId: string, layerP
 
 /**
  * Adds a Point layer to the map.
+ * Only renders points that don't have custom marker icons.
  * @param {maplibregl.Map} map - The map instance.
  * @param {string} sourceId - The ID of the source.
  * @param {string} layerPrefix - Prefix for layer IDs.
@@ -90,7 +91,12 @@ export function addPointLayer(map: maplibregl.Map, sourceId: string, layerPrefix
       id: layerId,
       type: 'circle',
       source: sourceId,
-      filter: ['==', '$type', 'Point'],
+      // Filter to only show points without custom marker icons
+      filter: [
+        'all',
+        ['==', '$type', 'Point'],
+        ['!has', 'geomarker_icon_url']
+      ],
       paint: style
     });
   }
@@ -161,6 +167,87 @@ export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): 
 }
 
 /**
+ * Creates custom HTML markers for features with geomarker_icon_url property.
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {Object} geojsonData - The GeoJSON data.
+ * @param {number} containerWidth - Width of the marker container (30px or 80px).
+ * @returns {maplibregl.Marker[]} Array of created markers.
+ */
+export function addCustomMarkers(
+  map: maplibregl.Map,
+  geojsonData: any,
+  containerWidth: number
+): maplibregl.Marker[] {
+  const markers: maplibregl.Marker[] = [];
+
+  if (!geojsonData || !geojsonData.features) {
+    return markers;
+  }
+
+  geojsonData.features.forEach((feature: any) => {
+    // Only process Point features with geomarker_icon_url
+    if (
+      feature.geometry.type === 'Point' &&
+      feature.properties.geomarker_icon_url &&
+      feature.properties.geomarker_icon_url !== null &&
+      feature.properties.geomarker_icon_url !== ''
+    ) {
+      const coordinates = feature.geometry.coordinates as [number, number];
+      const iconUrl = feature.properties.geomarker_icon_url;
+      const title = feature.properties.name || '';
+
+      // Create a container div with the specified width
+      const containerDiv = document.createElement('div');
+      containerDiv.style.width = `${containerWidth}px`;
+      containerDiv.style.display = 'flex';
+      containerDiv.style.justifyContent = 'center';
+      containerDiv.style.alignItems = 'flex-end';
+      containerDiv.style.cursor = 'pointer';
+
+      // Create the image element
+      const img = document.createElement('img');
+      img.src = iconUrl;
+      img.alt = title;
+      img.title = title;
+      img.style.maxWidth = '100%';
+      img.style.height = 'auto';
+      img.style.display = 'block';
+
+      // Handle image load errors
+      img.onerror = () => {
+        console.error(`Failed to load marker icon: ${iconUrl}`);
+        // You could set a fallback icon here if desired
+      };
+
+      containerDiv.appendChild(img);
+
+      // Create the marker
+      const marker = new maplibregl.Marker({
+        element: containerDiv,
+        anchor: 'bottom'
+      })
+        .setLngLat(coordinates)
+        .addTo(map);
+
+      // Add click handler for popup if enabled
+      if (feature.properties.field_map_popup_disabled != 1) {
+        containerDiv.addEventListener('click', () => {
+          const popupContent = buildPopupContent(feature.properties);
+          new maplibregl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(popupContent)
+            .addTo(map);
+        });
+      }
+
+      markers.push(marker);
+    }
+  });
+
+  return markers;
+}
+
+/**
  * Removes layers and source from the map.
  * @param {maplibregl.Map} map - The map instance.
  * @param {string} sourceId - The ID of the source to remove.
@@ -176,4 +263,14 @@ export function removeLayers(map: maplibregl.Map, sourceId: string, layerIds: st
   if (map.getSource(sourceId)) {
     map.removeSource(sourceId);
   }
+}
+
+/**
+ * Removes custom markers from the map.
+ * @param {maplibregl.Marker[]} markers - Array of markers to remove.
+ */
+export function removeCustomMarkers(markers: maplibregl.Marker[]): void {
+  markers.forEach((marker: maplibregl.Marker) => {
+    marker.remove();
+  });
 }

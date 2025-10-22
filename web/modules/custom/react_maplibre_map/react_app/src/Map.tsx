@@ -97,7 +97,8 @@ function Map() {
     sourceId: 'geoplaces-data',
     layerPrefix: 'geoplaces',
     styles: defaultStyles,
-    enabled: mapLoaded
+    enabled: mapLoaded,
+    markerContainerWidth: 60 // Width for geoplaces markers
   });
 
   const geoimagesLayer = useGeoJsonLayer({
@@ -106,7 +107,8 @@ function Map() {
     sourceId: 'geoimages-data',
     layerPrefix: 'geoimages',
     styles: geoimagesStyles,
-    enabled: mapLoaded
+    enabled: mapLoaded,
+    markerContainerWidth: 40 // Width for geoimages markers
   });
 
   // Fit bounds when all data is loaded
