@@ -11,12 +11,17 @@ function Map() {
   const map = useRef<maplibregl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
 
+  // Define & Memo Start Zoom and Start Location.
+  const start_location = useMemo(() => [17.23, 40.47] as [number, number], []); // Taranto coordinates
+  const start_zoom = useMemo(() => 12, []);
+
   // Memoize styles to prevent re-creation
   const defaultStyles = useMemo(() => LAYER_STYLES.default, []);
   const geoimagesStyles = useMemo(() => LAYER_STYLES.geoimages, []);
 
   // Initialize map
   useEffect(() => {
+
     if (map.current || !mapContainer.current) return; // Initialize map only once
 
     // Initialize the map centered on Taranto
@@ -46,8 +51,8 @@ function Map() {
           }
         ]
       },
-      center: [17.23, 40.47], // Taranto coordinates
-      zoom: 12
+      center: start_location,
+      zoom: start_zoom,
     });
 
     // Add Navigation Controls to the Map.
@@ -69,11 +74,11 @@ function Map() {
     // map.current.addControl(new maplibregl.GlobeControl(), 'top-left');
 
     // Add Terrain Control
-/*    map.current.addControl(new maplibregl.TerrainControl(
-      {
-        source: "terrain"
-      }
-    ), 'top-left');*/
+    /*    map.current.addControl(new maplibregl.TerrainControl(
+          {
+            source: "terrain"
+          }
+        ), 'top-left');*/
 
 
     map.current.on('load', () => {
@@ -93,7 +98,7 @@ function Map() {
   // Pass map.current directly and let the hook handle the loaded state
   const geoplacesLayer = useGeoJsonLayer({
     map: map.current,
-    url: GEOJSON_ENDPOINTS.tarantoVivaGeoplaces,
+    url: GEOJSON_ENDPOINTS.geoplaces_geojson_url,
     sourceId: 'geoplaces-data',
     layerPrefix: 'geoplaces',
     styles: defaultStyles,
@@ -103,7 +108,7 @@ function Map() {
 
   const geoimagesLayer = useGeoJsonLayer({
     map: map.current,
-    url: GEOJSON_ENDPOINTS.tarantoVivaGeoimages,
+    url: GEOJSON_ENDPOINTS.geoimages_geojson_url,
     sourceId: 'geoimages-data',
     layerPrefix: 'geoimages',
     styles: geoimagesStyles,
