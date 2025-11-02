@@ -89,7 +89,7 @@ export function buildPopupContent(properties: any): string {
     content = '<div style="font-family: Arial, sans-serif;">';
 
     if (properties.name) {
-      content += `<h3 style="margin: 0 0 10px 0; font-size: 16px; font-weight: bold;">${properties.name}</h3>`;
+      content += `<h3 style="font-weight: bold;">${properties.name}</h3>`;
     }
 
     if (properties.field_sub_title) {

@@ -147,40 +147,55 @@ export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): 
 
   layerIds.forEach((layerId: string) => {
     // Change cursor on hover
-    map.on('mouseenter', layerId, () => {
-      map.getCanvas().style.cursor = 'pointer';
+    map.on('mouseenter', layerId, (e: any) => {
+      if (e.features && e.features.length > 0) {
+        const feature = e.features[0];
+        if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
+          map.getCanvas().style.cursor = 'pointer';
+        }
+      }
     });
 
     map.on('mouseleave', layerId, () => {
       map.getCanvas().style.cursor = '';
     });
 
-    // Add click handler for popups
+    // Add click handler for pop  ups
     map.on('click', layerId, (e: any) => {
       if (e.features && e.features.length > 0) {
         const feature = e.features[0];
-        const properties = feature.properties;
-
-        // Check if popup should be disabled
-        if (properties.field_map_popup_disabled != 1) {
-          // Close existing popup if any
-          if ((map as any)._customMarkerPopup) {
-            (map as any)._customMarkerPopup.remove();
+        if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
+          let properties: Record<string, any> = {};
+          if (feature._vectorTileFeature.properties['@name']) {
+            properties = {
+              'name': feature._vectorTileFeature.properties['@name'],
+              'field_map_popup_disabled': 0,
+            }
+          } else if (feature.properties) {
+            properties = feature.properties;
           }
 
-          const popupContent = buildPopupContent(properties);
-          const popup = new maplibregl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(popupContent)
-            .addTo(map);
+          // Check if popup should be disabled
+          if (properties['field_map_popup_disabled'] != 1) {
+            // Close existing popup if any
+            if ((map as any)._customMarkerPopup) {
+              (map as any)._customMarkerPopup.remove();
+            }
 
-          // Store reference to current popup
-          (map as any)._customMarkerPopup = popup;
+            const popupContent = buildPopupContent(properties);
+            const popup = new maplibregl.Popup()
+              .setLngLat(e.lngLat)
+              .setHTML(popupContent)
+              .addTo(map);
 
-          // Clear reference when popup is closed
-          popup.on('close', () => {
-            (map as any)._customMarkerPopup = null;
-          });
+            // Store reference to current popup
+            (map as any)._customMarkerPopup = popup;
+
+            // Clear reference when popup is closed
+            popup.on('close', () => {
+              (map as any)._customMarkerPopup = null;
+            });
+          }
         }
       }
     });
@@ -319,3 +334,100 @@ export function removeCustomMarkers(markers: maplibregl.Marker[]): void {
     marker.remove();
   });
 }
+
+const PMTILES_URL = 'https://pmtiles.io/protomaps(vector)ODbL_firenze.pmtiles';
+const PMTILES_OVERTUREMAPS_PLACES_URL = 'https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2025-04-23/places.pmtiles';
+const PMTILES_OSM = 'https://demo-bucket.protomaps.com/v4.pmtiles'
+
+/**
+ * Define PM Tile Layer Style.
+ */
+export const pMTileLayerStyles = {
+  version: 8,
+  sources: {
+    'example_source': {
+      type: 'vector' as const,
+      url: `pmtiles://${PMTILES_URL}`,
+      attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+    },
+    'overturemaps_places': {
+      type: 'vector' as const,
+      url: `pmtiles://${PMTILES_OVERTUREMAPS_PLACES_URL}`,
+      name: 'places.pmtiles',
+    },
+    'osm_places': {
+      type: 'vector' as const,
+      url: `pmtiles://${PMTILES_OSM}`,
+      attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+    },
+    'openfreemap': {
+      type: 'vector' as const,
+      url: `https://tiles.openfreemap.org/planet`,
+      attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+    }
+  },
+  layers: [
+    {
+      'id': 'places',
+      'source': 'overturemaps_places',
+      'source-layer': 'place',
+      'type': 'circle' as const,
+      'paint': {
+        'circle-radius': 4,
+        'circle-color': '#0033ff',
+        'circle-stroke-color': '#000000',
+        'circle-stroke-width': 0
+      }
+    },
+    {
+      'id': 'buildings',
+      'source': 'osm_places',
+      'source-layer': 'landuse',
+      'type': 'fill' as const,
+      'paint': {
+        'fill-color': 'orange',
+        'fill-opacity': 0.2,
+        'fill-outline-color': 'rgba(0,0,0,0.76)',
+      }
+    },
+    {
+      'id': '3d-buildings',
+      'source': 'openfreemap',
+      'source-layer': 'building',
+      'type': 'fill-extrusion',
+      'minzoom': 14,
+      'filter': ['!=', ['get', 'hide_3d'], true],
+      'paint': {
+        'fill-extrusion-color': [
+          'interpolate',
+          ['linear'],
+          ['get', 'render_height'], 0, 'lightgray', 30, 'royalblue', 100, 'lightblue'
+        ],
+        'fill-extrusion-height': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          15,
+          0,
+          16,
+          ['get', 'render_height']
+        ],
+        'fill-extrusion-base': ['case',
+          ['>=', ['get', 'zoom'], 16],
+          ['get', 'render_min_height'], 0
+        ],
+        'fill-extrusion-opacity': 0.7
+      }
+    },
+    {
+      'id': 'roads',
+      'source': 'osm_places',
+      'source-layer': 'roads',
+      'type': 'line' as const,
+      'paint': {
+        'line-color': 'black'
+      }
+    }
+  ]
+}
+
