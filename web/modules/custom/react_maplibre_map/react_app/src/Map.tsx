@@ -12,89 +12,89 @@ import { addLayerInteractivity } from './utils/layerUtils';
 // Layers Control inspired from:
 // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
 class LayersControl {
-    private readonly _container: HTMLDivElement;
-    private readonly _ctrls: Record<string, string[]>;
-    private readonly _inputs: HTMLInputElement[];
-    private _map: maplibregl.Map | undefined;
+  private readonly _container: HTMLDivElement;
+  private readonly _ctrls: Record<string, string[]>;
+  private readonly _inputs: HTMLInputElement[];
+  private _map: maplibregl.Map | undefined;
 
-    constructor(ctrls: Record<string, string[]>) {
-      // This div will hold all the checkboxes and their labels
-      this._container = document.createElement("div");
-      this._container.classList.add(
-        // Built-in classes for consistency
-        "maplibregl-ctrl",
-        "maplibregl-ctrl-group",
-        // Custom class, see later
-        "layers-control",
-      );
-      // Might be cleaner to deep copy these instead
-      this._ctrls = ctrls;
-      // Direct access to the input elements, so I can decide which should be
-      // checked when adding the control to the map.
-      this._inputs = [];
-      // Create the checkboxes and add them to the container
-      for (const key of Object.keys(this._ctrls)) {
-        const labeled_checkbox = this._createLabeledCheckbox(key);
-        this._container.appendChild(labeled_checkbox);
-      }
+  constructor(ctrls: Record<string, string[]>) {
+    // This div will hold all the checkboxes and their labels
+    this._container = document.createElement("div");
+    this._container.classList.add(
+      // Built-in classes for consistency
+      "maplibregl-ctrl",
+      "maplibregl-ctrl-group",
+      // Custom class, see later
+      "layers-control",
+    );
+    // Might be cleaner to deep copy these instead
+    this._ctrls = ctrls;
+    // Direct access to the input elements, so I can decide which should be
+    // checked when adding the control to the map.
+    this._inputs = [];
+    // Create the checkboxes and add them to the container
+    for (const key of Object.keys(this._ctrls)) {
+      const labeled_checkbox = this._createLabeledCheckbox(key);
+      this._container.appendChild(labeled_checkbox);
     }
+  }
 
-    // Creates one checkbox and its label
-    _createLabeledCheckbox(key: string): HTMLLabelElement {
-      const label = document.createElement("label");
-      label.classList.add("layer-control");
-      const text = document.createTextNode(key);
-      const input = document.createElement("input");
-      this._inputs.push(input);
-      input.type = "checkbox";
-      input.id = key;
-      // `=>` function syntax keeps `this` to the LayersControl object
-      // When changed, toggle all the layers associated with the checkbox via
-      // `this._ctrls`.
-      input.addEventListener("change", () => {
-        const visibility = input.checked ? "visible" : "none";
-        for (const layer of this._ctrls[input.id]) {
-          if (this._map) {
-            this._map.setLayoutProperty(layer, "visibility", visibility);
-          }
+  // Creates one checkbox and its label
+  _createLabeledCheckbox(key: string): HTMLLabelElement {
+    const label = document.createElement("label");
+    label.classList.add("layer-control");
+    const text = document.createTextNode(key);
+    const input = document.createElement("input");
+    this._inputs.push(input);
+    input.type = "checkbox";
+    input.id = key;
+    // `=>` function syntax keeps `this` to the LayersControl object
+    // When changed, toggle all the layers associated with the checkbox via
+    // `this._ctrls`.
+    input.addEventListener("change", () => {
+      const visibility = input.checked ? "visible" : "none";
+      for (const layer of this._ctrls[input.id]) {
+        if (this._map) {
+          this._map.setLayoutProperty(layer, "visibility", visibility);
         }
-      });
-      label.appendChild(input);
-      label.appendChild(text);
-      return label;
-    }
-
-    onAdd(map: maplibregl.Map): HTMLDivElement {
-      this._map = map;
-      // For every checkbox, find out if all its associated layers are visible.
-      // Check the box if so.
-      for (const input of this._inputs) {
-        // List of all layer ids associated with this checkbox
-        const layers = this._ctrls[input.id];
-        // Check whether every layer is currently visible
-        let is_visible = true;
-        for (const layername of layers) {
-          is_visible =
-            is_visible &&
-            this._map.getLayoutProperty(layername, "visibility") !== "none";
-        }
-        input.checked = is_visible;
       }
-      return this._container;
-    }
+    });
+    label.appendChild(input);
+    label.appendChild(text);
+    return label;
+  }
 
-    onRemove(): void {
-      // Not sure why we have to do this ourselves since we are not the ones
-      // adding us to the map.
-      // Copied from their example so keeping it in.
-      if (this._container.parentNode) {
-        this._container.parentNode.removeChild(this._container);
+  onAdd(map: maplibregl.Map): HTMLDivElement {
+    this._map = map;
+    // For every checkbox, find out if all its associated layers are visible.
+    // Check the box if so.
+    for (const input of this._inputs) {
+      // List of all layer ids associated with this checkbox
+      const layers = this._ctrls[input.id];
+      // Check whether every layer is currently visible
+      let is_visible = true;
+      for (const layername of layers) {
+        is_visible =
+          is_visible &&
+          this._map.getLayoutProperty(layername, "visibility") !== "none";
       }
-      // This might be to help garbage collection? Also from their example.
-      // Or perhaps to ensure calls to this object do not change the map still
-      // after removal.
-      this._map = undefined;
+      input.checked = is_visible;
     }
+    return this._container;
+  }
+
+  onRemove(): void {
+    // Not sure why we have to do this ourselves since we are not the ones
+    // adding us to the map.
+    // Copied from their example so keeping it in.
+    if (this._container.parentNode) {
+      this._container.parentNode.removeChild(this._container);
+    }
+    // This might be to help garbage collection? Also from their example.
+    // Or perhaps to ensure calls to this object do not change the map still
+    // after removal.
+    this._map = undefined;
+  }
 }
 
 function Map() {
@@ -210,11 +210,11 @@ function Map() {
         map.current.addControl(new maplibregl.GlobeControl(), 'top-left');
 
         // Add Terrain Control
-/*        map.current.addControl(new maplibregl.TerrainControl(
-          {
-            source: 'terrain'
-          }
-        ), 'top-right');*/
+        /*        map.current.addControl(new maplibregl.TerrainControl(
+                  {
+                    source: 'terrain'
+                  }
+                ), 'top-right');*/
       }
 
     });
@@ -278,46 +278,45 @@ function Map() {
     });
 
     if (hasFeatures) {
-/*      map.current.fitBounds(combinedBounds, {
-        padding: 50,
-        maxZoom: 15
-      });*/
-    }
+      /*      map.current.fitBounds(combinedBounds, {
+              padding: 50,
+              maxZoom: 15
+            });*/
 
-    if (map.current) {
+      if (map.current) {
+        map.current.addSource('overturemaps_places', pMTileLayerStyles.sources['overturemaps_places'] as maplibregl.VectorSourceSpecification);
+        map.current.addSource('osm_places', pMTileLayerStyles.sources['osm_places'] as maplibregl.VectorSourceSpecification);
+        map.current.addSource('openfreemap', pMTileLayerStyles.sources['openfreemap'] as maplibregl.VectorSourceSpecification);
+        const places_layer = pMTileLayerStyles.layers[0];
+        const buildings_layer = pMTileLayerStyles.layers[1];
+        const buildings_3d_layer = pMTileLayerStyles.layers[2];
+        map.current.addLayer(places_layer as maplibregl.CircleLayerSpecification, 'geoimages-points');
+        map.current.addLayer(buildings_layer as maplibregl.FillLayerSpecification, 'geoimages-points');
+        map.current.addLayer(buildings_3d_layer as maplibregl.FillLayerSpecification, 'geoimages-points');
+        map.current.moveLayer('geoplaces-points', 'geoimages-points');
+        map.current.moveLayer('osm', 'satellite');
 
-      map.current.addSource('overturemaps_places', pMTileLayerStyles.sources['overturemaps_places'] as maplibregl.VectorSourceSpecification);
-      map.current.addSource('osm_places', pMTileLayerStyles.sources['osm_places'] as maplibregl.VectorSourceSpecification);
-      map.current.addSource('openfreemap', pMTileLayerStyles.sources['openfreemap'] as maplibregl.VectorSourceSpecification);
-      const places_layer = pMTileLayerStyles.layers[0];
-      const buildings_layer = pMTileLayerStyles.layers[1];
-      const buildings_3d_layer = pMTileLayerStyles.layers[2];
-      map.current.addLayer(places_layer as maplibregl.CircleLayerSpecification, 'geoimages-points');
-      map.current.addLayer(buildings_layer as maplibregl.FillLayerSpecification, 'geoimages-points');
-      map.current.addLayer(buildings_3d_layer as maplibregl.FillLayerSpecification, 'geoimages-points');
-      map.current.moveLayer('geoplaces-points', 'geoimages-points');
-      map.current.moveLayer('osm', 'satellite');
+        // Add click handler for popups
+        // Add interactivity / click handler for popups
+        addLayerInteractivity(map.current, ['places']);
 
-      // Add click handler for popups
-      // Add interactivity / click handler for popups
-      addLayerInteractivity(map.current, ['places']);
+        // console.log(map.current.getStyle().layers);
 
-      // console.log(map.current.getStyle().layers);
+        // Add the Layer Control.
+        // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
+        map.current.addControl(layerControl);
 
-      // Add the Layer Control.
-      // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
-      map.current.addControl(layerControl);
-
-      // Click (to uncheck) specific Layers intiially.
-      const unchecked_layers = [
-        'Satellite',
-        'Overture Places',
-        'Urban Areas'
-      ];
-      for (const layer_label of unchecked_layers) {
-        const Chkinput = document.getElementById(layer_label);
-        if (Chkinput) {
-          Chkinput.click();
+        // Click (to uncheck) specific Layers intiially.
+        const unchecked_layers = [
+          'Satellite',
+          'Overture Places',
+          'Urban Areas'
+        ];
+        for (const layer_label of unchecked_layers) {
+          const Chkinput = document.getElementById(layer_label);
+          if (Chkinput) {
+            Chkinput.click();
+          }
         }
       }
     }
@@ -325,10 +324,10 @@ function Map() {
   }, [mapLoaded, geoplacesLayer.geojsonData, geoimagesLayer.geojsonData, layerControl]);
 
   // Add PM Tile Layer using the custom hook
-/*  usePMTileLayer({
-    map: map.current,
-    sourceId: 'overturemaps_places',
-  });*/
+  /*  usePMTileLayer({
+      map: map.current,
+      sourceId: 'overturemaps_places',
+    });*/
 
   // Determine overall loading and error states
   const loading = geoplacesLayer.loading || geoimagesLayer.loading;

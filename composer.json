@@ -108,6 +108,7 @@
         "drupal/leaflet": "^10.3",
         "drupal/leaflet_choropleth": "^1.0",
         "drupal/masquerade": "^2.0@RC",
+        "drupal/meaofd": "^1.1",
         "drupal/media_entity_image_exif": "^1.0@RC",
         "drupal/media_entity_slideshow": "^2.5",
         "drupal/media_library_importer": "^2.0",
