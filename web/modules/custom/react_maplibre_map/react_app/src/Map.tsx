@@ -304,7 +304,7 @@ function Map() {
       // Add interactivity / click handler for popups
       addLayerInteractivity(map.current, ['places']);
 
-      console.log(map.current.getStyle().layers);
+      // console.log(map.current.getStyle().layers);
 
       // Add the Layer Control.
       // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html

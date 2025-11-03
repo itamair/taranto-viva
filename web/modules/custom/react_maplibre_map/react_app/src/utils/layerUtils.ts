@@ -170,7 +170,18 @@ export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): 
             properties = {
               'name': feature._vectorTileFeature.properties['@name'],
               'field_map_popup_disabled': 0,
+              'confidence': parseFloat(feature._vectorTileFeature.properties['confidence']).toFixed(2),
             }
+
+            // Eventually set website address.
+            const websites = feature._vectorTileFeature.properties['websites'] ? JSON.parse(feature._vectorTileFeature.properties['websites']) : [];
+            if (websites.length > 0) {
+              properties.websites = '';
+              for (const website of websites) {
+                properties.websites += '<a href=' + website + ' target="_blank">' + '&rarr; website' + '<a>';
+              }
+            }
+
           } else if (feature.properties) {
             properties = feature.properties;
           }
@@ -230,7 +241,6 @@ export function addCustomMarkers(
     if (
       feature.geometry.type === 'Point' &&
       feature.properties.geomarker_icon_url &&
-      feature.properties.geomarker_icon_url !== null &&
       feature.properties.geomarker_icon_url !== ''
     ) {
       const coordinates = feature.geometry.coordinates as [number, number];
@@ -375,9 +385,33 @@ export const pMTileLayerStyles = {
       'paint': {
         'circle-radius': 4,
         'circle-color': '#0033ff',
+        'circle-opacity':  [
+          'interpolate',
+          ['linear'],
+          ["get", "confidence"],
+          0.7,
+          0,
+          0.98,
+          1
+        ],
         'circle-stroke-color': '#000000',
         'circle-stroke-width': 0
-      }
+      },
+      "filter": [
+        "all",
+        [
+          "has",
+          "@name"
+        ],
+        [
+          ">",
+          [
+            "get",
+            "confidence"
+          ],
+          0.7
+        ]
+      ],
     },
     {
       'id': 'buildings',

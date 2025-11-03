@@ -93,11 +93,11 @@ export function buildPopupContent(properties: any): string {
     }
 
     if (properties.field_sub_title) {
-      content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Sottotitolo:</strong> ${properties.field_sub_title}</p>`;
+      content += `<p style="margin: 5px 0; font-size: 14px;">${properties.field_sub_title}</p>`;
     }
 
     if (properties.field_category_type) {
-      content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Categoria:</strong> ${properties.field_category_type}</p>`;
+      content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Category:</strong> ${properties.field_category_type}</p>`;
     }
 
     if (properties.image_url) {
@@ -107,6 +107,15 @@ export function buildPopupContent(properties: any): string {
     if (properties.weblink) {
       content += `<p style="margin: 5px 0; font-size: 12px;"><a href="${properties.weblink}" >view more</a></p>`;
     }
+
+    if (properties.websites) {
+      content += properties.websites;
+    }
+
+    if (properties.confidence) {
+      content += `<p style="margin: 5px 0; font-size: 12px; color:gray; "><strong>Confidence:</strong> ${properties.confidence}</p>`;
+    }
+
     content += '</div>';
   }
 
