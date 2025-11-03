@@ -212,11 +212,11 @@ function Map() {
         map.current.addControl(new maplibregl.GlobeControl(), 'top-left');
 
         // Add Terrain Control
-        map.current.addControl(new maplibregl.TerrainControl(
+/*        map.current.addControl(new maplibregl.TerrainControl(
           {
             source: 'terrain'
           }
-        ), 'top-right');
+        ), 'top-right');*/
       }
 
     });
