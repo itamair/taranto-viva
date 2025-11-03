@@ -122,9 +122,6 @@ function Map() {
     // labelcheckboxwithmultiplelayers: ["layerid2", "layerid3", "layerid4"],
   }), []);
 
-  // Create control with useMemo to prevent recreation on every render
-  const layerControl = useMemo(() => new LayersControl(label_to_layer_ids), [label_to_layer_ids]);
-
   // Initialize map
   useEffect(() => {
 
@@ -302,6 +299,9 @@ function Map() {
 
         // console.log(map.current.getStyle().layers);
 
+        // Create control with useMemo to prevent recreation on every render
+        const layerControl = new LayersControl(label_to_layer_ids);
+
         // Add the Layer Control.
         // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
         map.current.addControl(layerControl);
@@ -321,7 +321,7 @@ function Map() {
       }
     }
 
-  }, [mapLoaded, geoplacesLayer.geojsonData, geoimagesLayer.geojsonData, layerControl]);
+  }, [mapLoaded, geoplacesLayer.geojsonData, geoimagesLayer.geojsonData, label_to_layer_ids]);
 
   // Add PM Tile Layer using the custom hook
   /*  usePMTileLayer({
