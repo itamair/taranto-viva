@@ -1,6 +1,11 @@
 import maplibregl from 'maplibre-gl';
 import { buildPopupContent } from './geojsonUtils.js';
 
+// Function to capitalize the first letter.q
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 /**
  * Adds a GeoJSON source to the map.
  * @param {maplibregl.Map} map - The map instance.
@@ -171,6 +176,12 @@ export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): 
               'name': feature._vectorTileFeature.properties['@name'],
               'field_map_popup_disabled': 0,
               'confidence': parseFloat(feature._vectorTileFeature.properties['confidence']).toFixed(2),
+            }
+
+            // Eventually set primary category.
+            const category = feature._vectorTileFeature.properties['categories'] ? JSON.parse(feature._vectorTileFeature.properties['categories']) : null;
+            if (category && category.primary.length > 0) {
+              properties.category = capitalizeFirstLetter(category.primary.replaceAll('_', ' '));
             }
 
             // Eventually set website address.
@@ -363,7 +374,7 @@ export const pMTileLayerStyles = {
     'overturemaps_places': {
       type: 'vector' as const,
       url: `pmtiles://${PMTILES_OVERTUREMAPS_PLACES_URL}`,
-      name: 'places.pmtiles',
+      attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
     },
     'osm_places': {
       type: 'vector' as const,
@@ -420,8 +431,7 @@ export const pMTileLayerStyles = {
       'type': 'fill' as const,
       'paint': {
         'fill-color': 'orange',
-        'fill-opacity': 0.2,
-        'fill-outline-color': 'rgba(0,0,0,0.76)',
+        'fill-opacity': 0.4,
       }
     },
     {
@@ -429,7 +439,7 @@ export const pMTileLayerStyles = {
       'source': 'openfreemap',
       'source-layer': 'building',
       'type': 'fill-extrusion',
-      'minzoom': 14,
+      'minzoom': 12,
       'filter': ['!=', ['get', 'hide_3d'], true],
       'paint': {
         'fill-extrusion-color': [
@@ -441,10 +451,10 @@ export const pMTileLayerStyles = {
           'interpolate',
           ['linear'],
           ['zoom'],
-          15,
+          11,
           0,
           16,
-          ['get', 'render_height']
+          ["*", ['get', 'render_height'], 2.5]
         ],
         'fill-extrusion-base': ['case',
           ['>=', ['get', 'zoom'], 16],

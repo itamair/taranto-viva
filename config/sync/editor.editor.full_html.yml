@@ -35,19 +35,22 @@ settings:
         dialog_class: ai-ckeditor-modal
       plugins:
         ai_ckeditor_completion:
-          provider: openai__gpt-4o
           enabled: true
+          provider: openai__gpt-4o
         ai_ckeditor_help:
           enabled: false
+        ai_ckeditor_modify_prompt:
+          enabled: false
+          provider: null
         ai_ckeditor_reformat_html:
-          provider: openai__gpt-4o
           enabled: false
+          provider: openai__gpt-4o
         ai_ckeditor_spellfix:
-          provider: openai__gpt-4o
           enabled: false
+          provider: openai__gpt-4o
         ai_ckeditor_summarize:
-          provider: openai__gpt-4o
           enabled: false
+          provider: openai__gpt-4o
         ai_ckeditor_tone:
           autocreate: false
           provider: openai__gpt-4o
@@ -60,9 +63,6 @@ settings:
           translate_vocabulary: colors
           use_description: false
           enabled: false
-        ai_ckeditor_modify_prompt:
-          enabled: false
-          provider: null
     ckeditor5_alignment:
       enabled_alignments:
         - center

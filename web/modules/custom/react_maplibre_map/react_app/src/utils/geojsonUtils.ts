@@ -96,8 +96,9 @@ export function buildPopupContent(properties: any): string {
       content += `<p style="margin: 5px 0; font-size: 14px;">${properties.field_sub_title}</p>`;
     }
 
-    if (properties.field_category_type) {
-      content += `<p style="margin: 5px 0; font-size: 14px;"><strong>Category:</strong> ${properties.field_category_type}</p>`;
+    if (properties.field_category_type || properties.category) {
+      const category = properties.field_category_type ?? properties.category;
+      content += `<p style="margin: 5px 0; font-size: 14px;">${category}</p>`;
     }
 
     if (properties.image_url) {
@@ -113,7 +114,7 @@ export function buildPopupContent(properties: any): string {
     }
 
     if (properties.confidence) {
-      content += `<p style="margin: 5px 0; font-size: 12px; color:gray; "><strong>Confidence:</strong> ${properties.confidence}</p>`;
+      content += `<div class="data-source"><p>Data Source: &rarr; <a href="https://overturemaps.org" target="blank">Overture Maps Foundation</a></p><p>Confidence: ${properties.confidence}</p></div>`;
     }
 
     content += '</div>';

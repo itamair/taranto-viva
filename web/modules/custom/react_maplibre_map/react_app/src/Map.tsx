@@ -103,7 +103,7 @@ function Map() {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   // Define & Memo Start Zoom and Start Location.
-  const start_location = useMemo(() => [17.23044, 40.47586] as [number, number], []); // Taranto coordinates
+  const start_location = useMemo(() => [17.240046, 40.472317] as [number, number], []); // Taranto coordinates
   const start_zoom = useMemo(() => 15, []);
 
   // Memoize styles to prevent re-creation
@@ -113,14 +113,12 @@ function Map() {
   // Set up the dictionary
   const label_to_layer_ids = useMemo(() => ({
     'Satellite': ['satellite'],
-    'Openstreet Map': ['osm'],
-    // 'Buildings': ['buildings'],
-    'PM Places': ['places'],
-    'Buildings': ['buildings'],
-    'Buildings 3D': ['3d-buildings'],
-    'Places': ['geoplaces-points'],
-    'Images': ['geoimages-points'],
-    'Areas': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
+    'OSM': ['osm'],
+    'Overture Places': ['places'],
+    '3D Buildings': ['3d-buildings'],
+    'Drupal Places': ['geoplaces-points'],
+    'Drupal Images': ['geoimages-points'],
+    'Urban Areas': ['buildings', 'geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
     // labelcheckboxwithmultiplelayers: ["layerid2", "layerid3", "layerid4"],
   }), []);
 
@@ -179,8 +177,8 @@ function Map() {
       },
       center: start_location,
       zoom: start_zoom,
-      pitch: 40,
-      bearing: 90,
+      pitch: 85,
+      bearing: -20,
       canvasContextAttributes: {antialias: true}
     });
 
@@ -313,10 +311,8 @@ function Map() {
       // Click (to uncheck) specific Layers intiially.
       const unchecked_layers = [
         'Satellite',
-        'PM Places',
-        'Buildings',
-        'Buildings 3D',
-        'Areas'
+        'Overture Places',
+        'Urban Areas'
       ];
       for (const layer_label of unchecked_layers) {
         const Chkinput = document.getElementById(layer_label);

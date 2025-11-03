@@ -324,6 +324,7 @@ display:
         title: 'Pinecone Search'
         description: ''
         weight: -40
+        enabled: false
         expanded: false
         menu_name: main
         parent: ''

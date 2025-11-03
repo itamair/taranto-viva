@@ -33,3 +33,5 @@ tool_usage_limits:
       hide_property: 1
 exclude_users_role: false
 masquerade_roles: {  }
+structured_output_enabled: null
+structured_output_schema: null

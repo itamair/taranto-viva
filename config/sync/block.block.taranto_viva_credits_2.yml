@@ -1,0 +1,30 @@
+uuid: da45a7d8-e058-4a31-942d-8f1af9d59eac
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:063c2182-4141-4a74-883f-eb7e99d69c01'
+  module:
+    - block_content
+    - system
+  theme:
+    - taranto_viva
+id: taranto_viva_credits_2
+theme: taranto_viva
+region: sidebar
+weight: 0
+provider: null
+plugin: 'block_content:063c2182-4141-4a74-883f-eb7e99d69c01'
+settings:
+  id: 'block_content:063c2182-4141-4a74-883f-eb7e99d69c01'
+  label: Credits
+  label_display: visible
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /react-maplibre-map
