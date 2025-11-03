@@ -212,6 +212,14 @@ function Map() {
                     source: 'terrain'
                   }
                 ), 'top-right');*/
+
+        // Create control with useMemo to prevent recreation on every render
+        const layerControl = new LayersControl(label_to_layer_ids);
+
+        // Add the Layer Control.
+        // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
+        map.current.addControl(layerControl);
+
       }
 
     });
@@ -294,13 +302,6 @@ function Map() {
         map.current.moveLayer('osm', 'satellite');
 
         // console.log(map.current.getStyle().layers);
-
-        // Create control with useMemo to prevent recreation on every render
-        const layerControl = new LayersControl(label_to_layer_ids);
-
-        // Add the Layer Control.
-        // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
-        map.current.addControl(layerControl);
 
         // Click (to uncheck) specific Layers intiially.
         const unchecked_layers = [
