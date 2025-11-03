@@ -293,10 +293,6 @@ function Map() {
         map.current.moveLayer('geoplaces-points', 'geoimages-points');
         map.current.moveLayer('osm', 'satellite');
 
-        // Add click handler for popups
-        // Add interactivity / click handler for popups
-        addLayerInteractivity(map.current, ['places']);
-
         // console.log(map.current.getStyle().layers);
 
         // Create control with useMemo to prevent recreation on every render
@@ -318,6 +314,11 @@ function Map() {
             Chkinput.click();
           }
         }
+
+        // Add click handler for popups
+        // Add interactivity / click handler for popups
+        addLayerInteractivity(map.current, ['places']);
+
       }
     }
 
