@@ -103,8 +103,8 @@ function Map() {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   // Define & Memo Start Zoom and Start Location.
-  const start_location = useMemo(() => [17.23, 40.47] as [number, number], []); // Taranto coordinates
-  const start_zoom = useMemo(() => 12, []);
+  const start_location = useMemo(() => [17.23044, 40.47586] as [number, number], []); // Taranto coordinates
+  const start_zoom = useMemo(() => 15, []);
 
   // Memoize styles to prevent re-creation
   const defaultStyles = useMemo(() => LAYER_STYLES.default, []);
@@ -118,8 +118,9 @@ function Map() {
     'PM Places': ['places'],
     'Buildings': ['buildings'],
     'Buildings 3D': ['3d-buildings'],
-    'Places': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoplaces-points'],
-    'Images': ['geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring', 'geoimages-points', ],
+    'Places': ['geoplaces-points'],
+    'Images': ['geoimages-points'],
+    'Areas': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
     // labelcheckboxwithmultiplelayers: ["layerid2", "layerid3", "layerid4"],
   }), []);
 
@@ -179,7 +180,7 @@ function Map() {
       center: start_location,
       zoom: start_zoom,
       pitch: 40,
-      bearing: 20,
+      bearing: 90,
       canvasContextAttributes: {antialias: true}
     });
 
@@ -279,10 +280,10 @@ function Map() {
     });
 
     if (hasFeatures) {
-      map.current.fitBounds(combinedBounds, {
+/*      map.current.fitBounds(combinedBounds, {
         padding: 50,
         maxZoom: 15
-      });
+      });*/
     }
 
     if (map.current) {
@@ -315,6 +316,7 @@ function Map() {
         'PM Places',
         'Buildings',
         'Buildings 3D',
+        'Areas'
       ];
       for (const layer_label of unchecked_layers) {
         const Chkinput = document.getElementById(layer_label);
