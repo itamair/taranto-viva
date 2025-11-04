@@ -118,7 +118,7 @@ function Map() {
     '3D Buildings': ['3d-buildings'],
     'Drupal Places': ['geoplaces-points'],
     'Drupal Images': ['geoimages-points'],
-    'Urban Areas': ['buildings', 'geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
+    'Urban Areas': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
     // labelcheckboxwithmultiplelayers: ["layerid2", "layerid3", "layerid4"],
   }), []);
 
@@ -212,14 +212,6 @@ function Map() {
                     source: 'terrain'
                   }
                 ), 'top-right');*/
-
-        // Create control with useMemo to prevent recreation on every render
-        const layerControl = new LayersControl(label_to_layer_ids);
-
-        // Add the Layer Control.
-        // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
-        map.current.addControl(layerControl);
-
       }
 
     });
@@ -293,15 +285,19 @@ function Map() {
         map.current.addSource('osm_places', pMTileLayerStyles.sources['osm_places'] as maplibregl.VectorSourceSpecification);
         map.current.addSource('openfreemap', pMTileLayerStyles.sources['openfreemap'] as maplibregl.VectorSourceSpecification);
         const places_layer = pMTileLayerStyles.layers[0];
-        const buildings_layer = pMTileLayerStyles.layers[1];
         const buildings_3d_layer = pMTileLayerStyles.layers[2];
-        map.current.addLayer(places_layer as maplibregl.CircleLayerSpecification, 'geoimages-points');
-        map.current.addLayer(buildings_layer as maplibregl.FillLayerSpecification, 'geoimages-points');
-        map.current.addLayer(buildings_3d_layer as maplibregl.FillLayerSpecification, 'geoimages-points');
-        map.current.moveLayer('geoplaces-points', 'geoimages-points');
+        map.current.addLayer(places_layer as maplibregl.CircleLayerSpecification);
+        map.current.addLayer(buildings_3d_layer as maplibregl.FillLayerSpecification);
         map.current.moveLayer('osm', 'satellite');
 
         // console.log(map.current.getStyle().layers);
+
+        // Create control with useMemo to prevent recreation on every render
+        const layerControl = new LayersControl(label_to_layer_ids);
+
+        // Add the Layer Control.
+        // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
+        map.current.addControl(layerControl);
 
         // Click (to uncheck) specific Layers intiially.
         const unchecked_layers = [
@@ -324,12 +320,6 @@ function Map() {
     }
 
   }, [mapLoaded, geoplacesLayer.geojsonData, geoimagesLayer.geojsonData, label_to_layer_ids]);
-
-  // Add PM Tile Layer using the custom hook
-  /*  usePMTileLayer({
-      map: map.current,
-      sourceId: 'overturemaps_places',
-    });*/
 
   // Determine overall loading and error states
   const loading = geoplacesLayer.loading || geoimagesLayer.loading;
