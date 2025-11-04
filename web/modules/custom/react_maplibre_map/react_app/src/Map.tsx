@@ -162,8 +162,8 @@ function Map() {
     'OSM': ['osm'],
     'Overture Places': ['places'],
     '3D Buildings': ['3d-buildings'],
-    'OSM Land Use': ['landuse'],
-    'OSM Roads': ['roads'],
+    // 'OSM Land Use': ['landuse'],
+    // 'OSM Roads': ['roads'],
     'Drupal Places': ['geoplaces-points'],
     'Drupal Images': ['geoimages-points'],
     'Urban Areas': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
@@ -268,7 +268,7 @@ function Map() {
               ]
             ],
           },
-          {
+          /*{
             'id': 'landuse',
             'source': 'osm_layers',
             'source-layer': 'landuse',
@@ -286,7 +286,7 @@ function Map() {
             'paint': {
               'line-color': 'black'
             }
-          },
+          },*/
           {
             'id': '3d-buildings',
             'source': 'openfreemap',
@@ -442,8 +442,8 @@ function Map() {
         const unchecked_layers = [
           'Satellite',
           'Overture Places',
-          'OSM Land Use',
-          'OSM Roads',
+          //'OSM Land Use',
+          //'OSM Roads',
           'Urban Areas'
         ];
         for (const layer_label of unchecked_layers) {
