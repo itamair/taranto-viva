@@ -119,7 +119,6 @@ function Map() {
     'Drupal Places': ['geoplaces-points'],
     'Drupal Images': ['geoimages-points'],
     'Urban Areas': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
-    // labelcheckboxwithmultiplelayers: ["layerid2", "layerid3", "layerid4"],
   }), []);
 
   // Initialize map
