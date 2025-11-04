@@ -12,12 +12,17 @@ import { addLayerInteractivity } from './utils/layerUtils';
 // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
 class LayersControl {
   private readonly _container: HTMLDivElement;
+  private readonly _headerContainer: HTMLDivElement;
+  private readonly _layersContainer: HTMLDivElement;
+  private readonly _collapseButton: HTMLButtonElement;
+  private readonly _collapsedText: HTMLSpanElement;
   private readonly _ctrls: Record<string, string[]>;
   private readonly _inputs: HTMLInputElement[];
   private _map: maplibregl.Map | undefined;
+  private _isCollapsed: boolean = false;
 
   constructor(ctrls: Record<string, string[]>) {
-    // This div will hold all the checkboxes and their labels
+    // Main container
     this._container = document.createElement("div");
     this._container.classList.add(
       // Built-in classes for consistency
@@ -26,15 +31,57 @@ class LayersControl {
       // Custom class, see later
       "layers-control",
     );
+
+    // Header container for button and collapsed text
+    this._headerContainer = document.createElement("div");
+    this._headerContainer.classList.add("layers-control-header");
+
+    // Collapsed text ("Layers")
+    this._collapsedText = document.createElement("span");
+    this._collapsedText.classList.add("layers-control-collapsed-text");
+    this._collapsedText.textContent = "Layers";
+    this._collapsedText.style.display = "none";
+    this._headerContainer.appendChild(this._collapsedText);
+
+    // Collapse button
+    this._collapseButton = document.createElement("button");
+    this._collapseButton.classList.add("layers-control-collapse-button");
+    this._collapseButton.innerHTML = "×";
+    this._collapseButton.setAttribute("aria-label", "Toggle layers control");
+    this._collapseButton.addEventListener("click", () => this._toggleCollapse());
+    this._headerContainer.appendChild(this._collapseButton);
+
+    this._container.appendChild(this._headerContainer);
+
+    // Layers container for checkboxes
+    this._layersContainer = document.createElement("div");
+    this._layersContainer.classList.add("layers-control-layers");
+
     // Might be cleaner to deep copy these instead
     this._ctrls = ctrls;
     // Direct access to the input elements, so I can decide which should be
     // checked when adding the control to the map.
     this._inputs = [];
-    // Create the checkboxes and add them to the container
+    // Create the checkboxes and add them to the layers container
     for (const key of Object.keys(this._ctrls)) {
       const labeled_checkbox = this._createLabeledCheckbox(key);
-      this._container.appendChild(labeled_checkbox);
+      this._layersContainer.appendChild(labeled_checkbox);
+    }
+
+    this._container.appendChild(this._layersContainer);
+  }
+
+  _toggleCollapse(): void {
+    this._isCollapsed = !this._isCollapsed;
+
+    if (this._isCollapsed) {
+      this._layersContainer.style.display = "none";
+      this._collapsedText.style.display = "inline-block";
+      this._container.classList.add("collapsed");
+    } else {
+      this._layersContainer.style.display = "block";
+      this._collapsedText.style.display = "none";
+      this._container.classList.remove("collapsed");
     }
   }
 

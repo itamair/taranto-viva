@@ -137,10 +137,66 @@ button:focus-visible {
   }
 }
 
-.layers-control .layer-control {
-  display: block;
-  padding: 2px 8px;
-  input {
-    margin: 4px;
+.layers-control {
+  position: relative;
+
+  .layers-control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .layers-control-collapsed-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-right: 8px;
+  }
+
+  .layers-control-collapse-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    transition: color 0.2s, transform 0.2s;
+    margin-left: auto;
+
+    &:hover {
+      color: #000;
+      transform: scale(1.1);
+    }
+
+    &:focus {
+      outline: 2px solid #646cff;
+      outline-offset: 2px;
+    }
+  }
+
+  .layers-control-layers {
+    display: block;
+  }
+
+  &.collapsed {
+    .layers-control-header {
+      border-bottom: none;
+    }
+  }
+
+  .layer-control {
+    display: block;
+    padding: 2px 8px;
+    input {
+      margin: 4px;
+    }
   }
 }
