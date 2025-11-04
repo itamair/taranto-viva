@@ -6,7 +6,6 @@ import { GEOJSON_ENDPOINTS } from './config/GeoJsons';
 import { LAYER_STYLES } from './config/layerStyles';
 import { useGeoJsonLayer } from './hooks/useGeoJsonLayer';
 import { calculateBounds } from './utils/geojsonUtils';
-import { pMTileLayerStyles } from './utils/layerUtils';
 import { addLayerInteractivity } from './utils/layerUtils';
 
 // Layers Control inspired from:
@@ -116,6 +115,8 @@ function Map() {
     'OSM': ['osm'],
     'Overture Places': ['places'],
     '3D Buildings': ['3d-buildings'],
+    'OSM Land Use': ['landuse'],
+    'OSM Roads': ['roads'],
     'Drupal Places': ['geoplaces-points'],
     'Drupal Images': ['geoimages-points'],
     'Urban Areas': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
@@ -152,6 +153,21 @@ function Map() {
               'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg'
             ],
             tileSize: 256
+          },
+          'overturemaps_places': {
+            type: 'vector' as const,
+            url: 'pmtiles://https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2025-04-23/places.pmtiles',
+            attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+          },
+          'osm_layers': {
+            type: 'vector' as const,
+            url: 'pmtiles://https://demo-bucket.protomaps.com/v4.pmtiles',
+            attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
+          },
+          'openfreemap': {
+            type: 'vector' as const,
+            url: 'https://tiles.openfreemap.org/planet',
+            attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
           }
         },
         layers: [
@@ -168,6 +184,90 @@ function Map() {
             source: 'osm',
             minzoom: 0,
             maxzoom: 20
+          },
+          {
+            'id': 'places',
+            'source': 'overturemaps_places',
+            'source-layer': 'place',
+            'type': 'circle' as const,
+            'paint': {
+              'circle-radius': 4,
+              'circle-color': '#0033ff',
+              'circle-opacity':  [
+                'interpolate',
+                ['linear'],
+                ["get", "confidence"],
+                0.7,
+                0,
+                0.98,
+                1
+              ],
+              'circle-stroke-color': '#000000',
+              'circle-stroke-width': 0
+            },
+            "filter": [
+              "all",
+              [
+                "has",
+                "@name"
+              ],
+              [
+                ">",
+                [
+                  "get",
+                  "confidence"
+                ],
+                0.7
+              ]
+            ],
+          },
+          {
+            'id': 'landuse',
+            'source': 'osm_layers',
+            'source-layer': 'landuse',
+            'type': 'fill' as const,
+            'paint': {
+              'fill-color': 'orange',
+              'fill-opacity': 0.4,
+            }
+          },
+          {
+            'id': 'roads',
+            'source': 'osm_layers',
+            'source-layer': 'roads',
+            'type': 'line' as const,
+            'paint': {
+              'line-color': 'black'
+            }
+          },
+          {
+            'id': '3d-buildings',
+            'source': 'openfreemap',
+            'source-layer': 'building',
+            'type': 'fill-extrusion',
+            'minzoom': 12,
+            'filter': ['!=', ['get', 'hide_3d'], true],
+            'paint': {
+              'fill-extrusion-color': [
+                'interpolate',
+                ['linear'],
+                ['get', 'render_height'], 0, 'lightgray', 30, 'royalblue', 100, 'lightblue'
+              ],
+              'fill-extrusion-height': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                11,
+                0,
+                16,
+                ["*", ['get', 'render_height'], 2.5]
+              ],
+              'fill-extrusion-base': ['case',
+                ['>=', ['get', 'zoom'], 16],
+                ['get', 'render_min_height'], 0
+              ],
+              'fill-extrusion-opacity': 0.7
+            }
           }
         ]
       },
@@ -194,7 +294,7 @@ function Map() {
               enableHighAccuracy: true
             },
             trackUserLocation: true
-          }), 'top-right');
+          }), 'top-left');
       }
 
 
@@ -203,7 +303,7 @@ function Map() {
         map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
 
         // Add Globe Control
-        map.current.addControl(new maplibregl.GlobeControl(), 'top-left');
+        // map.current.addControl(new maplibregl.GlobeControl(), 'top-left');
 
         // Add Terrain Control
         /*        map.current.addControl(new maplibregl.TerrainControl(
@@ -225,7 +325,7 @@ function Map() {
       // Remove pmtiles protocol.
       maplibregl.removeProtocol("pmtiles");
     };
-  }, [start_location, start_zoom]);
+  }, [label_to_layer_ids, start_location, start_zoom]);
 
   // Load GeoJSON layers using the custom hook
   // Pass map.current directly and let the hook handle the loaded state
@@ -280,13 +380,6 @@ function Map() {
             });*/
 
       if (map.current) {
-        map.current.addSource('overturemaps_places', pMTileLayerStyles.sources['overturemaps_places'] as maplibregl.VectorSourceSpecification);
-        map.current.addSource('osm_places', pMTileLayerStyles.sources['osm_places'] as maplibregl.VectorSourceSpecification);
-        map.current.addSource('openfreemap', pMTileLayerStyles.sources['openfreemap'] as maplibregl.VectorSourceSpecification);
-        const places_layer = pMTileLayerStyles.layers[0];
-        const buildings_3d_layer = pMTileLayerStyles.layers[2];
-        map.current.addLayer(places_layer as maplibregl.CircleLayerSpecification);
-        map.current.addLayer(buildings_3d_layer as maplibregl.FillLayerSpecification);
         map.current.moveLayer('osm', 'satellite');
 
         // console.log(map.current.getStyle().layers);
@@ -302,6 +395,8 @@ function Map() {
         const unchecked_layers = [
           'Satellite',
           'Overture Places',
+          'OSM Land Use',
+          'OSM Roads',
           'Urban Areas'
         ];
         for (const layer_label of unchecked_layers) {
