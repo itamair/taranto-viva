@@ -120,7 +120,7 @@
         "drupal/pathauto": "^1.11",
         "drupal/pcb": "^4.0",
         "drupal/photoswipe": "^4.0",
-        "drupal/popup_message": "^3.0",
+        "drupal/popup_message": "3.0.3",
         "drupal/queue_ui": "^3.1",
         "drupal/r4032login": "^2.2",
         "drupal/range": "^1.5",

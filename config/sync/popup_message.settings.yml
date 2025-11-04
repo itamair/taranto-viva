@@ -1,4 +1,4 @@
-visibility_pages: 'admin/*'
+visibility_pages: "admin/*\r\nuser/*"
 enable: '1'
 title: 'Taranto Viva - Info'
 body:
