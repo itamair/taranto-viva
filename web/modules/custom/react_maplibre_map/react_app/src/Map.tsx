@@ -492,7 +492,7 @@ function Map() {
           borderRadius: '8px',
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
         }}>
-          My Data Loading ...
+          Urban Community Data Loading ...
         </div>
       )}
       {errors.length > 0 && (
