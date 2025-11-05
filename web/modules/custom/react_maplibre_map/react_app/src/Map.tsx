@@ -432,17 +432,17 @@ function Map() {
               maxZoom: 15
             });*/
 
+      //console.log(map.current.getStyle().layers);
+      map.current.moveLayer('osm', 'satellite');
+
+      // Add click handler for popups
+      // Add interactivity / click handler for popups
+      addLayerInteractivity(map.current, ['places']);
+
+      // Add the layerControl and set its initial checkboxes state.
       if (map.current && !layerSetupComplete.current) {
         // Perform layer setup operations only once
         layerSetupComplete.current = true;
-
-        map.current.moveLayer('osm', 'satellite');
-
-        // Add click handler for popups
-        // Add interactivity / click handler for popups
-        addLayerInteractivity(map.current, ['places']);
-
-        console.log(map.current.getStyle().layers);
 
         // Add the Layer Control.
         // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
