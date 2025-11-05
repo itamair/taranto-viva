@@ -328,13 +328,11 @@ function Map() {
     map.current.on('load', () => {
       setMapLoaded(true);
 
-      // Add Navigation Controls to the Map.
       if (map.current) {
+        // Add Navigation Controls to the Map.
         map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
-      }
 
-      // Add Locate user Control
-      if (map.current) {
+        // Add Locate user Control
         map.current.addControl(
           new maplibregl.GeolocateControl({
             positionOptions: {
@@ -342,10 +340,7 @@ function Map() {
             },
             trackUserLocation: true
           }), 'top-left');
-      }
 
-
-      if (map.current) {
         // Add Full Screen Control
         map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
 
@@ -429,7 +424,11 @@ function Map() {
       if (map.current) {
         map.current.moveLayer('osm', 'satellite');
 
-        // console.log(map.current.getStyle().layers);
+        // Add click handler for popups
+        // Add interactivity / click handler for popups
+        addLayerInteractivity(map.current, ['places']);
+
+        console.log(map.current.getStyle().layers);
 
         // Create control with useMemo to prevent recreation on every render
         const layerControl = new LayersControl(label_to_layer_ids);
@@ -452,14 +451,8 @@ function Map() {
             Chkinput.click();
           }
         }
-
-        // Add click handler for popups
-        // Add interactivity / click handler for popups
-        addLayerInteractivity(map.current, ['places']);
-
       }
     }
-
   }, [mapLoaded, geoplacesLayer.geojsonData, geoimagesLayer.geojsonData, label_to_layer_ids]);
 
   // Determine overall loading and error states
