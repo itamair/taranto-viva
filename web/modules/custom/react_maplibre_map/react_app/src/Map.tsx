@@ -146,6 +146,8 @@ class LayersControl {
 function Map() {
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const map = useRef<maplibregl.Map | null>(null);
+  const layerControlRef = useRef<LayersControl | null>(null);
+  const layerSetupComplete = useRef<boolean>(false);
   const [mapLoaded, setMapLoaded] = useState(false);
 
   // Define & Memo Start Zoom and Start Location.
@@ -359,10 +361,19 @@ function Map() {
 
     // Cleanup on unmount
     return () => {
+      // Remove layer control if it exists
+      if (layerControlRef.current && map.current) {
+        map.current.removeControl(layerControlRef.current);
+        layerControlRef.current = null;
+      }
+
       if (map.current) {
         map.current.remove();
         map.current = null;
       }
+
+      // Reset setup flag
+      layerSetupComplete.current = false;
 
       // Remove pmtiles protocol.
       maplibregl.removeProtocol("pmtiles");
@@ -421,7 +432,10 @@ function Map() {
               maxZoom: 15
             });*/
 
-      if (map.current) {
+      if (map.current && !layerSetupComplete.current) {
+        // Perform layer setup operations only once
+        layerSetupComplete.current = true;
+
         map.current.moveLayer('osm', 'satellite');
 
         // Add click handler for popups
@@ -430,14 +444,13 @@ function Map() {
 
         console.log(map.current.getStyle().layers);
 
-        // Create control with useMemo to prevent recreation on every render
-        const layerControl = new LayersControl(label_to_layer_ids);
-
         // Add the Layer Control.
         // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
+        const layerControl = new LayersControl(label_to_layer_ids);
         map.current.addControl(layerControl);
+        layerControlRef.current = layerControl;
 
-        // Click (to uncheck) specific Layers intiially.
+        // Click (to uncheck) specific Layers initially.
         const unchecked_layers = [
           'Satellite',
           'Overture Places',
