@@ -1,0 +1,17 @@
+parameters:
+
+  # Configure Cross-Site HTTP requests (CORS).
+  # Read https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+  # for more information about the topic in general.
+  # Note: By default the configuration is disabled.
+  # The following setuo derived from this comment:
+  # https://www.drupal.org/project/simple_instagram_feed/issues/3201098#comment-15026035
+  cors.config:
+    enabled: true
+    # Specify allowed headers, like 'x-allowed-header'.
+    allowedHeaders: [ '*' ]
+    # Specify allowed request methods, specify ['*'] to allow all possible ones.
+    allowedMethods: [ '*' ]
+    # Configure requests allowed from specific origins. Do not include trailing
+    # slashes with URLs.
+    allowedOrigins: [ '*' ]
