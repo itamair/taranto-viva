@@ -6,7 +6,13 @@ export const LAYER_STYLES = {
   // Original taranto_viva_geojson and geoplaces styling (red points, orange polygons)
   default: {
     point: {
-      'circle-radius': 10,
+      'circle-radius': [
+        'interpolate',
+        ['exponential', 0.5],
+        ['zoom'],
+        5, 3,   // at zoom 5 → radius 3
+        18, 8  // at zoom 18 → radius 30
+      ],
       'circle-color': '#ff0000',
       'circle-stroke-color': '#000000',
       'circle-stroke-width': 1
