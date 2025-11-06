@@ -341,7 +341,7 @@ export function addCustomMarkers(
             className: 'tooltip hover-tooltip'
           })
             .setLngLat(coordinates)
-            .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
+            .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
             .addTo(map);
 
           (map as any)._hoverTooltip = hoverTooltip;
@@ -368,7 +368,7 @@ export function addCustomMarkers(
           offset: [0, -10] // Offset above the marker
         })
           .setLngLat(coordinates)
-          .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
+          .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
           .addTo(map);
 
         // Store reference on marker for potential cleanup
@@ -448,7 +448,7 @@ export function addPermanentTooltips(
         className: 'tooltip permanent-tooltip'
       })
         .setLngLat(coordinates)
-        .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${name}</div>`)
+        .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${name}</div>`)
         .addTo(map);
 
       tooltips.push(tooltip);
@@ -508,7 +508,7 @@ export function addHoverTooltips(
           className: 'tooltip hover-tooltip'
         })
           .setLngLat(e.lngLat)
-          .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
+          .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
           .addTo(map);
 
         (map as any)._hoverTooltip = tooltip;
