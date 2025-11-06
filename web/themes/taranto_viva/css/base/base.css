@@ -79,7 +79,7 @@ h1 {
 
 @media (min-width: 43.75rem) {
   h1 {
-    font-size: 3.75rem;
+    font-size: 3.125rem;
     line-height: var(--sp4);
   }
 }
