@@ -400,23 +400,26 @@
       const zoomLevel = map.getZoom();
       const overlays = Drupal.Leaflet[mapid].overlays;
 
+
+      // Remove specific zoom visibility of Areas and quarters, because now
+      // managed by Zoom Visibility taxonomy.
       // Zone e Quartieri.
-      if (overlays["Zone e Quartieri"]) {
+/*      if (overlays["Zone e Quartieri"]) {
         if (zoomLevel > 13) {
           overlays["Zone e Quartieri"].remove();
         } else {
           overlays["Zone e Quartieri"].addTo(map);
         }
-      }
+      }*/
 
       // Areas and quarters.
-      if (overlays["Areas and quarters"]) {
+/*      if (overlays["Areas and quarters"]) {
         if (zoomLevel > 13) {
           overlays["Areas and quarters"].remove();
         } else {
           overlays["Areas and quarters"].addTo(map);
         }
-      }
+      }*/
 
       // Handle Images/Immagini overlay visibility based on zoom and user preference
       const imagesOverlayActive = sessionStorage.getItem('imagesOverlayActive');
