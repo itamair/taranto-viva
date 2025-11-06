@@ -447,10 +447,17 @@ function italo_module_leaflet_views_features_alter(array &$features, ViewsPlugin
  */
 function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPluginInterface &$view_style) {
   if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
-      'segnalazione territoriale',
-      'territorial report',
-    ])) {
+    'segnalazione territoriale',
+    'territorial report',
+  ])) {
     $group["weight"] = -10;
+  }
+
+  if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
+    'zone e quartieri',
+    'areas and quarters',
+  ])) {
+    $group["weight"] = 100;
   }
 
   if ($view_style->getPluginId() == 'leaflet_choropleth_map') {
