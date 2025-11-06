@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import { fetchGeoJson } from '../utils/geojsonUtils';
-import { addGeoJsonSource, addAllLayers, addLayerInteractivity, removeLayers, addCustomMarkers, removeCustomMarkers } from '../utils/layerUtils';
+import { addGeoJsonSource, addAllLayers, addLayerInteractivity, removeLayers, addCustomMarkers, removeCustomMarkers, addPermanentTooltips, removePermanentTooltips, addHoverTooltips, removeHoverTooltips } from '../utils/layerUtils';
 
 interface UseGeoJsonLayerParams {
   map: maplibregl.Map | null;
@@ -37,6 +37,7 @@ export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabl
   const [error, setError] = useState<string | null>(null);
   const [layerIds, setLayerIds] = useState<string[]>([]);
   const [customMarkers, setCustomMarkers] = useState<maplibregl.Marker[]>([]);
+  const [permanentTooltips, setPermanentTooltips] = useState<maplibregl.Popup[]>([]);
 
   useEffect(() => {
     if (!enabled || !map || !url) {
@@ -75,6 +76,17 @@ export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabl
         const markers = addCustomMarkers(map, custom_markers_data, markerContainerWidth);
         setCustomMarkers(markers);
 
+        // Add permanent tooltips for points with field_tooltip_permanent = "1"
+        const tooltips = addPermanentTooltips(map, data);
+        setPermanentTooltips(tooltips);
+
+        // Add hover tooltips for points with field_tooltip_permanent = "0"
+        // Find the point layer ID from the created layers
+        const pointLayerId = createdLayerIds.find(id => id.endsWith('-points'));
+        if (pointLayerId) {
+          addHoverTooltips(map, pointLayerId);
+        }
+
         setLoading(false);
       } catch (err) {
         if (!isMounted) return;
@@ -102,13 +114,21 @@ export function useGeoJsonLayer({ map, url, sourceId, layerPrefix, styles, enabl
         map.off('load', loadHandler);
       }
       if (map && layerIds.length > 0) {
+        // Remove hover tooltips from point layer
+        const pointLayerId = layerIds.find(id => id.endsWith('-points'));
+        if (pointLayerId) {
+          removeHoverTooltips(map, pointLayerId);
+        }
         removeLayers(map, sourceId, layerIds);
       }
       if (customMarkers.length > 0) {
         removeCustomMarkers(customMarkers);
       }
+      if (permanentTooltips.length > 0) {
+        removePermanentTooltips(permanentTooltips);
+      }
     };
-  }, [enabled, map, url, sourceId, layerPrefix, styles, markerContainerWidth]);
+  }, [enabled, map, url, sourceId, layerPrefix, styles, markerContainerWidth, layerIds, customMarkers, permanentTooltips]);
 
   return { geojsonData, loading, error };
 }

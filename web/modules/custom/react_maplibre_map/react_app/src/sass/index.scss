@@ -60,12 +60,18 @@ button:focus-visible {
 }
 
 .maplibregl-popup {
+  &.tooltip {
+    .maplibregl-popup-content {
+      padding: 2px;
+      opacity: 0.85;
+    }
+  }
   max-width: 500px !important;
   .maplibregl-popup-content {
     position: relative;
     padding: 8px 8px 8px 8px;
     div {
-      max-width: 360px;
+      max-width: 300px;
     }
     h2, h3 {
       font-size: 1rem;
@@ -86,13 +92,13 @@ button:focus-visible {
       margin-bottom: 2px
     }
     .node--type-geoimage {
-      max-width: 460px;
+      max-width: 360px;
     }
     .node--type-geoplace, .node--type-event  {
-      max-width: 360px;
+      max-width: 300px;
     }
     .node--type-territorial-report {
-      max-width: 360px;
+      max-width: 300px;
     }
     .node__content {
       padding-block-end: 0 !important;
@@ -104,20 +110,6 @@ button:focus-visible {
         margin-block-start: 0;
         margin-inline-start: 0;
         margin-block-end: 0;
-      }
-    }
-  }
-
-  @media only screen and (max-width: 700px) {
-    .maplibregl-popup-content {
-      div, .node--type-geoplace, .node--type-event {
-        max-width: 300px;
-      }
-      .node--type-geoimage {
-        max-width: 400px !important;
-      }
-      .node--type-territorial-report {
-        max-width: 300px !important;
       }
     }
   }

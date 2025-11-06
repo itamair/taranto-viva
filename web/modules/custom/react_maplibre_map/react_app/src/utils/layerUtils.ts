@@ -321,6 +321,60 @@ export function addCustomMarkers(
         });
       }
 
+      // Add hover tooltip for markers with field_tooltip_permanent != "1"
+      if (
+        Object.prototype.hasOwnProperty.call(feature.properties, "field_tooltip_permanent") &&
+        feature.properties?.field_tooltip_permanent != "1" &&
+        feature.properties.name
+      ) {
+        let hoverTooltip: maplibregl.Popup | null = null;
+
+        containerDiv.addEventListener('mouseenter', () => {
+          // Remove existing hover tooltip if any
+          if ((map as any)._hoverTooltip) {
+            (map as any)._hoverTooltip.remove();
+          }
+
+          hoverTooltip = new maplibregl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+            className: 'tooltip hover-tooltip'
+          })
+            .setLngLat(coordinates)
+            .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
+            .addTo(map);
+
+          (map as any)._hoverTooltip = hoverTooltip;
+        });
+
+        containerDiv.addEventListener('mouseleave', () => {
+          if (hoverTooltip) {
+            hoverTooltip.remove();
+            hoverTooltip = null;
+          }
+          if ((map as any)._hoverTooltip) {
+            (map as any)._hoverTooltip = null;
+          }
+        });
+      }
+
+      // Add permanent tooltip for markers with field_tooltip_permanent = "1"
+      if (feature.properties.field_tooltip_permanent == "1" && feature.properties.name) {
+        const permanentTooltip = new maplibregl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+          closeOnMove: false,
+          className: 'tooltip permanent-tooltip',
+          offset: [0, -10] // Offset above the marker
+        })
+          .setLngLat(coordinates)
+          .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
+          .addTo(map);
+
+        // Store reference on marker for potential cleanup
+        (marker as any)._permanentTooltip = permanentTooltip;
+      }
+
       markers.push(marker);
     }
   });
@@ -352,6 +406,143 @@ export function removeLayers(map: maplibregl.Map, sourceId: string, layerIds: st
  */
 export function removeCustomMarkers(markers: maplibregl.Marker[]): void {
   markers.forEach((marker: maplibregl.Marker) => {
+    // Remove permanent tooltip if attached to marker
+    if ((marker as any)._permanentTooltip) {
+      (marker as any)._permanentTooltip.remove();
+    }
     marker.remove();
   });
+}
+
+/**
+ * Creates permanent tooltips for point features that have field_tooltip_permanent = "1".
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {Object} geojsonData - The GeoJSON data.
+ * @returns {maplibregl.Popup[]} Array of created permanent tooltips.
+ */
+export function addPermanentTooltips(
+  map: maplibregl.Map,
+  geojsonData: any
+): maplibregl.Popup[] {
+  const tooltips: maplibregl.Popup[] = [];
+
+  if (!geojsonData || !geojsonData.features) {
+    return tooltips;
+  }
+
+  geojsonData.features.forEach((feature: any) => {
+    // Only process Point features with field_tooltip_permanent = "1"
+    if (
+      feature.geometry.type === 'Point' &&
+      feature.properties.field_tooltip_permanent == "1" &&
+      feature.properties.name
+    ) {
+      const coordinates = feature.geometry.coordinates as [number, number];
+      const name = feature.properties.name;
+
+      // Create a permanent tooltip
+      const tooltip = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        closeOnMove: false,
+        className: 'tooltip permanent-tooltip'
+      })
+        .setLngLat(coordinates)
+        .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${name}</div>`)
+        .addTo(map);
+
+      tooltips.push(tooltip);
+    }
+  });
+
+  return tooltips;
+}
+
+/**
+ * Removes permanent tooltips from the map.
+ * @param {maplibregl.Popup[]} tooltips - Array of tooltips to remove.
+ */
+export function removePermanentTooltips(tooltips: maplibregl.Popup[]): void {
+  tooltips.forEach((tooltip: maplibregl.Popup) => {
+    tooltip.remove();
+  });
+}
+
+/**
+ * Adds hover tooltip functionality to point layers for features with field_tooltip_permanent = "0".
+ * Tooltips appear on hover and disappear when mouse leaves.
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {string} layerId - The layer ID to add hover tooltips to.
+ */
+export function addHoverTooltips(
+  map: maplibregl.Map,
+  layerId: string
+): void {
+  // Store hover tooltip reference on the map object
+  if (!(map as any)._hoverTooltip) {
+    (map as any)._hoverTooltip = null;
+  }
+
+  // Handle mouse move to show tooltip
+  map.on('mousemove', layerId, (e: any) => {
+    if (e.features && e.features.length > 0) {
+      const feature = e.features[0];
+
+      // Only show tooltip for features with field_tooltip_permanent = "0"
+      if (
+        Object.prototype.hasOwnProperty.call(feature.properties, "field_tooltip_permanent") &&
+        feature.properties.field_tooltip_permanent != "1" &&
+        feature.properties.name
+      ) {
+        map.getCanvas().style.cursor = 'pointer';
+
+        // Remove existing hover tooltip if any
+        if ((map as any)._hoverTooltip) {
+          (map as any)._hoverTooltip.remove();
+        }
+
+        // Create new hover tooltip
+        const tooltip = new maplibregl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+          className: 'tooltip hover-tooltip'
+        })
+          .setLngLat(e.lngLat)
+          .setHTML(`<div style="font-size: 12px; padding: 2px 6px; font-weight: bold;">${feature.properties.name}</div>`)
+          .addTo(map);
+
+        (map as any)._hoverTooltip = tooltip;
+      }
+    }
+  });
+
+  // Handle mouse leave to remove tooltip
+  map.on('mouseleave', layerId, () => {
+    map.getCanvas().style.cursor = '';
+
+    // Remove hover tooltip
+    if ((map as any)._hoverTooltip) {
+      (map as any)._hoverTooltip.remove();
+      (map as any)._hoverTooltip = null;
+    }
+  });
+}
+
+/**
+ * Removes hover tooltip event listeners from a layer.
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {string} _layerId - The layer ID (unused, kept for API consistency).
+ */
+export function removeHoverTooltips(
+  map: maplibregl.Map,
+  _layerId: string
+): void {
+  // Remove hover tooltip if exists
+  if ((map as any)._hoverTooltip) {
+    (map as any)._hoverTooltip.remove();
+    (map as any)._hoverTooltip = null;
+  }
+
+  // Note: We don't explicitly remove the event listeners here because
+  // they will be removed when the layer is removed from the map
 }

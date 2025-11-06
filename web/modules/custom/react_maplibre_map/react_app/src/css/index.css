@@ -76,97 +76,88 @@ button:focus-visible {
   max-width: 500px !important;
 }
 /* line 64, ../sass/index.scss */
+.maplibregl-popup.tooltip .maplibregl-popup-content {
+  padding: 2px;
+  opacity: 0.85;
+}
+/* line 70, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content {
   position: relative;
   padding: 8px 8px 8px 8px;
 }
-/* line 67, ../sass/index.scss */
+/* line 73, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content div {
-  max-width: 360px;
+  max-width: 300px;
 }
-/* line 70, ../sass/index.scss */
+/* line 76, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content h2, .maplibregl-popup .maplibregl-popup-content h3 {
   font-size: 1rem;
   margin-block-start: 0.2em;
   margin-block-end: 0.2em;
   padding: 4px 6px 4px 0;
 }
-/* line 76, ../sass/index.scss */
+/* line 82, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content a, .maplibregl-popup .maplibregl-popup-content button {
   color: black;
   outline: none;
   text-decoration: none;
 }
-/* line 81, ../sass/index.scss */
+/* line 87, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content img {
   max-width: 100%;
   height: auto;
 }
-/* line 85, ../sass/index.scss */
+/* line 91, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content .field.field--name-field-components > * {
   margin-bottom: 2px;
 }
-/* line 88, ../sass/index.scss */
-.maplibregl-popup .maplibregl-popup-content .node--type-geoimage {
-  max-width: 460px;
-}
-/* line 91, ../sass/index.scss */
-.maplibregl-popup .maplibregl-popup-content .node--type-geoplace, .maplibregl-popup .maplibregl-popup-content .node--type-event {
-  max-width: 360px;
-}
 /* line 94, ../sass/index.scss */
-.maplibregl-popup .maplibregl-popup-content .node--type-territorial-report {
+.maplibregl-popup .maplibregl-popup-content .node--type-geoimage {
   max-width: 360px;
 }
 /* line 97, ../sass/index.scss */
+.maplibregl-popup .maplibregl-popup-content .node--type-geoplace, .maplibregl-popup .maplibregl-popup-content .node--type-event {
+  max-width: 300px;
+}
+/* line 100, ../sass/index.scss */
+.maplibregl-popup .maplibregl-popup-content .node--type-territorial-report {
+  max-width: 300px;
+}
+/* line 103, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content .node__content {
   padding-block-end: 0 !important;
 }
-/* line 100, ../sass/index.scss */
+/* line 106, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content .data-source {
   font-size: 0.6rem;
   margin-block-start: 1em;
 }
-/* line 103, ../sass/index.scss */
+/* line 109, ../sass/index.scss */
 .maplibregl-popup .maplibregl-popup-content .data-source p {
   margin-block-start: 0;
   margin-inline-start: 0;
   margin-block-end: 0;
 }
-@media only screen and (max-width: 700px) {
-  /* line 113, ../sass/index.scss */
-  .maplibregl-popup .maplibregl-popup-content div, .maplibregl-popup .maplibregl-popup-content .node--type-geoplace, .maplibregl-popup .maplibregl-popup-content .node--type-event {
-    max-width: 300px;
-  }
-  /* line 116, ../sass/index.scss */
-  .maplibregl-popup .maplibregl-popup-content .node--type-geoimage {
-    max-width: 400px !important;
-  }
-  /* line 119, ../sass/index.scss */
-  .maplibregl-popup .maplibregl-popup-content .node--type-territorial-report {
-    max-width: 300px !important;
-  }
-}
 @media only screen and (max-width: 560px) {
-  /* line 127, ../sass/index.scss */
+  /* line 119, ../sass/index.scss */
   .maplibregl-popup .maplibregl-popup-content div, .maplibregl-popup .maplibregl-popup-content .node--type-geoplace, .maplibregl-popup .maplibregl-popup-content .node--type-event {
     max-width: 200px;
   }
-  /* line 130, ../sass/index.scss */
+  /* line 122, ../sass/index.scss */
   .maplibregl-popup .maplibregl-popup-content .node--type-geoimage {
     max-width: 240px !important;
   }
-  /* line 133, ../sass/index.scss */
+  /* line 125, ../sass/index.scss */
   .maplibregl-popup .maplibregl-popup-content .node--type-territorial-report {
     max-width: 200px !important;
   }
 }
 
-/* line 140, ../sass/index.scss */
+/* line 132, ../sass/index.scss */
 .layers-control {
   position: relative;
 }
-/* line 143, ../sass/index.scss */
+/* line 135, ../sass/index.scss */
 .layers-control .layers-control-header {
   display: flex;
   justify-content: space-between;
@@ -174,14 +165,14 @@ button:focus-visible {
   padding: 4px 8px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-/* line 151, ../sass/index.scss */
+/* line 143, ../sass/index.scss */
 .layers-control .layers-control-collapsed-text {
   font-size: 14px;
   font-weight: 500;
   color: #333;
   margin-right: 8px;
 }
-/* line 158, ../sass/index.scss */
+/* line 150, ../sass/index.scss */
 .layers-control .layers-control-collapse-button {
   background: none;
   border: none;
@@ -198,30 +189,30 @@ button:focus-visible {
   transition: color 0.2s, transform 0.2s;
   margin-left: auto;
 }
-/* line 174, ../sass/index.scss */
+/* line 166, ../sass/index.scss */
 .layers-control .layers-control-collapse-button:hover {
   color: #000;
   transform: scale(1.1);
 }
-/* line 179, ../sass/index.scss */
+/* line 171, ../sass/index.scss */
 .layers-control .layers-control-collapse-button:focus {
   outline: 2px solid #646cff;
   outline-offset: 2px;
 }
-/* line 185, ../sass/index.scss */
+/* line 177, ../sass/index.scss */
 .layers-control .layers-control-layers {
   display: block;
 }
-/* line 190, ../sass/index.scss */
+/* line 182, ../sass/index.scss */
 .layers-control.collapsed .layers-control-header {
   border-bottom: none;
 }
-/* line 195, ../sass/index.scss */
+/* line 187, ../sass/index.scss */
 .layers-control .layer-control {
   display: block;
   padding: 2px 8px;
 }
-/* line 198, ../sass/index.scss */
+/* line 190, ../sass/index.scss */
 .layers-control .layer-control input {
   margin: 4px;
 }

@@ -322,6 +322,7 @@ function Map() {
       },
       center: start_location,
       zoom: start_zoom,
+      maxZoom: 18,
       pitch: 85,
       bearing: -20,
       canvasContextAttributes: {antialias: true}
