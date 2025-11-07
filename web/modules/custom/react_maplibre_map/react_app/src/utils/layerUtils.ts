@@ -90,9 +90,30 @@ export function addLineStringLayer(map: maplibregl.Map, sourceId: string, layerP
  */
 export function addPointLayer(map: maplibregl.Map, sourceId: string, layerPrefix: string, style: any): string {
   const layerId = `${layerPrefix}-points`;
+  const hitAreaLayerId = `${layerPrefix}-points-hitarea`;
 
   if (!map.getLayer(layerId)) {
+    // Add invisible hit area layer first (for larger touch targets)
+    map.addLayer({
+      id: hitAreaLayerId,
+      type: 'circle',
+      source: sourceId,
+      filter: import.meta.env.VITE_CUSTOM_MARKERS == 1 ? [
+        'all',
+        ['==', '$type', 'Point'],
+        ['!has', 'geomarker_icon_url']
+      ] : [
+        'all',
+        ['==', '$type', 'Point']
+      ],
+      paint: {
+        'circle-radius': 20, // Larger invisible touch area
+        'circle-opacity': 0, // Completely transparent
+        'circle-stroke-width': 0
+      }
+    });
 
+    // Add visible point layer on top
     map.addLayer({
       id: layerId,
       type: 'circle',
@@ -132,9 +153,15 @@ export function addAllLayers(map: maplibregl.Map, sourceId: string, layerPrefix:
   const linestringLayer = addLineStringLayer(map, sourceId, layerPrefix, styles.linestring);
   layerIds.push(linestringLayer);
 
-  // Add point layer
+  // Add point layer (returns visible layer ID)
   const pointLayer = addPointLayer(map, sourceId, layerPrefix, styles.point);
   layerIds.push(pointLayer);
+
+  // Also add the hit area layer for interactivity
+  const hitAreaLayer = `${layerPrefix}-points-hitarea`;
+  if (map.getLayer(hitAreaLayer)) {
+    layerIds.push(hitAreaLayer);
+  }
 
   return layerIds;
 }
@@ -308,6 +335,9 @@ export function addCustomMarkers(
       containerDiv.style.justifyContent = 'center';
       containerDiv.style.alignItems = 'flex-end';
       containerDiv.style.cursor = 'pointer';
+      // Add padding to increase touch area (invisible but touchable)
+      containerDiv.style.padding = '20px';
+      containerDiv.style.margin = '-20px'; // Negative margin to maintain visual position
 
       // Create the image element
       const img = document.createElement('img');
