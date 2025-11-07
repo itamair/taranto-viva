@@ -334,10 +334,12 @@ export function addCustomMarkers(
         .setLngLat(coordinates)
         .addTo(map);
 
-      // Add click handler for popup if enabled
+      // Add click/touch handler for popup if enabled
       if (feature.properties.field_map_popup_disabled != 1) {
-        containerDiv.addEventListener('click', (e) => {
+        // Create a shared handler function for both click and touch events
+        const handlePopupOpen = (e: Event) => {
           e.stopPropagation(); // Prevent event from bubbling to map
+          e.preventDefault(); // Prevent default touch behavior
 
           // Close existing popup if any
           if ((map as any)._customMarkerPopup) {
@@ -401,6 +403,25 @@ export function addCustomMarkers(
               (map as any)._allPermanentTooltips.set(featureKey, tooltipData);
             }
           });
+        };
+
+        // Add both click (for mouse) and touch (for touch devices) handlers
+        // Use touchstart for more responsive touch interaction
+        let touchHandled = false;
+
+        containerDiv.addEventListener('touchstart', (e) => {
+          touchHandled = true;
+          handlePopupOpen(e);
+          // Reset flag after a short delay to allow proper behavior
+          setTimeout(() => { touchHandled = false; }, 300);
+        });
+
+        // Prevent click event from firing after touch on mobile (avoiding double-trigger)
+        containerDiv.addEventListener('click', (e) => {
+          if (touchHandled) {
+            return;
+          }
+          handlePopupOpen(e);
         });
       }
 
