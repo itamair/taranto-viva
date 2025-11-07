@@ -162,7 +162,7 @@ function Map() {
   const label_to_layer_ids = useMemo(() => ({
     'Satellite': ['satellite'],
     'OSM': ['osm'],
-    'Overture Places': ['places'],
+    'Overture Places': ['places', 'places-transparent'],
     '3D Buildings': ['3d-buildings'],
     // 'OSM Land Use': ['landuse'],
     // 'OSM Roads': ['roads'],
@@ -253,6 +253,33 @@ function Map() {
               ],
               'circle-stroke-color': '#000000',
               'circle-stroke-width': 0
+            },
+            "filter": [
+              "all",
+              [
+                "has",
+                "@name"
+              ],
+              [
+                ">",
+                [
+                  "get",
+                  "confidence"
+                ],
+                0.7
+              ]
+            ],
+          },
+          {
+            'id': 'places-transparent',
+            'source': 'overturemaps_places',
+            'source-layer': 'place',
+            'type': 'circle' as const,
+            'paint': {
+              'circle-radius': 8,
+              'circle-color': '#0033ff',
+              'circle-opacity':  0,
+              'circle-stroke-width': 0,
             },
             "filter": [
               "all",
@@ -438,7 +465,7 @@ function Map() {
 
       // Add click handler for popups
       // Add interactivity / click handler for popups
-      addLayerInteractivity(map.current, ['places']);
+      addLayerInteractivity(map.current, ['places', 'places-transparent']);
 
       // Add the layerControl and set its initial checkboxes state.
       if (map.current && !layerSetupComplete.current) {
