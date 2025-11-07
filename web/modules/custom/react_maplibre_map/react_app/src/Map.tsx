@@ -208,11 +208,11 @@ function Map() {
             url: 'pmtiles://https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2025-04-23/places.pmtiles',
             attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
           },
-          'osm_layers': {
+/*          'osm_layers': {
             type: 'vector' as const,
             url: 'pmtiles://https://demo-bucket.protomaps.com/v4.pmtiles',
             attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
-          },
+          },*/
           'openfreemap': {
             type: 'vector' as const,
             url: 'https://tiles.openfreemap.org/planet',
