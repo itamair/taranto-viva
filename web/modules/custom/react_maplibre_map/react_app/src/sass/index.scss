@@ -75,21 +75,30 @@ button:focus-visible {
     }
     header{
       h2, h3 {
-        font-size: 1rem;
+        font-size: 18px;
+        font-weight: bolder;
         margin-block-start: 0.2em;
         margin-block-end: 0.2em;
         padding: 4px 2px 2px 0;
+        a {
+          font-weight: inherit;
+          color: black;
+          outline: none;
+          text-decoration: none;
+        }
       }
     }
     .node__content {
-      font-size: 0.9rem;
+      font-size: 14px;
       h2, h3  {
+        font-size: 16px;
         font-weight: normal;
         margin-block-start: 0.4em;
         margin-block-end: 0.4em;
+        line-height: 20px;
       }
       .field--name-field-address {
-        font-size: 0.7rem;
+        font-size: 12px;
       }
     }
     a, button {
