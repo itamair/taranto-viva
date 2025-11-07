@@ -204,18 +204,61 @@ export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): 
               (map as any)._customMarkerPopup.remove();
             }
 
+            // Get feature coordinates and key
+            let featureKey = null;
+            let hadPermanentTooltip = false;
+            if (feature.geometry && feature.geometry.type === 'Point') {
+              const coords = feature.geometry.coordinates;
+              featureKey = `${coords[0].toFixed(6)},${coords[1].toFixed(6)}`;
+
+              // Close any permanent tooltip for this feature
+              if (properties.field_tooltip_permanent == "1" && (map as any)._allPermanentTooltips && (map as any)._allPermanentTooltips.has(featureKey)) {
+                const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+                if (tooltipData && tooltipData.tooltip) {
+                  tooltipData.tooltip.remove();
+                  hadPermanentTooltip = true;
+                }
+              }
+            }
+
+            // Close any hover tooltip
+            if ((map as any)._hoverTooltip) {
+              (map as any)._hoverTooltip.remove();
+              (map as any)._hoverTooltip = null;
+            }
+
             const popupContent = buildPopupContent(properties);
             const popup = new maplibregl.Popup()
               .setLngLat(e.lngLat)
               .setHTML(popupContent)
               .addTo(map);
 
-            // Store reference to current popup
+            // Store reference to current popup and which feature it's for
             (map as any)._customMarkerPopup = popup;
+            (map as any)._popupFeatureKey = featureKey;
 
             // Clear reference when popup is closed
             popup.on('close', () => {
               (map as any)._customMarkerPopup = null;
+              (map as any)._popupFeatureKey = null;
+
+              // Reopen permanent tooltip if it had one
+              if (hadPermanentTooltip && featureKey && (map as any)._allPermanentTooltips.has(featureKey)) {
+                const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+                const newTooltip = new maplibregl.Popup({
+                  closeButton: false,
+                  closeOnClick: false,
+                  closeOnMove: false,
+                  className: 'tooltip permanent-tooltip'
+                })
+                  .setLngLat(tooltipData.coordinates)
+                  .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${tooltipData.name}</div>`)
+                  .addTo(map);
+
+                // Update reference
+                tooltipData.tooltip = newTooltip;
+                (map as any)._allPermanentTooltips.set(featureKey, tooltipData);
+              }
             });
           }
         }
@@ -301,6 +344,25 @@ export function addCustomMarkers(
             (map as any)._customMarkerPopup.remove();
           }
 
+          // Get feature key for tracking
+          const featureKey = `${coordinates[0].toFixed(6)},${coordinates[1].toFixed(6)}`;
+
+          // Close any permanent tooltip for this feature
+          let hadPermanentTooltip = false;
+          if ((map as any)._allPermanentTooltips && (map as any)._allPermanentTooltips.has(featureKey)) {
+            const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+            if (tooltipData && tooltipData.tooltip) {
+              tooltipData.tooltip.remove();
+              hadPermanentTooltip = true;
+            }
+          }
+
+          // Close any hover tooltip
+          if ((map as any)._hoverTooltip) {
+            (map as any)._hoverTooltip.remove();
+            (map as any)._hoverTooltip = null;
+          }
+
           const popupContent = buildPopupContent(feature.properties);
           const popup = new maplibregl.Popup({
             closeButton: true,
@@ -311,12 +373,33 @@ export function addCustomMarkers(
             .setHTML(popupContent)
             .addTo(map);
 
-          // Store reference to current popup
+          // Store reference to current popup and which feature it's for
           (map as any)._customMarkerPopup = popup;
+          (map as any)._popupFeatureKey = featureKey;
 
           // Clear reference when popup is closed
           popup.on('close', () => {
             (map as any)._customMarkerPopup = null;
+            (map as any)._popupFeatureKey = null;
+
+            // Reopen permanent tooltip if it had one
+            if (hadPermanentTooltip && (map as any)._allPermanentTooltips.has(featureKey)) {
+              const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+              const newTooltip = new maplibregl.Popup({
+                closeButton: false,
+                closeOnClick: false,
+                closeOnMove: false,
+                className: 'tooltip permanent-tooltip',
+                offset: [0, -10]
+              })
+                .setLngLat(coordinates)
+                .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${tooltipData.name}</div>`)
+                .addTo(map);
+
+              // Update reference
+              tooltipData.tooltip = newTooltip;
+              (map as any)._allPermanentTooltips.set(featureKey, tooltipData);
+            }
           });
         });
       }
@@ -330,6 +413,12 @@ export function addCustomMarkers(
         let hoverTooltip: maplibregl.Popup | null = null;
 
         containerDiv.addEventListener('mouseenter', () => {
+          // Don't show hover tooltip if a popup is open for this feature
+          const featureKey = `${coordinates[0].toFixed(6)},${coordinates[1].toFixed(6)}`;
+          if ((map as any)._popupFeatureKey === featureKey) {
+            return;
+          }
+
           // Remove existing hover tooltip if any
           if ((map as any)._hoverTooltip) {
             (map as any)._hoverTooltip.remove();
@@ -360,6 +449,11 @@ export function addCustomMarkers(
 
       // Add permanent tooltip for markers with field_tooltip_permanent = "1"
       if (feature.properties.field_tooltip_permanent == "1" && feature.properties.name) {
+        // Initialize permanent tooltips storage if needed
+        if (!(map as any)._allPermanentTooltips) {
+          (map as any)._allPermanentTooltips = new Map();
+        }
+
         const permanentTooltip = new maplibregl.Popup({
           closeButton: false,
           closeOnClick: false,
@@ -373,6 +467,14 @@ export function addCustomMarkers(
 
         // Store reference on marker for potential cleanup
         (marker as any)._permanentTooltip = permanentTooltip;
+
+        // Also store in global map for popup interaction
+        const key = `${coordinates[0].toFixed(6)},${coordinates[1].toFixed(6)}`;
+        (map as any)._allPermanentTooltips.set(key, {
+          tooltip: permanentTooltip,
+          name: feature.properties.name,
+          coordinates
+        });
       }
 
       markers.push(marker);
@@ -430,6 +532,11 @@ export function addPermanentTooltips(
     return tooltips;
   }
 
+  // Initialize permanent tooltips storage if needed
+  if (!(map as any)._allPermanentTooltips) {
+    (map as any)._allPermanentTooltips = new Map();
+  }
+
   geojsonData.features.forEach((feature: any) => {
     // Only process Point features with field_tooltip_permanent = "1"
     if (
@@ -450,6 +557,10 @@ export function addPermanentTooltips(
         .setLngLat(coordinates)
         .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${name}</div>`)
         .addTo(map);
+
+      // Store in both the array and the map for lookup
+      const key = `${coordinates[0].toFixed(6)},${coordinates[1].toFixed(6)}`;
+      (map as any)._allPermanentTooltips.set(key, { tooltip, name, coordinates });
 
       tooltips.push(tooltip);
     }
@@ -494,6 +605,17 @@ export function addHoverTooltips(
         feature.properties.field_tooltip_permanent != "1" &&
         feature.properties.name
       ) {
+        // Don't show hover tooltip if a popup is open for this feature
+        let featureKey = null;
+        if (feature.geometry && feature.geometry.type === 'Point') {
+          const coords = feature.geometry.coordinates;
+          featureKey = `${coords[0].toFixed(6)},${coords[1].toFixed(6)}`;
+        }
+
+        if (featureKey && (map as any)._popupFeatureKey === featureKey) {
+          return;
+        }
+
         map.getCanvas().style.cursor = 'pointer';
 
         // Remove existing hover tooltip if any
