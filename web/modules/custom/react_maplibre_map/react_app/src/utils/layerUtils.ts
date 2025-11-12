@@ -167,127 +167,180 @@ export function addAllLayers(map: maplibregl.Map, sourceId: string, layerPrefix:
 }
 
 /**
- * Adds interactive handlers (cursor and popups) to layers.
- * @param {maplibregl.Map} map - The map instance.
- * @param {string[]} layerIds - Array of layer IDs to add handlers to.
+ * Checks if a feature has a valid name for interaction.
+ * @param {any} feature - The feature to check.
+ * @returns {boolean} True if the feature has a valid name.
  */
-export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): void {
-  // Initialize popup reference if not exists
-  if (!(map as any)._customMarkerPopup) {
-    (map as any)._customMarkerPopup = null;
+function hasValidName(feature: any): boolean {
+  return !!(
+    (feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) ||
+    feature.properties?.name
+  );
+}
+
+/**
+ * Extracts and normalizes properties from a feature.
+ * Handles both vector tile features (Overture) and GeoJSON features (Drupal).
+ * @param {any} feature - The feature to extract properties from.
+ * @returns {Record<string, any>} Normalized properties object.
+ */
+function extractFeatureProperties(feature: any): Record<string, any> {
+  let properties: Record<string, any> = {};
+
+  if (feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) {
+    // Overture Places feature.
+    const confidence = feature._vectorTileFeature.properties['confidence'];
+    properties = {
+      'name': feature._vectorTileFeature.properties['@name'],
+      'field_map_popup_disabled': 0,
+      'confidence': typeof confidence === 'number' ? parseFloat(String(confidence)).toFixed(2) : confidence,
+    }
+
+    // Eventually set primary category.
+    const categoriesValue = feature._vectorTileFeature.properties['categories'];
+    const category = categoriesValue ? JSON.parse(String(categoriesValue)) : null;
+    if (category && category.primary && category.primary.length > 0) {
+      properties.category = capitalizeFirstLetter(String(category.primary).replaceAll('_', ' '));
+    }
+
+    // Eventually set website address.
+    const websitesValue = feature._vectorTileFeature.properties['websites'];
+    const websites = websitesValue ? JSON.parse(String(websitesValue)) : [];
+    if (websites.length > 0) {
+      properties.websites = '';
+      for (const website of websites) {
+        properties.websites += '<a href=' + website + ' target="_blank">' + '&rarr; website' + '<a>';
+      }
+    }
+  } else if (feature.properties) {
+    // Drupal GeoJSON feature.
+    properties = feature.properties;
   }
 
+  return properties;
+}
+
+/**
+ * Displays a popup for the given feature on the map.
+ * Handles closing existing popups and tooltips, and manages permanent tooltips.
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {any} feature - The feature to display popup for.
+ * @param {maplibregl.LngLat} lngLat - The coordinates for the popup.
+ * @param {Record<string, any>} properties - The feature properties.
+ */
+function displayFeaturePopup(
+  map: maplibregl.Map,
+  feature: any,
+  lngLat: maplibregl.LngLat,
+  properties: Record<string, any>
+): void {
+  // Check if popup should be disabled.
+  if (properties['field_map_popup_disabled'] == 1) return;
+
+  // Close existing popup if any.
+  if ((map as any)._customMarkerPopup) {
+    (map as any)._customMarkerPopup.remove();
+  }
+
+  // Get feature coordinates and key.
+  let featureKey = null;
+  let hadPermanentTooltip = false;
+  if (feature.geometry && feature.geometry.type === 'Point') {
+    const coords = feature.geometry.coordinates;
+    featureKey = `${coords[0].toFixed(6)},${coords[1].toFixed(6)}`;
+
+    // Close any permanent tooltip for this feature.
+    if (properties.field_tooltip_permanent == "1" && (map as any)._allPermanentTooltips && (map as any)._allPermanentTooltips.has(featureKey)) {
+      const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+      if (tooltipData && tooltipData.tooltip) {
+        tooltipData.tooltip.remove();
+        hadPermanentTooltip = true;
+      }
+    }
+  }
+
+  // Close any hover tooltip.
+  if ((map as any)._hoverTooltip) {
+    (map as any)._hoverTooltip.remove();
+    (map as any)._hoverTooltip = null;
+  }
+
+  const popupContent = buildPopupContent(properties);
+  const popup = new maplibregl.Popup()
+    .setLngLat(lngLat)
+    .setHTML(popupContent)
+    .addTo(map);
+
+  // Store reference to current popup and which feature it's for.
+  (map as any)._customMarkerPopup = popup;
+  (map as any)._popupFeatureKey = featureKey;
+
+  // Clear reference when popup is closed.
+  popup.on('close', () => {
+    (map as any)._customMarkerPopup = null;
+    (map as any)._popupFeatureKey = null;
+
+    // Reopen permanent tooltip if it had one.
+    if (hadPermanentTooltip && featureKey && (map as any)._allPermanentTooltips.has(featureKey)) {
+      const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+      const newTooltip = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        closeOnMove: false,
+        className: 'tooltip permanent-tooltip'
+      })
+        .setLngLat(tooltipData.coordinates)
+        .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${tooltipData.name}</div>`)
+        .addTo(map);
+
+      // Update reference.
+      tooltipData.tooltip = newTooltip;
+      (map as any)._allPermanentTooltips.set(featureKey, tooltipData);
+    }
+  });
+}
+
+/**
+ * Adds hover cursor changes for layers with features.
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {string[]} layerIds - Array of layer IDs to add hover to.
+ */
+function addHoverCursor(map: maplibregl.Map, layerIds: string[]): void {
   layerIds.forEach((layerId: string) => {
-    // Change cursor on hover
     map.on('mouseenter', layerId, (e: any) => {
-      if (e.features && e.features.length > 0) {
-        const feature = e.features[0];
-        if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
-          map.getCanvas().style.cursor = 'pointer';
-        }
+      if (e.features && e.features.length > 0 && hasValidName(e.features[0])) {
+        map.getCanvas().style.cursor = 'pointer';
       }
     });
 
     map.on('mouseleave', layerId, () => {
       map.getCanvas().style.cursor = '';
     });
+  });
+}
 
-    // Add click handler for pop  ups
+/**
+ * Adds interactive handlers (cursor and popups) to layers.
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {string[]} layerIds - Array of layer IDs to add handlers to.
+ */
+export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): void {
+  // Initialize popup reference if not exists.
+  if (!(map as any)._customMarkerPopup) {
+    (map as any)._customMarkerPopup = null;
+  }
+
+  // Add hover cursor changes.
+  addHoverCursor(map, layerIds);
+
+  // Add click handler for popups.
+  layerIds.forEach((layerId: string) => {
     map.on('click', layerId, (e: any) => {
       if (e.features && e.features.length > 0) {
         const feature = e.features[0];
-        if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
-          let properties: Record<string, any> = {};
-          if (feature._vectorTileFeature.properties['@name']) {
-            properties = {
-              'name': feature._vectorTileFeature.properties['@name'],
-              'field_map_popup_disabled': 0,
-              'confidence': parseFloat(feature._vectorTileFeature.properties['confidence']).toFixed(2),
-            }
-
-            // Eventually set primary category.
-            const category = feature._vectorTileFeature.properties['categories'] ? JSON.parse(feature._vectorTileFeature.properties['categories']) : null;
-            if (category && category.primary.length > 0) {
-              properties.category = capitalizeFirstLetter(category.primary.replaceAll('_', ' '));
-            }
-
-            // Eventually set website address.
-            const websites = feature._vectorTileFeature.properties['websites'] ? JSON.parse(feature._vectorTileFeature.properties['websites']) : [];
-            if (websites.length > 0) {
-              properties.websites = '';
-              for (const website of websites) {
-                properties.websites += '<a href=' + website + ' target="_blank">' + '&rarr; website' + '<a>';
-              }
-            }
-
-          } else if (feature.properties) {
-            properties = feature.properties;
-          }
-
-          // Check if popup should be disabled
-          if (properties['field_map_popup_disabled'] != 1) {
-            // Close existing popup if any
-            if ((map as any)._customMarkerPopup) {
-              (map as any)._customMarkerPopup.remove();
-            }
-
-            // Get feature coordinates and key
-            let featureKey = null;
-            let hadPermanentTooltip = false;
-            if (feature.geometry && feature.geometry.type === 'Point') {
-              const coords = feature.geometry.coordinates;
-              featureKey = `${coords[0].toFixed(6)},${coords[1].toFixed(6)}`;
-
-              // Close any permanent tooltip for this feature
-              if (properties.field_tooltip_permanent == "1" && (map as any)._allPermanentTooltips && (map as any)._allPermanentTooltips.has(featureKey)) {
-                const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
-                if (tooltipData && tooltipData.tooltip) {
-                  tooltipData.tooltip.remove();
-                  hadPermanentTooltip = true;
-                }
-              }
-            }
-
-            // Close any hover tooltip
-            if ((map as any)._hoverTooltip) {
-              (map as any)._hoverTooltip.remove();
-              (map as any)._hoverTooltip = null;
-            }
-
-            const popupContent = buildPopupContent(properties);
-            const popup = new maplibregl.Popup()
-              .setLngLat(e.lngLat)
-              .setHTML(popupContent)
-              .addTo(map);
-
-            // Store reference to current popup and which feature it's for
-            (map as any)._customMarkerPopup = popup;
-            (map as any)._popupFeatureKey = featureKey;
-
-            // Clear reference when popup is closed
-            popup.on('close', () => {
-              (map as any)._customMarkerPopup = null;
-              (map as any)._popupFeatureKey = null;
-
-              // Reopen permanent tooltip if it had one
-              if (hadPermanentTooltip && featureKey && (map as any)._allPermanentTooltips.has(featureKey)) {
-                const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
-                const newTooltip = new maplibregl.Popup({
-                  closeButton: false,
-                  closeOnClick: false,
-                  closeOnMove: false,
-                  className: 'tooltip permanent-tooltip'
-                })
-                  .setLngLat(tooltipData.coordinates)
-                  .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${tooltipData.name}</div>`)
-                  .addTo(map);
-
-                // Update reference
-                tooltipData.tooltip = newTooltip;
-                (map as any)._allPermanentTooltips.set(featureKey, tooltipData);
-              }
-            });
-          }
+        if (hasValidName(feature)) {
+          const properties = extractFeatureProperties(feature);
+          displayFeaturePopup(map, feature, e.lngLat, properties);
         }
       }
     });
@@ -313,20 +366,7 @@ export function addPrioritizedLayerInteractivity(
   const allLayerIds = layerIdsByPriority.flat();
 
   // Add hover cursor changes for all layers.
-  allLayerIds.forEach((layerId: string) => {
-    map.on('mouseenter', layerId, (e: any) => {
-      if (e.features && e.features.length > 0) {
-        const feature = e.features[0];
-        if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
-          map.getCanvas().style.cursor = 'pointer';
-        }
-      }
-    });
-
-    map.on('mouseleave', layerId, () => {
-      map.getCanvas().style.cursor = '';
-    });
-  });
+  addHoverCursor(map, allLayerIds);
 
   // Add single click handler on the map that queries layers in priority order.
   map.on('click', (e: any) => {
@@ -344,7 +384,7 @@ export function addPrioritizedLayerInteractivity(
         const features = map.queryRenderedFeatures(e.point, { layers: [layerId] });
         if (features && features.length > 0) {
           const feature = features[0];
-          if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
+          if (hasValidName(feature)) {
             selectedFeature = feature;
             break;
           }
@@ -357,101 +397,9 @@ export function addPrioritizedLayerInteractivity(
     // If no feature found, return early.
     if (!selectedFeature) return;
 
-    // Process the selected feature.
-    let properties: Record<string, any> = {};
-    if (selectedFeature._vectorTileFeature && selectedFeature._vectorTileFeature.properties['@name']) {
-      const confidence = selectedFeature._vectorTileFeature.properties['confidence'];
-      properties = {
-        'name': selectedFeature._vectorTileFeature.properties['@name'],
-        'field_map_popup_disabled': 0,
-        'confidence': typeof confidence === 'number' ? parseFloat(String(confidence)).toFixed(2) : confidence,
-      }
-
-      // Eventually set primary category.
-      const categoriesValue = selectedFeature._vectorTileFeature.properties['categories'];
-      const category = categoriesValue ? JSON.parse(String(categoriesValue)) : null;
-      if (category && category.primary && category.primary.length > 0) {
-        properties.category = capitalizeFirstLetter(String(category.primary).replaceAll('_', ' '));
-      }
-
-      // Eventually set website address.
-      const websitesValue = selectedFeature._vectorTileFeature.properties['websites'];
-      const websites = websitesValue ? JSON.parse(String(websitesValue)) : [];
-      if (websites.length > 0) {
-        properties.websites = '';
-        for (const website of websites) {
-          properties.websites += '<a href=' + website + ' target="_blank">' + '&rarr; website' + '<a>';
-        }
-      }
-
-    } else if (selectedFeature.properties) {
-      properties = selectedFeature.properties;
-    }
-
-    // Check if popup should be disabled.
-    if (properties['field_map_popup_disabled'] != 1) {
-      // Close existing popup if any.
-      if ((map as any)._customMarkerPopup) {
-        (map as any)._customMarkerPopup.remove();
-      }
-
-      // Get feature coordinates and key.
-      let featureKey = null;
-      let hadPermanentTooltip = false;
-      if (selectedFeature.geometry && selectedFeature.geometry.type === 'Point') {
-        const coords = selectedFeature.geometry.coordinates;
-        featureKey = `${coords[0].toFixed(6)},${coords[1].toFixed(6)}`;
-
-        // Close any permanent tooltip for this feature.
-        if (properties.field_tooltip_permanent == "1" && (map as any)._allPermanentTooltips && (map as any)._allPermanentTooltips.has(featureKey)) {
-          const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
-          if (tooltipData && tooltipData.tooltip) {
-            tooltipData.tooltip.remove();
-            hadPermanentTooltip = true;
-          }
-        }
-      }
-
-      // Close any hover tooltip.
-      if ((map as any)._hoverTooltip) {
-        (map as any)._hoverTooltip.remove();
-        (map as any)._hoverTooltip = null;
-      }
-
-      const popupContent = buildPopupContent(properties);
-      const popup = new maplibregl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(popupContent)
-        .addTo(map);
-
-      // Store reference to current popup and which feature it's for.
-      (map as any)._customMarkerPopup = popup;
-      (map as any)._popupFeatureKey = featureKey;
-
-      // Clear reference when popup is closed.
-      popup.on('close', () => {
-        (map as any)._customMarkerPopup = null;
-        (map as any)._popupFeatureKey = null;
-
-        // Reopen permanent tooltip if it had one.
-        if (hadPermanentTooltip && featureKey && (map as any)._allPermanentTooltips.has(featureKey)) {
-          const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
-          const newTooltip = new maplibregl.Popup({
-            closeButton: false,
-            closeOnClick: false,
-            closeOnMove: false,
-            className: 'tooltip permanent-tooltip'
-          })
-            .setLngLat(tooltipData.coordinates)
-            .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${tooltipData.name}</div>`)
-            .addTo(map);
-
-          // Update reference.
-          tooltipData.tooltip = newTooltip;
-          (map as any)._allPermanentTooltips.set(featureKey, tooltipData);
-        }
-      });
-    }
+    // Extract properties and display popup.
+    const properties = extractFeatureProperties(selectedFeature);
+    displayFeaturePopup(map, selectedFeature, e.lngLat, properties);
   });
 }
 
