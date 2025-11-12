@@ -6,7 +6,7 @@ import { GEOJSON_ENDPOINTS } from './config/GeoJsons';
 import { LAYER_STYLES } from './config/layerStyles';
 import { useGeoJsonLayer } from './hooks/useGeoJsonLayer';
 import { calculateBounds } from './utils/geojsonUtils';
-import { addLayerInteractivity } from './utils/layerUtils';
+import { addPrioritizedLayerInteractivity } from './utils/layerUtils';
 
 // Layers Control inspired from:
 // @see https://blog.wxm.be/2024/01/24/maplibre-layer-visibility-control.html
@@ -463,9 +463,13 @@ function Map() {
       //console.log(map.current.getStyle().layers);
       map.current.moveLayer('osm', 'satellite');
 
-      // Add click handler for popups
-      // Add interactivity / click handler for popups
-      addLayerInteractivity(map.current, ['places', 'places-transparent']);
+      // Add prioritized click handler for popups.
+      // Priority order: Drupal Places > Drupal Images > Overture Places.
+      addPrioritizedLayerInteractivity(map.current, [
+        ['geoplaces-points', 'geoplaces-points-hitarea'],
+        ['geoimages-points', 'geoimages-points-hitarea'],
+        ['places', 'places-transparent']
+      ]);
 
       // Add the layerControl and set its initial checkboxes state.
       if (map.current && !layerSetupComplete.current) {

@@ -295,6 +295,167 @@ export function addLayerInteractivity(map: maplibregl.Map, layerIds: string[]): 
 }
 
 /**
+ * Adds a prioritized click handler that queries multiple layers.
+ * Features from higher priority layers will be shown first.
+ * @param {maplibregl.Map} map - The map instance.
+ * @param {string[][]} layerIdsByPriority - Array of layer ID groups in priority order.
+ */
+export function addPrioritizedLayerInteractivity(
+  map: maplibregl.Map,
+  layerIdsByPriority: string[][]
+): void {
+  // Initialize popup reference if not exists.
+  if (!(map as any)._customMarkerPopup) {
+    (map as any)._customMarkerPopup = null;
+  }
+
+  // Flatten all layer IDs for hover handling.
+  const allLayerIds = layerIdsByPriority.flat();
+
+  // Add hover cursor changes for all layers.
+  allLayerIds.forEach((layerId: string) => {
+    map.on('mouseenter', layerId, (e: any) => {
+      if (e.features && e.features.length > 0) {
+        const feature = e.features[0];
+        if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
+          map.getCanvas().style.cursor = 'pointer';
+        }
+      }
+    });
+
+    map.on('mouseleave', layerId, () => {
+      map.getCanvas().style.cursor = '';
+    });
+  });
+
+  // Add single click handler on the map that queries layers in priority order.
+  map.on('click', (e: any) => {
+    // Query all layers and find the highest priority feature.
+    let selectedFeature = null;
+
+    for (const layerGroup of layerIdsByPriority) {
+      for (const layerId of layerGroup) {
+        // Check if layer exists and is visible.
+        if (!map.getLayer(layerId)) continue;
+        const visibility = map.getLayoutProperty(layerId, 'visibility');
+        if (visibility === 'none') continue;
+
+        // Query features at the click point.
+        const features = map.queryRenderedFeatures(e.point, { layers: [layerId] });
+        if (features && features.length > 0) {
+          const feature = features[0];
+          if ((feature._vectorTileFeature && feature._vectorTileFeature.properties['@name']) || feature.properties.name) {
+            selectedFeature = feature;
+            break;
+          }
+        }
+      }
+      // If we found a feature in this priority group, stop searching.
+      if (selectedFeature) break;
+    }
+
+    // If no feature found, return early.
+    if (!selectedFeature) return;
+
+    // Process the selected feature.
+    let properties: Record<string, any> = {};
+    if (selectedFeature._vectorTileFeature && selectedFeature._vectorTileFeature.properties['@name']) {
+      const confidence = selectedFeature._vectorTileFeature.properties['confidence'];
+      properties = {
+        'name': selectedFeature._vectorTileFeature.properties['@name'],
+        'field_map_popup_disabled': 0,
+        'confidence': typeof confidence === 'number' ? parseFloat(String(confidence)).toFixed(2) : confidence,
+      }
+
+      // Eventually set primary category.
+      const categoriesValue = selectedFeature._vectorTileFeature.properties['categories'];
+      const category = categoriesValue ? JSON.parse(String(categoriesValue)) : null;
+      if (category && category.primary && category.primary.length > 0) {
+        properties.category = capitalizeFirstLetter(String(category.primary).replaceAll('_', ' '));
+      }
+
+      // Eventually set website address.
+      const websitesValue = selectedFeature._vectorTileFeature.properties['websites'];
+      const websites = websitesValue ? JSON.parse(String(websitesValue)) : [];
+      if (websites.length > 0) {
+        properties.websites = '';
+        for (const website of websites) {
+          properties.websites += '<a href=' + website + ' target="_blank">' + '&rarr; website' + '<a>';
+        }
+      }
+
+    } else if (selectedFeature.properties) {
+      properties = selectedFeature.properties;
+    }
+
+    // Check if popup should be disabled.
+    if (properties['field_map_popup_disabled'] != 1) {
+      // Close existing popup if any.
+      if ((map as any)._customMarkerPopup) {
+        (map as any)._customMarkerPopup.remove();
+      }
+
+      // Get feature coordinates and key.
+      let featureKey = null;
+      let hadPermanentTooltip = false;
+      if (selectedFeature.geometry && selectedFeature.geometry.type === 'Point') {
+        const coords = selectedFeature.geometry.coordinates;
+        featureKey = `${coords[0].toFixed(6)},${coords[1].toFixed(6)}`;
+
+        // Close any permanent tooltip for this feature.
+        if (properties.field_tooltip_permanent == "1" && (map as any)._allPermanentTooltips && (map as any)._allPermanentTooltips.has(featureKey)) {
+          const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+          if (tooltipData && tooltipData.tooltip) {
+            tooltipData.tooltip.remove();
+            hadPermanentTooltip = true;
+          }
+        }
+      }
+
+      // Close any hover tooltip.
+      if ((map as any)._hoverTooltip) {
+        (map as any)._hoverTooltip.remove();
+        (map as any)._hoverTooltip = null;
+      }
+
+      const popupContent = buildPopupContent(properties);
+      const popup = new maplibregl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(popupContent)
+        .addTo(map);
+
+      // Store reference to current popup and which feature it's for.
+      (map as any)._customMarkerPopup = popup;
+      (map as any)._popupFeatureKey = featureKey;
+
+      // Clear reference when popup is closed.
+      popup.on('close', () => {
+        (map as any)._customMarkerPopup = null;
+        (map as any)._popupFeatureKey = null;
+
+        // Reopen permanent tooltip if it had one.
+        if (hadPermanentTooltip && featureKey && (map as any)._allPermanentTooltips.has(featureKey)) {
+          const tooltipData = (map as any)._allPermanentTooltips.get(featureKey);
+          const newTooltip = new maplibregl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+            closeOnMove: false,
+            className: 'tooltip permanent-tooltip'
+          })
+            .setLngLat(tooltipData.coordinates)
+            .setHTML(`<div style="font-size: 14px; padding: 2px 6px; font-weight: bold;">${tooltipData.name}</div>`)
+            .addTo(map);
+
+          // Update reference.
+          tooltipData.tooltip = newTooltip;
+          (map as any)._allPermanentTooltips.set(featureKey, tooltipData);
+        }
+      });
+    }
+  });
+}
+
+/**
  * Creates custom HTML markers for features with geomarker_icon_url property.
  * @param {maplibregl.Map} map - The map instance.
  * @param {Object} geojsonData - The GeoJSON data.
