@@ -150,10 +150,6 @@ function Map() {
   const layerSetupComplete = useRef<boolean>(false);
   const [mapLoaded, setMapLoaded] = useState(false);
 
-  // Define & Memo Start Zoom and Start Location.
-  const start_location = useMemo(() => [17.240046, 40.472317] as [number, number], []); // Taranto coordinates
-  const start_zoom = useMemo(() => 15, []);
-
   // Memoize styles to prevent re-creation
   const defaultStyles = useMemo(() => LAYER_STYLES.default, []);
   const geoimagesStyles = useMemo(() => LAYER_STYLES.geoimages, []);
@@ -173,6 +169,10 @@ function Map() {
 
   // Initialize map
   useEffect(() => {
+
+    // Define Start Zoom and Start Location.
+    const start_location: [number, number] = [17.240046, 40.472317]; // Taranto coordinates
+    const start_zoom = 15;
 
     if (map.current || !mapContainer.current) return; // Initialize map only once
 
@@ -406,7 +406,7 @@ function Map() {
       // Remove pmtiles protocol.
       maplibregl.removeProtocol("pmtiles");
     };
-  }, [label_to_layer_ids, start_location, start_zoom]);
+  }, [label_to_layer_ids]);
 
   // Load GeoJSON layers using the custom hook
   // Pass map.current directly and let the hook handle the loaded state
