@@ -172,6 +172,7 @@ module:
   views_bulk_edit: 0
   views_bulk_operations: 0
   views_data_export: 0
+  views_daterange_filters: 0
   views_geojson: 0
   views_slideshow: 0
   views_slideshow_cycle: 0
