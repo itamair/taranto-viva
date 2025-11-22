@@ -5,26 +5,27 @@
  * Contains italo_module.module.
  */
 
-use Drupal\views\Plugin\views\query\Sql;
-use Drupal\views\Plugin\views\query\QueryPluginBase;
-use Drupal\views\ViewExecutable;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Field\FieldItemList;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Field\FieldConfigInterface;
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 use Drupal\node\Entity\Node;
-use Drupal\Core\Field\FieldItemList;
+use Drupal\field\FieldStorageConfigInterface;
+use Drupal\file\FileInterface;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\Plugin\views\query\Sql;
 use Drupal\views\Plugin\views\ViewsPluginInterface;
 use Drupal\views\ResultRow;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\file\FileInterface;
-use Drupal\Core\Field\FieldConfigInterface;
-use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\Config\Entity\ThirdPartySettingsInterface;
+use Drupal\views\ViewExecutable;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Yaml;
 
@@ -55,19 +56,19 @@ function italo_module_views_query_alter(ViewExecutable $view, QueryPluginBase $q
   // but still we needed this in the ciclovia_acquedotto_aqp view ... etc.
   // Content|Nodes based Views.
   if (in_array($view->storage->id(), [
-    'geo_places',
-    'ciclovia_acquedotto_aqp',
-    'ciclovia_acquedotto_aqp_geojson',
-  ]) && "$view->current_display" !== "page_geoplaces_grid" && $query instanceof Sql) {
+      'geo_places',
+      'ciclovia_acquedotto_aqp',
+      'ciclovia_acquedotto_aqp_geojson',
+    ]) && "$view->current_display" !== "page_geoplaces_grid" && $query instanceof Sql) {
     $query->addField('paragraphs_item_field_data_node__field_components', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data_node__field_components.id');
   }
   // Paragraphs based Views.
   if (in_array($view->storage->id(), [
-    'taranto_viva_geojson',
-    'taranto_viva_geoplaces_geojson',
-    'taranto_viva_geoimages_geojson',
-  ]) && $query instanceof Sql) {
+      'taranto_viva_geojson',
+      'taranto_viva_geoplaces_geojson',
+      'taranto_viva_geoimages_geojson',
+    ]) && $query instanceof Sql) {
     $query->addField('paragraphs_item_field_data', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data.id');
   }
@@ -151,10 +152,28 @@ function italo_module_entity_base_field_info(EntityTypeInterface $entity_type) {
 }
 
 /**
+ * Implements hook_field_views_data_alter().
+ */
+function italo_module_field_views_data_alter(array &$data, FieldStorageConfigInterface $field_storage) {
+  if ($field_storage->getType() === 'daterange') {
+    foreach ($data as $field_name => $field) {
+      foreach ($field as $key => $item) {
+        if (substr($key, -10) !== '_end_value') {
+          if (isset($item['filter'])) {
+            $data[$field_name][$key]['filter']['id'] = 'views_custom_daterange_filters';
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_views_data_alter().
  */
 function italo_module_views_data_alter(array &$data) {
 
+  // Add the "Month filter - Custom Filter" view filter.
   $data['views']['month_filter'] = [
     'title' => t('Month filter - Custom Filter'),
     'filter' => [
@@ -263,30 +282,35 @@ function italo_module_node_view(array &$build, NodeInterface $node, EntityViewDi
           }
         }
 
-        // Extract Paragraphs components from the field_components.
-        $components = $node->get('field_components')->getValue();
-        foreach ($components as $component) {
-          /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-          $paragraph = Paragraph::load($component['target_id']);
 
-          // If the Component paragraph already contains a geofield use and
-          // add it.
-          if ($paragraph->field_geofield) {
-            $geofields[] = $paragraph->field_geofield->value;
-          }
-          // Otherwise look for the field_geoimage that should contain Geoimage
-          // Media reference, with geofield into it.
-          elseif ($paragraph->field_geoimage) {
-            $media_references = $paragraph->get('field_geoimage')->getValue();
-            foreach ($media_references as $media_reference) {
-              /** @var \Drupal\media\Entity\Media $paragraph */
-              if ($media = Media::load($media_reference['target_id'])) {
-                $geofields[] = $media->field_geofield->value;
+        try {
+          // Extract Paragraphs components from the field_components.
+          $components = $node->get('field_components')->getValue();
+          foreach ($components as $component) {
+            /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+            $paragraph = Paragraph::load($component['target_id']);
+
+            // If the Component paragraph already contains a geofield use and
+            // add it.
+            if ($paragraph->field_geofield) {
+              $geofields[] = $paragraph->field_geofield->value;
+            }
+            // Otherwise look for the field_geoimage that should contain Geoimage
+            // Media reference, with geofield into it.
+            elseif ($paragraph->field_geoimage) {
+              $media_references = $paragraph->get('field_geoimage')->getValue();
+              foreach ($media_references as $media_reference) {
+                /** @var \Drupal\media\Entity\Media $paragraph */
+                if ($media = Media::load($media_reference['target_id'])) {
+                  $geofields[] = $media->field_geofield->value;
+                }
               }
             }
           }
+          break;
         }
-        break;
+        catch (\Exception $e) {
+        }
     }
     // If the geofields array is not empty, use it to generate the Forced
     // Leaflet Map Bounds, and pass it into attached js drupal settings.
@@ -447,16 +471,16 @@ function italo_module_leaflet_views_features_alter(array &$features, ViewsPlugin
  */
 function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPluginInterface &$view_style) {
   if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
-    'segnalazione territoriale',
-    'territorial report',
-  ])) {
+      'segnalazione territoriale',
+      'territorial report',
+    ])) {
     $group["weight"] = -10;
   }
 
   if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
-    'zone e quartieri',
-    'areas and quarters',
-  ])) {
+      'zone e quartieri',
+      'areas and quarters',
+    ])) {
     $group["weight"] = 100;
   }
 

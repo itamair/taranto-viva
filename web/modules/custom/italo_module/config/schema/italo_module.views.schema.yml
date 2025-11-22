@@ -8,3 +8,10 @@ views.filter_value.date_range_active_status_filter:
       type: string
       label: 'Active status'
 
+views.filter.views_custom_daterange_filters:
+  type: views_filter
+  label: 'Date range'
+
+views.filter_value.views_custom_daterange_filters:
+  type: views.filter_value.date
+  label: 'Date range'
