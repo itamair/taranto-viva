@@ -19,18 +19,9 @@
     attach: function(context) {
       const self = this;
 
-      // Define a boolean leafletMapInit in the context, so not to perform same
-      // bind actions more than ones.
-      context.leafletMapInit = false;
-
       // React on leafletMapInit event.
       // Resizing Markers.
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
-        if (context.leafletMapInit) {
-          return;
-        }
-
-        context.leafletMapInit = true;
         const map = lMap;
         const markers = Drupal.Leaflet?.[mapid]?.markers || {};
         const features = Drupal.Leaflet?.[mapid]?.features || {};
