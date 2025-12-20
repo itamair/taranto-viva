@@ -43,18 +43,20 @@ class DateRangeCustomFilters extends Date implements ContainerFactoryPluginInter
     }
     parent::valueForm($form, $form_state);
 
-    $form["value"] = [
-      '#type' => 'select',
-      '#title' => $this->t('Hidden Layers Controls'),
-      '#description' => $this->t('Choose the Layers that will not appear in the Layers Control'),
-      '#options' => [
-        '-1 month' => $this->t('1 Month Ago'),
-        '+1 day' => $this->t('Tomorrow'),
-        '+1 week' => $this->t('In 1 Week'),
-        '+1 month' => $this->t('In 1 Month'),
-      ],
-      '#default_value' => '+1 day',
-    ];
+    if ($form_state->get('exposed')) {
+      $form["value"] = [
+        '#type' => 'select',
+        '#title' => $this->t('Hidden Layers Controls'),
+        '#description' => $this->t('Choose the Layers that will not appear in the Layers Control'),
+        '#options' => [
+          '-1 month' => $this->t('1 Month Ago'),
+          '+1 day' => $this->t('Tomorrow'),
+          '+1 week' => $this->t('In 1 Week'),
+          '+1 month' => $this->t('In 1 Month'),
+        ],
+        '#default_value' => $this->value['value'],
+      ];
+    }
 
   }
 
