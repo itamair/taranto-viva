@@ -6172,14 +6172,14 @@ display:
           exposed: true
           expose:
             operator_id: field_date_range_value_op
-            label: 'Validità (field_date_range)'
+            label: 'Validità eventi e segnalazioni'
             description: ''
             use_operator: false
             operator: field_date_range_value_op
             operator_limit_selection: false
             operator_list: {  }
             identifier: field_date_range_value
-            required: false
+            required: true
             remember: false
             multiple: false
             remember_roles:
