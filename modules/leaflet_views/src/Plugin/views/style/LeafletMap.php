@@ -1268,13 +1268,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
           "markup" => $this->view->rowPlugin->render($result),
         ];
         // Render popup content, ensuring backward compatibility
-        // (with Drupal < 10.2).
-        if (method_exists($this->renderer, 'renderInIsolation')) {
-          $popup_content = $this->renderer->renderInIsolation($render_row);
-        }
-        else {
-          $popup_content = $this->renderer->renderPlain($render_row);
-        }
+        $popup_content = $this->renderer->renderInIsolation($render_row);
         break;
 
       default:
@@ -1452,13 +1446,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
             "markup" => $this->view->rowPlugin->render($result),
           ];
           // Render popup content, ensuring backward compatibility
-          // (with Drupal < 10.2).
-          if (method_exists($this->renderer, 'renderInIsolation')) {
-            $feature['tooltip']['value'] = $this->renderer->renderInIsolation($render_row);
-          }
-          else {
-            $feature['tooltip']['value'] = $this->renderer->renderPlain($render_row);
-          }
+          $feature['tooltip']['value'] = $this->renderer->renderInIsolation($render_row);
           break;
 
         default:
