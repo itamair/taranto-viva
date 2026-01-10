@@ -48,6 +48,6 @@
         }
     },
     "require": {
-        "drupal/geofield": "^1.31"
+        "drupal/geofield": "^1.31 || ^10.3"
     }
 }
