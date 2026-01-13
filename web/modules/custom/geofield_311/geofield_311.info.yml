@@ -1,7 +1,7 @@
 name: Geofield 311
 type: module
 description: Module to implement Geofield 311 Drupal functionalities
-core_version_requirement: ^8.8 || ^9 || ^10
+core_version_requirement: ^10 || ^11
 package: Custom
 dependencies:
   - geofield_map:geofield_map

@@ -27,7 +27,7 @@ base_field: mid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -240,7 +240,7 @@ display:
           entity_type: media
           entity_field: bundle
           plugin_id: field
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -370,7 +370,7 @@ display:
           entity_type: media
           entity_field: status
           plugin_id: field
-          label: Stato
+          label: Status
           exclude: false
           alter:
             alter_text: false
@@ -415,8 +415,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: 'Non pubblicato'
-            format_custom_true: Pubblicato
+            format_custom_false: Unpublished
+            format_custom_true: Published
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -437,7 +437,7 @@ display:
           entity_type: media
           entity_field: changed
           plugin_id: field
-          label: Aggiornato
+          label: Updated
           exclude: false
           alter:
             alter_text: false
@@ -772,7 +772,7 @@ display:
           admin_label: ''
           entity_type: media
           plugin_id: entity_operations
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -823,8 +823,8 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: 'Seguente ›'
-            previous: '‹ Precedente'
+            next: 'Next ›'
+            previous: '‹ Previous'
             first: '« First'
             last: 'Last »'
           expose:
@@ -832,7 +832,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -859,6 +859,9 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
               reset_button_always_show: false
+              autosubmit_textfield_minimum_length: 3
+              autosubmit_breakpoint: ''
+              auto_submit_sort_only: false
             filter:
               name:
                 plugin_id: default
@@ -867,6 +870,11 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                  open_by_default: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
               bundle:
                 plugin_id: default
                 advanced:
@@ -877,6 +885,11 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                  open_by_default: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
               status:
                 plugin_id: default
                 advanced:
@@ -887,6 +900,11 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                  open_by_default: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
               langcode:
                 plugin_id: default
                 advanced:
@@ -897,6 +915,11 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                  open_by_default: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
               field_generate_host_content_value:
                 plugin_id: default
                 advanced:
@@ -907,6 +930,11 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                  open_by_default: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
       access:
         type: perm
         options:
@@ -1004,7 +1032,7 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: Tipo
+            label: Type
             description: ''
             use_operator: false
             operator: bundle_op
@@ -1047,7 +1075,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: Vero
+            label: 'True'
             description: null
             use_operator: false
             operator: status_op
@@ -1072,11 +1100,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Pubblicato
+                title: Published
                 operator: '='
                 value: '1'
               2:
-                title: 'Non pubblicato'
+                title: Unpublished
                 operator: '='
                 value: '0'
         status_extra:
@@ -1134,7 +1162,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Lingua
+            label: Language
             description: ''
             use_operator: false
             operator: langcode_op

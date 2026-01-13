@@ -30,7 +30,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Segnalazioni Territoriali'
+      title: 'Territorial Reports'
       fields:
         nid:
           id: nid
@@ -564,8 +564,11 @@ display:
           bef:
             general:
               autosubmit: true
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
@@ -576,12 +579,17 @@ display:
               active_status:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
       access:
         type: perm
         options:
@@ -714,7 +722,7 @@ display:
           expose:
             operator_id: ''
             label: Stato
-            description: ''
+            description: State
             use_operator: false
             operator: active_status_op
             operator_limit_selection: false
@@ -755,7 +763,7 @@ display:
           expose:
             operator_id: field_active_type_value_op
             label: Tipo
-            description: ''
+            description: Type
             use_operator: false
             operator: field_active_type_value_op
             operator_limit_selection: false
@@ -865,7 +873,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Visualizzo @start - @end di @total'
+          content: 'Showing @start - @end of @total'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -883,7 +891,7 @@ display:
         - 'config:field.storage.node.field_date_range'
   block_territorial_reports:
     id: block_territorial_reports
-    display_title: 'Block Territorial Reports'
+    display_title: 'Block Segnalazioni Territoriali'
     display_plugin: block
     position: 1
     display_options:
@@ -922,7 +930,7 @@ display:
       path: territorial_reports
       menu:
         type: normal
-        title: Segnalazioni
+        title: Reports
         description: ''
         weight: -45
         expanded: false

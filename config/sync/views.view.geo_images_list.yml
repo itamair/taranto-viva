@@ -33,7 +33,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Immagini
+      title: Images
       fields:
         nid:
           id: nid
@@ -523,7 +523,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Risults @start - @end of @total'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -547,7 +547,7 @@ display:
       path: geo-images
       menu:
         type: normal
-        title: Immagini
+        title: Images
         description: ''
         weight: -47
         expanded: false
@@ -594,6 +594,9 @@ display:
               secondary_label: 'Advanced options'
               secondary_open: false
               reset_button_always_show: false
+              autosubmit_textfield_minimum_length: 3
+              autosubmit_breakpoint: ''
+              auto_submit_sort_only: false
             filter:
               field_exif_creation_date_value:
                 plugin_id: default
@@ -601,6 +604,11 @@ display:
                   collapsible: false
                   collapsible_disable_automatic_open: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
+                  open_by_default: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
       access:
         type: role
         options:

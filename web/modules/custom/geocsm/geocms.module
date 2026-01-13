@@ -25,7 +25,7 @@ function geocms_popup_message_parameters_alter(&$popup_message_parameters) {
     foreach ($geocms_info_popup_contents as $popup_content) {
       if ($popup_content instanceof NodeInterface) {
         $build = \Drupal::entityTypeManager()->getViewBuilder('node')->view($popup_content, $view_mode);
-        $output = \Drupal::service('renderer')->renderPlain($build);
+        $output = \Drupal::service('renderer')->renderInIsolation($build);
         $popup_message_parameters["body"] = $popup_message_parameters["body"] . $output;
       }
 

@@ -12,6 +12,7 @@ dependencies:
     - contact
     - field_permissions
     - file
+    - file_delete
     - filter
     - media
     - node
@@ -42,6 +43,8 @@ permissions:
   - 'cast rate vote on node of territorial_report'
   - 'create geoimage media'
   - 'create paragraph content geoimage'
+  - 'delete files immediately'
+  - 'delete files override usage'
   - 'delete own files'
   - 'delete own geoimage media'
   - 'delete paragraph content geoimage'
