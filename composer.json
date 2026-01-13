@@ -148,7 +148,6 @@
         "drupal/visitors": "^2.31",
         "drupal/votingapi": "^3.0@beta",
         "drupal/watchdog_statistics": "^1.0",
-        "drupal/webprofiler": "^10.3",
         "geocoder-php/arcgis-online-provider": "^4.4",
         "geocoder-php/google-maps-provider": "^4.7",
         "geocoder-php/photon-provider": "^0.6.0",

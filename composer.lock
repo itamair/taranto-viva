@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18425f15925e08691781d6181b442e35",
+    "content-hash": "2667e0730e70746bdb3c2eb3ab4b3d35",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8720,68 +8720,6 @@
             }
         },
         {
-            "name": "drupal/tracer",
-            "version": "1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/tracer.git",
-                "reference": "1.0.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/tracer-1.0.4.zip",
-                "reference": "1.0.4",
-                "shasum": "7988dfc960487a163aa9dbd8b86d4d9f06bc7135"
-            },
-            "require": {
-                "drupal/core": "^10",
-                "php": "^8.1.0"
-            },
-            "require-dev": {
-                "drupal/webprofiler": "^10.1",
-                "mglaman/phpstan-drupal": "^1.1",
-                "phpstan/extension-installer": "^1.3",
-                "phpstan/phpstan": "^1.11",
-                "phpstan/phpstan-deprecation-rules": "*",
-                "phpstan/phpstan-strict-rules": "^1.5",
-                "previousnext/coding-standard": "^1.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.0.4",
-                    "datestamp": "1723457571",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Luca Lusso",
-                    "homepage": "https://www.drupal.org/user/138068",
-                    "email": "lussoluca@gmail.com",
-                    "role": "Project Lead"
-                },
-                {
-                    "name": "See contributors",
-                    "homepage": "https://www.drupal.org/node/3272162/committers",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Tracer API replaces some of the Core's services with a traceable version.",
-            "homepage": "https://drupal.org/project/tracer",
-            "support": {
-                "source": "https://git.drupalcode.org/project/tracer",
-                "issues": "https://drupal.org/project/issues/tracer"
-            }
-        },
-        {
             "name": "drupal/typed_data",
             "version": "2.1.1",
             "source": {
@@ -9650,82 +9588,6 @@
             "support": {
                 "source": "https://git.drupal.org/project/watchdog_statistics.git",
                 "issues": "https://www.drupal.org/project/issues/watchdog_statistics"
-            }
-        },
-        {
-            "name": "drupal/webprofiler",
-            "version": "10.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/webprofiler.git",
-                "reference": "10.3.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webprofiler-10.3.1.zip",
-                "reference": "10.3.1",
-                "shasum": "e934387176b624972da7d2952c27c0d5438ab5f7"
-            },
-            "require": {
-                "drupal/core": ">=10.1.2, <11",
-                "drupal/devel": "^5.0",
-                "drupal/tracer": "^1.0",
-                "league/commonmark": "~2.4",
-                "nikic/php-parser": "^5.0 || ^4.18",
-                "php": ">=8.1.0",
-                "scrivo/highlight.php": "^9.18",
-                "symfony/stopwatch": "^6 || ^7",
-                "symfony/var-dumper": "^6 || ^7"
-            },
-            "require-dev": {
-                "drupal/monolog": "^3.0",
-                "drush/drush": "^12",
-                "mglaman/phpstan-drupal": "^1.1",
-                "mockery/mockery": "^1.5",
-                "phpstan/extension-installer": "^1.3",
-                "phpstan/phpstan": "^1.11",
-                "phpstan/phpstan-deprecation-rules": "*",
-                "phpstan/phpstan-phpunit": "1.4.x-dev",
-                "phpstan/phpstan-strict-rules": "^1.5",
-                "phpunit/phpunit": ">=9",
-                "previousnext/coding-standard": "^1.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "10.3.1",
-                    "datestamp": "1748345232",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Luca Lusso",
-                    "homepage": "https://www.drupal.org/user/436000",
-                    "email": "lussoluca@gmail.com"
-                },
-                {
-                    "name": "drupalspoons",
-                    "homepage": "https://www.drupal.org/user/3647684"
-                },
-                {
-                    "name": "lussoluca",
-                    "homepage": "https://www.drupal.org/user/138068"
-                }
-            ],
-            "description": "Extract, collect, store and display profiling information for Drupal.",
-            "homepage": "https://www.drupal.org/project/webprofiler",
-            "support": {
-                "source": "https://gitlab.com/drupalspoons/webprofiler",
-                "issues": "https://gitlab.com/drupalspoons/webprofiler/-/issues",
-                "slack": "https://app.slack.com/client/T06GX3JTS/C034XBTCHV0"
             }
         },
         {
@@ -14476,84 +14338,6 @@
             "time": "2024-10-02T14:40:16+00:00"
         },
         {
-            "name": "scrivo/highlight.php",
-            "version": "v9.18.1.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/scrivo/highlight.php.git",
-                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/scrivo/highlight.php/zipball/850f4b44697a2552e892ffe71490ba2733c2fc6e",
-                "reference": "850f4b44697a2552e892ffe71490ba2733c2fc6e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8|^5.7",
-                "sabberworm/php-css-parser": "^8.3",
-                "symfony/finder": "^2.8|^3.4|^5.4",
-                "symfony/var-dumper": "^2.8|^3.4|^5.4"
-            },
-            "suggest": {
-                "ext-mbstring": "Allows highlighting code with unicode characters and supports language with unicode keywords"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "HighlightUtilities/functions.php"
-                ],
-                "psr-0": {
-                    "Highlight\\": "",
-                    "HighlightUtilities\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Geert Bergman",
-                    "homepage": "http://www.scrivo.org/",
-                    "role": "Project Author"
-                },
-                {
-                    "name": "Vladimir Jimenez",
-                    "homepage": "https://allejo.io",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Martin Folkers",
-                    "homepage": "https://twobrain.io",
-                    "role": "Contributor"
-                }
-            ],
-            "description": "Server side syntax highlighter that supports 185 languages. It's a PHP port of highlight.js",
-            "keywords": [
-                "code",
-                "highlight",
-                "highlight.js",
-                "highlight.php",
-                "syntax"
-            ],
-            "support": {
-                "issues": "https://github.com/scrivo/highlight.php/issues",
-                "source": "https://github.com/scrivo/highlight.php"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/allejo",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-12-17T21:53:22+00:00"
-        },
-        {
             "name": "sebastian/diff",
             "version": "4.0.6",
             "source": {
@@ -16902,68 +16686,6 @@
                 }
             ],
             "time": "2024-09-25T14:20:29+00:00"
-        },
-        {
-            "name": "symfony/stopwatch",
-            "version": "v7.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/stopwatch.git",
-                "reference": "5a49289e2b308214c8b9c2fda4ea454d8b8ad7cd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/5a49289e2b308214c8b9c2fda4ea454d8b8ad7cd",
-                "reference": "5a49289e2b308214c8b9c2fda4ea454d8b8ad7cd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2",
-                "symfony/service-contracts": "^2.5|^3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Stopwatch\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Provides a way to profile code",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/stopwatch/tree/v7.3.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-02-24T10:49:57+00:00"
         },
         {
             "name": "symfony/string",
