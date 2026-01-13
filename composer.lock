@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2667e0730e70746bdb3c2eb3ab4b3d35",
+    "content-hash": "af82404d111ca2ccb5204d41dcb6394f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4371,22 +4371,22 @@
         },
         {
             "name": "drupal/devel_entity_updates",
-            "version": "4.2.1",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/devel_entity_updates.git",
-                "reference": "4.2.1"
+                "reference": "5.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/devel_entity_updates-4.2.1.zip",
-                "reference": "4.2.1",
-                "shasum": "4f7cdf2884fa838a8dc20dfd159b27bf68853f5e"
+                "url": "https://ftp.drupal.org/files/projects/devel_entity_updates-5.0.0.zip",
+                "reference": "5.0.0",
+                "shasum": "2e37b591b2a61c0f5266ede38c5389ae028710b2"
             },
             "require": {
-                "drupal/core": "^9.2 || ^10",
+                "drupal/core": "^10.1 || ^11",
                 "drupal/devel": "*",
-                "drush/drush": "^11 || ^12 || ^13"
+                "drush/drush": "^12 || ^13"
             },
             "require-dev": {
                 "drupal/devel": "*"
@@ -4394,8 +4394,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.2.1",
-                    "datestamp": "1756475373",
+                    "version": "5.0.0",
+                    "datestamp": "1765883085",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4403,7 +4403,7 @@
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^11 || ^12 || ^13"
+                        "drush.services.yml": "^12 || ^13"
                     }
                 }
             },
@@ -5886,37 +5886,37 @@
         },
         {
             "name": "drupal/image_style_warmer",
-            "version": "1.2.0",
+            "version": "1.3.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/image_style_warmer.git",
-                "reference": "8.x-1.2"
+                "reference": "8.x-1.3-rc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/image_style_warmer-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "c029502973921203f6c65f446b8e0f0a4fd77089"
+                "url": "https://ftp.drupal.org/files/projects/image_style_warmer-8.x-1.3-rc1.zip",
+                "reference": "8.x-1.3-rc1",
+                "shasum": "0cc304a6baf475cc0a5c79cc2020995ce9583af1"
             },
             "require": {
-                "drupal/core": "^9 || ^10"
+                "drupal/core": "^9 || ^10 || ^11"
             },
             "require-dev": {
-                "drush/drush": "^10 || ^11"
+                "drush/drush": "^11 || ^12 || ^13"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1686119705",
+                    "version": "8.x-1.3-rc1",
+                    "datestamp": "1723010304",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^9 || ^10 || ^11"
+                        "drush.services.yml": "^11 || ^12 || ^13"
                     }
                 }
             },
@@ -7558,29 +7558,30 @@
         },
         {
             "name": "drupal/photoswipe",
-            "version": "4.0.1",
+            "version": "5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/photoswipe.git",
-                "reference": "4.0.1"
+                "reference": "5.0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/photoswipe-4.0.1.zip",
-                "reference": "4.0.1",
-                "shasum": "9d01589410b2a1c52fae9dc7fcc9cd1ae3b61cba"
+                "url": "https://ftp.drupal.org/files/projects/photoswipe-5.0.6.zip",
+                "reference": "5.0.6",
+                "shasum": "6f3ae21b678908aed903698e7f04cf7ab988dc6a"
             },
             "require": {
-                "drupal/core": "^9.3 || ^10"
+                "drupal/core": "^9.3 || ^10 || ^11"
             },
             "suggest": {
-                "npm-asset/photoswipe": "Required to use drupal/photoswipe. Expected version: ^4"
+                "npm-asset/photoswipe": "Required to make the 'photoswipe' module functional. Expected version: ^5",
+                "npm-asset/photoswipe-dynamic-caption-plugin": "Required to make the 'photoswipe_dynamic_caption' submodule functional. Expected version: ^1.2"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.0.1",
-                    "datestamp": "1691566821",
+                    "version": "5.0.6",
+                    "datestamp": "1758701729",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7951,27 +7952,27 @@
         },
         {
             "name": "drupal/rate",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/rate.git",
-                "reference": "3.1.0"
+                "reference": "3.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/rate-3.1.0.zip",
-                "reference": "3.1.0",
-                "shasum": "03193f8173b27c34271c00de5def05a2a72cf0e4"
+                "url": "https://ftp.drupal.org/files/projects/rate-3.2.0.zip",
+                "reference": "3.2.0",
+                "shasum": "7a4c77fd2eb774c3f73efe339195f8a90f21f9a7"
             },
             "require": {
-                "drupal/core": "^9 || ^10",
-                "drupal/votingapi": "^3.0"
+                "drupal/core": "^10.1 || ^11",
+                "drupal/votingapi": "^3.0 || ^4.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.1.0",
-                    "datestamp": "1703991503",
+                    "version": "3.2.0",
+                    "datestamp": "1763381973",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -17671,6 +17672,7 @@
         "drupal/entity_usage": 10,
         "drupal/feeds_ex": 10,
         "drupal/feeds_tamper": 10,
+        "drupal/image_style_warmer": 5,
         "drupal/masquerade": 5,
         "drupal/media_entity_image_exif": 5,
         "drupal/viewfield": 10,

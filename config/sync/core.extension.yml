@@ -134,6 +134,7 @@ module:
   path_alias: 0
   pcb: 0
   photoswipe: 0
+  photoswipe_dynamic_caption: 0
   phpass: 0
   popup_message: 0
   queue_ui: 0
@@ -161,7 +162,6 @@ module:
   tmgmt_content: 0
   token: 0
   toolbar: 0
-  tracer: 0
   typed_data: 0
   update: 0
   upgrade_status: 0
