@@ -3,6 +3,8 @@ type: theme
 'base theme': false
 'alt text': 'Screenshot of Taranto Viva, Drupal front-end theme.'
 version: 1.0.0
+core_version_requirement: ^10 | ^11
+generator: 'taranto_viva:10.1.7'
 libraries:
   - taranto_viva/global-styling
 regions:
@@ -65,5 +67,3 @@ libraries-extend:
     - taranto_viva/drupal.node.preview
   content_moderation/content_moderation:
     - taranto_viva/content_moderation
-core_version_requirement: ^10 | ^11
-generator: 'taranto_viva:10.1.7'
