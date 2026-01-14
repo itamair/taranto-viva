@@ -32,6 +32,7 @@ dependencies:
     - field.storage.taxonomy_term.field_zoom_visibility_range
     - node.type.event
     - node.type.geoimage
+    - node.type.geojson_geometry
     - node.type.geoplace
     - node.type.map_label
     - node.type.territorial_report
@@ -6070,9 +6071,9 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            event: event
             geoimage: geoimage
             geoplace: geoplace
+            geojson_geometry: geojson_geometry
             map_label: map_label
           group: 1
           exposed: false
@@ -6370,7 +6371,7 @@ display:
             options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"initialZoomLevel":16,"flyTo":true,"strings":{"title":"Locate my position"},"cacheLocation":true,"tap":false,"enableHighAccuracy":true,"touch_helper":true}'
             automatic: false
           map_position:
-            force: true
+            force: false
             center:
               lat: 40.472317
               lon: 17.240046

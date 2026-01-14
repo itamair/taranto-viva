@@ -57,7 +57,7 @@ dependencies:
     - taxonomy
     - user
 id: bici_e_radici_monopoli_14_09_25
-label: 'Bici e Radici - Monopoli 14/9 2025'
+label: 'Bici e Radici - Monopoli 14/9 2025 - Percorsi'
 module: views
 description: ''
 tag: ''
@@ -234,7 +234,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<p>No Results found</p>\r\n"
+            value: '<p>No Results found</p>'
             format: basic_html
           tokenize: false
       sorts:
@@ -590,7 +590,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<p>Fonte dati: <a href=\"https://www.cicloviadellacquedotto.it/tracciato/\" target=\"blank\">Sito cicloviadellacquedotto.it</a></p>\r\n<p>Scarica il tracciato in formato GeoJSON: <a href=\"/ciclovia_acqueddotto_geojson/v1\" target=\"blank\">GeoJSON API Endpoint (v1)</a></p>"
+            value: '<p>Data source: <a href="https://www.cicloviadellacquedotto.it/tracciato/" target="blank">Cicloviadellacquedotto.it Website</a></p><p>Download the Route in GeoJSON format: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a></p>'
             format: full_html
           tokenize: false
       display_extenders: {  }
@@ -2834,8 +2834,11 @@ display:
           bef:
             general:
               autosubmit: true
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
@@ -2846,10 +2849,15 @@ display:
               title:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   placeholder_text: ''
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
       sorts: {  }
       filters:
         status:
@@ -4700,8 +4708,11 @@ display:
           bef:
             general:
               autosubmit: true
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
@@ -4712,10 +4723,15 @@ display:
               title:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   placeholder_text: ''
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
       sorts: {  }
       filters:
         status:
