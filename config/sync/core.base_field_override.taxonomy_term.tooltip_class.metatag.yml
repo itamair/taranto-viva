@@ -1,0 +1,20 @@
+uuid: 751767f8-2e81-48d9-8b0c-5bb02e38031c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tooltip_class
+  module:
+    - metatag
+id: taxonomy_term.tooltip_class.metatag
+field_name: metatag
+entity_type: taxonomy_term
+bundle: tooltip_class
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed

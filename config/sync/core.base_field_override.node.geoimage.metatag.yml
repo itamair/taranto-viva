@@ -1,0 +1,20 @@
+uuid: 4141895f-dd70-4684-995a-6bc25881aff2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geoimage
+  module:
+    - metatag
+id: node.geoimage.metatag
+field_name: metatag
+entity_type: node
+bundle: geoimage
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed

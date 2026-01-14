@@ -1,0 +1,18 @@
+uuid: f36ee82e-9fb0-4a57-91ee-a61bed744380
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.map_label
+id: node.map_label.changed
+field_name: changed
+entity_type: node
+bundle: map_label
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

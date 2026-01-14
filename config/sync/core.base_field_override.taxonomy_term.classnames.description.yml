@@ -1,0 +1,21 @@
+uuid: 09d02300-28fd-4e51-90fe-9e7320ddf07f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.classnames
+  module:
+    - text
+id: taxonomy_term.classnames.description
+field_name: description
+entity_type: taxonomy_term
+bundle: classnames
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,20 @@
+uuid: 35903744-8d8f-4a88-96d8-f4e565222ed0
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geojson_geometry
+  module:
+    - metatag
+id: node.geojson_geometry.metatag
+field_name: metatag
+entity_type: node
+bundle: geojson_geometry
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed

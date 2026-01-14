@@ -1,0 +1,20 @@
+uuid: 877fdb5e-57b2-48bf-9f0c-c194b88831f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tratte_ciclovia_aqp
+  module:
+    - metatag
+id: taxonomy_term.tratte_ciclovia_aqp.metatag
+field_name: metatag
+entity_type: taxonomy_term
+bundle: tratte_ciclovia_aqp
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed
