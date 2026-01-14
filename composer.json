@@ -13,6 +13,10 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
+        "Asset Packagist": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
         "jsoneditor": {
             "type": "package",
             "package": {
@@ -153,6 +157,7 @@
         "geocoder-php/google-maps-provider": "^4.7",
         "geocoder-php/photon-provider": "^0.6.0",
         "itamair/geophp": "^1.8",
+        "oomphinc/composer-installers-extender": "^2.0",
         "pschocke/google-maps-links": "dev-master"
     },
     "conflict": {
@@ -163,12 +168,13 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "cweagans/composer-patches": true,
-            "php-http/discovery": true
+            "oomphinc/composer-installers-extender": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true
         },
         "sort-packages": true
     },
@@ -184,7 +190,9 @@
                 "type:drupal-core"
             ],
             "web/libraries/{$name}": [
-                "type:drupal-library"
+                "type:drupal-library",
+                "type:npm-asset",
+                "type:bower-asset"
             ],
             "web/modules/contrib/{$name}": [
                 "type:drupal-module"
