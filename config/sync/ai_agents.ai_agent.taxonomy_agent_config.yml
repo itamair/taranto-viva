@@ -36,8 +36,7 @@ tool_usage_limits:
       action: only_allow
       hide_property: 0
       values:
-        - "taxonomy_term\r"
-        - ''
+        - taxonomy_term
     bundle:
       action: ''
       hide_property: 0

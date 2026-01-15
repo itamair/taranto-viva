@@ -32,9 +32,7 @@ dependencies:
     - field.storage.taxonomy_term.field_zoom_visibility_range
     - node.type.event
     - node.type.geoimage
-    - node.type.geojson_geometry
     - node.type.geoplace
-    - node.type.map_label
     - node.type.territorial_report
     - paragraphs.paragraphs_type.geoimage
     - paragraphs.paragraphs_type.geometry
@@ -6071,10 +6069,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            geoimage: geoimage
             geoplace: geoplace
-            geojson_geometry: geojson_geometry
-            map_label: map_label
           group: 1
           exposed: false
           expose:
