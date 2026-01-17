@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c887e60dfcbf079fb18f31a1ba6d96a0",
+    "content-hash": "09bca5381e7142bfa443b3499ad6050b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6739,74 +6739,6 @@
             }
         },
         {
-            "name": "drupal/media_entity_image_exif",
-            "version": "1.0.0-rc1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/media_entity_image_exif.git",
-                "reference": "8.x-1.0-rc1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_entity_image_exif-8.x-1.0-rc1.zip",
-                "reference": "8.x-1.0-rc1",
-                "shasum": "9b74bc4a6e3df8ac0d6f65524080ec15927685fb"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9 || ^10"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.0-rc1",
-                    "datestamp": "1682175827",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "chr.fritsch",
-                    "homepage": "https://www.drupal.org/user/2103716"
-                },
-                {
-                    "name": "damienmckenna",
-                    "homepage": "https://www.drupal.org/user/108450"
-                },
-                {
-                    "name": "davidburns",
-                    "homepage": "https://www.drupal.org/user/72958"
-                },
-                {
-                    "name": "marcoscano",
-                    "homepage": "https://www.drupal.org/user/1288796"
-                },
-                {
-                    "name": "phenaproxima",
-                    "homepage": "https://www.drupal.org/user/205645"
-                },
-                {
-                    "name": "seanb",
-                    "homepage": "https://www.drupal.org/user/545912"
-                },
-                {
-                    "name": "slashrsm",
-                    "homepage": "https://www.drupal.org/user/744628"
-                }
-            ],
-            "description": "Allows EXIF information from images to be used with Media in core.",
-            "homepage": "https://www.drupal.org/project/media_entity_image_exif",
-            "support": {
-                "source": "https://git.drupalcode.org/project/media_entity_image_exif"
-            }
-        },
-        {
             "name": "drupal/media_entity_slideshow",
             "version": "2.6.0",
             "source": {
@@ -6864,6 +6796,54 @@
             "homepage": "https://www.drupal.org/project/media_entity_slideshow",
             "support": {
                 "source": "https://git.drupalcode.org/project/media_entity_slideshow"
+            }
+        },
+        {
+            "name": "drupal/media_image_metadata",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/media_image_metadata.git",
+                "reference": "1.0.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/media_image_metadata-1.0.6.zip",
+                "reference": "1.0.6",
+                "shasum": "c4f370f05fc082cab63ff40f9e673ccc7ea90390"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.6",
+                    "datestamp": "1764229993",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lullabot",
+                    "homepage": "https://www.drupal.org/user/3815489"
+                },
+                {
+                    "name": "marcoscano",
+                    "homepage": "https://www.drupal.org/user/1288796"
+                }
+            ],
+            "description": "Allows extracting embedded image metadata and using it in media entities",
+            "homepage": "https://www.drupal.org/project/media_image_metadata",
+            "support": {
+                "source": "https://git.drupalcode.org/project/media_image_metadata"
             }
         },
         {
@@ -17564,7 +17544,6 @@
         "drupal/feeds_tamper": 10,
         "drupal/image_style_warmer": 5,
         "drupal/masquerade": 5,
-        "drupal/media_entity_image_exif": 5,
         "drupal/viewfield": 10,
         "drupal/views_daterange_filters": 15,
         "drupal/votingapi": 20,
