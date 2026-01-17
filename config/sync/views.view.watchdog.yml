@@ -17,7 +17,7 @@ base_field: wid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -129,7 +129,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: machine_name
-          label: Rilevanza
+          label: Severity
           exclude: true
           alter:
             alter_text: false
@@ -179,7 +179,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -280,7 +280,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: dblog_message
-          label: Messaggio
+          label: Message
           exclude: false
           alter:
             alter_text: false
@@ -395,7 +395,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: dblog_operations
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -452,7 +452,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -479,10 +479,10 @@ display:
           field: area_text_custom
           relationship: none
           group_type: group
-          admin_label: 'Nessun messaggio di log disponibile.'
+          admin_label: 'No log messages available.'
           plugin_id: text_custom
           empty: true
-          content: 'Nessun messaggio di log disponibile.'
+          content: 'No log messages available.'
           tokenize: false
       sorts:
         wid:
@@ -514,7 +514,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: Tipo
+            label: Type
             description: ''
             use_operator: false
             operator: type_op
@@ -526,8 +526,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -555,7 +553,7 @@ display:
           exposed: true
           expose:
             operator_id: severity_op
-            label: Rilevanza
+            label: Severity
             description: ''
             use_operator: false
             operator: severity_op
@@ -567,8 +565,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -663,6 +659,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:

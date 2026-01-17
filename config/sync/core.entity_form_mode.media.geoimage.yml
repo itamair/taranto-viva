@@ -6,6 +6,6 @@ dependencies:
     - media
 id: media.geoimage
 label: 'Geo Image'
-description: ''
+description: null
 targetEntityType: media
 cache: true

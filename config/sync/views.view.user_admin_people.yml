@@ -16,7 +16,7 @@ base_field: uid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -134,7 +134,7 @@ display:
           entity_type: user
           entity_field: status
           plugin_id: field
-          label: Stato
+          label: Status
           exclude: false
           alter:
             alter_text: false
@@ -178,8 +178,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Bloccato
-            format_custom_true: Attive
+            format_custom_false: Blocked
+            format_custom_true: Active
         roles_target_id:
           id: roles_target_id
           table: user__roles
@@ -188,7 +188,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: user_roles
-          label: Ruoli
+          label: Roles
           exclude: false
           alter:
             alter_text: false
@@ -352,7 +352,7 @@ display:
           admin_label: ''
           entity_type: user
           plugin_id: entity_operations
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -467,8 +467,8 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: 'Seguente ›'
-            previous: '‹ Precedente'
+            next: 'Next ›'
+            previous: '‹ Previous'
             first: '« First'
             last: 'Last »'
           expose:
@@ -476,7 +476,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -552,8 +552,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -597,11 +595,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: true
           group_info:
-            label: Stato
+            label: Status
             description: ''
             identifier: status
             optional: true
@@ -612,11 +608,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Attive
+                title: Active
                 operator: '='
                 value: '1'
               2:
-                title: Bloccato
+                title: Blocked
                 operator: '='
                 value: '0'
         roles_target_id:
@@ -633,7 +629,7 @@ display:
           exposed: true
           expose:
             operator_id: roles_target_id_op
-            label: Ruolo
+            label: Role
             description: ''
             use_operator: false
             operator: roles_target_id_op
@@ -645,8 +641,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -675,7 +669,7 @@ display:
           exposed: true
           expose:
             operator_id: permission_op
-            label: Permesso
+            label: Permission
             description: ''
             use_operator: false
             operator: permission_op
@@ -687,8 +681,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -862,6 +854,7 @@ display:
           sticky: false
           summary: ''
           empty_table: true
+          class: ''
       row:
         type: fields
       query:
@@ -906,7 +899,7 @@ display:
       path: admin/people/list
       menu:
         type: 'default tab'
-        title: Elenco
+        title: List
         description: 'Find and manage people interacting with your site.'
         weight: -10
         menu_name: admin

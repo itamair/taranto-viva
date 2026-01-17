@@ -716,10 +716,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             min_placeholder: null
             max_placeholder: null
             placeholder: null

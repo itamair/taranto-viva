@@ -4,24 +4,7 @@ display:
   default:
     display_title: Master
     display_options:
-      exposed_form:
-        options:
-          submit_button: Apply
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      pager:
-        options:
-          tags:
-            previous: ‹‹
-            next: ››
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+      title: 'Voting API votes'
       fields:
         id:
           label: ID
@@ -41,6 +24,24 @@ display:
         timestamp:
           label: 'Voted on'
           separator: ', '
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       filters:
         type:
           expose:
@@ -57,7 +58,6 @@ display:
         name:
           expose:
             label: 'Voted by'
-      title: 'Voting API votes'
   admin_page:
     display_title: 'All Votes'
     display_options:
@@ -91,9 +91,9 @@ display:
   node_page:
     display_title: 'Entity Votes'
     display_options:
-      menu:
-        title: Votes
       arguments:
         entity_id:
           exception:
             title: All
+      menu:
+        title: Votes

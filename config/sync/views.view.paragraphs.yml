@@ -9,7 +9,7 @@ dependencies:
 _core:
   default_config_hash: SSxngaKnwPx0YAtrVkm3EFBv1pbdKd6kZwMEiCtoRJc
 id: paragraphs
-label: Paragrafi
+label: Paragraphs
 module: views
 description: 'Find and manage paragraphs.'
 tag: ''
@@ -22,7 +22,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Paragrafi
+      title: Paragraphs
       fields:
         id:
           id: id
@@ -157,7 +157,7 @@ display:
           entity_type: paragraph
           entity_field: created
           plugin_id: field
-          label: 'Creato il'
+          label: 'Authored on'
           exclude: false
           alter:
             alter_text: false
@@ -287,7 +287,7 @@ display:
           entity_type: paragraph
           entity_field: parent_id
           plugin_id: field
-          label: Genitore
+          label: Parent
           exclude: false
           alter:
             alter_text: false
@@ -352,7 +352,7 @@ display:
           entity_type: paragraph
           entity_field: status
           plugin_id: field
-          label: Pubblicato
+          label: Published
           exclude: false
           alter:
             alter_text: false
@@ -419,7 +419,7 @@ display:
           entity_type: paragraph
           entity_field: type
           plugin_id: field
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -482,11 +482,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: custom
-          label: Azione
+          label: Action
           exclude: false
           alter:
             alter_text: true
-            text: elimina
+            text: delete
             make_link: true
             path: 'paragraph/{{ id }}/delete'
             absolute: false
@@ -494,7 +494,7 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: elimina
+            alt: delete
             rel: delete
             link_class: ''
             prefix: ''
@@ -539,7 +539,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -579,7 +579,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: Tipo
+            label: Type
             description: ''
             use_operator: false
             operator: type_op
@@ -591,7 +591,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -676,6 +675,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:
@@ -720,7 +720,7 @@ display:
       path: admin/content/paragraphs
       menu:
         type: tab
-        title: Paragrafi
+        title: Paragraphs
         description: ''
         weight: 5
         expanded: false

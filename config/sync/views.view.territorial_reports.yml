@@ -608,7 +608,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'Nessun risultato trovato.'
+            value: "<p>No results found.</p>\r\n"
             format: basic_html
           tokenize: false
       sorts:
@@ -774,8 +774,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:

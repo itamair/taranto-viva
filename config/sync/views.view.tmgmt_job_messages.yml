@@ -142,7 +142,7 @@ display:
           entity_type: user
           entity_field: name
           plugin_id: field
-          label: Nome
+          label: Name
           exclude: false
           alter:
             alter_text: false
@@ -215,7 +215,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 20, 40, 60'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -278,7 +278,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed

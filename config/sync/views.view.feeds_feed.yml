@@ -75,7 +75,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: 'Con la selezione'
+          action_title: 'With selection'
           include_exclude: exclude
           selected_actions: {  }
         title:
@@ -153,7 +153,7 @@ display:
           entity_type: feeds_feed
           entity_field: type
           plugin_id: field
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -283,7 +283,7 @@ display:
           entity_type: feeds_feed
           entity_field: changed
           plugin_id: field
-          label: Aggiornato
+          label: Updated
           exclude: false
           alter:
             alter_text: false
@@ -434,7 +434,7 @@ display:
           admin_label: ''
           entity_type: feeds_feed
           plugin_id: entity_operations
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -494,7 +494,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -570,7 +570,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -599,7 +598,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: Tipo
+            label: Type
             description: ''
             use_operator: false
             operator: type_op
@@ -609,7 +608,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -694,6 +692,7 @@ display:
           empty_table: true
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:

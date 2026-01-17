@@ -19,7 +19,7 @@ base_field: wid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -98,7 +98,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: date
-          label: 'Data e ora'
+          label: Time
           exclude: false
           alter:
             alter_text: false
@@ -150,7 +150,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: dblog_message
-          label: Messaggio
+          label: Message
           exclude: false
           alter:
             alter_text: false
@@ -200,7 +200,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: serialized
-          label: Token
+          label: Tokens
           exclude: true
           alter:
             alter_text: false
@@ -310,7 +310,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -415,9 +415,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -449,7 +446,7 @@ display:
           exposed: true
           expose:
             operator_id: timestamp_op
-            label: Da
+            label: From
             description: ''
             use_operator: false
             operator: timestamp_op
@@ -461,9 +458,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -497,7 +491,7 @@ display:
           exposed: true
           expose:
             operator_id: timestamp_1_op
-            label: A
+            label: To
             description: ''
             use_operator: false
             operator: timestamp_1_op
@@ -509,9 +503,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
