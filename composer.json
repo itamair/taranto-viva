@@ -140,7 +140,7 @@
         "drupal/svg_image": "^3.0",
         "drupal/tmgmt": "^1.15",
         "drupal/token": "^1.11",
-        "drupal/upgrade_status": "^4.0",
+        "drupal/upgrade_status": "^4.3",
         "drupal/uuid_extra": "^2.0",
         "drupal/varbase_ai_agents": "~1.0.0",
         "drupal/viewfield": "^3.0@beta",
