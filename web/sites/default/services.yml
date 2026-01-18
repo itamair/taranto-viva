@@ -1,5 +1,4 @@
 parameters:
-  http.response.debug_cacheability_headers: true
 
   # Configure Cross-Site HTTP requests (CORS).
   # Read https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
