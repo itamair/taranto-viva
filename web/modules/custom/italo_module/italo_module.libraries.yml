@@ -16,6 +16,7 @@ leaflet_map_interactions:
     - core/once
     - core/drupal
 
+# Define a library to manage an Images/Immagini Leaflet Control
 leaflet_images_control:
   version: 1.x
   js:

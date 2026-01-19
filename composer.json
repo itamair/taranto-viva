@@ -145,6 +145,7 @@
         "drupal/uuid_extra": "^2.0",
         "drupal/varbase_ai_agents": "~1.0.0",
         "drupal/viewfield": "^3.0@beta",
+        "drupal/views_attach_library": "^3.0",
         "drupal/views_base_url": "^2.1",
         "drupal/views_bulk_edit": "^3.0",
         "drupal/views_bulk_operations": "^4.2",

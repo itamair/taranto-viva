@@ -28,8 +28,8 @@
         const map = lMap;
         const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit;
 
-        // Add the L.Control.ImagesToggle only if there is Immagini or Images Overlays Groups.
-        if (Drupal.Leaflet[mapid].overlays && (Drupal.Leaflet[mapid].overlays["Immagini"] !== undefined || Drupal.Leaflet[mapid].overlays["Immages"] !== undefined)) {
+        // Add the L.Control.ImagesToggle only if Overlays enabled..
+        if (Drupal.Leaflet[mapid].overlays) {
           // Add Images/Immagini toggle control
           L.Control.ImagesToggle = L.Control.extend({
             onAdd: function(map) {
@@ -41,11 +41,9 @@
               // Get overlays from Drupal.Leaflet
               const overlays = Drupal.Leaflet[mapid].overlays;
 
-              // Determine language from overlay names
-              const isItalian = overlays["Immagini"] !== undefined;
-              const overlayName = isItalian ? 'Immagini' : 'Images';
-              labelText.innerHTML = overlayName;
+              const overlayName = Drupal.t('Images')
 
+              labelText.innerHTML = overlayName;
               checkbox.type = 'checkbox';
 
               // Function to update checkbox state based on overlay visibility

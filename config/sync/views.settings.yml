@@ -3,6 +3,7 @@ _core:
 langcode: it
 display_extenders:
   - metatag_display_extender
+  - library_in_views_display_extender
 sql_signature: false
 ui:
   show:

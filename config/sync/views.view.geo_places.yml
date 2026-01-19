@@ -32,7 +32,9 @@ dependencies:
     - field.storage.taxonomy_term.field_zoom_visibility_range
     - node.type.event
     - node.type.geoimage
+    - node.type.geojson_geometry
     - node.type.geoplace
+    - node.type.map_label
     - node.type.territorial_report
     - paragraphs.paragraphs_type.geoimage
     - paragraphs.paragraphs_type.geometry
@@ -6065,7 +6067,10 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            geoimage: geoimage
             geoplace: geoplace
+            geojson_geometry: geojson_geometry
+            map_label: map_label
           group: 1
           exposed: false
           expose:
@@ -6538,6 +6543,8 @@ display:
             og_title: '[view:title] | [site:name]'
             og_description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
+        library_in_views_display_extender:
+          attach_library: italo_module/leaflet_images_control
       path: main_map
       menu:
         type: normal

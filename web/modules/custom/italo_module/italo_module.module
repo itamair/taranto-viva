@@ -37,10 +37,14 @@ function italo_module_page_attachments(array &$page) {
   $current_route_name = \Drupal::service('current_route_match')->getRouteName();
   $page['#attached']['library'][] = 'italo_module/common';
   $page['#attached']['library'][] = 'italo_module/leaflet_map_interactions';
-  $page['#attached']['library'][] = 'italo_module/leaflet_images_control';
   // $page['#attached']['library'][] = 'italo_module/leaflet_node_forced_bounds';
   $page['#attached']['library'][] = 'italo_module/leaflet-arrowheads';
   $page['#attached']['library'][] = 'italo_module/leaflet_drupal_overrides';
+
+  // The leaflet_images_control library now being added to specific views,
+  // (such as the views.view.geo_places.yml) throughout the views_attach_library
+  // contrib module (https://www.drupal.org/project/views_attach_library).
+  // $page['#attached']['library'][] = 'italo_module/leaflet_images_control'; .
 }
 
 /**

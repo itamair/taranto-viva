@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c7840e44ad232904788f3cdee68a9ac",
+    "content-hash": "13cd05fd2a408ac1eade39143956cc9e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8803,6 +8803,69 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/viewfield",
                 "issues": "https://www.drupal.org/project/issues/viewfield"
+            }
+        },
+        {
+            "name": "drupal/views_attach_library",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/views_attach_library.git",
+                "reference": "3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_attach_library-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "de43baf422c90151b90594ddf7afc91e474b1c8b"
+            },
+            "require": {
+                "drupal/core": "^11 || ^12"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.1",
+                    "datestamp": "1749472375",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Hardik Patel",
+                    "homepage": "https://www.drupal.org/u/hardik_patel_12",
+                    "email": "hplord12@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "NGUYEN Bao",
+                    "homepage": "https://www.drupal.org/u/lazzyvn",
+                    "email": "n.bao@yahoo.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "lazzyvn",
+                    "homepage": "https://www.drupal.org/user/2896581"
+                }
+            ],
+            "description": "Views Attach Library",
+            "homepage": "https://www.drupal.org/project/views_attach_library",
+            "keywords": [
+                "Attach",
+                "Drupal",
+                "Library",
+                "view"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/views_attach_library",
+                "issues": "https://www.drupal.org/project/issues/views_attach_library"
             }
         },
         {
