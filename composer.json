@@ -124,6 +124,7 @@
         "drupal/paragraphs": "^1.20",
         "drupal/pathauto": "^1.11",
         "drupal/pcb": "^4.0",
+        "drupal/permissions_fixer": "^2.0",
         "drupal/photoswipe": "^5.0",
         "drupal/popup_message": "3.0.3",
         "drupal/queue_ui": "^3.1",
