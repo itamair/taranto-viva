@@ -36,6 +36,7 @@ module:
   comment: 0
   conditional_fields: 0
   config: 0
+  config_inspector: 0
   config_translation: 0
   contact: 0
   content_access: 0
