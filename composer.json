@@ -250,8 +250,8 @@
             "drupal/entity_reference_revisions": {
                 "#2799479 Views doesn't recognize relationship to host": "https://www.drupal.org/files/issues/2024-08-24/entity_reference_revisions-2799479-231--no-tests.patch"
             },
-            "drupal/views_attach_library": {
-                "#3498233fatal error on config inspector": "https://git.drupalcode.org/project/views_attach_library/-/merge_requests/4.diff"
+            "drupal/config_inspector": {
+                "#3444730 Expected argument of type \"array\", \"string\" given": "https://git.drupalcode.org/project/config_inspector/-/merge_requests/26/diffs.patch"
             }
         }
     },

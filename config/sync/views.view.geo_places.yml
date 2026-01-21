@@ -6184,6 +6184,52 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_project_namespace_target_id_1:
+          id: field_project_namespace_target_id_1
+          table: node__field_project_namespace
+          field: field_project_namespace_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            52: 52
+          group: 2
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: project_namespace
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
         type_1:
           id: type_1
           table: node_field_data
