@@ -60,22 +60,52 @@ function italo_module_views_query_alter(ViewExecutable $view, QueryPluginBase $q
   // but still we needed this in the ciclovia_acquedotto_aqp view ... etc.
   // Content|Nodes based Views.
   if (in_array($view->storage->id(), [
-      'geo_places',
-      'ciclovia_acquedotto_aqp',
-      'ciclovia_acquedotto_aqp_geojson',
-    ]) && "$view->current_display" !== "page_geoplaces_grid" && $query instanceof Sql) {
+    'geo_places',
+    'ciclovia_acquedotto_aqp',
+    'ciclovia_acquedotto_aqp_geojson',
+  ]) && "$view->current_display" !== "page_geoplaces_grid" && $query instanceof Sql) {
     $query->addField('paragraphs_item_field_data_node__field_components', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data_node__field_components.id');
   }
   // Paragraphs based Views.
   if (in_array($view->storage->id(), [
-      'taranto_viva_geojson',
-      'taranto_viva_geoplaces_geojson',
-      'taranto_viva_geoimages_geojson',
-    ]) && $query instanceof Sql) {
+    'taranto_viva_geojson',
+    'taranto_viva_geoplaces_geojson',
+    'taranto_viva_geoimages_geojson',
+  ]) && $query instanceof Sql) {
     $query->addField('paragraphs_item_field_data', 'id', '', ['function' => 'groupby']);
     $query->addGroupBy('paragraphs_item_field_data.id');
   }
+
+  // For the "geo_place" view we need this views_query_alter hack to work around
+  // a Drupal Views kind of bug on the Grouped Filters.
+  // Without this hack the secound group of filters (on the "territorial
+  // reports") will prvent all territorial reports to appear.
+  // The following hack was inspired by ChatGPT advice and analysis.
+  // @see https://chatgpt.com/share/697292d7-bcdc-800a-acbb-94ee5ef3bc45
+  if ($view->storage->id() == 'geo_places' && "$view->current_display" == "page_map_taranto_viva" && $query instanceof Sql) {
+    if (empty($query->getTableQueue())) {
+      return;
+    }
+    // Alias of the "problematic" join .
+    $bad_alias = 'node__field_project_namespace2';
+
+    // If the join doesn't exist, we do nothing.
+    if (empty($query->getTableQueue()[$bad_alias])) {
+      return;
+    }
+
+    // Find & define the "problematic" join.
+    $join = $query->getTableQueue()[$bad_alias]['join'];
+
+    // Unset the extra that contains the "condition"
+    // of the join, which in your case includes "... != 1".
+    unset($join->extra);
+
+    // The following step looks un-needed.
+    // $query->getTableQueue()[$bad_alias]['join'] = $join;
+  }
+
 
 }
 
