@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20416737942d1a20d7a5cb14b8c24ad3",
+    "content-hash": "aa614549f8666e0f08db48f7464c21b5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1885,17 +1885,17 @@
         },
         {
             "name": "drupal/ai",
-            "version": "1.2.5",
+            "version": "1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ai.git",
-                "reference": "1.2.5"
+                "reference": "1.2.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai-1.2.5.zip",
-                "reference": "1.2.5",
-                "shasum": "49fe8cb707a2816fda75fbf7220b784c695afd98"
+                "url": "https://ftp.drupal.org/files/projects/ai-1.2.7.zip",
+                "reference": "1.2.7",
+                "shasum": "6f089f837c56f58daac0fb9e977665c3f0242cd9"
             },
             "require": {
                 "drupal/core": "^10.4 || ^11",
@@ -1922,8 +1922,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.2.5",
-                    "datestamp": "1767809002",
+                    "version": "1.2.7",
+                    "datestamp": "1769504647",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2517,17 +2517,17 @@
         },
         {
             "name": "drupal/ai_tmgmt",
-            "version": "1.0.0-beta4",
+            "version": "1.0.0-beta5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ai_tmgmt.git",
-                "reference": "1.0.0-beta4"
+                "reference": "1.0.0-beta5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai_tmgmt-1.0.0-beta4.zip",
-                "reference": "1.0.0-beta4",
-                "shasum": "28d0f9f8e7296f1759793dcdab9709ea260c0fc2"
+                "url": "https://ftp.drupal.org/files/projects/ai_tmgmt-1.0.0-beta5.zip",
+                "reference": "1.0.0-beta5",
+                "shasum": "e2291480c2502244d83f1691ad65d472982fe189"
             },
             "require": {
                 "drupal/ai": "^1.0.4",
@@ -2537,8 +2537,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0-beta4",
-                    "datestamp": "1768426268",
+                    "version": "1.0.0-beta5",
+                    "datestamp": "1768973183",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -2559,6 +2559,10 @@
                     "name": "Scott Euser (scott_euser)",
                     "homepage": "https://www.drupal.org/u/scott_euser",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "scott_euser",
+                    "homepage": "https://www.drupal.org/user/3267594"
                 }
             ],
             "description": "TMGMT implementation of AI Module to allow use of many AI Providers like OpenAI, Ollama, etc.",
@@ -2572,6 +2576,59 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/ai_tmgmt",
                 "issues": "https://www.drupal.org/project/issues/ai_tmgmt"
+            }
+        },
+        {
+            "name": "drupal/ai_translate",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ai_translate.git",
+                "reference": "1.3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ai_translate-1.3.0.zip",
+                "reference": "1.3.0",
+                "shasum": "76b8b1e161406af83a75fd2323afadfdeca3628c"
+            },
+            "require": {
+                "drupal/ai": ">1.2.1",
+                "drupal/core": "^10.4 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.3.0",
+                    "datestamp": "1761565127",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
+                },
+                {
+                    "name": "valthebald",
+                    "homepage": "https://www.drupal.org/user/239562"
+                },
+                {
+                    "name": "wouters_f",
+                    "homepage": "https://www.drupal.org/user/721548"
+                }
+            ],
+            "description": "AI translation",
+            "homepage": "https://www.drupal.org/project/ai_translate",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ai_translate"
             }
         },
         {
@@ -17967,7 +18024,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/ai": 5,
         "drupal/ai_provider_deepseek": 15,
         "drupal/ai_tmgmt": 10,
         "drupal/ai_vdb_provider_pinecone": 10,

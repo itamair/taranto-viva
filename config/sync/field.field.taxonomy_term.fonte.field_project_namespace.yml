@@ -7,13 +7,8 @@ dependencies:
     - taxonomy.vocabulary.fonte
     - taxonomy.vocabulary.project_namespace
   module:
-    - ai_translate
     - tmgmt_content
 third_party_settings:
-  ai_translate:
-    entity_reference:
-      translate_references: default
-    translate_references: default
   tmgmt_content:
     excluded: false
 id: taxonomy_term.fonte.field_project_namespace

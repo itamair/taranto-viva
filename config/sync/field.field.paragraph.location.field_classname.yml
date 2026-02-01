@@ -6,16 +6,9 @@ dependencies:
     - field.storage.paragraph.field_classname
     - paragraphs.paragraphs_type.location
     - taxonomy.vocabulary.classnames
-  content:
-    - 'taxonomy_term:classnames:0a346560-c7a2-4c7d-9ca1-2e6de97ed2c3'
   module:
-    - ai_translate
     - tmgmt_content
 third_party_settings:
-  ai_translate:
-    entity_reference:
-      translate_references: default
-    translate_references: default
   tmgmt_content:
     excluded: false
 id: paragraph.location.field_classname

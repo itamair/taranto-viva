@@ -11,13 +11,8 @@ dependencies:
     - node.type.page
     - node.type.territorial_report
   module:
-    - ai_translate
     - tmgmt_content
 third_party_settings:
-  ai_translate:
-    entity_reference:
-      translate_references: default
-    translate_references: default
   tmgmt_content:
     excluded: false
 id: node.geoplace.field_related_content
