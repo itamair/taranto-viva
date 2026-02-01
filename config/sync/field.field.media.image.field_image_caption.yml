@@ -4,9 +4,14 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_image_caption
+    - filter.format.full_html
     - media.type.image
   module:
     - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
 id: media.image.field_image_caption
 field_name: field_image_caption
 entity_type: media
@@ -18,7 +23,9 @@ translatable: false
 default_value:
   -
     value: "<p>Photo Credits: <a href=\"https://www.italomairo.com\" target=\"blank\">Italo Mairo</a></p>\r\n"
-    format: restricted_html
+    format: full_html
 default_value_callback: ''
-settings: {  }
+settings:
+  allowed_formats:
+    - full_html
 field_type: text_long
