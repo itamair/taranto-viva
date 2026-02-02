@@ -27,6 +27,14 @@ targetEntityType: node
 bundle: geoplace
 mode: leaflet_popup
 content:
+  field_category_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_components:
     type: leaflet_popup_components_entity_view
     label: hidden
@@ -34,7 +42,7 @@ content:
       view_mode: leaflet_popup
       link: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_sub_title:
     type: text_header
@@ -54,7 +62,6 @@ content:
     region: content
 hidden:
   body: true
-  field_category_type: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true
@@ -67,5 +74,6 @@ hidden:
   field_zoom_visibility: true
   langcode: true
   links: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true
