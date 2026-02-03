@@ -52,7 +52,7 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
             uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
@@ -68,7 +68,7 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 5
+            weight: 6
             additional: {  }
           7994fea5-edff-4fdf-8178-7605f4ecba98:
             uuid: 7994fea5-edff-4fdf-8178-7605f4ecba98
@@ -91,7 +91,7 @@ third_party_settings:
                   rel: nofollow
                   target: _blank
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
           f6ce4061-108f-414e-8442-be81e31d9d91:
             uuid: f6ce4061-108f-414e-8442-be81e31d9d91
@@ -111,6 +111,25 @@ third_party_settings:
                   level: '3'
                 third_party_settings: {  }
             weight: 2
+            additional: {  }
+          90353cc3-61a6-4e66-8041-c522422c94e5:
+            uuid: 90353cc3-61a6-4e66-8041-c522422c94e5
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_category_type'
+              label: 'Tipo Categoria'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: hidden
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 3
             additional: {  }
         third_party_settings: {  }
       -

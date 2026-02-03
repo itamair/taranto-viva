@@ -18,6 +18,7 @@ module:
   ai_tmgmt: 0
   ai_translate: 0
   ai_vdb_provider_pinecone: 0
+  autocomplete_deluxe: 0
   automated_cron: 0
   backup_migrate: 0
   better_exposed_filters: 0
