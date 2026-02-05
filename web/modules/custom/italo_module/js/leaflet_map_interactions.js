@@ -31,16 +31,10 @@
         // Trigger/Process Initial Actions.
         self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
 
-        // Set Overlays Visibility, depending on Map Zoom.
-        self.setOverlaysVisibility(mapid, map);
-
         // Set Actions on every Zoom End.
         map.on('zoomend', function () {
           // Markers resize on Zoomend.
           self.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
-
-          // Set Overlays Visibility, depending on Map Zoom.
-          self.setOverlaysVisibility(mapid, map);
 
           // Set Tooltip Visibility, depending on Map Zoom.
           self.setPermanentTooltipVisibility(mapid, map);
@@ -315,55 +309,64 @@
 
               // Check if marker should be hidden or shown based on zoom level.
               if (zoomLevel <= minZoom || zoomLevel > maxZoom) {
-                // Hide marker.
-                map.removeLayer(markers[i]);
 
-                // Handle marker in cluster.
+                // Hide the Marker in the following ways.
+                // Eventually remove the Marker from its cluster.
                 if (markers[i].options &&
                   markers[i].options.group_label &&
                   Drupal.Leaflet[mapid] &&
                   Drupal.Leaflet[mapid].overlays &&
                   Drupal.Leaflet[mapid].overlays[markers[i].options.group_label]) {
 
+                  Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].removeLayer(markers[i]);
+
                   const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
                   for (const k in overlays._layers) {
                     if (overlays._layers.hasOwnProperty(k) &&
                       overlays._layers[k] &&
                       overlays._layers[k]._markerCluster) {
-
                       overlays._layers[k].removeLayer(markers[i]);
                     }
                   }
                 }
+                // Otherwise Remove the marker directly from the map.
+                else {
+                  map.removeLayer(markers[i]);
+                }
 
-                // Track hidden marker.
+                // Add the hidden marker in the hidden_markers list/array.
                 if (hidden_marker_index === -1) {
                   self.hidden_markers.push(i);
                 }
               }
+              // Otherwise if the marker is hidden, add it to the map.
               else if (hidden_marker_index > -1) {
-                // Show marker.
-                markers[i].addTo(map);
-
-                // Handle marker in cluster.
+                // In case the marker is part of a group overlay.
                 if (markers[i].options &&
                   markers[i].options.group_label &&
                   Drupal.Leaflet[mapid] &&
                   Drupal.Leaflet[mapid].overlays &&
                   Drupal.Leaflet[mapid].overlays[markers[i].options.group_label]) {
 
+                  // Add the marker in its group Overlay.
+                  Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].addLayer(markers[i]);
+
+                  // Eventually re-add the Marker in its Cluster.
                   const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
                   for (const k in overlays._layers) {
                     if (overlays._layers.hasOwnProperty(k) &&
                       overlays._layers[k] &&
                       overlays._layers[k]._markerCluster) {
-
                       overlays._layers[k].addLayer(markers[i]);
                     }
                   }
                 }
+                // Otherwise add it directly to the map.
+                else {
+                  markers[i].addTo(map);
+                }
 
-                // Remove from hidden markers.
+                // Remove the marker from hidden markers.
                 self.hidden_markers.splice(hidden_marker_index, 1);
               }
             }
@@ -372,45 +375,29 @@
           }
         }
       }
-    },
 
-    /**
-     * Set Overlays Visibility, depending on Map Zoom.
-     *
-     * @param {string} mapid
-     *   The map ID.
-     * @param {object} map
-     *   The Leaflet map object.
-     */
-    setOverlaysVisibility: function(mapid, map) {
-      if (!map || !Drupal.Leaflet || !Drupal.Leaflet[mapid] || !Drupal.Leaflet[mapid].overlays) {
-        return;
-      }
-
-      // Specific Map Overlays visibility on Zoom end.
-      const zoomLevel = map.getZoom();
+      // Set specific Overlays Visibility, depending on Map Zoom.
       const overlays = Drupal.Leaflet[mapid].overlays;
-
 
       // Remove specific zoom visibility of Areas and quarters, because now
       // managed by Zoom Visibility taxonomy.
       // Zone e Quartieri.
-/*      if (overlays["Zone e Quartieri"]) {
-        if (zoomLevel > 13) {
-          overlays["Zone e Quartieri"].remove();
-        } else {
-          overlays["Zone e Quartieri"].addTo(map);
-        }
-      }*/
+      /* if (overlays["Zone e Quartieri"]) {
+          if (zoomLevel > 13) {
+            overlays["Zone e Quartieri"].remove();
+          } else {
+            overlays["Zone e Quartieri"].addTo(map);
+          }
+        }*/
 
       // Areas and quarters.
-/*      if (overlays["Areas and quarters"]) {
-        if (zoomLevel > 13) {
-          overlays["Areas and quarters"].remove();
-        } else {
-          overlays["Areas and quarters"].addTo(map);
-        }
-      }*/
+      /* if (overlays["Areas and quarters"]) {
+          if (zoomLevel > 13) {
+            overlays["Areas and quarters"].remove();
+          } else {
+            overlays["Areas and quarters"].addTo(map);
+          }
+        }*/
 
       // Handle Images/Immagini overlay visibility based on zoom and user preference
       const imagesOverlayActive = sessionStorage.getItem('imagesOverlayActive');
