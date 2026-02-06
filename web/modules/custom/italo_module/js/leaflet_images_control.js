@@ -28,8 +28,12 @@
         const map = lMap;
         const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit;
 
-        // Add the L.Control.ImagesToggle only if Overlays enabled..
-        if (Drupal.Leaflet[mapid].overlays) {
+        // Get overlays from Drupal.Leaflet
+        const overlays = Drupal.Leaflet[mapid].overlays;
+        const overlayName = Drupal.t('Images')
+
+        // Add the L.Control.ImagesToggle only if Overlays enabled (not empty).
+        if (overlays && overlays[overlayName]) {
           // Add Images/Immagini toggle control
           L.Control.ImagesToggle = L.Control.extend({
             onAdd: function(map) {
@@ -37,11 +41,6 @@
               const label = L.DomUtil.create('label', 'images-toggle-label', container);
               const checkbox = L.DomUtil.create('input', 'images-toggle-checkbox', label);
               const labelText = L.DomUtil.create('span', '', label);
-
-              // Get overlays from Drupal.Leaflet
-              const overlays = Drupal.Leaflet[mapid].overlays;
-
-              const overlayName = Drupal.t('Images')
 
               labelText.innerHTML = overlayName;
               checkbox.type = 'checkbox';
