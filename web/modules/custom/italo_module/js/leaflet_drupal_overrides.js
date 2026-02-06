@@ -55,9 +55,9 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
 
   // Add this overriding tooltip logics only onto geoplace content type.
   if (feature.tooltip &&
-      feature_properties.content_type !== "geoimage" &&
-      !parseInt(feature_properties.tooltip_disabled) &&
-      feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
+    feature_properties.content_type !== "geoimage" &&
+    !parseInt(feature_properties.tooltip_disabled) &&
+    feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
 
     const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
 
@@ -122,6 +122,32 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
 (function($, Drupal) {
 
   /**
+   * Return Geometry Construction Base Options.
+   *
+   * @param feature
+   *   The feature definition.
+   *
+   * @returns {*}
+   */
+  Drupal.Leaflet.prototype.create_geometry_base_options = function(feature) {
+    // Assign the marker title value depending if a Marker simple title or a
+    // Leaflet tooltip was set.
+    let marker_title = '';
+    if (feature.title) {
+      marker_title = feature.title.replace(/<[^>]*>/g, '').trim()
+    }
+    else if (feature.tooltip && feature.tooltip.value) {
+      marker_title = feature.tooltip.value.replace(/<[^>]*>/g, '').trim();
+    }
+    return {
+      title: marker_title ?? "",
+      className: feature.className ? feature.className.replaceAll(",", "") : '',
+      alt: marker_title ?? "",
+      group_label: feature.group_label ?? '',
+    };
+  }
+
+  /**
    * Override of Leaflet Point creator, to apply the icon_size_multiplier
    * property.
    *
@@ -140,25 +166,8 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     }
 
     const latLng = new L.LatLng(feature.lat, feature.lon);
-    let lMarker;
-    // Assign the marker title value depending if a Marker simple title or a
-    // Leaflet tooltip was set.
-    let marker_title = '';
-    if (feature.title) {
-      marker_title = feature.title.replace(/<[^>]*>/g, '').trim()
-    }
-    else if (feature.tooltip && feature.tooltip.value) {
-      marker_title = feature.tooltip.value.replace(/<[^>]*>/g, '').trim();
-    }
-    let options = {
-      // Define the title (as mouse hover tooltip) only in case the Leaflet Tooltip is not defined.
-      title: feature.title ? marker_title : "",
-      className: feature.className || '',
-      alt: marker_title,
-      group_label: feature.group_label ?? '',
-    };
-
-    lMarker = new L.Marker(latLng, options);
+    let options = this.create_geometry_base_options(feature);
+    let lMarker = new L.Marker(latLng, options);
 
     if (feature.icon) {
       if (feature.icon.iconType && feature.icon.iconType === 'html' && feature.icon.html) {
@@ -167,7 +176,8 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
       }
       else if (feature.icon.iconType && feature.icon.iconType === 'circle_marker') {
         try {
-          options = feature.icon.circle_marker_options ? JSON.parse(feature.icon.circle_marker_options) : {};
+          // Extend the options with circle marker specific properties,
+          Object.assign(options , feature.icon.circle_marker_options ? JSON.parse(feature.icon.circle_marker_options) : {})
           options.radius = options.radius ? parseInt(options['radius']) : 10;
         }
         catch (e) {
@@ -199,19 +209,22 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
   // Override Leaflet.prototype.create_linestring
   Drupal.Leaflet.prototype.create_linestring = function(polyline) {
     const latlngs = polyline.points.map(point => new L.LatLng(point.lat, point.lon));
-    return new L.Polyline(latlngs);
+    const options = this.create_geometry_base_options(polyline);
+    return new L.Polyline(latlngs, options);
   };
 
   // Override Leaflet.prototype.create_polygon
   Drupal.Leaflet.prototype.create_polygon = function(polygon) {
     const coordinates = polygon.points ?? [];
-    return new L.Polygon(coordinates);
+    const options = this.create_geometry_base_options(polygon);
+    return new L.Polygon(coordinates, options);
   };
 
   // Override Leaflet.prototype.create_multipolygon
   Drupal.Leaflet.prototype.create_multipolygon = function(multipolygon) {
     const coordinates = multipolygon.points ?? [];
-    return new L.Polygon(coordinates);
+    const options = this.create_geometry_base_options(multipolygon);
+    return new L.Polygon(coordinates, options);
   };
 
   // Override Leaflet.prototype.create_multipoly
@@ -219,8 +232,8 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     const polygons = multipoly.component.map(polygon => {
       return polygon.points.map(point => new L.LatLng(point.lat, point.lon));
     });
-
-    return multipoly.multipolyline ? new L.Polyline(polygons) : new L.Polygon(polygons);
+    const options = this.create_geometry_base_options(multipoly);
+    return multipoly.multipolyline ? new L.Polyline(polygons, options) : new L.Polygon(polygons, options);
   };
 
 })(jQuery, Drupal);
