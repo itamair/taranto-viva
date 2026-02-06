@@ -310,28 +310,31 @@
               // Check if marker should be hidden or shown based on zoom level.
               if (zoomLevel <= minZoom || zoomLevel > maxZoom) {
 
-                // Hide the Marker in the following ways.
-                // Eventually remove the Marker from its cluster.
+                // Remove the Marker from the Group Overlay.
                 if (markers[i].options &&
                   markers[i].options.group_label &&
                   Drupal.Leaflet[mapid] &&
                   Drupal.Leaflet[mapid].overlays &&
-                  Drupal.Leaflet[mapid].overlays[markers[i].options.group_label]) {
+                  Drupal.Leaflet[mapid].overlays[markers[i].options.group_label] &&
+                  Drupal.Leaflet[mapid].overlays[markers[i].options.group_label]._layers.hasOwnProperty(markers[i]._layers_id)) {
 
                   Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].removeLayer(markers[i]);
+                }
+                // Otherwise Remove the marker directly from the map.
+                else {
+                  map.removeLayer(markers[i]);
+                }
 
-                  const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
+                // Eventually remove the Marker from its Group Overlay cluster.
+                const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
+                if (overlays && overlays._layers) {
                   for (const k in overlays._layers) {
-                    if (overlays._layers.hasOwnProperty(k) &&
+                    if (Object.prototype.hasOwnProperty.call(overlays._layers, k) &&
                       overlays._layers[k] &&
                       overlays._layers[k]._markerCluster) {
                       overlays._layers[k].removeLayer(markers[i]);
                     }
                   }
-                }
-                // Otherwise Remove the marker directly from the map.
-                else {
-                  map.removeLayer(markers[i]);
                 }
 
                 // Add the hidden marker in the hidden_markers list/array.
@@ -341,7 +344,7 @@
               }
               // Otherwise if the marker is hidden, add it to the map.
               else if (hidden_marker_index > -1) {
-                // In case the marker is part of a group overlay.
+                // In case the marker is part of a Group Overlay.
                 if (markers[i].options &&
                   markers[i].options.group_label &&
                   Drupal.Leaflet[mapid] &&
@@ -350,20 +353,22 @@
 
                   // Add the marker in its group Overlay.
                   Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].addLayer(markers[i]);
+                }
+                // Otherwise add it directly to the map.
+                else {
+                  markers[i].addTo(map);
+                }
 
-                  // Eventually re-add the Marker in its Cluster.
-                  const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
+                // Eventually re-add the Marker in its Group Overlay Cluster..
+                const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
+                if (overlays && overlays._layers) {
                   for (const k in overlays._layers) {
-                    if (overlays._layers.hasOwnProperty(k) &&
+                    if (Object.prototype.hasOwnProperty.call(overlays._layers, k) &&
                       overlays._layers[k] &&
                       overlays._layers[k]._markerCluster) {
                       overlays._layers[k].addLayer(markers[i]);
                     }
                   }
-                }
-                // Otherwise add it directly to the map.
-                else {
-                  markers[i].addTo(map);
                 }
 
                 // Remove the marker from hidden markers.
