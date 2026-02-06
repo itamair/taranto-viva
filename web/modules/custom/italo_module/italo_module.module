@@ -472,15 +472,15 @@ function italo_module_leaflet_views_feature_alter(array &$feature, ResultRow $ro
   // and force autoPanPadding.
   switch ($row->_entity->bundle()) {
     case "geoimage":
-      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[200, 200], "minWidth":500}';
+      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[50, 240], "minWidth":500}';
       break;
 
     case "territorial_report":
-      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[200, 200], "minWidth":400}';
+      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[50, 240], "minWidth":400}';
       break;
 
     default:
-      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[200, 200],"minWidth":300}';
+      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[50, 240],"minWidth":300}';
   }
 }
 
