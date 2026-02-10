@@ -14,6 +14,7 @@ dependencies:
     - file
     - file_delete
     - filter
+    - mcp
     - media
     - node
     - paragraphs_type_permissions
@@ -39,6 +40,7 @@ permissions:
   - 'access user profiles'
   - 'administer ai'
   - 'administer ai providers'
+  - 'administer mcp configuration'
   - 'cast rate vote on field_comments on node of territorial_report'
   - 'cast rate vote on node of territorial_report'
   - 'create geoimage media'
@@ -55,6 +57,7 @@ permissions:
   - 'search content'
   - 'skip comment approval'
   - 'update paragraph content geoimage'
+  - 'use mcp server'
   - 'use text format basic_html'
   - 'use text format restricted_html'
   - 'view field_exclude_from_markercluster'
