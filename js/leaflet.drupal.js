@@ -825,7 +825,7 @@
     }
     return {
       title: marker_title ?? "",
-      className: feature.icon.className ? feature.icon.className.replaceAll(",", "") : '',
+      className: feature.icon && feature.icon.className ? feature.icon.className.replaceAll(",", "") : '',
       alt: marker_title ?? "",
       group_label: feature.group_label ?? '',
     };
