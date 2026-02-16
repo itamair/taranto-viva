@@ -156,7 +156,7 @@
     opacity: 30% !important;
   }
   &.opacity-50:hover {
-    opacity: 100% !important;
+    //opacity: 100% !important;
   }
   &.opacity-75 {
     opacity: 60% !important;
@@ -326,13 +326,15 @@
 }
 
 // Map marker hover effects
-.leaflet-marker-icon.hovering:hover {
+// All these rules have been made better and moved into the
+// Drupal.behaviors.leafletInteractions:processInitialActions method.
+/*.leaflet-marker-icon.hovering:hover {
   background-color:rgba(255, 255, 255, 0.6);
   opacity: 80%;
   //outline: 8px solid white;
   border-radius: 50%;
   transition: background 400ms ease-out;
-}
+}*/
 
 // Map Path/Geometry hover effects
 .leaflet-map-path-hover-highlight {

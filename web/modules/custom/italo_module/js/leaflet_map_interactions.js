@@ -131,6 +131,10 @@
      *   Original sizes of markers.
      */
     processInitialActions: function(mapid, map, features, markers, markersOriginalSizes) {
+
+      // Map marker hover effects
+      this.setScalingOnMarkersHovering();
+
       // Trigger an Initial React on Zoom End function.
       this.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
 
@@ -139,6 +143,24 @@
 
       // Set Permanent Tooltip Visibility.
       this.setPermanentTooltipVisibility(mapid, map);
+    },
+
+    /**
+     * Set Visual Scaling on Hovering on Specific Markers.
+     */
+    setScalingOnMarkersHovering: function() {
+      // Map marker hover effects
+      document.querySelectorAll('.leaflet-marker-icon.hovering').forEach(marker => {
+        marker.style.transition = 'transform 180ms cubic-bezier(.34,1.56,.64,1)';
+        marker.addEventListener('mouseenter', () => {
+          marker.style.transformOrigin = 'center center';
+          marker.style.transform += ' scale(1.4)';
+        });
+
+        marker.addEventListener('mouseleave', () => {
+          marker.style.transform = marker.style.transform.replace(' scale(1.4)', '');
+        });
+      });
     },
 
     /**
