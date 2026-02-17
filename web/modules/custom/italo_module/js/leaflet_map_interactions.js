@@ -132,8 +132,10 @@
      */
     processInitialActions: function(mapid, map, features, markers, markersOriginalSizes) {
 
-      // Map marker hover effects
-      this.setScalingOnMarkersHovering();
+      // Set hover scale effects on initially rendered Map Markers.
+      for (let i in markers) {
+        this.setScalingOnMarkerHovering(markers[i]);
+      }
 
       // Trigger an Initial React on Zoom End function.
       this.markersResizeOnZoomEnd(mapid, map, features, markers, markersOriginalSizes);
@@ -146,21 +148,23 @@
     },
 
     /**
-     * Set Visual Scaling on Hovering on Specific Markers.
+     * Set Visual Scaling on Marker Hovering.
+     *
+     * @param {object} marker
+     *   The marker.
      */
-    setScalingOnMarkersHovering: function() {
-      // Map marker hover effects
-      document.querySelectorAll('.leaflet-marker-icon.hovering').forEach(marker => {
-        marker.style.transition = 'transform 180ms cubic-bezier(.34,1.56,.64,1)';
-        marker.addEventListener('mouseenter', () => {
-          marker.style.transformOrigin = 'center center';
-          marker.style.transform += ' scale(1.4)';
+    setScalingOnMarkerHovering: function(marker) {
+      if (marker._icon) {
+        let icon = marker._icon;
+        icon.style.transition = 'transform 180ms cubic-bezier(.34,1.56,.64,1)';
+        icon.addEventListener('mouseenter', () => {
+          icon.style.transformOrigin = 'center center';
+          icon.style.transform += ' scale(1.4)';
         });
-
-        marker.addEventListener('mouseleave', () => {
-          marker.style.transform = marker.style.transform.replace(' scale(1.4)', '');
+        icon.addEventListener('mouseleave', () => {
+          icon.style.transform = icon.style.transform.replace(' scale(1.4)', '');
         });
-      });
+      }
     },
 
     /**
@@ -381,7 +385,10 @@
                   markers[i].addTo(map);
                 }
 
-                // Eventually re-add the Marker in its Group Overlay Cluster..
+                // Add the hover scaling effect to the Map marker.
+                self.setScalingOnMarkerHovering(markers[i]);
+
+                // Eventually re-add the Marker in its Group Overlay Cluster.
                 const overlays = Drupal.Leaflet[mapid].overlays[markers[i].options.group_label];
                 if (overlays && overlays._layers) {
                   for (const k in overlays._layers) {
