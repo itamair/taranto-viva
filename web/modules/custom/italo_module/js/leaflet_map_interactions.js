@@ -159,10 +159,10 @@
         icon.style.transition = 'transform 180ms cubic-bezier(.34,1.56,.64,1)';
         icon.addEventListener('mouseenter', () => {
           icon.style.transformOrigin = 'center center';
-          icon.style.transform += ' scale(1.4)';
+          icon.style.transform += ' scale(1.2)';
         });
         icon.addEventListener('mouseleave', () => {
-          icon.style.transform = icon.style.transform.replace(' scale(1.4)', '');
+          icon.style.transform = icon.style.transform.replace(' scale(1.2)', '');
         });
       }
     },
