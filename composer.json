@@ -112,7 +112,7 @@
         "drupal/json_field": "^1.4",
         "drupal/jsonapi_extras": "^3.28",
         "drupal/layout_builder_styles": "^2.0",
-        "drupal/leaflet": "10.4.x-dev@dev",
+        "drupal/leaflet": "^10.4",
         "drupal/leaflet_choropleth": "^1.0",
         "drupal/masquerade": "^2.0@RC",
         "drupal/mcp": "^1.2",
