@@ -45,36 +45,6 @@
           // Toggle header z-index based on fullscreen state.
           $("header.site-header").css('z-index', map.isFullscreen() ? 1 : 101);
         });
-
-        let timeoutID;
-        $('.view-display-id-block_geoplaces_locations .views-field .marker-selector', context).each(function () {
-          $(this).hover(
-            function() {
-              clearTimeout(timeoutID);
-              $( this ).css("text-decoration", "underline");
-              const marker_id = $(this).data('marker-id');
-              if (markers[marker_id] && typeof markers[marker_id].getLatLng === 'function') {
-                const center = markers[marker_id].getLatLng();
-                map.setZoom(15);
-                map.panTo(center);
-                timeoutID = setTimeout(function () {
-                  if (markers[marker_id]) {
-                    markers[marker_id].fire('click');
-                  }
-                }, 300);
-              }
-            }, function() {
-              $( this ).css("text-decoration", "none");
-              timeoutID = setTimeout(function () {
-                map.closePopup();
-                //$('#' + 'leaflet-map--' + mapid + '--reset-control').click();
-                Drupal.Leaflet.prototype.map_reset(mapid);
-              }, 2000);
-            }
-          );
-        });
-
-
       });
 
       // Interact with each feature created and added to the map.
