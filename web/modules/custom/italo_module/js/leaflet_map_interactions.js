@@ -51,22 +51,25 @@
           $(this).hover(
             function() {
               clearTimeout(timeoutID);
-              $( this ).css("text-decoration", "underline");
+              $(this).css("text-decoration", "underline");
               const marker_id = $(this).data('marker-id');
               if (markers[marker_id] && typeof markers[marker_id].getLatLng === 'function') {
                 const center = markers[marker_id].getLatLng();
                 map.setZoom(16);
-                map.panTo(center);
                 timeoutID = setTimeout(function () {
                   markers[marker_id].fire('click');
+                  map.panTo(center);
                 }, 300);
               }
             }, function() {
-              $( this ).css("text-decoration", "none");
+              $(this).css("text-decoration", "none");
+              const marker_id = $(this).data('marker-id');
               timeoutID = setTimeout(function () {
                 map.closePopup();
+                markers[marker_id].closeTooltip()
                 //$('#' + 'leaflet-map--' + mapid + '--reset-control').click();
                 Drupal.Leaflet.prototype.map_reset(mapid);
+                self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
               }, 2000);
             }
           );
