@@ -17,7 +17,7 @@
     @media (--lg) {
       display: grid;
       grid-template-columns: repeat(8, minmax(0, 1fr));
-      grid-column: 1 / 11;
+      grid-column: 1 / 12;
 
       & > .region--content-above,
       & > .region--content {
