@@ -1,0 +1,29 @@
+uuid: 45bd7d98-da92-4052-b2cd-f3ad42e194f3
+langcode: it
+status: true
+dependencies:
+  config:
+    - views.view.taranto_viva_geoplaces_locations
+  module:
+    - system
+    - views
+  theme:
+    - taranto_viva
+id: taranto_viva_views_block__taranto_viva_geoplaces_locations
+theme: taranto_viva
+region: sidebar
+weight: -10
+provider: null
+plugin: 'views_block:taranto_viva_geoplaces_locations-block_geoplaces_locations'
+settings:
+  id: 'views_block:taranto_viva_geoplaces_locations-block_geoplaces_locations'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: null
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /main_map

@@ -1,6 +1,6 @@
 uuid: 916c28a5-d13c-427a-af43-3b5e1e3ea884
 langcode: it
-status: false
+status: true
 dependencies:
   config:
     - views.view.geo_places
@@ -12,7 +12,7 @@ dependencies:
 id: taranto_viva_views_block__geo_places_block_vaganti_dates
 theme: taranto_viva
 region: sidebar
-weight: 0
+weight: -9
 provider: null
 plugin: 'views_block:geo_places-block_vaganti_dates'
 settings:
@@ -20,9 +20,9 @@ settings:
   label: 'Content Dates'
   label_display: visible
   provider: views
+  context_mapping: {  }
   views_label: 'Content Dates'
   items_per_page: null
-  context_mapping: {  }
 visibility:
   request_path:
     id: request_path
