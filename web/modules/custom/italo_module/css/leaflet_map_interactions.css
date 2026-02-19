@@ -184,6 +184,11 @@
   border: 3px solid white;
   opacity: 30% !important;
 }
+/* line 158, ../sass/leaflet_map_interactions.scss */
+.leaflet-pane .leaflet-marker-icon.opacity-50:hover,
+.leaflet-pane > svg path.opacity-50:hover {
+  opacity: 100% !important;
+}
 /* line 161, ../sass/leaflet_map_interactions.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-75,
 .leaflet-pane > svg path.opacity-75 {
