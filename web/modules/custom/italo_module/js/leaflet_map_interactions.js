@@ -56,7 +56,7 @@
         ) {
           let hoverTimeout = null;
           let resetTimeout = null;
-          let currentMarkerId = null; 
+          let currentMarkerId = null;
           const elements = once(
             'geoPlacesHover',
             root.querySelectorAll(
@@ -64,7 +64,6 @@
             )
           );
           elements.forEach((el) => {
-
             el.addEventListener('mouseenter', () => {
               clearTimeout(resetTimeout);
               clearTimeout(hoverTimeout);
@@ -83,7 +82,6 @@
                 }, 300);
               }
             });
-
             el.addEventListener('mouseleave', () => {
               el.style.textDecoration = 'none';
               const markerId = el.dataset.markerId;
@@ -103,7 +101,6 @@
                 );
               }, 2000);
             });
-
           });
         }
 
