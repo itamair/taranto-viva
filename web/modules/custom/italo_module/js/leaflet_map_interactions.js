@@ -1,4 +1,4 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
 
   'use strict';
 
@@ -49,42 +49,49 @@
         // In case of leaflet-map-view-geo-places-page-map-taranto-viva mapid
         // and presence of block .view-display-id-block_geoplaces_locations
         // Implement Block list interactions with Map markers.
+        const root = context || document;
         if (
           mapid === "leaflet-map-view-geo-places-page-map-taranto-viva" &&
-          (context || document).querySelector('.view-display-id-block_geoplaces_locations')
+          root.querySelector('.view-display-id-block_geoplaces_locations')
         ) {
-          let timeoutID;
-          let marker_id;
-          const elements = (context || document).querySelectorAll(
-            '.view-display-id-block_geoplaces_locations .views-field .marker-selector'
+          let hoverTimeout = null;
+          let resetTimeout = null;
+          let currentMarkerId = null; 
+          const elements = once(
+            'geoPlacesHover',
+            root.querySelectorAll(
+              '.view-display-id-block_geoplaces_locations .views-field .marker-selector'
+            )
           );
           elements.forEach((el) => {
-            el.addEventListener('mouseenter', function () {
-              if (markers[marker_id]) {
-                markers[marker_id].closeTooltip();
+
+            el.addEventListener('mouseenter', () => {
+              clearTimeout(resetTimeout);
+              clearTimeout(hoverTimeout);
+              if (currentMarkerId && markers[currentMarkerId]) {
+                markers[currentMarkerId].closeTooltip();
               }
-              clearTimeout(timeoutID);
               el.style.textDecoration = 'underline';
-              marker_id = el.dataset.markerId;
-              if (
-                markers[marker_id] &&
-                typeof markers[marker_id].getLatLng === 'function'
-              ) {
-                const center = markers[marker_id].getLatLng();
+              currentMarkerId = el.dataset.markerId;
+              const marker = markers[currentMarkerId];
+              if (marker && typeof marker.getLatLng === 'function') {
+                const center = marker.getLatLng();
                 map.setZoom(16);
-                timeoutID = setTimeout(() => {
-                  markers[marker_id].fire('click');
+                hoverTimeout = setTimeout(() => {
+                  marker.fire('click');
                   map.panTo(center);
                 }, 300);
               }
             });
-            el.addEventListener('mouseleave', function () {
+
+            el.addEventListener('mouseleave', () => {
               el.style.textDecoration = 'none';
-              const marker_id = el.dataset.markerId;
-              if (markers[marker_id]) {
-                markers[marker_id].closeTooltip();
+              const markerId = el.dataset.markerId;
+              const marker = markers[markerId];
+              if (marker) {
+                marker.closeTooltip();
               }
-              timeoutID = setTimeout(() => {
+              resetTimeout = setTimeout(() => {
                 map.closePopup();
                 Drupal.Leaflet.prototype.map_reset(mapid);
                 self.processInitialActions(
@@ -96,6 +103,7 @@
                 );
               }, 2000);
             });
+
           });
         }
 
@@ -549,4 +557,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);
