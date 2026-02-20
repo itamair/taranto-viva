@@ -79,17 +79,12 @@
           }
 
           elements.forEach((el) => {
-
             el.addEventListener('mouseenter', () => {
-
               clearAllTimeouts();
-
               if (currentMarkerId && markers[currentMarkerId]) {
                 markers[currentMarkerId].closeTooltip();
               }
-
               el.classList.add('is-hovered'); // better than inline style
-
               currentMarkerId = el.dataset.markerId;
               // Until the currentMarkerId is not pointing to a Location
               // marker (with marker._icon) ...
@@ -98,23 +93,17 @@
                 currentMarkerId = incrementMarkerId(currentMarkerId);
               }
               const marker = markers[currentMarkerId];
-
               if (!marker || typeof marker.getLatLng !== 'function') {
                 return;
               }
-
               const center = marker.getLatLng();
               const activeMarker = marker;
-
               hoverTimeout = setTimeout(() => {
-
                 // Prevent race condition
                 if (activeMarker !== markers[currentMarkerId]) {
                   return;
                 }
-
                 activeMarker.fire('click');
-
                 map.flyTo(center, 16, {
                   duration: 0.4,
                   animate: true
@@ -122,39 +111,19 @@
 
               }, 200);
             });
-
-
             el.addEventListener('mouseleave', () => {
-
               el.classList.remove('is-hovered');
-
               const markerId = el.dataset.markerId;
               const marker = markers[markerId];
-
               if (marker) {
                 marker.closeTooltip();
               }
-
               resetTimeout = setTimeout(() => {
-
                 map.closePopup();
-
                 Drupal.Leaflet.prototype.map_reset(mapid);
-
-                self.processInitialActions(
-                  mapid,
-                  map,
-                  features,
-                  markers,
-                  markersOriginalSizes
-                );
-
               }, 1200); // slightly shorter feels snappier
-
             });
-
           });
-
         }
 
       });
