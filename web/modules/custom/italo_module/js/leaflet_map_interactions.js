@@ -54,44 +54,93 @@
           mapid === "leaflet-map-view-geo-places-page-map-taranto-viva" &&
           root.querySelector('.view-display-id-block_geoplaces_locations')
         ) {
+
           let hoverTimeout = null;
           let resetTimeout = null;
           let currentMarkerId = null;
+
           const elements = once(
             'geoPlacesHover',
             root.querySelectorAll(
               '.view-display-id-block_geoplaces_locations .views-field .marker-selector'
             )
           );
+
+          const clearAllTimeouts = () => {
+            clearTimeout(hoverTimeout);
+            clearTimeout(resetTimeout);
+          };
+
+          // Function to increment by 1 the MarkerId identifier, in case it is
+          // not pointing to a Location marker (with marker._icon).
+          function incrementMarkerId(id) {
+            const [prefix, suffix] = id.split('-');
+            return `${prefix}-${Number(suffix) + 1}`;
+          }
+
           elements.forEach((el) => {
+
             el.addEventListener('mouseenter', () => {
-              clearTimeout(resetTimeout);
-              clearTimeout(hoverTimeout);
+
+              clearAllTimeouts();
+
               if (currentMarkerId && markers[currentMarkerId]) {
                 markers[currentMarkerId].closeTooltip();
               }
-              el.style.textDecoration = 'underline';
+
+              el.classList.add('is-hovered'); // better than inline style
+
               currentMarkerId = el.dataset.markerId;
-              const marker = markers[currentMarkerId];
-              if (marker && typeof marker.getLatLng === 'function') {
-                const center = marker.getLatLng();
-                map.setZoom(16);
-                hoverTimeout = setTimeout(() => {
-                  marker.fire('click');
-                  map.panTo(center);
-                }, 300);
+              // Until the currentMarkerId is not pointing to a Location
+              // marker (with marker._icon) ...
+              while (markers[currentMarkerId]?._icon === undefined) {
+                // Increment by 1 the MarkerId identifier.
+                currentMarkerId = incrementMarkerId(currentMarkerId);
               }
+              const marker = markers[currentMarkerId];
+
+              if (!marker || typeof marker.getLatLng !== 'function') {
+                return;
+              }
+
+              const center = marker.getLatLng();
+              const activeMarker = marker;
+
+              hoverTimeout = setTimeout(() => {
+
+                // Prevent race condition
+                if (activeMarker !== markers[currentMarkerId]) {
+                  return;
+                }
+
+                activeMarker.fire('click');
+
+                map.flyTo(center, 16, {
+                  duration: 0.4,
+                  animate: true
+                });
+
+              }, 200);
             });
+
+
             el.addEventListener('mouseleave', () => {
-              el.style.textDecoration = 'none';
+
+              el.classList.remove('is-hovered');
+
               const markerId = el.dataset.markerId;
               const marker = markers[markerId];
+
               if (marker) {
                 marker.closeTooltip();
               }
+
               resetTimeout = setTimeout(() => {
+
                 map.closePopup();
+
                 Drupal.Leaflet.prototype.map_reset(mapid);
+
                 self.processInitialActions(
                   mapid,
                   map,
@@ -99,9 +148,13 @@
                   markers,
                   markersOriginalSizes
                 );
-              }, 2000);
+
+              }, 1200); // slightly shorter feels snappier
+
             });
+
           });
+
         }
 
       });
