@@ -1267,7 +1267,6 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         $render_row = [
           "markup" => $this->view->rowPlugin->render($result),
         ];
-        // Render popup content, ensuring backward compatibility
         $popup_content = $this->renderer->renderInIsolation($render_row);
         break;
 
