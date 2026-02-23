@@ -1239,6 +1239,10 @@ display:
           1: AND
       style:
         type: default
+        options:
+          grouping: {  }
+          row_class: hovering
+          default_row_class: true
       row:
         type: fields
       query:
