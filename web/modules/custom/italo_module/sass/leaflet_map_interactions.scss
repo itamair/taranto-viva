@@ -343,6 +343,14 @@
   }
 }
 
+.hovering.views-row .marker-selector:hover {
+  font-weight: bolder;
+}
+
+.hovering.views-row .marker-selector.marker-selected:hover {
+  background: #e3e5f5;
+}
+
 // .view-ciclovia-acquedotti {
 .view-ciclovia-acquedotti {
 
