@@ -603,8 +603,10 @@
             markers[currentMarkerId].closeTooltip();
           }
           currentMarkerId = null;
-          map.closePopup();
-          Drupal.Leaflet.prototype.map_reset(mapid);
+          resetTimeout = setTimeout(() => {
+            map.closePopup();
+            Drupal.Leaflet.prototype.map_reset(mapid);
+          }, 1200); // slightly shorter feels snappier
         });
 
         const elements = once(
@@ -631,16 +633,12 @@
               pendingEl = null;
               return;
             }
-            el.classList.remove('is-hovered');
+            el.classList.remove('marker-selected');
             const markerId = el.dataset.markerId;
             const marker = markers[markerId];
             if (marker) {
               marker.closeTooltip();
             }
-            resetTimeout = setTimeout(() => {
-              map.closePopup();
-              Drupal.Leaflet.prototype.map_reset(mapid);
-            }, 1200); // slightly shorter feels snappier
           });
         });
       }
