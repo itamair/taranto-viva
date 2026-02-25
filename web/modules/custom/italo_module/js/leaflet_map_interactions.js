@@ -519,21 +519,8 @@
         root.querySelector('.view-display-id-block_geoplaces_locations')
       ) {
 
-        let hoverTimeout = null;
-        let resetTimeout = null;
-        let sidebarEnterTimeout = null;
-        let sidebarActive = false;
+        let clickTimeout = null;
         let currentMarkerId = null;
-        // Element the mouse is resting on before the dwell gate opens.
-        let pendingEl = null;
-
-        const sidebarContainer = root.querySelector('.view-display-id-block_geoplaces_locations');
-
-        const clearAllTimeouts = () => {
-          clearTimeout(hoverTimeout);
-          clearTimeout(resetTimeout);
-          clearTimeout(sidebarEnterTimeout);
-        };
 
         // Function to increment by 1 the MarkerId identifier, in case it is
         // not pointing to a Location marker (with marker._icon).
@@ -546,10 +533,6 @@
         // gate is already open) and from the dwell timeout (when the mouse was
         // already resting on an element as the gate opened).
         function handleElementHover(el) {
-          clearAllTimeouts();
-          if (currentMarkerId && markers[currentMarkerId]) {
-            markers[currentMarkerId].closeTooltip();
-          }
           currentMarkerId = el.dataset.markerId;
           // Until the currentMarkerId is not pointing to a Location
           // marker (with marker._icon) ...
@@ -562,52 +545,20 @@
             return;
           }
           const center = marker.getLatLng();
-          const activeMarker = marker;
-          hoverTimeout = setTimeout(() => {
+          el.classList.add('marker-selected');
+          clickTimeout = setTimeout(() => {
             // Prevent race condition.
-            if (activeMarker !== markers[currentMarkerId]) {
+            if (marker !== markers[currentMarkerId]) {
               return;
             }
-            el.classList.add('marker-selected');
-            activeMarker.fire('click');
+            el.classList.remove('marker-selected');
+            marker.fire('click');
             map.flyTo(center, 16, {
               duration: 0.4,
               animate: true
             });
           }, 200);
         }
-
-        // Gate: activate element interactivity only after the mouse has dwelled
-        // inside the container for 1000ms, avoiding accidental triggers caused
-        // by the sidebar's proximity to the map edges.
-        sidebarContainer.addEventListener('mouseenter', () => {
-          clearTimeout(sidebarEnterTimeout);
-          sidebarEnterTimeout = setTimeout(() => {
-            sidebarActive = true;
-            // If the mouse was already resting on an element when the gate
-            // opened, trigger its hover logic immediately.
-            if (pendingEl) {
-              handleElementHover(pendingEl);
-              pendingEl = null;
-            }
-          }, 1000);
-        });
-
-        // On mouse leave of the sidebar container, cancel every pending timeout
-        // and fully reset state and map — regardless of which element was active.
-        sidebarContainer.addEventListener('mouseleave', () => {
-          clearAllTimeouts();
-          sidebarActive = false;
-          pendingEl = null;
-          if (currentMarkerId && markers[currentMarkerId]) {
-            markers[currentMarkerId].closeTooltip();
-          }
-          currentMarkerId = null;
-          resetTimeout = setTimeout(() => {
-            map.closePopup();
-            Drupal.Leaflet.prototype.map_reset(mapid);
-          }, 1200); // slightly shorter feels snappier
-        });
 
         const elements = once(
           'geoPlacesHover',
@@ -617,28 +568,8 @@
         );
 
         elements.forEach((el) => {
-          el.addEventListener('mouseenter', () => {
-            if (!sidebarActive) {
-              // Gate not yet open: remember this element so the dwell timeout
-              // can fire its logic as soon as it opens.
-              pendingEl = el;
-              return;
-            }
-            pendingEl = null;
+          el.addEventListener('click', () => {
             handleElementHover(el);
-          });
-          el.addEventListener('mouseleave', () => {
-            if (!sidebarActive) {
-              // Gate not yet open: the mouse left before anything triggered.
-              pendingEl = null;
-              return;
-            }
-            el.classList.remove('marker-selected');
-            const markerId = el.dataset.markerId;
-            const marker = markers[markerId];
-            if (marker) {
-              marker.closeTooltip();
-            }
           });
         });
       }
