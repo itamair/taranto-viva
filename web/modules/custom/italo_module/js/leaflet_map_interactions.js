@@ -648,4 +648,62 @@
 
     };
 
+  /**
+   * Sidebar accordion behavior.
+   *
+   * Collapses the region--sidebar into a small floating title tab that
+   * overlaps the map when the × button is clicked, and re-expands it when
+   * the block title is clicked. On collapse the map state is reset by
+   * dispatching a mouseleave on the block container, which triggers the
+   * existing cleanup logic in addInteractivityWithSidebar.
+   */
+  Drupal.behaviors.sidebarAccordion = {
+    attach: function(context) {
+      const sidebar = once('sidebarAccordion', '.region--sidebar', context)[0];
+      if (!sidebar) {
+        return;
+      }
+
+      const sidebarGrid = sidebar.closest('.sidebar-grid');
+      if (!sidebarGrid) {
+        return;
+      }
+
+      const toggleBtn = sidebar.querySelector('.sidebar-toggle');
+      if (!toggleBtn) {
+        return;
+      }
+
+      function collapseSidebar() {
+        sidebar.classList.add('is-collapsed');
+        sidebarGrid.classList.add('sidebar-is-collapsed');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+
+        // Dispatch mouseleave on the block container so that
+        // addInteractivityWithSidebar clears all timeouts, resets
+        // sidebarActive to false, and resets the map.
+        const blockContainer = document.querySelector('.view-display-id-block_geoplaces_locations');
+        if (blockContainer) {
+          blockContainer.dispatchEvent(new MouseEvent('mouseleave', { bubbles: false }));
+        }
+      }
+
+      function expandSidebar() {
+        sidebar.classList.remove('is-collapsed');
+        sidebarGrid.classList.remove('sidebar-is-collapsed');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      // × button collapses the sidebar.
+      toggleBtn.addEventListener('click', collapseSidebar);
+
+      // Clicking the block title when collapsed re-expands the sidebar.
+      sidebar.addEventListener('click', function(e) {
+        if (sidebar.classList.contains('is-collapsed') && e.target.closest('.block__title')) {
+          expandSidebar();
+        }
+      });
+    }
+  };
+
 })(jQuery, Drupal, once);

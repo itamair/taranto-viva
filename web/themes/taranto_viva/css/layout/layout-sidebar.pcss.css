@@ -6,6 +6,8 @@
 @import "../base/media-queries.pcss.css";
 
 .sidebar-grid {
+  position: relative;
+
   & > .site-main {
     grid-column: 1 / 7;
     align-self: flex-start;
@@ -38,11 +40,84 @@
     grid-column: 1 / 7;
 
     @media (--grid-md) {
-      grid-column: 3 / 13;
+      grid-column: 7 / 15;
     }
 
     @media (--lg) {
       grid-column: 12 / 15;
     }
   }
+
+  /* When collapsed: main content expands to fill the freed column. */
+  &.sidebar-is-collapsed > .site-main {
+    @media (--lg) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* When collapsed: sidebar floats absolutely over the map. */
+  &.sidebar-is-collapsed .region--sidebar {
+    position: absolute;
+    z-index: 400;
+    top: 200px;
+    right: 5px;
+    width: auto;
+    padding: 0.5rem 1rem;
+    border: solid 1px gray;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  &.sidebar-is-collapsed .region--sidebar > * {
+    margin-top: 10px !important;
+    margin-block-end: 10px !important;
+  }
+
+}
+
+/* Sidebar toggle button (×), visible when the sidebar is open. */
+.region--sidebar {
+  position: relative;
+}
+
+.region--sidebar .sidebar-toggle {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: #444;
+  transition: background 150ms ease, color 150ms ease;
+  z-index: 1;
+}
+
+.region--sidebar .sidebar-toggle:hover {
+  background: rgba(0, 0, 0, 0.14);
+  color: #111;
+}
+
+/* Collapsed state: hide block content and the close button. */
+.region--sidebar.is-collapsed .sidebar-toggle {
+  display: none;
+}
+
+.region--sidebar.is-collapsed .block__content {
+  display: none;
+}
+
+/* Block title becomes the re-open trigger when collapsed. */
+.region--sidebar.is-collapsed .block__title {
+  cursor: pointer;
+  margin: 0;
+  user-select: none;
 }
