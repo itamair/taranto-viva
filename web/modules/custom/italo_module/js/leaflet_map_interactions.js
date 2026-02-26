@@ -2,6 +2,26 @@
 
   'use strict';
 
+  Drupal.behaviors.mapResizeLeafletMapOnContainerChange = {
+    attach(context) {
+      $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
+        const map = lMap;
+        const elements = once(
+          mapid + '-init',
+          context.querySelector('#' + mapid)
+        );
+        const resizeObserver = new ResizeObserver(() => {
+          if (map) {
+            map.invalidateSize();
+          }
+        });
+        elements.forEach(function(element) {
+          resizeObserver.observe(element);
+        })
+      })
+    }
+  };
+
   /**
    * Leaflet interactions behavior.
    */
