@@ -40,11 +40,11 @@
     grid-column: 1 / 7;
 
     @media (--grid-md) {
-      grid-column: 7 / 16;
+      grid-column: 7 / 15;
     }
 
     @media (--lg) {
-      grid-column: 12 / 16;
+      grid-column: 12 / 15;
     }
   }
 

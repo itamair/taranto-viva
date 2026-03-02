@@ -52,13 +52,13 @@
 
 @media (min-width: 43.75rem) {
   .sidebar-grid .region--sidebar {
-    grid-column: 7 / 16;
+    grid-column: 7 / 15;
   }
 }
 
 @media (min-width: 62.5rem) {
   .sidebar-grid .region--sidebar {
-    grid-column: 12 / 16;
+    grid-column: 12 / 15;
   }
 }
 
