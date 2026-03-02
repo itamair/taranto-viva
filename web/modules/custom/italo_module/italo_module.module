@@ -470,18 +470,11 @@ function italo_module_media_insert(MediaInterface $media) {
 function italo_module_leaflet_views_feature_alter(array &$feature, ResultRow $row, ?ViewsPluginInterface $rowPlugin = NULL) {
   // Customize Leaflet Popup settings for Content Types,
   // and force autoPanPadding.
-  switch ($row->_entity->bundle()) {
-    case "geoimage":
-      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[50, 240], "minWidth":500}';
-      break;
-
-    case "territorial_report":
-      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[50, 240], "minWidth":400}';
-      break;
-
-    default:
-      $feature["popup"]["options"] = '{"autoPan":true,"autoPanPadding":[50, 240],"minWidth":300}';
-  }
+  $feature["popup"]["options"] = match ($row->_entity->bundle()) {
+    "geoimage" => '{"autoPan":true, "minWidth":500}',
+    "territorial_report" => '{"autoPan":true, "minWidth":400}',
+    default => '{"autoPan":true, "minWidth":300}',
+  };
 }
 
 /**
