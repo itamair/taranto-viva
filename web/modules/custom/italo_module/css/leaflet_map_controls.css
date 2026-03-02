@@ -1,0 +1,111 @@
+/**
+ * @file
+ * SCSS for the Leaflet Choropleth module.
+ */
+/* line 6, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list {
+  min-width: 180px;
+  max-width: 250px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  opacity: 0.9;
+  box-shadow: 0 1px 3px gray;
+  background: white;
+  line-height: 1.4;
+  /* Toggle functionality styles */
+}
+/* line 17, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .leaflet-sidebar-list-title {
+  margin-bottom: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+/* line 23, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .leaflet-sidebar-list-subtitle {
+  margin-bottom: 8px;
+}
+/* line 27, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .leaflet-sidebar-list-item {
+  display: flex;
+  margin-bottom: 4px;
+}
+/* line 33, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .leaflet-sidebar-list-toggle {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: center;
+  color: #666;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+/* line 48, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .leaflet-sidebar-list-toggle:hover {
+  background: white;
+  color: #333;
+}
+
+/* line 55, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list {
+  position: relative;
+}
+/* line 58, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-collapsed-label {
+  display: none;
+  font-size: 12px;
+  font-weight: bold;
+  color: #666;
+}
+/* line 65, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list.list-collapsed {
+  min-width: 60px;
+  max-width: 80px;
+  padding: 8px;
+  cursor: pointer;
+}
+/* line 71, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list.list-collapsed .leaflet-sidebar-list-content {
+  display: none;
+}
+/* line 75, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list.list-collapsed .list-collapsed-label {
+  display: block;
+}
+/* line 79, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list.list-collapsed .leaflet-sidebar-list-toggle {
+  display: none;
+}
+/* line 83, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list.list-collapsed:hover {
+  background: rgba(245, 245, 245, 0.9);
+}
+
+/* Compact legend for smaller screens */
+@media (max-width: 640px) {
+  /* line 91, ../sass/leaflet_map_controls.scss */
+  .leaflet-sidebar-list {
+    max-width: 150px;
+    min-width: 50px;
+    padding: 5px;
+  }
+  /* line 96, ../sass/leaflet_map_controls.scss */
+  .leaflet-sidebar-list.legend-collapsed {
+    max-width: 70px;
+    padding: 6px;
+  }
+
+  /* line 102, ../sass/leaflet_map_controls.scss */
+  .leaflet-sidebar-list-toggle {
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

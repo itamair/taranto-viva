@@ -9,6 +9,7 @@ leaflet_map_interactions:
   css:
     component:
       css/leaflet_map_interactions.css: {}
+      css/leaflet_map_controls.css: {}
   js:
     js/leaflet_map_interactions.js: {}
   dependencies:

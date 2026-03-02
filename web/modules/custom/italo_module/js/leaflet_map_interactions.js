@@ -22,6 +22,135 @@
     }
   };
 
+  Drupal.behaviors.mapAddLeafletSidebarListControl = {
+    attach(context) {
+      const self = this;
+      $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
+        const map = lMap;
+        const elements = once(
+          mapid + '-init',
+          context.querySelector('#' + mapid)
+        );
+        const choroplethSettings = {};
+        if (mapid === 'leaflet-map-view-geo-places-page-map-taranto-viva') {
+          self.addLeafletSidebarListControl(lMap, choroplethSettings);
+        }
+      })
+    },
+
+    /**
+     * Add a choropleth legend to the map.
+     *
+     * @param {L.Map} map
+     *   The Leaflet map object.
+     * @param {Object} settings
+     *   The choropleth settings.
+     */
+    addLeafletSidebarListControl: function (map, settings) {
+      const self = this;
+      const colorScale = settings.colorScale;
+
+      settings.list = {
+        'title': 'Place of Interests',
+        'subtitle': 'List Sub-Title',
+        'items': [
+          'Ciccio',
+          'Mino',
+          'Brocco',
+        ],
+        'start_collapsed': 1,
+      }
+
+      // Create a Sidebar List control.
+      const sidebarListControl = L.control({ position: 'topright' });
+
+      sidebarListControl.onAdd = function (map) {
+        const div = L.DomUtil.create('div', 'leaflet-control leaflet-sidebar-list');
+
+        // Create List Collapsed label.
+        const listCollapsedLabel = L.DomUtil.create('div', 'list-collapsed-label', div);
+        // Apply custom List Collapsed Label content.
+        listCollapsedLabel.innerHTML = settings.list.title;
+
+        // Add toggle button.
+        const toggleBtn = L.DomUtil.create('div', 'leaflet-sidebar-list-toggle', div);
+        toggleBtn.innerHTML = 'X';
+        toggleBtn.title = 'Close List';
+
+        // Create content container.
+        const content = L.DomUtil.create('div', 'leaflet-sidebar-list-content', div);
+
+        // Add title if provided.
+        if (settings.list.title) {
+          const title = L.DomUtil.create('div', 'leaflet-sidebar-list-title', content);
+          title.innerHTML = settings.list.title;
+        }
+
+        // Add subtitle if provided.
+        if (settings.list.subtitle) {
+          const subtitle = L.DomUtil.create('div', 'leaflet-sidebar-list-subtitle', content);
+          subtitle.innerHTML = settings.list.subtitle;
+        }
+
+        // Add List Items.
+        const list_items = settings.list.items;
+
+        const items = L.DomUtil.create('div', 'leaflet-sidebar-list-items', content);
+
+        for (let i = 0; i < list_items.length; i++) {
+          const item = L.DomUtil.create('div', 'leaflet-sidebar-list-item', items);
+          item.innerHTML = list_items[i];
+        }
+
+        content.appendChild(items);
+
+        // Check if legend should start collapsed based on settings.
+        const startCollapsed = settings.list.start_collapsed || false;
+        if (startCollapsed) {
+          div.classList.add('list-collapsed');
+        }
+
+        // Add toggle functionality.
+        self.setupLegendToggle(div, toggleBtn);
+
+        return div;
+      };
+
+      // Add the legend to the map.
+    sidebarListControl.addTo(map);
+    },
+
+    /**
+     * Setup legend toggle functionality.
+     *
+     * @param {Element} legendDiv
+     *   The legend div element.
+     * @param {Element} toggleBtn
+     *   The toggle button element.
+     */
+    setupLegendToggle: function (legendDiv, toggleBtn) {
+
+      // Handle toggle button click (collapse legend).
+      toggleBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        legendDiv.classList.add('list-collapsed');
+      });
+
+      // Handle collapsed legend click (expand legend).
+      legendDiv.addEventListener('click', function (e) {
+        if (legendDiv.classList.contains('list-collapsed')) {
+          e.stopPropagation();
+          legendDiv.classList.remove('list-collapsed');
+        }
+      });
+
+      // Prevent map interaction when clicking on the legend.
+      L.DomEvent.disableClickPropagation(legendDiv);
+    },
+
+  };
+
+
   /**
    * Leaflet interactions behavior.
    */
