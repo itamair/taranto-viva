@@ -1,6 +1,6 @@
 uuid: 916c28a5-d13c-427a-af43-3b5e1e3ea884
 langcode: it
-status: true
+status: false
 dependencies:
   config:
     - views.view.geo_places

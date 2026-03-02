@@ -1,6 +1,6 @@
 uuid: 45bd7d98-da92-4052-b2cd-f3ad42e194f3
 langcode: it
-status: true
+status: false
 dependencies:
   config:
     - views.view.taranto_viva_geoplaces_locations

@@ -343,14 +343,10 @@
   }
 }
 
-.view-content .hovering.views-row {
-  .marker-selector:hover {
-    font-weight: bolder;
-  }
-
-  .marker-selector.marker-selected:hover {
-    background: #e3e5f5;
-  }
+// Highlight leaflet-sidebar-list items
+.leaflet-sidebar-list .list-item.marker-selected,
+.view-content .hovering.views-row.marker-selected {
+  background: #e3e5f5;
 }
 
 // .view-ciclovia-acquedotti {

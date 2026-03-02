@@ -14,23 +14,23 @@
   background: rgb(255, 255, 255);
   line-height: 1.4;
 
-  .leaflet-sidebar-list-title {
+  .list-title {
     margin-bottom: 8px;
     font-size: 1.2em;
     font-weight: bold;
   }
 
-  .leaflet-sidebar-list-subtitle {
+  .list-subtitle {
     margin-bottom: 8px;
   }
 
-  .leaflet-sidebar-list-item {
+  .list-item {
     display: flex;
     margin-bottom: 4px;
   }
 
   /* Toggle functionality styles */
-  .leaflet-sidebar-list-toggle {
+  .list-toggle {
     position: absolute;
     top: 6px;
     right: 6px;
@@ -68,7 +68,7 @@
     padding: 8px;
     cursor: pointer;
 
-    .leaflet-sidebar-list-content {
+    .list-content {
       display: none;
     }
 
@@ -76,7 +76,7 @@
       display: block;
     }
 
-    .leaflet-sidebar-list-toggle {
+    .list-toggle {
       display: none;
     }
 
@@ -99,7 +99,7 @@
     }
   }
 
-  .leaflet-sidebar-list-toggle {
+  .list-toggle {
     width: 16px;
     height: 16px;
     font-size: 12px;

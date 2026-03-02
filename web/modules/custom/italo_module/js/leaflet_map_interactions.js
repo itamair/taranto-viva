@@ -25,15 +25,23 @@
   Drupal.behaviors.mapAddLeafletSidebarListControl = {
     attach(context) {
       const self = this;
+      const root = context || document;
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
         const map = lMap;
         const elements = once(
           mapid + '-init',
           context.querySelector('#' + mapid)
         );
-        const choroplethSettings = {};
         if (mapid === 'leaflet-map-view-geo-places-page-map-taranto-viva') {
-          self.addLeafletSidebarListControl(lMap, choroplethSettings);
+          const leaflet_list_control_options = {
+            'classes': mapid,
+            'list': {
+              'title': 'Place of Interests',
+              'items': [],
+              'start_collapsed': 0,
+            }
+          };
+          self.addLeafletSidebarListControl(root, lMap, mapid, data_markers, leaflet_list_control_options);
         }
       })
     },
@@ -41,31 +49,24 @@
     /**
      * Add a choropleth legend to the map.
      *
+     * @param {object} root
+     *   The context || document object.
      * @param {L.Map} map
      *   The Leaflet map object.
+     * @param {string} mapid
+     *   The map ID.
      * @param {Object} settings
      *   The choropleth settings.
      */
-    addLeafletSidebarListControl: function (map, settings) {
+    addLeafletSidebarListControl: function (root, map, mapid,markers, settings) {
       const self = this;
-      const colorScale = settings.colorScale;
-
-      settings.list = {
-        'title': 'Place of Interests',
-        'subtitle': 'List Sub-Title',
-        'items': [
-          'Ciccio',
-          'Mino',
-          'Brocco',
-        ],
-        'start_collapsed': 0,
-      }
+      const classes = settings.classes;
 
       // Create a Sidebar List control.
       const sidebarListControl = L.control({ position: 'topright' });
 
       sidebarListControl.onAdd = function (map) {
-        const div = L.DomUtil.create('div', 'leaflet-control leaflet-sidebar-list');
+        const div = L.DomUtil.create('div', 'leaflet-control leaflet-sidebar-list' + ' ' + classes);
 
         // Create List Collapsed label.
         const listCollapsedLabel = L.DomUtil.create('div', 'list-collapsed-label', div);
@@ -73,32 +74,32 @@
         listCollapsedLabel.innerHTML = settings.list.title;
 
         // Add toggle button.
-        const toggleBtn = L.DomUtil.create('div', 'leaflet-sidebar-list-toggle', div);
+        const toggleBtn = L.DomUtil.create('div', 'list-toggle', div);
         toggleBtn.innerHTML = 'X';
         toggleBtn.title = 'Close List';
 
         // Create content container.
-        const content = L.DomUtil.create('div', 'leaflet-sidebar-list-content', div);
+        const content = L.DomUtil.create('div', 'list-content', div);
 
         // Add title if provided.
         if (settings.list.title) {
-          const title = L.DomUtil.create('div', 'leaflet-sidebar-list-title', content);
+          const title = L.DomUtil.create('div', 'list-title', content);
           title.innerHTML = settings.list.title;
         }
 
         // Add subtitle if provided.
         if (settings.list.subtitle) {
-          const subtitle = L.DomUtil.create('div', 'leaflet-sidebar-list-subtitle', content);
+          const subtitle = L.DomUtil.create('div', 'list-subtitle', content);
           subtitle.innerHTML = settings.list.subtitle;
         }
 
         // Add List Items.
         const list_items = settings.list.items;
 
-        const items = L.DomUtil.create('div', 'leaflet-sidebar-list-items', content);
+        const items = L.DomUtil.create('div', 'list-items', content);
 
         for (let i = 0; i < list_items.length; i++) {
-          const item = L.DomUtil.create('div', 'leaflet-sidebar-list-item', items);
+          const item = L.DomUtil.create('div', 'list-item', items);
           item.innerHTML = list_items[i];
         }
 
@@ -116,8 +117,23 @@
         return div;
       };
 
-      // Add the legend to the map.
-    sidebarListControl.addTo(map);
+      // Fetch Geoplaces data to populate the sidebar list items, then add the
+      // control to the map.
+      fetch('en/taranto-viva-geoplaces-list')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          settings.list.items = data.map(function (geoplace) {
+            return geoplace.title;
+          });
+          sidebarListControl.addTo(map);
+          self.addInteractivityWithSidebar(root, mapid, map, markers);
+        })
+        .catch(function (error) {
+          console.warn('Failed to load Geoplaces list:', error);
+          sidebarListControl.addTo(map);
+        });
     },
 
     /**
@@ -148,8 +164,84 @@
       L.DomEvent.disableClickPropagation(legendDiv);
     },
 
-  };
+    /**
+     * Add Interactivity with Sidebar Markers List.
+     *
+     * @param {object} root
+     *   The context || document object.
+     * @param {string} mapid
+     *   The map ID.
+     * @param {object} map
+     *   The map object.
+     * @param {obejct} markers
+     *   The map markers object.
+     */
+    addInteractivityWithSidebar: function(root, mapid, map, markers) {
+      if (
+        mapid === "leaflet-map-view-geo-places-page-map-taranto-viva" &&
+        (root.querySelector('.view-display-id-block_geoplaces_locations') || root.querySelector('.leaflet-sidebar-list' + '.' + mapid))
+      ) {
 
+        let clickTimeout = null;
+        let currentMarkerId = null;
+
+        // Function to increment by 1 the MarkerId identifier, in case it is
+        // not pointing to a Location marker (with marker._icon).
+        function incrementMarkerId(id) {
+          const [prefix, suffix] = id.split('-');
+          return `${prefix}-${Number(suffix) + 1}`;
+        }
+
+        // Shared element hover logic, called both from mouseenter (when the
+        // gate is already open) and from the dwell timeout (when the mouse was
+        // already resting on an element as the gate opened).
+        function handleElementHover(el) {
+          currentMarkerId = el.dataset.markerId;
+          // Until the currentMarkerId is not pointing to a Location
+          // marker (with marker._icon) ...
+          while (markers[currentMarkerId]?._icon === undefined) {
+            // Increment by 1 the MarkerId identifier.
+            currentMarkerId = incrementMarkerId(currentMarkerId);
+          }
+          const marker = markers[currentMarkerId];
+          if (!marker || typeof marker.getLatLng !== 'function') {
+            return;
+          }
+          const center = marker.getLatLng();
+          el.parentElement.classList.add('marker-selected');
+          map.flyTo(center, 16, {
+            duration: 0.4,
+            animate: true
+          });
+          clickTimeout = setTimeout(() => {
+            // Prevent race condition.
+            if (marker !== markers[currentMarkerId]) {
+              return;
+            }
+            el.parentElement.classList.remove('marker-selected');
+            //const popup = marker.getPopup();
+            marker.fire('click');
+            marker.closeTooltip();
+          }, 200);
+        }
+
+        const elements = once(
+          'geoPlacesHover',
+          root.querySelectorAll(
+            //'.view-display-id-block_geoplaces_locations .views-field .marker-selector'
+            '.leaflet-sidebar-list' + '.' + mapid + ' .list-item .marker-selector'
+          )
+        );
+
+        elements.forEach((el) => {
+          el.addEventListener('click', () => {
+            handleElementHover(el);
+          });
+        });
+      }
+    }
+
+  };
 
   /**
    * Leaflet interactions behavior.
@@ -196,11 +288,6 @@
           // Toggle header z-index based on fullscreen state.
           $("header.site-header").css('z-index', map.isFullscreen() ? 1 : 101);
         });
-
-        // In case of leaflet-map-view-geo-places-page-map-taranto-viva mapid
-        // and presence of block .view-display-id-block_geoplaces_locations
-        // Implement Block list interactions with Map markers.
-        self.addInteractivityWithSidebar(root, mapid, map, markers);
       });
 
       // Interact with each feature created and added to the map.
@@ -648,86 +735,8 @@
         tooltip.options.permanent = isPermanent;
         permanent_tooltip_feature.bindTooltip(tooltip.getContent(), tooltip.options);
       }
-    },
-
-    /**
-     * Add Interactivity with Sidebar Markers List.
-     *
-     * @param {object} root
-     *   The context || document object.
-     * @param {string} mapid
-     *   The map ID.
-     * @param {object} map
-     *   The map object.
-     * @param {obejct} markers
-     *   The map markers object.
-     */
-    addInteractivityWithSidebar: function(root, mapid, map, markers) {
-      if (
-        mapid === "leaflet-map-view-geo-places-page-map-taranto-viva" &&
-        root.querySelector('.view-display-id-block_geoplaces_locations')
-      ) {
-
-        let clickTimeout = null;
-        let currentMarkerId = null;
-
-        // Function to increment by 1 the MarkerId identifier, in case it is
-        // not pointing to a Location marker (with marker._icon).
-        function incrementMarkerId(id) {
-          const [prefix, suffix] = id.split('-');
-          return `${prefix}-${Number(suffix) + 1}`;
-        }
-
-        // Shared element hover logic, called both from mouseenter (when the
-        // gate is already open) and from the dwell timeout (when the mouse was
-        // already resting on an element as the gate opened).
-        function handleElementHover(el) {
-          currentMarkerId = el.dataset.markerId;
-          // Until the currentMarkerId is not pointing to a Location
-          // marker (with marker._icon) ...
-          while (markers[currentMarkerId]?._icon === undefined) {
-            // Increment by 1 the MarkerId identifier.
-            currentMarkerId = incrementMarkerId(currentMarkerId);
-          }
-          const marker = markers[currentMarkerId];
-          if (!marker || typeof marker.getLatLng !== 'function') {
-            return;
-          }
-          const center = marker.getLatLng();
-          el.classList.add('marker-selected');
-          map.flyTo(center, 16, {
-            duration: 0.4,
-            animate: true
-          });
-          clickTimeout = setTimeout(() => {
-            // Prevent race condition.
-            if (marker !== markers[currentMarkerId]) {
-              return;
-            }
-            el.classList.remove('marker-selected');
-            //const popup = marker.getPopup();
-            marker.fire('click');
-            marker.closeTooltip();
-          }, 200);
-        }
-
-        const elements = once(
-          'geoPlacesHover',
-          root.querySelectorAll(
-            '.view-display-id-block_geoplaces_locations .views-field .marker-selector'
-          )
-        );
-
-        elements.forEach((el) => {
-          el.addEventListener('click', () => {
-            handleElementHover(el);
-          });
-        });
-      }
     }
 
-
-
-    };
+  };
 
 })(jQuery, Drupal, once);
