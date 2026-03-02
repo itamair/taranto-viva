@@ -58,7 +58,7 @@
           'Mino',
           'Brocco',
         ],
-        'start_collapsed': 1,
+        'start_collapsed': 0,
       }
 
       // Create a Sidebar List control.
