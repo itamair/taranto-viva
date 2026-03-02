@@ -59,10 +59,10 @@
   &.sidebar-is-collapsed .region--sidebar {
     position: absolute;
     z-index: 400;
-    top: 200px;
-    right: 5px;
+    top: 30px;
+    right: 4px;
     width: auto;
-    padding: 0.5rem 1rem;
+    padding: 6px ;
     border: solid 1px gray;
     border-radius: 4px;
     background: #fff;

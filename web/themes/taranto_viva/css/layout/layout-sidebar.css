@@ -75,10 +75,10 @@
 .sidebar-grid.sidebar-is-collapsed .region--sidebar {
   position: absolute;
   z-index: 400;
-  top: 12.5rem;
-  right: 0.3125rem;
+  top: 1.875rem;
+  right: 0.25rem;
   width: auto;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem;
   border: solid 1px gray;
   border-radius: 0.25rem;
   background: #fff;
