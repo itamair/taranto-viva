@@ -566,17 +566,19 @@
           }
           const center = marker.getLatLng();
           el.classList.add('marker-selected');
+          map.flyTo(center, 16, {
+            duration: 0.4,
+            animate: true
+          });
           clickTimeout = setTimeout(() => {
             // Prevent race condition.
             if (marker !== markers[currentMarkerId]) {
               return;
             }
             el.classList.remove('marker-selected');
+            //const popup = marker.getPopup();
             marker.fire('click');
-            map.flyTo(center, 16, {
-              duration: 0.4,
-              animate: true
-            });
+            marker.closeTooltip();
           }, 200);
         }
 
