@@ -8,7 +8,7 @@ sql_signature: false
 ui:
   show:
     additional_queries: false
-    default_display: false
+    default_display: true
     performance_statistics: false
     preview_information: true
     sql_query:
