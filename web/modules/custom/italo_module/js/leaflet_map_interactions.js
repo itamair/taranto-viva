@@ -212,10 +212,21 @@
           }
           const center = marker.getLatLng();
           el.parentElement.classList.add('marker-selected');
-          map.flyTo(center, 16, {
+
+          // Move Y center map of -50 pixels
+          const centerInPx = map.latLngToContainerPoint(center);
+          const newCenterInPx = {
+            ...centerInPx,
+            y: centerInPx.y - 50,
+          };
+          const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
+
+          //map.setView(newCenterInCoords, 16);
+          map.flyTo(newCenterInCoords, 16, {
             duration: 0.4,
             animate: true
           });
+
           clickTimeout = setTimeout(() => {
             // Prevent race condition.
             if (marker !== markers[currentMarkerId]) {
