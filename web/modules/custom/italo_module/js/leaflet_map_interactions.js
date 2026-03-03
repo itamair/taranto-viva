@@ -222,7 +222,11 @@
           const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
 
           //map.setView(newCenterInCoords, 16);
-          marker.fire('click');
+          map.flyTo(newCenterInCoords, 16, {
+            duration: 0.4,
+            animate: true
+          });
+
           clickTimeout = setTimeout(() => {
             // Prevent race condition.
             if (marker !== markers[currentMarkerId]) {
@@ -230,12 +234,9 @@
             }
             el.parentElement.classList.remove('marker-selected');
             //const popup = marker.getPopup();
+            marker.fire('click');
             marker.closeTooltip();
-            map.flyTo(newCenterInCoords, 16, {
-              duration: 0.4,
-              animate: true
-            });
-          }, 800);
+          }, 50);
         }
 
         const elements = once(
