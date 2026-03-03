@@ -217,16 +217,12 @@
           const centerInPx = map.latLngToContainerPoint(center);
           const newCenterInPx = {
             ...centerInPx,
-            y: centerInPx.y - 100,
+            y: centerInPx.y - 50,
           };
           const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
 
           //map.setView(newCenterInCoords, 16);
-          map.flyTo(newCenterInCoords, 16, {
-            duration: 0.4,
-            animate: true
-          });
-
+          marker.fire('click');
           clickTimeout = setTimeout(() => {
             // Prevent race condition.
             if (marker !== markers[currentMarkerId]) {
@@ -234,9 +230,12 @@
             }
             el.parentElement.classList.remove('marker-selected');
             //const popup = marker.getPopup();
-            marker.fire('click');
             marker.closeTooltip();
-          }, 200);
+            map.flyTo(newCenterInCoords, 16, {
+              duration: 0.4,
+              animate: true
+            });
+          }, 800);
         }
 
         const elements = once(
