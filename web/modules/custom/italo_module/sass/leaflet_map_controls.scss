@@ -24,9 +24,20 @@
     margin-bottom: 8px;
   }
 
+  .list-items {
+    margin-bottom: 8px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
   .list-item {
     display: flex;
     margin-bottom: 4px;
+    padding: 6px 4px;
+    border-bottom: 1px solid lightgrey;
+    &.marker-selected {
+      background: #e3e5f5;
+    }
   }
 
   /* Toggle functionality styles */

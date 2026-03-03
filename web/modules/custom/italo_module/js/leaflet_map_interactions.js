@@ -114,6 +114,9 @@
         // Add toggle functionality.
         self.setupLegendToggle(div, toggleBtn);
 
+        // Prevent map zoom/scroll when scrolling inside the control.
+        L.DomEvent.disableScrollPropagation(div);
+
         return div;
       };
 

@@ -26,11 +26,23 @@
   margin-bottom: 8px;
 }
 /* line 27, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-items {
+  margin-bottom: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+/* line 33, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-item {
   display: flex;
   margin-bottom: 4px;
+  padding: 6px 4px;
+  border-bottom: 1px solid lightgrey;
 }
-/* line 33, ../sass/leaflet_map_controls.scss */
+/* line 38, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-item.marker-selected {
+  background: #e3e5f5;
+}
+/* line 44, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-toggle {
   position: absolute;
   top: 6px;
@@ -46,62 +58,62 @@
   background: rgba(255, 255, 255, 0.8);
   border-radius: 2px;
 }
-/* line 48, ../sass/leaflet_map_controls.scss */
+/* line 59, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-toggle:hover {
   background: white;
   color: #333;
 }
 
-/* line 55, ../sass/leaflet_map_controls.scss */
+/* line 66, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list {
   position: relative;
 }
-/* line 58, ../sass/leaflet_map_controls.scss */
+/* line 69, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-collapsed-label {
   display: none;
   font-size: 12px;
   font-weight: bold;
   color: #666;
 }
-/* line 65, ../sass/leaflet_map_controls.scss */
+/* line 76, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed {
   min-width: 60px;
   max-width: 80px;
   padding: 8px;
   cursor: pointer;
 }
-/* line 71, ../sass/leaflet_map_controls.scss */
+/* line 82, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-content {
   display: none;
 }
-/* line 75, ../sass/leaflet_map_controls.scss */
+/* line 86, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-collapsed-label {
   display: block;
 }
-/* line 79, ../sass/leaflet_map_controls.scss */
+/* line 90, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-toggle {
   display: none;
 }
-/* line 83, ../sass/leaflet_map_controls.scss */
+/* line 94, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed:hover {
   background: rgba(245, 245, 245, 0.9);
 }
 
 /* Compact legend for smaller screens */
 @media (max-width: 640px) {
-  /* line 91, ../sass/leaflet_map_controls.scss */
+  /* line 102, ../sass/leaflet_map_controls.scss */
   .leaflet-sidebar-list {
     max-width: 150px;
     min-width: 50px;
     padding: 5px;
   }
-  /* line 96, ../sass/leaflet_map_controls.scss */
+  /* line 107, ../sass/leaflet_map_controls.scss */
   .leaflet-sidebar-list.legend-collapsed {
     max-width: 70px;
     padding: 6px;
   }
 
-  /* line 102, ../sass/leaflet_map_controls.scss */
+  /* line 113, ../sass/leaflet_map_controls.scss */
   .list-toggle {
     width: 16px;
     height: 16px;
