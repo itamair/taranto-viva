@@ -217,7 +217,7 @@
           const centerInPx = map.latLngToContainerPoint(center);
           const newCenterInPx = {
             ...centerInPx,
-            y: centerInPx.y - 50,
+            y: centerInPx.y - 100,
           };
           const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
 
