@@ -250,8 +250,19 @@
         );
 
         elements.forEach((el) => {
-          el.addEventListener('click', () => {
+          el.addEventListener('click', (e) => {
             handleElementHover(el);
+            // On small screens, collapse the sidebar after triggering the
+            // map marker interaction, so it doesn't obscure the map.
+            // stopPropagation prevents the click from bubbling up to the
+            // legendDiv handler, which would immediately re-open the sidebar.
+            if (window.innerWidth <= 700) {
+              const sidebarDiv = root.querySelector('.leaflet-sidebar-list.' + mapid);
+              if (sidebarDiv) {
+                sidebarDiv.classList.add('list-collapsed');
+                e.stopPropagation();
+              }
+            }
           });
         });
       }
