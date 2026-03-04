@@ -6399,7 +6399,7 @@ display:
           leaflet_markercluster:
             control: true
             include_path: false
-            options: '{"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":40}'
+            options: '{"showCoverageOnHover":false,"removeOutsideVisibleBounds":false,"maxClusterRadius":40,"disableClusteringAtZoom":18}'
             excluded: field_exclude_from_markercluster
           fullscreen:
             control: true
