@@ -136,7 +136,6 @@
         })
         .catch(function (error) {
           console.warn('Failed to load Geoplaces list:', error);
-          sidebarListControl.addTo(map);
         });
     },
 
