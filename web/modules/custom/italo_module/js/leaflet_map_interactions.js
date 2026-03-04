@@ -215,21 +215,21 @@
           el.parentElement.classList.add('marker-selected');
 
           // Move Y center map of -50 pixels
-          const centerInPx = map.latLngToContainerPoint(center);
+          /* const centerInPx = map.latLngToContainerPoint(center);
           const newCenterInPx = {
             ...centerInPx,
             y: centerInPx.y - 50,
           };
           const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
+          //map.setView(newCenterInCoords, 16);
 
-/*         map.flyTo(center, 16, {
+          map.flyTo(center, 16, {
             duration: 0.4,
             animate: true
           });*/
 
           map.setView(center, 16);
-          //map.setView(newCenterInCoords, 16);
-          // marker.closeTooltip();
+          // marker.closeTooltip(); // not needed if the marker.fire('click') is not used
           clickTimeout = setTimeout(() => {
             const popup = marker.getPopup();
             const popupContent = popup._content;
