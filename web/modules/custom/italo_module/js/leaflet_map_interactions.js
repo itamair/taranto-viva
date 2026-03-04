@@ -231,13 +231,9 @@
           map.setView(center, 16);
           // marker.closeTooltip(); // not needed if the marker.fire('click') is not used
           clickTimeout = setTimeout(() => {
-            const popup = marker.getPopup();
-            const popupContent = popup._content;
-            popup.openPopup(center);
-           // L.popup(center, {content: popupContent, autoPanPadding: [0, 70]}).openOn(map);
-            marker.openPopup(center, {"autoPan":true, autoPanPadding: [0, 70]});
             el.parentElement.classList.remove('marker-selected');
-          }, 200);
+            marker.openPopup(center, {"autoPan":true, autoPanPadding: [0, 70]});
+          }, 400);
         }
 
         const elements = once(
