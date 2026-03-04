@@ -1,7 +1,6 @@
-#leaflet-map-view-geo-media-images-page-geoimages-map {
-  .leaflet-popup-content {
-    margin: 1px;
-  }
+// Leaflet popup Content
+.leaflet-popup-content .field--name-field-category-type {
+  display: none;
 }
 
 // Dynamically extend the Popup Content width according to its image width content.

@@ -234,7 +234,8 @@
             }
             el.parentElement.classList.remove('marker-selected');
             //const popup = marker.getPopup();
-            marker.fire('click');
+            //marker.fire('click');
+            marker.openPopup(center);
             marker.closeTooltip();
           }, 50);
         }
