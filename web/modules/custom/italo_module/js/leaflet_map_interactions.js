@@ -221,24 +221,17 @@
           };
           const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
 
-          /*map.flyTo(center, 16, {
+/*          map.flyTo(center, 16, {
             duration: 0.4,
             animate: true
           });*/
 
-          //map.setZoom(16);
           map.setView(center, 16);
+          //map.setView(newCenterInCoords, 16);
+          // marker.closeTooltip();
           clickTimeout = setTimeout(() => {
-            // Prevent race condition.
-            if (marker !== markers[currentMarkerId]) {
-              return;
-            }
+            marker.openPopup(center, {"autoPan":false, "minWidth":300});
             el.parentElement.classList.remove('marker-selected');
-            //const popup = marker.getPopup();
-            // marker.fire('click');
-            marker.openPopup(center);
-            //map.setView(newCenterInCoords, 16);
-            marker.closeTooltip();
           }, 200);
         }
 
