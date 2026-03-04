@@ -1,4 +1,4 @@
-(function ($, Drupal, once) {
+(function ($, Drupal, once, drupalSettings) {
 
   'use strict';
 
@@ -36,7 +36,7 @@
           const leaflet_list_control_options = {
             'classes': mapid,
             'list': {
-              'title': 'Place of Interests',
+              'title': Drupal.t('Places of Interest'),
               'items': [],
               'start_collapsed': 0,
             }
@@ -122,7 +122,8 @@
 
       // Fetch Geoplaces data to populate the sidebar list items, then add the
       // control to the map.
-      fetch('en/taranto-viva-geoplaces-list')
+      const pageLang = drupalSettings.path.currentLanguage;
+      fetch(pageLang + '/taranto-viva-geoplaces-list')
         .then(function (response) {
           return response.json();
         })
@@ -754,4 +755,4 @@
 
   };
 
-})(jQuery, Drupal, once);
+})(jQuery, Drupal, once, drupalSettings);

@@ -42,7 +42,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Punti di Interesse'
+      title: 'Luoghi di Interesse'
       fields:
         id:
           id: id

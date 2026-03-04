@@ -1,0 +1,19 @@
+display:
+  default:
+    display_options:
+      empty:
+        area:
+          content:
+            value: '<p>No Results found</p>'
+            format: basic_html
+  page_geoplaces_grid:
+    display_options:
+      title: 'Places of Interest'
+  page_vaganti_map:
+    display_options:
+      filters:
+        field_exif_creation_date_value:
+          expose:
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
