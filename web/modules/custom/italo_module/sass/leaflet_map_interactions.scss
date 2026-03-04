@@ -21,7 +21,7 @@
 
     .node__content {
       font-size: 0.8rem;
-      padding-bottom: 0.5rem !important;
+      padding-bottom: 0.3rem !important;
     }
     .field--type-image {
       float: none; // This is needed to move the Leaflet Popup to show all of it in the map container
@@ -37,15 +37,20 @@
         display: none;
       }
     }
-    .node--type-geoplace, .node--type-event{
-      margin: 12px 8px 0;
-    }
+    .node--type-geoplace,
+    .node--type-event,
     .node--type-territorial-report {
       margin: 12px 8px 0;
     }
+
+    .field--name-geofield-googlemaps-link {
+      margin: 0 8px;
+    }
+
     .field--type-image img, .field--name-user-picture img {
       margin: 0;
     }
+
     h2 {
       font-size: 1.4em;
       margin: 0.5em 20px 0.5em 0;
@@ -63,7 +68,7 @@
       margin-bottom: 6px;
     }
     div:last-child {
-      margin-bottom: 0;
+      margin-bottom: 4px;
     }
     /* Overrides the Olivero olivero_tarantoviva/css/components/text-content.css */
     .text-content,
@@ -97,25 +102,25 @@
 
     @media only screen and (max-width: 500px) {
       .node--type-geoimage {
-        max-width: 360px !important;
+        max-width: 300px !important;
       }
       .node--type-geoplace, .node--type-event {
-        max-width: 300px !important;
+        max-width: 260px !important;
       }
       .node--type-territorial-report {
-        max-width: 300px !important;
+        max-width: 260px !important;
       }
     }
 
     @media only screen and (max-width: 380px) {
       .node--type-geoimage {
-          max-width: 300px !important;
+          max-width: 260px !important;
       }
       .node--type-geoplace, .node--type-event {
-          max-width: 300px !important;
+          max-width: 220px !important;
       }
       .node--type-territorial-report {
-          max-width: 300px !important;
+          max-width: 220px !important;
       }
     }
     .field--name-field-image-caption {
@@ -152,7 +157,7 @@
   &.opacity-50 {
     //border-radius: 50px;
     border: 3px solid white;
-    opacity: 30% !important;
+    opacity: 25% !important;
   }
   &.opacity-50:hover {
     opacity: 100% !important;
@@ -261,6 +266,10 @@
   div {
     font-weight: bold;
     font-size: 16px;
+    opacity: 70%;
+    &:hover {
+      opacity: 100%;
+    }
   }
   &.marker-cluster-small {
     background-color: inherit !important;

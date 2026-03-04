@@ -234,8 +234,8 @@
             const popup = marker.getPopup();
             const popupContent = popup._content;
             popup.openPopup(center);
-            L.popup(center, {content: popupContent, autoPanPadding: [0, 70]}).openOn(map);
-            //marker.openPopup(center, {"autoPan":false, "minWidth":300});
+           // L.popup(center, {content: popupContent, autoPanPadding: [0, 70]}).openOn(map);
+            marker.openPopup(center, {"autoPan":true, autoPanPadding: [0, 70]});
             el.parentElement.classList.remove('marker-selected');
           }, 200);
         }
