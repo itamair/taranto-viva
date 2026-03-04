@@ -187,6 +187,7 @@
 
         let clickTimeout = null;
         let currentMarkerId = null;
+        let popup = null;
 
         // Function to increment by 1 the MarkerId identifier, in case it is
         // not pointing to a Location marker (with marker._icon).
@@ -221,16 +222,20 @@
           };
           const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
 
-/*          map.flyTo(center, 16, {
+         map.flyTo(center, 16, {
             duration: 0.4,
             animate: true
-          });*/
+          });
 
           map.setView(center, 16);
           //map.setView(newCenterInCoords, 16);
           // marker.closeTooltip();
           clickTimeout = setTimeout(() => {
-            marker.openPopup(center, {"autoPan":false, "minWidth":300});
+            const popup = marker.getPopup();
+            const popupContent = popup._content;
+            popup.openPopup(center);
+            L.popup(center, {content: popupContent, autoPanPadding: [0, 70]}).openOn(map);
+            //marker.openPopup(center, {"autoPan":false, "minWidth":300});
             el.parentElement.classList.remove('marker-selected');
           }, 200);
         }
