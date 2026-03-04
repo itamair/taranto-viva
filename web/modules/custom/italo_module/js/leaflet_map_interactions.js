@@ -222,10 +222,10 @@
           };
           const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
 
-         map.flyTo(center, 16, {
+/*         map.flyTo(center, 16, {
             duration: 0.4,
             animate: true
-          });
+          });*/
 
           map.setView(center, 16);
           //map.setView(newCenterInCoords, 16);
