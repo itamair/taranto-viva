@@ -35,6 +35,7 @@
     margin-bottom: 4px;
     padding: 6px 4px;
     border-bottom: 1px solid lightgrey;
+    cursor: pointer;
     &.marker-selected {
       background: #e3e5f5;
     }
@@ -68,14 +69,14 @@
 
   .list-collapsed-label {
     display: none;
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: bold;
     color: #666;
   }
 
   &.list-collapsed {
     min-width: 60px;
-    max-width: 80px;
+    max-width: 160px;
     padding: 8px;
     cursor: pointer;
 
@@ -98,14 +99,14 @@
 }
 
 /* Compact legend for smaller screens */
-@media (max-width: 640px) {
+@media (max-width: 380px) {
   .leaflet-sidebar-list {
-    max-width: 150px;
+    max-width: 100px;
     min-width: 50px;
     padding: 5px;
 
-    &.legend-collapsed {
-      max-width: 70px;
+    &.list-collapsed {
+      max-width: 120px;
       padding: 6px;
     }
   }

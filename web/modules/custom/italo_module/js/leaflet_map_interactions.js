@@ -38,7 +38,7 @@
             'list': {
               'title': Drupal.t('Places of Interest'),
               'items': [],
-              'start_collapsed': 0,
+              'start_collapsed': 1,
             }
           };
           self.addLeafletSidebarListControl(root, lMap, mapid, data_markers, leaflet_list_control_options);
