@@ -351,10 +351,10 @@
   }
 }
 
-// .view-ciclovia-acquedotti {
-.view-ciclovia-acquedotti {
+// Leaflet Tooltips Styling Overrides on Views
+.view-ciclovia-acquedotti,
+.view {
 
-  // Leaflet Tooltips Overrides
   .leaflet-tooltip-top {
     margin-top: -16px !important;
     &.wider {

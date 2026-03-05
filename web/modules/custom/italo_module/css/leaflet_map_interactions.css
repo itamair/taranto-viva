@@ -392,18 +392,22 @@
 }
 
 /* line 358, ../sass/leaflet_map_interactions.scss */
-.view-ciclovia-acquedotti .leaflet-tooltip-top {
+.view-ciclovia-acquedotti .leaflet-tooltip-top,
+.view .leaflet-tooltip-top {
   margin-top: -16px !important;
 }
 /* line 360, ../sass/leaflet_map_interactions.scss */
-.view-ciclovia-acquedotti .leaflet-tooltip-top.wider {
+.view-ciclovia-acquedotti .leaflet-tooltip-top.wider,
+.view .leaflet-tooltip-top.wider {
   margin-top: -24px !important;
 }
 /* line 364, ../sass/leaflet_map_interactions.scss */
-.view-ciclovia-acquedotti .leaflet-tooltip-bottom {
+.view-ciclovia-acquedotti .leaflet-tooltip-bottom,
+.view .leaflet-tooltip-bottom {
   margin-top: 16px !important;
 }
 /* line 366, ../sass/leaflet_map_interactions.scss */
-.view-ciclovia-acquedotti .leaflet-tooltip-bottom.wider {
+.view-ciclovia-acquedotti .leaflet-tooltip-bottom.wider,
+.view .leaflet-tooltip-bottom.wider {
   margin-top: 24px !important;
 }
