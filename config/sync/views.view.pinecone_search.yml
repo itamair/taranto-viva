@@ -319,7 +319,7 @@ display:
         type: normal
         title: 'Pinecone Search'
         description: ''
-        weight: -40
+        weight: -39
         enabled: false
         expanded: false
         menu_name: main
