@@ -3,13 +3,23 @@ langcode: en
 status: true
 dependencies:
   module:
+    - content_access
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus:
       - main
     parent: 'main:'
-name: 'Territorial Report'
+  content_access:
+    view_own:
+      - anonymous
+      - authenticated
+      - administrator
+    view:
+      - anonymous
+      - authenticated
+      - administrator
+name: 'Segnalazione Territoriale'
 type: territorial_report
 description: null
 help: null
