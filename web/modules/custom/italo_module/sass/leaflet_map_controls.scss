@@ -75,6 +75,7 @@
   }
 
   &.list-collapsed {
+    text-wrap: nowrap;
     min-width: 60px;
     max-width: 160px;
     padding: 8px;
@@ -106,7 +107,6 @@
     padding: 5px;
 
     &.list-collapsed {
-      max-width: 120px;
       padding: 6px;
     }
   }
