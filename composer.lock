@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "425d5c82588ef8613bb87bbf3ee5a278",
+    "content-hash": "ed830a7fd9ccfd3ed3344e5b9c3e1953",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4737,17 +4737,17 @@
         },
         {
             "name": "drupal/entity_mesh",
-            "version": "1.2.4",
+            "version": "1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_mesh.git",
-                "reference": "1.2.4"
+                "reference": "1.2.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_mesh-1.2.4.zip",
-                "reference": "1.2.4",
-                "shasum": "f912dc4e58ddb27563edb6d0b9ddfe75eb2a9d49"
+                "url": "https://ftp.drupal.org/files/projects/entity_mesh-1.2.6.zip",
+                "reference": "1.2.6",
+                "shasum": "d0a6a50ad0f468a88da8316fac2dcd8cd670924f"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
@@ -4759,8 +4759,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.2.4",
-                    "datestamp": "1764931498",
+                    "version": "1.2.6",
+                    "datestamp": "1772606302",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"

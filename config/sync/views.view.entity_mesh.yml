@@ -1,5 +1,5 @@
 uuid: cde775fe-59d8-4620-b8d9-a573d3f329a1
-langcode: it
+langcode: en
 status: true
 dependencies:
   module:
@@ -1319,45 +1319,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        target_scheme_1:
-          id: target_scheme_1
-          table: entity_mesh
-          field: target_scheme
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: target_schema_filter
-          operator: in
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: target_scheme_1_op
-            label: 'Scheme (Target)'
-            description: ''
-            use_operator: false
-            operator: target_scheme_1_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: target_scheme_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         target_host:
           id: target_host
           table: entity_mesh
@@ -1512,7 +1473,6 @@ display:
           empty_table: false
           caption: ''
           description: ''
-          class: ''
       row:
         type: fields
       query:
