@@ -256,6 +256,9 @@
             },
             "drupal/config_inspector": {
                 "#3444730 Expected argument of type \"array\", \"string\" given": "https://git.drupalcode.org/project/config_inspector/-/merge_requests/26/diffs.patch"
+            },
+            "drupal/tool": {
+                "#3568588: Fix getSupportedTypes() to only handle json_schema format": "https://git.drupalcode.org/project/tool/-/merge_requests/69/diffs.patch"
             }
         }
     },
