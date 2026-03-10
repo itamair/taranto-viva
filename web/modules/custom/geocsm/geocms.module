@@ -10,6 +10,13 @@ use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_popup_message_parameters_alter().
+ *
+ * Attach to the popup_message the Node target set in the
+ * geocms.settings.geocms_info_popup_settings.contents
+ * rendered in "popup" display node.
+ *
+ * @note: this $popup_message_parameters["body"] is only working until
+ * drupal/popup_message: 3.0.3 version.
  */
 function geocms_popup_message_parameters_alter(&$popup_message_parameters) {
   $config = Drupal::config('geocms.settings');
