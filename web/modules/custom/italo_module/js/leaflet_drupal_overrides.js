@@ -97,25 +97,25 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
 
   if (!parseInt(feature_properties.popup_disabled) && feature.popup && feature.popup.value) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
-    lFeature.bindPopup(feature.popup.value, popup_options);
+    lFeature.bindPopup('', popup_options);
 
-/*    // Add googlemaps links to Leaflet pop content.
+    // Add googlemaps links to Leaflet pop content.
     lFeature.on('popupopen', function (e) {
       const popup = e.popup;
       const lat = popup.getLatLng().lat;
       const lng = popup.getLatLng().lng;
-      const content = '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
+      const gmaps_links = '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
         '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + lat + '%2C' + lng + '" target="_blank">Google Maps</a></div>\n' +
         '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
         '</div>';
-      popup.setContent(popup.getContent() + content);
+      popup.setContent(feature.popup.value + gmaps_links);
     });
 
     // Remove googlemaps links on close.
     lFeature.on('popupclose', function (e) {
       const popup = e.popup;
-      popup.setContent(feature.popup.value);
-    });*/
+      popup.setContent('');
+    });
   }
 };
 
