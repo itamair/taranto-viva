@@ -97,7 +97,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
 
   if (!parseInt(feature_properties.popup_disabled) && feature.popup && feature.popup.value) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
-    lFeature.bindPopup('', popup_options);
+    lFeature.bindPopup(feature.popup.value, popup_options);
 
     /*// Add googlemaps links to Leaflet pop content.
     lFeature.on('popupopen', function (e) {
