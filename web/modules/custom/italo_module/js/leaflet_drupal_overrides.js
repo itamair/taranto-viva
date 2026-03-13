@@ -99,7 +99,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
     lFeature.bindPopup('', popup_options);
 
-    // Add googlemaps links to Leaflet pop content.
+    /*// Add googlemaps links to Leaflet pop content.
     lFeature.on('popupopen', function (e) {
       const popup = e.popup;
       const lat = popup.getLatLng().lat;
@@ -115,7 +115,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     lFeature.on('popupclose', function (e) {
       const popup = e.popup;
       popup.setContent('');
-    });
+    });*/
   }
 };
 
