@@ -93,6 +93,15 @@
           subtitle.innerHTML = settings.list.subtitle;
         }
 
+        // Add search input.
+        const searchWrapper = L.DomUtil.create('div', 'list-search-wrapper', content);
+        // const searchLabel = L.DomUtil.create('label', 'list-search-label', searchWrapper);
+        // searchLabel.textContent = Drupal.t('Search');
+        const searchInput = L.DomUtil.create('input', 'list-search-input', searchWrapper);
+        searchInput.type = 'text';
+        searchInput.placeholder = Drupal.t('Search...');
+        searchInput.setAttribute('autocomplete', 'off');
+
         // Add List Items.
         const list_items = settings.list.items;
 
@@ -104,6 +113,20 @@
         }
 
         content.appendChild(items);
+
+        // Filter list items on search input (minimum 3 characters).
+        searchInput.addEventListener('input', function () {
+          const query = searchInput.value.trim().toLowerCase();
+          const listItemEls = items.querySelectorAll('.list-item');
+          listItemEls.forEach(function (item) {
+            if (query.length < 2) {
+              item.style.display = '';
+            }
+            else {
+              item.style.display = item.textContent.toLowerCase().includes(query) ? '' : 'none';
+            }
+          });
+        });
 
         // Check if legend should start collapsed based on settings.
         const startCollapsed = settings.list.start_collapsed || false;

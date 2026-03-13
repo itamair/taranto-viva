@@ -26,26 +26,60 @@
   margin-bottom: 8px;
 }
 /* line 27, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-search-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+/* line 33, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-search-label {
+  font-size: 0.72em;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+/* line 42, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-search-input {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 0.85em;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 180ms ease;
+}
+/* line 53, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-search-input:focus {
+  border-color: #888;
+}
+/* line 57, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-search-input::placeholder {
+  color: #aaa;
+}
+/* line 61, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-items {
   margin-bottom: 8px;
   max-height: 60vh;
   overflow-y: auto;
 }
-/* line 33, ../sass/leaflet_map_controls.scss */
+/* line 67, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-item {
   display: flex;
   border-bottom: 1px solid lightgrey;
   cursor: pointer;
 }
-/* line 37, ../sass/leaflet_map_controls.scss */
+/* line 71, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-item.marker-selected {
   background: #e3e5f5;
 }
-/* line 40, ../sass/leaflet_map_controls.scss */
+/* line 74, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-item .marker-selector {
   padding: 6px 4px;
 }
-/* line 47, ../sass/leaflet_map_controls.scss */
+/* line 81, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-toggle {
   position: absolute;
   top: 6px;
@@ -61,24 +95,24 @@
   background: rgba(255, 255, 255, 0.8);
   border-radius: 2px;
 }
-/* line 62, ../sass/leaflet_map_controls.scss */
+/* line 96, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-toggle:hover {
   background: white;
   color: #333;
 }
 
-/* line 69, ../sass/leaflet_map_controls.scss */
+/* line 103, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list {
   position: relative;
 }
-/* line 72, ../sass/leaflet_map_controls.scss */
+/* line 106, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-collapsed-label {
   display: none;
   font-size: 1rem;
   font-weight: bold;
   color: #666;
 }
-/* line 79, ../sass/leaflet_map_controls.scss */
+/* line 113, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed {
   text-wrap: nowrap;
   min-width: 60px;
@@ -86,37 +120,37 @@
   padding: 8px;
   cursor: pointer;
 }
-/* line 86, ../sass/leaflet_map_controls.scss */
+/* line 120, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-content {
   display: none;
 }
-/* line 90, ../sass/leaflet_map_controls.scss */
+/* line 124, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-collapsed-label {
   display: block;
 }
-/* line 94, ../sass/leaflet_map_controls.scss */
+/* line 128, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-toggle {
   display: none;
 }
-/* line 98, ../sass/leaflet_map_controls.scss */
+/* line 132, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed:hover {
   background: rgba(245, 245, 245, 0.9);
 }
 
 /* Compact legend for smaller screens */
 @media (max-width: 380px) {
-  /* line 106, ../sass/leaflet_map_controls.scss */
+  /* line 140, ../sass/leaflet_map_controls.scss */
   .leaflet-sidebar-list {
     max-width: 100px;
     min-width: 50px;
     padding: 5px;
   }
-  /* line 111, ../sass/leaflet_map_controls.scss */
+  /* line 145, ../sass/leaflet_map_controls.scss */
   .leaflet-sidebar-list.list-collapsed {
     padding: 6px;
   }
 
-  /* line 116, ../sass/leaflet_map_controls.scss */
+  /* line 150, ../sass/leaflet_map_controls.scss */
   .list-toggle {
     width: 16px;
     height: 16px;
