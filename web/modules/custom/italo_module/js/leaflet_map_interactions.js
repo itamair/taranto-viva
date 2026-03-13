@@ -38,7 +38,7 @@
             'list': {
               'title': Drupal.t('Places of Interest'),
               'items': [],
-              'start_collapsed': 1,
+              'start_collapsed': 0,
             }
           };
           self.addLeafletSidebarListControl(root, lMap, mapid, data_markers, leaflet_list_control_options);
@@ -180,9 +180,11 @@
      *   The map markers object.
      */
     addInteractivityWithSidebar: function(root, mapid, map, markers) {
+      const leaflet_sidebar_list_mapid_selector = '.leaflet-sidebar-list.' + mapid;
+
       if (
         mapid === "leaflet-map-view-geo-places-page-map-taranto-viva" &&
-        (root.querySelector('.view-display-id-block_geoplaces_locations') || root.querySelector('.leaflet-sidebar-list' + '.' + mapid))
+        (root.querySelector('.view-display-id-block_geoplaces_locations') || root.querySelector(leaflet_sidebar_list_mapid_selector))
       ) {
 
         let clickTimeout = null;
@@ -252,7 +254,7 @@
             // stopPropagation prevents the click from bubbling up to the
             // legendDiv handler, which would immediately re-open the sidebar.
             if (window.innerWidth <= 700) {
-              const sidebarDiv = root.querySelector('.leaflet-sidebar-list.' + mapid);
+              const sidebarDiv = root.querySelector(leaflet_sidebar_list_mapid_selector);
               if (sidebarDiv) {
                 sidebarDiv.classList.add('list-collapsed');
                 e.stopPropagation();
@@ -260,6 +262,14 @@
             }
           });
         });
+
+        if (window.innerWidth <= 760) {
+          const sidebarDiv = root.querySelector(leaflet_sidebar_list_mapid_selector);
+          if (sidebarDiv) {
+            sidebarDiv.classList.add('list-collapsed');
+          }
+        }
+
       }
     }
 
