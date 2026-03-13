@@ -32,13 +32,15 @@
 
   .list-item {
     display: flex;
-    margin-bottom: 4px;
-    padding: 6px 4px;
     border-bottom: 1px solid lightgrey;
     cursor: pointer;
     &.marker-selected {
       background: #e3e5f5;
     }
+    .marker-selector {
+      padding: 6px 4px;
+    }
+
   }
 
   /* Toggle functionality styles */

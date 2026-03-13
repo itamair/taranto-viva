@@ -92,7 +92,7 @@
   /* line 9, ../sass/leaflet_map_interactions.scss */
   .leaflet-popup-content-wrapper .leaflet-popup-content {
     min-width: 80px;
-    max-width: 300px;
+    max-width: 260px;
   }
   /* line 83, ../sass/leaflet_map_interactions.scss */
   .leaflet-popup-content-wrapper .leaflet-popup-content .field--type-text-with-summary, .leaflet-popup-content-wrapper .leaflet-popup-content .field--name-body {
