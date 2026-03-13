@@ -87,6 +87,10 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
 /**
  * Add Leaflet Popup to the Leaflet Feature (override).
  *
+ * We need this override because we are adding to the popup.content the Google Maps Links corresponding:
+ * - to the feature.icon location, in case of feature.icon (point);
+ * - to the feature.path clicked location, in case of feature.path (geometries);
+ *
  * @param lFeature
  *   The Leaflet Feature
  * @param feature
@@ -95,27 +99,35 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
 Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
   const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
 
+  const get_gmaps_links = function (lat, lng) {
+    return '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
+      '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + lat + '%2C' + lng + '" target="_blank">Google Maps</a></div>\n' +
+      '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
+      '</div>';
+  }
+
   if (!parseInt(feature_properties.popup_disabled) && feature.popup && feature.popup.value) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
-    lFeature.bindPopup(feature.popup.value, popup_options);
 
-    /*// Add googlemaps links to Leaflet pop content.
+    let lat = feature.lat ?? '';
+    let lng = feature.lon ?? '';
+
+    // Append to the feature.popup.value the Google Maps Links corresponding to
+    // the feature centroid location.
+    let gmaps_links = get_gmaps_links(lat, lng);
+    lFeature.bindPopup(feature.popup.value + gmaps_links, popup_options);
+
+    // In case of feature.path replace the gmaps_links corresponding to the
+    // popup LatLng place (click location).
     lFeature.on('popupopen', function (e) {
-      const popup = e.popup;
-      const lat = popup.getLatLng().lat;
-      const lng = popup.getLatLng().lng;
-      const gmaps_links = '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
-        '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + lat + '%2C' + lng + '" target="_blank">Google Maps</a></div>\n' +
-        '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
-        '</div>';
-      popup.setContent(feature.popup.value + gmaps_links);
+      if (e.target._path) {
+        const popup = e.popup;
+        const lat = popup.getLatLng().lat;
+        const lng = popup.getLatLng().lng;
+        gmaps_links = get_gmaps_links(lat, lng);
+        popup.setContent(feature.popup.value + gmaps_links);
+      }
     });
-
-    // Remove googlemaps links on close.
-    lFeature.on('popupclose', function (e) {
-      const popup = e.popup;
-      popup.setContent('');
-    });*/
   }
 };
 
