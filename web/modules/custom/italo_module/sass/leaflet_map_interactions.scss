@@ -6,50 +6,10 @@
 // Dynamically extend the Popup Content width according to its image width content.
 .leaflet-popup-content-wrapper {
   border-radius: 1px !important;
+
   .leaflet-popup-content {
     position: relative;
     margin: 4px;
-    .field--name-geoimage-caption {
-      padding-left: 0.5rem !important;
-      font-size: 0.8rem;
-      opacity: 70%;
-      line-height: 1.2rem;
-    }
-    .field:not(:last-child) {
-      margin-bottom: 0.4rem !important;
-    }
-
-    .node__content {
-      font-size: 0.8rem;
-      padding-bottom: 0.3rem !important;
-    }
-    .field--type-image {
-      float: none; // This is needed to move the Leaflet Popup to show all of it in the map container
-      margin: 0;
-    }
-    .node--type-geoimage {
-      margin: 0;
-      .node__content {
-        margin: 0;
-        padding-bottom: 0 !important;
-      }
-      .node__title {
-        display: none;
-      }
-    }
-    .node--type-geoplace,
-    .node--type-event,
-    .node--type-territorial-report {
-      margin: 12px 8px 0;
-    }
-
-    .field--name-geofield-googlemaps-link {
-      margin: 0 8px;
-    }
-
-    .field--type-image img, .field--name-user-picture img {
-      margin: 0;
-    }
 
     h2 {
       font-size: 1.4em;
@@ -76,9 +36,57 @@
       font-size: 0.8rem !important;
       line-height: 1.3rem !important;
     }
+
+    // Node content
+    .node__content {
+      font-size: 0.8rem;
+      padding-bottom: 0 !important;
+    }
+
+    .node--type-geoimage {
+      margin: 0;
+      .node__content {
+        margin: 0;
+        padding-bottom: 0 !important;
+      }
+      .node__title {
+        display: none;
+      }
+    }
+    .node--type-geoplace,
+    .node--type-event,
+    .node--type-territorial-report {
+      margin: 10px 6px 0;
+    }
+
+    // Fields
+    .field--name-geofield-googlemaps-link {
+      padding-bottom: 0.5em !important;
+      margin: 0 8px;
+    }
+
+    .field--name-field-image-caption {
+      font-size: 0.6rem !important;
+      color: darkgray;
+    }
+
+    .field--type-image img, .field--name-user-picture img {
+      margin: 0;
+    }
+
+    .field--name-geoimage-caption {
+      padding-left: 0.5rem !important;
+      font-size: 0.8rem;
+      opacity: 70%;
+      line-height: 1.2rem;
+    }
+    .field:not(:last-child) {
+      margin-bottom: 0.4rem !important;
+    }
+
     @media only screen and (max-width: 992px) {
       min-width: 80px;
-      max-width: 260px;
+      max-width: 280px;
 
       .field--type-text-with-summary, .field--name-body {
         display: none;
@@ -100,35 +108,21 @@
       }
     }
 
-    @media only screen and (max-width: 500px) {
-      .node--type-geoimage {
-        max-width: 300px !important;
-      }
-      .node--type-geoplace, .node--type-event {
-        max-width: 260px !important;
-      }
-      .node--type-territorial-report {
-        max-width: 260px !important;
-      }
-    }
+    @media only screen and (max-width: 720px) {
+      min-width: 80px;
+      max-width: 160px;
 
-    @media only screen and (max-width: 380px) {
-      .node--type-geoimage {
-          max-width: 260px !important;
+      .node__content {
+        padding-bottom: 0!important;
       }
-      .node--type-geoplace, .node--type-event {
-          max-width: 220px !important;
+
+      .field--name-field-category-type {
+        display: none;
       }
-      .node--type-territorial-report {
-          max-width: 220px !important;
+
+      .field--name-geofield-googlemaps-link .field__item {
+        display: block;
       }
-    }
-    .field--name-field-image-caption {
-      font-size: 0.6rem !important;
-      color: darkgray;
-    }
-    .field--name-geofield-googlemaps-link {
-      display: inline-block;
     }
   }
 }
