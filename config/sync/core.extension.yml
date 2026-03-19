@@ -145,6 +145,7 @@ module:
   range: 0
   rate: 0
   react_maplibre_map: 0
+  readmore: 0
   replicate: 0
   replicate_ui: 0
   rest: 0
@@ -200,4 +201,8 @@ theme:
   claro: 0
   olivero: 0
   taranto_viva: 0
+  stable9: 0
+  bootstrap5: 0
+  bootstrap: 0
+  bootstrap_barrio: 0
 profile: standard

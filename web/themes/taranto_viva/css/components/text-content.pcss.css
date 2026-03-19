@@ -8,7 +8,7 @@
 .text-content,
 .cke_editable {
   color: var(--color-text-neutral-medium);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   line-height: var(--sp1-5);
 
   /*
@@ -41,8 +41,8 @@
   }
 
   & p {
-    margin-block-start: var(--sp);
-    margin-block-end: var(--sp);
+    margin-block-start: var(--sp0-75);
+    margin-block-end: var(--sp75);
 
     &:first-child {
       margin-block-start: 0;
@@ -53,8 +53,8 @@
     }
 
     @media (--md) {
-      margin-block-start: var(--sp2);
-      margin-block-end: var(--sp2);
+      margin-block-start: var(--sp0-5);
+      margin-block-end: var(--sp0-5);
     }
   }
 

@@ -44,13 +44,22 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:geoplace:body'
+              label: Body
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
-                type: text_default
+                type: readmore
                 label: visually_hidden
-                settings: {  }
+                settings:
+                  trim_length: 300
+                  trim_on_break: false
+                  show_readmore: true
+                  show_readless: true
+                  ellipsis: true
+                  wordsafe: true
                 third_party_settings: {  }
             weight: 4
             additional: {  }
