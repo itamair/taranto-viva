@@ -146,7 +146,8 @@
       // Fetch Geoplaces data to populate the sidebar list items, then add the
       // control to the map.
       const pageLang = drupalSettings.path.currentLanguage;
-      fetch(pageLang + '/taranto-viva-geoplaces-list')
+      const source_endpoint = '/' + pageLang + '/taranto-viva-geoplaces-list';
+      fetch(source_endpoint)
         .then(function (response) {
           return response.json();
         })
