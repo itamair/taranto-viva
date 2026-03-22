@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f0a89af95acea2d141fe4b3b1ae2d96",
+    "content-hash": "b0feeaf1c938f8f2daf2f73cbccf3e11",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8903,17 +8903,17 @@
         },
         {
             "name": "drupal/tool",
-            "version": "1.0.0-alpha10",
+            "version": "1.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tool.git",
-                "reference": "1.0.0-alpha10"
+                "reference": "1.0.0-beta1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/tool-1.0.0-alpha10.zip",
-                "reference": "1.0.0-alpha10",
-                "shasum": "45ace151b4503a7522749548d9dcd72ab707d86d"
+                "url": "https://ftp.drupal.org/files/projects/tool-1.0.0-beta1.zip",
+                "reference": "1.0.0-beta1",
+                "shasum": "e001e557cfee484357834a4346ee2fa0ed32b34b"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11",
@@ -8926,11 +8926,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0-alpha10",
-                    "datestamp": "1764991193",
+                    "version": "1.0.0-beta1",
+                    "datestamp": "1774040541",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "message": "Beta releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -8961,6 +8961,51 @@
             "support": {
                 "source": "https://drupal.org/project/tool",
                 "issues": "https://drupal.org/project/issues/tool"
+            }
+        },
+        {
+            "name": "drupal/tool_belt",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/tool_belt.git",
+                "reference": "1.0.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/tool_belt-1.0.0-alpha1.zip",
+                "reference": "1.0.0-alpha1",
+                "shasum": "5e7c5ef090d1e1a732f33ec76ca84fbdb2f00858"
+            },
+            "require": {
+                "drupal/core": "^10.3 || ^11",
+                "drupal/tool": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha1",
+                    "datestamp": "1774040447",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "michaellander",
+                    "homepage": "https://www.drupal.org/user/636494"
+                }
+            ],
+            "description": "A default collection of tools covering common Drupal core actions.",
+            "homepage": "https://www.drupal.org/project/tool_belt",
+            "support": {
+                "source": "https://git.drupalcode.org/project/tool_belt"
             }
         },
         {
@@ -18349,7 +18394,8 @@
         "drupal/image_style_warmer": 5,
         "drupal/masquerade": 5,
         "drupal/readmore": 15,
-        "drupal/tool": 15,
+        "drupal/tool": 10,
+        "drupal/tool_belt": 15,
         "drupal/viewfield": 10,
         "drupal/views_daterange_filters": 15,
         "drupal/votingapi": 20,

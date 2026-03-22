@@ -146,7 +146,8 @@
         "drupal/svg_image": "^3.0",
         "drupal/tmgmt": "^1.18",
         "drupal/token": "^1.11",
-        "drupal/tool": "^1.0@alpha",
+        "drupal/tool": "^1.0@beta",
+        "drupal/tool_belt": "^1.0@alpha",
         "drupal/upgrade_status": "^4.3",
         "drupal/uuid_extra": "^2.0",
         "drupal/varbase_ai_agents": "~1.0.0",
@@ -257,12 +258,9 @@
             },
             "drupal/config_inspector": {
                 "#3444730 Expected argument of type \"array\", \"string\" given": "https://git.drupalcode.org/project/config_inspector/-/merge_requests/26/diffs.patch"
-            },
-            "drupal/tool": {
-                "#3568588: Fix getSupportedTypes() to only handle json_schema format": "https://git.drupalcode.org/project/tool/-/merge_requests/69/diffs.patch"
             }
         }
-    },
+    },x
     "require-dev": {
         "drupal/claude_code": "^1.0",
         "mglaman/phpstan-drupal": "^1.2",
