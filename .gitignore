@@ -49,4 +49,7 @@ phpunit.xml
 # Ignore photo_albums folder alias
 photo_albums
 
-**/.claude/settings.local.json
+# Claude components and settings
+.claude
+.playwright-mcp
+.claude/settings.local.json
