@@ -165,14 +165,6 @@ module:
   tmgmt: 0
   tmgmt_content: 0
   token: 0
-  tool: 0
-  tool_belt: 0
-  tool_belt_content: 0
-  tool_belt_content_translation: 0
-  tool_belt_entity: 0
-  tool_belt_system: 0
-  tool_belt_user: 0
-  tool_explorer: 0
   toolbar: 0
   typed_data: 0
   update: 0

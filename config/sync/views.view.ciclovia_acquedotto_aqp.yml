@@ -4791,7 +4791,7 @@ display:
             value: nothing
             options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"{{ field_tooltip_direction }}","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           leaflet_popup:
-            value: '#rendered_entity_ajax'
+            value: '#rendered_entity'
             options: '{"autoPan":true,"maxWidth":400}'
             view_mode: leaflet_popup
           leaflet_map: multilayers
@@ -4865,7 +4865,7 @@ display:
               input_size: 16
               providers:
                 googlemaps:
-                  weight: '2'
+                  weight: '-100'
                   checked: 1
                 arcgisonline:
                   weight: '0'
