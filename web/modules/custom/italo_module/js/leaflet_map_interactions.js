@@ -305,7 +305,7 @@
   Drupal.behaviors.leafletInteractions = {
 
     // Default zoom level for icon sizing.
-    zoomDefaultIconSize: 18,
+    zoomDefaultIconSize: 19,
 
     // Stores markers that are currently hidden.
     hidden_markers: [],
