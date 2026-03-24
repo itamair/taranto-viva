@@ -260,7 +260,7 @@
                 "#3444730 Expected argument of type \"array\", \"string\" given": "https://git.drupalcode.org/project/config_inspector/-/merge_requests/26/diffs.patch"
             }
         }
-    },x
+    },
     "require-dev": {
         "drupal/claude_code": "^1.0",
         "mglaman/phpstan-drupal": "^1.2",
