@@ -4,13 +4,14 @@ warmers:
   sitemap:
     id: sitemap
     frequency: 300
-    batchSize: 50
+    batchSize: 10
     minPriority: 0.5
     sitemaps:
       - /sitemap.xml
+      - 'https://coral-eland-546543.hostingersite.com/sitemap.xml'
     headers: {  }
     verify: true
-    maxConcurrentRequests: 10
+    maxConcurrentRequests: 5
   cdn:
     id: cdn
     frequency: 300
