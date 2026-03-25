@@ -155,6 +155,9 @@ module:
   seckit: 0
   serialization: 0
   shortcut: 0
+  simple_sitemap: 0
+  simple_sitemap_engines: 0
+  simple_sitemap_views: 0
   single_image_formatter: 0
   slick: 0
   svg_image: 0

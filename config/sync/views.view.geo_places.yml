@@ -48,7 +48,6 @@ dependencies:
   content:
     - 'taxonomy_term:places_categories:a841baac-2165-4eb1-8954-60c0a0bf78b6'
     - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
-    - 'taxonomy_term:project_namespace:b51f29a6-2dfe-438a-9884-31e0df647186'
     - 'taxonomy_term:project_namespace:fd033224-7769-47a7-a698-8fa79b4f0dd3'
   module:
     - better_exposed_filters
@@ -9075,6 +9074,14 @@ display:
           tokenize: false
         library_in_views_display_extender:
           attach_library: italo_module/leaflet_images_control
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: main_map
       menu:
         type: normal
