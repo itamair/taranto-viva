@@ -4,13 +4,16 @@ display:
       empty:
         area: {  }
   page_geoplaces_grid:
-    display_options: {  }
+    display_options:
+      menu:
+        title: 'Places of Interest'
   page_map_taranto_viva:
     display_options:
       filters:
         field_date_range_value:
           expose:
             label: 'Validity of events and reports'
+      title: 'Home | Map'
   page_vaganti_map:
     display_options:
       filters:
