@@ -15,8 +15,8 @@ warmers:
   cdn:
     id: cdn
     frequency: 300
-    batchSize: 50
+    batchSize: 10
     urls: {  }
     headers: {  }
     verify: true
-    maxConcurrentRequests: 10
+    maxConcurrentRequests: 5
