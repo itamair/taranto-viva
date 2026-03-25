@@ -162,6 +162,7 @@
         "drupal/views_slideshow": "^5.0",
         "drupal/visitors": "^2.31",
         "drupal/votingapi": "4.0.x-dev@dev",
+        "drupal/warmer": "^2.0",
         "drupal/watchdog_statistics": "^1.0",
         "geocoder-php/arcgis-online-provider": "^4.4",
         "geocoder-php/google-maps-provider": "^4.7",

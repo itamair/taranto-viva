@@ -195,6 +195,8 @@ module:
   visitors: 0
   visitors_geoip: 0
   votingapi: 0
+  warmer: 0
+  warmer_cdn: 0
   watchdog_statistics: 0
   pathauto: 1
   content_translation: 10

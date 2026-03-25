@@ -1,0 +1,21 @@
+_core:
+  default_config_hash: wLhhL58IKPWkAbhxcI6gpCna7d431Q7kM0y-Om92BUQ
+warmers:
+  sitemap:
+    id: sitemap
+    frequency: 300
+    batchSize: 50
+    minPriority: 0.5
+    sitemaps:
+      - /sitemap.xml
+    headers: {  }
+    verify: true
+    maxConcurrentRequests: 10
+  cdn:
+    id: cdn
+    frequency: 300
+    batchSize: 50
+    urls: {  }
+    headers: {  }
+    verify: true
+    maxConcurrentRequests: 10
