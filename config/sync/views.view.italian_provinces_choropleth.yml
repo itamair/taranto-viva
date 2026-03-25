@@ -450,6 +450,15 @@ display:
         metatag_display_extender:
           metatags: {  }
           tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: italian-provinces-choropleth
       menu:
         type: normal
