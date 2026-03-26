@@ -25,7 +25,6 @@ module:
   blazy: 0
   block: 0
   block_content: 0
-  bpmn_io: 0
   breakpoint: 0
   cer: 0
   charts: 0
@@ -52,15 +51,6 @@ module:
   devel_generate: 0
   duplicate_role: 0
   dynamic_page_cache: 0
-  eca: 0
-  eca_access: 0
-  eca_base: 0
-  eca_cache: 0
-  eca_content: 0
-  eca_modeller_bpmn: 0
-  eca_ui: 0
-  eca_user: 0
-  eca_views: 0
   editor: 0
   entity_mesh: 0
   entity_reference_revisions: 0
