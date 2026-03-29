@@ -1,0 +1,26 @@
+{
+    "name": "drupal/views_attach_library",
+    "description": "Views Attach Library",
+    "type": "drupal-module",
+    "keywords": ["Drupal", "Attach", "Library", "view"],
+    "homepage": "https://www.drupal.org/project/views_attach_library",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/views_attach_library",
+        "source": "https://git.drupalcode.org/project/views_attach_library"
+    },
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Hardik Patel",
+            "email": "hplord12@gmail.com",
+            "homepage": "https://www.drupal.org/u/hardik_patel_12",
+            "role": "Maintainer"
+        },
+        {
+            "name": "NGUYEN Bao",
+            "email": "n.bao@yahoo.com",
+            "homepage": "https://www.drupal.org/u/lazzyvn",
+            "role": "Maintainer"
+        }
+    ]
+}

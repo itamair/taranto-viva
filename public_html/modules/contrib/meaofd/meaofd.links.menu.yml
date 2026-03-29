@@ -1,0 +1,11 @@
+##
+# @file
+# Mismatched entity and/or field definitions menu links.
+##
+
+meaofd.report:
+  title: 'Mismatched entity and/or field definitions'
+  parent: system.admin_reports
+  description: 'View mismatched entity and/or field definitions report.'
+  route_name: meaofd.report
+  weight: 0

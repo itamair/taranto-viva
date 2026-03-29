@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install Hook implementations for MCP module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function mcp_schema() {
+  $schema['mcp_messages'] = [
+    'description' => 'Stores MCP client messages',
+    'fields'      => [
+      'client_id' => [
+        'type'        => 'varchar',
+        'length'      => 255,
+        'not null'    => TRUE,
+        'description' => 'Client identifier',
+      ],
+      'message'   => [
+        'type'        => 'text',
+        'size'        => 'big',
+        'description' => 'JSON message data',
+      ],
+      'created'   => [
+        'type'        => 'int',
+        'not null'    => TRUE,
+        'description' => 'Timestamp when the message was created',
+      ],
+    ],
+    'primary key' => ['client_id'],
+    'indexes'     => [
+      'created' => ['created'],
+    ],
+  ];
+
+  return $schema;
+}

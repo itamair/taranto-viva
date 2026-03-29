@@ -1,0 +1,32 @@
+{
+  "name": "drupal/image_styles_generator",
+  "description": "Generates image style derivatives using a Drush command.",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Eduardo Morales Alberto",
+      "email": "eduardo.morales@metadrop.net",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Ricardo Sanz Ante",
+      "email": "ricardo@metadrop.net",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Juanjo López",
+      "email": "juanjo.lopez@metadrop.net",
+      "role": "Maintainer"
+    },
+    {
+      "name": "Alberto Ortega",
+      "email": "alberto.ortega@metadrop.net",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "drupal/webp": "^1.x-dev"
+  }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "drupal/leaflet_choropleth",
+    "description": "Provides Choropleth Map functionalities for Leaflet maps in Drupal.",
+    "type": "drupal-module",
+    "homepage": "https://www.drupal.org/project/leaflet_choroplet",
+    "authors": [
+        {
+            "name": "Italo Mairo",
+            "homepage": "https://www.drupal.org/u/itamair",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/leaflet_choropleth",
+        "source": "https://git.drupalcode.org/project/leaflet_choropleth"
+    },
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
+    "require": {
+        "drupal/leaflet": "^10.3.0"
+    }
+}

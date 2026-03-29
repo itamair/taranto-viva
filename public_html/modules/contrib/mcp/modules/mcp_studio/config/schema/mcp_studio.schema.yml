@@ -1,0 +1,26 @@
+mcp_studio.settings:
+  type: config_object
+  label: 'MCP Studio settings'
+  mapping:
+    tools:
+      type: sequence
+      label: 'Studio tools'
+      sequence:
+        type: mapping
+        label: 'Tool configuration'
+        mapping:
+          name:
+            type: string
+            label: 'Tool name'
+          description:
+            type: string
+            label: 'Tool description'
+          input_schema:
+            type: string
+            label: 'Input schema (JSON)'
+          output:
+            type: text
+            label: 'Tool output'
+          output_mode:
+            type: string
+            label: 'Output mode'

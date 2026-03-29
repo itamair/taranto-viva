@@ -1,0 +1,24 @@
+# Italian translation of Views Bulk Edit (8.x-2.8)
+# Copyright (c) 2022 by the Italian translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Views Bulk Edit (8.x-2.8)\n"
+"POT-Creation-Date: 2022-10-20 09:46+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Create new revision"
+msgstr "Crea una nuova revisione"
+msgid "Revision information"
+msgstr "Informazione sulla revisione"
+msgid "Revision log message"
+msgstr "Messaggio di revisione per il log"
+msgid "Edit media"
+msgstr "Modifica contributi multimediali"
+msgid "Briefly describe the changes you have made."
+msgstr "Descrivere brevemente le modifiche apportate."

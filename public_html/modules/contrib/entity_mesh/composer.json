@@ -1,0 +1,24 @@
+{
+    "name": "drupal/entity_mesh",
+    "description": "Provides a visual way to analyze content connetions and links on your site.",
+    "type": "drupal-module",
+    "homepage": "https://drupal.org/project/entity_mesh",
+    "license": "GPL-2.0-or-later",
+    "support": {
+      "issues": "https://www.drupal.org/project/issues/entity_mesh",
+      "source": "https://git.drupalcode.org/project/entity_mesh"
+    },
+    "require": {
+      "drupal/views_data_export": "^1.5"
+    },
+    "require-dev": {
+        "drupal/webform":"^6.3@beta"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^11"
+            }
+        }
+    }
+}

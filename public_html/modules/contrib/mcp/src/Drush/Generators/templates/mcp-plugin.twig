@@ -1,0 +1,162 @@
+{% import '@lib/di.twig' as di %}
+<?php
+
+namespace Drupal\{{ machine_name }}\Plugin\Mcp;
+
+{% apply sort_namespaces %}
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\mcp\Attribute\Mcp;
+use Drupal\mcp\Plugin\McpPluginBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+{% if services %}
+{{ di.use(services) }}
+{% endif %}
+{% if has_resources %}
+use Drupal\mcp\ServerFeatures\Resource;
+{% endif %}
+{% if has_tools %}
+use Drupal\mcp\ServerFeatures\Tool;
+{% endif %}
+{% endapply %}
+
+/**
+ * Plugin implementation of the mcp.
+ */
+#[Mcp(
+  id: '{{ plugin_id }}',
+  name: new TranslatableMarkup('{{ plugin_name }}'),
+  description: new TranslatableMarkup(
+    '{{ plugin_description }}'
+  ),
+)]
+class {{ class }} extends McpPluginBase implements ContainerFactoryPluginInterface {
+
+  {% for service in services %}
+   /**
+   * The {{ service.name }} service.
+   */
+    protected {{ service.type }} ${{ service.name }};{{ loop.last ? '' : constant('PHP_EOL') }}
+  {%- endfor %}
+
+  /**
+   * {@inheritDoc}
+   */
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+  ) {
+    $instance = new {{ class }}(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+    );
+
+    {% for service_id, service in services %}
+      $instance->{{ service.name }} = $container->get('{{ service_id }}');{{ loop.last ? '' : constant('PHP_EOL') }}
+    {%- endfor %}
+
+    return $instance;
+  }
+
+{% if has_tools %}
+  /**
+   * {@inheritdoc}
+   */
+  public function getTools(): array {
+    $tools = [];
+
+    $tools[] = new Tool(
+      name: 'example-tool',
+      description: new TranslatableMarkup('An example tool that demonstrates functionality.'),
+      inputSchema: [
+        'type'       => 'object',
+        'properties' => [
+          'param1' => [
+            'type' => 'string',
+            'description' => 'The first parameter.',
+          ],
+          'param2' => [
+            'type' => 'integer',
+            'description' => 'The second parameter.'
+          ],
+        ],
+        'required' => ['param1'],
+      ],
+      // Optional: Human-readable display name for the tool.
+      // title: new TranslatableMarkup('Example Tool'),
+      // Optional: JSON Schema defining the expected output structure.
+      // outputSchema: [
+      //   'type' => 'object',
+      //   'properties' => [
+      //     'result' => [
+      //       'type' => 'string',
+      //       'description' => 'The result of the operation.',
+      //     ],
+      //   ],
+      //   'required' => ['result'],
+      // ],
+    );
+
+    return $tools;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function executeTool(string $toolId, mixed $arguments): array {
+    return match($toolId) {
+      'example-tool' => $this->executeExampleTool($arguments),
+      default => throw new \InvalidArgumentException('Tool not found')
+    };
+  }
+
+  /**
+   * Executes the example tool.
+   *
+   * @param array $arguments
+   *   The tool arguments.
+   *
+   * @return array
+   *   The tool result.
+   */
+  private function executeExampleTool(array $arguments): array {
+    $param1 = $arguments['param1'];
+    $param2 = $arguments['param2'] ?? 0;
+
+  return [
+      [
+        "type" => "text",
+        "text" => "The first parameter is $param1 and the second parameter is $param2.",
+      ]
+    ];
+  }
+{% endif %}
+
+{% if has_resources %}
+  /**
+   * {@inheritdoc}
+   */
+  public function getResources(): array {
+    $resources = [];
+    $resources[] = new Resource(
+      uri: 'example',
+      name: new TranslatableMarkup('Example Resource'),
+      description: new TranslatableMarkup('An example resource that demonstrates functionality.'),
+      mimeType: 'application/json',
+      text: json_encode([
+        'message' => 'This is an example resource listing',
+        'items' => [
+          ['id' => 1, 'name' => 'Example 1'],
+          ['id' => 2, 'name' => 'Example 2'],
+        ],
+      ]),
+    );
+
+    return $resources;
+  }
+{% endif %}
+
+}

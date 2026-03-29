@@ -1,0 +1,4 @@
+json_data:
+  label: 'JSON data'
+  description: 'Arbitrary data in JSON format.'
+  weight: 0

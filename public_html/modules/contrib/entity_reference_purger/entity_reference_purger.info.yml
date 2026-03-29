@@ -1,0 +1,9 @@
+name: 'Entity Reference Purger'
+description: 'Removes orphaned entity references when an entity is deleted.'
+type: module
+core_version_requirement: ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2024-12-26
+version: '1.0.0-beta8'
+project: 'entity_reference_purger'
+datestamp: 1735239385

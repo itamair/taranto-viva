@@ -1,0 +1,11 @@
+name: "Remove system.schema key/value Form"
+description: "Remove system.schema key/value storage via form."
+type: "module"
+core_version_requirement: ">=10"
+php: 8.1
+configure: "rmkv_form.form"
+
+# Information added by Drupal.org packaging script on 2024-06-28
+version: '2.2.0'
+project: 'rmkv'
+datestamp: 1719591588

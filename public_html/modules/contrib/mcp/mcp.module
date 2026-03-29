@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for MCP module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mcp_help($route_name, RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.mcp') {
+    return t(
+      '<p>This module enables Drupal to comply with the MCP standard, transforming it into an MCP server upon installation and configuration.</p>
+<p>Serving as a foundational layer, it not only provides MCP server APIs compatible with LLM applications but also allows developers and other modules to extend its capabilities by defining and exposing resources, tools, and prompts as MCP elements</p>
+<p><a href="https://mcp-77a54f.pages.drupalcode.org/">Here</a> you can check the full documentation.</p>'
+    );
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function mcp_cron() {
+  \Drupal::service('mcp.client_message.storage')->cleanup();
+}
+
+/**
+ * Add the MCP messages table.
+ */
+function mcp_update_10001() {
+  $schema = \Drupal::database()->schema();
+
+  if (!$schema->tableExists('mcp_messages')) {
+    $spec = [
+      'description' => 'Stores MCP client messages',
+      'fields'      => [
+        'client_id' => [
+          'type'        => 'varchar',
+          'length'      => 255,
+          'not null'    => TRUE,
+          'description' => 'Client identifier',
+        ],
+        'message'   => [
+          'type'        => 'text',
+          'size'        => 'big',
+          'description' => 'JSON message data',
+        ],
+        'created'   => [
+          'type'        => 'int',
+          'not null'    => TRUE,
+          'description' => 'Timestamp when the message was created',
+        ],
+      ],
+      'primary key' => ['client_id'],
+      'indexes'     => [
+        'created' => ['created'],
+      ],
+    ];
+
+    $schema->createTable('mcp_messages', $spec);
+  }
+}
+
+/**
+ * Remove mcp_ai and mcp_content modules and install mcp_extra.
+ */
+function mcp_update_10300() {
+  $module_handler = \Drupal::service('module_handler');
+  $modules_to_remove = ['mcp_ai', 'mcp_content'];
+  $is_enabled = FALSE;
+
+  foreach ($modules_to_remove as $module) {
+    if ($module_handler->moduleExists($module)) {
+      $module_handler->uninstall([$module]);
+      $is_enabled = TRUE;
+      break;
+    }
+  }
+
+  if ($is_enabled) {
+    $module_handler->install(['mcp_extra']);
+  }
+
+  $config_name = 'core.extension';
+  $config = \Drupal::configFactory()->getEditable($config_name);
+  $enabled_modules = $config->get('module') ?? [];
+  foreach ($modules_to_remove as $module) {
+    if (isset($enabled_modules[$module])) {
+      unset($enabled_modules[$module]);
+    }
+  }
+  $config->set('module', $enabled_modules);
+  $config->save();
+
+  return t(
+    'Two modules: mcp_ai and mcp_content have been removed and mcp_extra has been installed.'
+  );
+}
+
+/**
+ * Remove mcp_extra and mcp_dev_tools modules (plugins moved to main module).
+ */
+function mcp_update_10400() {
+  $module_installer = \Drupal::service('module_installer');
+  $module_handler = \Drupal::service('module_handler');
+  $modules_to_remove = ['mcp_extra', 'mcp_dev_tools'];
+  $any_installed = FALSE;
+
+  foreach ($modules_to_remove as $module) {
+    if ($module_handler->moduleExists($module)) {
+      $module_installer->uninstall([$module]);
+      $any_installed = TRUE;
+    }
+  }
+
+  if ($any_installed) {
+    return t(
+      'The mcp_extra and mcp_dev_tools modules have been uninstalled. Their plugins are now part of the main MCP module.'
+    );
+  }
+
+  return t('No action needed - mcp_extra and mcp_dev_tools were not installed.');
+}
+
+/**
+ * Remove mcp_tool module (ToolApi plugin moved to main module).
+ */
+function mcp_update_10500() {
+  $module_installer = \Drupal::service('module_installer');
+  $module_handler = \Drupal::service('module_handler');
+
+  if ($module_handler->moduleExists('mcp_tool')) {
+    $module_installer->uninstall(['mcp_tool']);
+    return t('The mcp_tool module has been uninstalled. The ToolApi plugin is now part of the main MCP module.');
+  }
+
+  return t('No action needed - mcp_tool was not installed.');
+}

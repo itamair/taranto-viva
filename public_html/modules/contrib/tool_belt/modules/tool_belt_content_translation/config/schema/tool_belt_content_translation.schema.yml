@@ -1,0 +1,22 @@
+tool.plugin.tool_belt:entity_translation_get:
+  type: mapping
+  mapping:
+    entity:
+      type: mapping
+      label: Entity
+      nullable: true
+      mapping:
+        entity_type_id:
+          type: string
+          label: 'Entity type'
+          nullable: true
+        entity_id:
+          type: integer
+          label: 'Entity ID'
+          nullable: true
+    langcode:
+      type: string
+      label: 'Language Code'
+      nullable: true
+  constraints:
+    FullyValidatable: {  }

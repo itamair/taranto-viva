@@ -1,0 +1,23 @@
+entity_mesh.batch_form:
+  path: '/admin/config/system/entity-mesh'
+  defaults:
+    _title: 'Entity Mesh batch'
+    _form: 'Drupal\entity_mesh\Form\BatchForm'
+  requirements:
+    _permission: 'administer entity_mesh configuration'
+
+entity_mesh.settings_form:
+  path: '/admin/config/system/entity-mesh/config'
+  defaults:
+    _title: 'Entity Mesh settings'
+    _form: 'Drupal\entity_mesh\Form\SettingsForm'
+  requirements:
+    _permission: 'administer entity_mesh configuration'
+
+entity_mesh.cron_form:
+  path: '/admin/config/system/entity-mesh/cron'
+  defaults:
+    _title: 'Entity Mesh cron'
+    _form: 'Drupal\entity_mesh\Form\CronForm'
+  requirements:
+    _permission: 'administer entity_mesh configuration'

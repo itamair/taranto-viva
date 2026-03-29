@@ -1,0 +1,8 @@
+duplicaterole.overview:
+  path: '/admin/people/roles/duplicate/{role}'
+  defaults:
+    _form: '\Drupal\duplicate_role\Form\DuplicateRoleForm'
+    _title: 'Duplicate Role'
+    role: 'none'
+  requirements:
+    _permission: 'administer duplicate role'

@@ -1,0 +1,9 @@
+rmkv_form.form:
+  path: "/admin/config/development/rmkv"
+  defaults:
+    _form: "\\Drupal\\rmkv_form\\Form\\RemoveKeyValueForm"
+    _title: "Remove system.schema key/value storage"
+  requirements:
+    _permission: "access to rmkv form"
+  options:
+    _admin_route: TRUE

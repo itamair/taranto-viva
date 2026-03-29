@@ -1,0 +1,12 @@
+parameters:
+  level: 1
+  reportUnmatchedIgnoredErrors: false
+
+  ignoreErrors:
+    - "#^Unsafe usage of new static#"
+    - "#Drupal calls should be avoided in classes, use dependency injection instead#"
+    - "#cache tag might be unclear and does not contain the cache key in it#"
+
+includes:
+  - phar://phpstan.phar/conf/bleedingEdge.neon
+

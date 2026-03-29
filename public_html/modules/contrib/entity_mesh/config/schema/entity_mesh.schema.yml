@@ -1,0 +1,111 @@
+entity_mesh.settings:
+  type: config_object
+  label: 'Entity Mesh Settings'
+  mapping:
+    self_domain_internal:
+      type: boolean
+      label: 'Consider self-domain URLs as internal'
+    processing_mode:
+      type: string
+      label: 'Processing mode for dependency calculations'
+    synchronous_limit:
+      type: integer
+      label: 'Number of dependencies to process synchronously'
+    debug:
+      type: boolean
+      label: 'Enable debug mode for entity mesh processing'
+    cron_enabled:
+      type: boolean
+      label: 'Enable cron processing'
+    cron_limit:
+      type: integer
+      label: 'Number of entities to process per cron run'
+    analyzer_account:
+      type: mapping
+      label: 'Account configuration for content analysis'
+      mapping:
+        type:
+          type: string
+          label: 'Account type (anonymous, authenticated, or user)'
+        roles:
+          type: sequence
+          label: 'Roles for authenticated account type'
+          sequence:
+            type: string
+          nullable: true
+        user_id:
+          type: integer
+          label: 'User ID for user account type'
+          nullable: true
+    source_types:
+      type: sequence
+      sequence:
+        type: entity_mesh.source_types.*
+    target_types:
+      type: mapping
+      mapping:
+        external:
+          type: mapping
+          label: 'External'
+          nullable: true
+          mapping:
+            scheme:
+              type: mapping
+              label: 'URL Schemes'
+              nullable: true
+              mapping:
+                http:
+                  type: boolean
+                  label: 'Enable HTTP/HTTPS URLs'
+                tel:
+                  type: boolean
+                  label: 'Enable telephone numbers'
+                mailto:
+                  type: boolean
+                  label: 'Enable email addresses'
+            categories:
+              type: mapping
+              label: 'Categories'
+              nullable: true
+              mapping:
+                iframe:
+                  type: boolean
+                  label: 'Enable iframes'
+
+        internal:
+          type: sequence
+          nullable: true
+          sequence:
+            type: entity_mesh.target_types.internal.*
+
+entity_mesh.source_types.*:
+  type: mapping
+  label: 'Source Entity'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Enable this entity type'
+    bundles:
+      type: sequence
+      label: 'Bundle settings'
+      sequence:
+        type: entity_mesh.bundle_settings.*
+      nullable: true
+
+entity_mesh.target_types.internal.*:
+  type: mapping
+  label: 'Target Entity Bundles'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Enable this entity type'
+    bundles:
+      type: sequence
+      label: 'Bundle settings'
+      sequence:
+        type: entity_mesh.bundle_settings.*
+      nullable: true
+
+entity_mesh.bundle_settings.*:
+  type: boolean
+  label: 'Enable this bundle'

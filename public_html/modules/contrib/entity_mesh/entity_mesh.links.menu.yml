@@ -1,0 +1,13 @@
+entity_mesh.settings_form:
+  title: Entity Mesh
+  description: Configure Entity Mesh.
+  parent: system.admin_config_system
+  route_name: entity_mesh.batch_form
+  weight: 10
+
+
+entity_mesh.reports:
+  title: 'Entity Mesh'
+  route_name: view.entity_mesh.graph
+  description: 'View Entity Mesh Reports.'
+  parent: system.admin_reports

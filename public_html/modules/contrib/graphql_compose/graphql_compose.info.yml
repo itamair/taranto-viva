@@ -1,0 +1,16 @@
+name: "GraphQL Compose"
+description: "Toolkit for composing GraphQL schemas in Drupal."
+type: module
+core_version_requirement: ^10.2 || ^11
+php: 8.1
+dependencies:
+  - graphql:graphql
+  - drupal:node
+package: GraphQL Compose
+hidden: false
+configure: graphql_compose.schema
+
+# Information added by Drupal.org packaging script on 2025-11-20
+version: '2.4.1'
+project: 'graphql_compose'
+datestamp: 1763681649

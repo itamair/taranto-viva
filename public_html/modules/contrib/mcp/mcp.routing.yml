@@ -1,0 +1,46 @@
+mcp.post:
+  path: '/mcp/post'
+  methods: [ POST ]
+  defaults:
+    _title: 'MCP Operation'
+    _controller: '\Drupal\mcp\Controller\McpController::post'
+  requirements:
+    _permission: 'use mcp server'
+  options:
+    _auth: [ 'mcp_auth', 'cookie', 'oauth2' ]
+
+mcp.settings:
+  path: '/admin/config/mcp'
+  defaults:
+    _title: 'MCP Configuration'
+    _form: 'Drupal\mcp\Form\SettingsForm'
+  requirements:
+    _permission: 'administer mcp configuration'
+
+mcp.plugins:
+  path: '/admin/config/mcp/plugins'
+  defaults:
+    _title: 'MCP Plugins'
+    _controller: '\Drupal\mcp\Controller\McpPluginsListController::list'
+  requirements:
+    _permission: 'administer mcp configuration'
+
+mcp.plugin.settings:
+  path: '/admin/config/mcp/plugins/{plugin}/settings'
+  defaults:
+    _form: 'Drupal\mcp\Form\McpPluginSettingsForm'
+    _title_callback: 'Drupal\mcp\Form\McpPluginSettingsForm::formTitle'
+  requirements:
+    _permission: 'administer mcp configuration'
+  options:
+    parameters:
+      plugin:
+        type: mcp_plugin
+
+mcp.connection:
+  path: '/admin/config/mcp/connection'
+  defaults:
+    _title: 'Connection Info'
+    _controller: '\Drupal\mcp\Controller\McpConnectionController::connectionInfo'
+  requirements:
+    _permission: 'administer mcp configuration'

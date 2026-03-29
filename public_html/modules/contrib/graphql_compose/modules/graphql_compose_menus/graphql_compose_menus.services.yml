@@ -1,0 +1,8 @@
+services:
+  Drupal\graphql_compose_menus\Wrapper\MenuLinkContentWrapper:
+    alias: 'graphql_compose_menus.entity_type_wrapper'
+
+  graphql_compose_menus.entity_type_wrapper:
+    class: Drupal\graphql_compose_menus\Wrapper\MenuLinkContentWrapper
+    parent: graphql_compose.entity_type_wrapper
+    shared: false

@@ -1,0 +1,17 @@
+mcp.connection:
+  title: Connection Info
+  route_name: mcp.connection
+  base_route: mcp.settings
+  weight: 0
+
+mcp.plugins:
+  title: Plugins
+  route_name: mcp.plugins
+  base_route: mcp.settings
+  weight: 10
+
+mcp.settings:
+  title: Authentication
+  route_name: mcp.settings
+  base_route: mcp.settings
+  weight: 20

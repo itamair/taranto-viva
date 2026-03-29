@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Mismatched entity and/or field definitions module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Implements hook_help().
+ */
+function meaofd_help(string $route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main help page for the module.
+    case 'help.page.meaofd':
+      return new TranslatableMarkup('
+        <p><strong>Mismatched entity and/or field definitions</strong> (meaofd) module has as its main purpose to solve a common problem in Drupal website development that appears under the same title on the <em>Status report</em> (<code>/admin/reports/status</code>) page on the website itself.</p>
+        <h3>What is the <em>Mismatched entity and/or field definitions</em> error?</h3>
+        <p>The <em>Mismatched entity and/or field definitions</em> error occurs when there is a discrepancy between the expected structure of entities or fields in Drupal\'s configuration and the actual state of the database. This typically happens after changes to entity or field definitions, either during module updates, schema changes, or configuration imports between different environments. These inconsistencies can cause unexpected behavior, such as broken field displays, issues with saving or editing entities, and even prevent entities from being properly rendered.</p>
+        <h3>How is the <strong>Mismatched entity and/or field definitions</strong> module used?</h3>
+        <p>The module provides the <em>Drush</em> command <code>meaofd:fix &lt;entity_type_id&gt;</code> to correct the error on the machine, for example, if the entity affected by this error is “<em>Paragraph</em>”, the command to execute to correct the entity is <code>drush meaofd:fix paragraph</code>. It is also possible to call the fix method of the <code>meaofd.fixer</code> service by passing it the ID of the entity type as a parameter. For example:</p>
+        <pre><code>\Drupal::service("meaofd.fixer")->fix("node");</code></pre>
+        <p>This is very useful to correct this error between environments automatically with a <code>hook_update_N()</code> function.</p>
+        <h3>Supporting this Module</h3>
+        <p>Please report bugs to the <a href="https://www.drupal.org/project/issues/meaofd" title="Drupal.org issue queue">Drupal.org issue queue</a>. Note that the maintainers are not actively supporting development of new features. However, contributions to add features are welcome provided they are narrow in scope, well written, and well documented.</p>
+      ');
+  }
+}

@@ -1,0 +1,11 @@
+name: CDN Warmer
+type: module
+description: Executes HTTP requests to warm the edge caches. It is useful without a CDN as well, as it will also warm Varnish and Page Cache.
+core_version_requirement: '^10.1 || ^11'
+dependencies:
+  - warmer:warmer
+
+# Information added by Drupal.org packaging script on 2024-10-26
+version: '2.0.14'
+project: 'warmer'
+datestamp: 1729925252

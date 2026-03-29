@@ -1,0 +1,13 @@
+name: 'LiteLLM AI Provider'
+description: 'This enables the use of a LiteLLM proxy as a provider for the AI module.'
+package: AI Providers
+type: module
+core_version_requirement: ^10.2 | ^11
+
+dependencies:
+  - ai:ai
+
+# Information added by Drupal.org packaging script on 2025-10-13
+version: '1.2.0'
+project: 'ai_provider_litellm'
+datestamp: 1760354308

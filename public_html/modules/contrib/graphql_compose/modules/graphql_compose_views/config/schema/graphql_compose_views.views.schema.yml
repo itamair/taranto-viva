@@ -1,0 +1,31 @@
+views.display.graphql:
+  type: views_display
+  label: "GraphQL display options"
+  mapping:
+    graphql_query_name:
+      type: string
+      label: "GraphQL query name"
+    graphql_query_exposed:
+      type: boolean
+      label: "Expose as GraphQL query"
+
+views.row.graphql_field:
+  type: views_row
+  label: "Field row"
+  mapping:
+    field_options:
+      type: sequence
+      label: "Options"
+      sequence:
+        type: mapping
+        label: "Row"
+        mapping:
+          alias:
+            type: string
+            label: "Alias for field"
+          type:
+            type: string
+            label: "GraphQL type"
+          raw_output:
+            type: boolean
+            label: "Raw output"

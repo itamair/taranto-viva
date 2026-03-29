@@ -1,0 +1,5 @@
+watchdog_statistics.log_messages_statistics:
+  title: 'Log messages statistics'
+  description: 'Log messages statistics.'
+  route_name: view.watchdog_statistics.page
+  parent: dblog.overview

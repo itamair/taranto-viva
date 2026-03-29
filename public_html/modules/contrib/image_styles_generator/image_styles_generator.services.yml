@@ -1,0 +1,7 @@
+services:
+  logger.channel.image_styles_generator:
+    parent: logger.channel_base
+    arguments: ['image_styles_generator']
+  image_styles_generator.derivative_warmer:
+    class: Drupal\image_styles_generator\DerivativeWarmer
+    arguments: ['@logger.channel.image_styles_generator']

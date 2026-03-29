@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\search_api_typesense_test\Hook\SearchApiTypesenseTestHooks;
+
+/**
+ * Implements hook_search_api_backend_info_alter().
+ *
+ * @param array<string, mixed> $backend_info
+ *   The backend information array.
+ *
+ * @phpstan-ignore-next-line
+ */
+#[LegacyHook]
+function search_api_typesense_test_search_api_backend_info_alter(array &$backend_info): void {
+  \Drupal::service(SearchApiTypesenseTestHooks::class)
+    ->backendInfoAlter($backend_info);
+}

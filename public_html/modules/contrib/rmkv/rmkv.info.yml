@@ -1,0 +1,10 @@
+name: "Remove system.schema key/value"
+description: "Remove system.schema key/value storage via Drush commands."
+type: "module"
+core_version_requirement: ">=10"
+php: 8.1
+
+# Information added by Drupal.org packaging script on 2024-06-28
+version: '2.2.0'
+project: 'rmkv'
+datestamp: 1719591588

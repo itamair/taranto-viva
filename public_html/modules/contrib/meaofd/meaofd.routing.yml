@@ -1,0 +1,30 @@
+##
+# @file
+# Mismatched entity and/or field definitions routing.
+##
+
+meaofd.report:
+  path: '/admin/reports/mismatched-entity-and-or-field-definitions'
+  defaults:
+    _controller: '\Drupal\meaofd\Controller\MismatchedEntityAndOrFieldDefinitionsReportController::report'
+    _title: 'Mismatched entity and/or field definitions report'
+  requirements:
+    _permission: 'view mismatched entity and or field definitions'
+  options:
+    no_cache: TRUE
+    _admin_route: TRUE
+
+meaofd.fix:
+  path: '/admin/reports/mismatched-entity-and-or-field-definitions/{entity_type}/fix'
+  defaults:
+    _form: '\Drupal\meaofd\Form\MismatchedEntityAndOrFieldDefinitionsReportFixForm'
+    _title: 'Fix mismatched entity and/or field definitions'
+  requirements:
+    _permission: 'fix mismatched entity and or field definitions'
+    _custom_access: '\Drupal\meaofd\Form\MismatchedEntityAndOrFieldDefinitionsReportFixForm::accessIfEntityHasMismatchedEntityAndOrFieldDefinitions'
+  options:
+    parameters:
+      entity_type:
+        type: 'string'
+    no_cache: TRUE
+    _admin_route: TRUE

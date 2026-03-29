@@ -1,0 +1,149 @@
+plugin.plugin_configuration.search_api_backend.search_api_typesense:
+  type: mapping
+  label: 'Search API Typesense backend settings'
+  mapping:
+    nodes:
+      type: sequence
+      label: 'Nodes'
+      sequence:
+        type: mapping
+        mapping:
+          host:
+            type: string
+            label: 'Host'
+          port:
+            type: string
+            label: 'Port'
+          protocol:
+            type: string
+            label: 'Protocol'
+    admin_api_key:
+      type: string
+      label: 'Admin API key'
+
+search_api_typesense.settings:
+  type: config_object
+  label: 'Search API Typesense settings'
+  mapping:
+    ts_embedding_models:
+      type: sequence
+      label: 'Typesense built-in embedding models'
+      sequence:
+        type: string
+        label: 'Model name'
+
+search_api_typesense.search_keys:
+  type: config_object
+  label: 'Search API Typesense search keys'
+  mapping:
+    servers:
+      type: sequence
+      label: 'Servers'
+      sequence:
+        type: mapping
+        mapping:
+          search_only_key:
+            type: string
+            label: 'Search-only API key'
+
+block.settings.search_api_typesense_search_block:
+  type: block_settings
+  label: 'Typesense search block'
+  mapping:
+    server:
+      type: string
+      label: 'Server'
+    collections:
+      type: sequence
+      label: 'Collections'
+      sequence:
+        type: string
+        label: 'Collection'
+    hits_per_page:
+      type: integer
+      label: 'Hits per page'
+    search_only_key:
+      type: string
+      label: 'Search-only API Key'
+
+search_api_typesense.typesense_schema.*:
+  type: config_entity
+  label: Typesense schema
+  mapping:
+    id:
+      type: string
+      label: ID
+    uuid:
+      type: string
+    default_sorting_field:
+      type: string
+      label: Default sorting field
+    fields:
+      type: sequence
+      label: 'Fields'
+      sequence:
+        type: mapping
+        mapping:
+          type:
+            type: string
+            label: 'Field type'
+          facet:
+            type: boolean
+            label: 'Facet'
+          optional:
+            type: boolean
+            label: 'Optional'
+          index:
+            type: boolean
+            label: 'Index'
+          store:
+            type: boolean
+            label: 'Store'
+          sort:
+            type: boolean
+            label: 'Sort'
+          sort_type:
+            type: string
+            label: 'Sort type'
+          infix:
+            type: boolean
+            label: 'Infix'
+          locale:
+            type: string
+            label: 'Locale'
+          stem:
+            type: boolean
+            label: 'Stem'
+          weight:
+            type: integer
+            label: 'Weight'
+    enable_embedding:
+      type: boolean
+      label: 'Enable embedding'
+    embedding_fields:
+      type: sequence
+      label: 'Embedding fields'
+      sequence:
+        type: mapping
+        mapping:
+          name:
+            type: string
+            label: Name
+    embedding_model:
+      type: string
+      label: 'Embedding model'
+    chunk_size:
+      type: integer
+      label: 'Chunk size'
+    chunk_overlap_size:
+      type: integer
+      label: 'Chunk overlap size'
+    chunk_prepend_fields:
+      type: sequence
+      label: 'Embedding fields'
+      sequence:
+        type: mapping
+        mapping:
+          name:
+            type: string
+            label: Name

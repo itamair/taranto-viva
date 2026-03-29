@@ -1,0 +1,65 @@
+<?php
+
+use Drupal\Core\Database\Query\SelectInterface;
+use Drupal\Core\Database\Query\AlterableInterface;
+
+/**
+ * Implements hook_local_tasks_alter().
+ */
+function watchdog_statistics_local_tasks_alter(&$local_tasks) {
+  if (isset($local_tasks['dblog.view_logs'])) {
+    $local_tasks['dblog.view_logs']['weight'] = 0;
+  }
+
+  if (isset($local_tasks['dblog.clear_logs'])) {
+    $local_tasks['dblog.clear_logs']['weight'] = 2;
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function watchdog_statistics_views_data_alter(array &$data) {
+  $data['watchdog']['messages_count'] = [
+    'title' => t('Message count'),
+    'help' => t('Group by entries with the same message and variables, and show its count.'),
+    'field' => [
+      'id' => 'watchdog_message_count',
+    ],
+    'sort' => [
+      'id' => 'watchdog_message_count',
+    ],
+  ];
+  $data['watchdog']['latest_watchdog_id'] = [
+    'title' => t('Latest WID'),
+    'help' => t('Latest wid.'),
+    'field' => [
+      'id' => 'latest_watchdog_id',
+    ],
+  ];
+  $data['watchdog']['latest_watchdog_timestamp'] = [
+    'title' => t('Latest timestamp'),
+    'help' => t('Latest time the log was produced'),
+    'field' => [
+      'id' => 'latest_watchdog_timestamp',
+    ],
+    'sort' => [
+      'id' => 'latest_watchdog_timestamp',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function watchdog_statistics_query_watchdog_message_count_alter(AlterableInterface $query) {
+  if ($query instanceof SelectInterface) {
+    $group_by = &$query->getGroupBy();
+    $group_by = [];
+    $query->groupBy('message');
+    $query->groupBy('variables');
+    $query->groupBy('type');
+    $query->groupBy('severity');
+    $query->addExpression('COUNT(wid)', 'watchdog_message_count');
+  }
+}

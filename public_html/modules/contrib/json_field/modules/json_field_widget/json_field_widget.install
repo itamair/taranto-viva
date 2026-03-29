@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Installation, requirements hooks for the JSON Field Widget module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function json_field_widget_requirements(string $phase): array {
+  $requirements = [];
+  if ($phase !== 'runtime') {
+    return [];
+  }
+
+  $requirements['json_field_widget'] = [
+    'title' => t('JSON Field Widget'),
+    'value' => t('JSON Editor library found'),
+    'severity' => REQUIREMENT_OK,
+  ];
+
+  if (\Drupal::service('library.libraries_directory_file_finder')->find('json_field_widget')) {
+    return $requirements;
+  }
+  $library = \Drupal::service('library.discovery')->getLibraryByName('json_field_widget', 'jsoneditor');
+  if (file_exists($library['js'][0]['data'])) {
+    $requirements['json_field_widget']['description'] = $library['version'];
+    return $requirements;
+  }
+
+  return [
+    'json_field_widget' => [
+      'title' => t('JSON Field Widget'),
+      'value' => t("JSON Editor library doesn't exists"),
+      'description' => t('Make sure that the jsoneditor library <strong>(max version 6.0.0)</strong> is placed in the <code>libraries</code> directory at the website root. Download a <a href=":link" target="_blank">jsoneditor release</a> and make sure that the JS file is available at <code>/libraries/jsoneditor/dist/jsoneditor.min.js</code>.', [':link' => 'https://github.com/josdejong/jsoneditor']),
+      'severity' => REQUIREMENT_ERROR,
+    ],
+  ];
+}

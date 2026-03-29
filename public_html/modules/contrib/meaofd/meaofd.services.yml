@@ -1,0 +1,9 @@
+##
+# @file
+# Mismatched entity and/or field definitions services.
+##
+
+services:
+  meaofd.fixer:
+    class: Drupal\meaofd\Services\Fixer
+    arguments: ['@logger.channel.default', '@entity_type.manager', '@entity.definition_update_manager']

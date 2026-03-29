@@ -1,0 +1,11 @@
+##
+# @file
+# Mismatched entity and/or field definitions Drush services.
+##
+
+services:
+  meaofd.commands:
+    class: Drupal\meaofd\Commands\Commands
+    arguments: ['@meaofd.fixer']
+    tags:
+      - { name: drush.command }

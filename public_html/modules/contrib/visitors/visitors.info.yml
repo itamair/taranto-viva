@@ -1,0 +1,15 @@
+name: Visitors
+description: "Logs visitor's actions."
+package: 'Analytics'
+core_version_requirement: ^10.1 || ^11
+type: module
+configure: visitors.settings
+dependencies:
+  - drupal:views
+  - drupal:path
+  - charts:charts_chartjs
+
+# Information added by Drupal.org packaging script on 2025-09-26
+version: '8.x-2.32'
+project: 'visitors'
+datestamp: 1758919525

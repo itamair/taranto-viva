@@ -1,0 +1,3 @@
+services:
+  Drupal\search_api_typesense_test\Hook\SearchApiTypesenseTestHooks:
+    class: Drupal\search_api_typesense_test\Hook\SearchApiTypesenseTestHooks

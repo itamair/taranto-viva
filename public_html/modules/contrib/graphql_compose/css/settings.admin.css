@@ -1,0 +1,12 @@
+/**
+ * @file
+ * Schema form styles.
+ */
+
+/**
+ * Highlight which tab in the user interface has errors
+ * Can be confusing and difficult to find schema settings issues otherwise.
+ */
+span.has-nested-errors {
+  color: var(--gin-color-danger, var(--input--error-color, #f00));
+}

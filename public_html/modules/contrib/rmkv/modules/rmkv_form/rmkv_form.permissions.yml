@@ -1,0 +1,3 @@
+"access to rmkv form":
+  title: 'Access to "Remove system.schema key/value storage" form.'
+  restrict access: TRUE

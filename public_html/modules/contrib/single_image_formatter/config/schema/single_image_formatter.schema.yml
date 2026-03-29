@@ -1,0 +1,3 @@
+field.formatter.settings.single_image_formatter:
+  label: 'Image field display format settings'
+  type: field.formatter.settings.image

@@ -1,0 +1,12 @@
+##
+# @file
+# Mismatched entity and/or field definitions permissions.
+##
+
+view mismatched entity and or field definitions:
+  title: 'View mismatched entity and/or field definitions'
+  restrict access: true
+
+fix mismatched entity and or field definitions:
+  title: 'Fix mismatched entity and/or field definitions'
+  restrict access: true

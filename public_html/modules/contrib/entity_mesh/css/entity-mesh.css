@@ -1,0 +1,27 @@
+#entity-mesh-graph svg {
+  border: 1px solid lightgray;
+}
+
+#entity-mesh-graph g.selected circle,
+#entity-mesh-graph g circle:hover {
+  stroke: #000;
+  stroke-width: 1px;
+  cursor: pointer;
+}
+
+#entity-mesh-graph g.node text {
+  cursor: none;
+  pointer-events: none;
+}
+
+#entity-mesh-graph g.legend-item:hover text {
+  cursor: pointer;
+}
+
+#entity-mesh-graph text.selected {
+  font-weight: bold;
+}
+
+#entity-mesh-graph .node-label {
+  font-size: 0.5em;
+}

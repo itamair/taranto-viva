@@ -1,0 +1,71 @@
+search_api_typesense.server.metrics:
+  route_name: search_api_typesense.server.metrics
+  base_route: entity.search_api_server.canonical
+  title: 'Server metrics'
+  weight: 5
+
+search_api_typesense.server.api_keys:
+  route_name: search_api_typesense.server.api_keys
+  base_route: entity.search_api_server.canonical
+  title: 'API keys'
+  weight: 6
+
+search_api_typesense.server.scoped_api_keys:
+  route_name: search_api_typesense.server.scoped_api_keys
+  base_route: entity.search_api_server.canonical
+  title: 'Scoped API keys'
+  weight: 7
+
+search_api_typesense.server.stopwords:
+  route_name: search_api_typesense.server.stopwords
+  base_route: entity.search_api_server.canonical
+  title: 'Stopwords'
+  weight: 8
+
+search_api_typesense.server.conversations:
+  route_name: search_api_typesense.server.conversations
+  base_route: entity.search_api_server.canonical
+  title: 'Conversation models'
+  weight: 9
+
+search_api_typesense.collection.schema:
+  route_name: search_api_typesense.collection.schema
+  base_route: entity.search_api_index.canonical
+  title: 'Schema'
+  weight: 15
+
+search_api_typesense.collection.synonyms:
+  route_name: search_api_typesense.collection.synonyms
+  base_route: entity.search_api_index.canonical
+  title: 'Synonyms'
+  weight: 20
+
+search_api_typesense.collection.curations:
+  route_name: search_api_typesense.collection.curations
+  base_route: entity.search_api_index.canonical
+  title: 'Curations'
+  weight: 30
+
+search_api_typesense.collection.import:
+  route_name: search_api_typesense.collection.import
+  base_route: entity.search_api_index.canonical
+  title: 'Import'
+  weight: 39
+
+search_api_typesense.collection.export:
+  route_name: search_api_typesense.collection.export
+  base_route: entity.search_api_index.canonical
+  title: 'Export'
+  weight: 40
+
+search_api_typesense.collection.search:
+  route_name: search_api_typesense.collection.search
+  base_route: entity.search_api_index.canonical
+  title: 'Search'
+  weight: 50
+
+search_api_typesense.collection.converse:
+  route_name: search_api_typesense.collection.converse
+  base_route: entity.search_api_index.canonical
+  title: 'Converse'
+  weight: 60

@@ -1,0 +1,28 @@
+# Italian translation of Readmore (2.0.0-alpha3)
+# Copyright (c) 2024 by the Italian translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Readmore (2.0.0-alpha3)\n"
+"POT-Creation-Date: 2024-11-30 13:18+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Read more"
+msgstr "Leggi tutto"
+msgid "Fields"
+msgstr "Campi"
+msgid "characters"
+msgstr "caratteri"
+msgid "..."
+msgstr "..."
+msgid "Trim link text length"
+msgstr "Tronca il testo del link"
+msgid "Leave blank to allow unlimited link text lengths."
+msgstr ""
+"Lasciare vuoto per consentire lunghezze del testo illimitate per i "
+"link."

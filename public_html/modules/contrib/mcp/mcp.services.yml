@@ -1,0 +1,58 @@
+services:
+  mcp.settings:
+    class: Drupal\mcp\Config\McpSettings
+    arguments: [ '@config.factory', '@key.repository' ]
+
+  plugin.manager.mcp:
+    class: Drupal\mcp\Plugin\McpPluginManager
+    arguments:
+      - '@container.namespaces'
+      - '@cache.discovery'
+      - '@module_handler'
+      - '@config.factory'
+
+  plugin.manager.mcp_jsonrpc_method:
+    class: Drupal\mcp\Plugin\McpJsonRpcMethodManager
+    arguments:
+      - '@container.namespaces'
+      - '@cache.discovery'
+      - '@module_handler'
+
+  mcp.jsonrpc.handler:
+    class: Drupal\jsonrpc\Handler
+    arguments:
+      - '@plugin.manager.mcp_jsonrpc_method'
+      - '@renderer'
+      - '@Drupal\jsonrpc\Exception\ErrorHandler'
+
+  mcp.authentication.authentication_provider:
+    class: Drupal\mcp\Authentication\Provider\McpAuthProvider
+    tags:
+      - { name: authentication_provider, provider_id: 'mcp_auth', priority: 110 }
+    arguments:
+      - '@mcp.settings'
+      - '@entity_type.manager'
+      - '@user.auth'
+      - '@flood'
+      - '@config.factory'
+      - '@mcp.page_cache_request_policy.disallow_mcp_auth_requests'
+
+  mcp.event_subscriber:
+    class: Drupal\mcp\EventSubscriber\McpAccessDeniedSubscriber
+    tags:
+      - { name: event_subscriber }
+
+  mcp.page_cache_request_policy.disallow_mcp_auth_requests:
+    class: Drupal\mcp\PageCache\DisallowMcpAuthRequests
+    public: false
+    arguments:
+      - '@mcp.settings'
+    tags:
+      - { name: page_cache_request_policy }
+
+  mcp.mcp_plugin_param_converter:
+    class: Drupal\mcp\ParamConverter\McpPluginConverter
+    arguments:
+      - '@plugin.manager.mcp'
+    tags:
+      - { name: paramconverter }

@@ -1,0 +1,6 @@
+# Add the MCP Studio tab
+mcp_studio.settings.tab:
+  title: 'MCP Studio'
+  route_name: mcp_studio.settings
+  base_route: mcp.settings
+  weight: 30
