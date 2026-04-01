@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * GraphQL Compose Metatags module file.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\graphql_compose\Plugin\GraphQLCompose\GraphQLComposeEntityTypeInterface;
+
+/**
+ * Implements hook_graphql_compose_entity_base_fields_alter().
+ *
+ * Enable metatag field to all defined entity types.
+ * Ensure metatag field is multiple.
+ */
+function graphql_compose_metatags_graphql_compose_entity_base_fields_alter(array &$fields, string $entity_type_id): void {
+  /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $entity_type = $entity_type_manager->getDefinition($entity_type_id);
+
+  if (!$entity_type->entityClassImplements(FieldableEntityInterface::class)) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager */
+  $entity_field_manager = \Drupal::service('entity_field.manager');
+  $base_fields = $entity_field_manager->getBaseFieldDefinitions($entity_type_id);
+
+  if (array_key_exists('metatag', $base_fields)) {
+    $fields['metatag'] = [
+      'multiple' => TRUE,
+    ];
+  }
+}
+
+/**
+ * Implements hook_graphql_compose_entity_interfaces_alter().
+ */
+function graphql_compose_metatags_graphql_compose_entity_interfaces_alter(array &$interfaces, GraphQLComposeEntityTypeInterface $plugin, ?string $bundle_id) {
+  $base_fields = $plugin->getBaseFields();
+
+  // Add MetaTagInterface to enabled entity type.
+  if (array_key_exists('metatag', $base_fields)) {
+    $interfaces[] = 'MetaTagInterface';
+  }
+}
+
+/**
+ * Implements hook_graphql_compose_field_type_form_alter().
+ *
+ * Hide metatag fields from form, they are implemented as base fields.
+ * This could lead to confusion having them in the UI.
+ */
+function graphql_compose_metatags_graphql_compose_field_type_form_alter(array &$form, FormStateInterface $form_state, FieldDefinitionInterface $field, array $settings) {
+  if ($field->getType() === 'metatag') {
+    $form = [
+      '#type' => 'markup',
+      '#access' => FALSE,
+    ];
+  }
+}

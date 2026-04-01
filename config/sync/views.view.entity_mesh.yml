@@ -9,8 +9,6 @@ dependencies:
     - serialization
     - user
     - views_data_export
-_core:
-  default_config_hash: IzI2Re9Ni9XMOqUBTwySDI7ygBls1zZK1CYxM2TL6e4
 id: entity_mesh
 label: entity_mesh
 module: views
@@ -21,7 +19,7 @@ base_field: nid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -37,7 +35,7 @@ display:
           entity_type: null
           entity_field: null
           plugin_id: standard
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -86,7 +84,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Categoria
+          label: Category
           exclude: false
           alter:
             alter_text: false
@@ -331,7 +329,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Target Type'
+          label: 'Type (Target)'
           exclude: false
           alter:
             alter_text: false
@@ -380,56 +378,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Target Href'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-        target_path:
-          id: target_path
-          table: entity_mesh
-          field: target_path
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          label: 'Target Path'
+          label: 'Href (Target)'
           exclude: false
           alter:
             alter_text: false
@@ -478,7 +427,105 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Scheme
+          label: 'Scheme (Target)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+        target_host:
+          id: target_host
+          table: entity_mesh
+          field: target_host
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          label: 'Host (Target)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+        target_path:
+          id: target_path
+          table: entity_mesh
+          field: target_path
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          label: 'Path (Target)'
           exclude: false
           alter:
             alter_text: false
@@ -780,7 +827,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -818,7 +865,7 @@ display:
           exposed: true
           expose:
             operator_id: category_op
-            label: Categoria
+            label: Category
             description: ''
             use_operator: false
             operator: category_op
@@ -830,12 +877,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              webmaster: '0'
-              support_desk: '0'
-              contributor: '0'
-              api_client: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -875,9 +916,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -917,9 +955,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -959,9 +994,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1001,9 +1033,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -1043,9 +1072,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1085,9 +1111,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1127,9 +1150,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -1169,9 +1189,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1211,9 +1228,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1253,9 +1267,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1295,9 +1306,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -1311,36 +1319,33 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        target_scheme_1:
-          id: target_scheme_1
+        target_host:
+          id: target_host
           table: entity_mesh
-          field: target_scheme
+          field: target_host
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: target_schema_filter
-          operator: in
-          value: {  }
+          plugin_id: string
+          operator: contains
+          value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: target_scheme_1_op
-            label: 'Scheme (Target)'
+            operator_id: target_host_op
+            label: 'Host (Target)'
             description: ''
             use_operator: false
-            operator: target_scheme_1_op
+            operator: target_host_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: target_scheme_1
+            identifier: target_host
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-            reduce: false
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1559,7 +1564,7 @@ display:
           entity_type: null
           entity_field: null
           plugin_id: standard
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -1608,7 +1613,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Categoria
+          label: Category
           exclude: false
           alter:
             alter_text: false
@@ -2500,7 +2505,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -2548,7 +2553,7 @@ display:
       tags: {  }
   table:
     id: table
-    display_title: Tabella
+    display_title: Table
     display_plugin: page
     position: 2
     display_options:
@@ -2564,7 +2569,7 @@ display:
           entity_type: null
           entity_field: null
           plugin_id: standard
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -2613,7 +2618,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Categoria
+          label: Category
           exclude: false
           alter:
             alter_text: false
@@ -2907,7 +2912,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Target Link Type'
+          label: 'Link Type (Target)'
           exclude: false
           alter:
             alter_text: false
@@ -2956,56 +2961,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Target Href'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-        target_path:
-          id: target_path
-          table: entity_mesh
-          field: target_path
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          label: 'Target Path'
+          label: 'Href (Target)'
           exclude: false
           alter:
             alter_text: false
@@ -3054,7 +3010,105 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Scheme
+          label: 'Scheme (Target)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+        target_host:
+          id: target_host
+          table: entity_mesh
+          field: target_host
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          label: 'Host (Target)'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+        target_path:
+          id: target_path
+          table: entity_mesh
+          field: target_path
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          label: 'Path (Target)'
           exclude: false
           alter:
             alter_text: false
@@ -3291,6 +3345,55 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
+        entity_link:
+          id: entity_link
+          table: entity_mesh
+          field: entity_link
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: entity_mesh_link_target
+          label: 'Entity link'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
       pager:
         type: full
         options:
@@ -3309,7 +3412,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -3326,8 +3429,8 @@ display:
       path: admin/reports/entity-mesh/table
       menu:
         type: tab
-        title: Tabella
-        description: Tabella
+        title: Table
+        description: Table
         weight: 0
         expanded: false
         menu_name: admin

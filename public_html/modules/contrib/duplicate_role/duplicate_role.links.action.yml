@@ -1,0 +1,6 @@
+duplicate_role.role_duplicate:
+  route_name: duplicaterole.overview
+  title: 'Duplicate role'
+  weight: 10
+  appears_on:
+    - entity.user_role.collection

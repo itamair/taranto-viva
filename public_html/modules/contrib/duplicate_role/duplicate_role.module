@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Provides functionality for duplicating roles.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_entity_operation().
+ */
+function duplicate_role_entity_operation(EntityInterface $entity) {
+  $operations = [];
+  if ($entity->getEntityTypeId() === 'user_role' && \Drupal::currentUser()->hasPermission('administer duplicate role')) {
+    $operations['duplicate'] = [
+      'title' => t('Duplicate'),
+      'url' => Url::fromRoute('duplicaterole.overview', ['role' => $entity->id()]),
+      'weight' => 20,
+    ];
+  }
+  return $operations;
+}

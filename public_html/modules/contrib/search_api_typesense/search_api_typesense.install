@@ -1,0 +1,68 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Search API Typesense module.
+ */
+
+/**
+ * Set the default embedding models.
+ */
+function search_api_typesense_update_8001(): void {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('search_api_typesense.settings');
+  $config->set(
+    'ts_embedding_models',
+    [
+      'ts/all-MiniLM-L12-v2',
+      'ts/audio_query',
+      'ts/clip-vit-b-p32',
+      'ts/distilbert-base-uncased',
+      'ts/distiluse-base-multilingual-cased-v2',
+      'ts/e5-large-v2',
+      'ts/e5-large',
+      'ts/e5-small-v2',
+      'ts/e5-small',
+      'ts/finbert',
+      'ts/gte-large',
+      'ts/gte-small',
+      'ts/jina-embeddings-v2-base-en',
+      'ts/multilingual-e5-base',
+      'ts/multilingual-e5-large',
+      'ts/multilingual-e5-small',
+      'ts/paraphrase-MiniLM-L6-v2',
+      'ts/paraphrase-multilingual-mpnet-base-v2',
+      'ts/snowflake-arctic-embed-m',
+    ],
+  );
+  $config->save(TRUE);
+}
+
+/**
+ * Add default values for chunk fields in Typesense schemas.
+ */
+function search_api_typesense_update_10001(): void {
+  $config_factory = \Drupal::configFactory();
+
+  // Get all configuration names that match the Typesense schema pattern.
+  $config_storage = \Drupal::service('config.storage');
+  $config_names = $config_storage->listAll('search_api_typesense.typesense_schema.');
+  foreach ($config_names as $config_name) {
+    $config = $config_factory->getEditable($config_name);
+    $config_data = $config->getRawData();
+
+    $needs_update = FALSE;
+
+    // Add chunk_prepend_fields if it doesn't exist.
+    if (!isset($config_data['chunk_prepend_fields'])) {
+      $config_data['chunk_prepend_fields'] = [];
+      $needs_update = TRUE;
+    }
+
+    if ($needs_update) {
+      $config->setData($config_data)->save();
+    }
+  }
+}

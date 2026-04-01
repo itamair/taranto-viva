@@ -11,12 +11,12 @@ auto_accept: false
 weight: null
 plugin: ai
 settings:
-  model_selection_type: ai_translate
+  model_selection_type: ai_tmgmt
   chat_model: openai__gpt-3.5-turbo
   tokenizer_model: openai__gpt-3.5-turbo
   advanced:
     prompt: 'Translate from %source% into %target% language'
-    max_tokens: '4096'
+    max_tokens: 4096
 remote_languages_mappings:
   en: en
   it: it

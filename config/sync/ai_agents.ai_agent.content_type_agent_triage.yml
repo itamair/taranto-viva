@@ -106,3 +106,5 @@ tool_usage_limits:
       values: ''
 exclude_users_role: false
 masquerade_roles: {  }
+structured_output_enabled: null
+structured_output_schema: null

@@ -1,0 +1,90 @@
+parameters:
+  graphql_compose.config:
+    # Development mode:
+    #
+    # Not in use yet.
+    #
+    # @default false
+    development: false
+
+services:
+  # Auto-wiring aliases.
+  Drupal\graphql_compose\LanguageInflector:
+    alias: 'graphql_compose.language_inflector'
+  Drupal\graphql_compose\Plugin\GraphQLComposeSchemaTypeManager:
+    alias: 'graphql_compose.schema_type_manager'
+  Drupal\graphql_compose\Plugin\GraphQLComposeEntityTypeManager:
+    alias: 'graphql_compose.entity_type_manager'
+  Drupal\graphql_compose\Plugin\GraphQLComposeFieldTypeManager:
+    alias: 'graphql_compose.field_type_manager'
+  Drupal\graphql_compose\Wrapper\EntityTypeWrapper:
+    alias: 'graphql_compose.entity_type_wrapper'
+
+  # Language inflector service.
+  graphql_compose.language_inflector:
+    class: Drupal\graphql_compose\LanguageInflector
+    arguments:
+      - "@module_handler"
+      - "@config.factory"
+
+  # Cache bin for graphql_compose plugin definitions.
+  cache.graphql_compose.definitions:
+    class: Drupal\Core\Cache\CacheBackendInterface
+    tags:
+      - { name: cache.bin }
+    factory: cache_factory:get
+    arguments:
+      - graphql_compose_definitions
+
+  # Plugin manager for schema
+  graphql_compose.schema_type_manager:
+    class: Drupal\graphql_compose\Plugin\GraphQLComposeSchemaTypeManager
+    arguments:
+      - "@container.namespaces"
+      - "@module_handler"
+      - "@cache.graphql_compose.definitions"
+      - "%graphql_compose.config%"
+      - "@graphql_compose.entity_type_manager"
+
+  # Plugin manager for entity types
+  graphql_compose.entity_type_manager:
+    class: Drupal\graphql_compose\Plugin\GraphQLComposeEntityTypeManager
+    arguments:
+      - "@container.namespaces"
+      - "@module_handler"
+      - "@cache.graphql_compose.definitions"
+      - "%graphql_compose.config%"
+      - "@entity_type.manager"
+
+  # Plugin manager for field types
+  graphql_compose.field_type_manager:
+    class: Drupal\graphql_compose\Plugin\GraphQLComposeFieldTypeManager
+    arguments:
+      - "@container.namespaces"
+      - "@module_handler"
+      - "@cache.graphql_compose.definitions"
+      - "%graphql_compose.config%"
+      - "@config.factory"
+      - "@entity_field.manager"
+      - "@entity_type.manager"
+      - "@graphql_compose.entity_type_manager"
+
+  # Entity type wrapper
+  graphql_compose.entity_type_wrapper:
+    class: Drupal\graphql_compose\Wrapper\EntityTypeWrapper
+    shared: false
+    arguments:
+      - "@config.factory"
+      - "@entity_field.manager"
+      - "@entity_type.manager"
+      - "@graphql_compose.field_type_manager"
+      - "@graphql_compose.language_inflector"
+      - "@language_manager"
+
+  # Subscribe to alter the schema
+  graphql_compose.alter_subscriber:
+    class: Drupal\graphql_compose\EventSubscriber\AlterSchemaSubscriber
+    arguments:
+      - "@graphql_compose.schema_type_manager"
+    tags:
+      - { name: "event_subscriber" }

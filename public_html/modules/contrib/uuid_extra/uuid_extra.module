@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * UUID Extra.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function uuid_extra_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  // Make the uuid field configurable.
+  /** @var \Drupal\Core\Field\BaseFieldDefinition $field */
+  if (($field_name = $entity_type->getKey('uuid')) && $field = $fields[$field_name]) {
+    assert($field instanceof BaseFieldDefinition);
+    $field->setDisplayConfigurable('view', TRUE);
+    $field->setDisplayConfigurable('form', TRUE);
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function uuid_extra_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_display = $form_state->get('form_display');
+  if ($form_display && $form_display->getComponent('uuid')) {
+    $form['uuid']['#access'] = TRUE;
+  }
+}

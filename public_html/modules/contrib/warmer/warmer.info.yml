@@ -1,0 +1,10 @@
+name: Warmer
+type: module
+description: Module that provides infrastructure for common cache warming/pre-fetching techniques.
+core_version_requirement: '^10.1 || ^11'
+configure: warmer.settings
+
+# Information added by Drupal.org packaging script on 2024-10-26
+version: '2.0.14'
+project: 'warmer'
+datestamp: 1729925252

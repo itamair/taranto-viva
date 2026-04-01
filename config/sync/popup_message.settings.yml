@@ -1,8 +1,8 @@
 visibility_pages: '<front>'
 enable: '1'
-title: 'Taranto Viva Introduction '
+title: 'Taranto Viva - Info'
 body:
-  value: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto,\r\nboth on the Territorial Marketing and Citizens' Active Participation sides."
+  value: '<p><span class="s1">Taranto Viva</span> is an experimental project aiming to the promotion of the City of Taranto by combining territorial marketing with active civic engagement.</p>'
   format: full_html
 height: '400'
 width: '400'

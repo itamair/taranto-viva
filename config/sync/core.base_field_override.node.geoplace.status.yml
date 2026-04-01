@@ -1,0 +1,22 @@
+uuid: fcf4bfb0-257a-470d-a6f4-54a33b63cccd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.geoplace
+id: node.geoplace.status
+field_name: status
+entity_type: node
+bundle: geoplace
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

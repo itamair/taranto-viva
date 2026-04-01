@@ -1,7 +1,0 @@
-host: pg16
-port: 5432
-username: pguser
-password: postgres_db_key
-default_database: pgdb
-_core:
-  default_config_hash: zEgXHS20RKg5hj3QNhMcDQxhQd1gVO3_mE6qxdKWSfA

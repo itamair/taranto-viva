@@ -9,13 +9,8 @@ dependencies:
   content:
     - 'taxonomy_term:project_namespace:f601061a-fcef-43f4-8718-91667bcc943e'
   module:
-    - ai_translate
     - tmgmt_content
 third_party_settings:
-  ai_translate:
-    entity_reference:
-      translate_references: default
-    translate_references: default
   tmgmt_content:
     excluded: false
 id: node.ciclovia_acquedotti.field_project_namespace

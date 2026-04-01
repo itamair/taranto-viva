@@ -1,0 +1,13 @@
+name: 'Search API Typesense Test'
+type: module
+description: 'Test module for Search API Typesense.'
+core_version_requirement: ^10 || ^11
+package: 'Search API'
+dependencies:
+  - search_api:search_api
+
+
+# Information added by Drupal.org packaging script on 2025-12-15
+version: '1.1.2'
+project: 'search_api_typesense'
+datestamp: 1765812252

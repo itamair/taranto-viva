@@ -2,24 +2,23 @@ display:
   default:
     display_options:
       empty:
-        area:
-          content:
-            value: '<p>No Results found</p>'
-            format: basic_html
+        area: {  }
   page_geoplaces_grid:
     display_options:
-      title: 'Places of Interest'
-      header:
-        result:
-          content: 'Results @start - @end of @total'
       menu:
         title: 'Places of Interest'
-      filters:
-        title:
-          expose:
-            label: Title
   page_map_taranto_viva:
     display_options:
+      filters:
+        field_date_range_value:
+          expose:
+            label: 'Validity of events and reports'
       title: 'Home | Map'
-      menu:
-        title: 'Home | Map'
+  page_vaganti_map:
+    display_options:
+      filters:
+        field_exif_creation_date_value:
+          expose:
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''

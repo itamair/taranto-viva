@@ -1,0 +1,8 @@
+use mcp server:
+  title: 'Use MCP Server'
+  description: 'Allows users to access the MCP server and execute enabled plugins.'
+
+administer mcp configuration:
+  title: 'Administer MCP Configuration'
+  description: 'Allows users to administer MCP configuration.'
+  restrict access: true

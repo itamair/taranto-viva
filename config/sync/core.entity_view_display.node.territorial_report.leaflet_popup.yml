@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.territorial_report.field_source_link
     - node.type.territorial_report
   module:
+    - datetime_range
     - italo_module
     - user
 id: node.territorial_report.leaflet_popup
@@ -37,6 +38,17 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_date_range:
+    type: daterange_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: taranto_viva_medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 1
+    region: content
   geoimage_caption:
     type: string
     label: hidden
@@ -48,7 +60,7 @@ content:
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
 hidden:
   active_level: true
@@ -56,7 +68,6 @@ hidden:
   field_active_type: true
   field_category_type: true
   field_comments: true
-  field_date_range: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true
@@ -70,5 +81,6 @@ hidden:
   langcode: true
   rate_thumbs_up: true
   rate_thumbs_up_down: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true

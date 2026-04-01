@@ -1,0 +1,20 @@
+{
+    "name": "drupal/meaofd",
+    "description": "Mismatched entity and/or field definitions module has as its main purpose to solve a common problem in Drupal website development that appears under the same title on the Status report page.",
+    "keywords": ["Drupal"],
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/meaofd",
+    "authors": [
+        {
+            "name": "Pablo Urrea",
+            "email": "paurca@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "http://drupal.org/project/issues/meaofd",
+        "source": "http://cgit.drupalcode.org/meaofd"
+      },
+    "require": {}
+}

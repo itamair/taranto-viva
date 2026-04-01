@@ -1,0 +1,13 @@
+name: 'JSON-RPC Test'
+type: module
+description: 'Support module for JSON-RPC related testing.'
+core_version_requirement: ^9 || ^10 || ^11
+package: Web services
+hidden: true
+dependencies:
+  - jsonrpc:jsonrpc
+
+# Information added by Drupal.org packaging script on 2024-09-14
+version: '2.1.2'
+project: 'jsonrpc'
+datestamp: 1726276167

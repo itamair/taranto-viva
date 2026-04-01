@@ -1,0 +1,10 @@
+media.source.image:
+  type: media.source.field_aware
+  label: '"Image" media source configuration'
+  mapping:
+    extract_metadata:
+      type: integer
+      label: 'Extract embedded metadata'
+    populate_alt_property:
+      type: integer
+      label: 'Populate ALT property'

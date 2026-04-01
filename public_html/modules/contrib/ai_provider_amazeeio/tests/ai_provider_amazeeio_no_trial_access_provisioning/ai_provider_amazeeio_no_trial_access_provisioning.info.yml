@@ -1,0 +1,13 @@
+name: 'amazee.ai AI Provider Testing: No trial access provisioning'
+description: 'Disables automated trial access provisioning on module install in tests.'
+package: Testing
+type: module
+core_version_requirement: '*'
+
+dependencies:
+  - ai_provider_amazeeio:ai_provider_amazeeio
+
+# Information added by Drupal.org packaging script on 2026-01-15
+version: '1.2.5'
+project: 'ai_provider_amazeeio'
+datestamp: 1768496460

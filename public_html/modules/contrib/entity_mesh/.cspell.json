@@ -1,0 +1,20 @@
+{
+  "import": [
+    "./web/core/.cspell.json"
+  ],
+  "ignorePaths": [
+    "config"
+  ],
+  "words": [
+    "información",
+    "múltiple",
+    "nodefdtd",
+    "noimplied",
+    "áccents",
+    "ñáéíóú",
+    "please",
+    "webform",
+    "webforms"
+  ]
+
+}

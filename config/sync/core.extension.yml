@@ -18,14 +18,13 @@ module:
   ai_tmgmt: 0
   ai_translate: 0
   ai_vdb_provider_pinecone: 0
-  ai_vdb_provider_postgres: 0
+  autocomplete_deluxe: 0
   automated_cron: 0
   backup_migrate: 0
   better_exposed_filters: 0
   blazy: 0
   block: 0
   block_content: 0
-  bpmn_io: 0
   breakpoint: 0
   cer: 0
   charts: 0
@@ -37,6 +36,7 @@ module:
   comment: 0
   conditional_fields: 0
   config: 0
+  config_inspector: 0
   config_translation: 0
   contact: 0
   content_access: 0
@@ -51,15 +51,6 @@ module:
   devel_generate: 0
   duplicate_role: 0
   dynamic_page_cache: 0
-  eca: 0
-  eca_access: 0
-  eca_base: 0
-  eca_cache: 0
-  eca_content: 0
-  eca_modeller_bpmn: 0
-  eca_ui: 0
-  eca_user: 0
-  eca_views: 0
   editor: 0
   entity_mesh: 0
   entity_reference_revisions: 0
@@ -95,12 +86,13 @@ module:
   jquery_ui: 0
   jquery_ui_accordion: 0
   jquery_ui_datepicker: 0
-  jquery_ui_slider: 0
-  jquery_ui_touch_punch: 0
   js_cookie: 0
   json_field: 0
   jsonapi: 0
   jsonapi_extras: 0
+  jsonrpc: 0
+  jsonrpc_core: 0
+  jsonrpc_discovery: 0
   key: 0
   language: 0
   layout_builder: 0
@@ -114,8 +106,8 @@ module:
   link: 0
   locale: 0
   masquerade: 0
+  mcp: 0
   media: 0
-  media_entity_image_exif: 0
   media_library: 0
   media_library_importer: 0
   menu_link_content: 0
@@ -124,6 +116,7 @@ module:
   metatag_facebook: 0
   metatag_open_graph: 0
   metatag_views: 0
+  modeler_api: 0
   mysql: 0
   node: 0
   optional_end_date: 0
@@ -133,8 +126,8 @@ module:
   path: 0
   path_alias: 0
   pcb: 0
-  pgsql: 0
   photoswipe: 0
+  photoswipe_dynamic_caption: 0
   phpass: 0
   popup_message: 0
   queue_ui: 0
@@ -142,6 +135,7 @@ module:
   range: 0
   rate: 0
   react_maplibre_map: 0
+  readmore: 0
   replicate: 0
   replicate_ui: 0
   rest: 0
@@ -151,6 +145,9 @@ module:
   seckit: 0
   serialization: 0
   shortcut: 0
+  simple_sitemap: 0
+  simple_sitemap_engines: 0
+  simple_sitemap_views: 0
   single_image_formatter: 0
   slick: 0
   svg_image: 0
@@ -161,14 +158,23 @@ module:
   tmgmt: 0
   tmgmt_content: 0
   token: 0
+  tool: 0
+  tool_belt: 0
+  tool_belt_content: 0
+  tool_belt_content_translation: 0
+  tool_belt_entity: 0
+  tool_belt_system: 0
+  tool_belt_user: 0
+  tool_explorer: 0
   toolbar: 0
-  tracer: 0
   typed_data: 0
   update: 0
   upgrade_status: 0
   user: 0
   uuid_extra: 0
   viewfield: 0
+  views_attach_library: 0
+  views_base_url: 0
   views_bulk_edit: 0
   views_bulk_operations: 0
   views_data_export: 0
@@ -179,6 +185,8 @@ module:
   visitors: 0
   visitors_geoip: 0
   votingapi: 0
+  warmer: 0
+  warmer_cdn: 0
   watchdog_statistics: 0
   pathauto: 1
   content_translation: 10
@@ -190,4 +198,5 @@ theme:
   claro: 0
   olivero: 0
   taranto_viva: 0
+  stable9: 0
 profile: standard

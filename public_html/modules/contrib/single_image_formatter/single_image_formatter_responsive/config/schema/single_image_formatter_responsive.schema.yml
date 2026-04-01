@@ -1,0 +1,3 @@
+field.formatter.settings.single_responsive_image_formatter:
+  type: field.formatter.settings.responsive_image
+  label: 'Responsive image list format settings'

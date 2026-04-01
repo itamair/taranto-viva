@@ -1,0 +1,4 @@
+administer duplicate role:
+  title: 'Duplicate user roles'
+  restrict access: TRUE
+  description: 'Duplicate any user roles and its permissions.'

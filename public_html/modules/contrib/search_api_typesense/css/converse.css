@@ -1,0 +1,28 @@
+#chat-wrapper {
+  display: flex;
+}
+
+#chat {
+  margin-right: 20px;
+}
+
+#chat-models {
+  margin-bottom: 20px;
+}
+
+#chat-input {
+  width: 400px;
+}
+
+#chat-input-text {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#response-hits-wrapper {
+  display: none;
+}
+
+#response-hits {
+  margin-top: 20px;
+}

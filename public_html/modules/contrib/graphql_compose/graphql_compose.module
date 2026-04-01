@@ -1,0 +1,167 @@
+<?php
+
+/**
+ * @file
+ * GraphQL Compose module file.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function graphql_compose_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.graphql_compose':
+      $path = \Drupal::service('extension.list.module')->getPath('graphql_compose');
+      $output = file_get_contents($path . '/README.md');
+      return '<pre>' . Xss::filterAdmin($output) . '</pre>';
+  }
+}
+
+/**
+ * Implements hook_entity_predelete().
+ *
+ * Remove config on entity type deletion.
+ */
+function graphql_compose_entity_predelete(EntityInterface $entity): void {
+  if (!$entity instanceof ConfigEntityInterface) {
+    return;
+  }
+
+  $config = \Drupal::service('config.factory')->getEditable('graphql_compose.settings');
+  $entityTypeManager = \Drupal::entityTypeManager();
+
+  $entity_type = $base_type = $entity->getEntityType();
+  if ($bundle_of = $entity->getEntityType()->getBundleOf()) {
+    $base_type = $entityTypeManager->getDefinition($bundle_of);
+  }
+
+  $target = $entity ? $entity->getConfigTarget() : $entity_type->id();
+  $cid = $base_type->id() . '.' . $target;
+
+  if ($target && $config->get($cid)) {
+    $config->clear($cid);
+
+    // Any fields associated with this.
+    $config->clear('field_config.' . $cid);
+
+    $config->save();
+    _graphql_compose_cache_flush();
+  }
+}
+
+/**
+ * Implements hook_modules_installed().
+ *
+ * Clear cache when GraphQL Compose module dependency is installed.
+ */
+function graphql_compose_modules_installed($modules, bool $is_syncing): void {
+  if ($is_syncing) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Extension\Extension[] $extensions */
+  $extensions = \Drupal::service('extension.list.module')->getList();
+
+  $extensions = array_filter(
+    $extensions,
+    fn ($key) => in_array($key, $modules),
+    ARRAY_FILTER_USE_KEY
+  );
+
+  foreach ($extensions as $extension) {
+    $info = get_object_vars($extension);
+    if (array_key_exists('graphql_compose', $info['requires'] ?? [])) {
+      _graphql_compose_cache_flush();
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_operation().
+ *
+ * Add JS UUID copy to clipboard utility to entity operation.
+ */
+function graphql_compose_entity_operation(EntityInterface $entity): array {
+  $operations = [];
+
+  $enabled_types = \Drupal::service('graphql_compose.entity_type_manager')->getDefinitions();
+  $enabled = in_array($entity->getEntityTypeId(), array_keys($enabled_types));
+
+  if ($entity instanceof ContentEntityInterface && $enabled) {
+    $operations['copy_uuid'] = [
+      'title' => t('Copy UUID'),
+      'weight' => 100,
+      'url' => Url::fromRoute('<current>', [], [
+        'attributes' => [
+          'class' => 'graphql-compose--uuid-link',
+          'data-uuid' => $entity->uuid(),
+        ],
+      ]),
+    ];
+  }
+
+  return $operations;
+}
+
+/**
+ * Implements hook_preprocess_links__dropbutton__operations().
+ */
+function graphql_compose_preprocess_links__dropbutton__operations(array &$variables): void {
+  if (array_key_exists('copy_uuid', $variables['links'] ?? [])) {
+    $variables['#attached']['library'][] = 'graphql_compose/uuid.admin';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function graphql_compose_form_graphql_server_create_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  _graphql_compose_schema_options($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function graphql_compose_form_graphql_server_edit_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  _graphql_compose_schema_options($form, $form_state);
+}
+
+/**
+ * Callback from hook_form_FORM_ID_alter().
+ *
+ * Fix up a bug in the GraphQL module where the extensions are not properly
+ * filtered on the schema configuration form.
+ */
+function _graphql_compose_schema_options(&$form, FormStateInterface $form_state): void {
+  $schema = $form['schema']['#default_value'] ?? NULL;
+  $options =& $form['schema_configuration'][$schema]['extensions']['#options'] ?? [];
+
+  if ($schema && $options) {
+    $compose_extensions = array_filter(
+      \Drupal::service('plugin.manager.graphql.schema_extension')->getDefinitions(),
+      fn ($ext) => $ext['schema'] === 'graphql_compose'
+    );
+    $options = array_diff_key($options, $compose_extensions);
+  }
+}
+
+/**
+ * Utility function to nuke cache for GraphQL.
+ */
+function _graphql_compose_cache_flush(): void {
+  \Drupal::service('cache.graphql.apq')->deleteAll();
+  \Drupal::service('cache.graphql.ast')->deleteAll();
+  \Drupal::service('cache.graphql.definitions')->deleteAll();
+  \Drupal::service('cache.graphql.results')->deleteAll();
+  \Drupal::service('cache.graphql_compose.definitions')->deleteAll();
+}

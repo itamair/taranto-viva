@@ -1,7 +1,0 @@
-name: geocms
-type: module
-description: GeoCMS
-core_version_requirement: ^10
-package: GeoCMS
-
-

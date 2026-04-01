@@ -24,7 +24,7 @@ mode: leaflet_popup
 content:
   field_media_image:
     type: single_image_formatter
-    label: visually_hidden
+    label: hidden
     settings:
       image_style: map_scaled_cropped_image_400_300
       image_link: ''
@@ -40,6 +40,7 @@ hidden:
   geoimage_caption: true
   langcode: true
   name: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   thumbnail: true
   uid: true

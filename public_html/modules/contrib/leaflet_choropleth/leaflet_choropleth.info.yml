@@ -1,0 +1,12 @@
+name: Leaflet Choropleth
+type: module
+description: 'Provides Choropleth Map functionalities for Leaflet maps in Drupal.'
+core_version_requirement: ^10.2 || ^11
+package: 'Geofield'
+dependencies:
+  - leaflet:leaflet_views
+
+# Information added by Drupal.org packaging script on 2025-10-01
+version: '1.0.6'
+project: 'leaflet_choropleth'
+datestamp: 1759357590

@@ -3,8 +3,11 @@ langcode: it
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.leaflet_popup
     - field.storage.media.field_geofield
     - field.storage.media.field_media_image
+    - field.storage.node.field_exclude_from_map_bounds
+    - field.storage.node.field_map_popup_disabled
     - node.type.geoimage
     - paragraphs.paragraphs_type.geoimage
     - taxonomy.vocabulary.project_namespace
@@ -12,6 +15,7 @@ dependencies:
     - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
   module:
     - geofield
+    - italo_module
     - leaflet_views
     - media
     - node
@@ -19,6 +23,7 @@ dependencies:
     - rest
     - svg_image
     - taxonomy
+    - views_base_url
     - views_geojson
 id: taranto_viva_geoimages_geojson
 label: 'Taranto Viva GeoImages GeoJson'
@@ -99,6 +104,65 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        base_url:
+          id: base_url
+          table: views
+          field: base_url
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: base_url
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          show_link: false
+          show_link_options:
+            link_path: ''
+            link_text: ''
+            link_class: ''
+            link_title: ''
+            link_rel: ''
+            link_fragment: ''
+            link_query: ''
+            link_target: ''
         view_node:
           id: view_node
           table: node
@@ -289,11 +353,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: image
+          label: image_url
           exclude: false
           alter:
             alter_text: true
-            text: 'https://taranto-viva.ddev.site{{ field_media_image }}'
+            text: '{{ base_url }}{{ field_media_image }}'
             make_link: false
             path: '{{ field_media_image }}'
             absolute: true
@@ -335,6 +399,250 @@ display:
           settings:
             image_style: medium
           group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        geomarker_icon_url:
+          id: geomarker_icon_url
+          table: paragraphs_item
+          field: geomarker_icon_url
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: paragraph
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        leaflet_popup_rendered_entity:
+          id: leaflet_popup_rendered_entity
+          table: node
+          field: leaflet_popup_rendered_entity
+          relationship: reverse__node__field_components_target_id
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          plugin_id: leaflet_popup_rendered_entity
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: true
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          view_mode: leaflet_popup
+        field_exclude_from_map_bounds:
+          id: field_exclude_from_map_bounds
+          table: node__field_exclude_from_map_bounds
+          field: field_exclude_from_map_bounds
+          relationship: reverse__node__field_components_target_id
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: boolean
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_map_popup_disabled:
+          id: field_map_popup_disabled
+          table: node__field_map_popup_disabled
+          field: field_map_popup_disabled
+          relationship: reverse__node__field_components_target_id
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: boolean
+            format_custom_false: ''
+            format_custom_true: ''
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -390,7 +698,7 @@ display:
           plugin_id: language
           operator: in
           value:
-            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            '***LANGUAGE_site_default***': '***LANGUAGE_site_default***'
           group: 1
           exposed: false
           expose:
@@ -706,35 +1014,8 @@ display:
       tags:
         - 'config:field.storage.media.field_geofield'
         - 'config:field.storage.media.field_media_image'
-  page_geoimages_map:
-    id: page_geoimages_map
-    display_title: 'Geoimages Map'
-    display_plugin: page
-    position: 2
-    display_options:
-      display_description: ''
-      display_extenders:
-        metatag_display_extender:
-          metatags: {  }
-          tokenize: false
-      path: taranto_viva_geoimages_page
-      menu:
-        type: none
-        title: 'Geo Images Map'
-        description: ''
-        weight: 100
-        expanded: false
-        menu_name: main
-        parent: ''
-        context: '0'
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-      tags:
-        - 'config:field.storage.media.field_geofield'
-        - 'config:field.storage.media.field_media_image'
+        - 'config:field.storage.node.field_exclude_from_map_bounds'
+        - 'config:field.storage.node.field_map_popup_disabled'
   taranto_viva_geoimages_geojson:
     id: taranto_viva_geoimages_geojson
     display_title: 'GeoJSON export'
@@ -759,7 +1040,7 @@ display:
             name_field: title
             description_field: ''
           jsonp_prefix: ''
-      rendering_language: '***LANGUAGE_language_interface***'
+      rendering_language: '***LANGUAGE_entity_translation***'
       display_extenders:
         metatag_display_extender:
           metatags: {  }
@@ -768,7 +1049,10 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
       tags:
         - 'config:field.storage.media.field_geofield'
         - 'config:field.storage.media.field_media_image'
+        - 'config:field.storage.node.field_exclude_from_map_bounds'
+        - 'config:field.storage.node.field_map_popup_disabled'

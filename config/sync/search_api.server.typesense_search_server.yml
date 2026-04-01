@@ -1,6 +1,6 @@
 uuid: 6a7b0ca9-ed12-4278-93ec-1ca4545bb9d6
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - search_api_typesense

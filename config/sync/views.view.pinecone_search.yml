@@ -220,10 +220,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: search_api_fulltext_searched_fields
@@ -305,11 +301,8 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
-        - 'config:search_api.index.pinecone_index'
-        - 'search_api_list:pinecone_index'
   page_1:
     id: page_1
     display_title: Page
@@ -326,7 +319,8 @@ display:
         type: normal
         title: 'Pinecone Search'
         description: ''
-        weight: 0
+        weight: -39
+        enabled: false
         expanded: false
         menu_name: main
         parent: ''
@@ -337,8 +331,5 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - 'user.node_grants:view'
       tags:
         - 'config:field.storage.node.body'
-        - 'config:search_api.index.pinecone_index'
-        - 'search_api_list:pinecone_index'

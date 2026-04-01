@@ -34,7 +34,7 @@ display:
           entity_type: tmgmt_job
           entity_field: state
           plugin_id: field
-          label: Stato
+          label: State
           exclude: false
           alter:
             alter_text: false
@@ -99,7 +99,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job
           plugin_id: tmgmt_entity_label
-          label: Etichetta
+          label: Label
           exclude: false
           alter:
             alter_text: false
@@ -150,7 +150,7 @@ display:
           entity_type: tmgmt_job
           entity_field: source_language
           plugin_id: field
-          label: Da
+          label: From
           exclude: false
           alter:
             alter_text: false
@@ -216,7 +216,7 @@ display:
           entity_type: tmgmt_job
           entity_field: target_language
           plugin_id: field
-          label: A
+          label: To
           exclude: false
           alter:
             alter_text: false
@@ -282,7 +282,7 @@ display:
           entity_type: tmgmt_job
           entity_field: translator
           plugin_id: tmgmt_translator
-          label: 'Fonte esterna'
+          label: Provider
           exclude: false
           alter:
             alter_text: false
@@ -382,7 +382,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job
           plugin_id: tmgmt_wordcount
-          label: Parole
+          label: Words
           exclude: false
           alter:
             alter_text: false
@@ -432,7 +432,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job
           plugin_id: tmgmt_tagscount
-          label: Etichette
+          label: Tags
           exclude: false
           alter:
             alter_text: false
@@ -483,7 +483,7 @@ display:
           entity_type: tmgmt_job
           entity_field: changed
           plugin_id: date
-          label: Modificato
+          label: Changed
           exclude: false
           alter:
             alter_text: false
@@ -536,7 +536,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job
           plugin_id: entity_operations
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -596,7 +596,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 20, 40, 60'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -647,7 +647,7 @@ display:
           exposed: true
           expose:
             operator_id: state_op
-            label: Stato
+            label: State
             description: ''
             use_operator: false
             operator: state_op
@@ -657,8 +657,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -687,7 +685,7 @@ display:
           exposed: true
           expose:
             operator_id: source_language_op
-            label: 'Lingua di origine'
+            label: 'Source language'
             description: ''
             use_operator: false
             operator: source_language_op
@@ -697,8 +695,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -738,8 +734,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -769,7 +763,7 @@ display:
           exposed: true
           expose:
             operator_id: translator_op
-            label: 'Fonte esterna'
+            label: Provider
             description: ''
             use_operator: false
             operator: translator_op
@@ -779,8 +773,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -885,6 +877,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:

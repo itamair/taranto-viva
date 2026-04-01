@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * @file
+ * Add connection edges to entity bundles.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\ContentEntityTypeInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\graphql_compose_edges\EntityConnection;
+
+/**
+ * Implements hook_graphql_compose_entity_type_form_alter().
+ */
+function graphql_compose_edges_graphql_compose_entity_type_form_alter(array &$form, FormStateInterface $form_state, EntityTypeInterface $entity_type, string $bundle_id, array $settings): void {
+  if ($entity_type instanceof ContentEntityTypeInterface) {
+    $form['edges_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Enable edge query'),
+      '#default_value' => $settings['edges_enabled'] ?? FALSE,
+      '#element_validate' => ['::validateNullable'],
+      '#description' => t('Edge connections enable loading multiple entities at once with a cursor.'),
+    ];
+  }
+}
+
+/**
+ * Implements hook_config_schema_info_alter().
+ */
+function graphql_compose_edges_config_schema_info_alter(&$definitions) {
+  $definitions['graphql_compose.entity.*.*']['mapping']['edges_enabled'] = [
+    'type' => 'boolean',
+    'label' => t('Enable multiple query'),
+  ];
+
+  $definitions['graphql_compose.settings']['mapping']['settings']['mapping']['edge_max_limit'] = [
+    'type' => 'integer',
+    'label' => t('Connection edge max limit'),
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function graphql_compose_edges_form_graphql_compose_settings_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $config = \Drupal::config('graphql_compose.settings');
+
+  $form['entities']['edge_max_limit'] = [
+    '#type' => 'number',
+    '#title' => t('Connection edge max limit'),
+    '#default_value' => $config->get('settings.edge_max_limit') ?: EntityConnection::MAX_LIMIT,
+    '#description' => t('The maximum number of items that can be requested in a single connection edge query.'),
+    '#min' => 1,
+    '#required' => TRUE,
+  ];
+
+  $form['#submit'][] = '_graphql_compose_edges_settings_submit';
+}
+
+/**
+ * Callback from graphql_compose_edges_form_graphql_compose_settings_alter().
+ */
+function _graphql_compose_edges_settings_submit(array &$form, FormStateInterface $form_state) {
+  $config = \Drupal::configFactory()->getEditable('graphql_compose.settings');
+  $config->set('settings.edge_max_limit', $form_state->getValue('edge_max_limit'));
+  $config->save();
+}

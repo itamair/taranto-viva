@@ -1,0 +1,12 @@
+@media screen and (min-width: 960px) {
+  .image-style-warmer.image-styles-wrapper {
+    width: 100%;
+    margin: auto;
+  }
+  .image-style-warmer.image-styles.fieldgroup {
+    display: inline-block;
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+  }
+}

@@ -1,0 +1,18 @@
+<?php
+
+namespace Typesense;
+
+/**
+ * @implements \ArrayAccess<string, TypesenseDocument>
+ */
+class Documents implements \ArrayAccess {
+
+  /**
+   * @param TypesenseSearchParameters $searchParams
+   *
+   * @return array<string, TypesenseDocument>
+   */
+  public function search(array $searchParams): array
+  {}
+
+}

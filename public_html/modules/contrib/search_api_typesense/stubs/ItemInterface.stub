@@ -1,0 +1,7 @@
+<?php
+
+namespace Drupal\search_api\Item;
+
+/** @extends \Traversable<int, mixed> */
+interface ItemInterface extends \Traversable {
+}

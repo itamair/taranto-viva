@@ -5,13 +5,19 @@ prompt_logging_tags: ''
 default_providers:
   chat:
     provider_id: anthropic
-    model_id: claude-3-5-sonnet-latest
+    model_id: claude-sonnet-4-20250514
   chat_with_complex_json:
     provider_id: openai
     model_id: gpt-4o
   chat_with_image_vision:
     provider_id: openai
     model_id: gpt-4o
+  chat_with_structured_response:
+    provider_id: openai
+    model_id: gpt-4.1
+  chat_with_tools:
+    provider_id: openai
+    model_id: gpt-4.1
   embeddings:
     provider_id: openai
     model_id: text-embedding-3-small
@@ -29,4 +35,5 @@ default_providers:
     model_id: tts-1-hd
   translate_text:
     provider_id: chat_translation
-    model_id: gpt-3.5-turbo
+    model_id: claude-sonnet-4-5-20250929
+default_vdb_provider: ''

@@ -19,7 +19,7 @@ base_field: ''
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -89,7 +89,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -271,6 +271,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -300,7 +301,7 @@ display:
       tags: {  }
   city_table:
     id: city_table
-    display_title: Città
+    display_title: City
     display_plugin: embed
     position: 3
     display_options:
@@ -313,7 +314,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Abbreviazione
+          label: Abbreviation
           exclude: true
           alter:
             alter_text: true
@@ -463,7 +464,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Città
+          label: City
           exclude: true
           alter:
             alter_text: false
@@ -512,7 +513,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Paese
+          label: Country
           exclude: true
           alter:
             alter_text: false
@@ -563,7 +564,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Città
+          label: City
           exclude: false
           alter:
             alter_text: true
@@ -669,7 +670,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -707,7 +708,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -919,7 +920,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Visitatore
+          label: Visitor
           exclude: false
           alter:
             alter_text: false
@@ -968,11 +969,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: custom
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: true
-            text: dettagli
+            text: details
             make_link: true
             path: 'internal:/visitors/hits/{{ visitors_id }}'
             absolute: false
@@ -1027,7 +1028,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -1058,7 +1059,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -1096,7 +1097,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -1134,7 +1135,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -1258,7 +1259,7 @@ display:
           exposed: true
           expose:
             operator_id: visitors_path_op
-            label: Percorso
+            label: Path
             description: ''
             use_operator: false
             operator: visitors_path_op
@@ -1270,9 +1271,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -1311,7 +1309,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -1323,7 +1321,7 @@ display:
       tags: {  }
   region_table:
     id: region_table
-    display_title: Regione
+    display_title: Region
     display_plugin: embed
     position: 2
     display_options:
@@ -1385,7 +1383,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Abbreviazione
+          label: Abbreviation
           exclude: true
           alter:
             alter_text: true
@@ -1437,7 +1435,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Contrassegno
+          label: Flag
           exclude: true
           alter:
             alter_text: false
@@ -1488,7 +1486,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Regione
+          label: Region
           exclude: true
           alter:
             alter_text: false
@@ -1537,7 +1535,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Regione
+          label: Region
           exclude: false
           alter:
             alter_text: true
@@ -1643,7 +1641,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed

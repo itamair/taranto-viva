@@ -1,0 +1,10 @@
+name: 'Views Date Range Filters'
+type: module
+description: 'Views filters for date ranges.'
+core_version_requirement: ^8.7.7 || ^9 || ^10 || ^11
+package: 'Views'
+
+# Information added by Drupal.org packaging script on 2025-02-03
+version: '8.x-1.0-alpha3'
+project: 'views_daterange_filters'
+datestamp: 1738583680

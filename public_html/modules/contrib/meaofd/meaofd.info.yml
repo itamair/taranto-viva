@@ -1,0 +1,10 @@
+name: 'Mismatched entity and/or field definitions'
+type: module
+description: 'Mismatched entity and/or field definitions module has as its main purpose to solve a common problem in Drupal website development that appears under the same title on the Status report page.'
+package: Entity
+core_version_requirement: ^9 || ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2025-09-26
+version: '1.1.0'
+project: 'meaofd'
+datestamp: 1758887325

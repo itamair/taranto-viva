@@ -1,0 +1,4 @@
+services:
+  Drupal\ai_provider_amazeeio_no_trial_access_provisioning\src\NullTrialAccessProvisionerFactory:
+    class: Drupal\ai_provider_amazeeio_no_trial_access_provisioning\NullTrialAccessProvisionerFactory
+    decorates: Drupal\ai_provider_amazeeio\TrialAccess\TrialAccountProvisionerFactoryInterface

@@ -1,0 +1,10 @@
+##
+# @file
+# Mismatched entity and/or field definitions libraries.
+##
+
+report:
+  version: 1.0.0
+  css:
+    theme:
+      css/report.css: {}

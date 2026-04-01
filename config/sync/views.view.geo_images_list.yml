@@ -33,7 +33,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Immagini
+      title: Images
       fields:
         nid:
           id: nid
@@ -523,7 +523,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Risults @start - @end of @total'
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -547,7 +547,7 @@ display:
       path: geo-images
       menu:
         type: normal
-        title: Immagini
+        title: Images
         description: ''
         weight: -47
         expanded: false
@@ -586,8 +586,11 @@ display:
           bef:
             general:
               autosubmit: true
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
@@ -598,9 +601,14 @@ display:
               field_exif_creation_date_value:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
       access:
         type: role
         options:
@@ -708,10 +716,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             min_placeholder: null
             max_placeholder: null
             placeholder: null

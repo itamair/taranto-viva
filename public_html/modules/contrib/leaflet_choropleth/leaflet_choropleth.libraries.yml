@@ -1,0 +1,11 @@
+leaflet_choropleth:
+  version: 1.x
+  css:
+    component:
+      css/leaflet_choropleth.css: {}
+  js:
+    js/leaflet_choropleth.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal

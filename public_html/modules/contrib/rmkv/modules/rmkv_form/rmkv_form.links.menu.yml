@@ -1,0 +1,5 @@
+# Remove system.schema key/value defaults menu items definition
+rmkv_form.form:
+  title: "Remove system.schema key/value storage"
+  route_name: "rmkv_form.form"
+  parent: "system.admin_config_development"

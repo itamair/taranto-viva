@@ -1,0 +1,13 @@
+name: Image Styles Generator WebP
+type: module
+description: Provides WebP support to the image styles generator module.
+package: Image
+core_version_requirement: ^10 || ^11
+dependencies:
+  - webp:webp
+  - image_styles_generator:image_styles_generator
+
+# Information added by Drupal.org packaging script on 2025-05-28
+version: '1.3.0'
+project: 'image_styles_generator'
+datestamp: 1748445974

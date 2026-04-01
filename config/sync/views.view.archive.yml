@@ -10,7 +10,7 @@ dependencies:
 _core:
   default_config_hash: gA3tLETtsrObWW1Uvb6Mh-fg0Qu_6uCEzgL9jKQgPgo
 id: archive
-label: Archive
+label: Archivio
 module: node
 description: 'All content, by month.'
 tag: default
@@ -19,7 +19,7 @@ base_field: nid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -41,7 +41,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -189,7 +189,7 @@ display:
       tags: {  }
   block_1:
     id: block_1
-    display_title: Blocco
+    display_title: Block
     display_plugin: block
     position: 1
     display_options:

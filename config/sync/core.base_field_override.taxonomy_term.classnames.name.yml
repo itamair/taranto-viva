@@ -1,0 +1,18 @@
+uuid: c372864c-1888-430f-8774-cacabbcc47b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.classnames
+id: taxonomy_term.classnames.name
+field_name: name
+entity_type: taxonomy_term
+bundle: classnames
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

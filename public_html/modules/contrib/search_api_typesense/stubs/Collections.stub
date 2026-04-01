@@ -1,0 +1,16 @@
+<?php
+
+namespace Typesense;
+
+/**
+ * @implements \ArrayAccess<string, TypesenseCollection>
+ */
+class Collections implements \ArrayAccess {
+
+  /**
+   * @return TypesenseCollection
+   */
+  public function retrieve(): array
+  {}
+
+}

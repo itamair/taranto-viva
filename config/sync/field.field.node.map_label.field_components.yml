@@ -7,14 +7,9 @@ dependencies:
     - node.type.map_label
     - paragraphs.paragraphs_type.location
   module:
-    - ai_translate
     - entity_reference_revisions
     - tmgmt_content
 third_party_settings:
-  ai_translate:
-    entity_reference:
-      translate_references: 'no'
-    translate_references: 'no'
   tmgmt_content:
     excluded: false
 id: node.map_label.field_components

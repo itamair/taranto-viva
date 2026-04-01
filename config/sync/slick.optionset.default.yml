@@ -10,7 +10,7 @@ _core:
 id: default
 name: default
 weight: -10
-label: Master
+label: Default
 group: ''
 skin: default
 breakpoints: 0
@@ -34,8 +34,8 @@ options:
     pauseOnFocus: true
     autoplaySpeed: 3000
     arrows: true
-    prevArrow: Precedente
-    nextArrow: Seguente
+    prevArrow: Previous
+    nextArrow: Next
     arrowsPlacement: ''
     downArrow: false
     downArrowTarget: ''
@@ -58,7 +58,7 @@ options:
     rows: 1
     slidesPerRow: 1
     slide: ''
-    slidesToShow: 1
+    slidesToShow: 1.0
     slidesToScroll: 1
     speed: 500
     swipe: true

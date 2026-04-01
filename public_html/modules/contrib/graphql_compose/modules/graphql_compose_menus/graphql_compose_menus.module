@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * GraphQL Compose menus module file.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ *
+ * Enable access to view a menu entity.
+ */
+function graphql_compose_menus_menu_access(EntityInterface $entity, $operation, AccountInterface $account): AccessResultInterface {
+
+  if ($operation === 'view') {
+    $request = \Drupal::request();
+    $settings = \Drupal::config('graphql_compose.settings');
+
+    $access = $settings->get('entity_config.menu.' . $entity->id() . '.enabled') ?: FALSE;
+    return AccessResult::allowedIf($request->attributes->has('_graphql') && $access);
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_graphql_compose_entity_type_form_alter().
+ */
+function graphql_compose_menus_graphql_compose_entity_type_form_alter(array &$form, FormStateInterface $form_state, EntityTypeInterface $entity_type, string $bundle_id, array $settings): void {
+  if ($entity_type->id() === 'menu') {
+    $form['menu_route_enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Enable %type on menu', ['%type' => 'Route']),
+      '#default_value' => $settings['menu_route_enabled'] ?? FALSE,
+      '#element_validate' => ['::validateNullable'],
+      '#description' => t('<em>Warning</em>: Enable only if you have a small menu and you understand the load implications. Querying %path will load all entities within this menu.', [
+        '%path' => 'route.entity',
+      ]),
+    ];
+
+    // Get the fields for the menu if menu_item_extras is installed.
+    // Squashed in here to try and improve UX on the form.
+    if (\Drupal::moduleHandler()->moduleExists('menu_item_extras')) {
+      $ml_entity_type = \Drupal::entityTypeManager()->getDefinition('menu_link_content');
+      /** @var \Drupal\graphql_compose\Form\SchemaForm $instance */
+      $instance = $form_state->getFormObject();
+      $instance->buildEntityTypeBundleFields($form, $form_state, $ml_entity_type, $bundle_id);
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Hide the menu link content settings in an attempt to improve UX.
+ * This is intended to be used with the menu_item_extras module.
+ */
+function graphql_compose_menus_form_graphql_compose_schema_alter(array &$form, FormStateInterface $form_state) {
+  unset($form['settings']['menu_link_content']);
+  unset($form['layout']['entity_tabs']['entity_type__menu_link_content']);
+}
+
+/**
+ * Implements hook_config_schema_info_alter().
+ */
+function graphql_compose_menus_config_schema_info_alter(&$definitions) {
+  $definitions['graphql_compose.entity.*.*']['mapping']['menu_route_enabled'] = [
+    'type' => 'boolean',
+    'label' => t('Enable menu routes'),
+  ];
+}

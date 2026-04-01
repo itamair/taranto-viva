@@ -3,6 +3,7 @@ langcode: it
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.rss
     - core.entity_view_mode.node.teaser
   module:
     - node
@@ -11,7 +12,7 @@ dependencies:
 _core:
   default_config_hash: uvMAn5Qf8Uni989mhr5KY4hx66xkSpP8nFYZMHgj7kY
 id: taxonomy_term
-label: 'Termine della tassonomia'
+label: 'Taxonomy term'
 module: taxonomy
 description: 'Content belonging to a certain taxonomy term.'
 tag: default
@@ -20,7 +21,7 @@ base_field: nid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -41,7 +42,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -103,7 +104,7 @@ display:
           exception:
             value: ''
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: true
           title: '{{ arguments.tid }}'
           default_argument_type: fixed
@@ -280,7 +281,7 @@ display:
         type: node_rss
         options:
           relationship: none
-          view_mode: default
+          view_mode: rss
       query:
         type: views_query
         options: {  }

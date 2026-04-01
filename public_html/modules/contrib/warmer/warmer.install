@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Warmer module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function warmer_uninstall() {
+  $config = \Drupal::configFactory()->get('warmer.settings');
+  /** @var array $warmers */
+  $warmers = $config->get('warmers');
+  foreach ($warmers as $warmer) {
+    \Drupal::state()->delete('previous_enqueue_time:' . $warmer['id']);
+  }
+
+  $queue = \Drupal::queue('warmer');
+  $queue->deleteQueue();
+}

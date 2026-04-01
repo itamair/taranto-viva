@@ -1,0 +1,10 @@
+services:
+  rmkv.commands:
+    class: "\\Drupal\\rmkv\\Commands\\RemoveKeyValueCommands"
+    arguments:
+      - "@extension.list.profile"
+      - "@module_handler"
+      - "@theme_handler"
+      - "@keyvalue"
+    tags:
+      - { name: "drush.command" }

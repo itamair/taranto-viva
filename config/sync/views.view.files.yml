@@ -9,7 +9,7 @@ dependencies:
 _core:
   default_config_hash: gLmoA0yjvlXfMRp9ihOhRKSSQQlbdLdvpDkbVwkYPrg
 id: files
-label: File
+label: Files
 module: file
 description: 'Find and manage files.'
 tag: default
@@ -18,11 +18,11 @@ base_field: fid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
-      title: File
+      title: Files
       fields:
         views_bulk_operations_bulk_form:
           id: views_bulk_operations_bulk_form
@@ -80,7 +80,8 @@ display:
           buttons: false
           action_title: Azione
           clear_on_exposed: true
-          force_selection_info: false
+          show_multipage_selection_box: default
+          show_select_all: default
           selected_actions: {  }
         fid:
           id: fid
@@ -125,7 +126,7 @@ display:
           entity_type: file
           entity_field: filename
           plugin_id: field
-          label: Nome
+          label: Name
           exclude: false
           alter:
             alter_text: false
@@ -292,7 +293,7 @@ display:
           entity_type: file
           entity_field: status
           plugin_id: field
-          label: Stato
+          label: Status
           exclude: false
           alter:
             alter_text: false
@@ -336,7 +337,7 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Temporaneo
+            format_custom_false: Temporary
             format_custom_true: Permanent
         created:
           id: created
@@ -413,7 +414,7 @@ display:
           entity_type: file
           entity_field: changed
           plugin_id: field
-          label: 'Data di ultima modifica'
+          label: 'Changed date'
           exclude: false
           alter:
             alter_text: false
@@ -476,7 +477,7 @@ display:
           group_type: sum
           admin_label: ''
           plugin_id: numeric
-          label: 'Usato in'
+          label: 'Used in'
           exclude: false
           alter:
             alter_text: false
@@ -522,7 +523,7 @@ display:
           decimal: .
           separator: ','
           format_plural: true
-          format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
+          format_plural_string: !!binary QGNvdW50IHBsYWNlA0Bjb3VudCBwbGFjZXM=
           prefix: ''
           suffix: ''
         delete_file:
@@ -587,14 +588,14 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: 'Seguente ›'
-            previous: '‹ Precedente'
+            next: 'Next ›'
+            previous: '‹ Previous'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -641,7 +642,7 @@ display:
           exposed: true
           expose:
             operator_id: filemime_op
-            label: 'Nome file'
+            label: Filename
             description: ''
             use_operator: false
             operator: filename_op
@@ -653,8 +654,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -695,8 +694,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -725,7 +722,7 @@ display:
           exposed: true
           expose:
             operator_id: status_op
-            label: Stato
+            label: Status
             description: ''
             use_operator: false
             operator: status_op
@@ -737,8 +734,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -781,10 +776,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             min_placeholder: ''
             max_placeholder: ''
             placeholder: ''
@@ -879,6 +870,7 @@ display:
           empty_table: true
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:
@@ -945,7 +937,7 @@ display:
       path: admin/content/files
       menu:
         type: tab
-        title: File
+        title: Files
         description: ''
         weight: 0
         menu_name: admin
@@ -975,7 +967,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: entity_label
-          label: Entità
+          label: Entity
           exclude: false
           alter:
             alter_text: false
@@ -1025,7 +1017,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: 'Tipo di entità'
+          label: 'Entity type'
           exclude: false
           alter:
             alter_text: false
@@ -1181,14 +1173,14 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: 'Seguente ›'
-            previous: '‹ Precedente'
+            next: 'Next ›'
+            previous: '‹ Previous'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       empty: {  }
@@ -1207,7 +1199,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: true
           title: 'File usage information for {{ arguments.fid }}'
           default_argument_type: fixed
@@ -1280,6 +1272,7 @@ display:
           empty_table: true
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
         options: {  }

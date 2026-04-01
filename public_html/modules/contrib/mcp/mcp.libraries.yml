@@ -1,0 +1,8 @@
+mcp.admin:
+  version: 1.x
+  js:
+    js/mcp-admin.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

@@ -1,0 +1,1506 @@
+_core:
+  default_config_hash: G1fP_Viz2F-TkFxY_7EWluwPcwl7bL3ZziTHtxYS4Tk
+enable_auth: true
+auth_settings:
+  enable_token_auth: false
+  token_key: ''
+  token_user: ''
+  enable_basic_auth: true
+plugins:
+  general:
+    enabled: false
+    roles:
+      - authenticated
+    config: {  }
+    tools:
+      info:
+        enabled: true
+        description: ''
+        roles: {  }
+      status:
+        enabled: true
+        description: ''
+        roles: {  }
+  content:
+    enabled: false
+    roles:
+      - authenticated
+    config:
+      content_types:
+        article: 0
+        ciclovia_acquedotti: 0
+        event: 0
+        geoimage: 0
+        geojson_geometry: 0
+        geoplace: 0
+        map_label: 0
+        page: 0
+        territorial_report: 0
+    tools: {  }
+  drush:
+    enabled: false
+    roles:
+      - authenticated
+    config: {  }
+    tools:
+      browse:
+        enabled: false
+        description: ''
+        roles: {  }
+      completion:
+        enabled: false
+        description: ''
+        roles: {  }
+      deploy:
+        enabled: false
+        description: ''
+        roles: {  }
+      devel-entity-updates:
+        enabled: false
+        description: ''
+        roles: {  }
+      generate:
+        enabled: false
+        description: ''
+        roles: {  }
+      help:
+        enabled: false
+        description: ''
+        roles: {  }
+      list:
+        enabled: false
+        description: ''
+        roles: {  }
+      recipe:
+        enabled: false
+        description: ''
+        roles: {  }
+      runserver:
+        enabled: false
+        description: ''
+        roles: {  }
+      updatedb:
+        enabled: false
+        description: ''
+        roles: {  }
+      version:
+        enabled: false
+        description: ''
+        roles: {  }
+      'ai:chat':
+        enabled: false
+        description: ''
+        roles: {  }
+      'ai:translate-entity':
+        enabled: false
+        description: ''
+        roles: {  }
+      'ai:translate-text':
+        enabled: false
+        description: ''
+        roles: {  }
+      'archive:dump':
+        enabled: false
+        description: ''
+        roles: {  }
+      'backup_migrate:destinations':
+        enabled: false
+        description: ''
+        roles: {  }
+      'backup_migrate:profiles':
+        enabled: false
+        description: ''
+        roles: {  }
+      'backup_migrate:quick_backup':
+        enabled: false
+        description: ''
+        roles: {  }
+      'backup_migrate:schedule_backup':
+        enabled: false
+        description: ''
+        roles: {  }
+      'backup_migrate:schedules':
+        enabled: false
+        description: ''
+        roles: {  }
+      'backup_migrate:sources':
+        enabled: false
+        description: ''
+        roles: {  }
+      'cache:clear':
+        enabled: false
+        description: ''
+        roles: {  }
+      'cache:get':
+        enabled: false
+        description: ''
+        roles: {  }
+      'cache:rebuild':
+        enabled: false
+        description: ''
+        roles: {  }
+      'cache:set':
+        enabled: false
+        description: ''
+        roles: {  }
+      'cache:tags':
+        enabled: false
+        description: ''
+        roles: {  }
+      'cache:warm':
+        enabled: false
+        description: ''
+        roles: {  }
+      'chosen:plugin':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:edit':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:export':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:get':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:import':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:inspect':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:pull':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:set':
+        enabled: false
+        description: ''
+        roles: {  }
+      'config:status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'content:export':
+        enabled: false
+        description: ''
+        roles: {  }
+      'core:cron':
+        enabled: false
+        description: ''
+        roles: {  }
+      'core:edit':
+        enabled: false
+        description: ''
+        roles: {  }
+      'core:requirements':
+        enabled: false
+        description: ''
+        roles: {  }
+      'core:route':
+        enabled: false
+        description: ''
+        roles: {  }
+      'core:rsync':
+        enabled: false
+        description: ''
+        roles: {  }
+      'core:status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'core:topic':
+        enabled: false
+        description: ''
+        roles: {  }
+      'deploy:hook':
+        enabled: false
+        description: ''
+        roles: {  }
+      'deploy:hook-status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'deploy:mark-complete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel:event':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel:hook':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel:reinstall':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel:services':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel:token':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel:uuid':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel-generate:block-content':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel-generate:content':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel-generate:media':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel-generate:menus':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel-generate:terms':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel-generate:users':
+        enabled: false
+        description: ''
+        roles: {  }
+      'devel-generate:vocabs':
+        enabled: false
+        description: ''
+        roles: {  }
+      'drupal:directory':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:disable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:enable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:export:templates':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:import':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:model:export':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:reimport':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:subscriber:rebuild':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:trigger:custom_event':
+        enabled: false
+        description: ''
+        roles: {  }
+      'eca:update':
+        enabled: false
+        description: ''
+        roles: {  }
+      'entity:create':
+        enabled: false
+        description: ''
+        roles: {  }
+      'entity:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'entity:save':
+        enabled: false
+        description: ''
+        roles: {  }
+      'entity-mesh:process':
+        enabled: false
+        description: ''
+        roles: {  }
+      'entity-mesh:process-batch':
+        enabled: false
+        description: ''
+        roles: {  }
+      'entity-mesh:track':
+        enabled: false
+        description: ''
+        roles: {  }
+      'entity-usage:recreate':
+        enabled: false
+        description: ''
+        roles: {  }
+      'err:purge':
+        enabled: false
+        description: ''
+        roles: {  }
+      'feeds:disable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'feeds:enable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'feeds:import':
+        enabled: false
+        description: ''
+        roles: {  }
+      'feeds:import-all':
+        enabled: false
+        description: ''
+        roles: {  }
+      'feeds:list-feeds':
+        enabled: false
+        description: ''
+        roles: {  }
+      'feeds:lock':
+        enabled: false
+        description: ''
+        roles: {  }
+      'feeds:unlock':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:base-info':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:base-override-create':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:create':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:formatters':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:info':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:types':
+        enabled: false
+        description: ''
+        roles: {  }
+      'field:widgets':
+        enabled: false
+        description: ''
+        roles: {  }
+      'geo-images:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'image:derive':
+        enabled: false
+        description: ''
+        roles: {  }
+      'image:derive:multiple':
+        enabled: false
+        description: ''
+        roles: {  }
+      'image:flush':
+        enabled: false
+        description: ''
+        roles: {  }
+      'image-style-warmer:warm-up':
+        enabled: false
+        description: ''
+        roles: {  }
+      'jn:get':
+        enabled: false
+        description: ''
+        roles: {  }
+      'key:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'key:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'key:provider-list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'key:save':
+        enabled: false
+        description: ''
+        roles: {  }
+      'key:type-list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'key:value-get':
+        enabled: false
+        description: ''
+        roles: {  }
+      'locale:check':
+        enabled: false
+        description: ''
+        roles: {  }
+      'locale:clear-status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'locale:export':
+        enabled: false
+        description: ''
+        roles: {  }
+      'locale:import':
+        enabled: false
+        description: ''
+        roles: {  }
+      'locale:import-all':
+        enabled: false
+        description: ''
+        roles: {  }
+      'locale:update':
+        enabled: false
+        description: ''
+        roles: {  }
+      'maint:get':
+        enabled: false
+        description: ''
+        roles: {  }
+      'maint:set':
+        enabled: false
+        description: ''
+        roles: {  }
+      'maint:status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'media-library:import':
+        enabled: false
+        description: ''
+        roles: {  }
+      'migrate:fields-source':
+        enabled: false
+        description: ''
+        roles: {  }
+      'migrate:import':
+        enabled: false
+        description: ''
+        roles: {  }
+      'migrate:messages':
+        enabled: false
+        description: ''
+        roles: {  }
+      'migrate:reset-status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'migrate:rollback':
+        enabled: false
+        description: ''
+        roles: {  }
+      'migrate:status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'migrate:stop':
+        enabled: false
+        description: ''
+        roles: {  }
+      'mk:docs':
+        enabled: false
+        description: ''
+        roles: {  }
+      'modeler_api:disable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'modeler_api:enable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'modeler_api:model:export':
+        enabled: false
+        description: ''
+        roles: {  }
+      'modeler_api:update':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pathauto:aliases-delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pathauto:aliases-generate':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pcb:flush':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pcb:flush-all':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pcb:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'php:cli':
+        enabled: false
+        description: ''
+        roles: {  }
+      'php:eval':
+        enabled: false
+        description: ''
+        roles: {  }
+      'php:script':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pm:install':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pm:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'pm:uninstall':
+        enabled: false
+        description: ''
+        roles: {  }
+      'queue:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'queue:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'queue:process':
+        enabled: false
+        description: ''
+        roles: {  }
+      'queue:process-all':
+        enabled: false
+        description: ''
+        roles: {  }
+      'queue:release':
+        enabled: false
+        description: ''
+        roles: {  }
+      'queue:release-all':
+        enabled: false
+        description: ''
+        roles: {  }
+      'queue:run':
+        enabled: false
+        description: ''
+        roles: {  }
+      'role:create':
+        enabled: false
+        description: ''
+        roles: {  }
+      'role:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'role:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'role:perm:add':
+        enabled: false
+        description: ''
+        roles: {  }
+      'role:perm:remove':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:clear':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:disable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:disable-all':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:enable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:enable-all':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:index':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:rebuild-tracker':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:reset-tracker':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:search':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:server-clear':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:server-disable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:server-enable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:server-list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:set-index-server':
+        enabled: false
+        description: ''
+        roles: {  }
+      'search-api:status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'site:alias':
+        enabled: false
+        description: ''
+        roles: {  }
+      'site:install':
+        enabled: false
+        description: ''
+        roles: {  }
+      'site:set':
+        enabled: false
+        description: ''
+        roles: {  }
+      'site:ssh':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:cli':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:connect':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:create':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:drop':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:dump':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:query':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:sanitize':
+        enabled: false
+        description: ''
+        roles: {  }
+      'sql:sync':
+        enabled: false
+        description: ''
+        roles: {  }
+      'state:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'state:get':
+        enabled: false
+        description: ''
+        roles: {  }
+      'state:set':
+        enabled: false
+        description: ''
+        roles: {  }
+      'theme:dev':
+        enabled: false
+        description: ''
+        roles: {  }
+      'theme:install':
+        enabled: false
+        description: ''
+        roles: {  }
+      'theme:uninstall':
+        enabled: false
+        description: ''
+        roles: {  }
+      'twig:compile':
+        enabled: false
+        description: ''
+        roles: {  }
+      'twig:unused':
+        enabled: false
+        description: ''
+        roles: {  }
+      'typed-data:contexts':
+        enabled: false
+        description: ''
+        roles: {  }
+      'typed-data:datafilters':
+        enabled: false
+        description: ''
+        roles: {  }
+      'typed-data:datatypes':
+        enabled: false
+        description: ''
+        roles: {  }
+      'typed-data:entities':
+        enabled: false
+        description: ''
+        roles: {  }
+      'typed-data:formwidgets':
+        enabled: false
+        description: ''
+        roles: {  }
+      'updatedb:status':
+        enabled: false
+        description: ''
+        roles: {  }
+      'upgrade_status:analyze':
+        enabled: false
+        description: ''
+        roles: {  }
+      'upgrade_status:checkstyle':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:block':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:cancel':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:create':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:information':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:login':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:password':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:role:add':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:role:remove':
+        enabled: false
+        description: ''
+        roles: {  }
+      'user:unblock':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:bulk-operations:execute':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:bulk-operations:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:dev':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:disable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:enable':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:execute':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:slideshow:cycle':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:slideshow:hoverintent':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:slideshow:json2':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:slideshow:lib':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views:slideshow:pause':
+        enabled: false
+        description: ''
+        roles: {  }
+      'views_data_export:views-data-export':
+        enabled: false
+        description: ''
+        roles: {  }
+      'visitors:download:city':
+        enabled: false
+        description: ''
+        roles: {  }
+      'visitors:rebuild:device':
+        enabled: false
+        description: ''
+        roles: {  }
+      'visitors:rebuild:ip-address':
+        enabled: false
+        description: ''
+        roles: {  }
+      'visitors:rebuild:location':
+        enabled: false
+        description: ''
+        roles: {  }
+      'visitors:rebuild:route':
+        enabled: false
+        description: ''
+        roles: {  }
+      'voting:flush':
+        enabled: false
+        description: ''
+        roles: {  }
+      'voting:generate':
+        enabled: false
+        description: ''
+        roles: {  }
+      'voting:recalculate':
+        enabled: false
+        description: ''
+        roles: {  }
+      'watchdog:delete':
+        enabled: false
+        description: ''
+        roles: {  }
+      'watchdog:list':
+        enabled: false
+        description: ''
+        roles: {  }
+      'watchdog:show':
+        enabled: false
+        description: ''
+        roles: {  }
+      'watchdog:show-one':
+        enabled: false
+        description: ''
+        roles: {  }
+      'watchdog:tail':
+        enabled: false
+        description: ''
+        roles: {  }
+      'why:config':
+        enabled: false
+        description: ''
+        roles: {  }
+      'why:module':
+        enabled: false
+        description: ''
+        roles: {  }
+      'workspace:publish':
+        enabled: false
+        description: ''
+        roles: {  }
+      'yaml:get:value':
+        enabled: false
+        description: ''
+        roles: {  }
+      'yaml:lint':
+        enabled: false
+        description: ''
+        roles: {  }
+      'yaml:unset:key':
+        enabled: false
+        description: ''
+        roles: {  }
+      'yaml:update:key':
+        enabled: false
+        description: ''
+        roles: {  }
+      'yaml:update:value':
+        enabled: false
+        description: ''
+        roles: {  }
+  tools:
+    enabled: true
+    roles:
+      - authenticated
+    config: {  }
+    tools:
+      tool_belt___entity_load_by_id:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_revision_add:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_field_values:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_delete:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_list:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_field_value_definitions:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_set_value:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_load_by_property:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_stub:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_save:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_translation_get:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_delete:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_storage_delete:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_bundle_add:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_add:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_storage_add:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_bundle_delete:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_update:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_storage_update:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___field_type_definitions:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_bundle_definition:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_type_list:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_bundle_list:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_bundle_field_definitions:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___entity_bundle_update:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___send_email:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___log_message:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___display_message:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___system_status:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___user_block:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___user_add_role:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___user_unblock:
+        enabled: true
+        description: ''
+        roles: {  }
+      tool_belt___user_remove_role:
+        enabled: true
+        description: ''
+        roles: {  }
+  aif:
+    enabled: false
+    roles:
+      - authenticated
+    config: {  }
+    tools:
+      ai_agent_html_to_markdown:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__file_delete_mark_temporary:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__file_delete_immediately:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity_replicate__entity_node_replicate:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__user_unblock_user_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__user_block_user_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__user_remove_role_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__user_add_role_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__vbo_cancel_user_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__image_style_warmer_warmup_file:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__image_style_warmer_warmup_media:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__image_style_warmer:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__action_send_email_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__block_content:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__comment:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__feeds_feed:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__file:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__media:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__menu_link_content:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__node:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__taxonomy_term:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__save_action__user:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__block_content:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__comment:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__media:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__menu_link_content:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__node:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__path_alias:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__taxonomy_term:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__unpublish_action__paragraph:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__block_content:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__comment:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__media:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__menu_link_content:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__node:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__path_alias:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__taxonomy_term:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__entity__publish_action__paragraph:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__action_goto_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      action_plugin__action_message_action:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_content_entity_seeder:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_get_field_display_form:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_manipulate_field_display_form:
+        enabled: true
+        description: ''
+        roles: {  }
+      list_config_entities:
+        enabled: true
+        description: ''
+        roles: {  }
+      edit_content_type:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_vision:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_get_field_storage:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_get_current_content_entity_values:
+        enabled: true
+        description: ''
+        roles: {  }
+      get_content_type_info:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_list_entity_types:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_get_field_values_and_context:
+        enabled: true
+        description: ''
+        roles: {  }
+      preparing_response:
+        enabled: true
+        description: ''
+        roles: {  }
+      list_bundles:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_manipulate_field_config:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_get_field_storage_form:
+        enabled: true
+        description: ''
+        roles: {  }
+      list_content_entities:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_list_field_types:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_list_taxonomy_term:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_get_config_schema:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_list_field_display_types:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_get_field_config_form:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_create_field_storage_config:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_get_entity_type_field_storage:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_get_field_config:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_content_entity_field_values_list:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_create_agent_config_tools_enabled:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_content_entity_field_value:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agents_get_entity_field_information:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_modify_vocabulary:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_modify_taxonomy_term:
+        enabled: true
+        description: ''
+        roles: {  }
+      create_content_type:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_agent_agent_ckeditor_output:
+        enabled: true
+        description: ''
+        roles: {  }
+      ai_search_rag_search:
+        enabled: true
+        description: ''
+        roles: {  }
+      taxonomy_agent:
+        enabled: true
+        description: ''
+        roles: {  }
+      field_type_agent:
+        enabled: true
+        description: ''
+        roles: {  }
+      node_content_type_agent:
+        enabled: true
+        description: ''
+        roles: {  }
+      content_type_agent_triage:
+        enabled: true
+        description: ''
+        roles: {  }
+      field_agent_triage:
+        enabled: true
+        description: ''
+        roles: {  }
+      taranto_viva_pinecone_searcher:
+        enabled: true
+        description: ''
+        roles: {  }
+      taxonomy_agent_config:
+        enabled: true
+        description: ''
+        roles: {  }
+  jsonapi:
+    enabled: false
+    roles:
+      - authenticated
+    config:
+      allowed_resource_types: {  }
+    tools:
+      jsonapi_read:
+        enabled: true
+        description: ''
+        roles: {  }
+  aia:
+    enabled: false
+    roles:
+      - authenticated
+    config: {  }
+    tools:
+      taxonomy_agent__taxonomy_agent:
+        enabled: true
+        description: ''
+        roles: {  }
+      field_type_agent__field_type_agent:
+        enabled: true
+        description: ''
+        roles: {  }
+      node_content_type_agent__node_content_type_agent:
+        enabled: true
+        description: ''
+        roles: {  }
+      content_type_agent_triage__content_type_agent_triage:
+        enabled: true
+        description: ''
+        roles: {  }
+      field_agent_triage__field_agent_triage:
+        enabled: true
+        description: ''
+        roles: {  }
+      taranto_viva_pinecone_searcher__taranto_viva_pinecone_searcher:
+        enabled: true
+        description: ''
+        roles: {  }
+      taxonomy_agent_config__taxonomy_agent_config:
+        enabled: true
+        description: ''
+        roles: {  }

@@ -1,0 +1,396 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Entity Mesh module.
+ */
+
+use Drupal\Core\Entity\ContentEntityDeleteForm;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+use Drupal\entity_mesh\TrackerInterface;
+use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function entity_mesh_entity_insert(EntityInterface $entity) {
+  entity_mesh_process_entity($entity, 'process');
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function entity_mesh_entity_update(EntityInterface $entity) {
+  entity_mesh_process_entity($entity, 'process');
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function entity_mesh_entity_delete(EntityInterface $entity) {
+  entity_mesh_process_entity($entity, 'delete');
+}
+
+/**
+ * Check if the entity can be process by render_entity.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity to check.
+ *
+ * @return bool
+ *   TRUE if the entity is a render entity, FALSE otherwise.
+ */
+function entity_mesh_is_render_entity(EntityInterface $entity) {
+  return $entity instanceof NodeInterface;
+}
+
+/**
+ * Process entity.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   The entity to process.
+ * @param string $operation
+ *   The operation to perform.
+ */
+function entity_mesh_process_entity(EntityInterface $entity, $operation) {
+  // Check it the entity has to be precessed.
+  if (!entity_mesh_is_render_entity($entity)) {
+    return;
+  }
+
+  $service = 'entity_mesh.entity_render';
+  $config = \Drupal::config('entity_mesh.settings');
+  $processing_mode = $config->get('processing_mode') ?: 'asynchronous';
+  $entity_mesh = \Drupal::service($service);
+
+  /** @var Drupal\entity_mesh\TrackerManagerInterface $tracker_manager */
+  $tracker_manager = \Drupal::service('entity_mesh.tracker_manager');
+
+  // Create or update the entity in the entity mesh.
+  if ($operation === 'process') {
+    if ($processing_mode === 'asynchronous') {
+      // Tracker the entity.
+      $tracker_manager->addTrackedEntity($entity);
+      return;
+    }
+
+    // Synchronous mode with limit.
+    $synchronous_limit = $config->get('synchronous_limit') ?: 25;
+
+    // Count the number of links in the entity.
+    $link_count = $entity_mesh->countEntityLinks($entity);
+
+    // If link count is within the limit, process synchronously.
+    if ($link_count <= $synchronous_limit) {
+      $entity_mesh->processEntity($entity);
+    }
+    else {
+      $tracker_manager->addTrackedEntity($entity);
+    }
+    return;
+  }
+
+  // Remove the entity from the mesh.
+  if ($operation === 'delete') {
+    if ($processing_mode === 'asynchronous') {
+      $tracker_manager->deleteTrackedEntity($entity);
+      return;
+    }
+    $entity_mesh->deleteItem($entity->getEntityTypeId(), $entity->id());
+  }
+
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * It informs the editor that the node that is deleting is referenced
+ * in other places.
+ */
+function entity_mesh_form_alter(&$form, $form_state, $form_id) {
+  if (!\Drupal::currentUser()->hasPermission('access entity_mesh report')) {
+    return;
+  }
+
+  if (!str_ends_with($form_id, '_delete_form')) {
+    return;
+  }
+
+  $form_object = $form_state->getFormObject();
+  if (!$form_object instanceof ContentEntityDeleteForm) {
+    return;
+  }
+
+  $entity = $form_object->getEntity();
+  if (!($entity instanceof NodeInterface || $entity instanceof MediaInterface)) {
+    return;
+  }
+  entity_mesh_alter_node_delete_form($form, $entity);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function entity_mesh_form_node_delete_multiple_confirm_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!\Drupal::currentUser()->hasPermission('access entity_mesh report')) {
+    return;
+  }
+
+  $storage = \Drupal::service('entity_type.manager')->getStorage('node');
+
+  foreach (array_keys($form["entities"]["#items"]) as $key) {
+    $keys = explode(':', $key);
+    $node_id = array_shift($keys);
+    $node = $storage->load($node_id);
+    entity_mesh_alter_node_delete_form($form, $node);
+  }
+}
+
+/**
+ * Helper function to alter the entity delete form.
+ *
+ * @param array $form
+ *   Form array to be altered.
+ * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+ *   The entity being deleted.
+ */
+function entity_mesh_alter_node_delete_form(&$form, $entity) {
+  $database = \Drupal::service('database');
+  $entity_id = $entity->id();
+  $entity_type_id = $entity->getEntityTypeId();
+  $label = $entity->label();
+
+  $language_to_show = 'undefined';
+  $languages = [];
+  if (\Drupal::hasService('language_manager')) {
+
+    $languages = array_map(function ($language) {
+      // Example: Add a suffix to each language name.
+      return $language->getName();
+    }, \Drupal::languageManager()->getLanguages());
+
+    $default_lang_id = \Drupal::languageManager()->getDefaultLanguage()->getId();
+    $entity_lang = $entity->language()->getId();
+    $language_to_show = $entity_lang !== $default_lang_id ? $entity_lang : 'all';
+  }
+
+  // Define the basic query.
+  $query = $database->select('entity_mesh')
+    ->fields('entity_mesh', [
+      'source_title',
+      'source_entity_id',
+      'source_entity_type',
+      'source_entity_langcode',
+      'target_entity_type',
+      'target_entity_id',
+    ])
+    ->condition('target_entity_type', $entity_type_id)
+    ->condition('target_entity_id', $entity_id);
+
+  // Get the number of elements.
+  $count_query = clone $query;
+  $count = $count_query->countQuery()->execute()->fetchField();
+
+  // If there are no references, we do not need to show anything.
+  if ($count == 0) {
+    return;
+  }
+
+  // If there are more than 10 references, show a summary with link to
+  // entity mesh tab.
+  if ($count > 10) {
+    // Map entity types to their view route names.
+    $view_route_map = [
+      'node' => 'view.entity_mesh_node.node_target_table',
+      'media' => 'view.entity_mesh_media.media_target_table',
+      'taxonomy_term' => 'view.entity_mesh_taxonomy.taxonomy_target_table',
+    ];
+
+    // Get the appropriate view route for this entity type.
+    $view_route = $view_route_map[$entity_type_id] ?? NULL;
+
+    if ($view_route) {
+      $entity_mesh_url = Url::fromRoute($view_route, [
+        $entity_type_id => $entity_id,
+      ]);
+      $entity_mesh_link = Link::fromTextAndUrl(
+        t('Check the list of related content here'),
+        $entity_mesh_url
+      );
+
+      $form[$entity_id]['title'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => t('Warning: "@label" is linked from other content items @count times. Deleting it may result in broken references that should be updated. @link', [
+          '@label' => $label,
+          '@count' => $count,
+          '@link' => $entity_mesh_link->toString(),
+        ]),
+      ];
+    }
+    else {
+      // Fallback if no view route is defined for this entity type.
+      $form[$entity_id]['title'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => t('Warning: "@label" is linked from @count other content items. Deleting it may result in broken references that should be updated.', [
+          '@label' => $label,
+          '@count' => $count,
+        ]),
+      ];
+    }
+    return;
+  }
+
+  $items = [];
+  $execution = $query->execute();
+  $execution = $execution->fetchAll();
+
+  // When there are two translation of the same entity,
+  // only expose the link to the current language.
+  foreach ($execution as $record) {
+    $index = $record->source_entity_type . '-' . $record->source_entity_id;
+    $language = !empty($record->source_entity_langcode) ?: 'undefined';
+
+    if (!isset($items[$language])) {
+      $items[$language] = [];
+    }
+
+    // Generate the canonical route for the source entity.
+    $route_name = 'entity.' . $record->source_entity_type . '.canonical';
+    $route_parameters = [$record->source_entity_type => $record->source_entity_id];
+
+    $items[$language][$index] = Link::fromTextAndUrl(
+      $record->source_title,
+      Url::fromRoute($route_name, $route_parameters)
+    );
+  }
+
+  $form[$entity_id]['title'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'p',
+    '#value' => t('Warning: "@label" is linked from other content listed below. Deleting it may result in broken references that should be updated', ['@label' => $label]),
+  ];
+
+  if ($language_to_show !== 'all') {
+    $item_list = $items[$language_to_show] ?? [];
+    if (count($item_list) === 0) {
+      unset($form[$entity_id]);
+      return;
+    }
+    $form[$entity_id]['items'] = [
+      '#theme' => 'item_list',
+      '#items' => $item_list,
+    ];
+    return;
+  }
+
+  foreach ($items as $lang => $item_list) {
+    $lang_label = $languages[$lang] ?? '';
+    $form[$entity_id][$lang]['text'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => t('@lang', ['@lang' => $lang_label]),
+    ];
+    $form[$entity_id][$lang]['items'] = [
+      '#theme' => 'item_list',
+      '#items' => $item_list,
+    ];
+  }
+
+}
+
+/**
+ * Implements hook_cron().
+ *
+ * Processes pending entities from the tracker queue during cron runs.
+ */
+function entity_mesh_cron() {
+  $config = \Drupal::config('entity_mesh.settings');
+  $cron_enabled = $config->get('cron_enabled') ?? TRUE;
+
+  // If cron processing is disabled, skip.
+  if (!$cron_enabled) {
+    return;
+  }
+
+  $cron_limit = $config->get('cron_limit') ?? 50;
+  $tracker = \Drupal::service('entity_mesh.tracker');
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $entity_render = \Drupal::service('entity_mesh.entity_render');
+  $logger = \Drupal::logger('entity_mesh');
+
+  // Get pending entities from tracker.
+  $pending_entities = $tracker->getPendingEntities($cron_limit, 'node');
+
+  if (empty($pending_entities)) {
+    return;
+  }
+
+  $logger->info('Processing @count entities from tracker during cron run.', [
+    '@count' => count($pending_entities),
+  ]);
+
+  $processed = 0;
+  $failed = 0;
+
+  foreach ($pending_entities as $tracker_item) {
+    $tracker_id = (int) $tracker_item['id'];
+    $entity_id = $tracker_item['entity_id'];
+    $entity_type = $tracker_item['entity_type'];
+    $operation = (int) $tracker_item['operation'];
+
+    try {
+      // Check operation type.
+      if ($operation === TrackerInterface::OPERATION_PROCESS) {
+        // Load the entity.
+        $entity = $entity_type_manager->getStorage($entity_type)->load($entity_id);
+
+        if ($entity instanceof NodeInterface) {
+          // Process the entity.
+          $entity_render->processEntity($entity);
+          // Mark as processed.
+          $tracker->markAsProcessed($tracker_id);
+          $processed++;
+        }
+        else {
+          // Entity not found, mark as failed.
+          $tracker->markAsFailed($tracker_id);
+          $failed++;
+          $logger->warning('Entity @type:@id not found during cron processing.', [
+            '@type' => $entity_type,
+            '@id' => $entity_id,
+          ]);
+        }
+      }
+      elseif ($operation === TrackerInterface::OPERATION_DELETE) {
+        // Delete entity mesh records.
+        $entity_render->deleteItem($entity_type, $entity_id);
+        // Mark as processed.
+        $tracker->markAsProcessed($tracker_id);
+        $processed++;
+      }
+    }
+    catch (\Exception $e) {
+      // Mark as failed on exception.
+      $tracker->markAsFailed($tracker_id);
+      $failed++;
+      $logger->error('Error processing entity @type:@id during cron: @message', [
+        '@type' => $entity_type,
+        '@id' => $entity_id,
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+
+  if ($processed > 0 || $failed > 0) {
+    $logger->info('Cron processing completed: @processed processed, @failed failed.', [
+      '@processed' => $processed,
+      '@failed' => $failed,
+    ]);
+  }
+}

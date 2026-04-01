@@ -1,0 +1,97 @@
+# Schema for the configuration files of the Model Context Protocol module.
+mcp.settings:
+  type: config_object
+  label: 'Model Context Protocol settings'
+  mapping:
+    enable_auth:
+      type: boolean
+      label: 'Enable Authentication'
+    auth_settings:
+      type: mapping
+      label: 'Authentication Settings'
+      mapping:
+        enable_token_auth:
+          type: boolean
+          label: 'Enable Token Authentication'
+        token_key:
+          type: string
+          label: 'Token Key'
+        token_user:
+          type: string
+          label: 'Token User ID'
+        enable_basic_auth:
+          type: boolean
+          label: 'Enable Basic Authentication'
+    plugins:
+      type: sequence
+      label: 'Plugin Settings'
+      sequence:
+        type: mcp.plugin_config.[%key]
+
+# Base plugin configuration schema
+mcp.plugin_config:
+  type: mapping
+  label: 'Plugin Configuration Base'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Plugin Enabled'
+    roles:
+      type: sequence
+      label: 'Allowed Roles'
+      sequence:
+        type: string
+        label: 'Role ID'
+
+# Dynamic plugin configuration for any plugin ID
+mcp.plugin_config.*:
+  type: mcp.plugin_config
+  label: 'Plugin Configuration'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Plugin Enabled'
+    roles:
+      type: sequence
+      label: 'Allowed Roles'
+      sequence:
+        type: string
+        label: 'Role ID'
+    config:
+      type: mapping
+      label: 'Custom Plugin Configuration'
+      mapping:
+        custom_setting:
+          type: string
+          label: 'Custom Setting'
+    tools:
+      type: sequence
+      label: 'Tool Settings'
+      sequence:
+        type: mcp.tool_config.[%key]
+
+# Tool configuration schema
+mcp.tool_config:
+  type: mapping
+  label: 'Tool Configuration Base'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Tool Enabled'
+    display_name:
+      type: label
+      label: 'Display Name'
+    description:
+      type: text
+      label: 'Description'
+    roles:
+      type: sequence
+      label: 'Allowed Roles'
+      sequence:
+        type: string
+        label: 'Role ID'
+
+# Dynamic tool configuration for any tool ID
+mcp.tool_config.*:
+  type: mcp.tool_config
+  label: 'Tool Configuration'

@@ -1,0 +1,11 @@
+views.display_extender.library_in_views_display_extender:
+  type: mapping
+  label: 'Views Attach Library Settings'
+  mapping:
+    attach_library:
+      type: mapping
+      label: 'The libraries to be attached'
+      mapping:
+        attach_library:
+          type: string
+          label: 'The libraries to be attached'

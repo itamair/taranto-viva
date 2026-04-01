@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains leaflet_choropleth.module.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function leaflet_choropleth_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.leaflet_choropleth':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Leaflet Choropleth module provides choropleth map functionality for Leaflet maps in Drupal.') . '</p>';
+      $output .= '<p>' . t('Choropleth maps use differences in color to represent differences in values across regions.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_library_info_alter().
+ *
+ * Make the leaflet_choropleth loading before leaflet js library.
+ */
+function leaflet_choropleth_library_info_alter(&$libraries, $extension) {
+  if ($extension == "leaflet") {
+    $libraries['leaflet']['dependencies'][] = 'leaflet_choropleth/leaflet_choropleth';
+  }
+}

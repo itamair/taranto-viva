@@ -33,7 +33,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job_item
           plugin_id: tmgmt_job_item_state
-          label: Stato
+          label: State
           exclude: false
           alter:
             alter_text: false
@@ -83,7 +83,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job_item
           plugin_id: tmgmt_entity_label
-          label: Etichetta
+          label: Label
           exclude: false
           alter:
             alter_text: false
@@ -140,7 +140,7 @@ display:
           admin_label: ''
           entity_type: tmgmt_job_item
           plugin_id: tmgmt_job_item_type
-          label: Tipo
+          label: Type
           exclude: false
           alter:
             alter_text: false
@@ -191,7 +191,7 @@ display:
           entity_type: tmgmt_job
           entity_field: source_language
           plugin_id: field
-          label: Da
+          label: From
           exclude: false
           alter:
             alter_text: false
@@ -257,7 +257,7 @@ display:
           entity_type: tmgmt_job
           entity_field: target_language
           plugin_id: field
-          label: A
+          label: To
           exclude: false
           alter:
             alter_text: false
@@ -439,7 +439,7 @@ display:
           entity_type: tmgmt_job_item
           entity_field: tags_count
           plugin_id: field
-          label: Etichette
+          label: Tags
           exclude: false
           alter:
             alter_text: false
@@ -505,7 +505,7 @@ display:
           entity_type: tmgmt_job_item
           entity_field: changed
           plugin_id: field
-          label: Modificato
+          label: Changed
           exclude: false
           alter:
             alter_text: false
@@ -581,7 +581,7 @@ display:
           entity_type: null
           entity_field: null
           plugin_id: entity_operations
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -632,8 +632,8 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: 'Seguente ›'
-            previous: '‹ Precedente'
+            next: 'Next ›'
+            previous: '‹ Previous'
             first: '« First'
             last: 'Last »'
           expose:
@@ -641,7 +641,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -705,7 +705,7 @@ display:
             reduce: false
           is_grouped: false
           group_info:
-            label: Stato
+            label: State
             description: ''
             identifier: state
             optional: true
@@ -731,7 +731,7 @@ display:
           exposed: true
           expose:
             operator_id: source_language_op
-            label: 'Lingua di origine'
+            label: 'Source language'
             description: ''
             use_operator: false
             operator: source_language_op
@@ -741,8 +741,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -782,8 +780,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -835,7 +831,7 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Normale
+                title: Normal
                 operator: '='
                 value:
                   value: normal
@@ -943,6 +939,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:

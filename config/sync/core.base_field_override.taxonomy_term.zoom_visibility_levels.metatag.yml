@@ -1,0 +1,20 @@
+uuid: 3ba220b5-23e1-46f7-81c5-ffaf781a2f36
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.zoom_visibility_levels
+  module:
+    - metatag
+id: taxonomy_term.zoom_visibility_levels.metatag
+field_name: metatag
+entity_type: taxonomy_term
+bundle: zoom_visibility_levels
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed

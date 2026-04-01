@@ -1,0 +1,24 @@
+mcp_studio.settings:
+  path: '/admin/config/mcp/studio'
+  defaults:
+    _form: '\Drupal\mcp_studio\Form\SettingsForm'
+    _title: 'MCP Studio'
+  requirements:
+    _permission: 'administer mcp configuration'
+
+mcp_studio.tool_form:
+  path: '/admin/config/mcp/studio/tool/{tool_id}'
+  defaults:
+    _form: '\Drupal\mcp_studio\Form\ToolForm'
+    _title: 'Configure Studio Tool'
+    tool_id: NULL
+  requirements:
+    _permission: 'administer mcp configuration'
+
+mcp_studio.tool_delete:
+  path: '/admin/config/mcp/studio/tool/{tool_id}/delete'
+  defaults:
+    _form: '\Drupal\mcp_studio\Form\ToolDeleteForm'
+    _title: 'Delete Studio Tool'
+  requirements:
+    _permission: 'administer mcp configuration'

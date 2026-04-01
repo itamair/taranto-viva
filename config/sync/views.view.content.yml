@@ -30,7 +30,7 @@ base_field: nid
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -92,7 +92,8 @@ display:
           buttons: false
           action_title: Action
           clear_on_exposed: true
-          force_selection_info: false
+          show_multipage_selection_box: default
+          show_select_all: default
           selected_actions:
             -
               action_id: node_assign_owner_action
@@ -167,7 +168,7 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: field
-          label: 'Tipo di contenuto'
+          label: 'Content type'
           exclude: false
           alter:
             alter_text: false
@@ -563,7 +564,7 @@ display:
           entity_type: node
           entity_field: status
           plugin_id: field
-          label: Stato
+          label: Status
           exclude: false
           alter:
             alter_text: false
@@ -576,8 +577,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: 'Non pubblicato'
-            format_custom_true: Pubblicato
+            format_custom_false: Unpublished
+            format_custom_true: Published
         changed:
           id: changed
           table: node_field_data
@@ -585,7 +586,7 @@ display:
           entity_type: node
           entity_field: changed
           plugin_id: field
-          label: Aggiornato
+          label: Updated
           exclude: false
           alter:
             alter_text: false
@@ -619,7 +620,7 @@ display:
           entity_type: node
           entity_field: langcode
           plugin_id: field
-          label: Lingua
+          label: Language
           exclude: false
           alter:
             alter_text: false
@@ -683,7 +684,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: entity_operations
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: false
@@ -734,8 +735,8 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: 'Seguente ›'
-            previous: '‹ Precedente'
+            next: 'Next ›'
+            previous: '‹ Previous'
             first: '« First'
             last: 'Last »'
           expose:
@@ -762,8 +763,11 @@ display:
           bef:
             general:
               autosubmit: false
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
@@ -774,69 +778,104 @@ display:
               title:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   placeholder_text: ''
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
               type:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
               field_category_type_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
               status:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
               langcode:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
               field_project_namespace_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
               field_zoom_visibility_target_id:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   rewrite:
                     filter_rewrite_values: ''
                     filter_rewrite_values_key: false
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
       access:
         type: perm
         options:
@@ -882,8 +921,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -912,7 +949,7 @@ display:
           exposed: true
           expose:
             operator_id: type_op
-            label: 'Tipo di contenuto'
+            label: 'Content type'
             description: ''
             use_operator: false
             operator: type_op
@@ -925,9 +962,6 @@ display:
             remember_roles:
               authenticated: authenticated
               administrator: administrator
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -967,10 +1001,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1006,7 +1036,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: Stato
+            label: Status
             description: ''
             use_operator: false
             operator: status_op
@@ -1031,11 +1061,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Pubblicato
+                title: Published
                 operator: '='
                 value: '1'
               2:
-                title: 'Non pubblicato'
+                title: Unpublished
                 operator: '='
                 value: '0'
         langcode:
@@ -1061,7 +1091,7 @@ display:
           exposed: true
           expose:
             operator_id: langcode_op
-            label: Lingua
+            label: Language
             description: ''
             use_operator: false
             operator: langcode_op
@@ -1073,10 +1103,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1128,10 +1154,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1180,10 +1202,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1229,10 +1247,6 @@ display:
             multiple: true
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -1355,6 +1369,7 @@ display:
           empty_table: true
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:

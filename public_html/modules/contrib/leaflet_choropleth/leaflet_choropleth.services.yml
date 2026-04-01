@@ -1,0 +1,12 @@
+services:
+  leaflet_choropleth.processor:
+    class: Drupal\leaflet_choropleth\Service\LeafletChoroplethProcessor
+    arguments: ['@leaflet.service', '@plugin.manager.leaflet_choropleth_color_scale', '@plugin.manager.leaflet_choropleth_classification', '@current_user']
+
+  plugin.manager.leaflet_choropleth_color_scale:
+    class: Drupal\leaflet_choropleth\ColorScalePluginManager
+    parent: default_plugin_manager
+
+  plugin.manager.leaflet_choropleth_classification:
+    class: Drupal\leaflet_choropleth\ClassificationPluginManager
+    parent: default_plugin_manager

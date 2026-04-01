@@ -1,0 +1,22 @@
+# Italian translation of Watchdog Statistics (1.0.5)
+# Copyright (c) 2025 by the Italian translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Watchdog Statistics (1.0.5)\n"
+"POT-Creation-Date: 2025-04-10 10:46+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+msgid "Log"
+msgstr "Log"
+msgid "Date format"
+msgstr "Formato data"
+msgid "Timezone"
+msgstr "Fuso orario"
+msgid "Date sort"
+msgstr "Ordinamento date"

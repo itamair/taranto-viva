@@ -1,0 +1,9 @@
+/**
+ * @file
+ * Mismatched entity and/or field definitions report styles.
+ */
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

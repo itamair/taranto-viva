@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Contains mcp_studio.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mcp_studio_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.mcp_studio':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Create and manage MCP tools without coding') . '</p>';
+      return $output;
+
+    default:
+  }
+}

@@ -1,0 +1,12 @@
+name: 'Single Responsive Image Formatter'
+type: module
+description: 'Provides responsive formatter for images that displays only first value of multi-valued image field'
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+package: 'Media'
+dependencies:
+  - drupal:responsive_image
+
+# Information added by Drupal.org packaging script on 2024-07-15
+version: '2.0.0'
+project: 'single_image_formatter'
+datestamp: 1721028833

@@ -7,13 +7,8 @@ dependencies:
     - node.type.map_label
     - taxonomy.vocabulary.zoom_visibility_levels
   module:
-    - ai_translate
     - tmgmt_content
 third_party_settings:
-  ai_translate:
-    entity_reference:
-      translate_references: default
-    translate_references: default
   tmgmt_content:
     excluded: false
 id: node.map_label.field_zoom_visibility

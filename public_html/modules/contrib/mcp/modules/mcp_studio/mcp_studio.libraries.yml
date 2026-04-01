@@ -1,0 +1,41 @@
+codemirror:
+  version: 5.65.16
+  js:
+    # Core
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js: { type: external, minified: true, weight: -20 }
+    
+    # Modes
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js: { type: external, minified: true, weight: -19 }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js: { type: external, minified: true, weight: -18 }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/twig/twig.min.js: { type: external, minified: true, weight: -17 }
+    
+    # Features
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/display/fullscreen.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/lint/lint.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/lint/json-lint.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js: { type: external, minified: true }
+    
+    # Autocomplete
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/javascript-hint.min.js: { type: external, minified: true }
+    
+    # JSON Linting
+    https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js: { type: external, minified: true, weight: -15 }
+    
+    # Our implementation
+    js/mcp-studio-codemirror.js: {}
+    
+  css:
+    component:
+      https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css: { type: external }
+      https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/display/fullscreen.min.css: { type: external }
+      https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/lint/lint.min.css: { type: external }
+      https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.css: { type: external }
+      css/mcp-studio-codemirror.css: {}
+      
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once

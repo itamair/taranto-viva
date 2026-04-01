@@ -60,7 +60,7 @@ dependencies:
     - taxonomy
     - user
 id: ciclovia_acquedotto_aqp
-label: 'Ciclovia Acquedotto AQP'
+label: 'Apulian Aqueduct Cycle Route'
 module: views
 description: ''
 tag: ''
@@ -237,7 +237,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: "<p>No Results found</p>\r\n"
+            value: '<p>No Results found</p>'
             format: basic_html
           tokenize: false
       sorts:
@@ -593,7 +593,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: "<p>Fonte dati: <a href=\"https://www.cicloviadellacquedotto.it/tracciato/\" target=\"blank\">Sito cicloviadellacquedotto.it</a></p>\r\n<p>Scarica il tracciato in formato GeoJSON: <a href=\"/ciclovia_acqueddotto_geojson/v1\" target=\"blank\">GeoJSON API Endpoint (v1)</a></p>"
+            value: '<p>Data source: <a href="https://www.cicloviadellacquedotto.it/tracciato/" target="blank">Cicloviadellacquedotto.it Website</a></p><p>Download the Route in GeoJSON format: <a href="/ciclovia_acqueddotto_geojson/v1" target="blank">GeoJSON API Endpoint (v1)</a></p>'
             format: full_html
           tokenize: false
       display_extenders: {  }
@@ -2020,8 +2020,11 @@ display:
           bef:
             general:
               autosubmit: true
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
@@ -2032,10 +2035,15 @@ display:
               title:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   placeholder_text: ''
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
       sorts: {  }
       filters:
         status:
@@ -2312,11 +2320,11 @@ display:
         - 'config:field.storage.paragraph.field_zindex'
   page_ciclovia_acquedotti:
     id: page_ciclovia_acquedotti
-    display_title: 'Page Ciclovia Acquedotto AQP'
+    display_title: 'Page Apulian Aqueduct Cycle Route'
     display_plugin: page
     position: 1
     display_options:
-      title: 'Ciclovia Acquedotto Pugliese'
+      title: 'Apulian Aqueduct Cycle Route'
       fields:
         title:
           id: title
@@ -4359,7 +4367,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<div>Fonte: {{ field_fonte }}</div>'
+            text: '<div>Source: {{ field_fonte }}</div>'
             make_link: false
             path: ''
             absolute: false
@@ -4540,8 +4548,11 @@ display:
           bef:
             general:
               autosubmit: true
+              auto_submit_sort_only: false
+              autosubmit_breakpoint: ''
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
+              autosubmit_textfield_minimum_length: 3
               autosubmit_hide: true
               input_required: false
               allow_secondary: false
@@ -4552,10 +4563,15 @@ display:
               title:
                 plugin_id: default
                 advanced:
+                  sort_options_method: alphabetical_asc
+                  sort_options_natural: true
                   placeholder_text: ''
                   collapsible: false
                   collapsible_disable_automatic_open: false
+                  open_by_default: false
                   is_secondary: false
+                  hide_label: false
+                  field_classes: ''
       sorts: {  }
       filters:
         status:
@@ -4731,10 +4747,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              vagante_importer: '0'
-              administrator: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -4779,7 +4791,7 @@ display:
             value: nothing
             options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"{{ field_tooltip_direction }}","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'
           leaflet_popup:
-            value: leaflet_popup_rendered_entity
+            value: '#rendered_entity'
             options: '{"autoPan":true,"maxWidth":400}'
             view_mode: leaflet_popup
           leaflet_map: multilayers
@@ -4853,7 +4865,7 @@ display:
               input_size: 16
               providers:
                 googlemaps:
-                  weight: '2'
+                  weight: '-100'
                   checked: 1
                 arcgisonline:
                   weight: '0'
@@ -4993,7 +5005,7 @@ display:
           plugin_id: text
           empty: false
           content:
-            value: '<b>Fonte Dati:</b>'
+            value: '<p><strong>Data Sources:</strong></p>'
             format: full_html
           tokenize: false
         view:
@@ -5021,10 +5033,11 @@ display:
             og_title: '[view:title] | [site:name] '
             og_description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
+        library_in_views_display_extender: {  }
       path: ciclovia-acquedotto-pugliese
       menu:
         type: normal
-        title: 'Ciclovia Acquedotto Pugliese'
+        title: 'Apulian Aqueduct Cycle Route'
         description: null
         weight: -46
         enabled: true

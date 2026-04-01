@@ -1,0 +1,25 @@
+instantsearch:
+  js:
+    https://cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2/dist/typesense-instantsearch-adapter.min.js: {}
+    https://cdn.jsdelivr.net/npm/algoliasearch@4.20.0/dist/algoliasearch-lite.umd.js: {}
+    https://cdn.jsdelivr.net/npm/instantsearch.js@4.60.0/dist/instantsearch.production.min.js: {}
+search:
+  js:
+    js/search.js: {}
+  css:
+    theme:
+      https://cdn.jsdelivr.net/npm/instantsearch.css@8.5.1/themes/algolia.css: {}
+      css/search.css: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - search_api_typesense/instantsearch
+converse:
+  js:
+    js/converse.js: { }
+  css:
+    theme:
+      css/converse.css: { }
+  dependencies:
+    - core/jquery
+    - core/once

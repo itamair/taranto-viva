@@ -1,7 +1,0 @@
-react_maplibre_map.map:
-  path: '/react-maplibre-map'
-  defaults:
-    _controller: '\Drupal\react_maplibre_map\Controller\ReactMaplibreController::viewMap'
-    _title: 'React MapLibre Map'
-  requirements:
-    _permission: 'access content'

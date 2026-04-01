@@ -1,0 +1,57 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Search API Typesense module hooks.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Hook\Attribute\LegacyHook;
+use Drupal\search_api_typesense\Hook\SearchApiTypesenseHooks;
+
+/**
+ * Implements hook_help().
+ *
+ * @phpstan-ignore-next-line
+ */
+#[LegacyHook]
+function search_api_typesense_help(string $route_name): string {
+  return \Drupal::service(SearchApiTypesenseHooks::class)->help($route_name);
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * @return array<string, mixed>
+ *   A list of theme hooks.
+ *
+ * @phpstan-ignore-next-line
+ */
+#[LegacyHook]
+function search_api_typesense_theme(): array {
+  return \Drupal::service(SearchApiTypesenseHooks::class)->theme();
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * @param array<mixed> $form
+ *   The form array.
+ *
+ * @phpstan-ignore-next-line
+ */
+#[LegacyHook]
+function search_api_typesense_form_alter(
+  array &$form,
+  FormStateInterface $form_state,
+  string $form_id,
+): void {
+  \Drupal::service(SearchApiTypesenseHooks::class)
+    ->formAlter(
+      $form,
+      $form_state,
+      $form_id,
+    );
+}

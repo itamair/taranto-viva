@@ -1,0 +1,17 @@
+name: "GraphQL Compose: Layout Builder"
+description: "Enable GraphQL for the Layout Paragraphs module. <em>This module is experimental and may change</em>."
+type: module
+core_version_requirement: ^10.2 || ^11
+php: 8.1
+dependencies:
+  - core:layout_builder
+  - graphql_compose:graphql_compose
+  - graphql_compose:graphql_compose_blocks
+  - graphql_compose:graphql_compose_layouts
+package: GraphQL Compose (Experimental)
+hidden: false
+
+# Information added by Drupal.org packaging script on 2025-11-20
+version: '2.4.1'
+project: 'graphql_compose'
+datestamp: 1763681649

@@ -1,0 +1,21 @@
+views.field.latest_watchdog_timestamp:
+  type: views_field
+  label: 'Latest watchdog timestamps'
+  mapping:
+    custom_date_format:
+      type: string
+      label: 'Custom Date format'
+    date_format:
+      type: string
+      label: 'Date format'
+    timezone:
+      type: string
+      label: 'Timezone'
+
+views.sort.latest_watchdog_timestamp:
+  type: views_sort
+  label: 'Date sort'
+  mapping:
+    granularity:
+      type: string
+      label: 'Date granularity'

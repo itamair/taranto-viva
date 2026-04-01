@@ -9,7 +9,7 @@ dependencies:
 _core:
   default_config_hash: 87yKVmmS3YnHywnRZlIKSf-dbczZsAEUwsnmveRpcPE
 id: visitors
-label: Visitatori
+label: Visitors
 module: views
 description: 'Visitors web analytics reports.'
 tag: ''
@@ -18,7 +18,7 @@ base_field: ''
 display:
   default:
     id: default
-    display_title: Master
+    display_title: Default
     display_plugin: default
     position: 0
     display_options:
@@ -89,7 +89,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       exposed_form:
@@ -239,6 +239,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -452,7 +453,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: tabella
+          label: table
           empty: false
           display_id: browser_engine_table
       display_extenders: {  }
@@ -1548,7 +1549,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: tabella
+          label: table
           empty: false
           display_id: continent_table
       display_extenders: {  }
@@ -1575,7 +1576,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_continent
-          label: Abbreviazione
+          label: Abbreviation
           exclude: true
           alter:
             alter_text: true
@@ -1743,11 +1744,11 @@ display:
       tags: {  }
   country_table:
     id: country_table
-    display_title: Paese
+    display_title: Country
     display_plugin: embed
     position: 2
     display_options:
-      title: Paese
+      title: Country
       fields:
         location_country_1:
           id: location_country_1
@@ -1757,7 +1758,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Abbreviazione
+          label: Abbreviation
           exclude: true
           alter:
             alter_text: true
@@ -1809,7 +1810,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_country
-          label: Paese
+          label: Country
           exclude: false
           alter:
             alter_text: false
@@ -1915,7 +1916,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -1972,7 +1973,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_day
-          label: Giorno
+          label: Day
           exclude: false
           alter:
             alter_text: false
@@ -2100,7 +2101,7 @@ display:
                   color: '#0277bd'
                   weight: 2
             display:
-              title: Giornalmente
+              title: Daily
               title_position: top
               subtitle: ''
               data_labels: false
@@ -2176,7 +2177,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_day_of_month
-          label: 'Giorno del mese'
+          label: 'Day of Month'
           exclude: false
           alter:
             alter_text: false
@@ -2304,7 +2305,7 @@ display:
                   color: '#0277bd'
                   weight: 2
             display:
-              title: 'Giorno del mese'
+              title: 'Day of Month'
               title_position: top
               subtitle: ''
               data_labels: false
@@ -2366,7 +2367,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: tabella
+          label: table
           empty: false
           display_id: day_of_month_table
       display_extenders: {  }
@@ -2382,7 +2383,7 @@ display:
     display_plugin: embed
     position: 28
     display_options:
-      title: 'Giorno del mese'
+      title: 'Day of Month'
       fields:
         visitors_day_of_month:
           id: visitors_day_of_month
@@ -2392,7 +2393,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_day_of_month
-          label: 'Giorno del mese'
+          label: 'Day of Month'
           exclude: false
           alter:
             alter_text: false
@@ -2529,8 +2530,9 @@ display:
           sticky: true
           summary: ''
           empty_table: false
-          caption: 'Giorno del mese'
+          caption: 'Day of Month'
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -2584,7 +2586,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_day_of_week
-          label: 'Giorno della settimana'
+          label: 'Day of Week'
           exclude: false
           alter:
             alter_text: false
@@ -2712,7 +2714,7 @@ display:
                   color: '#0277bd'
                   weight: 2
             display:
-              title: 'Giorno della settimana'
+              title: 'Day of Week'
               title_position: top
               subtitle: ''
               data_labels: false
@@ -2774,7 +2776,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: tabella
+          label: table
           empty: false
           display_id: day_of_week_table
       display_extenders: {  }
@@ -2790,7 +2792,7 @@ display:
     display_plugin: embed
     position: 30
     display_options:
-      title: 'Giorno della settimana'
+      title: 'Day of Week'
       fields:
         visitors_day_of_week:
           id: visitors_day_of_week
@@ -2800,7 +2802,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_day_of_week
-          label: 'Giorno della settimana'
+          label: 'Day of Week'
           exclude: false
           alter:
             alter_text: false
@@ -2937,8 +2939,9 @@ display:
           sticky: true
           summary: ''
           empty_table: false
-          caption: 'Giorno della settimana'
+          caption: 'Day of Week'
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -3098,11 +3101,11 @@ display:
       tags: {  }
   device_config_table:
     id: device_config_table
-    display_title: Configurazione
+    display_title: Configuration
     display_plugin: embed
     position: 13
     display_options:
-      title: Configurazione
+      title: Configuration
       fields:
         config_os:
           id: config_os
@@ -3212,7 +3215,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Configurazioni
+          label: Configurations
           exclude: false
           alter:
             alter_text: true
@@ -3333,7 +3336,7 @@ display:
     display_plugin: embed
     position: 11
     display_options:
-      title: Modello
+      title: Model
       fields:
         config_device_brand:
           id: config_device_brand
@@ -3665,7 +3668,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: Configurazioni
+          label: Configurations
           empty: false
           display_id: device_config_table
       display_extenders: {  }
@@ -3907,7 +3910,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_hour
-          label: Ora
+          label: Hour
           exclude: false
           alter:
             alter_text: false
@@ -4097,7 +4100,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: tabella
+          label: table
           empty: false
           display_id: hour_table
       display_extenders: {  }
@@ -4123,7 +4126,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_hour
-          label: Ora
+          label: Hour
           exclude: false
           alter:
             alter_text: false
@@ -4262,6 +4265,7 @@ display:
           empty_table: false
           caption: 'Your time'
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -4316,7 +4320,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_language
-          label: Lingua
+          label: Language
           exclude: false
           alter:
             alter_text: false
@@ -4423,7 +4427,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: Lingua
+          label: Language
           empty: false
           display_id: language_table
       display_extenders: {  }
@@ -4436,11 +4440,11 @@ display:
       tags: {  }
   language_table:
     id: language_table
-    display_title: Lingua
+    display_title: Language
     display_plugin: embed
     position: 4
     display_options:
-      title: Lingua
+      title: Language
       fields:
         language:
           id: language
@@ -4450,7 +4454,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Lingua
+          label: Language
           exclude: false
           alter:
             alter_text: false
@@ -4582,7 +4586,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_local_hour
-          label: Ora
+          label: Hour
           exclude: false
           alter:
             alter_text: false
@@ -4772,7 +4776,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: tabella
+          label: table
           empty: false
           display_id: local_hour_table
       display_extenders: {  }
@@ -4798,7 +4802,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_local_hour
-          label: Ora
+          label: Hour
           exclude: false
           alter:
             alter_text: false
@@ -4937,6 +4941,7 @@ display:
           empty_table: false
           caption: "Visitor's time"
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -4990,7 +4995,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_month
-          label: Mese
+          label: Month
           exclude: false
           alter:
             alter_text: false
@@ -5118,7 +5123,7 @@ display:
                   color: '#0277bd'
                   weight: 2
             display:
-              title: Mensile
+              title: Monthly
               title_position: top
               subtitle: ''
               data_labels: false
@@ -5180,7 +5185,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_display_link
-          label: tabella
+          label: table
           empty: false
           display_id: monthly_table
       display_extenders: {  }
@@ -5196,7 +5201,7 @@ display:
     display_plugin: embed
     position: 26
     display_options:
-      title: Mensile
+      title: Monthly
       fields:
         visitors_month:
           id: visitors_month
@@ -5206,7 +5211,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_month
-          label: Mese
+          label: Month
           exclude: false
           alter:
             alter_text: false
@@ -5343,8 +5348,9 @@ display:
           sticky: true
           summary: ''
           empty_table: false
-          caption: Mensile
+          caption: Monthly
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -6053,7 +6059,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_day
-          label: Giorno
+          label: Day
           exclude: false
           alter:
             alter_text: false
@@ -6568,7 +6574,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_hour
-          label: Ora
+          label: Hour
           exclude: false
           alter:
             alter_text: false
@@ -7083,7 +7089,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_week
-          label: Settimana
+          label: Week
           exclude: false
           alter:
             alter_text: false
@@ -7414,7 +7420,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Visitatore
+          label: Visitor
           exclude: false
           alter:
             alter_text: false
@@ -7463,11 +7469,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: custom
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: true
-            text: dettagli
+            text: details
             make_link: true
             path: 'internal:/visitors/hits/{{ visitors_id }}'
             absolute: false
@@ -7522,7 +7528,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -7540,7 +7546,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -7578,7 +7584,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -7616,7 +7622,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -7740,7 +7746,7 @@ display:
           exposed: true
           expose:
             operator_id: visitors_path_op
-            label: Percorso
+            label: Path
             description: ''
             use_operator: false
             operator: visitors_path_op
@@ -7752,9 +7758,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -7825,6 +7828,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -7857,7 +7861,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -8040,7 +8044,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Visitatore
+          label: Visitor
           exclude: false
           alter:
             alter_text: false
@@ -8089,11 +8093,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: custom
-          label: Operazioni
+          label: Operations
           exclude: false
           alter:
             alter_text: true
-            text: dettagli
+            text: details
             make_link: true
             path: 'internal:/visitors/hits/{{ visitors_id }}'
             absolute: false
@@ -8148,7 +8152,7 @@ display:
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- Tutte -'
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           quantity: 9
@@ -8179,7 +8183,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: Tutte
+            title: All
           title_enable: false
           title: ''
           default_argument_type: visitors_path
@@ -8227,7 +8231,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -8357,7 +8361,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -8372,7 +8376,7 @@ display:
     display_plugin: embed
     position: 16
     display_options:
-      title: Percorso
+      title: Path
       fields:
         visitors_path:
           id: visitors_path
@@ -8382,7 +8386,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Percorso
+          label: Path
           exclude: false
           alter:
             alter_text: false
@@ -8489,7 +8493,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -8513,7 +8517,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Itinerario
+          label: Route
           exclude: false
           alter:
             alter_text: false
@@ -8702,7 +8706,7 @@ display:
           exposed: true
           expose:
             operator_id: route_op
-            label: Itinerario
+            label: Route
             description: ''
             use_operator: false
             operator: route_op
@@ -8714,9 +8718,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
             placeholder: ''
           is_grouped: false
           group_info:
@@ -8765,6 +8766,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
         options:
@@ -8791,7 +8793,7 @@ display:
           admin_label: ''
           plugin_id: result
           empty: false
-          content: 'Risultati @start - @end of @total'
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
     cache_metadata:
       max-age: -1
@@ -8865,7 +8867,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_week
-          label: Settimana
+          label: Week
           exclude: false
           alter:
             alter_text: false
@@ -8944,7 +8946,7 @@ display:
                   color: '#0277bd'
                   weight: -2
             display:
-              title: Settimanalmente
+              title: Weekly
               title_position: top
               subtitle: ''
               data_labels: false
@@ -9020,7 +9022,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: visitors_week
-          label: Settimana
+          label: Week
           exclude: false
           alter:
             alter_text: false
@@ -9159,6 +9161,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
         options:

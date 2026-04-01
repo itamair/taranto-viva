@@ -1,0 +1,127 @@
+<?php
+
+/**
+ * @file
+ * AI TMGMT install file.
+ */
+
+/**
+ * Update to maintain current selection of using AI TMGMT configuration.
+ */
+function ai_tmgmt_update_10001() {
+  $config_factory = \Drupal::configFactory();
+  $translators = $config_factory->listAll('tmgmt.translator.');
+  if (empty($translators)) {
+    return t('TMGMT is not configured, no update is needed.');
+  }
+
+  $updated = 0;
+  foreach ($translators as $translator) {
+    $config_object = $config_factory->getEditable($translator);
+    if (!$config_object) {
+      continue;
+    }
+    $config = $config_object->getRawData();
+
+    // We only want to update translators related to this module.
+    if (empty($config['plugin']) || $config['plugin'] !== 'ai') {
+      continue;
+    }
+
+    // Set the default to the status quo for existing installs.
+    $settings = $config_object->get('settings');
+    $settings['model_selection_type'] = 'ai_tmgmt';
+    $config_object->set('settings', $settings);
+    $config_object->save();
+    $updated++;
+  }
+
+  if ($updated) {
+    return t('AI TMGMT configuration has been updated');
+  }
+  return t('AI TMGMT is not configured, no update is needed.');
+}
+
+/**
+ * Delete queue items for deleted jobs and job items.
+ */
+function ai_tmgmt_update_10002() {
+  // Get all job IDs.
+  $jobIds = \Drupal::entityQuery('tmgmt_job')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  // Get all job item IDs.
+  $jobItemIds = \Drupal::entityQuery('tmgmt_job_item')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  // Loop through the queue items and delete any that are for the deleted job
+  // or job item.
+  /** @var \Drupal\Core\Queue\QueueFactory $service */
+  $service = \Drupal::service('queue');
+  $queue = $service->get('ai_translator_worker', TRUE);
+  $deletedCount = 0;
+  $items = [];
+  while ($item = $queue->claimItem(60 * 60)) {
+    $delete = FALSE;
+
+    // Check if the job still exists.
+    /** @var \Drupal\tmgmt\JobItemInterface $job */
+    $job = $item->data['job'];
+    if (!in_array($job->id(), $jobIds, TRUE)) {
+      $delete = TRUE;
+    }
+
+    // Check if the job item still exists.
+    /** @var \Drupal\tmgmt\JobItemInterface $jobItem */
+    $jobItem = $item->data['job_item'];
+    if (!in_array($jobItem->id(), $jobItemIds, TRUE)) {
+      $delete = TRUE;
+    }
+
+    if ($delete) {
+      $queue->deleteItem($item);
+      $deletedCount++;
+      continue;
+    }
+
+    $items[] = $item;
+  }
+
+  // Release all other items.
+  foreach ($items as $item) {
+    $queue->releaseItem($item);
+  }
+
+  // Output a message to the status report.
+  if ($deletedCount) {
+    return t('Deleted @count items from the queue.', ['@count' => $deletedCount]);
+  }
+  return t('All queue items are valid, no items deleted.');
+}
+
+/**
+ * Convert queue items to new format.
+ */
+function ai_tmgmt_update_10003() {
+  // Loop through the queue items and delete any that are for the deleted job
+  // or job item.
+  /** @var \Drupal\Core\Queue\QueueFactory $service */
+  $service = \Drupal::service('queue');
+  $queue = $service->get('ai_translator_worker', TRUE);
+
+  while ($item = $queue->claimItem(60 * 60)) {
+    if (isset($item->data['job_item'])) {
+      $new_item = [
+        'job_item_id' => $item->data['job_item']->id(),
+        'translation' => $item->data['translation'],
+        'key' => $item->data['key'],
+        'keys_sequence' => $item->data['keys_sequence'],
+        'chunk' => $item->data['chunk'],
+      ];
+      $queue->createItem($new_item);
+      $queue->deleteItem($item);
+    }
+  }
+}

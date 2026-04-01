@@ -1,9 +1,0 @@
-name: italo_module
-type: module
-description: My module to test some Drupal functionalities
-core_version_requirement: ^8.8 || ^9 || ^10
-package: Custom
-dependencies:
-  - geofield_map:geofield_map
-  - leaflet:leaflet
-

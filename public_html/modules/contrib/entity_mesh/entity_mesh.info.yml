@@ -1,0 +1,17 @@
+name: Entity Mesh
+type: module
+description: Entity links mesh
+package: Entity
+core_version_requirement: ^10 || ^11
+configure: entity_mesh.settings_form
+dependencies:
+  - drupal:node
+  - drupal:views
+  - views_data_export:views_data_export
+  - drupal:language
+  - drupal:media
+
+# Information added by Drupal.org packaging script on 2026-03-04
+version: '1.2.6'
+project: 'entity_mesh'
+datestamp: 1772606304

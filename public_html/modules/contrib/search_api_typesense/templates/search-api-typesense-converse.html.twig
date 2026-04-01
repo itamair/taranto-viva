@@ -1,0 +1,28 @@
+{{ attach_library('search_api_typesense/converse') }}
+
+<div id="chat-wrapper">
+  <div id="chat">
+    <div id="chat-models">
+      <label for="chat-select-model">Select a conversation model</label>
+      <select id="chat-select-model">
+        {% for model in models %}
+          <option value="{{ model.id }}">{{ model.id }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div id="chat-input">
+      <label for="chat-input-text">Question</label>
+      <input type="text" id="chat-input-text" placeholder="Type your message here..." value="Do you have vegan recipes?">
+      <button id="chat-input-send">Send</button>
+    </div>
+  </div>
+  <div id="response">
+    <div id="response-message"></div>
+
+    <div id="response-hits-wrapper">
+      <p>Here's a list of pages used to generate the response:</p>
+
+      <div id="response-hits"></div>
+    </div>
+  </div>
+</div>

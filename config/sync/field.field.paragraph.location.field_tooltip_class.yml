@@ -7,13 +7,8 @@ dependencies:
     - paragraphs.paragraphs_type.location
     - taxonomy.vocabulary.tooltip_class
   module:
-    - ai_translate
     - tmgmt_content
 third_party_settings:
-  ai_translate:
-    entity_reference:
-      translate_references: default
-    translate_references: default
   tmgmt_content:
     excluded: false
 id: paragraph.location.field_tooltip_class

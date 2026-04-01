@@ -1,0 +1,12 @@
+name: Media Image Metadata
+type: module
+description: Allows extracting embedded image metadata and using it in media entities
+core_version_requirement: ^10 || ^11
+package: Media
+dependencies:
+  - drupal:media
+
+# Information added by Drupal.org packaging script on 2025-11-27
+version: '1.0.6'
+project: 'media_image_metadata'
+datestamp: 1764229995

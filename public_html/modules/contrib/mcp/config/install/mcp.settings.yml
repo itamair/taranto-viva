@@ -1,0 +1,6 @@
+enable_auth: false
+auth_settings: {  }
+plugins:
+  general:
+    enabled: true
+    config: {  }

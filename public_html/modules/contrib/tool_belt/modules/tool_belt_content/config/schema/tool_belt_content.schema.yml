@@ -1,0 +1,239 @@
+tool.plugin.tool_belt:entity_field_values:
+  type: mapping
+  mapping:
+    entity:
+      type: mapping
+      label: Entity
+      nullable: true
+      mapping:
+        entity_type_id:
+          type: string
+          label: 'Entity type'
+          nullable: true
+        entity_id:
+          type: integer
+          label: 'Entity ID'
+          nullable: true
+    fields:
+      type: sequence
+      label: Fields
+      nullable: true
+      sequence:
+        type: string
+        nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_load_by_property:
+  type: mapping
+  mapping:
+    entity_type_id:
+      type: string
+      label: 'Entity Type ID'
+      nullable: true
+    property_name:
+      type: string
+      label: 'Property Name'
+      nullable: true
+    property_value:
+      type: string
+      label: 'Property Value'
+      nullable: true
+    bundle:
+      type: string
+      label: Bundle
+      nullable: true
+    limit:
+      type: integer
+      label: Limit
+      nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_load_by_id:
+  type: mapping
+  mapping:
+    entity_type_id:
+      type: string
+      label: 'Entity Type ID'
+      nullable: true
+      constraints:
+        PluginExists:
+          manager: entity_type.manager
+          interface: Drupal\Core\Entity\ContentEntityInterface
+    entity_id:
+      type: integer
+      label: 'Entity ID'
+      nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_revision_add:
+  type: mapping
+  mapping:
+    entity:
+      type: mapping
+      label: Entity
+      nullable: true
+      mapping:
+        entity_type_id:
+          type: string
+          label: 'Entity type'
+          nullable: true
+        entity_id:
+          type: integer
+          label: 'Entity ID'
+          nullable: true
+    revision_log:
+      type: string
+      label: 'Revision Log Message'
+      nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_save:
+  type: mapping
+  mapping:
+    entity:
+      type: mapping
+      label: Entity
+      nullable: true
+      mapping:
+        entity_type_id:
+          type: string
+          label: 'Entity type'
+          nullable: true
+        entity_id:
+          type: integer
+          label: 'Entity ID'
+          nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:field_set_value:
+  type: mapping
+  mapping:
+    entity:
+      type: mapping
+      label: Entity
+      nullable: true
+      mapping:
+        entity_type_id:
+          type: string
+          label: 'Entity type'
+          nullable: true
+        entity_id:
+          type: integer
+          label: 'Entity ID'
+          nullable: true
+    field_name:
+      type: string
+      label: 'Field Name'
+      nullable: true
+    value:
+      type: mapping
+      label: Value
+      nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_field_value_definitions:
+  type: mapping
+  mapping:
+    entity_type_id:
+      type: string
+      label: 'Entity Type ID'
+      nullable: true
+    bundle:
+      type: string
+      label: Bundle
+      nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_delete:
+  type: mapping
+  mapping:
+    entity:
+      type: mapping
+      label: Entity
+      nullable: true
+      mapping:
+        entity_type_id:
+          type: string
+          label: 'Entity type'
+          nullable: true
+        entity_id:
+          type: integer
+          label: 'Entity ID'
+          nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_stub:
+  type: mapping
+  mapping:
+    entity_type_id:
+      type: string
+      label: 'Entity Type ID'
+      nullable: true
+      constraints:
+        PluginExists:
+          manager: entity_type.manager
+          interface: Drupal\Core\Entity\ContentEntityInterface
+    bundle:
+      type: string
+      label: Bundle
+      nullable: true
+    base_fields:
+      type: mapping
+      label: 'Entity Base Fields'
+      nullable: true
+  constraints:
+    FullyValidatable: {  }
+
+tool.plugin.tool_belt:entity_list:
+  type: mapping
+  mapping:
+    entity_type_id:
+      type: string
+      label: 'Entity Type ID'
+      nullable: true
+      constraints:
+        PluginExists:
+          manager: entity_type.manager
+          interface: Drupal\Core\Entity\ContentEntityInterface
+    bundle:
+      type: string
+      label: Bundle
+      nullable: true
+    amount:
+      type: integer
+      label: Amount
+      nullable: true
+    offset:
+      type: integer
+      label: Offset
+      nullable: true
+    fields:
+      type: sequence
+      label: Fields
+      nullable: true
+      sequence:
+        type: string
+        nullable: true
+    sort_field:
+      type: string
+      label: 'Sort Field'
+      nullable: true
+    sort_order:
+      type: string
+      label: 'Sort Order'
+      nullable: true
+      constraints:
+        Choice:
+          choices:
+            - ASC
+            - DESC
+  constraints:
+    FullyValidatable: {  }
