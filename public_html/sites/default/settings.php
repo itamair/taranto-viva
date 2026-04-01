@@ -903,7 +903,9 @@ if (file_exists(__DIR__ . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 
 
 // Serve Drupal pages after login from /web folder in production server
 // @see https://stackoverflow.com/questions/54588504/how-to-skip-web-directory-from-url-in-drupal-8-installation-using-htaccess-after
-if (isset($GLOBALS['request']) and
+// This is not needed anymore, on Hostinger, because the drupal web root was
+// set into public_html.
+/*if (isset($GLOBALS['request']) and
   '/web/index.php' === $GLOBALS['request']->server->get('SCRIPT_NAME')) {
   $GLOBALS['request']->server->set('SCRIPT_NAME', '/index.php');
-}
+}*/
