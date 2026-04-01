@@ -8,7 +8,7 @@ warmers:
     minPriority: 0.5
     sitemaps:
       - /sitemap.xml
-      - 'https://coral-eland-546543.hostingersite.com/sitemap.xml'
+      - 'https://www.taranto-viva.com/it/sitemap.xml'
     headers: {  }
     verify: true
     maxConcurrentRequests: 5
