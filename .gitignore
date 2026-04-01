@@ -9,13 +9,11 @@
 
 # Folders
 node_modules
-/web/core
-/web/modules/contrib
-/web/modules/unity/unity_store/js/dist
-/web/themes/contrib
-/web/themes/unity/build
-/web/profiles/contrib
-/web/sites/*/files
+/public_html/core
+/public_html/modules/contrib
+/public_html/themes/contrib
+/public_html/profiles/contrib
+/public_html/sites/*/files
 *private
 *tmp
 
