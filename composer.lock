@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5006e8d84240d5f91362d287b4081511",
+    "content-hash": "d7122fda490192e9c2e870f30095db3d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1821,17 +1821,17 @@
         },
         {
             "name": "drupal/ai",
-            "version": "1.2.7",
+            "version": "1.2.13",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ai.git",
-                "reference": "1.2.7"
+                "reference": "1.2.13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai-1.2.7.zip",
-                "reference": "1.2.7",
-                "shasum": "6f089f837c56f58daac0fb9e977665c3f0242cd9"
+                "url": "https://ftp.drupal.org/files/projects/ai-1.2.13.zip",
+                "reference": "1.2.13",
+                "shasum": "731224761afcab468cf614fa772bcbbf190a5880"
             },
             "require": {
                 "drupal/core": "^10.4 || ^11",
@@ -1843,7 +1843,7 @@
             "require-dev": {
                 "allanpichardo/mysql-vector": "^2.0",
                 "drupal/ai_assistant_api": "*",
-                "drupal/eca": "^2.0",
+                "drupal/eca": "*",
                 "drupal/eca_content-eca_content": "*",
                 "drupal/field_validation": "^3.0@beta",
                 "drupal/key": "*",
@@ -1858,8 +1858,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.2.7",
-                    "datestamp": "1769504647",
+                    "version": "1.2.13",
+                    "datestamp": "1775054030",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1892,6 +1892,10 @@
                     "homepage": "https://www.drupal.org/user/2512258"
                 },
                 {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
                     "name": "gxleano",
                     "homepage": "https://www.drupal.org/user/3591999"
                 },
@@ -1906,6 +1910,10 @@
                 {
                     "name": "marcus_johansson",
                     "homepage": "https://www.drupal.org/user/385947"
+                },
+                {
+                    "name": "michaellander",
+                    "homepage": "https://www.drupal.org/user/636494"
                 },
                 {
                     "name": "murz",
