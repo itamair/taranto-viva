@@ -1,4 +1,0 @@
-services:
-  ai_tmgmt.hook:
-    class: Drupal\ai_tmgmt\Hook\AiTranslatorHook
-    autowire: true

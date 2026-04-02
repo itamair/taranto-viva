@@ -1,5 +1,0 @@
-<ruleset name="tool">
-  <rule ref="Drupal"/>
-  <rule ref="DrupalPractice"/>
-  <arg name="extensions" value="engine,inc,info,install,module,php,profile,test,theme,yml"/>
-</ruleset>

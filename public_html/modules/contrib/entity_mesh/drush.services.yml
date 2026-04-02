@@ -1,6 +1,0 @@
-services:
-  entity_mesh.commands:
-    class: \Drupal\entity_mesh\Commands\EntityMeshCommands
-    arguments: ['@logger.factory', '@entity_type.manager', '@entity_mesh.entity_render']
-    tags:
-      - { name: drush.command }

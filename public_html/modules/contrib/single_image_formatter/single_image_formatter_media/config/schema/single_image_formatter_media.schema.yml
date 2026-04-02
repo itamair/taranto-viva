@@ -1,3 +1,0 @@
-field.formatter.settings.single_media_formatter:
-  type: field.formatter.settings.media_thumbnail
-  label: 'Media thumbnail field display format settings'

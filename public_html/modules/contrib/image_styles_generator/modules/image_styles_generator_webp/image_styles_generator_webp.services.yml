@@ -1,4 +1,0 @@
-services:
-  image_styles_generator_webp.derivative_webp_warmer:
-    class: Drupal\image_styles_generator_webp\DerivativeWebpWarmer
-    arguments: ['@logger.channel.image_styles_generator', '@webp.webp']

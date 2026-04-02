@@ -1,5 +1,0 @@
-photoswipe.settings:
-  route_name: photoswipe.settings
-  title: PhotoSwipe
-  description: 'Adjust PhotoSwipe settings.'
-  parent: system.admin_config_media

@@ -1,6 +1,0 @@
-range:
-  label: 'Numeric range'
-  description: 'Field to store a numeric range, i.e. price or age range.'
-  libraries:
-    - range/range.range-icon
-  weight: -40

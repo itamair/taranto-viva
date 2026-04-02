@@ -1,5 +1,0 @@
-popup_message.settings:
-  title: 'Popup message'
-  base_route_name: popup_message.settings
-  names:
-    - popup_message.settings

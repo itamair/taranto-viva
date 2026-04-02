@@ -1,9 +1,0 @@
-{
-  "import": [
-    "./web/core/.cspell.json"
-  ],
-  "ignorePaths": [
-    "tests/fixtures/drupal6.php",
-    "tests/fixtures/drupal7.php"
-  ]
-}

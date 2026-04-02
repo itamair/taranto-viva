@@ -1,6 +1,0 @@
-services:
-  image_styles_generator.commands:
-    class: \Drupal\image_styles_generator\Commands\ImageStylesGeneratorCommands
-    arguments: ['@image_styles_generator.derivative_warmer', '@entity_type.manager']
-    tags:
-      - { name: drush.command }

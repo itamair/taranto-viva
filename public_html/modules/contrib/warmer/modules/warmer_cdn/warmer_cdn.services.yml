@@ -1,3 +1,0 @@
-services:
-  warmer_cdn.sitemap_parser.factory:
-    class: Drupal\warmer_cdn\SitemapParserFactory

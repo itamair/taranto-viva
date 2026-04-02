@@ -1,4 +1,0 @@
-popup_message.settings:
-  route_name: popup_message.settings
-  title: Settings
-  base_route: popup_message.settings

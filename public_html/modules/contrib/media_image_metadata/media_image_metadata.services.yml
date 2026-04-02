@@ -1,3 +1,0 @@
-services:
-  Drupal\media_image_metadata\Service\ImageMetadataHelper:
-    class: Drupal\media_image_metadata\Service\ImageMetadataHelper

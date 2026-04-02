@@ -1,8 +1,0 @@
-administer entity_mesh configuration:
-  title: 'Administer Entity Mesh configuration'
-  description: 'Administer Entity Mesh configuration.'
-  restrict access: true
-access entity_mesh report:
-  title: 'Access Entity Mesh report'
-  description: 'Access Entity Mesh report.'
-  restrict access: true
