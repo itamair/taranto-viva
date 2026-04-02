@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d44b03fef5f464ebfd52782a4a5bc4df",
+    "content-hash": "5006e8d84240d5f91362d287b4081511",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5132,17 +5132,17 @@
         },
         {
             "name": "drupal/geocoder",
-            "version": "4.31.0",
+            "version": "4.33.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/geocoder.git",
-                "reference": "8.x-4.31"
+                "reference": "8.x-4.33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/geocoder-8.x-4.31.zip",
-                "reference": "8.x-4.31",
-                "shasum": "6cefdd1012ec5af146960f1e5c4fba6d69c428b9"
+                "url": "https://ftp.drupal.org/files/projects/geocoder-8.x-4.33.zip",
+                "reference": "8.x-4.33",
+                "shasum": "2e78707743761847bc0e35dd32ec4721e7b7685c"
             },
             "require": {
                 "davedevelopment/stiphle": "^0.9.2",
@@ -5187,8 +5187,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.31",
-                    "datestamp": "1773269561",
+                    "version": "8.x-4.33",
+                    "datestamp": "1775124546",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10880,16 +10880,16 @@
         },
         {
             "name": "itamair/geophp",
-            "version": "1.8",
+            "version": "1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itamair/geoPHP.git",
-                "reference": "9e464b5f65a2694789505adc5b8845d51ba2a365"
+                "reference": "e0f87ad0e45f3898892a8f3bc02e8717c01554fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itamair/geoPHP/zipball/9e464b5f65a2694789505adc5b8845d51ba2a365",
-                "reference": "9e464b5f65a2694789505adc5b8845d51ba2a365",
+                "url": "https://api.github.com/repos/itamair/geoPHP/zipball/e0f87ad0e45f3898892a8f3bc02e8717c01554fb",
+                "reference": "e0f87ad0e45f3898892a8f3bc02e8717c01554fb",
                 "shasum": ""
             },
             "require-dev": {
@@ -10921,9 +10921,9 @@
             "homepage": "https://github.com/itamair/geoPHP",
             "support": {
                 "issues": "https://github.com/itamair/geoPHP/issues",
-                "source": "https://github.com/itamair/geoPHP/tree/1.8"
+                "source": "https://github.com/itamair/geoPHP/tree/1.12"
             },
-            "time": "2025-10-03T07:54:28+00:00"
+            "time": "2026-04-02T10:02:52+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
