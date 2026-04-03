@@ -135,6 +135,7 @@
         "drupal/readmore": "^2.0@alpha",
         "drupal/replicate": "^1.0",
         "drupal/replicate_ui": "^1.0",
+        "drupal/revision_manager": "^1.0@beta",
         "drupal/rmkv": "^2.2",
         "drupal/search_api": "^1.39",
         "drupal/search_api_typesense": "^1.1",

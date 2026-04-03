@@ -10,9 +10,9 @@ module:
   ai_assistant_api: 0
   ai_chatbot: 0
   ai_ckeditor: 0
-  ai_media_image: 0
   ai_provider_anthropic: 0
   ai_provider_deepseek: 0
+  ai_provider_litellm: 0
   ai_provider_openai: 0
   ai_search: 0
   ai_tmgmt: 0
@@ -55,7 +55,6 @@ module:
   entity_mesh: 0
   entity_reference_revisions: 0
   entity_type_clone: 0
-  entity_usage: 0
   feeds: 0
   feeds_ex: 0
   feeds_log: 0
@@ -139,6 +138,7 @@ module:
   replicate: 0
   replicate_ui: 0
   rest: 0
+  revision_manager: 0
   search: 0
   search_api: 0
   search_api_typesense: 0
