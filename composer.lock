@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89be67b78c1d6b8d932129c44c848080",
+    "content-hash": "1ff260563fc622df6e601214bc527cd7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4291,6 +4291,84 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/date_filter",
                 "issues": "https://drupal.org/project/issues/date_filter"
+            }
+        },
+        {
+            "name": "drupal/db_maintenance",
+            "version": "3.0.0-rc2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/db_maintenance.git",
+                "reference": "3.0.0-rc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/db_maintenance-3.0.0-rc2.zip",
+                "reference": "3.0.0-rc2",
+                "shasum": "46b83faf5998c8a1335720677ff11b482ab43a94"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0-rc2",
+                    "datestamp": "1740645982",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "David N",
+                    "homepage": "https://www.drupal.org/u/deekayen",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/41588/committers",
+                    "role": "Contributors"
+                },
+                {
+                    "name": "deekayen",
+                    "homepage": "https://www.drupal.org/user/972"
+                },
+                {
+                    "name": "jgraham",
+                    "homepage": "https://www.drupal.org/user/146055"
+                },
+                {
+                    "name": "marcp",
+                    "homepage": "https://www.drupal.org/user/20885"
+                },
+                {
+                    "name": "Nafes",
+                    "homepage": "https://www.drupal.org/user/2489926"
+                },
+                {
+                    "name": "orkut murat yılmaz",
+                    "homepage": "https://www.drupal.org/user/222757"
+                },
+                {
+                    "name": "VicOnt",
+                    "homepage": "https://www.drupal.org/user/1801242"
+                }
+            ],
+            "description": "DB Maintenance module",
+            "homepage": "https://www.drupal.org/project/db_maintenance",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/db_maintenance",
+                "issues": "https://www.drupal.org/project/issues/db_maintenance"
             }
         },
         {
@@ -18308,6 +18386,7 @@
         "drupal/auto_entitylabel": 10,
         "drupal/cer": 10,
         "drupal/conditional_fields": 15,
+        "drupal/db_maintenance": 5,
         "drupal/entity_reference_purger": 10,
         "drupal/entity_usage": 10,
         "drupal/feeds_ex": 10,
