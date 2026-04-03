@@ -10,9 +10,9 @@ module:
   ai_assistant_api: 0
   ai_chatbot: 0
   ai_ckeditor: 0
+  ai_media_image: 0
   ai_provider_anthropic: 0
   ai_provider_deepseek: 0
-  ai_provider_litellm: 0
   ai_provider_openai: 0
   ai_search: 0
   ai_tmgmt: 0
