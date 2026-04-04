@@ -1,7 +1,7 @@
 _core:
   default_config_hash: 0cOpr1OyXWdffdvJFlXdoNQpPest7EYeepdwUe7U9pQ
 langcode: it
-gmap_api_key: AIzaSyAS69tVWk3-6rO8NPFfOFp4-5hEUMhkLX0
+gmap_api_key: ''
 gmap_api_localization: default
 theming:
   markers_location:
