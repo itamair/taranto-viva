@@ -160,10 +160,10 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: none
+        type: some
         options:
           offset: 0
-          items_per_page: 0
+          items_per_page: 1
       exposed_form:
         type: basic
         options:
@@ -403,7 +403,12 @@ display:
     position: 1
     display_options:
       rendering_language: '***LANGUAGE_language_content***'
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender: {  }
       block_description: 'Content Addresses and Google Maps Links'
       allow:
         items_per_page: true

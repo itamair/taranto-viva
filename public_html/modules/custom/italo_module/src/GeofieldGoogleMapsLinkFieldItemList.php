@@ -5,6 +5,7 @@ namespace Drupal\italo_module;
 use Drupal\Core\Field\FieldItemList;
 use Drupal\Core\TypedData\ComputedItemListTrait;
 use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use pschocke\GoogleMapsLinks\GMapsLocation;
 use pschocke\GoogleMapsLinks\GMapsStreetView;
@@ -34,8 +35,8 @@ class GeofieldGoogleMapsLinkFieldItemList extends FieldItemList {
       $value0 = '';
       $value1 = '';
       if ($entity instanceof ParagraphInterface || $entity instanceof MediaInterface) {
-        $paragraph_type = $entity->bundle();
-        switch ($paragraph_type) {
+        $entity_type = $entity->bundle();
+        switch ($entity_type) {
           case "geoimage":
           case "location":
             /** @var \Drupal\geofield\GeoPHP\GeoPHPWrapper $geo_php_wrapper */
@@ -51,10 +52,18 @@ class GeofieldGoogleMapsLinkFieldItemList extends FieldItemList {
                 }
 
                 $gMapsLocation = new GMapsLocation();
+                $parent_entity = $entity->getParentEntity();
+                if ($parent_entity instanceof NodeInterface && isset($parent_entity->field_google_maps_address) && $location = $parent_entity->field_google_maps_address->value) {
+                  $google_maps_link = $gMapsLocation->location($location);
+                }
+                else {
+                  $google_maps_link = $gMapsLocation->coordinates($geom->y(), $geom->x());
+                }
                 $value0 = [
-                  'uri' => $gMapsLocation->coordinates($geom->y(), $geom->x()),
+                  'uri' => $google_maps_link,
                   'title' => t('Google Maps'),
                 ];
+
                 $gMapsStreetView = new GMapsStreetView();
                 $value1 = [
                   'uri' => $gMapsStreetView->viewpoint($geom->y(), $geom->x())->get(),

@@ -12,6 +12,7 @@ dependencies:
     - field.storage.node.field_exclude_from_map_bounds
     - field.storage.node.field_exclude_from_markercluster
     - field.storage.node.field_fonte
+    - field.storage.node.field_google_maps_address
     - field.storage.node.field_map_popup_disabled
     - field.storage.paragraph.field_arrowed
     - field.storage.paragraph.field_classname
@@ -4533,6 +4534,69 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
+        field_google_maps_address:
+          id: field_google_maps_address
+          table: node__field_google_maps_address
+          field: field_google_maps_address
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       exposed_form:
         type: bef
         options:
@@ -4891,7 +4955,7 @@ display:
             bounds_limit_flag: false
             max_zoom_out: '-2'
           feature_properties:
-            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}","icon_size_multiplier":3}'
+            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}","icon_size_multiplier":3,"google_maps_address":"{{ field_google_maps_address }}"}'
       row:
         type: fields
         options:
@@ -5034,6 +5098,8 @@ display:
             og_description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
         library_in_views_display_extender: {  }
+        simple_sitemap_display_extender:
+          variants: {  }
       path: ciclovia-acquedotto-pugliese
       menu:
         type: normal
@@ -5061,6 +5127,7 @@ display:
         - 'config:field.storage.node.field_exclude_from_map_bounds'
         - 'config:field.storage.node.field_exclude_from_markercluster'
         - 'config:field.storage.node.field_fonte'
+        - 'config:field.storage.node.field_google_maps_address'
         - 'config:field.storage.node.field_map_popup_disabled'
         - 'config:field.storage.paragraph.field_arrowed'
         - 'config:field.storage.paragraph.field_classname'

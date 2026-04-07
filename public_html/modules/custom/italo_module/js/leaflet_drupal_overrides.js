@@ -133,7 +133,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
         typeof feature_properties['google_maps_address'] === 'string' &&
         feature_properties['google_maps_address'].trim() !== ''
       ) {
-        gmaps_links = get_gmaps_links(null, null, feature_properties['google_maps_address']);
+        gmaps_links = get_gmaps_links(lat, lng, feature_properties['google_maps_address']);
         popup.setContent(feature.popup.value + gmaps_links);
       }
     });
