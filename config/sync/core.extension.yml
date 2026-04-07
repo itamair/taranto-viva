@@ -45,7 +45,6 @@ module:
   date_filter: 0
   datetime: 0
   datetime_range: 0
-  db_maintenance: 0
   dblog: 0
   devel: 0
   devel_entity_updates: 0
