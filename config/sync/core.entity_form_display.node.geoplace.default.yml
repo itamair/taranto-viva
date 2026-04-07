@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
+    - field.field.node.geoplace.field_google_maps_address
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
@@ -37,7 +38,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 11
+    weight: 13
     region: content
     settings:
       rows: 9
@@ -47,13 +48,13 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 15
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   field_category_type:
     type: autocomplete_deluxe
-    weight: 9
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS
@@ -70,7 +71,7 @@ content:
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 13
+    weight: 15
     region: content
     settings:
       title: Paragraph
@@ -110,6 +111,14 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_google_maps_address:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_image:
     type: image_image
     weight: 5
@@ -120,7 +129,7 @@ content:
     third_party_settings: {  }
   field_link:
     type: link_default
-    weight: 12
+    weight: 14
     region: content
     settings:
       placeholder_url: ''
@@ -179,7 +188,7 @@ content:
     third_party_settings: {  }
   field_related_content:
     type: options_select
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -237,27 +246,37 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 18
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 16
+    weight: 18
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  simple_sitemap:
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap_index_now:
+    weight: 23
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 20
+    weight: 22
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 17
+    weight: 19
     region: content
     settings:
       display_label: true
@@ -271,13 +290,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 19
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 14
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS

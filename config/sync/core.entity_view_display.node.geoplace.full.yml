@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
+    - field.field.node.geoplace.field_google_maps_address
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
@@ -63,6 +64,7 @@ hidden:
   field_components: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
+  field_google_maps_address: true
   field_link: true
   field_map_popup_disabled: true
   field_media_slideshow: true
@@ -72,5 +74,6 @@ hidden:
   field_touristic_value: true
   field_zoom_visibility: true
   langcode: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true

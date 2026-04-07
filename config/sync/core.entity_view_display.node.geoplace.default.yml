@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
+    - field.field.node.geoplace.field_google_maps_address
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
@@ -278,6 +279,14 @@ content:
       empty_view_title: hidden
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_google_maps_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
     region: content
   field_map_popup_disabled:
     type: boolean

@@ -12,6 +12,7 @@ dependencies:
     - field.storage.node.field_classname
     - field.storage.node.field_exclude_from_map_bounds
     - field.storage.node.field_exclude_from_markercluster
+    - field.storage.node.field_google_maps_address
     - field.storage.node.field_map_popup_disabled
     - field.storage.paragraph.field_arrowed
     - field.storage.paragraph.field_classname
@@ -52,6 +53,7 @@ dependencies:
   module:
     - better_exposed_filters
     - color_field
+    - comment
     - datetime
     - geofield
     - geofield_311
@@ -8457,6 +8459,74 @@ display:
           empty_zero: false
           hide_alter_empty: true
           view_mode: leaflet_popup
+        field_google_maps_address:
+          id: field_google_maps_address
+          table: node__field_google_maps_address
+          field: field_google_maps_address
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        last_updated:
+          id: last_updated
+          table: comment_entity_statistics
+          field: last_updated
+          plugin_id: comment_ces_last_updated
       exposed_form:
         type: bef
         options:
@@ -8945,7 +9015,7 @@ display:
               input_size: 16
               providers:
                 googlemaps:
-                  weight: '2'
+                  weight: '-100'
                   checked: 1
                 arcgisonline:
                   weight: '0'
@@ -8971,7 +9041,7 @@ display:
             bounds_limit_flag: false
             max_zoom_out: '-2'
           feature_properties:
-            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}"}'
+            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}","google_maps_address":"{{ field_google_maps_address }}"}'
       row:
         type: fields
         options:
@@ -9106,6 +9176,7 @@ display:
         - 'config:field.storage.node.field_classname'
         - 'config:field.storage.node.field_exclude_from_map_bounds'
         - 'config:field.storage.node.field_exclude_from_markercluster'
+        - 'config:field.storage.node.field_google_maps_address'
         - 'config:field.storage.node.field_map_popup_disabled'
         - 'config:field.storage.paragraph.field_arrowed'
         - 'config:field.storage.paragraph.field_classname'

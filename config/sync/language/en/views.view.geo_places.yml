@@ -1,8 +1,4 @@
 display:
-  default:
-    display_options:
-      empty:
-        area: {  }
   page_geoplaces_grid:
     display_options:
       menu:
@@ -14,11 +10,3 @@ display:
           expose:
             label: 'Validity of events and reports'
       title: 'Home | Map'
-  page_vaganti_map:
-    display_options:
-      filters:
-        field_exif_creation_date_value:
-          expose:
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
