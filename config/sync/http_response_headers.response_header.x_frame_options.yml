@@ -1,0 +1,12 @@
+uuid: 39639b4a-6ee6-4a62-9c1b-992523ac5b94
+langcode: it
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: aCpW04rpcXDf65J6xXwCkplv2TKA64ANULWPnidTXwE
+id: x_frame_options
+label: X-Frame-Options
+description: "Clickjacking protection. Valid values include <em>DENY</em> meaning your site can't be framed, <em>SAMEORIGIN</em> which allows you to frame your own site or <em>ALLOW-FROM https://example.com/</em> which lets you specify sites that are permitted to frame"
+name: X-Frame-Options
+value: SAMEORIGIN
+visibility: {  }

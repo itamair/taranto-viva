@@ -1,0 +1,10 @@
+uuid: d9d2b0e7-bd16-446c-bcd6-dcf96b0205f1
+langcode: en
+status: true
+dependencies: {  }
+id: cross_origin_embedder_policy
+label: Cross-Origin-Embedder-Policy
+description: ''
+name: Cross-Origin-Embedder-Policy
+value: unsafe-none
+visibility: {  }

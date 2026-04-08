@@ -79,6 +79,7 @@ module:
   graphql_compose_views: 0
   help: 0
   history: 0
+  http_response_headers: 0
   image: 0
   image_styles_generator: 0
   italo_module: 0

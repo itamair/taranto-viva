@@ -1,0 +1,10 @@
+uuid: 686ee043-7c7c-4f70-bb46-57324f94cef2
+langcode: en
+status: true
+dependencies: {  }
+id: permissions_policy
+label: Permissions-Policy
+description: ''
+name: Permissions-Policy
+value: '"accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), picture-in-picture=(), usb=(), xr-spatial-tracking=()" always;'
+visibility: {  }

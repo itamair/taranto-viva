@@ -1,0 +1,10 @@
+uuid: def8c9e8-9526-4358-ab63-6348bcf61fe8
+langcode: en
+status: true
+dependencies: {  }
+id: cross_origin_opener_policy
+label: Cross-Origin-Opener-Policy
+description: ''
+name: Cross-Origin-Opener-Policy
+value: same-origin
+visibility: {  }
