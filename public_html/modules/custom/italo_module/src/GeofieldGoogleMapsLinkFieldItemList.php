@@ -52,7 +52,10 @@ class GeofieldGoogleMapsLinkFieldItemList extends FieldItemList {
                 }
 
                 $gMapsLocation = new GMapsLocation();
-                $parent_entity = $entity->getParentEntity();
+                $parent_entity = NULL;
+                if ($entity instanceof ParagraphInterface) {
+                  $parent_entity = $entity->getParentEntity();
+                }
                 if ($parent_entity instanceof NodeInterface && isset($parent_entity->field_google_maps_address) && $location = $parent_entity->field_google_maps_address->value) {
                   $google_maps_link = $gMapsLocation->location($location);
                 }
