@@ -143,7 +143,10 @@ parameters:
       # Disable by setting to [].
       #
       # @default ['session', 'user']
-      contexts: ['session', 'user']
+      # 'user' removed: the visitors module adds user context to every page,
+      # so keeping 'user' here would make every page UNCACHEABLE. Instead we
+      # allow the dynamic page cache to store per-user cached variations.
+      contexts: ['session']
       # Tags with a high invalidation frequency.
       #
       # Disable by setting to [].
