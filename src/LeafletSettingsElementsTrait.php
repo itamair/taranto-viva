@@ -748,7 +748,7 @@ trait LeafletSettingsElementsTrait {
     $element['replacement_patterns'] = [
       '#type' => 'details',
       '#title' => 'Replacement patterns',
-      '#description' => $this->t('The following replacement tokens are available for the "Popup Content and the Icon Options":'),
+      '#description' => $this->t('The following Replacement Tokens are available when declared in the following Leaflet settings.'),
     ];
 
     if ($this->moduleHandler->moduleExists('token')) {
