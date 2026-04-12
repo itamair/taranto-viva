@@ -453,7 +453,7 @@ export function addCustomMarkers(
       img.src = iconUrl;
       img.alt = title;
       img.title = title;
-      img.style.maxWidth = '100%';
+      img.style.maxWidth = '60%';
       img.style.height = 'auto';
       img.style.display = 'block';
 
@@ -468,7 +468,7 @@ export function addCustomMarkers(
       // Create the marker
       const marker = new maplibregl.Marker({
         element: containerDiv,
-        anchor: 'bottom'
+        anchor: 'center',
       })
         .setLngLat(coordinates)
         .addTo(map);

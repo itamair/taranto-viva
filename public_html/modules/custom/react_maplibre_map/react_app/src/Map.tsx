@@ -156,15 +156,15 @@ function Map() {
 
   // Set up the dictionary
   const label_to_layer_ids = useMemo(() => ({
-    'Satellite': ['satellite'],
-    'OSM': ['osm'],
-    'Overture Places': ['places', 'places-transparent'],
-    '3D Buildings': ['3d-buildings'],
+    Satellite: ['satellite'],
+    OSM: ['osm'],
+    "Overture Places": ['places', 'places-transparent'],
+    "3D Buildings": ['3d-buildings'],
     // 'OSM Land Use': ['landuse'],
     // 'OSM Roads': ['roads'],
-    'Drupal Places': ['geoplaces-points'],
-    'Drupal Images': ['geoimages-points'],
-    'Urban Areas': ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
+    "Drupal Places": ['geoplaces-points'],
+    "Drupal Images": ['geoimages-points'],
+    "Urban Areas": ['geoplaces-polygon-fill', 'geoplaces-polygon-outline', 'geoplaces-linestring', 'geoimages-polygon-fill', 'geoimages-polygon-outline', 'geoimages-linestring'],
   }), []);
 
   // Initialize map
@@ -186,7 +186,7 @@ function Map() {
       style: {
         version: 8,
         sources: {
-          'osm': {
+          osm: {
             type: 'raster',
             tiles: [
               'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -196,24 +196,24 @@ function Map() {
             tileSize: 256,
             attribution: '&copy; OpenStreetMap Contributors'
           },
-          'satellite': {
+          satellite: {
             type: 'raster',
             tiles: [
               'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg'
             ],
             tileSize: 256
           },
-          'overturemaps_places': {
+          overturemaps_places: {
             type: 'vector' as const,
             url: 'pmtiles://https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2025-04-23/places.pmtiles',
             attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
           },
-/*          'osm_layers': {
+/*          osm_layers: {
             type: 'vector' as const,
             url: 'pmtiles://https://demo-bucket.protomaps.com/v4.pmtiles',
             attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
           },*/
-          'openfreemap': {
+          openfreemap: {
             type: 'vector' as const,
             url: 'https://tiles.openfreemap.org/planet',
             attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -235,14 +235,14 @@ function Map() {
             maxzoom: 20
           },
           {
-            'id': 'places',
-            'source': 'overturemaps_places',
-            'source-layer': 'place',
-            'type': 'circle' as const,
-            'paint': {
-              'circle-radius': 4,
-              'circle-color': '#0033ff',
-              'circle-opacity':  [
+            id: 'places',
+            source: 'overturemaps_places',
+            "source-layer": 'place',
+            type: 'circle' as const,
+            paint: {
+              "circle-radius": 4,
+              "circle-color": '#0033ff',
+              "circle-opacity":  [
                 'interpolate',
                 ['linear'],
                 ["get", "confidence"],
@@ -251,10 +251,10 @@ function Map() {
                 0.98,
                 1
               ],
-              'circle-stroke-color': '#000000',
-              'circle-stroke-width': 0
+              "circle-stroke-color": '#000000',
+              "circle-stroke-width": 0
             },
-            "filter": [
+            filter: [
               "all",
               [
                 "has",
@@ -271,17 +271,17 @@ function Map() {
             ],
           },
           {
-            'id': 'places-transparent',
-            'source': 'overturemaps_places',
-            'source-layer': 'place',
-            'type': 'circle' as const,
-            'paint': {
-              'circle-radius': 8,
-              'circle-color': '#0033ff',
-              'circle-opacity':  0,
-              'circle-stroke-width': 0,
+            id: 'places-transparent',
+            source: 'overturemaps_places',
+            "source-layer": 'place',
+            type: 'circle' as const,
+            paint: {
+              "circle-radius": 8,
+              "circle-color": '#0033ff',
+              "circle-opacity":  0,
+              "circle-stroke-width": 0,
             },
-            "filter": [
+            filter: [
               "all",
               [
                 "has",
@@ -317,19 +317,19 @@ function Map() {
             }
           },*/
           {
-            'id': '3d-buildings',
-            'source': 'openfreemap',
-            'source-layer': 'building',
-            'type': 'fill-extrusion',
-            'minzoom': 12,
-            'filter': ['!=', ['get', 'hide_3d'], true],
-            'paint': {
-              'fill-extrusion-color': [
+            id: '3d-buildings',
+            source: 'openfreemap',
+            "source-layer": 'building',
+            type: 'fill-extrusion',
+            minzoom: 12,
+            filter: ['!=', ['get', 'hide_3d'], true],
+            paint: {
+              "fill-extrusion-color": [
                 'interpolate',
                 ['linear'],
                 ['get', 'render_height'], 0, 'lightgray', 30, 'royalblue', 100, 'lightblue'
               ],
-              'fill-extrusion-height': [
+              "fill-extrusion-height": [
                 'interpolate',
                 ['linear'],
                 ['zoom'],
@@ -338,11 +338,11 @@ function Map() {
                 16,
                 ["*", ['get', 'render_height'], 2.5]
               ],
-              'fill-extrusion-base': ['case',
+              "fill-extrusion-base": ['case',
                 ['>=', ['get', 'zoom'], 16],
                 ['get', 'render_min_height'], 0
               ],
-              'fill-extrusion-opacity': 0.7
+              "fill-extrusion-opacity": 0.7
             }
           }
         ]
