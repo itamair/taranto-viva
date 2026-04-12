@@ -72,13 +72,6 @@ class LeafletService {
   protected $cache;
 
   /**
-   * Static cache for icon sizes.
-   *
-   * @var array
-   */
-  protected $iconSizes = [];
-
-  /**
    * The file URL generator.
    *
    * @var \Drupal\Core\File\FileUrlGeneratorInterface
