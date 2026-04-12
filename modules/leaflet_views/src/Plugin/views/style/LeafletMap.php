@@ -882,6 +882,9 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
         '#attached' => [
           'library' => ['leaflet/general'],
         ],
+        '#cache' => [
+          'contexts' => ['user.permissions'],
+        ],
       ];
     }
 

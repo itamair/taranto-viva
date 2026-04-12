@@ -142,6 +142,7 @@ class LeafletService {
     $map_id = $map['id'] ?? Html::getUniqueId('leaflet_map');
 
     $attached_libraries = ['leaflet/general', 'leaflet/leaflet-drupal'];
+    $cache_contexts = [];
 
     // Check for the definition of a vector type layer
     // and eventually add MapLibre GL Leaflet library.
@@ -167,6 +168,8 @@ class LeafletService {
     // and the user has access to Geocoder Api Enpoints.
     if (!empty($map['settings']['geocoder']['control'])) {
       $this->setGeocoderControlSettings($map['settings']['geocoder'], $attached_libraries);
+      // Geocoder control visibility depends on user permissions.
+      $cache_contexts[] = 'user.permissions';
     }
 
     // Add the Leaflet Fullscreen library, if requested.
@@ -201,6 +204,9 @@ class LeafletService {
         'drupalSettings' => [
           'leaflet' => $settings,
         ],
+      ],
+      '#cache' => [
+        'contexts' => $cache_contexts,
       ],
     ];
   }
