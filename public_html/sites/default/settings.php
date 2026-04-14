@@ -776,7 +776,6 @@ $settings['trusted_host_patterns'] = [
   '^www\.geodemocracy\.com$',
   '^taranto-viva\.com$',
   '^www\.taranto-viva\.com$',
-  '^coral-eland-546543\.hostingersite\.com$',
 ];
 
 /**
