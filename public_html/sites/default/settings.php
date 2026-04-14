@@ -772,10 +772,11 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  * @see https://www.drupal.org/docs/installing-drupal/trusted-host-settings
  */
 $settings['trusted_host_patterns'] = [
-  '^taranto-viva.ddev.site$',
-  '^www.geodemocracy.com$',
-  '^www.taranto-viva.com$',
-  '^coral-eland-546543.hostingersite.com$'
+  '^taranto-viva\.ddev\.site$',
+  '^www\.geodemocracy\.com$',
+  '^taranto-viva\.com$',
+  '^www\.taranto-viva\.com$',
+  '^coral-eland-546543\.hostingersite\.com$',
 ];
 
 /**
