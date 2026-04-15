@@ -44,7 +44,6 @@ dependencies:
     - system.menu.main
     - taxonomy.vocabulary.places_categories
     - taxonomy.vocabulary.project_namespace
-    - user.role.administrator
     - user.role.authenticated
   content:
     - 'taxonomy_term:places_categories:a841baac-2165-4eb1-8954-60c0a0bf78b6'
@@ -6599,14 +6598,16 @@ display:
         metatag_display_extender:
           metatags:
             title: 'Main Map | [site:name]'
-            description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
+            description: "Taranto Viva is a Web project with advanced WebGis and CMS functionalities, aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
             abstract: '[site:slogan]'
             geo_position: '40.473402, 17.235560'
             geo_placename: 'Taranto (Puglia)'
             geo_region: IT
+            robots: 'max-image-preview:standard'
+            canonical_url: '[current-page:url]'
             og_site_name: '[site:name]'
             og_title: '[view:title] | [site:name]'
-            og_description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
+            og_description: "Taranto Viva is a Web project with advanced WebGis and CMS functionalities, aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
         library_in_views_display_extender:
           attach_library: italo_module/leaflet_images_control
