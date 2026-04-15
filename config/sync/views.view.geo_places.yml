@@ -3481,7 +3481,7 @@ display:
     display_plugin: page
     position: 6
     display_options:
-      title: 'Places of Interest'
+      title: 'Luoghi di Interesse'
       fields: {  }
       exposed_form:
         type: bef
@@ -3874,6 +3874,9 @@ display:
         metatag_display_extender:
           metatags: {  }
           tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender:
+          variants: {  }
       path: luoghi_di_interesse
       menu:
         type: normal

@@ -238,7 +238,7 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: '<p>No Results found</p>'
+            value: "<p>No Results found</p>\r\n"
             format: basic_html
           tokenize: false
       sorts:
@@ -2325,7 +2325,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: 'Apulian Aqueduct Cycle Route'
+      title: 'Ciclovia Pugliese degli Acquedotti'
       fields:
         title:
           id: title
@@ -5103,8 +5103,8 @@ display:
       path: ciclovia-acquedotto-pugliese
       menu:
         type: normal
-        title: 'Apulian Aqueduct Cycle Route'
-        description: null
+        title: 'Ciclovia degli Acquedotti'
+        description: ''
         weight: -46
         enabled: true
         expanded: false

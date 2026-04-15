@@ -3,6 +3,7 @@ display:
     display_options:
       menu:
         title: 'Places of Interest'
+      title: 'Places of Interest'
   page_map_taranto_viva:
     display_options:
       filters:
@@ -10,3 +11,13 @@ display:
           expose:
             label: 'Validity of events and reports'
       title: 'Home | Map'
+      menu:
+        title: 'Home | Map'
+  page_vaganti_map:
+    display_options:
+      filters:
+        field_exif_creation_date_value:
+          expose:
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''

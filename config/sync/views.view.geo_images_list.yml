@@ -33,7 +33,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Images
+      title: Immagini
       fields:
         nid:
           id: nid
@@ -543,13 +543,20 @@ display:
     position: 1
     display_options:
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender:
+          variants: {  }
       path: geo-images
       menu:
         type: normal
-        title: Images
+        title: Immagini
         description: ''
         weight: -47
+        enabled: true
         expanded: false
         menu_name: main
         parent: ''
