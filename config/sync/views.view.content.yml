@@ -1368,7 +1368,7 @@ display:
             changed: changed
             langcode: langcode
             operations: operations
-          default: field_google_maps_address
+          default: changed
           info:
             views_bulk_operations_bulk_form:
               align: ''

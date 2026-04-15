@@ -7,6 +7,7 @@ dependencies:
     - field.storage.node.field_value
     - node.type.geojson_geometry
     - system.menu.main
+    - user.role.administrator
   module:
     - geofield
     - leaflet_choropleth
@@ -238,9 +239,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
+        type: role
         options:
-          perm: 'access content'
+          role:
+            administrator: administrator
       cache:
         type: tag
         options: {  }
@@ -435,7 +437,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_geofield'
         - 'config:field.storage.node.field_value'
@@ -475,7 +477,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
-        - user.permissions
+        - user.roles
       tags:
         - 'config:field.storage.node.field_geofield'
         - 'config:field.storage.node.field_value'

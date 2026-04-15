@@ -55,7 +55,7 @@ third_party_settings:
                 type: readmore
                 label: visually_hidden
                 settings:
-                  trim_length: 300
+                  trim_length: 400
                   trim_on_break: false
                   show_readmore: true
                   show_readless: true
