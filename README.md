@@ -96,7 +96,7 @@ The submodule also provides:
 
 ### Leaflet Markercluster (`leaflet_markercluster`)
 
-Wraps the [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) plugin (v1.5.3). Enable separately:
+Wraps the [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) plugin. Enable separately:
 
 ```bash
 drush en leaflet_markercluster
@@ -570,21 +570,21 @@ Fired once after all features have been added (before `fitBounds`).
 
 All third-party JS/CSS libraries are bundled in the `js/` directory and declared in `leaflet.libraries.yml`. They are attached automatically when needed.
 
-| Drupal library key | Version | Purpose |
-|--------------------|---------|---------|
-| `leaflet/leaflet` | 1.9.4 | Core Leaflet JS + CSS |
-| `leaflet/leaflet-drupal` | — | Drupal integration behaviour (`leaflet.drupal.js`) |
-| `leaflet/maplibre-gl-js` | 5.18.0 | Vector tile rendering engine |
-| `leaflet/maplibre-gl-leaflet` | 0.1.1 | Bridges MapLibre GL into a Leaflet layer |
-| `leaflet/leaflet-geoman` | 2.13.0 | Geometry drawing/editing toolbar |
-| `leaflet/leaflet-widget` | — | Drupal widget behaviour (`leaflet.widget.js`) |
-| `leaflet/leaflet-geojson-overlay` | — | GeoJSON overlay loader for the widget |
-| `leaflet/leaflet.fullscreen` | 1.0.2 | Fullscreen control |
-| `leaflet/leaflet.reset_map_view` | 1.1.1 | Reset-view button |
-| `leaflet/leaflet.gesture_handling` | 1.2.2 | Gesture/scroll handling (mobile-friendly) |
-| `leaflet/leaflet.locatecontrol` | 0.78.0 | GPS locate button |
-| `leaflet/leaflet.geocoder` | — | Custom geocoder control backed by Drupal Geocoder API |
-| `leaflet_markercluster/leaflet-markercluster` | 1.5.3 | Marker clustering |
+| Drupal library key | Purpose |
+|--------------------|---------|
+| `leaflet/leaflet` | Core Leaflet JS + CSS |
+| `leaflet/leaflet-drupal` | Drupal integration behaviour (`leaflet.drupal.js`) |
+| `leaflet/maplibre-gl-js` | Vector tile rendering engine |
+| `leaflet/maplibre-gl-leaflet` | Bridges MapLibre GL into a Leaflet layer |
+| `leaflet/leaflet-geoman` | Geometry drawing/editing toolbar |
+| `leaflet/leaflet-widget` | Drupal widget behaviour (`leaflet.widget.js`) |
+| `leaflet/leaflet-geojson-overlay` | GeoJSON overlay loader for the widget |
+| `leaflet/leaflet.fullscreen` | Fullscreen control |
+| `leaflet/leaflet.reset_map_view` | Reset-view button |
+| `leaflet/leaflet.gesture_handling` | Gesture/scroll handling (mobile-friendly) |
+| `leaflet/leaflet.locatecontrol` | GPS locate button |
+| `leaflet/leaflet.geocoder` | Custom geocoder control backed by Drupal Geocoder API |
+| `leaflet_markercluster/leaflet-markercluster` | Marker clustering |
 
 ---
 
