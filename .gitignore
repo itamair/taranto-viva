@@ -2,5 +2,3 @@
 js/leaflet/*
 !js/leaflet/dist
 
-#Ignore Claude files.
-CLAUDE.md
