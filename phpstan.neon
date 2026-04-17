@@ -13,10 +13,10 @@ parameters:
     paths:
       - src
       - tests/src
-      - web/modules/custom
-      - web/profiles
-      - web/themes/ventuno
-      - web/themes/iop
+      - public_htmlmodules/custom
+      - public_htmlprofiles
+      - public_htmlthemes/ventuno
+      - public_htmlthemes/iop
     ignoreErrors:
         # We're not prepared yet for this.
         - '#\Drupal calls should be avoided in classes, use dependency injection instead#'
@@ -34,4 +34,4 @@ parameters:
     excludePaths:
         - src/CodingStandards/Sniffs/NamingConventions/ValidUpdateNameSniff.php
     scanFiles:
-        - web/modules/contrib/og/src/OgMembershipInterface.php
+        - public_htmlmodules/contrib/og/src/OgMembershipInterface.php
