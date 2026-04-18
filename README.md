@@ -604,10 +604,14 @@ A **Browse available tokens** widget is displayed in the relevant settings field
 
 ---
 
-## Authors / Credits
+## Authors / Maintainers
 
-- **Italo Mairo** — [itamair](https://www.drupal.org/u/itamair) — main maintainer since Drupal 8
+From Drupal 8 to today:
+- **Italo Mairo** — [itamair](https://www.drupal.org/u/itamair) — main maintainer
+
+Drupal 7:
 - **Lev Tsypin** — [levelos](https://www.drupal.org/u/levelos) — original creator
 - **Peter Vanhee** — [pvhee](https://www.drupal.org/u/pvhee)
 - **Rik de Boer** — [RdeBoer](https://www.drupal.org/u/rdeboer)
-- and the wider Drupal community
+
+And credits to the wider Drupal community
