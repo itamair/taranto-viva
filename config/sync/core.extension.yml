@@ -11,7 +11,6 @@ module:
   ai_chatbot: 0
   ai_ckeditor: 0
   ai_provider_anthropic: 0
-  ai_provider_deepseek: 0
   ai_provider_litellm: 0
   ai_provider_openai: 0
   ai_search: 0

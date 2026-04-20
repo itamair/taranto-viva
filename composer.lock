@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd1ca2f1f4233c25ee67b2e3565afaab",
+    "content-hash": "7c1ef9cae531666477e0190fb53318e2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1053,117 +1053,6 @@
             "time": "2022-11-25T16:30:20+00:00"
         },
         {
-            "name": "deepseek-php/deepseek-php-client",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/deepseek-php/deepseek-php-client.git",
-                "reference": "c46ac6a92abaed80ce6e5aa37342f8c43a09cf8b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/deepseek-php/deepseek-php-client/zipball/c46ac6a92abaed80ce6e5aa37342f8c43a09cf8b",
-                "reference": "c46ac6a92abaed80ce6e5aa37342f8c43a09cf8b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1.0",
-                "php-http/discovery": "^1.20.0",
-                "php-http/multipart-stream-builder": "^1.4.2",
-                "psr/http-client": "^1.0.3",
-                "psr/http-client-implementation": "^1.0.1",
-                "psr/http-factory-implementation": "*",
-                "psr/http-message": "^1.1.0|^2.0.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "^7.9.2",
-                "guzzlehttp/psr7": "^2.7.0",
-                "laravel/pint": "^1.18.1",
-                "mockery/mockery": "^1.6.12",
-                "nunomaduro/collision": "^7.11.0|^8.5.0",
-                "pestphp/pest": "^2.36.0|^3.5.0",
-                "pestphp/pest-plugin-arch": "^2.7|^3.0",
-                "pestphp/pest-plugin-type-coverage": "^2.8.7|^3.1.0",
-                "phpstan/phpstan": "^1.12.7",
-                "roave/security-advisories": "dev-latest",
-                "symfony/var-dumper": "^6.4.11|^7.1.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DeepseekPhp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "deepseek-php",
-                    "email": "omaralwi2010@gmail.com",
-                    "role": "owner"
-                },
-                {
-                    "name": "Omar Alalwi",
-                    "email": "omaralwi2010@gmail.com",
-                    "role": "creator"
-                }
-            ],
-            "description": "deepseek PHP client is a robust and community-driven PHP client library for seamless integration with the Deepseek API, offering efficient access to advanced AI and data processing capabilities.",
-            "homepage": "https://github.com/deepseek-php/deepseek-php-client",
-            "keywords": [
-                "DeepSeek-R1",
-                "DeepSeek-R1-Zero",
-                "GPT-3",
-                "ai-api",
-                "ai-client-library",
-                "ai-for-php",
-                "ai-integration",
-                "ai-sdk",
-                "api",
-                "api-integration",
-                "client",
-                "codex",
-                "dall-e",
-                "data-processing",
-                "deep-learning",
-                "deepseek",
-                "deepseek-ai",
-                "deepseek-api",
-                "deepseek-chat",
-                "deepseek-client",
-                "deepseek-coder",
-                "deepseek-integration",
-                "deepseek-library",
-                "deepseek-math",
-                "deepseek-php-client",
-                "deepseek-php-library",
-                "deepseek-sdk",
-                "language",
-                "machine-learning",
-                "natural",
-                "natural-language-processing",
-                "nlp",
-                "openai",
-                "php-ai",
-                "php-api-client",
-                "php-deepseek",
-                "php-iot",
-                "php-library",
-                "php-machine-learning",
-                "php-openai-alternative",
-                "php-sdk",
-                "processing",
-                "sdk"
-            ],
-            "support": {
-                "issues": "https://github.com/deepseek-php/deepseek-php-client/issues",
-                "source": "https://github.com/deepseek-php/deepseek-php-client/tree/v1.0.2"
-            },
-            "time": "2025-01-24T23:55:42+00:00"
-        },
-        {
             "name": "dekor/php-array-table",
             "version": "2.0",
             "source": {
@@ -1821,20 +1710,20 @@
         },
         {
             "name": "drupal/ai",
-            "version": "1.2.14",
+            "version": "1.3.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ai.git",
-                "reference": "1.2.14"
+                "reference": "1.3.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai-1.2.14.zip",
-                "reference": "1.2.14",
-                "shasum": "9df8fb7f008d27eda442c118114d0610e9538946"
+                "url": "https://ftp.drupal.org/files/projects/ai-1.3.3.zip",
+                "reference": "1.3.3",
+                "shasum": "092d335a5e42f543c89240def37ff995cc534883"
             },
             "require": {
-                "drupal/core": "^10.4 || ^11",
+                "drupal/core": "^10.5 || ^11.2",
                 "drupal/key": "^1.18",
                 "league/html-to-markdown": "^5.1",
                 "openai-php/client": ">=v0.10.1",
@@ -1842,13 +1731,16 @@
             },
             "require-dev": {
                 "allanpichardo/mysql-vector": "^2.0",
+                "drupal/address": "^2.0",
                 "drupal/ai_assistant_api": "*",
                 "drupal/eca": "*",
                 "drupal/eca_content-eca_content": "*",
                 "drupal/field_validation": "^3.0@beta",
                 "drupal/key": "*",
+                "drupal/opentelemetry": "^1.0@beta",
                 "drupal/search_api": "^1.x-dev",
                 "drupal/search_api_solr": "^4.0",
+                "drupal/test_helpers": "^1.5",
                 "drupal/token": "^1.14",
                 "drush/drush": "^12|^13"
             },
@@ -1858,8 +1750,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.2.14",
-                    "datestamp": "1776263545",
+                    "version": "1.3.3",
+                    "datestamp": "1776263290",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2149,141 +2041,6 @@
             }
         },
         {
-            "name": "drupal/ai_media_image",
-            "version": "1.0.0-alpha4",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/ai_media_image.git",
-                "reference": "1.0.0-alpha4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai_media_image-1.0.0-alpha4.zip",
-                "reference": "1.0.0-alpha4",
-                "shasum": "f0f5343bdd1c748a381558ff7765e501a3caee24"
-            },
-            "require": {
-                "drupal/ai": "*",
-                "drupal/core": "^10.2 || ^11"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.0.0-alpha4",
-                    "datestamp": "1749753508",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "coffeymachine",
-                    "homepage": "https://www.drupal.org/user/794774"
-                }
-            ],
-            "description": "Create a media entity image from a prompt to the AI text-to-image model.",
-            "homepage": "https://www.drupal.org/project/ai_media_image",
-            "support": {
-                "source": "https://git.drupalcode.org/project/ai_media_image"
-            }
-        },
-        {
-            "name": "drupal/ai_provider_amazeeio",
-            "version": "1.2.7",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/ai_provider_amazeeio.git",
-                "reference": "1.2.7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai_provider_amazeeio-1.2.7.zip",
-                "reference": "1.2.7",
-                "shasum": "cc6e1585daa4065561809b2c6d06f56fd404f9e6"
-            },
-            "require": {
-                "drupal/ai": "^1.2",
-                "drupal/core": "^10.4 || ^11",
-                "drupal/key": "*",
-                "drupal/search_api": ">1.20"
-            },
-            "require-dev": {
-                "drupal/config_ignore": "^3.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.2.7",
-                    "datestamp": "1770395479",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "andrewbelcher",
-                    "homepage": "https://www.drupal.org/user/655282"
-                },
-                {
-                    "name": "bryangruneberg",
-                    "homepage": "https://www.drupal.org/user/2600012"
-                },
-                {
-                    "name": "dan2k3k4",
-                    "homepage": "https://www.drupal.org/user/2437398"
-                },
-                {
-                    "name": "justanothermark",
-                    "homepage": "https://www.drupal.org/user/1369624"
-                },
-                {
-                    "name": "kellyknight",
-                    "homepage": "https://www.drupal.org/user/3843555"
-                },
-                {
-                    "name": "marcus_johansson",
-                    "homepage": "https://www.drupal.org/user/385947"
-                },
-                {
-                    "name": "matthews",
-                    "homepage": "https://www.drupal.org/user/114486"
-                },
-                {
-                    "name": "pmelab",
-                    "homepage": "https://www.drupal.org/user/555322"
-                },
-                {
-                    "name": "schnitzel",
-                    "homepage": "https://www.drupal.org/user/643820"
-                },
-                {
-                    "name": "vasi1186",
-                    "homepage": "https://www.drupal.org/user/342104"
-                },
-                {
-                    "name": "yanniboi",
-                    "homepage": "https://www.drupal.org/user/1837556"
-                }
-            ],
-            "description": "amazee.ai AI provider integration.",
-            "homepage": "https://www.drupal.org/project/ai_provider_amazeeio",
-            "support": {
-                "source": "https://git.drupalcode.org/project/ai_provider_amazeeio"
-            }
-        },
-        {
             "name": "drupal/ai_provider_anthropic",
             "version": "1.2.2",
             "source": {
@@ -2343,61 +2100,6 @@
             "homepage": "https://www.drupal.org/project/ai_provider_anthropic",
             "support": {
                 "source": "https://git.drupalcode.org/project/ai_provider_anthropic"
-            }
-        },
-        {
-            "name": "drupal/ai_provider_deepseek",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/ai_provider_deepseek.git",
-                "reference": "1.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ai_provider_deepseek-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "f4bdd84780fa267a79852b57e993e21877f432a8"
-            },
-            "require": {
-                "deepseek-php/deepseek-php-client": "^1.0",
-                "drupal/ai": "^1.0.0-beta",
-                "drupal/core": "^10 || ^11",
-                "drupal/key": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1758257113",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "gagosha",
-                    "homepage": "https://www.drupal.org/user/3506581"
-                },
-                {
-                    "name": "jibla",
-                    "homepage": "https://www.drupal.org/user/1013184"
-                },
-                {
-                    "name": "lawxen",
-                    "homepage": "https://www.drupal.org/user/2936003"
-                }
-            ],
-            "description": "Deepseek LLM provider for AI module.",
-            "homepage": "https://www.drupal.org/project/ai_provider_deepseek",
-            "support": {
-                "source": "https://git.drupalcode.org/project/ai_provider_deepseek"
             }
         },
         {
@@ -9127,54 +8829,6 @@
             }
         },
         {
-            "name": "drupal/varbase_ai_agents",
-            "version": "1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/varbase_ai_agents.git",
-                "reference": "270d215cb18b11b73b508c9b6d7260e4c3a47cf4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Fvarbase_ai_agents/repository/archive.zip?sha=270d215cb18b11b73b508c9b6d7260e4c3a47cf4",
-                "reference": "270d215cb18b11b73b508c9b6d7260e4c3a47cf4",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/ai": "~1.2.0",
-                "drupal/ai_agents": "~1.2.0",
-                "drupal/core": "~10 || ~11",
-                "league/commonmark": "*"
-            },
-            "type": "drupal-recipe",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Vardot",
-                    "homepage": "https://www.drupal.org/vardot",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Provides an AI-powered chatbot for streamlined administration and allows managing multiple agents with distinct functionalities.",
-            "keywords": [
-                "AI Agents",
-                "Varbase recipes",
-                "ai chatbot",
-                "drupal recipe",
-                "drupal recipes",
-                "recipe",
-                "setup AI",
-                "varbase recipe"
-            ],
-            "support": {
-                "source": "https://git.drupalcode.org/project/varbase_ai_agents/-/tree/1.0.4"
-            },
-            "time": "2025-11-17T22:05:30+00:00"
-        },
-        {
             "name": "drupal/viewfield",
             "version": "3.0.0-beta11",
             "source": {
@@ -11483,195 +11137,6 @@
             "time": "2026-03-23T14:35:33+00:00"
         },
         {
-            "name": "league/commonmark",
-            "version": "2.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "59fb075d2101740c337c7216e3f32b36c204218b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/59fb075d2101740c337c7216e3f32b36c204218b",
-                "reference": "59fb075d2101740c337c7216e3f32b36c204218b",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "league/config": "^1.1.1",
-                "php": "^7.4 || ^8.0",
-                "psr/event-dispatcher": "^1.0",
-                "symfony/deprecation-contracts": "^2.1 || ^3.0",
-                "symfony/polyfill-php80": "^1.16"
-            },
-            "require-dev": {
-                "cebe/markdown": "^1.0",
-                "commonmark/cmark": "0.31.1",
-                "commonmark/commonmark.js": "0.31.1",
-                "composer/package-versions-deprecated": "^1.8",
-                "embed/embed": "^4.4",
-                "erusev/parsedown": "^1.0",
-                "ext-json": "*",
-                "github/gfm": "0.29.0",
-                "michelf/php-markdown": "^1.4 || ^2.0",
-                "nyholm/psr7": "^1.5",
-                "phpstan/phpstan": "^1.8.2",
-                "phpunit/phpunit": "^9.5.21 || ^10.5.9 || ^11.0.0",
-                "scrutinizer/ocular": "^1.8.1",
-                "symfony/finder": "^5.3 | ^6.0 | ^7.0 || ^8.0",
-                "symfony/process": "^5.4 | ^6.0 | ^7.0 || ^8.0",
-                "symfony/yaml": "^2.3 | ^3.0 | ^4.0 | ^5.0 | ^6.0 | ^7.0 || ^8.0",
-                "unleashedtech/php-coding-standard": "^3.1.1",
-                "vimeo/psalm": "^4.24.0 || ^5.0.0 || ^6.0.0"
-            },
-            "suggest": {
-                "symfony/yaml": "v2.3+ required if using the Front Matter extension"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "2.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\CommonMark\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "https://www.colinodell.com",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "Highly-extensible PHP Markdown parser which fully supports the CommonMark spec and GitHub-Flavored Markdown (GFM)",
-            "homepage": "https://commonmark.thephpleague.com",
-            "keywords": [
-                "commonmark",
-                "flavored",
-                "gfm",
-                "github",
-                "github-flavored",
-                "markdown",
-                "md",
-                "parser"
-            ],
-            "support": {
-                "docs": "https://commonmark.thephpleague.com/",
-                "forum": "https://github.com/thephpleague/commonmark/discussions",
-                "issues": "https://github.com/thephpleague/commonmark/issues",
-                "rss": "https://github.com/thephpleague/commonmark/releases.atom",
-                "source": "https://github.com/thephpleague/commonmark"
-            },
-            "funding": [
-                {
-                    "url": "https://www.colinodell.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.paypal.me/colinpodell/10.00",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/colinodell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/league/commonmark",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2026-03-19T13:16:38+00:00"
-        },
-        {
-            "name": "league/config",
-            "version": "v1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/config.git",
-                "reference": "754b3604fb2984c71f4af4a9cbe7b57f346ec1f3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/config/zipball/754b3604fb2984c71f4af4a9cbe7b57f346ec1f3",
-                "reference": "754b3604fb2984c71f4af4a9cbe7b57f346ec1f3",
-                "shasum": ""
-            },
-            "require": {
-                "dflydev/dot-access-data": "^3.0.1",
-                "nette/schema": "^1.2",
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^1.8.2",
-                "phpunit/phpunit": "^9.5.5",
-                "scrutinizer/ocular": "^1.8.1",
-                "unleashedtech/php-coding-standard": "^3.1",
-                "vimeo/psalm": "^4.7.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Config\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "https://www.colinodell.com",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "Define configuration arrays with strict schemas and access values with dot notation",
-            "homepage": "https://config.thephpleague.com",
-            "keywords": [
-                "array",
-                "config",
-                "configuration",
-                "dot",
-                "dot-access",
-                "nested",
-                "schema"
-            ],
-            "support": {
-                "docs": "https://config.thephpleague.com/",
-                "issues": "https://github.com/thephpleague/config/issues",
-                "rss": "https://github.com/thephpleague/config/releases.atom",
-                "source": "https://github.com/thephpleague/config"
-            },
-            "funding": [
-                {
-                    "url": "https://www.colinodell.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.paypal.me/colinpodell/10.00",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/colinodell",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-12-11T20:36:23+00:00"
-        },
-        {
             "name": "league/container",
             "version": "4.2.5",
             "source": {
@@ -12632,164 +12097,6 @@
                 "source": "https://github.com/mustangostang/spyc/tree/0.6.3"
             },
             "time": "2019-09-10T13:16:29+00:00"
-        },
-        {
-            "name": "nette/schema",
-            "version": "v1.3.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/schema.git",
-                "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/schema/zipball/f0ab1a3cda782dbc5da270d28545236aa80c4002",
-                "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002",
-                "shasum": ""
-            },
-            "require": {
-                "nette/utils": "^4.0",
-                "php": "8.1 - 8.5"
-            },
-            "require-dev": {
-                "nette/phpstan-rules": "^1.0",
-                "nette/tester": "^2.6",
-                "phpstan/extension-installer": "^1.4@stable",
-                "phpstan/phpstan": "^2.1.39@stable",
-                "tracy/tracy": "^2.8"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nette\\": "src"
-                },
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0-only",
-                "GPL-3.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "📐 Nette Schema: validating data structures against a given Schema.",
-            "homepage": "https://nette.org",
-            "keywords": [
-                "config",
-                "nette"
-            ],
-            "support": {
-                "issues": "https://github.com/nette/schema/issues",
-                "source": "https://github.com/nette/schema/tree/v1.3.5"
-            },
-            "time": "2026-02-23T03:47:12+00:00"
-        },
-        {
-            "name": "nette/utils",
-            "version": "v4.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/utils.git",
-                "reference": "bb3ea637e3d131d72acc033cfc2746ee893349fe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/bb3ea637e3d131d72acc033cfc2746ee893349fe",
-                "reference": "bb3ea637e3d131d72acc033cfc2746ee893349fe",
-                "shasum": ""
-            },
-            "require": {
-                "php": "8.2 - 8.5"
-            },
-            "conflict": {
-                "nette/finder": "<3",
-                "nette/schema": "<1.2.2"
-            },
-            "require-dev": {
-                "jetbrains/phpstorm-attributes": "^1.2",
-                "nette/phpstan-rules": "^1.0",
-                "nette/tester": "^2.5",
-                "phpstan/extension-installer": "^1.4@stable",
-                "phpstan/phpstan": "^2.1@stable",
-                "tracy/tracy": "^2.9"
-            },
-            "suggest": {
-                "ext-gd": "to use Image",
-                "ext-iconv": "to use Strings::webalize(), toAscii(), chr() and reverse()",
-                "ext-intl": "to use Strings::webalize(), toAscii(), normalize() and compare()",
-                "ext-json": "to use Nette\\Utils\\Json",
-                "ext-mbstring": "to use Strings::lower() etc...",
-                "ext-tokenizer": "to use Nette\\Utils\\Reflection::getUseStatements()"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nette\\": "src"
-                },
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0-only",
-                "GPL-3.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "🛠  Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
-            "homepage": "https://nette.org",
-            "keywords": [
-                "array",
-                "core",
-                "datetime",
-                "images",
-                "json",
-                "nette",
-                "paginator",
-                "password",
-                "slugify",
-                "string",
-                "unicode",
-                "utf-8",
-                "utility",
-                "validation"
-            ],
-            "support": {
-                "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.1.3"
-            },
-            "time": "2026-02-13T03:05:33+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -18382,8 +17689,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/ai_media_image": 15,
-        "drupal/ai_provider_deepseek": 15,
         "drupal/ai_tmgmt": 10,
         "drupal/ai_vdb_provider_pinecone": 10,
         "drupal/auto_entitylabel": 10,
