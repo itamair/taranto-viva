@@ -249,17 +249,11 @@
             ]
         },
         "patches": {
-            "drupal/core": {
-                "TypeError: Drupal\\Component\\Utility\\Html::escape(): Argument #1 ($text) must be of type string, null given": "https://www.drupal.org/files/issues/2025-07-11/fix-type-error-null-text-3523317-21.patch"
-            },
             "drupal/viewfield": {
                 "#3381787 Getting PHP errors when setting default value": "https://www.drupal.org/files/issues/2023-08-21/3381787.patch"
             },
             "drupal/entity_reference_revisions": {
                 "#2799479 Views doesn't recognize relationship to host": "https://www.drupal.org/files/issues/2024-08-24/entity_reference_revisions-2799479-231--no-tests.patch"
-            },
-            "drupal/config_inspector": {
-                "#3444730 Expected argument of type \"array\", \"string\" given": "https://git.drupalcode.org/project/config_inspector/-/merge_requests/26/diffs.patch"
             }
         }
     },
