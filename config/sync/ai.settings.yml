@@ -37,3 +37,5 @@ default_providers:
     provider_id: chat_translation
     model_id: claude-sonnet-4-5-20250929
 default_vdb_provider: ''
+allowed_hosts: {  }
+allowed_hosts_rewrite_links: false

@@ -42,7 +42,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Luoghi di Interesse'
+      title: 'Places of Interest'
       fields:
         id:
           id: id
@@ -2156,10 +2156,10 @@ display:
       path: taranto-viva-geoplaces-list
       filename: ''
       automatic_download: false
-      store_in_public_file_directory: false
       custom_redirect_path: false
       redirect_to_display: none
       include_query_params: false
+      export_filesystem: private
     cache_metadata:
       max-age: -1
       contexts:
