@@ -165,6 +165,14 @@
   }
 }
 
+// Customise Leaflet Marker Images (Overture Maps) Tile Container
+.leaflet-pane .leaflet-tile-container svg image {
+  opacity: 50% !important;
+  &:hover {
+    opacity: 100% !important;
+  }
+}
+
 // Fine Style the Control Layer List.
 .leaflet-control-layers-list {
   label {

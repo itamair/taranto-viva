@@ -63,6 +63,12 @@
         const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
           || 'https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/places.pmtiles';
 
+        // Hoisted so the style function, click handler, and cursor handler all share it.
+        const categoryIconMap = {
+          'bed_and_breakfast': '/sites/default/files/svg_icons/accommodation-2-svgrepo-com.svg',
+          'restaurant': '/sites/default/files/svg_icons/restaurant-svgrepo-com.svg',
+        };
+
         const layerOptions = {
           // Overture Maps places tiles expose a single layer named "place".
           // VectorGrid looks up styles by exact layer name — wildcards are not supported.
@@ -71,13 +77,14 @@
               const categoryData = properties.categories
                 ? JSON.parse(properties.categories) : {};
               const category = categoryData?.primary || '';
+              const iconUrl = categoryIconMap[category];
 
-              if (category === 'bed_and_breakfast') {
+              if (iconUrl) {
                 return {
                   icon: L.icon({
-                    iconUrl: 'https://taranto-viva.ddev.site/sites/default/files/media_image/building-08-svgrepo-com.svg',
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 15],
+                    iconUrl: iconUrl,
+                    iconSize: [20, 20],
+                    iconAnchor: [10, 10],
                   }),
                 };
               }
@@ -113,6 +120,21 @@
           Drupal.Leaflet[mapid].overlays = Drupal.Leaflet[mapid].overlays || {};
           Drupal.Leaflet[mapid].overlays[overlayLabel] = pmtilesLayer;
         }
+
+        // Leaflet's CSS pointer-events rule only covers svg path.leaflet-interactive,
+        // not <image> elements. Setting the map container cursor via JS events is
+        // the only reliable way to show pointer cursor on VectorGrid icon markers.
+        pmtilesLayer.on('mouseover', function (e) {
+          const props = e.layer?.properties || {};
+          const categoryData = props.categories ? JSON.parse(props.categories) : {};
+          const category = categoryData?.primary || '';
+          if (categoryIconMap[category]) {
+            lMap.getContainer().style.cursor = 'pointer';
+          }
+        });
+        pmtilesLayer.on('mouseout', function () {
+          lMap.getContainer().style.cursor = '';
+        });
 
         // Add a basic popup on feature click to show place name/category.
         pmtilesLayer.on('click', function (e) {
