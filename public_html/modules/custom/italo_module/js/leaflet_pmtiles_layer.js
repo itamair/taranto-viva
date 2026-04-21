@@ -65,8 +65,18 @@
 
         // Hoisted so the style function, click handler, and cursor handler all share it.
         const categoryIconMap = {
+          'diner': '/sites/default/files/svg_icons/accommodation-2-svgrepo-com.svg',
           'bed_and_breakfast': '/sites/default/files/svg_icons/accommodation-2-svgrepo-com.svg',
           'restaurant': '/sites/default/files/svg_icons/restaurant-svgrepo-com.svg',
+        };
+
+        // Returns the icon URL for the first categoryIconMap key that is contained
+        // within the given category string, or undefined if none matches.
+        const getCategoryIconUrl = function (category) {
+          const key = Object.keys(categoryIconMap).find(function (k) {
+            return category.includes(k);
+          });
+          return key ? categoryIconMap[key] : undefined;
         };
 
         const layerOptions = {
@@ -77,7 +87,7 @@
               const categoryData = properties.categories
                 ? JSON.parse(properties.categories) : {};
               const category = categoryData?.primary || '';
-              const iconUrl = categoryIconMap[category];
+              const iconUrl = getCategoryIconUrl(category);
 
               if (iconUrl) {
                 return {
@@ -128,7 +138,7 @@
           const props = e.layer?.properties || {};
           const categoryData = props.categories ? JSON.parse(props.categories) : {};
           const category = categoryData?.primary || '';
-          if (categoryIconMap[category]) {
+          if (getCategoryIconUrl(category)) {
             lMap.getContainer().style.cursor = 'pointer';
           }
         });

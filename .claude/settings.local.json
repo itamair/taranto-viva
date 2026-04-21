@@ -53,7 +53,8 @@
       "Bash(php -r \"echo \\\\Drupal\\\\Component\\\\Uuid\\\\Php::generate\\(\\);\")",
       "Bash(awk 'NR>=3896 && NR<=6663' /Users/italo/Sites/geodemocracy/taranto-viva/config/sync/views.view.geo_places.yml)",
       "Bash(awk 'NR>=1000 && NR<=1070')",
-      "Bash(sed 's/\\\\.yml$//')"
+      "Bash(sed 's/\\\\.yml$//')",
+      "WebFetch(domain:cdn.jsdelivr.net)"
     ],
     "deny": []
   },
