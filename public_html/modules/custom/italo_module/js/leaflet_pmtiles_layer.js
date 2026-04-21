@@ -24,11 +24,11 @@
 
         const layerOptions = {
           // Overture Maps places tiles expose a single layer named "place".
-          // Use the wildcard '*' to catch any layer name in the archive.
+          // VectorGrid looks up styles by exact layer name — wildcards are not supported.
           vectorTileLayerStyles: {
-            '*': function (properties) {
+            'place': function (properties) {
               return {
-                radius: 4,
+                radius: 3,
                 weight: 1,
                 color: '#ffffff',
                 opacity: 0.9,
@@ -44,8 +44,8 @@
           getFeatureId: function (feature) {
             return feature.properties.id || feature.properties.name;
           },
-          maxNativeZoom: 14,
-          minZoom: 12,
+          maxNativeZoom: 18,
+          minZoom: 17,
         };
 
         const pmtilesLayer = L.pmtilesLayer(pmtilesUrl, layerOptions);
