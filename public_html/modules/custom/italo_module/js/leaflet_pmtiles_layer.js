@@ -19,6 +19,47 @@
           return;
         }
 
+        // VectorGrid's PointSymbolizer extends L.CircleMarker and inherits
+        // getLatLng(), but never sets _latlng — only the pixel-space _point.
+        // Leaflet's _fireDOMEvent classifies any target with getLatLng and
+        // _radius ≤ 10 as a "marker" and calls latLngToContainerPoint(getLatLng()),
+        // which crashes on undefined.
+        //
+        // With the default SVG renderer the PointSymbolizer is registered in
+        // map._targets (keyed on its SVG path), so the crash path is:
+        //   _handleDOMEvent → _fireDOMEvent(e, type) → _findEventTargets → crash
+        // Patching _findEventTargets intercepts that path.
+        //
+        // With the canvas renderer the crash path is instead:
+        //   L.Canvas._fireEvent → _fireDOMEvent(e, type, canvasTargets) → crash
+        // Patching _fireDOMEvent intercepts that path.
+        //
+        // Both patches wrap the broken target in an Object.create proxy that
+        // hides getLatLng (sets it to undefined), so Leaflet falls back to
+        // mouseEventToContainerPoint(e). All other methods delegate to the real
+        // target, so event propagation and e.layer.properties remain intact.
+        const patchTarget = function (t) {
+          if (t.getLatLng && t.getLatLng() === undefined) {
+            const proxy = Object.create(t);
+            proxy.getLatLng = undefined;
+            return proxy;
+          }
+          return t;
+        };
+
+        const _origFindEventTargets = lMap._findEventTargets.bind(lMap);
+        lMap._findEventTargets = function (ev, type) {
+          return _origFindEventTargets(ev, type).map(patchTarget);
+        };
+
+        const _origFireDOMEvent = lMap._fireDOMEvent.bind(lMap);
+        lMap._fireDOMEvent = function (ev, type, canvasTargets) {
+          if (canvasTargets) {
+            canvasTargets = canvasTargets.map(patchTarget);
+          }
+          return _origFireDOMEvent(ev, type, canvasTargets);
+        };
+
         const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
           || 'https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2025-04-23/places.pmtiles';
 
@@ -44,7 +85,7 @@
           getFeatureId: function (feature) {
             return feature.properties.id || feature.properties.name;
           },
-          maxNativeZoom: 18,
+          maxNativeZoom: 19,
           minZoom: 17,
         };
 
