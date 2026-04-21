@@ -62,3 +62,27 @@ leaflet_node_forced_bounds:
   js:
     js/leaflet_node_forced_bounds.js: {}
 
+# Vendored IIFE build of leaflet-pmtiles-layer (bundles pmtiles,
+# leaflet.vectorgrid, and @mapbox/vector-tile — no separate peer deps needed).
+leaflet-pmtiles-layer:
+  remote: https://github.com/calvinmetcalf/leaflet-pmtiles-layer
+  version: 0.0.3
+  license:
+    name: MIT License
+    url: https://github.com/calvinmetcalf/leaflet-pmtiles-layer/blob/main/LICENSE
+    gpl-compatible: true
+  js:
+    js/leaflet-pmtiles-layer/Leaflet.PMTilesLayer.js: {}
+  dependencies:
+    - leaflet/leaflet
+
+leaflet_pmtiles_layer:
+  version: 1.x
+  js:
+    js/leaflet_pmtiles_layer.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+    - italo_module/leaflet-pmtiles-layer
+

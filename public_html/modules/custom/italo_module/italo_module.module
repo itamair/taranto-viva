@@ -40,6 +40,7 @@ function italo_module_page_attachments(array &$page) {
   // $page['#attached']['library'][] = 'italo_module/leaflet_node_forced_bounds';
   $page['#attached']['library'][] = 'italo_module/leaflet-arrowheads';
   $page['#attached']['library'][] = 'italo_module/leaflet_drupal_overrides';
+  $page['#attached']['library'][] = 'italo_module/leaflet_pmtiles_layer';
 
   // The leaflet_images_control library now being added to specific views,
   // (such as the views.view.geo_places.yml) throughout the views_attach_library
