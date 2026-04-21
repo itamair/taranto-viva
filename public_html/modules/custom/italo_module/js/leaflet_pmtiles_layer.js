@@ -61,7 +61,7 @@
         };
 
         const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
-          || 'https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2025-04-23/places.pmtiles';
+          || 'https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/places.pmtiles';
 
         const layerOptions = {
           // Overture Maps places tiles expose a single layer named "place".
@@ -106,8 +106,9 @@
             return;
           }
           const props = e.layer.properties || {};
-          const name = props.names?.primary || props.name || '—';
-          const category = props.categories?.primary || props.category || '';
+          const name = props['@name'] ?? '—';
+          const category_data = props.categories ? JSON.parse(props.categories) : {};
+          const category = category_data?.primary || '';
           L.popup()
             .setLatLng(e.latlng)
             .setContent('<strong>' + name + '</strong>' + (category ? '<br>' + category : ''))
