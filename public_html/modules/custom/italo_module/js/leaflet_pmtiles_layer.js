@@ -63,20 +63,46 @@
         const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
           || 'https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/places.pmtiles';
 
-        // Hoisted so the style function, click handler, and cursor handler all share it.
-        const categoryIconMap = {
-          'diner': '/sites/default/files/svg_icons/accommodation-2-svgrepo-com.svg',
-          'bed_and_breakfast': '/sites/default/files/svg_icons/accommodation-2-svgrepo-com.svg',
-          'restaurant': '/sites/default/files/svg_icons/restaurant-svgrepo-com.svg',
-        };
+        // Each entry maps one icon URL to an expandable list of category keywords.
+        // A place matches if its primary category contains any keyword in the list.
+        const categoryIconEntries = [
+          {
+            iconUrl: '/sites/default/files/svg_icons/accommodation-2-svgrepo-com.svg',
+            keywords: ['bed_and_breakfast'],
+          },
+          {
+            iconUrl: '/sites/default/files/svg_icons/restaurant-svgrepo-com.svg',
+            keywords: ['restaurant', 'diner'],
+          },
+          {
+            iconUrl: '/sites/default/files/svg_icons/museum-svgrepo-com.svg',
+            keywords: ['historical_building'],
+          },
+          {
+            iconUrl: '/sites/default/files/svg_icons/parking-svgrepo-com.svg',
+            keywords: ['parking'],
+          },
+          {
+            iconUrl: '/sites/default/files/svg_icons/hotel-sign-hotel-svgrepo-com.svg',
+            keywords: ['hotel'],
+          },
+          {
+            iconUrl: '/sites/default/files/svg_icons/bar-svgrepo-com.svg',
+            keywords: ['bar', 'cafe', 'coffee'],
+          },
+          {
+            iconUrl: '/sites/default/files/svg_icons/shopping-bag-svgrepo-com.svg',
+            keywords: ['shopping', 'clothing_store', 'store'],
+          },
+        ];
 
-        // Returns the icon URL for the first categoryIconMap key that is contained
-        // within the given category string, or undefined if none matches.
+        // Returns the icon URL for the first entry whose keywords contain
+        // a substring of the given category string, or undefined if none matches.
         const getCategoryIconUrl = function (category) {
-          const key = Object.keys(categoryIconMap).find(function (k) {
-            return category.includes(k);
+          const entry = categoryIconEntries.find(function (e) {
+            return e.keywords.some(function (k) { return category.includes(k); });
           });
-          return key ? categoryIconMap[key] : undefined;
+          return entry ? entry.iconUrl : undefined;
         };
 
         const layerOptions = {
@@ -103,10 +129,10 @@
                 radius: 3,
                 weight: 1,
                 color: '#ffffff',
-                opacity: 0.9,
+                opacity: 0.6,
                 fill: true,
                 fillColor: '#e05b2e',
-                fillOpacity: 0.85,
+                fillOpacity: 0.6,
               };
             },
           },
@@ -117,7 +143,7 @@
             return feature.properties.id || feature.properties.name;
           },
           maxNativeZoom: 19,
-          minZoom: 17,
+          minZoom: 18,
           // L.VectorGrid extends L.GridLayer, which defaults to tilePane (z-index 200),
           // the same pane as base tiles. overlayPane (z-index 400) always renders above
           // all tile layers regardless of which base layer is active.
