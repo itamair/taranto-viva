@@ -53,11 +53,6 @@
         display: none;
       }
     }
-    .node--type-geoplace,
-    .node--type-event,
-    .node--type-territorial-report {
-      margin: 10px 6px 0;
-    }
 
     // Fields
     .field--name-field-address field {
@@ -69,11 +64,6 @@
       color: darkgray;
     }
 
-    .field--name-geofield-googlemaps-link {
-      padding-bottom: 0.5em !important;
-      margin: 0 8px;
-    }
-
     .field--type-image img, .field--name-user-picture img {
       margin: 0;
     }
@@ -83,10 +73,6 @@
       font-size: 0.8rem;
       opacity: 70%;
       line-height: 1.2rem;
-    }
-
-    .field:not(:last-child) {
-      margin-bottom: 0.4rem !important;
     }
 
     @media only screen and (max-width: 992px) {
