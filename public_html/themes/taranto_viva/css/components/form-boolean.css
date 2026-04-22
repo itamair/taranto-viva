@@ -51,6 +51,7 @@ input[type="radio"]:hover {
 input[type="checkbox"][disabled],
 input[type="radio"][disabled] {
   background-color: var(--color--gray-100);
+  opacity: 50%;
 }
 
 input[type="checkbox"][disabled]:hover,

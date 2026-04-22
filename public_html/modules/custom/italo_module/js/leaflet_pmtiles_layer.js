@@ -19,6 +19,8 @@
           return;
         }
 
+        const map = lMap;
+
         // VectorGrid's PointSymbolizer extends L.CircleMarker and inherits
         // getLatLng(), but never sets _latlng — only the pixel-space _point.
         // Leaflet's _fireDOMEvent classifies any target with getLatLng and
@@ -47,13 +49,13 @@
           return t;
         };
 
-        const _origFindEventTargets = lMap._findEventTargets.bind(lMap);
-        lMap._findEventTargets = function (ev, type) {
+        const _origFindEventTargets = map._findEventTargets.bind(map);
+        map._findEventTargets = function (ev, type) {
           return _origFindEventTargets(ev, type).map(patchTarget);
         };
 
-        const _origFireDOMEvent = lMap._fireDOMEvent.bind(lMap);
-        lMap._fireDOMEvent = function (ev, type, canvasTargets) {
+        const _origFireDOMEvent = map._fireDOMEvent.bind(map);
+        map._fireDOMEvent = function (ev, type, canvasTargets) {
           if (canvasTargets) {
             canvasTargets = canvasTargets.map(patchTarget);
           }
@@ -154,13 +156,30 @@
 
         const pmtilesLayer = L.pmtilesLayer(pmtilesUrl, layerOptions);
 
-        // Register as a named overlay so it appears in the Leaflet layer control.
-        const overlayLabel = drupalSettings.leaflet_pmtiles_layer?.overlay_label
-          || 'Overture Places';
+        // Add the pmtilesLayer as a named overlay so it appears in the Leaflet layer control.
+        if (Drupal.Leaflet && Drupal.Leaflet[mapid] && Drupal.Leaflet[mapid].layer_control && (Object.keys(Drupal.Leaflet[mapid].overlays).length !== 0)) {
+          const overlayName = drupalSettings.leaflet_pmtiles_layer?.overlay_label
+            || 'Overture Places';
+          Drupal.Leaflet[mapid].overlays[overlayName] = pmtilesLayer;
+          Drupal.Leaflet[mapid].layer_control.addOverlay(Drupal.Leaflet[mapid].overlays[overlayName], overlayName);
 
-        if (Drupal.Leaflet && Drupal.Leaflet[mapid]) {
-          Drupal.Leaflet[mapid].overlays = Drupal.Leaflet[mapid].overlays || {};
-          Drupal.Leaflet[mapid].overlays[overlayLabel] = pmtilesLayer;
+          // VectorGrid canvas tiles use pointer-events:auto (interactive:true), so
+          // when they are inserted into the DOM during onAdd the browser can fire a
+          // synthetic mouseleave on the layer control container and collapse the panel.
+          // Re-expanding both synchronously (catches a collapse already in progress)
+          // and via setTimeout (catches a queued mouseleave that fires after the
+          // current call-stack) keeps the panel open after the user re-enables the overlay.
+          map.on('overlayadd', function (e) {
+            if (e.layer !== pmtilesLayer) {
+              return;
+            }
+            const lc = Drupal.Leaflet[mapid] && Drupal.Leaflet[mapid].layer_control;
+            if (!lc) {
+              return;
+            }
+            lc.expand();
+            setTimeout(function () { lc.expand(); }, 0);
+          });
         }
 
         // Leaflet's CSS pointer-events rule only covers svg path.leaflet-interactive,
@@ -171,11 +190,11 @@
           const categoryData = props.categories ? JSON.parse(props.categories) : {};
           const category = categoryData?.primary || '';
           if (getCategoryIconUrl(category)) {
-            lMap.getContainer().style.cursor = 'pointer';
+            map.getContainer().style.cursor = 'pointer';
           }
         });
         pmtilesLayer.on('mouseout', function () {
-          lMap.getContainer().style.cursor = '';
+          map.getContainer().style.cursor = '';
         });
 
         // Add a basic popup on feature click to show place name/category.
@@ -190,10 +209,10 @@
           L.popup()
             .setLatLng(e.latlng)
             .setContent('<strong>' + name + '</strong>' + (category ? '<br>' + category : ''))
-            .openOn(lMap);
+            .openOn(map);
         });
 
-        pmtilesLayer.addTo(lMap);
+        pmtilesLayer.addTo(map);
       });
     },
 

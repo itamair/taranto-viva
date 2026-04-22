@@ -85,4 +85,5 @@ leaflet_pmtiles_layer:
     - core/once
     - core/drupal
     - italo_module/leaflet-pmtiles-layer
+    - italo_module/leaflet_images_control
 

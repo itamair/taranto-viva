@@ -38,6 +38,7 @@ input[type="radio"] {
 
   &[disabled] {
     background-color: var(--color--gray-100);
+    opacity: 50%;
 
     &:hover {
       border-color: var(--color--gray-60);
