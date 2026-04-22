@@ -63,35 +63,37 @@
         const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
           || 'https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2026-01-21/places.pmtiles';
 
+        const pmtiles_svg_icons_path = "/sites/default/files/pmtiles_svg_icons/";
+
         // Each entry maps one icon URL to an expandable list of category keywords.
         // A place matches if its primary category contains any keyword in the list.
         const categoryIconEntries = [
           {
-            iconUrl: '/sites/default/files/svg_icons/accommodation-2-svgrepo-com.svg',
+            iconUrl: pmtiles_svg_icons_path + 'accommodation-2-svgrepo-com.svg',
             keywords: ['bed_and_breakfast'],
           },
           {
-            iconUrl: '/sites/default/files/svg_icons/restaurant-svgrepo-com.svg',
+            iconUrl: pmtiles_svg_icons_path + 'restaurant-svgrepo-com.svg',
             keywords: ['restaurant', 'diner'],
           },
           {
-            iconUrl: '/sites/default/files/svg_icons/museum-svgrepo-com.svg',
+            iconUrl: pmtiles_svg_icons_path + 'museum-svgrepo-com.svg',
             keywords: ['historical_building'],
           },
           {
-            iconUrl: '/sites/default/files/svg_icons/parking-svgrepo-com.svg',
+            iconUrl: pmtiles_svg_icons_path + 'parking-svgrepo-com.svg',
             keywords: ['parking'],
           },
           {
-            iconUrl: '/sites/default/files/svg_icons/hotel-sign-hotel-svgrepo-com.svg',
+            iconUrl: pmtiles_svg_icons_path + 'hotel-sign-hotel-svgrepo-com.svg',
             keywords: ['hotel'],
           },
           {
-            iconUrl: '/sites/default/files/svg_icons/bar-svgrepo-com.svg',
+            iconUrl: pmtiles_svg_icons_path + 'bar-svgrepo-com.svg',
             keywords: ['bar', 'cafe', 'coffee'],
           },
           {
-            iconUrl: '/sites/default/files/svg_icons/shopping-bag-svgrepo-com.svg',
+            iconUrl: pmtiles_svg_icons_path + 'red-dot-svgrepo-com.svg',
             keywords: ['shopping', 'clothing_store', 'store'],
           },
         ];
