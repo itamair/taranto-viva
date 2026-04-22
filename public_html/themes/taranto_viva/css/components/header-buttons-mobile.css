@@ -29,7 +29,7 @@
 
 @media (min-width: 75rem) {
   .mobile-buttons {
-    margin-block-start: var(--sp6);
+    margin-block-start: var(--sp4);
   }
 }
 

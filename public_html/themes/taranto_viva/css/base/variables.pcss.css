@@ -24,7 +24,7 @@
   --max-bg-color: 2200px; /* Width to which the background color extends to. */
   --sp: 14px;
   --content-left: 90px;
-  --site-header-height-wide: var(--sp10);
+  --site-header-height-wide: var(--sp6);
   --container-padding: var(--sp); /* Inline padding on .container elements. */
 
   @media (--nav) {
