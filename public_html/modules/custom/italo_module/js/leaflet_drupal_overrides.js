@@ -3,6 +3,27 @@
  */
 
 /**
+ * Generate Google Maps Links HTML Markup.
+ *
+ * @param lat
+ *   The Layer index/label.
+ * @param lng
+ *   The Layer definition,
+ * @param address
+ *   The layers progressive counter.
+ *
+ * @return string
+ *   An HTML markup string.
+ */
+Drupal.Leaflet.prototype.get_gmaps_links = function (lat, lng, address = null) {
+  const google_maps_query = typeof address === 'string' && address.trim() !== '' ? encodeURIComponent(address) : lat + '%2C' + lng;
+  return '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
+    '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + google_maps_query + '" target="_blank">Google Maps</a></div>\n' +
+    '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
+    '</div>';
+}
+
+/**
  * Extend Map Bounds with new lFeature/feature.
  *
  * This overrides the original extend_map_bounds based on the
@@ -97,14 +118,8 @@ Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
  *   The Feature coming from Drupal settings.
  */
 Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
+  const self = this;
   const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
-  const get_gmaps_links = function (lat, lng, address = null) {
-    const google_maps_query = typeof address === 'string' && address.trim() !== '' ? encodeURIComponent(address) : lat + '%2C' + lng;
-    return '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
-      '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + google_maps_query + '" target="_blank">Google Maps</a></div>\n' +
-      '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
-      '</div>';
-  }
 
   if (!parseInt(feature_properties.popup_disabled) && feature.popup && feature.popup.value) {
     const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
@@ -114,7 +129,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
 
     // Append to the feature.popup.value the Google Maps Links corresponding to
     // the feature centroid location.
-    let gmaps_links = get_gmaps_links(lat, lng);
+    let gmaps_links = self.get_gmaps_links(lat, lng);
     lFeature.bindPopup(feature.popup.value + gmaps_links, popup_options);
 
     // In case of feature.path replace the gmaps_links corresponding to the
@@ -124,7 +139,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
       if (e.target._path) {
         const lat = popup.getLatLng().lat;
         const lng = popup.getLatLng().lng;
-        gmaps_links = get_gmaps_links(lat, lng);
+        gmaps_links = self.get_gmaps_links(lat, lng);
         popup.setContent(feature.popup.value + gmaps_links);
       }
       // Else, in case the google_map_place is defined, then generate a Google Maps
@@ -133,7 +148,7 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
         typeof feature_properties['google_maps_address'] === 'string' &&
         feature_properties['google_maps_address'].trim() !== ''
       ) {
-        gmaps_links = get_gmaps_links(lat, lng, feature_properties['google_maps_address']);
+        gmaps_links = self.get_gmaps_links(lat, lng, feature_properties['google_maps_address']);
         popup.setContent(feature.popup.value + gmaps_links);
       }
     });

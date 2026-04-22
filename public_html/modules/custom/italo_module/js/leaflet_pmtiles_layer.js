@@ -76,7 +76,7 @@
           },
           {
             iconUrl: pmtiles_svg_icons_path + 'restaurant-svgrepo-com.svg',
-            keywords: ['restaurant', 'diner'],
+            keywords: ['restaurant', 'diner', 'pub'],
           },
           {
             iconUrl: pmtiles_svg_icons_path + 'museum-svgrepo-com.svg',
@@ -203,16 +203,22 @@
             return;
           }
           const props = e.layer.properties || {};
+          const coords = e.latlng || {};
           const name = props['@name'] ?? '—';
+          const addresses_data = props.addresses ? JSON.parse(props.addresses) : {};
           const category_data = props.categories ? JSON.parse(props.categories) : {};
+          let locality = addresses_data[0].freeform ??  null;
+          locality += ' ' + addresses_data[0].locality ??  null;
           const category = category_data?.primary ? category_data?.primary.replaceAll('_', ' ') : '';
+          const address = locality ? name + ' - ' + locality : null;
+          const gmaps_links = Drupal.Leaflet.prototype.get_gmaps_links(coords.lat, coords.lng, address);
           L.popup()
             .setLatLng(e.latlng)
-            .setContent('<strong>' + name + '</strong>' + (category ? '<br>' + category : ''))
+            .setContent('<strong>' + name + '</strong>' + (category ? '<br>' + category : '') + '<br>' + gmaps_links)
             .openOn(map);
         });
 
-        pmtilesLayer.addTo(map);
+        // pmtilesLayer.addTo(map);
       });
     },
 
