@@ -115,6 +115,7 @@
           vectorTileLayerStyles: {
             'place': function (properties) {
               const categoryData = properties.categories
+
                 ? JSON.parse(properties.categories) : {};
               const category = categoryData?.primary || '';
               const iconUrl = getCategoryIconUrl(category);
@@ -140,6 +141,10 @@
               };
             },
           },
+          // Filter out places that have a low properties.confidence.
+          filter: function (properties) {
+            return properties.confidence === undefined || properties.confidence >= 0.8;
+          },
           // Interactive: false keeps these tiles read-only for performance.
           // Set to true if you want click/hover popups on individual places.
           interactive: true,
@@ -147,7 +152,7 @@
             return feature.properties.id || feature.properties.name;
           },
           maxNativeZoom: 19,
-          minZoom: 18,
+          minZoom: 16,
           // L.VectorGrid extends L.GridLayer, which defaults to tilePane (z-index 200),
           // the same pane as base tiles. overlayPane (z-index 400) always renders above
           // all tile layers regardless of which base layer is active.
