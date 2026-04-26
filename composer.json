@@ -245,6 +245,9 @@
             ]
         },
         "patches": {
+            "drupal/core": {
+                "TypeError: Drupal\\Component\\Utility\\Html::escape(): Argument #1 ($text) must be of type string, null given": "https://git.drupalcode.org/project/drupal/-/merge_requests/12073/diffs.patch"
+            },
             "drupal/viewfield": {
                 "#3381787 Getting PHP errors when setting default value": "https://www.drupal.org/files/issues/2023-08-21/3381787.patch"
             },
