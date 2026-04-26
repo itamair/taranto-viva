@@ -4046,7 +4046,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "<b>{{ title }}</b><br>\r\n{{ field_title }} \r\n"
+            text: "{{ title }}<br>\r\n<i>{{ field_title }}</i>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -6454,7 +6454,7 @@ display:
             field_geofield_1: field_geofield_1
           entity_source: __base_table
           entity_source_submit: 'Update Entity Source'
-          name_field: title
+          name_field: ''
           leaflet_tooltip:
             value: field_title
             options: '{"permanent":"{{ field_tooltip_permanent }}","direction":"{{ field_tooltip_direction }}","sticky":"{{ field_tooltip_sticky }}","className":"{{ field_tooltip_class }}"}'

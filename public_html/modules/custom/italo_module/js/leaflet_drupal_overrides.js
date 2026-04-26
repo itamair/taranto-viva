@@ -172,13 +172,12 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     if (feature.title) {
       marker_title = feature.title.replace(/<[^>]*>/g, '').trim()
     }
-    else if (feature.tooltip && feature.tooltip.value) {
-      marker_title = feature.tooltip.value.replace(/<[^>]*>/g, '').trim();
-    }
     return {
-      title: marker_title ?? "",
-      className: feature.className ? feature.className.replaceAll(",", "") : '',
-      alt: marker_title ?? "",
+      // Title only set in case of a Marker simple title.
+      title: marker_title ?? "", //Only set in case of a Marker simple title.
+      className: feature.icon && feature.icon.className ? feature.icon.className.replaceAll(",", "") : '',
+      // Alt property always set matching Simple Title or Feature Tooltip.
+      alt: feature.tooltip && feature.tooltip.value ? feature.tooltip.value.replace(/<[^>]*>/g, '').trim() : marker_title,
       group_label: feature.group_label ?? '',
     };
   }
