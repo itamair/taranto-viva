@@ -49,3 +49,6 @@ photo_albums
 
 # Claude playwright-mcp
 .playwright-mcp
+
+# Playwright
+.playwright
