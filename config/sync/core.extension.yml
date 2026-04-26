@@ -82,6 +82,7 @@ module:
   image: 0
   image_styles_generator: 0
   italo_module: 0
+  jquery_deprecated_functions: 0
   jquery_ui: 0
   jquery_ui_accordion: 0
   jquery_ui_datepicker: 0

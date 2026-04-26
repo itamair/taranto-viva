@@ -21,9 +21,9 @@ function log() {
 	if (window.console && console.log)
 		console.log('[cycle] ' + Array.prototype.join.call(arguments,' '));
 }
-$.expr[':'].paused = function(el) {
-	return el.cyclePause;
-};
+//$.expr[':'].paused = function(el) {
+//	return el.cyclePause;
+//};
 
 
 // the options arg can be...

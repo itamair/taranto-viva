@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.base_field_override.node.event.title
     - field.field.node.event.body
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
@@ -12,6 +11,8 @@ dependencies:
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
     - node.type.event
+    - views.view.content_locations_addresses_and_google_maps_links
+    - views.view.content_media_images
   module:
     - entity_reference_revisions
     - field_group
@@ -21,6 +22,7 @@ dependencies:
     - text
     - user
     - viewfield
+    - views
 third_party_settings:
   field_group:
     group_tabs:
@@ -75,13 +77,22 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:event:body'
+              label: Body
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
-                type: text_default
+                type: readmore
                 label: hidden
-                settings: {  }
+                settings:
+                  trim_length: 500
+                  trim_on_break: false
+                  show_readmore: true
+                  show_readless: true
+                  ellipsis: true
+                  wordsafe: true
                 third_party_settings: {  }
             weight: 3
             additional: {  }
@@ -103,7 +114,7 @@ third_party_settings:
                   rel: ''
                   target: ''
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
           017de955-1e0c-4b0a-b3ed-f2e9f4d550b9:
             uuid: 017de955-1e0c-4b0a-b3ed-f2e9f4d550b9
@@ -113,7 +124,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 5
+            weight: 6
             additional: {  }
           3e4204d6-88f7-4909-8df7-e77b4f6ac173:
             uuid: 3e4204d6-88f7-4909-8df7-e77b4f6ac173
@@ -133,43 +144,6 @@ third_party_settings:
                   link: false
                 third_party_settings: {  }
             weight: 1
-            additional: {  }
-          1981cabe-4693-42dc-95ef-745c022ede72:
-            uuid: 1981cabe-4693-42dc-95ef-745c022ede72
-            region: content
-            configuration:
-              id: 'field_block:node:event:title'
-              label: Title
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: string
-                label: above
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-            weight: 0
-            additional:
-              layout_builder_styles_style:
-                node_title: node_title
-          ccf32e85-5bd3-43a6-88f8-cb812f6df5e5:
-            uuid: ccf32e85-5bd3-43a6-88f8-cb812f6df5e5
-            region: content
-            configuration:
-              id: 'field_block:node:event:field_project_namespace'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-            weight: 2
             additional: {  }
         third_party_settings: {  }
       -
@@ -198,7 +172,7 @@ third_party_settings:
                   always_build_output: false
                   empty_view_title: hidden
                 third_party_settings: {  }
-            weight: 0
+            weight: 1
             additional: {  }
           022abc90-198e-4830-8792-2f2a46c16e68:
             uuid: 022abc90-198e-4830-8792-2f2a46c16e68
@@ -219,6 +193,32 @@ third_party_settings:
                   always_build_output: false
                   empty_view_title: hidden
                 third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          4b3505df-f98d-481b-9d73-f165341bcb2c:
+            uuid: 4b3505df-f98d-481b-9d73-f165341bcb2c
+            region: first
+            configuration:
+              id: 'views_block:content_media_images-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
+            weight: 0
+            additional: {  }
+          460dd70e-94ed-4da2-be3c-992c65da593d:
+            uuid: 460dd70e-94ed-4da2-be3c-992c65da593d
+            region: second
+            configuration:
+              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
             weight: 0
             additional: {  }
         third_party_settings: {  }
