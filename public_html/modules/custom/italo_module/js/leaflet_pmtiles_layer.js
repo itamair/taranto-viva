@@ -152,7 +152,7 @@
             return feature.properties.id || feature.properties.name;
           },
           maxNativeZoom: 19,
-          minZoom: 16,
+          minZoom: 17,
           // L.VectorGrid extends L.GridLayer, which defaults to tilePane (z-index 200),
           // the same pane as base tiles. overlayPane (z-index 400) always renders above
           // all tile layers regardless of which base layer is active.
