@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_link
     - field.field.node.event.field_media_slideshow
+    - field.field.node.event.field_project_namespace
     - node.type.event
   module:
     - entity_reference_revisions
@@ -44,6 +45,8 @@ hidden:
   field_geofied_view: true
   field_link: true
   field_media_slideshow: true
+  field_project_namespace: true
   langcode: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true

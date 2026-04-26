@@ -1,0 +1,43 @@
+uuid: f781b29b-74b7-4e07-a076-1836a8fe6c55
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_namespace
+    - node.type.event
+    - taxonomy.vocabulary.project_namespace
+  content:
+    - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.event.field_project_namespace
+field_name: field_project_namespace
+entity_type: node
+bundle: event
+label: 'Project Namespace'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    target_uuid: 3463a0e6-4f97-414a-a185-64a79b7a2082
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project_namespace: project_namespace
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_link
     - field.field.node.event.field_media_slideshow
+    - field.field.node.event.field_project_namespace
     - node.type.event
   module:
     - link
@@ -69,6 +70,12 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  field_project_namespace:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1
@@ -88,6 +95,16 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap_index_now:
+    weight: 130
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
@@ -111,6 +128,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
     weight: 6
@@ -124,3 +146,4 @@ content:
 hidden:
   field_geofied_view: true
   field_media_slideshow: true
+  uuid: true

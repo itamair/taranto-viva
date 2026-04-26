@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_link
     - field.field.node.event.field_media_slideshow
+    - field.field.node.event.field_project_namespace
     - node.type.event
   module:
     - entity_reference_revisions
@@ -82,7 +83,7 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           4a663e63-7149-4300-bc33-c141698a3185:
             uuid: 4a663e63-7149-4300-bc33-c141698a3185
@@ -154,13 +155,29 @@ third_party_settings:
             additional:
               layout_builder_styles_style:
                 node_title: node_title
+          ccf32e85-5bd3-43a6-88f8-cb812f6df5e5:
+            uuid: ccf32e85-5bd3-43a6-88f8-cb812f6df5e5
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_project_namespace'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
         layout_settings:
           label: ''
-          column_widths: 50-50
           context_mapping: {  }
+          column_widths: 50-50
         components:
           0ed34853-bfe4-4839-98eb-c63b533813e4:
             uuid: 0ed34853-bfe4-4839-98eb-c63b533813e4
@@ -266,6 +283,14 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
+  field_project_namespace:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -273,5 +298,6 @@ content:
     region: content
 hidden:
   langcode: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true
