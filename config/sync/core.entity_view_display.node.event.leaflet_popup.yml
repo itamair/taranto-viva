@@ -13,7 +13,7 @@ dependencies:
     - field.field.node.event.field_project_namespace
     - node.type.event
   module:
-    - entity_reference_revisions
+    - italo_module
     - layout_builder
     - user
 third_party_settings:
@@ -26,7 +26,7 @@ bundle: event
 mode: leaflet_popup
 content:
   field_components:
-    type: entity_reference_revisions_entity_view
+    type: leaflet_popup_components_entity_view
     label: hidden
     settings:
       view_mode: leaflet_popup

@@ -51,4 +51,5 @@ hidden:
   field_zoom_visibility: true
   geofield_googlemaps_link: true
   geomarker_icon_url: true
+  search_api_excerpt: true
   uuid: true
