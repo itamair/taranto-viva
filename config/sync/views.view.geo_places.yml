@@ -7419,20 +7419,20 @@ display:
           fitbounds_options: '{"padding":[0,0]}'
           reset_map:
             control: true
-            options: '{"position":"topleft","title":"Reset View"}'
+            options: '{"position":"bottomright","title":"Reset View"}'
           map_scale:
             control: true
-            options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
+            options: '{"position":"bottomleft","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
           locate:
             control: true
-            options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"initialZoomLevel":16,"flyTo":true,"strings":{"title":"Locate my position"},"cacheLocation":true,"tap":false,"enableHighAccuracy":true,"touch_helper":true}'
+            options: '{"position":"topleft","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"initialZoomLevel":16,"flyTo":true,"strings":{"title":"Locate my position"},"cacheLocation":true,"tap":false,"enableHighAccuracy":true,"touch_helper":true}'
             automatic: false
           map_position:
             force: false
             center:
               lat: 40.472317
               lon: 17.240046
-            zoomControlPosition: topleft
+            zoomControlPosition: bottomright
             zoom: 14
             minZoom: 10
             maxZoom: 19
@@ -7468,7 +7468,7 @@ display:
             excluded: field_exclude_from_markercluster
           fullscreen:
             control: true
-            options: '{"position":"topleft","pseudoFullscreen":false}'
+            options: '{"position":"bottomright","pseudoFullscreen":false}'
           path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"1.0","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
           geocoder:
             control: false
