@@ -9,15 +9,17 @@
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  opacity: 0.9;
+  opacity: 1;
   box-shadow: 0 1px 3px gray;
-  background: rgb(255, 255, 255);
   line-height: 1.4;
+  position: relative;
+  color: white;
+  background: rgba(17, 152, 225, 0.9);
 
   .list-title {
     margin-bottom: 8px;
     font-size: 1.2em;
-    color: #f25e0a;
+   // color: #f25e0a;
     font-weight: bold;
   }
 
@@ -90,25 +92,22 @@
     font-weight: bold;
     line-height: 16px;
     text-align: center;
-    color: #666;
-    background: rgba(255, 255, 255, 0.8);
     border-radius: 2px;
+    color: #dedede;
 
     &:hover {
-      background: rgba(255, 255, 255, 1);
-      color: #333;
+      color: #ffffff;
     }
   }
 }
 
 .leaflet-sidebar-list {
-  position: relative;
 
   .list-collapsed-title {
     display: none;
     font-size: 1.2em;
     font-weight: bold;
-    color: #f25e0a;
+    // color: #f25e0a;
   }
 
   &.list-collapsed {
@@ -131,7 +130,7 @@
     }
 
     &:hover {
-      background: rgba(245, 245, 245, 0.9);
+      background: rgb(1, 114, 175);
     }
   }
 }

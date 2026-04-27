@@ -80,10 +80,10 @@ leaflet_pmtiles_layer:
     - italo_module/leaflet-pmtiles-layer
 
 # Define a library to manage an Images/Immagini Leaflet Control
-leaflet_images_control:
+leaflet_map_control:
   version: 1.x
   js:
-    js/leaflet_images_control.js: {}
+    js/leaflet_map_control.js: {}
   dependencies:
     - italo_module/leaflet_map_interactions
     - italo_module/leaflet_pmtiles_layer

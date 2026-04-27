@@ -20,6 +20,8 @@
         }
 
         const map = lMap;
+        Drupal.Leaflet[mapid].placesZoomLimit = 16;
+        Drupal.Leaflet[mapid].placesOverlayName = Drupal.t('Places');
 
         // VectorGrid's PointSymbolizer extends L.CircleMarker and inherits
         // getLatLng(), but never sets _latlng — only the pixel-space _point.
