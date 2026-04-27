@@ -66,35 +66,39 @@ function leaflet_map_get_info($map = NULL) {
  * Implements hook_leaflet_map_info().
  */
 function leaflet_leaflet_map_info() {
-  return [
-    'OSM Mapnik' =>
-      [
-        'label' => '- Default Leaflet - OSM Mapnik - ',
-        'description' => t('Leaflet default map.'),
-        'settings' => [
-          'dragging' => TRUE,
-          'touchZoom' => TRUE,
-          'scrollWheelZoom' => TRUE,
-          'doubleClickZoom' => TRUE,
-          'zoomControl' => TRUE,
-          'zoomControlPosition' => 'topleft',
-          'attributionControl' => TRUE,
-          'trackResize' => TRUE,
-          'fadeAnimation' => TRUE,
-          'zoomAnimation' => TRUE,
-          'closePopupOnClick' => TRUE,
-          'worldCopyJump' => TRUE,
-        ],
-        'layers' => [
-          'OpenStreetMap' => [
-            'urlTemplate' => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            'options' => [
-              'maxZoom' => 19,
-              'attribution' => '&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a> contributors',
-            ],
-          ],
+
+  $openstreetmap_dafault_map_settings = [
+    'description' => t('Leaflet default map.'),
+    'settings' => [
+      'dragging' => TRUE,
+      'touchZoom' => TRUE,
+      'scrollWheelZoom' => TRUE,
+      'doubleClickZoom' => TRUE,
+      'zoomControl' => TRUE,
+      'zoomControlPosition' => 'topleft',
+      'attributionControl' => TRUE,
+      'trackResize' => TRUE,
+      'fadeAnimation' => TRUE,
+      'zoomAnimation' => TRUE,
+      'closePopupOnClick' => TRUE,
+      'worldCopyJump' => TRUE,
+    ],
+    'layers' => [
+      'OpenStreetMap' => [
+        'urlTemplate' => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'options' => [
+          'maxZoom' => 19,
+          'attribution' => '&copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a> contributors',
         ],
       ],
+    ],
+  ];
+
+  // Return 2 identical default Leaflet Map(s) definition, but with a new one
+  // that removes the deprecated 'OSM Mapnik' index/(config identifier).
+  return [
+    'OSM Mapnik' => ['label' => '- Default Leaflet - OSM Mapnik (deprecated) - '] + $openstreetmap_dafault_map_settings,
+    'openstreetmap' => ['label' => '- Default Leaflet - OpenStreetMap - '] + $openstreetmap_dafault_map_settings,
   ];
 }
 

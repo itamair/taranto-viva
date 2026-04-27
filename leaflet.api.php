@@ -57,8 +57,8 @@ function leaflet_map_info_default_settings() {
  */
 function hook_leaflet_map_info() {
   return [
-    'OSM Mapnik' => [
-      'label' => 'OSM Mapnik',
+    'openstreetmap' => [
+      'label' => 'OpenStreetMap',
       'description' => t('Leaflet default map.'),
       'settings' => leaflet_map_info_default_settings(),
       'layers' => [
