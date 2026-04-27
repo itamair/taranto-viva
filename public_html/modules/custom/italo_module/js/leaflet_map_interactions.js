@@ -326,6 +326,8 @@
         const root = context || document;
 
         Drupal.Leaflet[mapid].imagesZoomLimit = 16;
+        Drupal.Leaflet[mapid].placesZoomLimit = 16;
+        Drupal.Leaflet[mapid].placesOverlayName = Drupal.t('Places');
 
         // Trigger/Process Initial Actions.
         self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);

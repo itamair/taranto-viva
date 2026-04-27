@@ -152,7 +152,7 @@
             return feature.properties.id || feature.properties.name;
           },
           maxNativeZoom: 19,
-          minZoom: 17,
+          minZoom: Drupal.Leaflet[mapid].placesZoomLimit,
           // L.VectorGrid extends L.GridLayer, which defaults to tilePane (z-index 200),
           // the same pane as base tiles. overlayPane (z-index 400) always renders above
           // all tile layers regardless of which base layer is active.
@@ -164,7 +164,7 @@
         // Add the pmtilesLayer as a named overlay so it appears in the Leaflet layer control.
         if (Drupal.Leaflet && Drupal.Leaflet[mapid] && Drupal.Leaflet[mapid].layer_control && (Object.keys(Drupal.Leaflet[mapid].overlays).length !== 0)) {
           const overlayName = drupalSettings.leaflet_pmtiles_layer?.overlay_label
-            || 'Overture Places';
+            || Drupal.Leaflet[mapid].placesOverlayName;
           Drupal.Leaflet[mapid].overlays[overlayName] = pmtilesLayer;
           Drupal.Leaflet[mapid].layer_control.addOverlay(Drupal.Leaflet[mapid].overlays[overlayName], overlayName);
 
