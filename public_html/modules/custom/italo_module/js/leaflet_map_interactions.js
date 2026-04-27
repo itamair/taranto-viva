@@ -22,7 +22,7 @@
     }
   };
 
-  Drupal.behaviors.mapAddLeafletSidebarListControl = {
+  Drupal.behaviors.leafletSidebarListControl = {
     attach(context) {
       const self = this;
       const root = context || document;
@@ -68,10 +68,10 @@
       sidebarListControl.onAdd = function (map) {
         const div = L.DomUtil.create('div', 'leaflet-control leaflet-sidebar-list' + ' ' + classes);
 
-        // Create List Collapsed label.
-        const listCollapsedLabel = L.DomUtil.create('div', 'list-collapsed-label', div);
+        // Create List Collapsed title.
+        const listCollapsedTitle = L.DomUtil.create('div', 'list-collapsed-title', div);
         // Apply custom List Collapsed Label content.
-        listCollapsedLabel.innerHTML = settings.list.title;
+        listCollapsedTitle.innerHTML = settings.list.title;
 
         // Add toggle button.
         const toggleBtn = L.DomUtil.create('div', 'list-toggle', div);

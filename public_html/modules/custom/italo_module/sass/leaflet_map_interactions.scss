@@ -12,14 +12,7 @@
     margin: 4px;
     font-size: 0.8rem;
 
-    h2 {
-      font-size: 1.2rem;
-      margin: 0.5em 20px 0.5em 0;
-      line-height: 1.5rem;
-      font-weight: normal;
-      padding-top: 6px
-    }
-    h3 {
+    h2, h3 {
       font-size: 0.95rem;
       margin: 0.5em 20px 0.5em 0;
       line-height: 1.4rem;
@@ -36,6 +29,10 @@
     .cke_editable {
       font-size: 0.8rem !important;
       line-height: 1.3rem !important;
+    }
+
+    article.node--type-geoplace, > div {
+      padding: 2px 4px
     }
 
     // Node content
@@ -90,9 +87,6 @@
         .node__title {
           display: none;
         }
-      }
-      .node--type-geoplace, .node--type-event {
-        margin: 8px;
       }
     }
 

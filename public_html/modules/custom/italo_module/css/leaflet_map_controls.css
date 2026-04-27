@@ -19,19 +19,20 @@
 .leaflet-sidebar-list .list-title {
   margin-bottom: 8px;
   font-size: 1.2em;
+  color: #f25e0a;
   font-weight: bold;
 }
-/* line 23, ../sass/leaflet_map_controls.scss */
+/* line 24, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-subtitle {
   margin-bottom: 8px;
 }
-/* line 27, ../sass/leaflet_map_controls.scss */
+/* line 28, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-search-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
 }
-/* line 33, ../sass/leaflet_map_controls.scss */
+/* line 34, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-search-label {
   font-size: 0.72em;
   font-weight: bold;
@@ -40,7 +41,7 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-/* line 42, ../sass/leaflet_map_controls.scss */
+/* line 43, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-search-input {
   width: 100%;
   padding: 4px 8px;
@@ -51,35 +52,35 @@
   outline: none;
   transition: border-color 180ms ease;
 }
-/* line 53, ../sass/leaflet_map_controls.scss */
+/* line 54, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-search-input:focus {
   border-color: #888;
 }
-/* line 57, ../sass/leaflet_map_controls.scss */
+/* line 58, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-search-input::placeholder {
   color: #aaa;
 }
-/* line 61, ../sass/leaflet_map_controls.scss */
+/* line 62, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-items {
   margin-bottom: 8px;
   max-height: 60vh;
   overflow-y: auto;
 }
-/* line 67, ../sass/leaflet_map_controls.scss */
+/* line 68, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-item {
   display: flex;
   border-bottom: 1px solid lightgrey;
   cursor: pointer;
 }
-/* line 71, ../sass/leaflet_map_controls.scss */
+/* line 72, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-item.marker-selected {
   background: #e3e5f5;
 }
-/* line 74, ../sass/leaflet_map_controls.scss */
+/* line 75, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-item .marker-selector {
   padding: 6px 4px;
 }
-/* line 81, ../sass/leaflet_map_controls.scss */
+/* line 82, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-toggle {
   position: absolute;
   top: 6px;
@@ -95,24 +96,24 @@
   background: rgba(255, 255, 255, 0.8);
   border-radius: 2px;
 }
-/* line 96, ../sass/leaflet_map_controls.scss */
+/* line 97, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list .list-toggle:hover {
   background: white;
   color: #333;
 }
 
-/* line 103, ../sass/leaflet_map_controls.scss */
+/* line 104, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list {
   position: relative;
 }
-/* line 106, ../sass/leaflet_map_controls.scss */
-.leaflet-sidebar-list .list-collapsed-label {
+/* line 107, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list .list-collapsed-title {
   display: none;
-  font-size: 1rem;
+  font-size: 1.2em;
   font-weight: bold;
-  color: #666;
+  color: #f25e0a;
 }
-/* line 113, ../sass/leaflet_map_controls.scss */
+/* line 114, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed {
   text-wrap: nowrap;
   min-width: 60px;
@@ -120,37 +121,37 @@
   padding: 8px;
   cursor: pointer;
 }
-/* line 120, ../sass/leaflet_map_controls.scss */
+/* line 121, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-content {
   display: none;
 }
-/* line 124, ../sass/leaflet_map_controls.scss */
-.leaflet-sidebar-list.list-collapsed .list-collapsed-label {
+/* line 125, ../sass/leaflet_map_controls.scss */
+.leaflet-sidebar-list.list-collapsed .list-collapsed-title {
   display: block;
 }
-/* line 128, ../sass/leaflet_map_controls.scss */
+/* line 129, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed .list-toggle {
   display: none;
 }
-/* line 132, ../sass/leaflet_map_controls.scss */
+/* line 133, ../sass/leaflet_map_controls.scss */
 .leaflet-sidebar-list.list-collapsed:hover {
   background: rgba(245, 245, 245, 0.9);
 }
 
 /* Compact legend for smaller screens */
 @media (max-width: 380px) {
-  /* line 140, ../sass/leaflet_map_controls.scss */
+  /* line 141, ../sass/leaflet_map_controls.scss */
   .leaflet-sidebar-list {
     max-width: 100px;
     min-width: 50px;
     padding: 5px;
   }
-  /* line 145, ../sass/leaflet_map_controls.scss */
+  /* line 146, ../sass/leaflet_map_controls.scss */
   .leaflet-sidebar-list.list-collapsed {
     padding: 6px;
   }
 
-  /* line 150, ../sass/leaflet_map_controls.scss */
+  /* line 151, ../sass/leaflet_map_controls.scss */
   .list-toggle {
     width: 16px;
     height: 16px;
