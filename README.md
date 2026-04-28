@@ -126,14 +126,14 @@ Overlay existing geofield data onto the widget map as a visual snapping referenc
 
 A **map definition** is a named PHP array that describes the tile layers, default settings, and optional icon/path overrides for a Leaflet map. The module ships two definitions out of the box:
 
-- **OSM Mapnik** — single OpenStreetMap tile layer.
+- **openstreetmap** — single OpenStreetMap tile layer.
 - **Multilayers** — multiple base layers (Stadia, Google, OSM, OpenTopoMap, MapTiler) with an optional OpenRailwayMap overlay.
 
 Retrieve all available map definitions programmatically:
 
 ```php
 $maps = leaflet_map_get_info();         // all maps
-$map  = leaflet_map_get_info('OSM Mapnik'); // single map
+$map  = leaflet_map_get_info('openstreetmap'); // single map
 ```
 
 ### Defining a custom map — `hook_leaflet_map_info()`
@@ -247,7 +247,7 @@ The central service is `leaflet.service` (`\Drupal\leaflet\LeafletService`).
 /** @var \Drupal\leaflet\LeafletService $leaflet */
 $leaflet = \Drupal::service('leaflet.service');
 
-$map      = leaflet_map_get_info('OSM Mapnik');
+$map      = leaflet_map_get_info('openstreetmap');
 $features = $leaflet->leafletProcessGeofield($geofield_value);
 $height   = '500px';
 

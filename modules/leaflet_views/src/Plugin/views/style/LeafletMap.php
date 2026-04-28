@@ -258,6 +258,13 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
   /**
    * {@inheritdoc}
    */
+  public static function defaultSettings() {
+    return self::getDefaultSettings();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function init(ViewExecutable $view, DisplayPluginBase $display, ?array &$options = NULL) {
     parent::init($view, $display, $options);
 
@@ -859,8 +866,11 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     // Collect bubbleable metadata when doing early rendering.
     $build_for_bubbleable_metadata = [];
 
-    // Always render the map, otherwise ...
-    $leaflet_map_style = !isset($this->options['leaflet_map']) ? $this->options['map'] : $this->options['leaflet_map'];
+    $default_settings = self::defaultSettings();
+
+    // Set the Leaflet Map style options.
+    $leaflet_map_options = $this->getLeafletBaseMapOptions();
+    $leaflet_map_style = array_key_exists($this->options['leaflet_map'], $leaflet_map_options) ? $this->options['leaflet_map'] : $default_settings["leaflet_map"];
     $map = leaflet_map_get_info($leaflet_map_style);
 
     // Set Map additional map Settings.

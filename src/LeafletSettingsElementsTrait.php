@@ -79,7 +79,7 @@ trait LeafletSettingsElementsTrait {
 
     return [
       'multiple_map' => FALSE,
-      'leaflet_map' => $base_layers['OSM Mapnik'] ? 'OSM Mapnik' : array_shift($base_layers),
+      'leaflet_map' => isset($base_layers['openstreetmap']) ? 'openstreetmap' : array_key_first($base_layers),
       'height' => 400,
       'height_unit' => 'px',
       'hide_empty_map' => FALSE,
@@ -180,6 +180,20 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
+   * Get Leaflet Base Maps options.
+   *
+   * @return array
+   *   The array definitions of all defined Leaflet Maps options.
+   */
+  protected function getLeafletBaseMapOptions(): array {
+    $leaflet_map_options = [];
+    foreach (leaflet_map_get_info() as $key => $map) {
+      $leaflet_map_options[$key] = $map['label'];
+    }
+    return $leaflet_map_options;
+  }
+
+  /**
    * Generate the Leaflet Map General Settings.
    *
    * @param array $elements
@@ -189,12 +203,8 @@ trait LeafletSettingsElementsTrait {
    */
   protected function generateMapGeneralSettings(array &$elements, array $settings) {
 
-    $leaflet_map_options = [];
-    foreach (leaflet_map_get_info() as $key => $map) {
-      $leaflet_map_options[$key] = $map['label'];
-    }
-
-    $leaflet_map = $settings['leaflet_map'] ?? $settings['map'];
+    $leaflet_map_options = $this->getLeafletBaseMapOptions();
+    $leaflet_map_style = array_key_exists($settings['leaflet_map'], $leaflet_map_options) ? $settings['leaflet_map'] : 'openstreetmap';
 
     $elements['leaflet_map'] = [
       '#title' => $this->t('Leaflet Map Tiles Layer'),
@@ -203,7 +213,7 @@ trait LeafletSettingsElementsTrait {
       ]),
       '#type' => 'select',
       '#options' => $leaflet_map_options,
-      '#default_value' => $leaflet_map,
+      '#default_value' => $leaflet_map_style,
       '#required' => TRUE,
     ];
 

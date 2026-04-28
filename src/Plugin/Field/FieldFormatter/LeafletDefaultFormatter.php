@@ -302,8 +302,11 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $default_settings = self::defaultSettings();
     $settings = $this->getSettings();
 
+    $leaflet_map_options = $this->getLeafletBaseMapOptions();
+    $leaflet_map_style = array_key_exists($settings['leaflet_map'], $leaflet_map_options) ? $settings['leaflet_map'] : $default_settings["leaflet_map"];
+
     // Get the base Map info.
-    $map = leaflet_map_get_info($settings['leaflet_map']) ?? $default_settings['leaflet_map'];
+    $map = leaflet_map_get_info($leaflet_map_style) ?? $default_settings['leaflet_map'];
 
     // Add a specific map id.
     $map['id'] = Html::getUniqueId("leaflet_map_{$entity_type}_{$bundle}_{$entity_id}_{$field->getName()}");

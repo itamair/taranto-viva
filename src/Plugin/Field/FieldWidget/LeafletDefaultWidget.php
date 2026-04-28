@@ -202,7 +202,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
 
     return array_merge(parent::defaultSettings(), [
       'map' => [
-        'leaflet_map' => $base_layers['OSM Mapnik'] ? 'OSM Mapnik' : array_shift($base_layers),
+        'leaflet_map' => isset($base_layers['openstreetmap']) ? 'openstreetmap' : array_key_first($base_layers),
         'height' => 400,
         'auto_center' => TRUE,
         'map_position' => self::getDefaultSettings()['map_position'],
@@ -497,8 +497,10 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
 
     $user_input = $form_state->getUserInput();
 
-    // Get the base Map info.
-    $map = leaflet_map_get_info($map_settings['leaflet_map'] ?? $default_settings['map']['leaflet_map']);
+    // Set the Leaflet Map style options.
+    $leaflet_map_options = $this->getLeafletBaseMapOptions();
+    $leaflet_map_style = array_key_exists($map_settings['leaflet_map'], $leaflet_map_options) ? $map_settings['leaflet_map'] : $default_settings['map']["leaflet_map"];
+    $map = leaflet_map_get_info($leaflet_map_style);
 
     // Add a specific map id.
     $map['id'] = Html::getUniqueId("leaflet_map_widget_{$entity_type}_{$bundle}_{$entity_id}_{$field->getName()}");
