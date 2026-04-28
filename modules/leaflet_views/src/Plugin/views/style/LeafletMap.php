@@ -869,7 +869,7 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $default_settings = self::defaultSettings();
 
     // Set the Leaflet Map style options.
-    $leaflet_map_options = $this->getLeafletBaseMapOptions();
+    $leaflet_map_options = $this->getLeafletMaps();
     $leaflet_map_style = array_key_exists($this->options['leaflet_map'], $leaflet_map_options) ? $this->options['leaflet_map'] : $default_settings["leaflet_map"];
     $map = leaflet_map_get_info($leaflet_map_style);
 

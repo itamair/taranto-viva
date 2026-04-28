@@ -19,7 +19,10 @@ use Drupal\views\Plugin\views\ViewsPluginInterface;
 trait LeafletSettingsElementsTrait {
 
   /**
-   * Get maps available for use with Leaflet.
+   * Get available Leaflet Base Maps.
+   *
+   * @return array
+   *   The array definitions of all defined Leaflet Maps.
    */
   protected static function getLeafletMaps() {
     $options = [];
@@ -180,20 +183,6 @@ trait LeafletSettingsElementsTrait {
   }
 
   /**
-   * Get Leaflet Base Maps options.
-   *
-   * @return array
-   *   The array definitions of all defined Leaflet Maps options.
-   */
-  protected function getLeafletBaseMapOptions(): array {
-    $leaflet_map_options = [];
-    foreach (leaflet_map_get_info() as $key => $map) {
-      $leaflet_map_options[$key] = $map['label'];
-    }
-    return $leaflet_map_options;
-  }
-
-  /**
    * Generate the Leaflet Map General Settings.
    *
    * @param array $elements
@@ -202,9 +191,9 @@ trait LeafletSettingsElementsTrait {
    *   The settings.
    */
   protected function generateMapGeneralSettings(array &$elements, array $settings) {
-
-    $leaflet_map_options = $this->getLeafletBaseMapOptions();
-    $leaflet_map_style = array_key_exists($settings['leaflet_map'], $leaflet_map_options) ? $settings['leaflet_map'] : 'openstreetmap';
+    $default_settings = $this::getDefaultSettings();
+    $leaflet_map_options = $this->getLeafletMaps();
+    $leaflet_map_style = array_key_exists($settings['leaflet_map'], $leaflet_map_options) ? $settings['leaflet_map'] : $default_settings['leaflet_map'];
 
     $elements['leaflet_map'] = [
       '#title' => $this->t('Leaflet Map Tiles Layer'),
