@@ -41,6 +41,13 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
   use LeafletSettingsElementsTrait;
 
   /**
+   * The Base Maps definition list.
+   *
+   * @var array
+   */
+  private $baseMaps;
+
+  /**
    * The geoPhpWrapper service.
    *
    * @var \Drupal\leaflet\LeafletService
@@ -160,6 +167,7 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
       $wkt_generator,
       $geofield_backend_manager
     );
+    $this->baseMaps = $this->getLeafletBaseMapOptions();
     $this->leafletService = $leaflet_service;
     $this->moduleHandler = $module_handler;
     $this->link = $link_generator;
@@ -463,6 +471,21 @@ class LeafletDefaultWidget extends GeofieldDefaultWidget {
     $this->setMapGeoJsonOverlays($form, $this->getSettings());
 
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary = parent::settingsSummary();
+    $settings = $this->getSettings();
+    $summary[] = $this->t('Leaflet Map: @map', ['@map' => $this->baseMaps[$settings['map']['leaflet_map']]]);
+    $summary[] = $this->t('Map height: @height @height_unit', [
+      '@height' => $settings['map']['height'],
+      '@height_unit' => $settings['height_unit'],
+    ],
+    );
+    return $summary;
   }
 
   /**
