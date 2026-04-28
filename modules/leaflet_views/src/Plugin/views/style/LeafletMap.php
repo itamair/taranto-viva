@@ -1698,7 +1698,8 @@ class LeafletMap extends StylePluginBase implements ContainerFactoryPluginInterf
     $options['weight'] = ['default' => NULL];
 
     $leaflet_map_default_settings = [];
-    foreach (self::getDefaultSettings() as $k => $setting) {
+    $default_settings = self::getDefaultSettings();
+    foreach ($default_settings as $k => $setting) {
       $leaflet_map_default_settings[$k] = ['default' => $setting];
     }
     return $options + $leaflet_map_default_settings;
