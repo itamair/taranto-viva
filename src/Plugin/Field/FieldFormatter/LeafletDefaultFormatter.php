@@ -36,6 +36,13 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
   use LeafletSettingsElementsTrait;
 
   /**
+   * The Base Maps definition list.
+   *
+   * @var array
+   */
+  private $baseMaps;
+
+  /**
    * The Default Settings.
    *
    * @var array
@@ -131,6 +138,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
   ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
     $this->defaultSettings = self::getDefaultSettings();
+    $this->baseMaps = $this->getLeafletBaseMapOptions();
     $this->leafletService = $leaflet_service;
     $this->entityFieldManager = $entity_field_manager;
     $this->token = $token;
@@ -262,7 +270,7 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
     $popup_content = !empty($settings['popup_content']) ? $settings['popup_content'] : ($settings['leaflet_popup']['content'] ?? NULL);
 
     $summary = [];
-    $summary[] = $this->t('Leaflet Map: @map', ['@map' => $settings['leaflet_map']]);
+    $summary[] = $this->t('Leaflet Map: @map', ['@map' => $this->baseMaps[$settings['leaflet_map']]]);
     $summary[] = $this->t('Map height: @height @height_unit', [
       '@height' => $settings['height'],
       '@height_unit' => $settings['height_unit'],
