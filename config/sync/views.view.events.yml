@@ -873,14 +873,12 @@ display:
           entity_source: __base_table
           entity_source_submit: 'Update Entity Source'
           name_field: field_title
-          description_field: '#rendered_view_fields'
           view_mode: full
           leaflet_map: multilayers
           height: '800'
           height_unit: px
           hide_empty_map: false
           disable_wheel: false
-          fullscreen_control: true
           gesture_handling: false
           reset_map:
             control: true
@@ -925,6 +923,7 @@ display:
           geocoder:
             control: false
             settings:
+              popup: false
               position: topright
               input_size: 25
               providers:
@@ -940,13 +939,14 @@ display:
               min_terms: 4
               delay: 800
               zoom: 16
-              popup: false
               options: ''
           geojson_app_limit:
             bounds_zoom_flag: false
             bounds_zoom_correction: '0'
             bounds_limit_flag: true
             max_zoom_out: '-1'
+          description_field: '#rendered_view_fields'
+          fullscreen_control: true
       row:
         type: fields
       query:
@@ -1036,14 +1036,12 @@ display:
           entity_source: __base_table
           entity_source_submit: 'Update Entity Source'
           name_field: field_title
-          description_field: '#rendered_view_fields'
           view_mode: full
           leaflet_map: multilayers
           height: '800'
           height_unit: px
           hide_empty_map: false
           disable_wheel: false
-          fullscreen_control: true
           gesture_handling: false
           reset_map:
             control: true
@@ -1088,6 +1086,7 @@ display:
           geocoder:
             control: false
             settings:
+              popup: false
               position: topright
               input_size: 25
               providers:
@@ -1103,13 +1102,14 @@ display:
               min_terms: 4
               delay: 800
               zoom: 16
-              popup: false
               options: ''
           geojson_app_limit:
             bounds_zoom_flag: true
             bounds_zoom_correction: '0'
             bounds_limit_flag: true
             max_zoom_out: '-2'
+          description_field: '#rendered_view_fields'
+          fullscreen_control: true
       row:
         type: fields
         options: {  }

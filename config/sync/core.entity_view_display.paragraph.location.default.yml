@@ -40,7 +40,7 @@ content:
     label: hidden
     settings:
       multiple_map: false
-      leaflet_map: 'OSM Mapnik'
+      leaflet_map: multilayers
       height: 400
       height_unit: px
       hide_empty_map: false
@@ -76,7 +76,7 @@ content:
         minZoom: 1
         maxZoom: 18
         zoomFiner: 0
-      weight: null
+      weight: '0'
       icon:
         iconType: marker
         iconUrl: ''
@@ -126,6 +126,9 @@ content:
             file:
               weight: 0
               checked: false
+            gpx_file:
+              weight: 0
+              checked: false
             googlemaps:
               weight: 0
               checked: false
@@ -138,12 +141,6 @@ content:
           options: ''
       map_lazy_load:
         lazy_load: false
-      geojson_overlays:
-        sources:
-          fields: {  }
-        path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
-        zoom_to_geojson: true
-        snapping: true
     third_party_settings: {  }
     weight: 1
     region: content

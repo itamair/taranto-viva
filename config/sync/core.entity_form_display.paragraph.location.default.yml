@@ -77,7 +77,7 @@ content:
     settings:
       geometry_validation: true
       map:
-        leaflet_map: 'OSM Mapnik'
+        leaflet_map: multilayers
         height: 600
         auto_center: 1
         map_position:
@@ -135,10 +135,10 @@ content:
           input_size: 20
           providers:
             arcgisonline:
-              weight: 0
+              weight: -100
               checked: true
             googlemaps:
-              weight: 2
+              weight: -99
               checked: true
             file:
               weight: 0

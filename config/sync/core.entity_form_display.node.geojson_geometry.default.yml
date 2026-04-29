@@ -26,6 +26,7 @@ content:
     weight: 3
     region: content
     settings:
+      geometry_validation: true
       map:
         leaflet_map: multilayers
         height: 700
@@ -67,6 +68,8 @@ content:
         control: true
         options: '{"position":"topleft","pseudoFullscreen":false}'
       path: '{"color":"#3388ff","opacity":"1.0","stroke":true,"weight":3,"fill":"depends","fillColor":"*","fillOpacity":"0.2","radius":"6"}'
+      feature_properties:
+        values: ''
       locate:
         control: false
         options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
@@ -98,9 +101,6 @@ content:
           delay: 800
           zoom: 16
           options: ''
-      geometry_validation: '1'
-      feature_properties:
-        values: ''
     third_party_settings: {  }
   field_value:
     type: number
@@ -128,6 +128,16 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap_index_now:
+    weight: 130
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
