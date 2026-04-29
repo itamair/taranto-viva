@@ -28,58 +28,11 @@
 
         context.leafletMapInitImagesControl = true;
         const map = lMap;
-        const zoomLevel = map.getZoom();
         const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit;
 
         // Get overlays from Drupal.Leaflet
         const overlays = Drupal.Leaflet[mapid].overlays;
         const overlayName = Drupal.t('Images')
-
-        // Remove specific zoom visibility of Areas and quarters, because now
-        // managed by Zoom Visibility taxonomy.
-        // Zone e Quartieri.
-        /* if (overlays["Zone e Quartieri"]) {
-            if (zoomLevel > 13) {
-              overlays["Zone e Quartieri"].remove();
-            } else {
-              overlays["Zone e Quartieri"].addTo(map);
-            }
-          }*/
-
-        // Areas and quarters.
-        /* if (overlays["Areas and quarters"]) {
-            if (zoomLevel > 13) {
-              overlays["Areas and quarters"].remove();
-            } else {
-              overlays["Areas and quarters"].addTo(map);
-            }
-          }*/
-
-        // Set Images/Immagini overlay visibility based on Map Zoom and user preference.
-        const imagesOverlayActive = sessionStorage.getItem('imagesOverlayActive');
-        const images_overlays = ['Images', 'Immagini'];
-        images_overlays.forEach(function(value) {
-          if (overlays[value]) {
-            if (zoomLevel < Drupal.Leaflet[mapid].imagesZoomLimit) {
-              // Always hide at low zoom levels regardless of preference
-              if (map.hasLayer(overlays[value])) {
-                // Use removeLayer instead of remove() to properly trigger the overlayremove event
-                map.removeLayer(overlays[value]);
-              }
-            } else if (imagesOverlayActive === null || imagesOverlayActive === '1') {
-              // Show only if preference is null (not set) or explicitly set to '1'
-              if (!map.hasLayer(overlays[value])) {
-                // Use addLayer instead of addTo() to properly trigger the overlayadd event
-                map.addLayer(overlays[value]);
-              }
-            } else {
-              // Hide if preference is '0'
-              if (map.hasLayer(overlays[value])) {
-                map.removeLayer(overlays[value]);
-              }
-            }
-          }
-        })
 
         // Add the L.Control.ImagesToggle only if Overlays enabled (not empty).
         if (overlays && overlays[overlayName]) {
