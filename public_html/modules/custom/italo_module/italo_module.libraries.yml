@@ -85,5 +85,4 @@ leaflet_map_control:
   js:
     js/leaflet_map_control.js: {}
   dependencies:
-    - italo_module/leaflet_map_interactions
-    - italo_module/leaflet_pmtiles_layer
+    - leaflet/leaflet
