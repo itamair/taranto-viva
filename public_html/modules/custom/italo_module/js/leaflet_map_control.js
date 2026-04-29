@@ -23,9 +23,6 @@
         if (context.leafletMapInitImagesControl) {
           return;
         }
-
-        Drupal.Leaflet[mapid].imagesZoomLimit = 16;
-
         context.leafletMapInitImagesControl = true;
         const map = lMap;
         const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit;
