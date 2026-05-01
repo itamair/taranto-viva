@@ -137,7 +137,7 @@
         "drupal/revision_manager": "^1.0@beta",
         "drupal/rmkv": "^2.2",
         "drupal/search_api": "^1.39",
-        "drupal/search_api_typesense": "^1.1",
+        "drupal/search_api_typesense": "^1.2@beta",
         "drupal/seckit": "^2.0",
         "drupal/simple_sitemap": "^4.2",
         "drupal/single_image_formatter": "^2.0",
