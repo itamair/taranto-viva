@@ -578,7 +578,7 @@
           });
         });
 
-        if (window.innerWidth <= 760) {
+        if (window.innerWidth <= 1280) {
           const sidebarDiv = root.querySelector(leaflet_sidebar_list_mapid_selector);
           if (sidebarDiv) {
             sidebarDiv.classList.add('list-collapsed');
