@@ -76,6 +76,14 @@
     }
     .marker-selector {
       padding: 6px 4px;
+      display: flex;
+      align-items: flex-start;
+      .title {
+        width: 180px;
+      }
+      .icon {
+        padding: 0 4px;
+      }
     }
 
   }
