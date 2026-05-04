@@ -354,7 +354,7 @@
       const classes = settings.classes;
 
       // Create a Sidebar List control.
-      const sidebarListControl = L.control({ position: 'topright' });
+      const sidebarListControl = L.control({ position: 'topleft' });
 
       sidebarListControl.onAdd = function (map) {
         const div = L.DomUtil.create('div', 'leaflet-control leaflet-sidebar-list' + ' ' + classes);
@@ -588,6 +588,36 @@
       }
     }
 
+  };
+
+  /**
+   * Always Reorder Leaflet Control Layers to first position in top-right corner.
+   */
+  Drupal.behaviors.leafletControlLayersReorder = {
+
+    /**
+     * Attaches the behavior to the context.
+     */
+    attach: function(context) {
+      context.leafletMapInitControlLayersReorder = false;
+
+      $(context).on('leafletMapInit', function (e, settings, lMap, mapid) {
+        // Apply this altering to all Leaflet Maps.
+        /* if (mapid !== 'leaflet-map-view-geo-places-page-map-taranto-viva') {
+            return;
+           }*/
+        if (context.leafletMapInitControlLayersReorder) {
+          return;
+        }
+        context.leafletMapInitControlLayersReorder = true;
+
+        const controlContainer = lMap._controlCorners.topright;
+        const layersControl = controlContainer.querySelector('.leaflet-control-layers');
+        if (layersControl && layersControl !== controlContainer.firstChild) {
+          controlContainer.insertBefore(layersControl, controlContainer.firstChild);
+        }
+      });
+    }
   };
 
 })(jQuery, Drupal);
