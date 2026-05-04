@@ -102,24 +102,25 @@ fields:
     stem: false
     weight: 0
 enable_embedding: true
+local_embedding: null
 embedding_fields:
   body: body
   field_sub_title: field_sub_title
   name: name
   name_1: name_1
   title: title
-  langcode: 0
-  latlon: 0
-  type: 0
+  langcode: '0'
+  latlon: '0'
+  type: '0'
 embedding_model: ts/all-MiniLM-L12-v2
 chunk_size: 1000
 chunk_overlap_size: 10
 chunk_prepend_fields:
   name: name
   name_1: name_1
-  body: 0
-  field_sub_title: 0
-  langcode: 0
-  latlon: 0
-  title: 0
-  type: 0
+  body: '0'
+  field_sub_title: '0'
+  langcode: '0'
+  latlon: '0'
+  title: '0'
+  type: '0'

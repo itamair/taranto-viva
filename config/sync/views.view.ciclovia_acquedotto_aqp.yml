@@ -4867,7 +4867,7 @@ display:
           fitbounds_options: '{"padding":[0,0]}'
           reset_map:
             control: true
-            options: '{"position":"topleft","title":"Reset View"}'
+            options: '{"position":"topright","title":"Reset View"}'
           map_scale:
             control: true
             options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
@@ -4880,7 +4880,7 @@ display:
             center:
               lat: 42.0
               lon: 12.0
-            zoomControlPosition: topleft
+            zoomControlPosition: topright
             zoom: 14
             minZoom: 7
             maxZoom: 19
@@ -4916,7 +4916,7 @@ display:
             excluded: field_exclude_from_markercluster
           fullscreen:
             control: true
-            options: '{"position":"topleft","pseudoFullscreen":false}'
+            options: '{"position":"topright","pseudoFullscreen":false}'
           path: '{"dashArray":0,"color":"{{ field_stroke_color }}","opacity":"{{ field_stroke_opacity }}","stroke":true,"weight":"{{ field_stroke_weight }}","fillColor":"{{ field_fill_color }}","fillOpacity":"{{ field_fill_opacity }}","interactive":true,"arrowed":"{{ field_arrowed }}"}'
           geocoder:
             control: false
@@ -5097,7 +5097,8 @@ display:
             og_title: '[view:title] | [site:name] '
             og_description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
-        library_in_views_display_extender: {  }
+        library_in_views_display_extender:
+          attach_library: italo_module/leaflet_map_control
         simple_sitemap_display_extender:
           variants: {  }
       path: ciclovia-acquedotto-pugliese
