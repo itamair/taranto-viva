@@ -545,7 +545,7 @@
             animate: true
           });*/
 
-          map.setView(center, 16);
+          map.setView(center, 17);
           // marker.closeTooltip(); // not needed if the marker.fire('click') is not used
           clickTimeout = setTimeout(() => {
             el.parentElement.classList.remove('marker-selected');
