@@ -151,6 +151,9 @@
   &.opacity-75:hover {
     opacity: 100% !important;
   }
+  &.geoimage {
+    border-radius: 50%;
+  }
 }
 
 // Customise Leaflet Marker Images (Overture Maps) Tile Container

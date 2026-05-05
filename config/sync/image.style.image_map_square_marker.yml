@@ -1,0 +1,15 @@
+uuid: 0dec253a-0575-4afd-b26d-53ef732d10ec
+langcode: en
+status: true
+dependencies: {  }
+name: image_map_square_marker
+label: 'Image Map Square Marker'
+effects:
+  2d3b8ffe-c785-4c7d-9497-961f64f44c28:
+    uuid: 2d3b8ffe-c785-4c7d-9497-961f64f44c28
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 50
+      height: 50
+      anchor: center-center

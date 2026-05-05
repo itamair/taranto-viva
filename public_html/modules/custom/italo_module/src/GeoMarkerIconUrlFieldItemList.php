@@ -39,7 +39,7 @@ class GeoMarkerIconUrlFieldItemList extends FieldItemList {
         switch ($paragraph_type) {
           case "geoimage":
             $media = $entity->field_geoimage->entity;
-            $image_style = 'image_map_marker';
+            $image_style = 'image_map_square_marker';
             break;
 
           case "image":
