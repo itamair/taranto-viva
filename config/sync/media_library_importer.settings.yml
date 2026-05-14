@@ -1,7 +1,8 @@
 langcode: it
+process_queue_on_submit: true
 exclude_styles: true
-import_files_to_media_location: false
-import_folder: /var/www/html/web/sites/default/files/photo_albums
+import_files_to_media_location: true
+import_folder: 'https://www.geodemocracy.com/favourites-geoimages/web/sites/default/files/photo_albums'
 media_types_import:
   geoimage: geoimage
   audio: '0'
@@ -11,4 +12,3 @@ media_types_import:
   video: '0'
 media_types_fields:
   geoimage: field_media_image
-import_unmanaged_files: null

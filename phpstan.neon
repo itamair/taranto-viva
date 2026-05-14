@@ -1,37 +1,16 @@
+# This file is copied from ./core/phpstan.neon.dist then set to only
+# ignore errors applicable to this project rather than all errors ignored
+# from Core as phpstan throws errors when ignore lines here are unused.
+
+# Configuration file for PHPStan static code checking, see https://phpstan.org .
+# PHPStan is triggered on Drupal CI in commit-code-check.sh.
+includes:
+  - phar://phpstan.phar/conf/bleedingEdge.neon
+
 parameters:
-    customRulesetUsed: true
-    reportUnmatchedIgnoredErrors: false
-    drupal:
-        drupal_root: %currentWorkingDirectory%/web
-        entityMapping:
-            og_membership:
-                class: Drupal\og\Entity\OgMembership
-                storage: Drupal\Core\Entity\Sql\SqlContentEntityStorage
-            rdf_entity:
-                class: Drupal\rdf_entity\Entity\Rdf
-                storage: Drupal\sparql_entity_storage\SparqlEntityStorage
+    level: 1
     paths:
-      - src
-      - tests/src
-      - public_htmlmodules/custom
-      - public_htmlprofiles
-      - public_htmlthemes/ventuno
-      - public_htmlthemes/iop
+        - public_html/modules/custom
     ignoreErrors:
-        # We're not prepared yet for this.
-        - '#\Drupal calls should be avoided in classes, use dependency injection instead#'
-        # As an exception, we allow extending these two classes.
-        - '#Class Drupal\\joinup_group\\Form\\UserCancelForm extends @internal class Drupal\\user\\Form\\UserCancelForm.#'
-        - '#Class Drupal\\joinup_group\\Form\\UserMultipleCancelConfirm extends @internal class Drupal\\user\\Form\\UserMultipleCancelConfirm.#'
-        # See https://github.com/mglaman/phpstan-drupal/issues/586.
-        - '#Call to deprecated method loadRevision\(\) of class Drupal\\Core\\Entity\\(ContentEntityStorageBase|EntityStorageInterface)\:\nin drupal\:10\.1\.0 and is removed from drupal\:11\.0\.0\. Use\n\\Drupal\\Core\\Entity\\RevisionableStorageInterface\:\:loadRevision instead\.#'
-        - '#Class Drupal\\joinup_media\\JoinupMediaLibrary extends @internal class Drupal\\ckeditor5\\Plugin\\CKEditor5Plugin\\MediaLibrary.#'
-        # Temporarily ignore these deprecations until https://www.drupal.org/i/3397522.
-        # Todo: Remove this exception in ISAICP-8350.
-        # See: https://citnet.tech.ec.europa.eu/CITnet/jira/browse/ISAICP-8350
-        - '#^Class .* implements deprecated interface Symfony\\Component\\DependencyInjection\\ContainerAwareInterface\:\s+since Symfony 6\.4, use dependency injection instead$#'
-        - '#^Usage of deprecated trait Symfony\\Component\\DependencyInjection\\ContainerAwareTrait in class .*\:\s+since Symfony 6\.4, use dependency injection instead$#'
-    excludePaths:
-        - src/CodingStandards/Sniffs/NamingConventions/ValidUpdateNameSniff.php
-    scanFiles:
-        - public_htmlmodules/contrib/og/src/OgMembershipInterface.php
+        # new static() is a best practice in Drupal, so we cannot fix that.
+        - "#^Unsafe usage of new static#"

@@ -2,6 +2,8 @@ uuid: 7ae6b89d-2067-446b-aa24-8e3bf41cac83
 langcode: en
 status: false
 dependencies:
+  config:
+    - ai_vdb_provider_pinecone.settings
   module:
     - ai_search
     - ai_vdb_provider_pinecone

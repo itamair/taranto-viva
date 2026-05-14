@@ -2,18 +2,24 @@ uuid: 6c4c172c-9dfc-41fe-b6be-f8498375a6da
 langcode: it
 status: true
 dependencies:
+  config:
+    - node.type.article
+    - node.type.event
+    - node.type.geoimage
+    - node.type.geoplace
+    - node.type.page
+    - node.type.territorial_report
   module:
     - language
     - node
 id: content_title
 label: 'Content Title'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: '/[node:title]'
 selection_criteria:
   dbee2d9d-997a-4974-a27f-e4c78ad48d3a:
     id: 'entity_bundle:node'
     negate: false
-    uuid: dbee2d9d-997a-4974-a27f-e4c78ad48d3a
     context_mapping:
       node: node
     bundles:
@@ -26,7 +32,6 @@ selection_criteria:
   f3e45ed4-b4a8-4f65-b51b-be57b0ced3cd:
     id: language
     negate: false
-    uuid: f3e45ed4-b4a8-4f65-b51b-be57b0ced3cd
     context_mapping:
       language: 'node:langcode:language'
     langcodes:
