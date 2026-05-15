@@ -1,0 +1,17 @@
+uuid: 14d7b396-d8fd-4ce3-a7f0-fa4090814025
+langcode: en
+status: true
+dependencies:
+  module:
+    - mcp
+title: 'Default cron handler'
+id: mcp_cron
+weight: 0
+module: mcp
+callback: 'mcp#cron'
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

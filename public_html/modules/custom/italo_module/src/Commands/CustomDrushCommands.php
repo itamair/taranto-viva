@@ -19,7 +19,7 @@ class CustomDrushCommands extends DrushCommands {
    *   The Entity type manager service.
    */
   public function __construct(
-    protected  EntityTypeManagerInterface $entity_type_manager,
+    protected EntityTypeManagerInterface $entity_type_manager,
   ) {
     parent::__construct();
   }

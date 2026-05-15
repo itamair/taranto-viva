@@ -543,6 +543,12 @@ function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPlu
  */
 function italo_module_alter_media_library_importer_media_extra_fields(FileInterface $file, string $file_url, string $uri, array &$extra_fields) {
   $extra_fields['field_generate_host_content'] = TRUE;
+  if (str_contains($file_url, 'Taranto_Viva')) {
+    // Set the Media Project Namespace field as 'Vaganti' (target_id: 53).
+    $extra_fields['field_project_namespace'] = [
+      ['target_id' => 52],
+    ];
+  }
   if (str_contains($file_url, 'Vaganti_Images')) {
     // Set the Media Project Namespace field as 'Vaganti' (target_id: 53).
     $extra_fields['field_project_namespace'] = [

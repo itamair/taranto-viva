@@ -1,0 +1,17 @@
+uuid: ecf05c6f-808d-43bc-8e6a-dfbfb6b06321
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_mesh
+title: 'Default cron handler'
+id: entity_mesh_cron
+weight: 0
+module: entity_mesh
+callback: 'entity_mesh#cron'
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

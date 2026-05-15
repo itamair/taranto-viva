@@ -169,6 +169,7 @@ module:
   tool_explorer: 0
   toolbar: 0
   typed_data: 0
+  ultimate_cron: 0
   update: 0
   upgrade_status: 0
   user: 0
