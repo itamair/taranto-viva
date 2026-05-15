@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9bb083a4a4ba402be52056a10ce6be7",
+    "content-hash": "ecc80b0faee85c0f59b44ef6cdde19b7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6718,17 +6718,11 @@
         },
         {
             "name": "drupal/media_library_importer",
-            "version": "2.1.5",
+            "version": "dev-2.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_library_importer.git",
-                "reference": "2.1.5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_library_importer-2.1.5.zip",
-                "reference": "2.1.5",
-                "shasum": "b891bd87c5a70764fa8cf939bb626d31545c915a"
+                "reference": "38300416ad2d452ac274641371aef0d73073c42e"
             },
             "require": {
                 "drupal/core": "^9.2 || ^10 | ^11",
@@ -6736,12 +6730,15 @@
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
                 "drupal": {
-                    "version": "2.1.5",
-                    "datestamp": "1748781818",
+                    "version": "2.1.5+20-dev",
+                    "datestamp": "1778767602",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -18579,6 +18576,7 @@
         "drupal/feeds_tamper": 10,
         "drupal/image_style_warmer": 5,
         "drupal/masquerade": 5,
+        "drupal/media_library_importer": 20,
         "drupal/readmore": 15,
         "drupal/revision_manager": 10,
         "drupal/search_api_typesense": 10,
