@@ -2,7 +2,7 @@ langcode: it
 process_queue_on_submit: true
 exclude_styles: true
 import_files_to_media_location: true
-import_folder: 'https://www.geodemocracy.com/favourites-geoimages/web/sites/default/files/photo_albums'
+import_folder: /var/www/public_html/sites/default/files/photo_albums_2
 media_types_import:
   geoimage: geoimage
   audio: '0'
