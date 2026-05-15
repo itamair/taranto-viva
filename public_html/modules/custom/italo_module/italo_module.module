@@ -317,7 +317,6 @@ function italo_module_node_view(array &$build, NodeInterface $node, EntityViewDi
           }
         }
 
-
         try {
           // Extract Paragraphs components from the field_components.
           $components = $node->get('field_components')->getValue();
@@ -330,8 +329,8 @@ function italo_module_node_view(array &$build, NodeInterface $node, EntityViewDi
             if ($paragraph->field_geofield) {
               $geofields[] = $paragraph->field_geofield->value;
             }
-            // Otherwise look for the field_geoimage that should contain Geoimage
-            // Media reference, with geofield into it.
+            // Otherwise look for the field_geoimage that should contain
+            // Geoimage Media reference, with geofield into it.
             elseif ($paragraph->field_geoimage) {
               $media_references = $paragraph->get('field_geoimage')->getValue();
               foreach ($media_references as $media_reference) {
@@ -388,10 +387,14 @@ function italo_module_media_insert(MediaInterface $media) {
   // (it means it was Geo-Located correctly).
   if ($media->bundle() === "geoimage" && !empty($media->field_geofield->value)) {
 
-    // If Media Geoimage Media needs to create an host Geoimage Node.
-    if ($media->field_generate_host_content->value === TRUE && $title = $media->field_address->value) {
+    // If Media Geoimage Media needs to create a host Geoimage Node.
+    if ($media->field_generate_host_content->value) {
       $user = \Drupal::currentUser();
-      // Create/Save the Geoimage Paragraph, referencing the Geoimage Media.
+
+      $media_image_data = $media->get('field_media_image')->getValue();
+      $file_url = parse_url($media_image_data[0]['value'], PHP_URL_PATH);
+
+      // Set the Geoimage Paragraph, referencing the Geoimage Media.
       $paragraph_geoimage_data = [
         'type' => 'geoimage',
         'field_geoimage' => [
@@ -399,17 +402,19 @@ function italo_module_media_insert(MediaInterface $media) {
         ],
       ];
 
-      // If the Media Project Namespace field is 'Vaganti' (target_id: 53).
-      if ($media->get('field_project_namespace')->target_id == 53) {
-        $paragraph_geoimage_data['field_exclude_from_map_bounds'] = FALSE;
+      // Set specific paragraph geoimage data based on field
+      // 'field_project_namespace'.
+      switch ($media->get('field_project_namespace')->target_id) {
+        // If the Media Project Namespace field is
+        // - 'Vaganti' (target_id: 53)
+        // - 'Copenhagen Discovery' (target_id: 55).
+        case 55:
+        case 53:
+          $paragraph_geoimage_data['field_exclude_from_map_bounds'] = FALSE;
+          break;
       }
 
-      // If the Media Project Namespace field is 'Copenhagen Discovery'
-      // (target_id: 55).
-      if ($media->get('field_project_namespace')->target_id == 55) {
-        $paragraph_geoimage_data['field_exclude_from_map_bounds'] = FALSE;
-      }
-
+      // Create the Geoimage Paragraph, referencing the Geoimage Media.
       $paragraph_geoimage = Paragraph::create($paragraph_geoimage_data);
       $paragraph_geoimage->save();
 
@@ -417,7 +422,7 @@ function italo_module_media_insert(MediaInterface $media) {
       // the created Geoimage Paragraph.
       $geoimage_node_data = [
         'type' => "geoimage",
-        'title' => $title,
+        'title' => $media->field_address->value ?? basename($file_url),
         'uid' => $user->id(),
         'status' => 1,
         'langcode' => \Drupal::service('language_manager')->getDefaultLanguage()->getId(),
@@ -432,8 +437,10 @@ function italo_module_media_insert(MediaInterface $media) {
       // Copy Media Namespaces into corresponding Content Namespaces.
       if (!empty($media->get('field_project_namespace'))) {
         $geoimage_node_data['field_project_namespace'] = $media->get('field_project_namespace');
-        $geoimage_node_data['field_classname'] = 'opacity-75';
       }
+
+      // Set the Geoimage Node class as 'opacity-75'.
+      $geoimage_node_data['field_classname'] = 'opacity-75';
 
       // Create/Save the Geoimage Node, with Geoimage Paragraph/Geoimage Media.
       $geoimage_node = Node::create($geoimage_node_data);
@@ -501,16 +508,16 @@ function italo_module_leaflet_views_features_alter(array &$features, ViewsPlugin
  */
 function italo_module_leaflet_views_features_group_alter(array &$group, ViewsPluginInterface &$view_style) {
   if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
-      'segnalazione territoriale',
-      'territorial report',
-    ])) {
+    'segnalazione territoriale',
+    'territorial report',
+  ])) {
     $group["weight"] = -10;
   }
 
   if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
-      'zone e quartieri',
-      'areas and quarters',
-    ])) {
+    'zone e quartieri',
+    'areas and quaråters',
+  ])) {
     $group["weight"] = 100;
   }
 
