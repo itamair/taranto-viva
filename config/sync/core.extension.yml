@@ -54,6 +54,7 @@ module:
   entity_mesh: 0
   entity_reference_revisions: 0
   entity_type_clone: 0
+  fancy_file_delete: 0
   feeds: 0
   feeds_ex: 0
   feeds_log: 0

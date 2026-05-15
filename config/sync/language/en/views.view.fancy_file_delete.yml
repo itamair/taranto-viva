@@ -1,0 +1,80 @@
+label: 'Fancy File Delete'
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        options:
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      fields:
+        filename:
+          label: 'File Name'
+          separator: ', '
+        fid:
+          label: 'File ID'
+          separator: ', '
+        entity_label:
+          label: 'Entity label'
+      title: 'Fancy File Delete'
+      header:
+        area:
+          content:
+            value: |-
+              <h2>Warning, this will delete all files that have been orphaned.</h2>
+                <h5><em>Orphaned = not attached the node table and file_usage table usually as a result from old deleted nodes</em>  <strong>There is no turning back once you delete these files!</strong></h5>
+      empty:
+        area:
+          content:
+            value: '<h3>There be no files in your system!</h3>'
+  page_1:
+    display_title: 'All Files'
+    display_options:
+      menu:
+        title: List
+      title: 'All Files'
+      fields:
+        views_bulk_operations_bulk_form:
+          label: 'Views bulk operations'
+        filename:
+          label: 'File Name'
+          separator: ', '
+        fid:
+          label: 'File ID'
+          separator: ', '
+        filename_1:
+          label: Filename
+          separator: ', '
+  page_2:
+    display_title: 'Orphaned Files'
+    display_options:
+      title: 'Orphaned Files'
+      empty:
+        area:
+          content:
+            value: '<h3>There be no orphaned files in your system!</h3>'
+      fields:
+        views_bulk_operations_bulk_form:
+          label: 'Views bulk operations'
+        filename:
+          label: 'File Name'
+          separator: ', '
+        fid:
+          label: 'File ID'
+          separator: ', '
+      menu:
+        title: Orphaned

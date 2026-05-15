@@ -82,7 +82,21 @@ display:
           clear_on_exposed: true
           show_multipage_selection_box: default
           show_select_all: default
-          selected_actions: {  }
+          selected_actions:
+            -
+              action_id: delete_files_action
+              preconfiguration:
+                add_confirmation: false
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
+            -
+              action_id: file_delete_mark_temporary
+              preconfiguration:
+                add_confirmation: false
+                confirm_help_text: ''
+                label_override: ''
+                message_override: ''
         fid:
           id: fid
           table: file_managed
@@ -584,7 +598,7 @@ display:
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 50
+          items_per_page: 500
           total_pages: 0
           id: 0
           tags:
@@ -602,7 +616,7 @@ display:
         type: basic
         options:
           submit_button: Filter
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -636,7 +650,7 @@ display:
           entity_type: file
           entity_field: filename
           plugin_id: string
-          operator: word
+          operator: contains
           value: ''
           group: 1
           exposed: true
@@ -654,6 +668,7 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -751,8 +766,8 @@ display:
           id: count
           table: file_usage
           field: count
-          relationship: none
-          group_type: group
+          relationship: fid
+          group_type: sum
           admin_label: ''
           plugin_id: numeric
           operator: '='
@@ -933,7 +948,13 @@ display:
           admin_label: 'File usage'
           required: false
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender:
+          variants: {  }
       path: admin/content/files
       menu:
         type: tab
@@ -953,11 +974,11 @@ display:
       tags: {  }
   page_2:
     id: page_2
-    display_title: 'File usage'
+    display_title: 'Utilizzo del file'
     display_plugin: page
     position: 2
     display_options:
-      title: 'File usage'
+      title: 'Utilizzo del file'
       fields:
         entity_label:
           id: entity_label
