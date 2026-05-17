@@ -8,6 +8,7 @@ dependencies:
     - field.field.media.geoimage.field_generate_host_content
     - field.field.media.geoimage.field_geofield
     - field.field.media.geoimage.field_image_caption
+    - field.field.media.geoimage.field_image_caption_2
     - field.field.media.geoimage.field_media_image
     - field.field.media.geoimage.field_place_type
     - field.field.media.geoimage.field_project_namespace
@@ -17,6 +18,7 @@ dependencies:
     - link
     - photoswipe
     - photoswipe_dynamic_caption
+    - text
 id: media.geoimage.default
 targetEntityType: media
 bundle: geoimage
@@ -30,6 +32,20 @@ content:
       format_type: olivero_medium
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_image_caption:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_image_caption_2:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_media_image:
     type: photoswipe_field_formatter
@@ -58,7 +74,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 5
     region: content
   geoimage_caption:
     type: string
@@ -73,7 +89,6 @@ hidden:
   field_address: true
   field_generate_host_content: true
   field_geofield: true
-  field_image_caption: true
   field_place_type: true
   field_project_namespace: true
   langcode: true

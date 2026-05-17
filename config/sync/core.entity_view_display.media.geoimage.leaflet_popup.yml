@@ -9,6 +9,7 @@ dependencies:
     - field.field.media.geoimage.field_generate_host_content
     - field.field.media.geoimage.field_geofield
     - field.field.media.geoimage.field_image_caption
+    - field.field.media.geoimage.field_image_caption_2
     - field.field.media.geoimage.field_media_image
     - field.field.media.geoimage.field_place_type
     - field.field.media.geoimage.field_project_namespace
@@ -30,8 +31,8 @@ content:
     type: single_image_formatter
     label: hidden
     settings:
-      image_style: map_scaled_cropped_image_600x400
       image_link: ''
+      image_style: map_scaled_cropped_image_600x400
       image_loading:
         attribute: lazy
     third_party_settings: {  }
@@ -44,6 +45,7 @@ hidden:
   field_generate_host_content: true
   field_geofield: true
   field_image_caption: true
+  field_image_caption_2: true
   field_place_type: true
   field_project_namespace: true
   geofield_googlemaps_link: true

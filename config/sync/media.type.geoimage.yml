@@ -1,7 +1,21 @@
 uuid: 4221dcde-6f60-4538-93e0-306416d7b0cb
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - revision_manager
+third_party_settings:
+  revision_manager:
+    age:
+      id: age
+      status: false
+      settings:
+        age: 6
+    amount:
+      id: amount
+      status: true
+      settings:
+        amount: 3
 id: geoimage
 label: 'Geo Image'
 description: 'Use local reusable media with geofield location.'
