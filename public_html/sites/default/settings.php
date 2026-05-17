@@ -909,3 +909,6 @@ if (file_exists(__DIR__ . '/settings.ddev.php') && getenv('IS_DDEV_PROJECT') == 
   '/web/index.php' === $GLOBALS['request']->server->get('SCRIPT_NAME')) {
   $GLOBALS['request']->server->set('SCRIPT_NAME', '/index.php');
 }*/
+
+// Drupal Queue Replacement with Symfony Messenger Queue Interceptor.
+// $settings['queue_default'] = Drupal\sm\QueueInterceptor\SmLegacyQueueFactory::class;
