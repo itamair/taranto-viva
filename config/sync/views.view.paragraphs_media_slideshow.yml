@@ -5,7 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.image
     - field.storage.media.field_media_image
-    - image.style.map_scaled_cropped_image_800_500
+    - image.style.map_scaled_cropped_image_1000x700
     - paragraphs.paragraphs_type.geoimage
     - paragraphs.paragraphs_type.image
   module:
@@ -82,7 +82,7 @@ display:
           type: image
           settings:
             image_link: ''
-            image_style: map_scaled_cropped_image_800_500
+            image_style: map_scaled_cropped_image_1000x700
             image_loading:
               attribute: lazy
             svg_attributes:
@@ -152,7 +152,7 @@ display:
           type: image
           settings:
             image_link: ''
-            image_style: map_scaled_cropped_image_800_500
+            image_style: map_scaled_cropped_image_1000x700
             image_loading:
               attribute: lazy
             svg_attributes:

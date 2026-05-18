@@ -9,11 +9,10 @@ dependencies:
     - field.field.media.geoimage.field_generate_host_content
     - field.field.media.geoimage.field_geofield
     - field.field.media.geoimage.field_image_caption
-    - field.field.media.geoimage.field_image_caption_2
     - field.field.media.geoimage.field_media_image
     - field.field.media.geoimage.field_place_type
     - field.field.media.geoimage.field_project_namespace
-    - image.style.map_scaled_cropped_image_800_500
+    - image.style.map_scaled_cropped_image_1000x700
     - media.type.geoimage
   module:
     - datetime
@@ -50,7 +49,7 @@ content:
     label: hidden
     settings:
       image_link: ''
-      image_style: map_scaled_cropped_image_800_500
+      image_style: map_scaled_cropped_image_1000x700
       image_loading:
         attribute: eager
       svg_attributes:
@@ -65,7 +64,6 @@ hidden:
   field_generate_host_content: true
   field_geofield: true
   field_image_caption: true
-  field_image_caption_2: true
   field_place_type: true
   field_project_namespace: true
   geofield_googlemaps_link: true

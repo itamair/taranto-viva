@@ -7,6 +7,10 @@ dependencies:
     - media.type.geoimage
   module:
     - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
 id: media.geoimage.field_image_caption
 field_name: field_image_caption
 entity_type: media
@@ -17,8 +21,8 @@ required: false
 translatable: false
 default_value:
   -
-    value: "<p>Photo Credits: <a href=\"https://www.italomairo.com\">Italo Mairo</a></p>\r\n"
-    format: basic_html
+    value: '<p>Photo Credits: <a href="https://www.italomairo.com" target="blank">Italo Mairo</a></p>'
+    format: full_html
 default_value_callback: ''
 settings:
   allowed_formats: {  }

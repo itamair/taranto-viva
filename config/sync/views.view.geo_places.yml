@@ -3489,17 +3489,7 @@ display:
           required: false
       group_by: false
       display_description: ''
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
+      header: {  }
       rendering_language: '***LANGUAGE_language_content***'
       display_extenders:
         metatag_display_extender:

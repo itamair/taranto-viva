@@ -103,18 +103,18 @@
     }
 
     @media (--grid-md) {
-      font-size: 32px;
+      /* font-size: 32px; */
       line-height: var(--sp3);
     }
 
     @media (--lg) {
-      font-size: 40px;
+      /*font-size: 40px;*/
       line-height: var(--sp3-5);
     }
   }
 
   @media (--grid-md) {
-    font-size: 18px;
+    /*font-size: 18px;*/
     line-height: var(--sp2);
   }
 }

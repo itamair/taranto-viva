@@ -1,0 +1,15 @@
+uuid: 2871b177-376e-44a2-a449-703589463641
+langcode: en
+status: true
+dependencies: {  }
+name: map_scaled_cropped_image_1000x700
+label: 'Map Scaled & Cropped Image 1000×700'
+effects:
+  0be851bc-5c6b-466c-a9d3-6a42a4f7943f:
+    uuid: 0be851bc-5c6b-466c-a9d3-6a42a4f7943f
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1000
+      height: 700
+      anchor: center-center

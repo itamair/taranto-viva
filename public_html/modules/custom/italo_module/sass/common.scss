@@ -51,10 +51,6 @@ a, a.link {
   .field--name-geoimage-caption:not(:last-child) {
     margin-bottom: 0.4rem;
   }
-  .text-content.field--name-field-image-caption {
-    font-size: 0.9rem;
-    color: slategray;
-  }
 }
 
 // Media Images View
@@ -154,13 +150,21 @@ a, a.link {
     margin-bottom: 0.5rem;
   }
   .views-field-field-components {
-    a {
-      font-size: 0.8rem;
-      .field--name-field-media-image {
-        margin-bottom: 1rem;
-      }
+    font-size: 0.8rem;
+    .field--name-field-media-image {
+      margin-bottom: 1rem;
     }
   }
+}
+
+// .field--name-field-image-caption (photo credits)
+div.image-wrapper {
+  max-width: 1200px;
+}
+
+.field--name-field-image-caption {
+  text-align: right;
+  font-size: 90%;
 }
 
 // GeofieldGoogleMapsLinkFieldItemList.
