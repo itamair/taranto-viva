@@ -259,6 +259,11 @@
 }
 
 // Leaflet Markers Clusters Style overrides
+
+.leaflet-marker-icon.svg-marker-cluster-icon {
+
+}
+
 .leaflet-marker-icon.marker-cluster {
   div {
     font-weight: bold;

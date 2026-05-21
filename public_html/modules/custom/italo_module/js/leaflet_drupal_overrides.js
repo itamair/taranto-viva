@@ -2,160 +2,160 @@
  * We are overriding the adding features functionality of the Leaflet module.
  */
 
-/**
- * Generate Google Maps Links HTML Markup.
- *
- * @param lat
- *   The Layer index/label.
- * @param lng
- *   The Layer definition,
- * @param address
- *   The layers progressive counter.
- *
- * @return string
- *   An HTML markup string.
- */
-Drupal.Leaflet.prototype.get_gmaps_links = function (lat, lng, address = null) {
-  const google_maps_query = typeof address === 'string' && address.trim() !== '' ? encodeURIComponent(address) : lat + '%2C' + lng;
-  return '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
-    '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + google_maps_query + '" target="_blank">Google Maps</a></div>\n' +
-    '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
-    '</div>';
-}
+(function($, Drupal) {
 
-/**
- * Extend Map Bounds with new lFeature/feature.
- *
- * This overrides the original extend_map_bounds based on the
- * feature boolean property "exclude_from_map_bounds".
- *
- * @param lFeature
- *   The Leaflet Feature
- * @param feature
- *   The Feature coming from Drupal settings.
- *   (this parameter should be kept to eventually extend this method with
- *   conditional logics on feature properties)
- */
-Drupal.Leaflet.prototype.extend_map_bounds = function(lFeature, feature) {
-  const feature_properties = feature.properties ? JSON.parse(feature.properties) : {
-    exclude_from_map_bounds: false,
+  /**
+   * Generate Google Maps Links HTML Markup.
+   *
+   * @param lat
+   *   The Layer index/label.
+   * @param lng
+   *   The Layer definition,
+   * @param address
+   *   The layers progressive counter.
+   *
+   * @return string
+   *   An HTML markup string.
+   */
+  Drupal.Leaflet.prototype.get_gmaps_links = function (lat, lng, address = null) {
+    const google_maps_query = typeof address === 'string' && address.trim() !== '' ? encodeURIComponent(address) : lat + '%2C' + lng;
+    return '<div class="field field--name-geofield-googlemaps-link field--type-link field--label-hidden field__items">\n' +
+      '<div class="field__item"><a href="https://www.google.com/maps/search/?api=1&amp;query=' + google_maps_query + '" target="_blank">Google Maps</a></div>\n' +
+      '<div class="field__item"><a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=' + lat + '%2C' + lng + '" target="_blank">Street View</a></div>\n' +
+      '</div>';
+  }
+
+  /**
+   * Extend Map Bounds with new lFeature/feature.
+   *
+   * This overrides the original extend_map_bounds based on the
+   * feature boolean property "exclude_from_map_bounds".
+   *
+   * @param lFeature
+   *   The Leaflet Feature
+   * @param feature
+   *   The Feature coming from Drupal settings.
+   *   (this parameter should be kept to eventually extend this method with
+   *   conditional logics on feature properties)
+   */
+  Drupal.Leaflet.prototype.extend_map_bounds = function(lFeature, feature) {
+    const feature_properties = feature.properties ? JSON.parse(feature.properties) : {
+      exclude_from_map_bounds: false,
+    };
+
+    const isExcluded = parseInt(feature_properties.exclude_from_map_bounds);
+    const isFirstFeature = Object.keys(this.features).length === 0;
+
+    if (isExcluded && !isFirstFeature) {
+      return;
+    }
+
+    if (feature.type === 'point') {
+      this.bounds.push([feature.lat, feature.lon]);
+    } else {
+      const bounds = lFeature.getBounds();
+      this.bounds.push(bounds.getSouthWest(), bounds.getNorthEast());
+    }
   };
 
-  const isExcluded = parseInt(feature_properties.exclude_from_map_bounds);
-  const isFirstFeature = Object.keys(this.features).length === 0;
-
-  if (isExcluded && !isFirstFeature) {
-    return;
-  }
-
-  if (feature.type === 'point') {
-    this.bounds.push([feature.lat, feature.lon]);
-  } else {
-    const bounds = lFeature.getBounds();
-    this.bounds.push(bounds.getSouthWest(), bounds.getNorthEast());
-  }
-};
-
-/**
- * Add Leaflet Tooltip to the Leaflet Feature (override).
- *
- * Set the Leaflet Tooltip, with its options,
- * but omit in case of geoimage content type.
- *
- * @param lFeature
- *   The Leaflet Feature
- * @param feature
- *   The Feature coming from Drupal settings.
- */
-Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
-  if (!this.permanent_tooltip_features) {
-    this.permanent_tooltip_features = [];
-  }
-
-  const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
-
-  // Add this overriding tooltip logics only onto geoplace content type.
-  if (feature.tooltip &&
-    feature_properties.content_type !== "geoimage" &&
-    !parseInt(feature_properties.tooltip_disabled) &&
-    feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
-
-    const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
-
-    // Cleanup tooltip className from commas, to support multivalue class fields.
-    if (tooltip_options.hasOwnProperty('className') && tooltip_options.className.length > 0) {
-      tooltip_options.className = tooltip_options.className.replaceAll(",", "");
+  /**
+   * Add Leaflet Tooltip to the Leaflet Feature (override).
+   *
+   * Set the Leaflet Tooltip, with its options,
+   * but omit in case of geoimage content type.
+   *
+   * @param lFeature
+   *   The Leaflet Feature
+   * @param feature
+   *   The Feature coming from Drupal settings.
+   */
+  Drupal.Leaflet.prototype.feature_bind_tooltip = function(lFeature, feature) {
+    if (!this.permanent_tooltip_features) {
+      this.permanent_tooltip_features = [];
     }
 
-    // Set a default tooltip direction property as "top", in case not set.
-    if (!tooltip_options.hasOwnProperty('direction') || tooltip_options.direction.length === 0) {
-      tooltip_options.direction = "top";
-    }
+    const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
 
-    // Need to more correctly set the tooltip_options.permanent option.
-    tooltip_options.permanent = tooltip_options.permanent === true || tooltip_options.permanent === "true";
-    if (tooltip_options.permanent) {
-      this.permanent_tooltip_features.push(lFeature);
-    }
+    // Add this overriding tooltip logics only onto geoplace content type.
+    if (feature.tooltip &&
+      feature_properties.content_type !== "geoimage" &&
+      !parseInt(feature_properties.tooltip_disabled) &&
+      feature.tooltip.value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
 
-    // Need to more correctly set the tooltip_options.sticky option.
-    tooltip_options.sticky = tooltip_options.sticky === true || tooltip_options.sticky === "true";
+      const tooltip_options = feature.tooltip.options ? JSON.parse(feature.tooltip.options) : {};
 
-    lFeature.bindTooltip(feature.tooltip.value, tooltip_options);
-  }
-};
-
-/**
- * Add Leaflet Popup to the Leaflet Feature (override).
- *
- * We need this override because we are adding to the popup.content the Google Maps Links corresponding:
- * - to the feature.icon location, in case of feature.icon (point);
- * - to the feature.path clicked location, in case of feature.path (geometries);
- *
- * @param lFeature
- *   The Leaflet Feature
- * @param feature
- *   The Feature coming from Drupal settings.
- */
-Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
-  const self = this;
-  const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
-
-  if (!parseInt(feature_properties.popup_disabled) && feature.popup && feature.popup.value) {
-    const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
-
-    let lat = feature.lat ?? '';
-    let lng = feature.lon ?? '';
-
-    // Append to the feature.popup.value the Google Maps Links corresponding to
-    // the feature centroid location.
-    let gmaps_links = self.get_gmaps_links(lat, lng);
-    lFeature.bindPopup(feature.popup.value + gmaps_links, popup_options);
-
-    // In case of feature.path replace the gmaps_links corresponding to the
-    // popup LatLng place (click location).
-    lFeature.on('popupopen', function (e) {
-      const popup = e.popup;
-      if (e.target._path) {
-        const lat = popup.getLatLng().lat;
-        const lng = popup.getLatLng().lng;
-        gmaps_links = self.get_gmaps_links(lat, lng);
-        popup.setContent(feature.popup.value + gmaps_links);
+      // Cleanup tooltip className from commas, to support multivalue class fields.
+      if (tooltip_options.hasOwnProperty('className') && tooltip_options.className.length > 0) {
+        tooltip_options.className = tooltip_options.className.replaceAll(",", "");
       }
-      // Else, in case the google_map_place is defined, then generate a Google Maps
-      // query based on that address.
-      else if (
-        typeof feature_properties['google_maps_address'] === 'string' &&
-        feature_properties['google_maps_address'].trim() !== ''
-      ) {
-        gmaps_links = self.get_gmaps_links(lat, lng, feature_properties['google_maps_address']);
-        popup.setContent(feature.popup.value + gmaps_links);
-      }
-    });
-  }
-};
 
-(function($, Drupal) {
+      // Set a default tooltip direction property as "top", in case not set.
+      if (!tooltip_options.hasOwnProperty('direction') || tooltip_options.direction.length === 0) {
+        tooltip_options.direction = "top";
+      }
+
+      // Need to more correctly set the tooltip_options.permanent option.
+      tooltip_options.permanent = tooltip_options.permanent === true || tooltip_options.permanent === "true";
+      if (tooltip_options.permanent) {
+        this.permanent_tooltip_features.push(lFeature);
+      }
+
+      // Need to more correctly set the tooltip_options.sticky option.
+      tooltip_options.sticky = tooltip_options.sticky === true || tooltip_options.sticky === "true";
+
+      lFeature.bindTooltip(feature.tooltip.value, tooltip_options);
+    }
+  };
+
+  /**
+   * Add Leaflet Popup to the Leaflet Feature (override).
+   *
+   * We need this override because we are adding to the popup.content the Google Maps Links corresponding:
+   * - to the feature.icon location, in case of feature.icon (point);
+   * - to the feature.path clicked location, in case of feature.path (geometries);
+   *
+   * @param lFeature
+   *   The Leaflet Feature
+   * @param feature
+   *   The Feature coming from Drupal settings.
+   */
+  Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
+    const self = this;
+    const feature_properties = feature.properties ? JSON.parse(feature.properties) : {};
+
+    if (!parseInt(feature_properties.popup_disabled) && feature.popup && feature.popup.value) {
+      const popup_options = feature.popup.options ? JSON.parse(feature.popup.options) : {};
+
+      let lat = feature.lat ?? '';
+      let lng = feature.lon ?? '';
+
+      // Append to the feature.popup.value the Google Maps Links corresponding to
+      // the feature centroid location.
+      let gmaps_links = self.get_gmaps_links(lat, lng);
+      lFeature.bindPopup(feature.popup.value + gmaps_links, popup_options);
+
+      // In case of feature.path replace the gmaps_links corresponding to the
+      // popup LatLng place (click location).
+      lFeature.on('popupopen', function (e) {
+        const popup = e.popup;
+        if (e.target._path) {
+          const lat = popup.getLatLng().lat;
+          const lng = popup.getLatLng().lng;
+          gmaps_links = self.get_gmaps_links(lat, lng);
+          popup.setContent(feature.popup.value + gmaps_links);
+        }
+          // Else, in case the google_map_place is defined, then generate a Google Maps
+        // query based on that address.
+        else if (
+          typeof feature_properties['google_maps_address'] === 'string' &&
+          feature_properties['google_maps_address'].trim() !== ''
+        ) {
+          gmaps_links = self.get_gmaps_links(lat, lng, feature_properties['google_maps_address']);
+          popup.setContent(feature.popup.value + gmaps_links);
+        }
+      });
+    }
+  };
 
   /**
    * Return Geometry Construction Base Options.
@@ -270,5 +270,98 @@ Drupal.Leaflet.prototype.feature_bind_popup = function(lFeature, feature) {
     const options = this.create_geometry_base_options(multipoly);
     return multipoly.multipolyline ? new L.Polyline(polygons, options) : new L.Polygon(polygons, options);
   };
+
+  /**
+   * Add Leaflet Features with Marker Clustering to the Leaflet Map.
+   *
+   * @param features
+   *   Features List definition.
+   * @param initial
+   *   Boolean to identify initial status.
+   */
+  Drupal.Leaflet.prototype.add_features = function (features, initial) {
+    let leaflet_markercluster_options = this.map_settings.leaflet_markercluster.options && this.map_settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.map_settings.leaflet_markercluster.options) : {};
+    const svg_icon = '<img src="https://taranto-viva.ddev.site/sites/default/files/media_image/building-08-svgrepo-com.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">';
+    leaflet_markercluster_options.iconCreateFunction = function(cluster) {
+      return L.divIcon({
+        className: 'svg-marker-cluster-icon',
+        html: svg_icon
+      });
+    };
+    const leaflet_markercluster_include_path = this.map_settings.leaflet_markercluster.include_path;
+
+    // Define Map Layers holder (both unclustered and clustered).
+    let layers = {
+      unclustered: {
+        // Define a base Layer Group, to hold all (ungrouped) Features Layers.
+        _base: this.create_feature_group()
+      },
+      clusters: {
+        // Define a base Layer Cluster, to hold all (ungrouped) Clustered Layers.
+        _base: new L.MarkerClusterGroup(leaflet_markercluster_options)
+      }
+    };
+
+    for (let i = 0; i < features.length; i++) {
+      let feature = features[i];
+      let lFeature;
+      // In case of a Features Group.
+      if (feature.group) {
+        // Define a named Layer Group, to hold all unClustered Features Layers.
+        layers.unclustered[feature['group_label']] = this.create_feature_group();
+        // Define a new Layer Group Cluster, to hold specific Group Layers.
+        layers.clusters[feature['group_label']] = new L.MarkerClusterGroup(leaflet_markercluster_options);
+        // Define every single Leaflet Feature of the Group.
+        for (let groupKey in feature.features) {
+          let groupFeature = feature.features[groupKey];
+          lFeature = this.create_feature(groupFeature);
+          if (lFeature !== undefined) {
+            // If the Leaflet feature is extending the Path class (Polygon,
+            // Polyline, Circle) don't add it to Markercluster if not requested,
+            // and don't add it if specifically requested not to.
+            if ((lFeature.setStyle && !lFeature.getRadius && !leaflet_markercluster_include_path) || groupFeature['markercluster_excluded']) {
+              layers.unclustered[feature['group_label']].addLayer(lFeature);
+            }
+            else {
+              // Add the single Leaflet Feature to the Layer Group Cluster.
+              layers.clusters[feature['group_label']].addLayer(lFeature);
+            }
+
+            // Allow others to do something with the feature that was just added to the map
+            $(document).trigger('leaflet.feature', [lFeature, groupFeature, this, layers]);
+          }
+        }
+
+        // Add the Group Label Cluster Layer and/or the Group Label Base Layer as Overlay to the Map.
+        if (layers.unclustered[feature['group_label']].getLayers().length > 0 || layers.clusters[feature['group_label']].getLayers().length > 0) {
+          this.add_overlay(feature['group_label'], L.featureGroup([layers.unclustered[feature['group_label']], layers.clusters[feature['group_label']]]), feature['disabled']);
+        }
+      }
+      else {
+        lFeature = this.create_feature(feature);
+        if (lFeature !== undefined) {
+          // If the Leaflet feature is extending the Path class (Polygon,
+          // Polyline, Circle) don't add it to Markercluster if not requested,
+          // and don't add it if specifically requested not to.
+          if ((lFeature.setStyle && !lFeature.getRadius && !leaflet_markercluster_include_path) || feature['markercluster_excluded']) {
+            layers.unclustered._base.addLayer(lFeature);
+          }
+          else {
+            layers.clusters._base.addLayer(lFeature);
+          }
+
+          // Allow others to do something with the feature that was just added to the map
+          $(document).trigger('leaflet.feature', [lFeature, feature, this]);
+        }
+      }
+    }
+
+    // Add lBaseCluster to the map
+    this.add_overlay(null, L.featureGroup([layers.unclustered._base, layers.clusters._base]), false);
+
+    // Allow plugins to do things after features have been added.
+    $(document).trigger('leaflet.features', [initial || false, this])
+  };
+
 
 })(jQuery, Drupal);
