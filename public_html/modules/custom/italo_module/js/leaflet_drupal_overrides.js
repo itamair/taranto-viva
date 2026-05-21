@@ -280,9 +280,32 @@
    *   Boolean to identify initial status.
    */
   Drupal.Leaflet.prototype.add_features = function (features, initial) {
+
+    const svg_icons = {
+      '2': '<img src="https://taranto-viva.ddev.site/sites/default/files/markercluster_icons/marker-cluster_2.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+      '3': '<img src="https://taranto-viva.ddev.site/sites/default/files/markercluster_icons/marker-cluster_3.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+      '5': '<img src="https://taranto-viva.ddev.site/sites/default/files/markercluster_icons/marker-cluster_5.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+      '8': '<img src="https://taranto-viva.ddev.site/sites/default/files/markercluster_icons/marker-cluster_8.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+    }
+
     let leaflet_markercluster_options = this.map_settings.leaflet_markercluster.options && this.map_settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.map_settings.leaflet_markercluster.options) : {};
-    const svg_icon = '<img src="https://taranto-viva.ddev.site/sites/default/files/media_image/building-08-svgrepo-com.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">';
+    let svg_icon = '';
     leaflet_markercluster_options.iconCreateFunction = function(cluster) {
+      const items_number = cluster.getChildCount();
+      switch (items_number > 1) {
+        case items_number > 5:
+          svg_icon = svg_icons['8']
+          break;
+        case items_number > 3:
+          svg_icon = svg_icons['5']
+          break;
+        case items_number > 2:
+          svg_icon = svg_icons['3']
+          break;
+        default:
+          svg_icon = svg_icons['2']
+
+      }
       return L.divIcon({
         className: 'svg-marker-cluster-icon',
         html: svg_icon
