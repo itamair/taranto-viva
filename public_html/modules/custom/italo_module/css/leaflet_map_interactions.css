@@ -159,7 +159,7 @@
 /* line 148, ../sass/leaflet_map_interactions.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-75,
 .leaflet-pane > svg path.opacity-75 {
-  opacity: 30% !important;
+  opacity: 60% !important;
 }
 /* line 151, ../sass/leaflet_map_interactions.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-75:hover,
