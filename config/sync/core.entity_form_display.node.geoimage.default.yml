@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.geoimage.field_components
     - field.field.node.geoimage.field_exclude_from_map_bounds
     - field.field.node.geoimage.field_exclude_from_markercluster
+    - field.field.node.geoimage.field_geofied_view
     - field.field.node.geoimage.field_place_type
     - field.field.node.geoimage.field_project_namespace
     - node.type.geoimage
@@ -21,13 +22,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_classname:
     type: string_textfield
-    weight: 4
+    weight: 5
     region: content
     settings:
       size: 60
@@ -35,7 +36,7 @@ content:
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 11
+    weight: 13
     region: content
     settings:
       title: Paragraph
@@ -60,7 +61,7 @@ content:
     third_party_settings: {  }
   field_exclude_from_markercluster:
     type: boolean_checkbox
-    weight: 3
+    weight: 4
     region: content
     settings:
       display_label: true
@@ -80,27 +81,37 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 7
+    weight: 8
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  simple_sitemap:
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap_index_now:
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 10
+    weight: 11
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 8
+    weight: 9
     region: content
     settings:
       display_label: true
@@ -115,7 +126,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 6
     region: content
     settings:
       match_operator: CONTAINS
@@ -125,5 +136,6 @@ content:
     third_party_settings: {  }
 hidden:
   field_category_type: true
+  field_geofied_view: true
   field_place_type: true
   uuid: true
