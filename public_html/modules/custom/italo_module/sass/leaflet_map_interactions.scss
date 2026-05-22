@@ -131,6 +131,9 @@
 .leaflet-pane .leaflet-marker-icon,
 .leaflet-pane > svg path {
   opacity: 80% !important;
+  &.svg-marker-cluster-icon {
+    opacity: 70% !important;
+  }
   &:hover {
     opacity: 100% !important;
   }
