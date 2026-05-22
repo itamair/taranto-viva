@@ -281,11 +281,15 @@
    */
   Drupal.Leaflet.prototype.add_features = function (features, initial) {
 
+    const absoluteBaseUrl = window.location.origin + drupalSettings.path.baseUrl;
+    const markerclusterIconsPath = 'sites/default/files/markercluster_icons/';
+    const absoluteMarkerclusterIconsPath = absoluteBaseUrl + markerclusterIconsPath;
+
     const svg_icons = {
-      '2': '<img src="https://www.taranto-viva.com/sites/default/files/markercluster_icons/marker-cluster_orange_2.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
-      '3': '<img src="https://www.taranto-viva.com/sites/default/files/markercluster_icons/marker-cluster_orange_3.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
-      '5': '<img src="https://www.taranto-viva.com/sites/default/files/markercluster_icons/marker-cluster_orange_5.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
-      '8': '<img src="https://www.taranto-viva.com/sites/default/files/markercluster_icons/marker-cluster_orange_8.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+      '2': '<img src="' + absoluteMarkerclusterIconsPath + 'marker-cluster_orange_2.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+      '3': '<img src="' + absoluteMarkerclusterIconsPath + 'marker-cluster_orange_3.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+      '5': '<img src="' + absoluteMarkerclusterIconsPath + 'marker-cluster_orange_5.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
+      '8': '<img src="' + absoluteMarkerclusterIconsPath + 'marker-cluster_orange_8.svg" style="width:30px; height:30px; margin-top:-10px; margin-left:-10px">',
     }
 
     let leaflet_markercluster_options = this.map_settings.leaflet_markercluster.options && this.map_settings.leaflet_markercluster.options.length > 0 ? JSON.parse(this.map_settings.leaflet_markercluster.options) : {};
