@@ -1,5 +1,5 @@
 langcode: it
-process_queue_on_submit: true
+process_queue_on_submit: false
 exclude_styles: true
 import_files_to_media_location: true
 import_folder: /var/www/html/public_html/sites/default/files/photo_albums
