@@ -116,9 +116,7 @@
           // VectorGrid looks up styles by exact layer name — wildcards are not supported.
           vectorTileLayerStyles: {
             'place': function (properties) {
-              const categoryData = properties.categories
-
-                ? JSON.parse(properties.categories) : {};
+              const categoryData = properties.categories ? JSON.parse(properties.categories) : {};
               const category = categoryData?.primary || '';
               const iconUrl = getCategoryIconUrl(category);
 
