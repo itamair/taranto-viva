@@ -167,24 +167,6 @@
             || Drupal.Leaflet[mapid].placesOverlayName;
           Drupal.Leaflet[mapid].overlays[overlayName] = pmtilesLayer;
           Drupal.Leaflet[mapid].layer_control.addOverlay(Drupal.Leaflet[mapid].overlays[overlayName], overlayName);
-
-          // VectorGrid canvas tiles use pointer-events:auto (interactive:true), so
-          // when they are inserted into the DOM during onAdd the browser can fire a
-          // synthetic mouseleave on the layer control container and collapse the panel.
-          // Re-expanding both synchronously (catches a collapse already in progress)
-          // and via setTimeout (catches a queued mouseleave that fires after the
-          // current call-stack) keeps the panel open after the user re-enables the overlay.
-          map.on('overlayadd', function (e) {
-            if (e.layer !== pmtilesLayer) {
-              return;
-            }
-            const lc = Drupal.Leaflet[mapid] && Drupal.Leaflet[mapid].layer_control;
-            if (!lc) {
-              return;
-            }
-            lc.expand();
-            setTimeout(function () { lc.expand(); }, 0);
-          });
         }
 
         // Leaflet's CSS pointer-events rule only covers svg path.leaflet-interactive,
