@@ -41,7 +41,7 @@ content:
     type: image
     label: hidden
     settings:
-      image_link: content
+      image_link: ''
       image_style: map_scaled_cropped_image_600x400
       image_loading:
         attribute: lazy

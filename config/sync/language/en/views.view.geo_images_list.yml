@@ -6,11 +6,3 @@ display:
   default:
     display_options:
       title: 'Images of Taranto'
-  page_vaganti_geimages_list:
-    display_options:
-      filters:
-        field_exif_creation_date_value:
-          expose:
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
