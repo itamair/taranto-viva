@@ -33,7 +33,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Immagini
+      title: 'Immagini di Taranto'
       fields:
         nid:
           id: nid
@@ -479,7 +479,12 @@ display:
           empty: false
           content: 'Risults @start - @end of @total'
       footer: {  }
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -510,7 +515,6 @@ display:
         title: Immagini
         description: ''
         weight: -47
-        enabled: true
         expanded: false
         menu_name: main
         parent: ''
