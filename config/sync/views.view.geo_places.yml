@@ -7455,7 +7455,7 @@ display:
             zoomControlPosition: topright
             zoom: 14
             minZoom: 10
-            maxZoom: 19
+            maxZoom: 20
             zoomFiner: 0
           weight: '{{ field_zindex }}'
           icon:

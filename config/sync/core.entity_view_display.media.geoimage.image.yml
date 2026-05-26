@@ -12,13 +12,13 @@ dependencies:
     - field.field.media.geoimage.field_media_image
     - field.field.media.geoimage.field_place_type
     - field.field.media.geoimage.field_project_namespace
+    - image.style.map_scaled_cropped_image_600x400
     - media.type.geoimage
   module:
     - datetime
     - layout_builder
     - link
-    - photoswipe
-    - photoswipe_dynamic_caption
+    - svg_image
 third_party_settings:
   layout_builder:
     enabled: false
@@ -38,20 +38,18 @@ content:
     weight: 0
     region: content
   field_media_image:
-    type: photoswipe_field_formatter
+    type: image
     label: hidden
     settings:
-      photoswipe_thumbnail_style_first: null
-      photoswipe_thumbnail_style: null
-      photoswipe_image_style: ''
-      photoswipe_reference_image_field: ''
-      photoswipe_view_mode: image
+      image_link: content
+      image_style: map_scaled_cropped_image_600x400
       image_loading:
         attribute: lazy
-    third_party_settings:
-      photoswipe_dynamic_caption:
-        photoswipe_caption: null
-        photoswipe_caption_custom: null
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
     weight: 1
     region: content
   geofield_googlemaps_link:
