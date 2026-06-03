@@ -67,7 +67,7 @@ class LeafletAjaxPopupController extends ControllerBase {
   }
 
   /**
-   * Leaflet Ajax Popup build callback..
+   * Leaflet Ajax Popup build callback.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity whose build to return.
