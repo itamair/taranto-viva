@@ -21,119 +21,48 @@ class LeafletServiceOverride extends LeafletService {
   use StringTranslationTrait;
 
   /**
-   * Current user service.
-   *
-   * @var \Drupal\Core\Session\AccountInterface
-   */
-  protected $currentUser;
-
-  /**
-   * The geoPhpWrapper service.
-   *
-   * @var \Drupal\geofield\GeoPHP\GeoPHPInterface
-   */
-  protected $geoPhpWrapper;
-
-  /**
-   * The module handler.
-   *
-   * @var \Drupal\Core\Extension\ModuleHandlerInterface
-   */
-  protected $moduleHandler;
-
-  /**
-   * The Link generator Service.
-   *
-   * @var \Drupal\Core\Utility\LinkGeneratorInterface
-   */
-  protected $link;
-
-  /**
-   * The stream wrapper manager.
-   *
-   * @var \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface
-   */
-  protected $streamWrapperManager;
-
-  /**
-   * The request stack.
-   *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
-   */
-  protected $requestStack;
-
-  /**
-   * The cache backend default service.
-   *
-   * @var \Drupal\Core\Cache\CacheBackendInterface
-   */
-  protected $cache;
-
-  /**
-   * Static cache for icon sizes.
-   *
-   * @var array
-   */
-  protected $iconSizes = [];
-
-  /**
-   * The file URL generator.
-   *
-   * @var \Drupal\Core\File\FileUrlGeneratorInterface
-   */
-  protected $fileUrlGenerator;
-
-  /**
-   * The permanent cache backend service.
-   *
-   * @var \Drupal\Core\Cache\CacheBackendInterface
-   */
-  protected CacheBackendInterface $cachePermanent;
-
-  /**
    * LeafletService constructor.
    *
-   * @param \Drupal\Core\Session\AccountInterface $current_user
+   * @param \Drupal\Core\Session\AccountInterface $currentUser
    *   Current user service.
-   * @param \Drupal\geofield\GeoPHP\GeoPHPInterface $geophp_wrapper
+   * @param \Drupal\geofield\GeoPHP\GeoPHPInterface $geoPhpWrapper
    *   The geoPhpWrapper.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    *   The module handler.
-   * @param \Drupal\Core\Utility\LinkGeneratorInterface $link_generator
+   * @param \Drupal\Core\Utility\LinkGeneratorInterface $link
    *   The Link Generator service.
-   * @param \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface $stream_wrapper_manager
+   * @param \Drupal\Core\StreamWrapper\StreamWrapperManagerInterface $streamWrapperManager
    *   The stream wrapper manager.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
    *   The stream wrapper manager.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The cache backend leaflet service.
-   * @param \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator
+   * @param \Drupal\Core\File\FileUrlGeneratorInterface $fileUrlGenerator
    *   The file URL generator.
-   * @param \Drupal\Core\Cache\CacheBackendInterface $cache_permanent
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cachePermanent
    *   The permanent backend leaflet cache service.
    */
   public function __construct(
-    AccountInterface $current_user,
-    GeoPHPInterface $geophp_wrapper,
-    ModuleHandlerInterface $module_handler,
-    LinkGeneratorInterface $link_generator,
-    StreamWrapperManagerInterface $stream_wrapper_manager,
-    RequestStack $request_stack,
-    CacheBackendInterface $cache,
-    FileUrlGeneratorInterface $file_url_generator,
-    CacheBackendInterface $cache_permanent
+    protected AccountInterface $currentUser,
+    protected GeoPHPInterface $geoPhpWrapper,
+    protected ModuleHandlerInterface $moduleHandler,
+    protected LinkGeneratorInterface $link,
+    protected StreamWrapperManagerInterface $streamWrapperManager,
+    protected RequestStack $requestStack,
+    protected CacheBackendInterface $cache,
+    protected FileUrlGeneratorInterface $fileUrlGenerator,
+    protected CacheBackendInterface $cachePermanent
   ) {
     parent::__construct(
-      $current_user,
-      $geophp_wrapper,
-      $module_handler,
-      $link_generator,
-      $stream_wrapper_manager,
-      $request_stack,
+      $currentUser,
+      $geoPhpWrapper,
+      $moduleHandler,
+      $link,
+      $streamWrapperManager,
+      $requestStack,
       $cache,
-      $file_url_generator
+      $fileUrlGenerator
     );
-    $this->cachePermanent = $cache_permanent;
   }
 
   /**
@@ -141,8 +70,6 @@ class LeafletServiceOverride extends LeafletService {
    *
    * @param array $feature
    *   The feature.
-   * @param string $type
-   *   The type.
    * @param string $urlKey
    *   The url key.
    * @param string $sizeKey
@@ -150,7 +77,7 @@ class LeafletServiceOverride extends LeafletService {
    * @param string $cachePrefix
    *   The cache prefix.
    */
-  protected function setSizeIfEmptyOrInvalid(array &$feature, string $type, string $urlKey, string $sizeKey, string $cachePrefix) {
+  protected function setSizeIfEmptyOrInvalid(array &$feature, string $urlKey, string $sizeKey, string $cachePrefix): void {
     $url = $feature["icon"][$urlKey] ?? NULL;
     if (!empty($url) && isset($feature["icon"][$sizeKey])
       && (intval($feature["icon"][$sizeKey]["x"]) === 0 || intval($feature["icon"][$sizeKey]["y"]) === 0)) {
