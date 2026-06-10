@@ -1,7 +1,9 @@
 uuid: 513c2d23-b774-4080-8e94-378203d0769e
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ai_search
 id: taranto_viva_pinecone_searcher
 label: 'Taranto Viva Pinecone Searcher'
 description: ''
@@ -9,10 +11,11 @@ system_prompt: "Answer the question based on the context, and if the question ca
 secured_system_prompt: null
 tools:
   'ai_search:rag_search': true
-tool_settings: null
+tool_settings: {  }
 orchestration_agent: true
 triage_agent: false
 max_loops: 3
+max_loops_message: ''
 default_information_tools: null
 tool_usage_limits:
   'ai_search:rag_search':
@@ -35,3 +38,5 @@ exclude_users_role: false
 masquerade_roles: {  }
 structured_output_enabled: null
 structured_output_schema: null
+hostname_filter_disabled: false
+guardrail_set: null

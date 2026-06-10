@@ -12,7 +12,7 @@ mode: default
 content:
   field_image:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: image
       link: false
@@ -22,4 +22,5 @@ content:
 hidden:
   geofield_googlemaps_link: true
   geomarker_icon_url: true
+  search_api_excerpt: true
   uuid: true

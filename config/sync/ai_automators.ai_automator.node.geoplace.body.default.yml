@@ -1,0 +1,45 @@
+uuid: 5fe53305-34ea-4f38-9647-60c3c22416a1
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.geoplace.body
+id: node.geoplace.body.default
+label: 'Geo Place Body Default'
+rule: llm_text_with_summary
+input_mode: token
+weight: 100
+worker_type: direct
+entity_type: node
+bundle: geoplace
+field_name: body
+edit_mode: false
+base_field: revision_log
+prompt: '{{ context }} '
+token: |
+  Una descrizione di [node:field_google_maps_address] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona caratteristiche funzionali (cosa è, a cosa serve), cenni storici e culturali
+  Nel caso di punto di interesse con valore turistico ([node:field_touristic_value:value] > 0) inserisci informazioni turistiche.
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: llm_text_with_summary
+  automator_mode: token
+  automator_base_field: revision_log
+  automator_prompt: '{{ context }} '
+  automator_token: |
+    Una descrizione di [node:field_google_maps_address] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona caratteristiche funzionali (cosa è, a cosa serve), cenni storici e culturali
+    Nel caso di punto di interesse con valore turistico ([node:field_touristic_value:value] > 0) inserisci informazioni turistiche.
+  automator_edit_mode: 0
+  automator_label: 'Geo Place Body Default'
+  automator_weight: '100'
+  automator_worker_type: direct
+  automator_guardrail_set_id: ''
+  automator_ai_provider: openai
+  automator_ai_model: gpt-5.5-2026-04-23
+  automator_configuration_max_completion_tokens: '4096'
+  automator_configuration_reasoning_effort: medium
+  automator_configuration_image_field: ''
+  automator_configuration_image_style: ''
+  automator_joiner: '<br />'
+  automator_joiner_other: ''
+  automator_use_text_format: full_html

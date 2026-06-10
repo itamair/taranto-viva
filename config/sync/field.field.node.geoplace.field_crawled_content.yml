@@ -1,0 +1,30 @@
+uuid: 8ee3e59a-4450-4c7b-b3dd-4d402694bc33
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_crawled_content
+    - filter.format.full_html
+    - filter.format.plain_text
+    - node.type.geoplace
+  module:
+    - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_crawled_content
+field_name: field_crawled_content
+entity_type: node
+bundle: geoplace
+label: 'Crawled Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - plain_text
+field_type: text_long

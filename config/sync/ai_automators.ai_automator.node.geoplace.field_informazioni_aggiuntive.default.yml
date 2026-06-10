@@ -1,0 +1,46 @@
+uuid: df0242ee-80c4-4c8e-aa28-859d81efff3a
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.geoplace.field_informazioni_aggiuntive
+id: node.geoplace.field_informazioni_aggiuntive.default
+label: 'Informazioni Aggiuntive Default'
+rule: llm_string_long
+input_mode: token
+weight: 200
+worker_type: direct
+entity_type: node
+bundle: geoplace
+field_name: field_informazioni_aggiuntive
+edit_mode: false
+base_field: field_crawled_content
+prompt: ''
+token: |-
+  Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
+  Non ripetere i contenuti già presenti nel campo [node:body]
+  Non includere, e nel caso elimina, ogni tag html nel testo.
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: llm_string_long
+  automator_mode: token
+  automator_base_field: field_crawled_content
+  automator_prompt: ''
+  automator_token: |-
+    Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
+    Non ripetere i contenuti già presenti nel campo [node:body]
+    Non includere, e nel caso elimina, ogni tag html nel testo.
+  automator_edit_mode: 0
+  automator_label: 'Informazioni Aggiuntive Default'
+  automator_weight: '200'
+  automator_worker_type: direct
+  automator_guardrail_set_id: ''
+  automator_ai_provider: openai
+  automator_ai_model: gpt-5.5-2026-04-23
+  automator_configuration_max_completion_tokens: '4096'
+  automator_configuration_reasoning_effort: medium
+  automator_configuration_image_field: ''
+  automator_configuration_image_style: ''
+  automator_joiner: ''
+  automator_joiner_other: ''

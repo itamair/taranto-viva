@@ -7,11 +7,15 @@ dependencies:
     - node.type.geoplace
   module:
     - link
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
 id: node.geoplace.field_link
 field_name: field_link
 entity_type: node
 bundle: geoplace
-label: 'More Info'
+label: 'Web Links'
 description: ''
 required: false
 translatable: true

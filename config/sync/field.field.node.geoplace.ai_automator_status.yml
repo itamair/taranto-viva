@@ -1,0 +1,26 @@
+uuid: d27b86d2-c375-4be7-8464-927092ad0bd5
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.ai_automator_status
+    - node.type.geoplace
+  module:
+    - options
+  enforced:
+    module:
+      - ai_automators
+id: node.geoplace.ai_automator_status
+field_name: ai_automator_status
+entity_type: node
+bundle: geoplace
+label: 'AI Automator Status'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: pending
+default_value_callback: ''
+settings: {  }
+field_type: list_string

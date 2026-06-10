@@ -1,0 +1,51 @@
+uuid: 14f096b5-bc40-4124-b760-305c855dd0c5
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.geoplace.field_why_to_visit
+id: node.geoplace.field_why_to_visit.default
+label: 'Perchè Visitare Default'
+rule: llm_simple_string_long
+input_mode: token
+weight: 105
+worker_type: direct
+entity_type: node
+bundle: geoplace
+field_name: field_why_to_visit
+edit_mode: false
+base_field: revision_log
+prompt: |-
+  Solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora 
+  scrivi una breve descrizione in lingua [language:langcode] sul quando visitare [node:field_google_maps_address]. Massimo 500 caratteri.
+  Altrimenti lascia vuoto questo campo.
+token: |-
+  Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora 
+  scrivi una breve descrizione in lingua [language:langcode] sul perchè visitare [node:field_google_maps_address]. Massimo 500 caratteri.
+  Altrimenti lascia vuoto questo campo.
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: llm_simple_string_long
+  automator_mode: token
+  automator_base_field: revision_log
+  automator_prompt: |-
+    Solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora 
+    scrivi una breve descrizione in lingua [language:langcode] sul quando visitare [node:field_google_maps_address]. Massimo 500 caratteri.
+    Altrimenti lascia vuoto questo campo.
+  automator_token: |-
+    Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora 
+    scrivi una breve descrizione in lingua [language:langcode] sul perchè visitare [node:field_google_maps_address]. Massimo 500 caratteri.
+    Altrimenti lascia vuoto questo campo.
+  automator_edit_mode: 0
+  automator_label: 'Perchè Visitare Default'
+  automator_weight: '105'
+  automator_worker_type: direct
+  automator_guardrail_set_id: ''
+  automator_ai_provider: openai
+  automator_ai_model: gpt-5.5
+  automator_configuration_max_completion_tokens: '4096'
+  automator_configuration_reasoning_effort: medium
+  automator_configuration_image_field: ''
+  automator_configuration_image_style: ''
+  automator_code_block_type: html

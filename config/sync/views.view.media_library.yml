@@ -139,24 +139,10 @@ display:
           hide_alter_empty: true
           view_mode: media_library
       pager:
-        type: mini
+        type: some
         options:
           offset: 0
-          pagination_heading_level: h4
-          items_per_page: 80
-          total_pages: null
-          id: 0
-          tags:
-            next: ››
-            previous: ‹‹
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '6, 12, 24, 48'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
+          items_per_page: 300
       exposed_form:
         type: bef
         options:
@@ -537,7 +523,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
         - 'url.query_args:sort_by'
         - user
         - user.permissions
@@ -1128,7 +1113,13 @@ display:
         fields: false
         filters: false
         filter_groups: false
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender:
+          variants: {  }
       path: admin/content/media-grid
     cache_metadata:
       max-age: 0
@@ -1136,7 +1127,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
         - 'url.query_args:sort_by'
         - user
         - user.permissions
@@ -1495,7 +1485,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
         - 'url.query_args:sort_by'
         - user.permissions
       tags: {  }
@@ -1833,7 +1822,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - url.query_args
         - 'url.query_args:sort_by'
         - user.permissions
       tags: {  }

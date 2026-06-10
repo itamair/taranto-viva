@@ -1,0 +1,23 @@
+[mcp_servers.mcp-server-drupal]
+command = "docker"
+args = [
+    "run",
+    "-i",
+    "--rm",
+    "-e",
+    "DRUPAL_AUTH_USER",
+    "-e",
+    "DRUPAL_AUTH_PASSWORD",
+    "--network=host",
+    "ghcr.io/omedia/mcp-server-drupal:latest",
+    "--drupal-url=https://taranto-viva.ddev.site",
+    "--unsafe-net",
+]
+
+[mcp_servers.mcp-server-drupal.env]
+DRUPAL_AUTH_USER = "itamair"
+DRUPAL_AUTH_PASSWORD = "aF4Re9L9hd4JC3E"
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest"]

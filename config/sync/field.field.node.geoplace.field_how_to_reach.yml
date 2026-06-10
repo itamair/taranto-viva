@@ -1,0 +1,24 @@
+uuid: be7f739c-7f3f-46a4-8da0-a839701ce648
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_how_to_reach
+    - node.type.geoplace
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_how_to_reach
+field_name: field_how_to_reach
+entity_type: node
+bundle: geoplace
+label: 'Come raggiungere'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

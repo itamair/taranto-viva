@@ -1,0 +1,24 @@
+uuid: bbb19d59-5209-4cf3-b034-1b7d89220608
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_why_to_visit
+    - node.type.geoplace
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_why_to_visit
+field_name: field_why_to_visit
+entity_type: node
+bundle: geoplace
+label: 'Perchè Visitare'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

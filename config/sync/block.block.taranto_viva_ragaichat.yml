@@ -1,0 +1,20 @@
+uuid: 6b312f8c-068d-4428-8212-2c470d12cd19
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_rag_assistant
+  theme:
+    - taranto_viva
+id: taranto_viva_ragaichat
+theme: taranto_viva
+region: content_below
+weight: -10
+provider: null
+plugin: rag_chat_block
+settings:
+  id: rag_chat_block
+  label: 'RAG AI Chat'
+  label_display: '0'
+  provider: ai_rag_assistant
+visibility: {  }

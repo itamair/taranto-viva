@@ -1,0 +1,19 @@
+uuid: 4a1d358a-5d54-4d6d-9060-c4f579947ea5
+langcode: it
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_informazioni_aggiuntive
+field_name: field_informazioni_aggiuntive
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

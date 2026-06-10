@@ -1,0 +1,39 @@
+uuid: e877f6b7-4f1b-467c-9398-6433c1315548
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.geoplace.field_crawled_content
+id: node.geoplace.field_crawled_content.default
+label: 'Crawled Content Default'
+rule: simple_crawler_text_long
+input_mode: base
+weight: 100
+worker_type: direct
+entity_type: node
+bundle: geoplace
+field_name: field_crawled_content
+edit_mode: false
+base_field: field_link
+prompt: ''
+token: ''
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: simple_crawler_text_long
+  automator_mode: base
+  automator_base_field: field_link
+  automator_edit_mode: 0
+  automator_label: 'Crawled Content Default'
+  automator_weight: '100'
+  automator_worker_type: direct
+  automator_rate_limit: '500'
+  automator_user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
+  automator_basic_auth_username: ''
+  automator_basic_auth_password: ''
+  automator_custom_headers: ''
+  automator_custom_cookies: ''
+  automator_crawler_strip_tags: 1
+  automator_crawler_mode: readability
+  automator_crawler_tag: body
+  automator_crawler_remove: "style\r\nscript\r\n"

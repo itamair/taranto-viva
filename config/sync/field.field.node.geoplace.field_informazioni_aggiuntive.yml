@@ -1,0 +1,24 @@
+uuid: 25185888-13c0-4c91-b384-ae37cbb4fd9a
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_informazioni_aggiuntive
+    - node.type.geoplace
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_informazioni_aggiuntive
+field_name: field_informazioni_aggiuntive
+entity_type: node
+bundle: geoplace
+label: 'Informazioni Aggiuntive'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

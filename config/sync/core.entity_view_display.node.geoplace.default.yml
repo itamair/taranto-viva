@@ -3,13 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.geoplace.ai_automator_status
     - field.field.node.geoplace.body
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
+    - field.field.node.geoplace.field_crawled_content
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_google_maps_address
+    - field.field.node.geoplace.field_how_to_reach
+    - field.field.node.geoplace.field_informazioni_aggiuntive
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
@@ -17,6 +21,8 @@ dependencies:
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
+    - field.field.node.geoplace.field_when_to_visit
+    - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
     - views.view.content_locations_addresses_and_google_maps_links
@@ -78,7 +84,7 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 6
+            weight: 10
             additional: {  }
           7994fea5-edff-4fdf-8178-7605f4ecba98:
             uuid: 7994fea5-edff-4fdf-8178-7605f4ecba98
@@ -101,7 +107,7 @@ third_party_settings:
                   rel: nofollow
                   target: _blank
                 third_party_settings: {  }
-            weight: 5
+            weight: 9
             additional: {  }
           f6ce4061-108f-414e-8442-be81e31d9d91:
             uuid: f6ce4061-108f-414e-8442-be81e31d9d91
@@ -140,6 +146,36 @@ third_party_settings:
                   link: false
                 third_party_settings: {  }
             weight: 3
+            additional: {  }
+          b2783de3-ffac-4d39-bfe8-9ebef4e3e76d:
+            uuid: b2783de3-ffac-4d39-bfe8-9ebef4e3e76d
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_how_to_reach'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 7
+            additional: {  }
+          7cb66878-8669-4bc6-9e6e-646e91f837e1:
+            uuid: 7cb66878-8669-4bc6-9e6e-646e91f837e1
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_why_to_visit'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 5
             additional: {  }
         third_party_settings: {  }
       -
@@ -218,6 +254,24 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          2685b9e4-e194-45a3-9600-243714b1e4ab:
+            uuid: 2685b9e4-e194-45a3-9600-243714b1e4ab
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_informazioni_aggiuntive'
+              label: 'Informazioni Aggiuntive'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
             weight: 3
             additional: {  }
         third_party_settings: {  }
@@ -288,6 +342,13 @@ content:
     third_party_settings: {  }
     weight: 13
     region: content
+  field_how_to_reach:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
+    region: content
   field_map_popup_disabled:
     type: boolean
     label: above
@@ -321,6 +382,20 @@ content:
     third_party_settings: {  }
     weight: 12
     region: content
+  field_when_to_visit:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_why_to_visit:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 16
+    region: content
   field_zoom_visibility:
     type: entity_reference_label
     label: above
@@ -331,6 +406,9 @@ content:
     region: content
 hidden:
   active_level: true
+  ai_automator_status: true
+  field_crawled_content: true
+  field_informazioni_aggiuntive: true
   field_link: true
   field_media_slideshow: true
   field_sub_title: true

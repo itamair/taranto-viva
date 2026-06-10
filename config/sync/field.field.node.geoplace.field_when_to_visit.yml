@@ -1,0 +1,24 @@
+uuid: acbf82fd-29de-409b-b728-86bbb661acca
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_when_to_visit
+    - node.type.geoplace
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_when_to_visit
+field_name: field_when_to_visit
+entity_type: node
+bundle: geoplace
+label: 'Quando Visitare'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

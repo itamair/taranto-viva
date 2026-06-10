@@ -13,11 +13,7 @@
 # whole parameter array needs to be copied from
 # sites/default/default.services.yml or from core/core.services.yml file.
 parameters:
-  # Setting the following to true would the following error:
-  # 502 Bad Gateway
-  # "upstream sent too big header while reading response header from upstream"
-  # to inspect ddev logs: "ddev logs -f"
-  http.response.debug_cacheability_headers: false
+  http.response.debug_cacheability_headers: true
 services:
   cache.backend.null:
     class: Drupal\Core\Cache\NullBackendFactory

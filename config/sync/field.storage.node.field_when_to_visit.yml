@@ -1,0 +1,19 @@
+uuid: eaa1c296-8320-465e-8910-357236a5485a
+langcode: it
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_when_to_visit
+field_name: field_when_to_visit
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

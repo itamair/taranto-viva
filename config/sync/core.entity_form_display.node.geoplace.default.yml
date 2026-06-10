@@ -3,13 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.geoplace.ai_automator_status
     - field.field.node.geoplace.body
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
+    - field.field.node.geoplace.field_crawled_content
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_google_maps_address
+    - field.field.node.geoplace.field_how_to_reach
+    - field.field.node.geoplace.field_informazioni_aggiuntive
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
@@ -17,12 +21,15 @@ dependencies:
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
+    - field.field.node.geoplace.field_when_to_visit
+    - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
   module:
     - autocomplete_deluxe
+    - field_group
     - field_layout
-    - link
+    - link_class
     - paragraphs
     - path
     - text
@@ -31,6 +38,27 @@ third_party_settings:
     id: layout_onecol
     settings:
       label: ''
+  field_group:
+    group_ai_generated_content:
+      children:
+        - field_why_to_visit
+        - field_when_to_visit
+        - field_how_to_reach
+        - field_informazioni_aggiuntive
+        - field_crawled_content
+      label: 'AI Generated Content'
+      region: content
+      parent_name: ''
+      weight: 16
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        open: false
+        description: ''
+        required_fields: true
 id: node.geoplace.default
 targetEntityType: node
 bundle: geoplace
@@ -48,7 +76,7 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -89,6 +117,14 @@ content:
         convert: '0'
         duplicate: duplicate
     third_party_settings: {  }
+  field_crawled_content:
+    type: text_textarea
+    weight: 18
+    region: content
+    settings:
+      rows: 10
+      placeholder: ''
+    third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
     weight: 4
@@ -119,6 +155,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_how_to_reach:
+    type: string_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_image:
     type: image_image
     weight: 5
@@ -127,13 +171,24 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+  field_informazioni_aggiuntive:
+    type: string_textarea
+    weight: 17
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_link:
-    type: link_default
+    type: link_class_field_widget
     weight: 14
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      link_class_mode: select_class
+      link_class_force: ''
+      link_class_select: hidden|Hidden
     third_party_settings: {  }
   field_locations:
     type: paragraphs
@@ -213,6 +268,22 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_when_to_visit:
+    type: string_textarea
+    weight: 15
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_why_to_visit:
+    type: string_textarea
+    weight: 14
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_zoom_visibility:
     type: options_select
     weight: 3
@@ -246,13 +317,13 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 20
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 18
+    weight: 19
     region: content
     settings:
       display_label: true
@@ -263,20 +334,20 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 23
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 22
+    weight: 23
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 19
+    weight: 20
     region: content
     settings:
       display_label: true
@@ -290,13 +361,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 21
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 16
+    weight: 17
     region: content
     settings:
       match_operator: CONTAINS
@@ -305,6 +376,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  ai_automator_status: true
   field_geofied_view: true
   field_media_slideshow: true
   uuid: true

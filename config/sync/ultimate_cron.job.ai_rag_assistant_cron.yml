@@ -1,0 +1,17 @@
+uuid: 39521db2-706f-4d1e-8861-327c28dd4f03
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_rag_assistant
+title: 'Default cron handler'
+id: ai_rag_assistant_cron
+weight: 0
+module: ai_rag_assistant
+callback: 'ai_rag_assistant#cron'
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

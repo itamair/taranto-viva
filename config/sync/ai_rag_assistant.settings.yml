@@ -1,0 +1,17 @@
+_core:
+  default_config_hash: sF48XM9Lj_ETl39J83P-QgU7PBeaeb3S6VCdE8vE6r0
+embedding_model: gemini-embedding-001
+generation_provider: openai
+generation_model: gemini-2.5-flash
+openai_generation_model: gpt-4o
+anthropic_api_key: ''
+anthropic_generation_model: claude-sonnet-4-20250514
+chunk_size: 500
+chunk_overlap: 50
+top_k: 5
+similarity_threshold: 0.3
+allow_general_knowledge: false
+system_prompt: 'You are a helpful AI assistant for our website. Answer questions using the provided context from our website content. Always try your best to give a useful answer from the available context. If the user asks about topics, articles, or documentation, list and summarize what is available. Only say you cannot help if the context is completely unrelated to the question. Always cite content strictly related to user question in your context..'
+content_types:
+  - geoplace
+  - territorial_report

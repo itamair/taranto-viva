@@ -1,0 +1,6 @@
+uuid: d91ad8fa-5ddd-4d0f-88b5-7bfa9c834396
+langcode: it
+status: true
+dependencies: {  }
+id: create_geo_place_description
+label: 'Create Geo Place Description'

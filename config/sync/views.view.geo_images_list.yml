@@ -87,7 +87,7 @@ display:
           hide_alter_empty: true
           text: view
           output_url_as_text: true
-          absolute: false
+          absolute: true
         field_components:
           id: field_components
           table: node__field_components

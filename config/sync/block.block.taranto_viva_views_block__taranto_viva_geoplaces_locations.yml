@@ -12,7 +12,7 @@ dependencies:
 id: taranto_viva_views_block__taranto_viva_geoplaces_locations
 theme: taranto_viva
 region: sidebar
-weight: -10
+weight: -11
 provider: null
 plugin: 'views_block:taranto_viva_geoplaces_locations-block_geoplaces_locations'
 settings:

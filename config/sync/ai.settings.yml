@@ -4,8 +4,8 @@ prompt_logging: false
 prompt_logging_tags: ''
 default_providers:
   chat:
-    provider_id: anthropic
-    model_id: claude-sonnet-4-20250514
+    provider_id: openai
+    model_id: gpt-4o
   chat_with_complex_json:
     provider_id: openai
     model_id: gpt-4o
@@ -29,14 +29,15 @@ default_providers:
     model_id: whisper-1
   text_to_image:
     provider_id: openai
-    model_id: dall-e-3
+    model_id: gpt-image-1
   text_to_speech:
     provider_id: openai
     model_id: tts-1-hd
   translate_text:
     provider_id: chat_translation
-    model_id: claude-sonnet-4-5-20250929
+    model_id: gpt-5.4-mini
 default_vdb_provider: ''
 request_timeout: 60
 allowed_hosts: {  }
 allowed_hosts_rewrite_links: false
+global_guardrails: {  }

@@ -4,13 +4,17 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.leaflet_popup
+    - field.field.node.geoplace.ai_automator_status
     - field.field.node.geoplace.body
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
+    - field.field.node.geoplace.field_crawled_content
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_google_maps_address
+    - field.field.node.geoplace.field_how_to_reach
+    - field.field.node.geoplace.field_informazioni_aggiuntive
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
@@ -18,6 +22,8 @@ dependencies:
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
+    - field.field.node.geoplace.field_when_to_visit
+    - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
   module:
@@ -62,17 +68,23 @@ content:
     weight: 1
     region: content
 hidden:
+  ai_automator_status: true
   body: true
+  field_crawled_content: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true
   field_google_maps_address: true
+  field_how_to_reach: true
+  field_informazioni_aggiuntive: true
   field_link: true
   field_map_popup_disabled: true
   field_media_slideshow: true
   field_project_namespace: true
   field_related_content: true
   field_touristic_value: true
+  field_when_to_visit: true
+  field_why_to_visit: true
   field_zoom_visibility: true
   langcode: true
   links: true

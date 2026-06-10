@@ -9,7 +9,7 @@ dependencies:
 id: taranto_viva_aichatbot
 theme: taranto_viva
 region: content_below
-weight: -10
+weight: -9
 provider: null
 plugin: ai_chatbot_block
 settings:

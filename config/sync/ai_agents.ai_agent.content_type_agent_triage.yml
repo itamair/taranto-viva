@@ -1,7 +1,9 @@
 uuid: 96d54c20-5996-4636-a13a-c0668c089ea9
 langcode: it
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - node
 _core:
   default_config_hash: vwDrun4TVUfhYshZON5n2wQ99auTeUu9CWGZ1eqUG6s
 id: content_type_agent_triage
@@ -23,6 +25,7 @@ tool_settings:
 orchestration_agent: false
 triage_agent: true
 max_loops: 3
+max_loops_message: ''
 default_information_tools: "node_types:\r\n  label: 'Node Types'\r\n  description: 'The existing node types on the system in YAML array with type (data name), label (name) and description'\r\n  tool: 'ai_agent:list_config_entities'\r\n  parameters:\r\n    entity_type: node_type\r\n    amount: 0\r\n    fields:\r\n      - type\r\n      - name\r\n      - description\r\n"
 tool_usage_limits:
   'ai_agent:get_content_type_info':
@@ -108,3 +111,5 @@ exclude_users_role: false
 masquerade_roles: {  }
 structured_output_enabled: null
 structured_output_schema: null
+hostname_filter_disabled: false
+guardrail_set: null

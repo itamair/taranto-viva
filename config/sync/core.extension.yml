@@ -7,12 +7,15 @@ module:
   admin_toolbar_tools: 0
   ai: 0
   ai_agents: 0
+  ai_agents_explorer: 0
   ai_assistant_api: 0
+  ai_automators: 0
   ai_chatbot: 0
   ai_ckeditor: 0
   ai_provider_anthropic: 0
   ai_provider_litellm: 0
   ai_provider_openai: 0
+  ai_rag_assistant: 0
   ai_search: 0
   ai_tmgmt: 0
   ai_translate: 0
@@ -99,12 +102,14 @@ module:
   layout_builder: 0
   layout_builder_styles: 0
   layout_discovery: 0
+  layout_paragraphs: 0
   leaflet: 0
   leaflet_choropleth: 0
   leaflet_markercluster: 0
   leaflet_override: 0
   leaflet_views: 0
   link: 0
+  link_class: 0
   locale: 0
   masquerade: 0
   mcp: 0
@@ -147,6 +152,7 @@ module:
   seckit: 0
   serialization: 0
   shortcut: 0
+  simple_crawler: 0
   simple_sitemap: 0
   simple_sitemap_engines: 0
   simple_sitemap_views: 0
@@ -160,6 +166,7 @@ module:
   text: 0
   tmgmt: 0
   tmgmt_content: 0
+  tmgmt_translation_outdated: 0
   token: 0
   tool: 0
   tool_belt: 0
@@ -170,6 +177,7 @@ module:
   tool_belt_user: 0
   tool_explorer: 0
   toolbar: 0
+  translation_views: 0
   typed_data: 0
   ultimate_cron: 0
   update: 0
