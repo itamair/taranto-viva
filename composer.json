@@ -278,6 +278,9 @@
             },
             "drupal/simple_crawler": {
                 "#3595534 Uncaught ParseException in $readability->parse breaks the correct scraping of multi $uris / links": "https://git.drupalcode.org/project/simple_crawler/-/merge_requests/4/diffs.patch"
+            },
+            "drupal/ai": {
+                "#3580332 Error /ai_automators/src/PluginBaseClasses/VideoToText.php": "https://www.drupal.org/files/issues/2026-03-19/ai-videototext-shell-exec-fix%20%281%29.patch"
             }
         }
     },
