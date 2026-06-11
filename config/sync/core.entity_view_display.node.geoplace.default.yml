@@ -70,45 +70,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 4
             additional: {  }
-          d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
-            uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
-            region: content
-            configuration:
-              id: 'field_block:node:geoplace:field_related_content'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-            weight: 10
-            additional: {  }
-          7994fea5-edff-4fdf-8178-7605f4ecba98:
-            uuid: 7994fea5-edff-4fdf-8178-7605f4ecba98
-            region: content
-            configuration:
-              id: 'field_block:node:geoplace:field_link'
-              label: Links
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: link
-                label: above
-                settings:
-                  trim_length: 200
-                  url_only: false
-                  url_plain: false
-                  rel: nofollow
-                  target: _blank
-                third_party_settings: {  }
-            weight: 9
-            additional: {  }
           f6ce4061-108f-414e-8442-be81e31d9d91:
             uuid: f6ce4061-108f-414e-8442-be81e31d9d91
             region: content
@@ -146,36 +107,6 @@ third_party_settings:
                   link: false
                 third_party_settings: {  }
             weight: 3
-            additional: {  }
-          b2783de3-ffac-4d39-bfe8-9ebef4e3e76d:
-            uuid: b2783de3-ffac-4d39-bfe8-9ebef4e3e76d
-            region: content
-            configuration:
-              id: 'field_block:node:geoplace:field_how_to_reach'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: basic_string
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 7
-            additional: {  }
-          7cb66878-8669-4bc6-9e6e-646e91f837e1:
-            uuid: 7cb66878-8669-4bc6-9e6e-646e91f837e1
-            region: content
-            configuration:
-              id: 'field_block:node:geoplace:field_why_to_visit'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: basic_string
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 5
             additional: {  }
         third_party_settings: {  }
       -
@@ -232,6 +163,59 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          b2783de3-ffac-4d39-bfe8-9ebef4e3e76d:
+            uuid: b2783de3-ffac-4d39-bfe8-9ebef4e3e76d
+            region: first
+            configuration:
+              id: 'field_block:node:geoplace:field_how_to_reach'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          7994fea5-edff-4fdf-8178-7605f4ecba98:
+            uuid: 7994fea5-edff-4fdf-8178-7605f4ecba98
+            region: first
+            configuration:
+              id: 'field_block:node:geoplace:field_link'
+              label: Links
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 200
+                  url_only: false
+                  url_plain: false
+                  rel: nofollow
+                  target: _blank
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          7cb66878-8669-4bc6-9e6e-646e91f837e1:
+            uuid: 7cb66878-8669-4bc6-9e6e-646e91f837e1
+            region: first
+            configuration:
+              id: 'field_block:node:geoplace:field_why_to_visit'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -254,7 +238,23 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 4
+            weight: 10
+            additional: {  }
+          d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
+            uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_related_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 9
             additional: {  }
           2685b9e4-e194-45a3-9600-243714b1e4ab:
             uuid: 2685b9e4-e194-45a3-9600-243714b1e4ab
@@ -272,7 +272,7 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 8
             additional: {  }
         third_party_settings: {  }
 id: node.geoplace.default

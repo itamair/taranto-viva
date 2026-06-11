@@ -155,7 +155,8 @@ content:
           options: ''
       geojson_overlays:
         sources:
-          fields: {  }
+          fields:
+            - field_geojson_reference
         zoom_to_geojson: true
         path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
         snapping: true

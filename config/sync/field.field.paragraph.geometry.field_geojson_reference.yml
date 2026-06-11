@@ -1,20 +1,20 @@
-uuid: 52f7d990-9762-428f-9f64-0e6490e0196c
+uuid: 265aaed3-e809-4ac3-aeaa-36309f87c17f
 langcode: it
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_geojson_reference
-    - paragraphs.paragraphs_type.location
+    - paragraphs.paragraphs_type.geometry
   module:
     - link
     - tmgmt_content
 third_party_settings:
   tmgmt_content:
     excluded: false
-id: paragraph.location.field_geojson_reference
+id: paragraph.geometry.field_geojson_reference
 field_name: field_geojson_reference
 entity_type: paragraph
-bundle: location
+bundle: geometry
 label: 'GeoJSON Reference'
 description: ''
 required: false

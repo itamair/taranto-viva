@@ -3467,7 +3467,7 @@ display:
             bounds_limit_flag: false
             max_zoom_out: '-2'
           feature_properties:
-            values: '{"content_type":"{{ type }}","zoom_visibility_range":"{{ field_zoom_visibility_range_1 }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}","google_maps_address":"{{ field_google_maps_address }}"}'
+            values: '{"content_type":"{{ type }}","exclude_from_map_bounds":"{{ field_exclude_from_map_bounds }}","active_type":"{{ field_active_type }}","active_status":"{{ active_status }}","active_level":"{{ active_level }}","popup_disabled":"{{ field_map_popup_disabled }}","tooltip_disabled":"{{ field_tooltip_disabled }}","google_maps_address":"{{ field_google_maps_address }}"}'
       row:
         type: fields
         options:

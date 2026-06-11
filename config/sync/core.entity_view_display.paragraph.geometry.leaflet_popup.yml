@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
+    - field.field.paragraph.geometry.field_geojson_reference
     - field.field.paragraph.geometry.field_gpx_track
     - field.field.paragraph.geometry.field_link
     - field.field.paragraph.geometry.field_stroke_color
@@ -37,6 +38,7 @@ hidden:
   field_fill_color: true
   field_fill_opacity: true
   field_geofield: true
+  field_geojson_reference: true
   field_gpx_track: true
   field_link: true
   field_stroke_color: true
