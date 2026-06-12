@@ -14,7 +14,7 @@ id: node.geoplace.field_when_to_visit
 field_name: field_when_to_visit
 entity_type: node
 bundle: geoplace
-label: 'Quando Visitare'
+label: 'Quando visitare'
 description: ''
 required: false
 translatable: true

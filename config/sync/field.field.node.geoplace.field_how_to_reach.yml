@@ -14,7 +14,7 @@ id: node.geoplace.field_how_to_reach
 field_name: field_how_to_reach
 entity_type: node
 bundle: geoplace
-label: 'Come raggiungere'
+label: 'Come Raggiungere'
 description: ''
 required: false
 translatable: true

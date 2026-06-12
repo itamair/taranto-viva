@@ -9,7 +9,7 @@ label: 'Sub Title Default'
 rule: llm_string
 input_mode: token
 weight: 100
-worker_type: direct
+worker_type: queue
 entity_type: node
 bundle: geoplace
 field_name: field_sub_title
@@ -38,7 +38,7 @@ plugin_config:
   automator_edit_mode: 0
   automator_label: 'Sub Title Default'
   automator_weight: '100'
-  automator_worker_type: direct
+  automator_worker_type: queue
   automator_guardrail_set_id: ''
   automator_ai_provider: openai
   automator_ai_model: gpt-5.5-2026-04-23

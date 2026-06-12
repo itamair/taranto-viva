@@ -9,7 +9,7 @@ label: 'Crawled Content Default'
 rule: simple_crawler_text_long
 input_mode: base
 weight: 100
-worker_type: direct
+worker_type: queue
 entity_type: node
 bundle: geoplace
 field_name: field_crawled_content
@@ -26,9 +26,11 @@ plugin_config:
   automator_edit_mode: 0
   automator_label: 'Crawled Content Default'
   automator_weight: '100'
-  automator_worker_type: direct
   automator_rate_limit: '500'
   automator_user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
+  automator_worker_type: queue
+  automator_rate_limit: '1000'
+  automator_user_agent: ''
   automator_basic_auth_username: ''
   automator_basic_auth_password: ''
   automator_custom_headers: ''

@@ -1,20 +1,20 @@
-uuid: df0242ee-80c4-4c8e-aa28-859d81efff3a
+uuid: bba9c94d-3ff8-4fd0-a250-406f9408aba8
 langcode: it
 status: true
 dependencies:
   config:
-    - field.field.node.geoplace.field_informazioni_aggiuntive
-id: node.geoplace.field_informazioni_aggiuntive.default
-label: 'Informazioni Aggiuntive Default'
+    - field.field.node.geoplace.field_more_info
+id: node.geoplace.field_more_info.default
+label: 'More Info Default'
 rule: llm_string_long
 input_mode: token
 weight: 200
-worker_type: direct
+worker_type: queue
 entity_type: node
 bundle: geoplace
-field_name: field_informazioni_aggiuntive
+field_name: field_more_info
 edit_mode: false
-base_field: field_crawled_content
+base_field: revision_log
 prompt: ''
 token: |-
   Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
@@ -25,16 +25,16 @@ plugin_config:
   automator_enabled: 1
   automator_rule: llm_string_long
   automator_mode: token
-  automator_base_field: field_crawled_content
+  automator_base_field: revision_log
   automator_prompt: ''
   automator_token: |-
     Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
     Non ripetere i contenuti già presenti nel campo [node:body]
     Non includere, e nel caso elimina, ogni tag html nel testo.
   automator_edit_mode: 0
-  automator_label: 'Informazioni Aggiuntive Default'
+  automator_label: 'More Info Default'
   automator_weight: '200'
-  automator_worker_type: direct
+  automator_worker_type: queue
   automator_guardrail_set_id: ''
   automator_ai_provider: openai
   automator_ai_model: gpt-5.5-2026-04-23
