@@ -7,6 +7,7 @@ label: 'Related Content'
 enabled: true
 first_field: field_related_content
 second_field: field_related_content
+add_direction: append
 bundles:
   node:
     - '*'

@@ -17,7 +17,7 @@ edit_mode: false
 base_field: revision_log
 prompt: '{{ context }} '
 token: |
-  Una descrizione di [node:field_google_maps_address] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona caratteristiche funzionali (cosa è, a cosa serve), cenni storici e culturali
+  Una descrizione di [node:field_google_maps_address] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona le sue caratteristiche ed il suo attuale ruolo funzionale (cosa è, a cosa serve), cenni storici e culturali
   Nel caso di punto di interesse con valore turistico ([node:field_touristic_value:value] > 0) inserisci informazioni turistiche.
 guardrail_set_id: null
 plugin_config:
@@ -27,7 +27,7 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: '{{ context }} '
   automator_token: |
-    Una descrizione di [node:field_google_maps_address] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona caratteristiche funzionali (cosa è, a cosa serve), cenni storici e culturali
+    Una descrizione di [node:field_google_maps_address] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona le sue caratteristiche ed il suo attuale ruolo funzionale (cosa è, a cosa serve), cenni storici e culturali
     Nel caso di punto di interesse con valore turistico ([node:field_touristic_value:value] > 0) inserisci informazioni turistiche.
   automator_edit_mode: 0
   automator_label: 'Geo Place Body Default'

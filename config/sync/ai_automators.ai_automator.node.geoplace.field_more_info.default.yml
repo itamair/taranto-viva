@@ -20,6 +20,7 @@ token: |-
   Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
   Non ripetere i contenuti già presenti nel campo [node:body]
   Non includere, e nel caso elimina, ogni tag html nel testo.
+  Massimo 2000 caratteri
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -31,6 +32,7 @@ plugin_config:
     Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
     Non ripetere i contenuti già presenti nel campo [node:body]
     Non includere, e nel caso elimina, ogni tag html nel testo.
+    Massimo 2000 caratteri
   automator_edit_mode: 0
   automator_label: 'More Info Default'
   automator_weight: '200'
