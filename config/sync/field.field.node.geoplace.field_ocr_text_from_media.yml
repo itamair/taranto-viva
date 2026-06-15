@@ -1,0 +1,28 @@
+uuid: 8f9fd3a2-f9bf-4191-b531-2ba0775c4764
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ocr_text_from_media
+    - filter.format.full_html
+    - node.type.geoplace
+  module:
+    - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_ocr_text_from_media
+field_name: field_ocr_text_from_media
+entity_type: node
+bundle: geoplace
+label: 'OCR Text from Media'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

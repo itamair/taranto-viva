@@ -1,0 +1,48 @@
+uuid: d196aeac-5120-4390-af5d-ffdcb282beaf
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_image
+    - media.type.image_with_ocr_description
+  module:
+    - content_translation
+    - image
+    - tmgmt_content
+third_party_settings:
+  content_translation:
+    translation_sync:
+      alt: alt
+      title: title
+      file: '0'
+  tmgmt_content:
+    excluded: false
+id: media.image_with_ocr_description.field_media_image
+field_name: field_media_image
+entity_type: media
+bundle: image_with_ocr_description
+label: Image
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: media_for_ocr_description
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: 3MB
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

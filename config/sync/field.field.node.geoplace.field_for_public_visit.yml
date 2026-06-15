@@ -1,0 +1,28 @@
+uuid: 19ee065a-a59e-4642-9711-c33324050bc5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_for_public_visit
+    - node.type.geoplace
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_for_public_visit
+field_name: field_for_public_visit
+entity_type: node
+bundle: geoplace
+label: 'Open to Public Visit'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

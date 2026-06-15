@@ -1,0 +1,51 @@
+uuid: af91076d-b45f-4f74-9cf9-77bbba527eb6
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.media.image_with_ocr_description.ai_automator_status
+    - field.field.media.image_with_ocr_description.field_image_description
+    - field.field.media.image_with_ocr_description.field_media_image
+    - image.style.large
+    - media.type.image_with_ocr_description
+  module:
+    - svg_image
+    - text
+id: media.image_with_ocr_description.default
+targetEntityType: media
+bundle: image_with_ocr_description
+mode: default
+content:
+  field_image_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  ai_automator_status: true
+  created: true
+  geofield_googlemaps_link: true
+  geoimage_caption: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
+  uuid: true

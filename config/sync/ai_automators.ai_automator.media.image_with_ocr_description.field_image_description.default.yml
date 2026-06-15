@@ -1,0 +1,38 @@
+uuid: 41ea40d6-d9c4-4b90-968b-8ca801000cd3
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.media.image_with_ocr_description.field_image_description
+id: media.image_with_ocr_description.field_image_description.default
+label: 'image_description Default'
+rule: llm_text_long
+input_mode: token
+weight: 100
+worker_type: direct
+entity_type: media
+bundle: image_with_ocr_description
+field_name: field_image_description
+edit_mode: false
+base_field: revision_log_message
+prompt: ''
+token: 'Provide formatted text extracted from the image attached to this media, with uri: [media:field_media_image:entity:url]'
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: llm_text_long
+  automator_mode: token
+  automator_base_field: revision_log_message
+  automator_prompt: ''
+  automator_token: 'Provide formatted text extracted from the image attached to this media, with uri: [media:field_media_image:entity:url]'
+  automator_edit_mode: 0
+  automator_label: 'image_description Default'
+  automator_weight: '100'
+  automator_worker_type: direct
+  automator_guardrail_set_id: ''
+  automator_ai_provider: default_vision
+  automator_configuration_image_field: field_media_image
+  automator_configuration_image_style: ''
+  automator_joiner: \n
+  automator_joiner_other: ''
+  automator_use_text_format: full_html

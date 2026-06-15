@@ -1,0 +1,39 @@
+uuid: 62ee8620-eb72-40a7-b90f-387018c1fe04
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_for_ocr_recognition
+    - media.type.image_with_ocr_description
+    - node.type.geoplace
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_image_for_ocr_recognition
+field_name: field_image_for_ocr_recognition
+entity_type: node
+bundle: geoplace
+label: 'Image for OCR recognition'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image_with_ocr_description: image_with_ocr_description
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

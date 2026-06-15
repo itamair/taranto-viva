@@ -124,8 +124,8 @@
                 return {
                   icon: L.icon({
                     iconUrl: iconUrl,
-                    iconSize: [20, 20],
-                    iconAnchor: [10, 10],
+                    iconSize: [16, 16],
+                    iconAnchor: [8, 8],
                   }),
                 };
               }

@@ -1,0 +1,28 @@
+uuid: 71cef358-c825-408a-853c-26190cfda448
+langcode: it
+status: true
+dependencies:
+  module:
+    - revision_manager
+third_party_settings:
+  revision_manager:
+    age:
+      id: age
+      status: false
+      settings:
+        age: 6
+    amount:
+      id: amount
+      status: false
+      settings:
+        amount: 3
+id: image_with_ocr_description
+label: 'Image with OCR Description'
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+  gather_exif: '0'
+field_map: {  }

@@ -1,0 +1,20 @@
+uuid: b47bec50-a8e6-4687-b254-1c4c750e0573
+langcode: it
+status: true
+dependencies:
+  module:
+    - media
+    - node
+id: node.field_image_for_ocr_recognition
+field_name: field_image_for_ocr_recognition
+entity_type: node
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

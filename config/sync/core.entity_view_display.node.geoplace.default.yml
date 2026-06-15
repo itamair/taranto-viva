@@ -10,13 +10,16 @@ dependencies:
     - field.field.node.geoplace.field_crawled_content
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
+    - field.field.node.geoplace.field_for_public_visit
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_google_maps_address
     - field.field.node.geoplace.field_how_to_reach
+    - field.field.node.geoplace.field_image_for_ocr_recognition
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_more_info
+    - field.field.node.geoplace.field_ocr_text_from_media
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
@@ -129,19 +132,6 @@ third_party_settings:
               items_per_page: 0
             weight: 1
             additional: {  }
-          ad64522d-7538-48fc-bbab-fffa1f730d58:
-            uuid: ad64522d-7538-48fc-bbab-fffa1f730d58
-            region: second
-            configuration:
-              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
-              label: ''
-              label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: 0
-            weight: 1
-            additional: {  }
           7994fea5-edff-4fdf-8178-7605f4ecba98:
             uuid: 7994fea5-edff-4fdf-8178-7605f4ecba98
             region: first
@@ -163,13 +153,13 @@ third_party_settings:
                   rel: nofollow
                   target: _blank
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
-          7cb66878-8669-4bc6-9e6e-646e91f837e1:
-            uuid: 7cb66878-8669-4bc6-9e6e-646e91f837e1
-            region: first
+          b2783de3-ffac-4d39-bfe8-9ebef4e3e76d:
+            uuid: b2783de3-ffac-4d39-bfe8-9ebef4e3e76d
+            region: second
             configuration:
-              id: 'field_block:node:geoplace:field_why_to_visit'
+              id: 'field_block:node:geoplace:field_how_to_reach'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
@@ -179,6 +169,19 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 3
+            additional: {  }
+          ad64522d-7538-48fc-bbab-fffa1f730d58:
+            uuid: ad64522d-7538-48fc-bbab-fffa1f730d58
+            region: second
+            configuration:
+              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: 0
+            weight: 0
             additional: {  }
           aaf72266-743f-4f4e-80bc-f434b3eed85c:
             uuid: aaf72266-743f-4f4e-80bc-f434b3eed85c
@@ -199,13 +202,13 @@ third_party_settings:
                   always_build_output: false
                   empty_view_title: hidden
                 third_party_settings: {  }
-            weight: 0
+            weight: 2
             additional: {  }
-          b2783de3-ffac-4d39-bfe8-9ebef4e3e76d:
-            uuid: b2783de3-ffac-4d39-bfe8-9ebef4e3e76d
-            region: second
+          7cb66878-8669-4bc6-9e6e-646e91f837e1:
+            uuid: 7cb66878-8669-4bc6-9e6e-646e91f837e1
+            region: first
             configuration:
-              id: 'field_block:node:geoplace:field_how_to_reach'
+              id: 'field_block:node:geoplace:field_why_to_visit'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
@@ -215,6 +218,22 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 2
+            additional: {  }
+          d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
+            uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
+            region: first
+            configuration:
+              id: 'field_block:node:geoplace:field_related_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 4
             additional: {  }
         third_party_settings: {  }
       -
@@ -238,23 +257,7 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 11
-            additional: {  }
-          d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
-            uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
-            region: content
-            configuration:
-              id: 'field_block:node:geoplace:field_related_content'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-            weight: 10
+            weight: 13
             additional: {  }
           989f4367-ae1b-4887-96fe-04b7a64462e7:
             uuid: 989f4367-ae1b-4887-96fe-04b7a64462e7
@@ -324,6 +327,16 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
+  field_for_public_visit:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 21
+    region: content
   field_geofied_view:
     type: viewfield_default
     label: hidden
@@ -349,6 +362,14 @@ content:
     third_party_settings: {  }
     weight: 15
     region: content
+  field_image_for_ocr_recognition:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 19
+    region: content
   field_map_popup_disabled:
     type: boolean
     label: above
@@ -365,6 +386,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 17
+    region: content
+  field_ocr_text_from_media:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 20
     region: content
   field_project_namespace:
     type: entity_reference_label

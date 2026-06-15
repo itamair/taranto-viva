@@ -1,0 +1,28 @@
+uuid: ef50ecf7-c17b-453b-a07c-8c9deff94ca2
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_image_description
+    - filter.format.full_html
+    - media.type.image_with_ocr_description
+  module:
+    - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: media.image_with_ocr_description.field_image_description
+field_name: field_image_description
+entity_type: media
+bundle: image_with_ocr_description
+label: 'Image OCR Description/Recognition'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

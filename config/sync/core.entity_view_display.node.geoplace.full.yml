@@ -11,13 +11,16 @@ dependencies:
     - field.field.node.geoplace.field_crawled_content
     - field.field.node.geoplace.field_exclude_from_map_bounds
     - field.field.node.geoplace.field_exclude_from_markercluster
+    - field.field.node.geoplace.field_for_public_visit
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_google_maps_address
     - field.field.node.geoplace.field_how_to_reach
+    - field.field.node.geoplace.field_image_for_ocr_recognition
     - field.field.node.geoplace.field_link
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_more_info
+    - field.field.node.geoplace.field_ocr_text_from_media
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
@@ -72,12 +75,15 @@ hidden:
   field_crawled_content: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
+  field_for_public_visit: true
   field_google_maps_address: true
   field_how_to_reach: true
+  field_image_for_ocr_recognition: true
   field_link: true
   field_map_popup_disabled: true
   field_media_slideshow: true
   field_more_info: true
+  field_ocr_text_from_media: true
   field_project_namespace: true
   field_related_content: true
   field_sub_title: true

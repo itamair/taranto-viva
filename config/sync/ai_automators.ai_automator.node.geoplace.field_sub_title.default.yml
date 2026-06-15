@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.geoplace.field_sub_title
 id: node.geoplace.field_sub_title.default
 label: 'Sub Title Default'
-rule: llm_string
+rule: llm_simple_string
 input_mode: token
 weight: 100
 worker_type: queue
@@ -25,7 +25,7 @@ token: |
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
-  automator_rule: llm_string
+  automator_rule: llm_simple_string
   automator_mode: token
   automator_base_field: revision_log
   automator_prompt: ''
@@ -46,5 +46,4 @@ plugin_config:
   automator_configuration_reasoning_effort: medium
   automator_configuration_image_field: ''
   automator_configuration_image_style: ''
-  automator_joiner: ''
-  automator_joiner_other: ''
+  automator_code_block_type: html

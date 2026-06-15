@@ -1,0 +1,36 @@
+uuid: 843933e4-74ef-445e-8446-6f2a9d5a8ccb
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.geoplace.field_ocr_text_from_media
+id: node.geoplace.field_ocr_text_from_media.default
+label: 'OCR Text from Media Default'
+rule: llm_text_long
+input_mode: token
+weight: 200
+worker_type: direct
+entity_type: node
+bundle: geoplace
+field_name: field_ocr_text_from_media
+edit_mode: false
+base_field: revision_log
+prompt: ''
+token: 'Se [node:field_image_for_ocr_recognition:entity:field_image_description] esiste e non è nullo riporta in modo opportunamente formattato il testo di questo campo: [node:field_image_for_ocr_recognition:entity:field_image_description]'
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: llm_text_long
+  automator_mode: token
+  automator_base_field: revision_log
+  automator_prompt: ''
+  automator_token: 'Se [node:field_image_for_ocr_recognition:entity:field_image_description] esiste e non è nullo riporta in modo opportunamente formattato il testo di questo campo: [node:field_image_for_ocr_recognition:entity:field_image_description]'
+  automator_edit_mode: 0
+  automator_label: 'OCR Text from Media Default'
+  automator_weight: '200'
+  automator_worker_type: direct
+  automator_guardrail_set_id: ''
+  automator_ai_provider: default_json
+  automator_joiner: ''
+  automator_joiner_other: ''
+  automator_use_text_format: full_html
