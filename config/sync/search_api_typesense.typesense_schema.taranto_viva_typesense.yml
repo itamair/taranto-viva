@@ -17,7 +17,55 @@ fields:
     locale: en
     stem: false
     weight: 0
+  field_crawled_content:
+    type: 'string[]'
+    facet: false
+    optional: true
+    index: true
+    store: true
+    sort: false
+    sort_type: desc
+    infix: false
+    locale: en
+    stem: false
+    weight: 0
+  field_more_info:
+    type: string
+    facet: false
+    optional: true
+    index: true
+    store: true
+    sort: false
+    sort_type: desc
+    infix: false
+    locale: en
+    stem: false
+    weight: 0
   field_sub_title:
+    type: string
+    facet: false
+    optional: true
+    index: true
+    store: true
+    sort: false
+    sort_type: desc
+    infix: false
+    locale: en
+    stem: false
+    weight: 0
+  field_when_to_visit:
+    type: string
+    facet: false
+    optional: true
+    index: true
+    store: true
+    sort: false
+    sort_type: desc
+    infix: false
+    locale: en
+    stem: false
+    weight: 0
+  field_why_to_visit:
     type: string
     facet: false
     optional: true
@@ -41,20 +89,8 @@ fields:
     locale: en
     stem: false
     weight: 0
-  latlon:
-    type: 'string[]'
-    facet: false
-    optional: true
-    index: true
-    store: true
-    sort: false
-    sort_type: desc
-    infix: false
-    locale: en
-    stem: false
-    weight: 0
   name:
-    type: 'string[]'
+    type: string
     facet: false
     optional: true
     index: true
@@ -66,6 +102,18 @@ fields:
     stem: false
     weight: 0
   name_1:
+    type: string
+    facet: false
+    optional: true
+    index: true
+    store: true
+    sort: false
+    sort_type: desc
+    infix: false
+    locale: en
+    stem: false
+    weight: 0
+  rendered_item:
     type: string
     facet: false
     optional: true
@@ -102,15 +150,19 @@ fields:
     stem: false
     weight: 0
 enable_embedding: true
-local_embedding: null
+local_embedding: true
 embedding_fields:
   body: body
+  field_crawled_content: field_crawled_content
   field_sub_title: field_sub_title
+  field_when_to_visit: field_when_to_visit
   name: name
   name_1: name_1
   title: title
+  field_more_info: '0'
+  field_why_to_visit: '0'
   langcode: '0'
-  latlon: '0'
+  rendered_item: '0'
   type: '0'
 embedding_model: ts/all-MiniLM-L12-v2
 chunk_size: 1000
@@ -118,9 +170,13 @@ chunk_overlap_size: 10
 chunk_prepend_fields:
   name: name
   name_1: name_1
+  type: type
   body: '0'
+  field_crawled_content: '0'
+  field_more_info: '0'
   field_sub_title: '0'
+  field_when_to_visit: '0'
+  field_why_to_visit: '0'
   langcode: '0'
-  latlon: '0'
+  rendered_item: '0'
   title: '0'
-  type: '0'

@@ -5,14 +5,15 @@ dependencies:
   config:
     - field.storage.node.body
     - field.storage.node.field_category_type
-    - field.storage.node.field_components
+    - field.storage.node.field_crawled_content
+    - field.storage.node.field_more_info
     - field.storage.node.field_project_namespace
     - field.storage.node.field_sub_title
-    - field.storage.paragraph.field_geofield
+    - field.storage.node.field_when_to_visit
+    - field.storage.node.field_why_to_visit
     - search_api.server.typesense_search_server
   module:
     - node
-    - paragraphs
     - search_api_typesense
     - taxonomy
 id: taranto_viva_typesense
@@ -28,6 +29,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  field_crawled_content:
+    label: 'Crawled Content'
+    datasource_id: 'entity:node'
+    property_path: field_crawled_content
+    type: 'typesense_string[]'
+    dependencies:
+      config:
+        - field.storage.node.field_crawled_content
+  field_more_info:
+    label: 'Info Aggiuntive'
+    datasource_id: 'entity:node'
+    property_path: field_more_info
+    type: typesense_string
+    dependencies:
+      config:
+        - field.storage.node.field_more_info
   field_sub_title:
     label: 'Sub Title'
     datasource_id: 'entity:node'
@@ -36,6 +53,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_sub_title
+  field_when_to_visit:
+    label: 'Quando visitare'
+    datasource_id: 'entity:node'
+    property_path: field_when_to_visit
+    type: typesense_string
+    dependencies:
+      config:
+        - field.storage.node.field_when_to_visit
+  field_why_to_visit:
+    label: 'Perchè Visitare'
+    datasource_id: 'entity:node'
+    property_path: field_why_to_visit
+    type: typesense_string
+    dependencies:
+      config:
+        - field.storage.node.field_why_to_visit
   langcode:
     label: Language
     datasource_id: 'entity:node'
@@ -44,22 +77,11 @@ field_settings:
     dependencies:
       module:
         - node
-  latlon:
-    label: 'Components » Paragraph » Geofield » LatLong Pair'
-    datasource_id: 'entity:node'
-    property_path: 'field_components:entity:field_geofield:latlon'
-    type: 'typesense_string[]'
-    dependencies:
-      config:
-        - field.storage.node.field_components
-        - field.storage.paragraph.field_geofield
-      module:
-        - paragraphs
   name:
     label: 'Project Namespace » Taxonomy term » Name'
     datasource_id: 'entity:node'
     property_path: 'field_project_namespace:entity:name'
-    type: 'typesense_string[]'
+    type: typesense_string
     dependencies:
       config:
         - field.storage.node.field_project_namespace
@@ -78,7 +100,7 @@ field_settings:
   rendered_item:
     label: 'Rendered HTML output'
     property_path: rendered_item
-    type: text
+    type: typesense_string
     configuration:
       roles:
         - anonymous
@@ -87,14 +109,6 @@ field_settings:
           ':default': ''
           geoplace: ':default'
           territorial_report: ':default'
-  status:
-    label: Boolean
-    datasource_id: 'entity:node'
-    property_path: status
-    type: boolean
-    dependencies:
-      module:
-        - node
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -111,21 +125,12 @@ field_settings:
     dependencies:
       module:
         - node
-  uid:
-    label: 'Entity reference'
-    datasource_id: 'entity:node'
-    property_path: uid
-    type: integer
-    dependencies:
-      module:
-        - node
 datasource_settings:
   'entity:node':
     bundles:
       default: false
       selected:
         - geoplace
-        - territorial_report
     languages:
       default: true
       selected: {  }
@@ -142,9 +147,12 @@ processor_settings:
     all_fields: true
     fields:
       - body
+      - field_crawled_content
+      - field_more_info
       - field_sub_title
+      - field_when_to_visit
+      - field_why_to_visit
       - langcode
-      - latlon
       - name
       - name_1
       - rendered_item
@@ -159,9 +167,12 @@ processor_settings:
     all_fields: true
     fields:
       - body
+      - field_crawled_content
+      - field_more_info
       - field_sub_title
+      - field_when_to_visit
+      - field_why_to_visit
       - langcode
-      - latlon
       - name
       - name_1
       - rendered_item
