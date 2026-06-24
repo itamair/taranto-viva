@@ -27,7 +27,7 @@ trait LeafletSettingsElementsTrait {
   protected static function getLeafletMaps() {
     $options = [];
     foreach (leaflet_map_get_info() as $key => $map) {
-      $options[$key] = $map['label'];
+      $options[$key] = $map['label'] ?? $key;
     }
     return $options;
   }
