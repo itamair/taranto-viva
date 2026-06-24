@@ -30,8 +30,8 @@
     // Default zoom level for icon sizing.
     zoomDefaultIconSize: 19,
 
-    // Zoom level applied when clicking a permanent Tooltip.
-    tooltipClickZoomLevel: 15,
+    // Zoom increment applied when clicking a Point permanent Tooltip.
+    tooltipClickZoomIncrement: 3,
 
     // Stores markers that are currently hidden.
     hidden_markers: [],
@@ -531,10 +531,16 @@
      * Bind a Click-to-Zoom action to all Permanent Tooltips.
      *
      * Clicking a permanently visible Tooltip (e.g. "Taranto - Old Town" or
-     * "Taranto - New Town") zooms the map in to tooltipClickZoomLevel,
-     * centered on the corresponding Feature location. Tooltip elements are
-     * recreated by setPermanentTooltipVisibility on every zoomend, so this
-     * needs to be called again every time that happens.
+     * "Taranto - New Town") zooms the map in:
+     * - for Point Features (Marker/CircleMarker, exposing getLatLng()), by
+     *   tooltipClickZoomIncrement levels above the current Map Zoom,
+     *   centered on the Point.
+     * - for Line/Polygon Features (Polyline/Polygon/MultiPolygon, exposing
+     *   getBounds()), to the Zoom level that fits the Feature bounds.
+     *
+     * Tooltip elements are recreated by setPermanentTooltipVisibility on
+     * every zoomend, so this needs to be called again every time that
+     * happens.
      *
      * @param {string} mapid
      *   The map ID.
@@ -564,13 +570,12 @@
           continue;
         }
 
-        // Resolve the Feature reference location: Marker/CircleMarker
-        // expose getLatLng(), Polygon/Polyline expose getBounds().
-        const latLng = typeof lFeature.getLatLng === 'function'
-          ? lFeature.getLatLng()
-          : (typeof lFeature.getBounds === 'function' ? lFeature.getBounds().getCenter() : null);
+        // Discriminate Point Features (Marker/CircleMarker) from
+        // Line/Polygon Features (Polyline/Polygon/MultiPolygon).
+        const isPoint = typeof lFeature.getLatLng === 'function';
+        const isBounded = !isPoint && typeof lFeature.getBounds === 'function';
 
-        if (!latLng) {
+        if (!isPoint && !isBounded) {
           continue;
         }
 
@@ -580,7 +585,13 @@
           element.style.cursor = 'pointer';
           element.addEventListener('click', function (e) {
             e.stopPropagation();
-            map.setView(latLng, self.tooltipClickZoomLevel);
+            const incrementedZoom = map.getZoom() + self.tooltipClickZoomIncrement;
+            if (isPoint && incrementedZoom < 18) {
+              map.setView(lFeature.getLatLng(), map.getZoom() + self.tooltipClickZoomIncrement);
+            }
+            else if (isBounded) {
+              map.fitBounds(lFeature.getBounds());
+            }
           });
         });
       }
