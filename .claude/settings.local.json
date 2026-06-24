@@ -5,7 +5,7 @@
       "Bash(git add:*)",
       "Bash(grep:*)",
       "Bash(mkdir:*)",
-      "Bash(sed:*)∑∑†©©†",
+      "Bash(sed:*)",
       "Bash(find:*)",
       "Bash(ls:*)",
       "Bash(compass compile:*)",
@@ -54,7 +54,8 @@
       "Bash(awk 'NR>=3896 && NR<=6663' /Users/italo/Sites/geodemocracy/taranto-viva/config/sync/views.view.geo_places.yml)",
       "Bash(awk 'NR>=1000 && NR<=1070')",
       "Bash(sed 's/\\\\.yml$//')",
-      "WebFetch(domain:cdn.jsdelivr.net)"
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "Bash(claude doctor *)"
     ],
     "deny": []
   },
