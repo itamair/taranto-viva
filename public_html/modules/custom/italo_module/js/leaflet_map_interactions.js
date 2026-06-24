@@ -31,7 +31,7 @@
     zoomDefaultIconSize: 19,
 
     // Zoom increment applied when clicking a Point permanent Tooltip.
-    tooltipClickZoomIncrement: 3,
+    tooltipClickZoomIncrement: 2,
 
     // Stores markers that are currently hidden.
     hidden_markers: [],
