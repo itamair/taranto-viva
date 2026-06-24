@@ -586,8 +586,13 @@
           element.addEventListener('click', function (e) {
             e.stopPropagation();
             const incrementedZoom = map.getZoom() + self.tooltipClickZoomIncrement;
-            if (isPoint && incrementedZoom < 18) {
-              map.setView(lFeature.getLatLng(), map.getZoom() + self.tooltipClickZoomIncrement);
+            if (isPoint) {
+              if (incrementedZoom < 18) {
+                map.setView(lFeature.getLatLng(), map.getZoom() + self.tooltipClickZoomIncrement);
+              }
+              else {
+                map.setView(lFeature.getLatLng(), map.getZoom());
+              }
             }
             else if (isBounded) {
               map.fitBounds(lFeature.getBounds());
