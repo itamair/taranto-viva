@@ -165,6 +165,7 @@ module:
   taxonomy: 0
   text: 0
   tmgmt: 0
+  tmgmt_config: 0
   tmgmt_content: 0
   tmgmt_translation_outdated: 0
   token: 0
