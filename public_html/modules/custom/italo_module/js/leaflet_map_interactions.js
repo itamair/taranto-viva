@@ -30,6 +30,9 @@
     // Default zoom level for icon sizing.
     zoomDefaultIconSize: 19,
 
+    // Zoom level applied when clicking a permanent Tooltip.
+    tooltipClickZoomLevel: 15,
+
     // Stores markers that are currently hidden.
     hidden_markers: [],
 
@@ -59,6 +62,10 @@
 
           // Set Tooltip Visibility, depending on Map Zoom.
           self.setPermanentTooltipVisibility(mapid, map);
+
+          // (Re)bind the Click-to-Zoom action on Permanent Tooltips, as their
+          // DOM element gets recreated by setPermanentTooltipVisibility.
+          self.bindPermanentTooltipClickZoom(mapid, map);
         });
 
         // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
@@ -168,6 +175,9 @@
 
       // Set Permanent Tooltip Visibility.
       this.setPermanentTooltipVisibility(mapid, map);
+
+      // Bind the Click-to-Zoom action on Permanent Tooltips.
+      this.bindPermanentTooltipClickZoom(mapid, map);
     },
 
     /**
@@ -514,6 +524,65 @@
 
         tooltip.options.permanent = isPermanent;
         permanent_tooltip_feature.bindTooltip(tooltip.getContent(), tooltip.options);
+      }
+    },
+
+    /**
+     * Bind a Click-to-Zoom action to all Permanent Tooltips.
+     *
+     * Clicking a permanently visible Tooltip (e.g. "Taranto - Old Town" or
+     * "Taranto - New Town") zooms the map in to tooltipClickZoomLevel,
+     * centered on the corresponding Feature location. Tooltip elements are
+     * recreated by setPermanentTooltipVisibility on every zoomend, so this
+     * needs to be called again every time that happens.
+     *
+     * @param {string} mapid
+     *   The map ID.
+     * @param {object} map
+     *   The Leaflet map object.
+     */
+    bindPermanentTooltipClickZoom: function(mapid, map) {
+      if (!map || !Drupal.Leaflet || !Drupal.Leaflet[mapid]) {
+        return;
+      }
+
+      const self = this;
+      const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features || [];
+
+      for (const lFeature of permanent_tooltip_features) {
+        if (!lFeature || !lFeature.getTooltip) {
+          continue;
+        }
+
+        const tooltip = lFeature.getTooltip();
+        if (!tooltip || !tooltip.options.permanent) {
+          continue;
+        }
+
+        const tooltipElement = tooltip.getElement ? tooltip.getElement() : null;
+        if (!tooltipElement) {
+          continue;
+        }
+
+        // Resolve the Feature reference location: Marker/CircleMarker
+        // expose getLatLng(), Polygon/Polyline expose getBounds().
+        const latLng = typeof lFeature.getLatLng === 'function'
+          ? lFeature.getLatLng()
+          : (typeof lFeature.getBounds === 'function' ? lFeature.getBounds().getCenter() : null);
+
+        if (!latLng) {
+          continue;
+        }
+
+        once('leaflet-tooltip-click-zoom', tooltipElement).forEach(function (element) {
+          // Permanent Tooltips are not interactive by default (pointer-events: none).
+          element.style.pointerEvents = 'auto';
+          element.style.cursor = 'pointer';
+          element.addEventListener('click', function (e) {
+            e.stopPropagation();
+            map.setView(latLng, self.tooltipClickZoomLevel);
+          });
+        });
       }
     }
 
