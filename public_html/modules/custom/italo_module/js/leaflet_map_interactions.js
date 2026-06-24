@@ -31,7 +31,7 @@
     zoomDefaultIconSize: 19,
 
     // Zoom increment applied when clicking a Point permanent Tooltip.
-    tooltipClickZoomIncrement: 2,
+    tooltipClickZoomIncrement: 3,
 
     // Stores markers that are currently hidden.
     hidden_markers: [],
@@ -585,14 +585,10 @@
           element.style.cursor = 'pointer';
           element.addEventListener('click', function (e) {
             e.stopPropagation();
-            const incrementedZoom = map.getZoom() + self.tooltipClickZoomIncrement;
+            let incrementedZoom = map.getZoom() + self.tooltipClickZoomIncrement;
+            incrementedZoom = incrementedZoom <= 18 ? incrementedZoom : 18;
             if (isPoint) {
-              if (incrementedZoom < 18) {
-                map.setView(lFeature.getLatLng(), map.getZoom() + self.tooltipClickZoomIncrement);
-              }
-              else {
-                map.setView(lFeature.getLatLng(), map.getZoom());
-              }
+              map.setView(lFeature.getLatLng(), incrementedZoom);
             }
             else if (isBounded) {
               map.fitBounds(lFeature.getBounds());
