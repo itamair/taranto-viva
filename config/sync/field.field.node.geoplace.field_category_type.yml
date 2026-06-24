@@ -20,7 +20,7 @@ id: node.geoplace.field_category_type
 field_name: field_category_type
 entity_type: node
 bundle: geoplace
-label: 'Category Type'
+label: 'Tipo di Categoria'
 description: ''
 required: true
 translatable: false

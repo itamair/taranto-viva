@@ -14,7 +14,7 @@ id: node.geoplace.field_why_to_visit
 field_name: field_why_to_visit
 entity_type: node
 bundle: geoplace
-label: 'Why Visit'
+label: 'Perchè Visitare'
 description: ''
 required: false
 translatable: true
