@@ -75,17 +75,17 @@ a, a.link {
     display: none;
   }
 }
-/* line 73, ../sass/common.scss */
+/* line 72, ../sass/common.scss */
 .view > .view-header {
   margin-bottom: 1rem !important;
 }
 
-/* line 78, ../sass/common.scss */
+/* line 77, ../sass/common.scss */
 .view-content-media-images .field-content .media {
   margin-bottom: 20px;
 }
 
-/* line 87, ../sass/common.scss */
+/* line 86, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places a.node_title,
 .view-territorial-reports.view-id-territorial_reports a.node_title {
   padding-bottom: 0.1875rem;
@@ -101,17 +101,17 @@ a, a.link {
   background-size: 0 0.1875rem;
   font-size: 1.5rem;
 }
-/* line 98, ../sass/common.scss */
+/* line 97, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places a.node_title:any-link,
 .view-territorial-reports.view-id-territorial_reports a.node_title:any-link {
   text-decoration: none;
 }
-/* line 101, ../sass/common.scss */
+/* line 100, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places a.node_title h2,
 .view-territorial-reports.view-id-territorial_reports a.node_title h2 {
   margin-bottom: 6px;
 }
-/* line 104, ../sass/common.scss */
+/* line 103, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places a.node_title h3,
 .view-territorial-reports.view-id-territorial_reports a.node_title h3 {
   font-weight: normal;
@@ -119,17 +119,17 @@ a, a.link {
   margin-top: 6px;
   margin-bottom: 6px;
 }
-/* line 112, ../sass/common.scss */
+/* line 111, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places .field--name-field-media-image,
 .view-territorial-reports.view-id-territorial_reports .field--name-field-media-image {
   margin-bottom: .25rem;
 }
-/* line 116, ../sass/common.scss */
+/* line 115, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places .field--name-field-image-caption,
 .view-territorial-reports.view-id-territorial_reports .field--name-field-image-caption {
   font-size: 0.7rem;
 }
-/* line 120, ../sass/common.scss */
+/* line 119, ../sass/common.scss */
 .view.view-geo-places.view-id-geo_places .field--name-field-address,
 .view-territorial-reports.view-id-territorial_reports .field--name-field-address {
   font-size: 0.85rem;
@@ -137,90 +137,90 @@ a, a.link {
 }
 
 @media (min-width: 43.75rem) {
-  /* line 131, ../sass/common.scss */
+  /* line 130, ../sass/common.scss */
   .view.view-geo-places.view-id-geo_places.view-display-id-page_geoplaces_grid article header {
     height: 20px;
   }
-  /* line 133, ../sass/common.scss */
+  /* line 132, ../sass/common.scss */
   .view.view-geo-places.view-id-geo_places.view-display-id-page_geoplaces_grid article header h2 {
     font-size: 1.4rem;
     line-height: 1.8rem;
   }
-  /* line 140, ../sass/common.scss */
+  /* line 139, ../sass/common.scss */
   .view.view-geo-places.view-id-geo_places.view-display-id-page_geoplaces_grid .paragraph--type--location.paragraph--view-mode--leaflet-popup {
     height: 40px;
   }
 }
-/* line 149, ../sass/common.scss */
+/* line 147, ../sass/common.scss */
 .view-id-geo_images_list .views-view-grid__item {
   margin-bottom: 0.5rem;
 }
-/* line 152, ../sass/common.scss */
+/* line 150, ../sass/common.scss */
 .view-id-geo_images_list .views-field-field-components {
   font-size: 0.8rem;
 }
-/* line 154, ../sass/common.scss */
+/* line 152, ../sass/common.scss */
 .view-id-geo_images_list .views-field-field-components .field--name-field-media-image {
   margin-bottom: 1rem;
 }
 
-/* line 161, ../sass/common.scss */
+/* line 159, ../sass/common.scss */
 div.image-wrapper {
   max-width: 1200px;
 }
 
-/* line 165, ../sass/common.scss */
+/* line 163, ../sass/common.scss */
 .field--name-field-image-caption {
   text-align: right;
   font-size: 90%;
 }
 
-/* line 171, ../sass/common.scss */
+/* line 169, ../sass/common.scss */
 .field--name-geofield-googlemaps-link .field__item {
   display: inline;
   margin: 0 10px 0 0;
   font-size: 0.8rem;
 }
 
-/* line 179, ../sass/common.scss */
+/* line 177, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map.form--inline > *,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list.form--inline > * {
   vertical-align: unset;
   margin-block: 0;
 }
-/* line 183, ../sass/common.scss */
+/* line 181, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset {
   border: none;
 }
-/* line 185, ../sass/common.scss */
+/* line 183, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__legend,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__legend {
   display: none;
 }
-/* line 189, ../sass/common.scss */
+/* line 187, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper {
   padding: 0;
 }
-/* line 192, ../sass/common.scss */
+/* line 190, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper .form-item,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper .form-item {
   margin: 0;
   border: none;
 }
-/* line 195, ../sass/common.scss */
+/* line 193, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper .form-item input,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper .form-item input {
   padding: 10px;
 }
 
-/* line 208, ../sass/common.scss */
+/* line 206, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates h2,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates h2 {
   font-size: 1.5rem;
 }
-/* line 211, ../sass/common.scss */
+/* line 209, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content {
   max-height: 300px;
@@ -228,76 +228,76 @@ div.image-wrapper {
   border: 1px solid lightgrey;
   padding: 10px;
 }
-/* line 216, ../sass/common.scss */
+/* line 214, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content > h3,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content > h3 {
   margin-block: 4px;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 221, ../sass/common.scss */
+/* line 219, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content > div,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content > div {
   display: none;
 }
 
-/* line 228, ../sass/common.scss */
+/* line 226, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content {
   max-height: 100px;
   overflow-y: scroll;
   border: 1px solid lightgrey;
   padding: 10px;
 }
-/* line 233, ../sass/common.scss */
+/* line 231, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content > h3 {
   margin-block: 4px;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 238, ../sass/common.scss */
+/* line 236, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content > div {
   display: none;
 }
 
-/* line 245, ../sass/common.scss */
+/* line 243, ../sass/common.scss */
 #popup-message-window {
   width: 600px !important;
   height: 760px !important;
 }
 
 @media only screen and (max-width: 1000px) {
-  /* line 251, ../sass/common.scss */
+  /* line 249, ../sass/common.scss */
   #popup-message-window {
     padding: 0 20px !important;
   }
 }
-/* line 258, ../sass/common.scss */
+/* line 256, ../sass/common.scss */
 #popup-message-window h1.popup-message-title {
   margin-bottom: 4px;
 }
-/* line 261, ../sass/common.scss */
+/* line 259, ../sass/common.scss */
 #popup-message-window #popup-message-content {
   font-size: 16px;
 }
-/* line 264, ../sass/common.scss */
+/* line 262, ../sass/common.scss */
 #popup-message-window #popup-message-content .text-content {
   font-family: inherit;
   font-size: inherit;
 }
-/* line 269, ../sass/common.scss */
+/* line 267, ../sass/common.scss */
 #popup-message-window #popup-message-content .field--name-field-image, #popup-message-window #popup-message-content .field--name-field-media-image {
   padding-top: 6px;
 }
-/* line 273, ../sass/common.scss */
+/* line 271, ../sass/common.scss */
 #popup-message-window #popup-message-content .node__content {
   padding-block-end: var(--sp0-75);
 }
 
-/* line 279, ../sass/common.scss */
+/* line 277, ../sass/common.scss */
 .view-header {
   font-size: 1rem !important;
 }
-/* line 281, ../sass/common.scss */
+/* line 279, ../sass/common.scss */
 .view-header .text-content {
   line-height: var(--line-height-base) !important;
   font-weight: normal !important;
@@ -305,29 +305,29 @@ div.image-wrapper {
   font-size: inherit;
   font-family: var(--font-sans), serif !important;
 }
-/* line 288, ../sass/common.scss */
+/* line 286, ../sass/common.scss */
 .view-header p {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
 }
 
-/* line 294, ../sass/common.scss */
+/* line 292, ../sass/common.scss */
 .view-footer {
   font-size: 0.9rem !important;
 }
-/* line 296, ../sass/common.scss */
+/* line 294, ../sass/common.scss */
 .view-footer p {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
 }
 
-/* line 303, ../sass/common.scss */
+/* line 301, ../sass/common.scss */
 .view-fonti table.views-table {
   margin-block-start: 4px !important;
   margin-block-end: 4px !important;
   font-size: inherit !important;
 }
-/* line 308, ../sass/common.scss */
+/* line 306, ../sass/common.scss */
 .view-fonti .views-field-field-html-symbol {
   width: 100px;
 }
@@ -337,20 +337,25 @@ div.image-wrapper {
  * Region default layout.
  */
 @media (min-width: 62.5rem) {
-  /* line 318, ../sass/common.scss */
+  /* line 316, ../sass/common.scss */
   .region > * {
     margin-block-end: var(--sp2) !important;
   }
 }
-/* line 326, ../sass/common.scss */
+/* line 324, ../sass/common.scss */
 .readmore-summary p, .readmore-text p {
   margin-block-end: 8px !important;
 }
-/* line 329, ../sass/common.scss */
+/* line 327, ../sass/common.scss */
 .readmore-summary span, .readmore-text span {
   margin-left: 4px;
 }
-/* line 331, ../sass/common.scss */
+/* line 329, ../sass/common.scss */
 .readmore-summary span a, .readmore-text span a {
   margin-left: 6px;
+}
+
+/* line 337, ../sass/common.scss */
+#block-taranto-viva-page-title h1.title .bundle {
+  font-size: small;
 }
