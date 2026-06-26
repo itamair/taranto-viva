@@ -241,6 +241,19 @@ function italo_module_views_data_alter(array &$data) {
     ];
   }
 
+  // In case of Paragraphs based views.
+  if (isset($data['media'])) {
+    // Add the Geo Marker Icon Url field to Views.
+    $data['media']['geofield_googlemaps_link'] = [
+      'title' => t('Geofield Google Maps Link'),
+      'field' => [
+        'id' => 'field',
+        'default_formatter' => 'link',
+        'field_name' => 'geofield_googlemaps_link',
+      ],
+    ];
+  }
+
   // In case of Nodes based views.
   if (isset($data['node'])) {
 

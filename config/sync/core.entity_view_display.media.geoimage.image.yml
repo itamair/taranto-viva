@@ -17,8 +17,9 @@ dependencies:
   module:
     - datetime
     - layout_builder
-    - link
-    - svg_image
+    - photoswipe
+    - photoswipe_dynamic_caption
+    - text
 third_party_settings:
   layout_builder:
     enabled: false
@@ -37,41 +38,38 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_media_image:
-    type: image
+  field_image_caption:
+    type: text_default
     label: hidden
-    settings:
-      image_link: ''
-      image_style: map_scaled_cropped_image_600x400
-      image_loading:
-        attribute: lazy
-      svg_attributes:
-        width: null
-        height: null
-      svg_render_as_image: true
-    third_party_settings: {  }
-    weight: 1
-    region: content
-  geofield_googlemaps_link:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: nofollow
-      target: _blank
+    settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_media_image:
+    type: photoswipe_field_formatter
+    label: hidden
+    settings:
+      photoswipe_thumbnail_style_first: ''
+      photoswipe_thumbnail_style: map_scaled_cropped_image_600x400
+      photoswipe_image_style: ''
+      photoswipe_reference_image_field: ''
+      photoswipe_view_mode: image
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      photoswipe_dynamic_caption:
+        photoswipe_caption: title
+        photoswipe_caption_custom: ''
+    weight: 1
     region: content
 hidden:
   created: true
   field_address: true
   field_generate_host_content: true
   field_geofield: true
-  field_image_caption: true
   field_place_type: true
   field_project_namespace: true
+  geofield_googlemaps_link: true
   geoimage_caption: true
   langcode: true
   name: true

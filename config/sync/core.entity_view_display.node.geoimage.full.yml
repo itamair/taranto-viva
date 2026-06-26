@@ -13,39 +13,91 @@ dependencies:
     - field.field.node.geoimage.field_place_type
     - field.field.node.geoimage.field_project_namespace
     - node.type.geoimage
+    - views.view.content_locations_addresses_and_google_maps_links
   module:
-    - entity_reference_revisions
+    - layout_builder
     - user
-    - viewfield
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 50-50
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
+          df4e980e-1831-4f59-9cf6-fc2c60db5700:
+            uuid: df4e980e-1831-4f59-9cf6-fc2c60db5700
+            region: first
+            configuration:
+              id: 'field_block:node:geoimage:field_components'
+              label: Components
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: image
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          ba27d379-3962-4bc2-aef4-3ea57823624c:
+            uuid: ba27d379-3962-4bc2-aef4-3ea57823624c
+            region: second
+            configuration:
+              id: 'field_block:node:geoimage:field_geofied_view'
+              label: 'Geofied View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          d690ad57-15b8-4123-9f13-5c42f787f1a5:
+            uuid: d690ad57-15b8-4123-9f13-5c42f787f1a5
+            region: second
+            configuration:
+              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
 id: node.geoimage.full
 targetEntityType: node
 bundle: geoimage
 mode: full
-content:
-  field_components:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 0
-    region: content
-  field_geofied_view:
-    type: viewfield_default
-    label: hidden
-    settings:
-      view_title: hidden
-      always_build_output: false
-      empty_view_title: hidden
-    third_party_settings: {  }
-    weight: 1
-    region: content
+content: {  }
 hidden:
   field_category_type: true
   field_classname: true
+  field_components: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
+  field_geofied_view: true
   field_place_type: true
   field_project_namespace: true
   langcode: true
