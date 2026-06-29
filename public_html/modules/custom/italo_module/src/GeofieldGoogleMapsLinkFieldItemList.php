@@ -51,6 +51,9 @@ class GeofieldGoogleMapsLinkFieldItemList extends FieldItemList {
                   $geom = $geom->centroid();
                 }
 
+                $lat = $geom->y();
+                $lng = $geom->x();
+
                 $gMapsLocation = new GMapsLocation();
                 $parent_entity = NULL;
                 if ($entity instanceof ParagraphInterface) {
@@ -60,18 +63,20 @@ class GeofieldGoogleMapsLinkFieldItemList extends FieldItemList {
                   $google_maps_link = $gMapsLocation->location($location);
                 }
                 else {
-                  $google_maps_link = $gMapsLocation->coordinates($geom->y(), $geom->x());
+                  $google_maps_link = $gMapsLocation->coordinates($lat, $lng);
                 }
                 $value0 = [
                   'uri' => $google_maps_link,
                   'title' => t('Google Maps'),
                 ];
 
-                $gMapsStreetView = new GMapsStreetView();
-                $value1 = [
-                  'uri' => $gMapsStreetView->viewpoint($geom->y(), $geom->x())->get(),
-                  'title' => t('Street View'),
-                ];
+                if ($this->hasStreetViewCoverage($lat, $lng)) {
+                  $gMapsStreetView = new GMapsStreetView();
+                  $value1 = [
+                    'uri' => $gMapsStreetView->viewpoint($lat, $lng)->get(),
+                    'title' => t('Street View'),
+                  ];
+                }
               }
             }
             break;
@@ -81,6 +86,61 @@ class GeofieldGoogleMapsLinkFieldItemList extends FieldItemList {
       $this->list[1] = $this->createItem(1, $value1);
       $this->isCalculated = TRUE;
     }
+  }
+
+  /**
+   * Checks Street View Metadata API for coverage at the given coordinates.
+   *
+   * Results are cached for 30 days to avoid redundant API calls on repeated
+   * entity loads. Coordinates are rounded to 5 decimal places (~1 m) so that
+   * near-identical points share the same cache entry.
+   *
+   * @param float $lat
+   *   Latitude.
+   * @param float $lng
+   *   Longitude.
+   *
+   * @return bool
+   *   TRUE if Street View imagery is available at this location.
+   */
+  private function hasStreetViewCoverage(float $lat, float $lng): bool {
+    $lat_r = round($lat, 5);
+    $lng_r = round($lng, 5);
+    $cid = 'italo_module:streetview:' . $lat_r . ':' . $lng_r;
+
+    $cached = \Drupal::cache()->get($cid);
+    if ($cached !== FALSE) {
+      return (bool) $cached->data;
+    }
+
+    $api_key = \Drupal::config('geofield_map.settings')->get('gmap_api_key');
+    $available = FALSE;
+
+    try {
+      $response = \Drupal::httpClient()->get(
+        'https://maps.googleapis.com/maps/api/streetview/metadata',
+        [
+          'query' => [
+            'location' => $lat_r . ',' . $lng_r,
+            'key' => $api_key,
+          ],
+          'timeout' => 1000,
+        ]
+      );
+      $data = json_decode((string) $response->getBody(), TRUE);
+      $available = ($data['status'] ?? '') === 'OK';
+    }
+    catch (\Throwable $e) {
+      \Drupal::logger('italo_module')->warning(
+        'Street View metadata check failed for @lat,@lng: @msg',
+        ['@lat' => $lat_r, '@lng' => $lng_r, '@msg' => $e->getMessage()]
+      );
+    }
+
+    // Cache for 30 days — Street View coverage changes infrequently.
+    \Drupal::cache()->set($cid, $available, time() + 86400 * 30);
+
+    return $available;
   }
 
 }
