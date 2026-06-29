@@ -284,9 +284,6 @@
             },
             "drupal/ai": {
                 "#3580332 Error /ai_automators/src/PluginBaseClasses/VideoToText.php": "https://www.drupal.org/files/issues/2026-03-19/ai-videototext-shell-exec-fix%20%281%29.patch"
-            },
-            "drupal/paragraphs": {
-                "#3593590 ParagraphAccessControlHandler::checkAccess does not respect translations on the publish state": "https://www.drupal.org/files/issues/2026-03-19/ai-videototext-shell-exec-fix%20%281%29.patch"
             }
         }
     },
