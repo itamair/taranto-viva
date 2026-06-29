@@ -803,3 +803,17 @@ function italo_module_preprocess_image(array &$variables) {
     $variables['attributes']['src'] = $file_url_generator->generateAbsoluteString($variables['uri']);
   }
 }
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function italo_module_preprocess_field(array &$variables): void {
+  $layout_paragraphs_formatters = [
+    'layout_paragraphs',
+    'layout_paragraphs_builder',
+  ];
+  if (in_array($variables['element']['#formatter'] ?? '', $layout_paragraphs_formatters, TRUE)) {
+    $variables['#attached']['library'][] = 'italo_module/layout_paragraphs';
+  }
+}
+

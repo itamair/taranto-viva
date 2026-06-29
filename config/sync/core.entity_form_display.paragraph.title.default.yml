@@ -1,0 +1,24 @@
+uuid: bd2d6768-5b22-46a3-b6ac-05ef6e0d0649
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.title.field_title
+    - paragraphs.paragraphs_type.title
+id: paragraph.title.default
+targetEntityType: paragraph
+bundle: title
+mode: default
+content:
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uuid: true

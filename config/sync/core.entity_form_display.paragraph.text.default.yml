@@ -3,16 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.text.field_text
+    - field.field.paragraph.text.field_formatted_text
     - paragraphs.paragraphs_type.text
+  module:
+    - text
 id: paragraph.text.default
 targetEntityType: paragraph
 bundle: text
 mode: default
 content:
-  field_text:
-    type: string_textarea
-    weight: 0
+  field_formatted_text:
+    type: text_textarea
+    weight: 1
     region: content
     settings:
       rows: 5

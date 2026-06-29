@@ -3,6 +3,7 @@ langcode: it
 status: true
 dependencies:
   config:
+    - filter.format.markdown_html
     - filter.format.restricted_html
   module:
     - comment
@@ -27,10 +28,12 @@ permissions:
   - 'access content'
   - 'access site-wide contact form'
   - 'access user profiles'
+  - 'bypass paragraphs type content access'
   - 'cast rate vote on node of territorial_report'
   - 'display popup message'
   - 'execute graphql_compose_server arbitrary graphql requests'
   - 'search content'
+  - 'use text format markdown_html'
   - 'use text format restricted_html'
   - 'view field_exclude_from_markercluster'
   - 'view field_location_type'
@@ -38,4 +41,5 @@ permissions:
   - 'view paragraph content geoimage'
   - 'view paragraph content geometry'
   - 'view paragraph content image'
+  - 'view paragraph content layout_section'
   - 'view paragraph content location'

@@ -1,0 +1,24 @@
+uuid: 59f1971b-7cdd-4dac-b148-7aba089830cf
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.title
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: paragraph.title.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: title
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

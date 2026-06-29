@@ -4,6 +4,12 @@ common:
     component:
       css/common.css: {}
 
+layout_paragraphs:
+  version: 1.x
+  css:
+    component:
+      css/layout_paragraphs.css: {}
+
 leaflet_map_interactions:
   version: 1.x
   css:
