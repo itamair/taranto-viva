@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.leaflet_popup
+    - field.field.media.image.ai_automator_status
     - field.field.media.image.field_image_caption
     - field.field.media.image.field_media_image
+    - field.field.media.image.field_tags
     - image.style.map_scaled_cropped_image_400_300
     - media.type.image
   module:
@@ -26,16 +28,18 @@ content:
     type: single_image_formatter
     label: hidden
     settings:
-      image_style: map_scaled_cropped_image_400_300
       image_link: ''
+      image_style: map_scaled_cropped_image_400_300
       image_loading:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
+  ai_automator_status: true
   created: true
   field_image_caption: true
+  field_tags: true
   geofield_googlemaps_link: true
   geoimage_caption: true
   langcode: true

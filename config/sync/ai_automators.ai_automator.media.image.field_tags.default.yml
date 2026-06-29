@@ -1,0 +1,35 @@
+uuid: 3ee055bb-5f02-4cbe-b435-c58afcd69e4a
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_tags
+id: media.image.field_tags.default
+label: 'Tags Default'
+rule: llm_taxonomy
+input_mode: token
+weight: 100
+worker_type: queue
+entity_type: media
+bundle: image
+field_name: field_tags
+edit_mode: false
+base_field: revision_log_message
+prompt: ''
+token: 'Generates (max 5) tags for the image stored in [media:field_media_image:entity:path]'
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: llm_taxonomy
+  automator_mode: token
+  automator_base_field: revision_log_message
+  automator_prompt: ''
+  automator_token: 'Generates (max 5) tags for the image stored in [media:field_media_image:entity:path]'
+  automator_edit_mode: 0
+  automator_label: 'Tags Default'
+  automator_weight: '100'
+  automator_worker_type: queue
+  automator_guardrail_set_id: ''
+  automator_ai_provider: default_json
+  automator_clean_up: ''
+  automator_search_similar_tags: 0
