@@ -1,0 +1,11 @@
+uuid: 503d6b71-5d66-47b0-aa85-9fbec064ff8a
+langcode: it
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.geoimage
+label: Geoimage
+description: null
+targetEntityType: paragraph
+cache: true
