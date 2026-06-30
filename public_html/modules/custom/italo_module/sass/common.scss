@@ -332,8 +332,15 @@ div.image-wrapper {
   }
 }
 
-//
-
+// block-taranto-viva-page-title
 #block-taranto-viva-page-title  h1.title .bundle {
   font-size: small;
+}
+
+.views_slideshow_controls_text {
+  display: flex;
+  justify-content: center;
+  span {
+    margin-right: 10%;
+  }
 }

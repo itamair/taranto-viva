@@ -355,7 +355,17 @@ div.image-wrapper {
   margin-left: 6px;
 }
 
-/* line 337, ../sass/common.scss */
+/* line 336, ../sass/common.scss */
 #block-taranto-viva-page-title h1.title .bundle {
   font-size: small;
+}
+
+/* line 340, ../sass/common.scss */
+.views_slideshow_controls_text {
+  display: flex;
+  justify-content: center;
+}
+/* line 343, ../sass/common.scss */
+.views_slideshow_controls_text span {
+  margin-right: 10%;
 }
