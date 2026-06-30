@@ -930,7 +930,7 @@ display:
         type: normal
         title: Reports
         description: ''
-        weight: -45
+        weight: -44
         expanded: false
         menu_name: main
         parent: ''

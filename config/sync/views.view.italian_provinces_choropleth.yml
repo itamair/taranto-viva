@@ -466,7 +466,7 @@ display:
         type: normal
         title: 'Italian Provs Choropleth '
         description: ''
-        weight: -42
+        weight: -41
         expanded: false
         menu_name: main
         parent: ''
