@@ -3,7 +3,6 @@ langcode: it
 status: true
 dependencies:
   config:
-    - core.base_field_override.node.territorial_report.created
     - core.base_field_override.node.territorial_report.uid
     - core.entity_view_display.comment.custom_comments.default
     - field.field.node.territorial_report.body
@@ -104,36 +103,6 @@ third_party_settings:
                   target: ''
                 third_party_settings: {  }
             weight: 3
-            additional: {  }
-          747f5f30-d74b-467d-b539-d41b2676be35:
-            uuid: 747f5f30-d74b-467d-b539-d41b2676be35
-            region: content
-            configuration:
-              id: 'field_block:node:territorial_report:created'
-              label: 'on'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: timestamp
-                label: hidden
-                settings:
-                  date_format: olivero_medium
-                  custom_date_format: ''
-                  timezone: ''
-                  tooltip:
-                    date_format: ''
-                    custom_date_format: ''
-                  time_diff:
-                    enabled: false
-                    future_format: '@interval hence'
-                    past_format: '@interval ago'
-                    granularity: 2
-                    refresh: 60
-                third_party_settings: {  }
-            weight: 1
             additional: {  }
         third_party_settings: {  }
       -
@@ -264,7 +233,7 @@ third_party_settings:
               provider: views
               context_mapping: {  }
               views_label: ''
-              items_per_page: none
+              items_per_page: 0
             weight: 1
             additional: {  }
           b5a1db7e-76fc-49db-9002-335c2b7962cd:
@@ -277,7 +246,7 @@ third_party_settings:
               provider: views
               context_mapping: {  }
               views_label: ''
-              items_per_page: none
+              items_per_page: 0
             weight: 0
             additional: {  }
         third_party_settings: {  }
@@ -466,4 +435,5 @@ hidden:
   field_link: true
   geoimage_caption: true
   langcode: true
+  search_api_excerpt: true
   uuid: true

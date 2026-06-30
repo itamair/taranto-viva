@@ -384,7 +384,7 @@ display:
               views_slideshow_controls:
                 enable: true
                 weight: '1'
-                hide_on_single_slide: '0'
+                hide_on_single_slide: '1'
                 type: views_slideshow_controls_text
               views_slideshow_slide_counter:
                 enable: false

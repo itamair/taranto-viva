@@ -176,10 +176,10 @@ div.image-wrapper {
 }
 
 /* line 169, ../sass/common.scss */
+.views-field.views-field-geofield-googlemaps-link a,
 .field--name-geofield-googlemaps-link .field__item {
   display: inline;
   margin: 0 10px 0 0;
-  font-size: 0.8rem;
 }
 
 /* line 177, ../sass/common.scss */
