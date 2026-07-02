@@ -1,4 +1,33 @@
-.paragraph.paragraph--type--layout-section .paragraph--type--title {
-  font-size: 2rem;
-  font-weight: bold;
+// Layout Paragraphs Widget
+.lp-builder .layout__region {
+  padding: 0 8px;
 }
+
+.layout {
+  .paragraph--type--title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-block-end: 14px
+  }
+
+  .paragraph {
+    h1, h2, h3, h4, h5, h6 {
+      margin-block-start: 12px;
+      margin-block-end: 20px
+    }
+    p, ul {
+      display: block;
+      margin-block-start: 4px !important;
+      margin-block-end: 10px !important;
+    }
+
+    hr {
+      height: 1px;
+      margin: 16px 0;
+      padding: 0;
+      border: none;
+      background: rgb(128, 128, 128);;
+    }
+  }
+}
+

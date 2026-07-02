@@ -1,0 +1,10 @@
+name: Custom Layouts
+type: module
+description: Provides additional Layouts.
+package: Custom
+core_version_requirement: ^9 || ^10 || ^11
+
+# Required modules
+dependencies:
+  - drupal:layout_discovery
+  - layout_paragraphs:layout_paragraphs

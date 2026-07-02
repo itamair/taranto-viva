@@ -73,13 +73,19 @@ function geofield_311_leaflet_map_info() {
         'options' => [
           'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
         ],
-
       ],
       'Stadia Alidade Dark' => [
         'type' => 'vector',
         'urlTemplate' => '//tiles.stadiamaps.com/styles/alidade_smooth_dark.json',
         'options' => [
           'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+        ],
+      ],
+      'Taranto-Viva Topomaps' => [
+        'type' => 'vector',
+        'urlTemplate' => '//api.maptiler.com/maps/019f2315-d543-7f3f-9897-7ea272fb2007/style.json?key=OIQHXCpngQEP6dfvC5nq',
+        'options' => [
+          'attribution' => '&copy; <a href="https://www.maptiler.com/">Map Tiler</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
         ],
       ],
       'Openstreetmap' => [

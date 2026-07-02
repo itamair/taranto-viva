@@ -1,5 +1,30 @@
-/* line 1, ../sass/layout_paragraphs.scss */
-.paragraph.paragraph--type--layout-section .paragraph--type--title {
+/* line 2, ../sass/layout_paragraphs.scss */
+.lp-builder .layout__region {
+  padding: 0 8px;
+}
+
+/* line 7, ../sass/layout_paragraphs.scss */
+.layout .paragraph--type--title {
   font-size: 2rem;
   font-weight: bold;
+  margin-block-end: 14px;
+}
+/* line 14, ../sass/layout_paragraphs.scss */
+.layout .paragraph h1, .layout .paragraph h2, .layout .paragraph h3, .layout .paragraph h4, .layout .paragraph h5, .layout .paragraph h6 {
+  margin-block-start: 12px;
+  margin-block-end: 20px;
+}
+/* line 18, ../sass/layout_paragraphs.scss */
+.layout .paragraph p, .layout .paragraph ul {
+  display: block;
+  margin-block-start: 4px !important;
+  margin-block-end: 10px !important;
+}
+/* line 24, ../sass/layout_paragraphs.scss */
+.layout .paragraph hr {
+  height: 1px;
+  margin: 16px 0;
+  padding: 0;
+  border: none;
+  background: gray;
 }

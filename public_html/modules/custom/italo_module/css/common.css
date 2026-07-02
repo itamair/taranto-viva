@@ -369,3 +369,8 @@ div.image-wrapper {
 .views_slideshow_controls_text span {
   margin-right: 10%;
 }
+
+/* line 349, ../sass/common.scss */
+.field--name-field-image-caption p, .field--name-field-image-caption a {
+  color: grey !important;
+}

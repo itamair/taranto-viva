@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for circolovela_azimuth module.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function custom_layouts_page_attachments(array &$page) {
+  $page['#attached']['library'][] = 'custom_layouts/common';
+}

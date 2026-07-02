@@ -17,6 +17,8 @@ settings:
   advanced:
     prompt: 'Translate from %source% into %target% language'
     max_tokens: 4096
+    rate_limit_delay: 300
+    max_attempts: 3
 remote_languages_mappings:
   en: en
   it: it

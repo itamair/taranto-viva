@@ -344,3 +344,9 @@ div.image-wrapper {
     margin-right: 10%;
   }
 }
+
+.field--name-field-image-caption {
+  p, a {
+    color: grey !important;
+  }
+}

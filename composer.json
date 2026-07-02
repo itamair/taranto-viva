@@ -284,6 +284,9 @@
             },
             "drupal/ai": {
                 "#3580332 Error /ai_automators/src/PluginBaseClasses/VideoToText.php": "https://www.drupal.org/files/issues/2026-03-19/ai-videototext-shell-exec-fix%20%281%29.patch"
+            },
+            "drupal/feeds_ex":{
+                "#3590881 add support for PHP 8.5 - jsonpath ^1.0": "https://git.drupalcode.org/project/feeds_ex/-/merge_requests/60/diffs.patch"
             }
         }
     },

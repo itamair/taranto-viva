@@ -817,3 +817,12 @@ function italo_module_preprocess_field(array &$variables): void {
   }
 }
 
+
+/**
+ * Implements hook_field_widget_complete_form_alter().
+ */
+function italo_module_field_widget_complete_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, array $context): void {
+  if ($context['widget']->getPluginId() === 'layout_paragraphs') {
+    $field_widget_complete_form['#attached']['library'][] = 'italo_module/layout_paragraphs';
+  }
+}

@@ -1,0 +1,30 @@
+# Common layouts library.
+common:
+  css:
+    component:
+      css/common.css: {}
+
+onecol:
+  css:
+    theme:
+      layouts/onecol/onecol.css: {}
+
+twocol:
+  css:
+    theme:
+      layouts/twocol/twocol.css: {}
+
+twocol_65_35:
+  css:
+    theme:
+      layouts/twocol_65_35/twocol_65_35.css: {}
+
+twocol_35_65:
+  css:
+    theme:
+      layouts/twocol_35_65/twocol_35_65.css: {}
+
+twocol_60_40:
+  css:
+    theme:
+      layouts/twocol_60_40/twocol_60_40.css: {}

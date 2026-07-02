@@ -1,0 +1,96 @@
+onecol:
+  label: 'One column'
+  path: layouts/onecol
+  template: layout--onecol
+  library: custom_layouts/onecol
+  category: 'Custom Layouts'
+  default_region: content
+  icon_map:
+    - [content]
+  regions:
+    content:
+      label: Content
+
+twocol:
+  label: 'Two columns'
+  path: layouts/twocol
+  template: layout--twocol
+  library: custom_layouts/twocol
+  category: 'Custom Layouts'
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    bottom:
+      label: Bottom
+
+twocol_65_35:
+  label: 'Two columns 65|35'
+  path: layouts/twocol_65_35
+  template: layout--twocol-65-35
+  library: custom_layouts/twocol_65_35
+  category: 'Custom Layouts'
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    bottom:
+      label: Bottom
+
+twocol_60_40:
+  label: 'Two columns 60|40'
+  path: layouts/twocol_60_40
+  template: layout--twocol-60-40
+  library: custom_layouts/twocol_60_40
+  category: 'Custom Layouts'
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    bottom:
+      label: Bottom
+
+twocol_35_65:
+  label: 'Two columns 35|65'
+  path: layouts/twocol_35_65
+  template: layout--twocol-35-65
+  library: custom_layouts/twocol_35_65
+  category: 'Custom Layouts'
+  default_region: first
+  icon_map:
+    - [top]
+    - [first, second]
+    - [bottom]
+  regions:
+    top:
+      label: Top
+    first:
+      label: First
+    second:
+      label: Second
+    bottom:
+      label: Bottom
