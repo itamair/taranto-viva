@@ -8,7 +8,6 @@ dependencies:
     - node.type.page
   module:
     - layout_paragraphs
-    - text
     - user
 _core:
   default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
@@ -17,13 +16,6 @@ targetEntityType: node
 bundle: page
 mode: default
 content:
-  body:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_components:
     type: layout_paragraphs_builder
     label: hidden
@@ -37,14 +29,15 @@ content:
       empty_message: ''
       conversion: true
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 1
     region: content
 hidden:
+  body: true
   langcode: true
   search_api_excerpt: true
   uuid: true

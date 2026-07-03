@@ -17,7 +17,7 @@ id: node.page.body
 field_name: body
 entity_type: node
 bundle: page
-label: Body
+label: 'Body (for RAG indexing)'
 description: ''
 required: false
 translatable: true
