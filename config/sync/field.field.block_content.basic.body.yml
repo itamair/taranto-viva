@@ -13,7 +13,7 @@ id: block_content.basic.body
 field_name: body
 entity_type: block_content
 bundle: basic
-label: Body
+label: 'Body (for RAG indexing)'
 description: ''
 required: false
 translatable: true
