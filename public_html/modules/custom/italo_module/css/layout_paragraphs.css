@@ -7,20 +7,22 @@
 .layout .paragraph--type--title {
   font-size: 2rem;
   font-weight: bold;
+  line-height: 2.6rem;
   margin-block-end: 14px;
 }
-/* line 14, ../sass/layout_paragraphs.scss */
+/* line 15, ../sass/layout_paragraphs.scss */
 .layout .paragraph h1, .layout .paragraph h2, .layout .paragraph h3, .layout .paragraph h4, .layout .paragraph h5, .layout .paragraph h6 {
   margin-block-start: 12px;
   margin-block-end: 20px;
+  line-height: 2rem;
 }
-/* line 18, ../sass/layout_paragraphs.scss */
+/* line 20, ../sass/layout_paragraphs.scss */
 .layout .paragraph p, .layout .paragraph ul {
   display: block;
   margin-block-start: 4px !important;
   margin-block-end: 10px !important;
 }
-/* line 24, ../sass/layout_paragraphs.scss */
+/* line 26, ../sass/layout_paragraphs.scss */
 .layout .paragraph hr {
   height: 1px;
   margin: 16px 0;

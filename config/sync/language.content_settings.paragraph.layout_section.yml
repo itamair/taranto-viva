@@ -1,9 +1,9 @@
-uuid: f42cbe3a-73b2-4698-9ab9-f95a3bfb8654
-langcode: it
+uuid: 096b0445-f285-4639-a811-0844806fb9c9
+langcode: en
 status: true
 dependencies:
   config:
-    - media.type.image_with_ocr_description
+    - paragraphs.paragraphs_type.layout_section
   module:
     - content_translation
 third_party_settings:
@@ -11,8 +11,8 @@ third_party_settings:
     enabled: false
     bundle_settings:
       untranslatable_fields_hide: '0'
-id: media.image_with_ocr_description
-target_entity_type_id: media
-target_bundle: image_with_ocr_description
+id: paragraph.layout_section
+target_entity_type_id: paragraph
+target_bundle: layout_section
 default_langcode: site_default
 language_alterable: false

@@ -1,0 +1,20 @@
+uuid: be392b4e-e1c4-4cab-bba7-787bfd74840d
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image_with_ocr_description
+  module:
+    - path
+id: media.image_with_ocr_description.path
+field_name: path
+entity_type: media
+bundle: image_with_ocr_description
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

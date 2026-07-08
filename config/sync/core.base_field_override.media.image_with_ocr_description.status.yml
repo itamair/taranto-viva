@@ -1,0 +1,22 @@
+uuid: ca8bfef0-dd99-4202-b11b-d8f38492f772
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image_with_ocr_description
+id: media.image_with_ocr_description.status
+field_name: status
+entity_type: media
+bundle: image_with_ocr_description
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -7,13 +7,15 @@
   .paragraph--type--title {
     font-size: 2rem;
     font-weight: bold;
+    line-height: 2.6rem;
     margin-block-end: 14px
   }
 
   .paragraph {
     h1, h2, h3, h4, h5, h6 {
       margin-block-start: 12px;
-      margin-block-end: 20px
+      margin-block-end: 20px;
+      line-height: 2rem;
     }
     p, ul {
       display: block;

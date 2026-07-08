@@ -1,0 +1,20 @@
+uuid: b1ee87d7-b9fa-4f09-9f29-2917d8480afd
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image_with_ocr_description
+id: media.image_with_ocr_description.name
+field_name: name
+entity_type: media
+bundle: image_with_ocr_description
+label: Name
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string
