@@ -144,6 +144,7 @@ module:
   rate: 0
   react_maplibre_map: 0
   readmore: 0
+  redirect: 0
   replicate: 0
   replicate_ui: 0
   rest: 0

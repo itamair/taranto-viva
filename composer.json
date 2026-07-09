@@ -137,6 +137,7 @@
         "drupal/range": "^1.5",
         "drupal/rate": "^3.2",
         "drupal/readmore": "^2.0@alpha",
+        "drupal/redirect": "^1.13",
         "drupal/replicate": "^1.0",
         "drupal/replicate_ui": "^1.0",
         "drupal/revision_manager": "^1.0@beta",
