@@ -1,7 +1,21 @@
 uuid: 58869c3e-8d42-4f1a-8d5b-b55c53c1cf8d
 langcode: it
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - revision_manager
+third_party_settings:
+  revision_manager:
+    age:
+      id: age
+      status: false
+      settings:
+        age: 6
+    amount:
+      id: amount
+      status: true
+      settings:
+        amount: 3
 _core:
   default_config_hash: 6Qope5wG7HUpV0tPOBMtDI_GZkHFcF1Xj4hgD9Cu_hM
 id: image
@@ -12,6 +26,7 @@ queue_thumbnail_downloads: false
 new_revision: true
 source_configuration:
   source_field: field_media_image
-  gather_exif: 0
+  gather_exif: '1'
 field_map:
   name: name
+  created: field_exif_creation_date

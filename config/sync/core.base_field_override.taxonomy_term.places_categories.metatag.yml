@@ -1,0 +1,20 @@
+uuid: ad332f2f-491f-4ea8-9006-14213f8dbda1
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.places_categories
+  module:
+    - metatag
+id: taxonomy_term.places_categories.metatag
+field_name: metatag
+entity_type: taxonomy_term
+bundle: places_categories
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed

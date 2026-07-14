@@ -1,0 +1,18 @@
+uuid: b3e876c9-b789-40ca-b909-347dcbb1dbdd
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.places_categories
+id: taxonomy_term.places_categories.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: places_categories
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -78,11 +78,12 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: author
+                type: entity_reference_label
                 label: inline
-                settings: {  }
+                settings:
+                  link: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           d2ece69c-81f0-427c-a20b-b5cfa471fc8f:
             uuid: d2ece69c-81f0-427c-a20b-b5cfa471fc8f
@@ -101,27 +102,6 @@ third_party_settings:
                   url_plain: false
                   rel: ''
                   target: ''
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          fd91e8fa-6366-4656-b03b-704bbf6262a5:
-            uuid: fd91e8fa-6366-4656-b03b-704bbf6262a5
-            region: top
-            configuration:
-              id: 'field_block:node:territorial_report:field_date_range'
-              label: 'Date Range'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: custom_daterange
-                label: inline
-                settings:
-                  timezone_override: ''
-                  date_format: d-m-Y
-                  separator: '-'
                 third_party_settings: {  }
             weight: 2
             additional: {  }
@@ -234,6 +214,27 @@ third_party_settings:
                   empty_view_title: hidden
                 third_party_settings: {  }
             weight: 0
+            additional: {  }
+          fd91e8fa-6366-4656-b03b-704bbf6262a5:
+            uuid: fd91e8fa-6366-4656-b03b-704bbf6262a5
+            region: top
+            configuration:
+              id: 'field_block:node:territorial_report:field_date_range'
+              label: 'Date Range'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: custom_daterange
+                label: inline
+                settings:
+                  timezone_override: ''
+                  date_format: d-m-Y
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
         third_party_settings: {  }
 id: node.territorial_report.default

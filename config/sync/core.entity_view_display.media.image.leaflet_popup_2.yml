@@ -1,30 +1,50 @@
-uuid: 97409682-1456-4fb4-a79c-9b7319874d31
+uuid: 14047bd0-71f0-452a-a9d5-90a28be87cba
 langcode: it
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.media_library
+    - core.entity_view_mode.media.leaflet_popup_2
     - field.field.media.image.ai_automator_status
     - field.field.media.image.field_exif_creation_date
     - field.field.media.image.field_image_caption
     - field.field.media.image.field_media_image
     - field.field.media.image.field_tags
-    - image.style.medium
+    - image.style.thumbnail
     - media.type.image
   module:
+    - datetime
     - svg_image
-    - text
-_core:
-  default_config_hash: ILLWu5KFvbsX6J7sh2Itd4w8-lBBRhR_H8ZrmQiN2yo
-id: media.image.media_library
+    - user
+id: media.image.leaflet_popup_2
 targetEntityType: media
 bundle: image
-mode: media_library
+mode: leaflet_popup_2
 content:
-  field_image_caption:
-    type: text_default
+  created:
+    type: timestamp
     label: hidden
-    settings: {  }
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_exif_creation_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: taranto_viva_medium
     third_party_settings: {  }
     weight: 1
     region: content
@@ -33,7 +53,7 @@ content:
     label: hidden
     settings:
       image_link: ''
-      image_style: medium
+      image_style: thumbnail
       image_loading:
         attribute: lazy
       svg_attributes:
@@ -41,12 +61,18 @@ content:
         height: null
       svg_render_as_image: true
     third_party_settings: {  }
+    weight: 5
+    region: content
+  uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 0
     region: content
 hidden:
   ai_automator_status: true
-  created: true
-  field_exif_creation_date: true
+  field_image_caption: true
   field_media_image: true
   field_tags: true
   geofield_googlemaps_link: true
@@ -54,6 +80,4 @@ hidden:
   langcode: true
   name: true
   search_api_excerpt: true
-  territorial_report_active_level: true
-  uid: true
   uuid: true

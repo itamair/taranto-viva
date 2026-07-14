@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.media.leaflet_popup
     - field.field.media.image.ai_automator_status
+    - field.field.media.image.field_exif_creation_date
     - field.field.media.image.field_image_caption
     - field.field.media.image.field_media_image
     - field.field.media.image.field_tags
@@ -38,6 +39,7 @@ content:
 hidden:
   ai_automator_status: true
   created: true
+  field_exif_creation_date: true
   field_image_caption: true
   field_tags: true
   geofield_googlemaps_link: true

@@ -1,0 +1,25 @@
+uuid: f88a713d-c3f9-48cb-bdf2-d8e3950f35f2
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_exif_creation_date
+    - media.type.image
+  module:
+    - datetime
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: media.image.field_exif_creation_date
+field_name: field_exif_creation_date
+entity_type: media
+bundle: image
+label: 'Exif Creation Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

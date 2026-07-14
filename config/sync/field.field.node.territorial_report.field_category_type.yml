@@ -8,6 +8,16 @@ dependencies:
     - taxonomy.vocabulary.places_categories
   content:
     - 'taxonomy_term:places_categories:f71f0fc8-2dd2-4c55-88f9-56da249d0bf8'
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
 id: node.territorial_report.field_category_type
 field_name: field_category_type
 entity_type: node
@@ -15,7 +25,7 @@ bundle: territorial_report
 label: 'Tipo Categoria'
 description: ''
 required: true
-translatable: false
+translatable: true
 default_value:
   -
     target_uuid: f71f0fc8-2dd2-4c55-88f9-56da249d0bf8
