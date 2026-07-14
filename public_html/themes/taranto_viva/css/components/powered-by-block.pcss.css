@@ -6,6 +6,7 @@
 @import "../base/media-queries.pcss.css";
 
 .block-system-powered-by-block {
+  text-align: right;
   letter-spacing: 0.02em;
   font-size: 14px;
   line-height: var(--sp);
