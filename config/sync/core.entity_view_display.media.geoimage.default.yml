@@ -15,7 +15,6 @@ dependencies:
   module:
     - datetime
     - field_group
-    - link
     - photoswipe
     - photoswipe_dynamic_caption
     - text
@@ -80,18 +79,6 @@ content:
         photoswipe_caption_custom: null
     weight: 1
     region: content
-  geofield_googlemaps_link:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 2
-    region: content
 hidden:
   created: true
   field_address: true
@@ -99,6 +86,7 @@ hidden:
   field_geofield: true
   field_place_type: true
   field_project_namespace: true
+  geofield_googlemaps_link: true
   geoimage_caption: true
   langcode: true
   name: true

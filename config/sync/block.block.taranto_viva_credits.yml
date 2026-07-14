@@ -11,7 +11,7 @@ dependencies:
 id: taranto_viva_credits
 theme: taranto_viva
 region: footer_top
-weight: -10
+weight: -8
 provider: null
 plugin: 'block_content:063c2182-4141-4a74-883f-eb7e99d69c01'
 settings:

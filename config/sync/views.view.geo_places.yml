@@ -3270,6 +3270,7 @@ display:
             geoplace: geoplace
             geojson_geometry: geojson_geometry
             map_label: map_label
+            territorial_report: territorial_report
           group: 1
           exposed: false
           expose:

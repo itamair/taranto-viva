@@ -1,0 +1,23 @@
+uuid: edda4694-8597-4373-a100-dea4a3d7820a
+langcode: it
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:cd127702-7479-4e61-a87e-2afde165b6f2'
+  module:
+    - block_content
+  theme:
+    - taranto_viva
+id: taranto_viva_contacts
+theme: taranto_viva
+region: footer_top
+weight: -11
+provider: null
+plugin: 'block_content:cd127702-7479-4e61-a87e-2afde165b6f2'
+settings:
+  id: 'block_content:cd127702-7479-4e61-a87e-2afde165b6f2'
+  label: Contacts
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

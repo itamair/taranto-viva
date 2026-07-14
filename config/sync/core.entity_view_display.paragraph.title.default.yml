@@ -5,16 +5,18 @@ dependencies:
   config:
     - field.field.paragraph.title.field_title
     - paragraphs.paragraphs_type.title
+  module:
+    - italo_module
 id: paragraph.title.default
 targetEntityType: paragraph
 bundle: title
 mode: default
 content:
   field_title:
-    type: string
+    type: text_header
     label: hidden
     settings:
-      link_to_entity: false
+      level: '3'
     third_party_settings: {  }
     weight: 0
     region: content

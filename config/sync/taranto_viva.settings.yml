@@ -9,7 +9,7 @@ features:
   favicon: true
   node_user_picture: false
 logo:
-  path: 'public://Logo-taranto-viva-com.png'
+  path: 'public://Logo-taranto-viva-com_0.png'
   use_default: false
 third_party_settings:
   shortcut:

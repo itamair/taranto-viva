@@ -25,9 +25,9 @@ dependencies:
     - views.view.content_media_images
   module:
     - comment
+    - custom_layouts
     - datetime_range
     - layout_builder
-    - layout_discovery
     - link
     - options
     - text
@@ -40,7 +40,7 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: layout_onecol
+        layout_id: twocol
         layout_settings:
           label: ''
           context_mapping: {  }
@@ -49,7 +49,7 @@ third_party_settings:
         components:
           5d20fd3d-0492-4228-9674-b124103b556a:
             uuid: 5d20fd3d-0492-4228-9674-b124103b556a
-            region: content
+            region: top
             configuration:
               id: 'field_block:node:territorial_report:field_category_type'
               label: 'Tipo Categoria'
@@ -68,7 +68,7 @@ third_party_settings:
             additional: {  }
           19f064da-4234-4c77-9d39-cd9b84d8937a:
             uuid: 19f064da-4234-4c77-9d39-cd9b84d8937a
-            region: content
+            region: top
             configuration:
               id: 'field_block:node:territorial_report:uid'
               label: 'Authored by'
@@ -82,11 +82,11 @@ third_party_settings:
                 label: inline
                 settings: {  }
                 third_party_settings: {  }
-            weight: 2
+            weight: 1
             additional: {  }
           d2ece69c-81f0-427c-a20b-b5cfa471fc8f:
             uuid: d2ece69c-81f0-427c-a20b-b5cfa471fc8f
-            region: content
+            region: bottom
             configuration:
               id: 'field_block:node:territorial_report:field_source_link'
               label_display: '0'
@@ -102,17 +102,32 @@ third_party_settings:
                   rel: ''
                   target: ''
                 third_party_settings: {  }
-            weight: 3
+            weight: 2
             additional: {  }
-        third_party_settings: {  }
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-        components:
+          fd91e8fa-6366-4656-b03b-704bbf6262a5:
+            uuid: fd91e8fa-6366-4656-b03b-704bbf6262a5
+            region: top
+            configuration:
+              id: 'field_block:node:territorial_report:field_date_range'
+              label: 'Date Range'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: custom_daterange
+                label: inline
+                settings:
+                  timezone_override: ''
+                  date_format: d-m-Y
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
           da044adf-281e-4076-9bc4-5295c58f080c:
             uuid: da044adf-281e-4076-9bc4-5295c58f080c
-            region: content
+            region: bottom
             configuration:
               id: 'field_block:node:territorial_report:body'
               label_display: '0'
@@ -123,11 +138,11 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 5
+            weight: 1
             additional: {  }
           a1038003-4f19-411b-b325-91bed338d265:
             uuid: a1038003-4f19-411b-b325-91bed338d265
-            region: content
+            region: bottom
             configuration:
               id: 'field_block:node:territorial_report:field_related_content'
               label: 'Related Content'
@@ -146,32 +161,21 @@ third_party_settings:
                     order: 0
                     limit: 0
                     offset: 0
-            weight: 6
+            weight: 3
             additional: {  }
-          fd91e8fa-6366-4656-b03b-704bbf6262a5:
-            uuid: fd91e8fa-6366-4656-b03b-704bbf6262a5
-            region: content
+          4cf47ea7-41b5-426b-8836-11ec33124157:
+            uuid: 4cf47ea7-41b5-426b-8836-11ec33124157
+            region: bottom
             configuration:
-              id: 'field_block:node:territorial_report:field_date_range'
-              label: 'Date Range'
+              id: 'extra_field_block:node:territorial_report:rate_thumbs_up_down'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: custom_daterange
-                label: inline
-                settings:
-                  timezone_override: ''
-                  date_format: d-m-Y
-                  separator: '-'
-                third_party_settings: {  }
             weight: 4
             additional: {  }
           5a99905b-eeb4-4f0f-9460-030c97d8f5cd:
             uuid: 5a99905b-eeb4-4f0f-9460-030c97d8f5cd
-            region: content
+            region: bottom
             configuration:
               id: 'extra_field_block:node:territorial_report:links'
               label: Links
@@ -182,26 +186,34 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 7
+            weight: 5
             additional: {  }
-          4cf47ea7-41b5-426b-8836-11ec33124157:
-            uuid: 4cf47ea7-41b5-426b-8836-11ec33124157
-            region: content
+          691f046e-1371-4c3a-ae73-41218032b7c9:
+            uuid: 691f046e-1371-4c3a-ae73-41218032b7c9
+            region: first
             configuration:
-              id: 'extra_field_block:node:territorial_report:rate_thumbs_up_down'
+              id: 'views_block:content_media_images-block_content_media_images'
+              label: ''
               label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-            weight: 8
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: 0
+            weight: 0
             additional: {  }
-        third_party_settings: {  }
-      -
-        layout_id: layout_twocol_section
-        layout_settings:
-          label: ''
-          context_mapping: {  }
-          column_widths: 50-50
-        components:
+          b5a1db7e-76fc-49db-9002-335c2b7962cd:
+            uuid: b5a1db7e-76fc-49db-9002-335c2b7962cd
+            region: second
+            configuration:
+              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: 0
+            weight: 1
+            additional: {  }
           68d5338e-e684-4c41-92f6-3f1a403ff4ea:
             uuid: 68d5338e-e684-4c41-92f6-3f1a403ff4ea
             region: second
@@ -220,59 +232,6 @@ third_party_settings:
                   view_title: hidden
                   always_build_output: false
                   empty_view_title: hidden
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
-          691f046e-1371-4c3a-ae73-41218032b7c9:
-            uuid: 691f046e-1371-4c3a-ae73-41218032b7c9
-            region: first
-            configuration:
-              id: 'views_block:content_media_images-block_content_media_images'
-              label: ''
-              label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: 0
-            weight: 1
-            additional: {  }
-          b5a1db7e-76fc-49db-9002-335c2b7962cd:
-            uuid: b5a1db7e-76fc-49db-9002-335c2b7962cd
-            region: second
-            configuration:
-              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
-              label: ''
-              label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: 0
-            weight: 0
-            additional: {  }
-        third_party_settings: {  }
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-          context_mapping: {  }
-        components:
-          20139230-1c13-4d9a-90fa-071e868c3866:
-            uuid: 20139230-1c13-4d9a-90fa-071e868c3866
-            region: content
-            configuration:
-              id: 'field_block:node:territorial_report:field_comments'
-              label: Comments
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: comment_default
-                label: above
-                settings:
-                  view_mode: default
-                  pager_id: 0
                 third_party_settings: {  }
             weight: 0
             additional: {  }

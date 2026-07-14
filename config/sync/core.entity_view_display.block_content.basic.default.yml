@@ -6,7 +6,7 @@ dependencies:
     - block_content.type.basic
     - field.field.block_content.basic.body
   module:
-    - readmore
+    - text
 _core:
   default_config_hash: orJpHUlAc_wiQLMUjIgEJXGeiqylGHMPcmNRjGtct-M
 id: block_content.basic.default
@@ -15,15 +15,9 @@ bundle: basic
 mode: default
 content:
   body:
-    type: readmore
+    type: text_default
     label: hidden
-    settings:
-      trim_length: 100
-      trim_on_break: false
-      show_readmore: true
-      show_readless: true
-      ellipsis: true
-      wordsafe: true
+    settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content

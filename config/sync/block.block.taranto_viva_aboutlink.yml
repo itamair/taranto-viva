@@ -1,0 +1,23 @@
+uuid: 3f73a017-6135-4229-b90b-c03a57ef3a00
+langcode: it
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:d2388e63-eb22-4b28-b058-9dd145cf0a1b'
+  module:
+    - block_content
+  theme:
+    - taranto_viva
+id: taranto_viva_aboutlink
+theme: taranto_viva
+region: footer_top
+weight: -12
+provider: null
+plugin: 'block_content:d2388e63-eb22-4b28-b058-9dd145cf0a1b'
+settings:
+  id: 'block_content:d2388e63-eb22-4b28-b058-9dd145cf0a1b'
+  label: 'About Link'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

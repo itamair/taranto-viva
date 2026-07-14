@@ -1,0 +1,23 @@
+uuid: 35f1e5bb-0f28-4f0d-8059-201e8e7eda7d
+langcode: it
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:e53b771c-d6af-484c-9f48-c6c79a4d5f43'
+  module:
+    - block_content
+  theme:
+    - taranto_viva
+id: taranto_viva_privacypolicylink
+theme: taranto_viva
+region: footer_top
+weight: -9
+provider: null
+plugin: 'block_content:e53b771c-d6af-484c-9f48-c6c79a4d5f43'
+settings:
+  id: 'block_content:e53b771c-d6af-484c-9f48-c6c79a4d5f43'
+  label: 'Privacy Policy Link'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
