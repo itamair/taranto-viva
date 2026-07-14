@@ -8,12 +8,8 @@
   width: 100%;
   height: auto;
 }
-/* line 11, ../sass/common.scss */
-.layout .layout__region .paragraph {
-  padding: 10px 0;
-}
 
-/* line 19, ../sass/common.scss */
+/* line 16, ../sass/common.scss */
 .layout.container,
 .block-page-title-block.container {
   margin-left: auto;
@@ -22,22 +18,29 @@
   padding-right: 0;
 }
 
-/* line 29, ../sass/common.scss */
+/* line 26, ../sass/common.scss */
 .views-row .node--view-mode-teaser .field__item .node__content {
   padding-block-end: unset;
 }
 
-/* line 33, ../sass/common.scss */
+/* line 30, ../sass/common.scss */
 .layout--threecol-section > .layout__region {
   margin-block-end: unset !important;
 }
 
-/* line 37, ../sass/common.scss */
+/* line 34, ../sass/common.scss */
 .node--view-mode-teaser:after {
   border-top: none !important;
 }
 
-/* line 41, ../sass/common.scss */
+/* line 38, ../sass/common.scss */
 .paragraph--type--layout.paragraph--view-mode--default.js-lpb-component:hover {
   outline: 5px solid orange;
+}
+
+/* line 43, ../sass/common.scss */
+#block-taranto-viva-footerlinks a {
+  margin: 0 10px;
+  line-height: 2rem;
+  text-wrap: nowrap;
 }

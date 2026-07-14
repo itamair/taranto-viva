@@ -8,9 +8,6 @@
       width: 100%;
       height: auto;
     }
-    .paragraph {
-      padding: 10px 0;
-    }
   }
 }
 
@@ -40,4 +37,12 @@
 
 .paragraph--type--layout.paragraph--view-mode--default.js-lpb-component:hover {
   outline: 5px solid orange;
+}
+
+#block-taranto-viva-footerlinks {
+  a {
+    margin: 0 10px;
+    line-height: 2rem;
+    text-wrap: nowrap;
+  }
 }
