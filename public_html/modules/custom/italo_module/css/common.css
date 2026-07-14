@@ -172,7 +172,7 @@ div.image-wrapper {
 /* line 163, ../sass/common.scss */
 .field--name-field-image-caption {
   text-align: right;
-  font-size: 90%;
+  font-size: 70%;
 }
 
 /* line 169, ../sass/common.scss */
@@ -332,45 +332,35 @@ div.image-wrapper {
   width: 100px;
 }
 
-/**
- * @file
- * Region default layout.
- */
-@media (min-width: 62.5rem) {
-  /* line 316, ../sass/common.scss */
-  .region > * {
-    margin-block-end: var(--sp2) !important;
-  }
-}
-/* line 324, ../sass/common.scss */
+/* line 313, ../sass/common.scss */
 .readmore-summary p, .readmore-text p {
   margin-block-end: 8px !important;
 }
-/* line 327, ../sass/common.scss */
+/* line 316, ../sass/common.scss */
 .readmore-summary span, .readmore-text span {
   margin-left: 4px;
 }
-/* line 329, ../sass/common.scss */
+/* line 318, ../sass/common.scss */
 .readmore-summary span a, .readmore-text span a {
   margin-left: 6px;
 }
 
-/* line 336, ../sass/common.scss */
+/* line 325, ../sass/common.scss */
 #block-taranto-viva-page-title h1.title .bundle {
   font-size: small;
 }
 
-/* line 340, ../sass/common.scss */
+/* line 329, ../sass/common.scss */
 .views_slideshow_controls_text {
   display: flex;
   justify-content: center;
 }
-/* line 343, ../sass/common.scss */
+/* line 332, ../sass/common.scss */
 .views_slideshow_controls_text span {
   margin-right: 10%;
 }
 
-/* line 349, ../sass/common.scss */
+/* line 338, ../sass/common.scss */
 .field--name-field-image-caption p, .field--name-field-image-caption a {
   color: grey !important;
 }

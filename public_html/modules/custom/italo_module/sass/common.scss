@@ -162,7 +162,7 @@ div.image-wrapper {
 
 .field--name-field-image-caption {
   text-align: right;
-  font-size: 90%;
+  font-size: 70%;
 }
 
 // GeofieldGoogleMapsLinkFieldItemList.
@@ -305,17 +305,6 @@ div.image-wrapper {
   }
   .views-field-field-html-symbol {
     width: 100px;
-  }
-}
-
-/**
- * @file
- * Region default layout.
- */
-@media (min-width: 62.5rem) {
-  .region > * {
-    margin-block-end: var(--sp2) !important;
-
   }
 }
 
