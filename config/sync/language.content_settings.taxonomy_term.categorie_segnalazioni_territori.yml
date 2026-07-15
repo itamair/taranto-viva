@@ -1,0 +1,11 @@
+uuid: e0515a24-d038-433c-8e92-9bd28ca1192d
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_segnalazioni_territori
+id: taxonomy_term.categorie_segnalazioni_territori
+target_entity_type_id: taxonomy_term
+target_bundle: categorie_segnalazioni_territori
+default_langcode: site_default
+language_alterable: false

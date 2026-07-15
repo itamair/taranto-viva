@@ -1,0 +1,9 @@
+uuid: f262fdd6-7ec7-488e-b38f-62b686a1caa0
+langcode: it
+status: true
+dependencies: {  }
+name: 'Categorie Segnalazioni Territoriali'
+vid: categorie_segnalazioni_territori
+description: null
+weight: 0
+new_revision: false

@@ -20,6 +20,8 @@ dependencies:
     - field.field.node.territorial_report.field_related_content
     - field.field.node.territorial_report.field_source_is_external
     - field.field.node.territorial_report.field_source_link
+    - field.field.node.territorial_report.field_sub_title
+    - field.field.node.territorial_report.field_tags
     - node.type.territorial_report
     - views.view.content_locations_addresses_and_google_maps_links
     - views.view.content_media_images
@@ -64,7 +66,7 @@ third_party_settings:
                 settings:
                   link: false
                 third_party_settings: {  }
-            weight: 0
+            weight: 1
             additional: {  }
           19f064da-4234-4c77-9d39-cd9b84d8937a:
             uuid: 19f064da-4234-4c77-9d39-cd9b84d8937a
@@ -83,7 +85,7 @@ third_party_settings:
                 settings:
                   link: false
                 third_party_settings: {  }
-            weight: 2
+            weight: 4
             additional: {  }
           d2ece69c-81f0-427c-a20b-b5cfa471fc8f:
             uuid: d2ece69c-81f0-427c-a20b-b5cfa471fc8f
@@ -103,7 +105,7 @@ third_party_settings:
                   rel: ''
                   target: ''
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           da044adf-281e-4076-9bc4-5295c58f080c:
             uuid: da044adf-281e-4076-9bc4-5295c58f080c
@@ -118,7 +120,7 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           a1038003-4f19-411b-b325-91bed338d265:
             uuid: a1038003-4f19-411b-b325-91bed338d265
@@ -141,17 +143,7 @@ third_party_settings:
                     order: 0
                     limit: 0
                     offset: 0
-            weight: 3
-            additional: {  }
-          4cf47ea7-41b5-426b-8836-11ec33124157:
-            uuid: 4cf47ea7-41b5-426b-8836-11ec33124157
-            region: bottom
-            configuration:
-              id: 'extra_field_block:node:territorial_report:rate_thumbs_up_down'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-            weight: 4
+            weight: 5
             additional: {  }
           5a99905b-eeb4-4f0f-9460-030c97d8f5cd:
             uuid: 5a99905b-eeb4-4f0f-9460-030c97d8f5cd
@@ -166,7 +158,7 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 5
+            weight: 7
             additional: {  }
           691f046e-1371-4c3a-ae73-41218032b7c9:
             uuid: 691f046e-1371-4c3a-ae73-41218032b7c9
@@ -234,7 +226,68 @@ third_party_settings:
                   date_format: d-m-Y
                   separator: '-'
                 third_party_settings: {  }
-            weight: 1
+            weight: 3
+            additional: {  }
+          dbe2a793-2bd3-468e-9622-baf4ea7a4152:
+            uuid: dbe2a793-2bd3-468e-9622-baf4ea7a4152
+            region: bottom
+            configuration:
+              id: 'field_block:node:territorial_report:field_link'
+              label: 'Web Links'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          864e9305-1769-404e-811b-f358104cb8a4:
+            uuid: 864e9305-1769-404e-811b-f358104cb8a4
+            region: top
+            configuration:
+              id: 'field_block:node:territorial_report:field_sub_title'
+              label: 'Sub Title'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_header
+                label: hidden
+                settings:
+                  level: '3'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          b48f5ba0-8b51-4ccb-bfc2-946d4e2517dc:
+            uuid: b48f5ba0-8b51-4ccb-bfc2-946d4e2517dc
+            region: bottom
+            configuration:
+              id: 'field_block:node:territorial_report:field_tags'
+              label: Tags
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 6
             additional: {  }
         third_party_settings: {  }
 id: node.territorial_report.default
@@ -393,6 +446,8 @@ hidden:
   active_level: true
   field_components: true
   field_link: true
+  field_sub_title: true
+  field_tags: true
   geoimage_caption: true
   langcode: true
   search_api_excerpt: true

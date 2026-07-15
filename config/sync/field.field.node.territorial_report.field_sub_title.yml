@@ -1,27 +1,24 @@
-uuid: 5ea630b4-e915-4b7e-adf8-b006c166d3c8
-langcode: en
+uuid: bafd9edc-a333-4ac3-8b15-fc89b9915684
+langcode: it
 status: true
 dependencies:
   config:
-    - field.storage.node.field_link
+    - field.storage.node.field_sub_title
     - node.type.territorial_report
   module:
-    - link
     - tmgmt_content
 third_party_settings:
   tmgmt_content:
     excluded: false
-id: node.territorial_report.field_link
-field_name: field_link
+id: node.territorial_report.field_sub_title
+field_name: field_sub_title
 entity_type: node
 bundle: territorial_report
-label: 'Web Links'
+label: 'Sub Title'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
-settings:
-  title: 1
-  link_type: 17
-field_type: link
+settings: {  }
+field_type: string

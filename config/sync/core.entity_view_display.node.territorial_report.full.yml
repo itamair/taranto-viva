@@ -19,6 +19,8 @@ dependencies:
     - field.field.node.territorial_report.field_related_content
     - field.field.node.territorial_report.field_source_is_external
     - field.field.node.territorial_report.field_source_link
+    - field.field.node.territorial_report.field_sub_title
+    - field.field.node.territorial_report.field_tags
     - node.type.territorial_report
   module:
     - text
@@ -84,6 +86,9 @@ hidden:
   field_related_content: true
   field_source_is_external: true
   field_source_link: true
+  field_sub_title: true
+  field_tags: true
   langcode: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true

@@ -19,6 +19,8 @@ dependencies:
     - field.field.node.territorial_report.field_related_content
     - field.field.node.territorial_report.field_source_is_external
     - field.field.node.territorial_report.field_source_link
+    - field.field.node.territorial_report.field_sub_title
+    - field.field.node.territorial_report.field_tags
     - node.type.territorial_report
   module:
     - text
@@ -35,6 +37,14 @@ content:
       trim_length: 600
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
     region: content
   geoimage_caption:
     type: string
@@ -75,6 +85,8 @@ hidden:
   field_related_content: true
   field_source_is_external: true
   field_source_link: true
+  field_sub_title: true
   langcode: true
+  search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true
