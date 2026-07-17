@@ -1,11 +1,11 @@
 visibility_pages: "<front>\r\nen\r\nit"
 enable: '1'
-title: 'Taranto Viva - Info'
+title: 'Taranto-Viva.com - Intro'
 body:
-  value: '<p><span class="s1">Taranto Viva</span> is an experimental project aiming to the promotion of the City of Taranto by combining territorial marketing with active civic engagement.</p>'
+  value: '<p><span class="s1">Taranto-Viva.com is a digital platform based on open source technologies dedicated to documenting, exploring, and marketing the city of Taranto through interactive maps, georeferenced digital content, and the civic sharing of territorial knowledge.</span></p><p><a href="https://www.taranto-viva.com/en/">Start</a> - <a href="https://www.taranto-viva.com/en/about"><span>More Info</span></a></p>'
   format: full_html
-height: '400'
-width: '400'
+height: '0'
+width: '500'
 check_cookie: '1'
 expire: '0'
 delay: '0'

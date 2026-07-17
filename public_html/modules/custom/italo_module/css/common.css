@@ -261,8 +261,8 @@ div.image-wrapper {
 
 /* line 243, ../sass/common.scss */
 #popup-message-window {
-  width: 600px !important;
-  height: 760px !important;
+  max-width: 80vw !important;
+  min-height: 70% !important;
 }
 
 @media only screen and (max-width: 1000px) {
