@@ -7,7 +7,7 @@ _core:
 id: gtm
 label: 'Google Tag Manager (legacy)'
 description: 'Manages and deploys marketing tags.'
-default: false
+default: true
 purposes:
   - cms
   - analytics

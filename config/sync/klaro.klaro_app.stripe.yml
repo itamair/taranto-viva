@@ -7,11 +7,11 @@ _core:
 id: stripe
 label: Stripe
 description: 'Stripe payment provider integration.'
-default: true
+default: false
 purposes:
   - cms
 cookies: {  }
-required: true
+required: false
 opt_out: true
 only_once: false
 contextual_consent_only: false
