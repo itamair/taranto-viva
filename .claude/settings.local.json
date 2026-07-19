@@ -55,7 +55,11 @@
       "Bash(awk 'NR>=1000 && NR<=1070')",
       "Bash(sed 's/\\\\.yml$//')",
       "WebFetch(domain:cdn.jsdelivr.net)",
-      "Bash(claude doctor *)"
+      "Bash(claude doctor *)",
+      "Bash(drush sql:query \"SELECT GROUP_CONCAT\\(table_name\\) FROM information_schema.columns WHERE table_schema = DATABASE\\(\\) AND column_name LIKE '%field%' AND table_name LIKE 'node__%';\")",
+      "Bash(drush sql:query \"SHOW TABLES;\")",
+      "Bash(drush sql:query \"SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE\\(\\) AND table_name LIKE 'node__field%';\")",
+      "Bash(drush sql:query *)"
     ],
     "deny": []
   },
