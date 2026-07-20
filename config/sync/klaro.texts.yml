@@ -7,7 +7,7 @@ consentModal:
   privacyPolicy:
     name: 'cookie policy'
     text: "To learn more, please read our {privacyPolicy}.\r\n"
-    url: 'internal:/cookie-policy'
+    url: 'https://www.taranto-viva.com/en/privacy-policy'
 consentNotice:
   title: 'Use of personal data and cookies'
   changeDescription: 'There were changes since your last visit, please update your consent.'
