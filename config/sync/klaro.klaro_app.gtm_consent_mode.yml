@@ -1,17 +1,21 @@
 uuid: 20748cd3-dd42-4307-b34e-03b0034542d9
 langcode: it
-status: false
+status: true
 dependencies: {  }
 _core:
   default_config_hash: yUNFm4zDnRj9Fj6If-Z-upP2C6_QCSQezNPiJyijyoE
 id: gtm_consent_mode
 label: 'Google Tag Manager'
-description: 'Manages and deploys marketing tags.'
+description: 'Loads Google Analytics to collect anonymised, aggregated usage statistics.'
 default: false
 purposes:
-  - advertising
-cookies: {  }
-required: true
+  - analytics
+cookies:
+  - _ga
+  - '_ga_*'
+  - _gid
+  - _gat
+required: false
 opt_out: false
 only_once: false
 contextual_consent_only: null
