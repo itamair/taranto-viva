@@ -60,7 +60,9 @@
       "Bash(drush sql:query \"SHOW TABLES;\")",
       "Bash(drush sql:query \"SELECT table_name FROM information_schema.tables WHERE table_schema = DATABASE\\(\\) AND table_name LIKE 'node__field%';\")",
       "Bash(drush sql:query *)",
-      "Bash(drush config:get klaro.settings)"
+      "Bash(drush config:get klaro.settings)",
+      "Bash(drush config:get *)",
+      "Bash(drush config:export -y)"
     ],
     "deny": []
   },
