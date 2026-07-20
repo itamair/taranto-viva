@@ -16,7 +16,7 @@ provider: null
 plugin: 'block_content:e53b771c-d6af-484c-9f48-c6c79a4d5f43'
 settings:
   id: 'block_content:e53b771c-d6af-484c-9f48-c6c79a4d5f43'
-  label: 'Privacy Policy Link'
+  label: 'Privacy & Cookies Policy Link'
   label_display: '0'
   provider: block_content
   view_mode: full

@@ -5,9 +5,9 @@ consentModal:
   title: 'Utilizzo di dati personali e cookies'
   description: "Prego scegliere i servizi e le applicazioni di terze parti per cui autorizzi il consenso.\r\n"
   privacyPolicy:
-    name: cookie-policy
+    name: 'Informativa sulla privacy e sui cookie'
     text: "Per più informazioni, fare riferimento alla {privacyPolicy}.\r\n"
-    url: 'https://www.taranto-viva.com/it/cookie-policy'
+    url: 'https://www.taranto-viva.com/it/informativa-sulla-privacy-e-sui-cookiey-policy'
 consentNotice:
   title: 'Utilizzo di dati personali e cookies'
   changeDescription: 'Ci sono stati dei cambiamenti dalla tua ultima visita, ti preghiamo di aggiornare il tuo consenso..'
@@ -29,8 +29,8 @@ service:
   required:
     title: '(sempre richiesto)'
     description: 'Questo servizio è sempre richiesto.'
-  purposes: Purposes
-  purpose: Purpose
+  purposes: Scopi
+  purpose: Scopo
 contextualConsent:
   acceptAlways: Sempre
   acceptOnce: 'Sì (questa volta)'

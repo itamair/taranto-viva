@@ -5,9 +5,9 @@ consentModal:
   title: 'Use of personal data and cookies'
   description: "Please choose the services and 3rd party applications we would like to use.\r\n"
   privacyPolicy:
-    name: Cookie-Policy
+    name: 'Privacy & Cookies Policy'
     text: "To learn more, please read our {privacyPolicy}.\r\n"
-    url: 'https://www.taranto-viva.com/en/cookie-policy'
+    url: 'https://www.taranto-viva.com/en/privacy-cookies-policy'
 consentNotice:
   title: 'Use of personal data and cookies'
   changeDescription: 'There were changes since your last visit, please update your consent.'
