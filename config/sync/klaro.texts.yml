@@ -1,20 +1,20 @@
 _core:
   default_config_hash: FHr6psQnRtYvXa9wwVyQsT3ytUtv2w9OvbvbdMDq4a0
-langcode: it
+langcode: en
 consentModal:
   title: 'Use of personal data and cookies'
   description: "Please choose the services and 3rd party applications we would like to use.\r\n"
   privacyPolicy:
-    name: 'cookie policy'
+    name: Cookie-Policy
     text: "To learn more, please read our {privacyPolicy}.\r\n"
-    url: 'https://www.taranto-viva.com/en/privacy-policy'
+    url: 'https://www.taranto-viva.com/en/cookie-policy'
 consentNotice:
   title: 'Use of personal data and cookies'
   changeDescription: 'There were changes since your last visit, please update your consent.'
   description: "We use cookies and process personal data for the following purposes: {purposes}.\r\n"
-  learnMore: Personalizza
-ok: Accetta
-save: Salva
+  learnMore: Customise
+ok: Accept
+save: Save
 decline: Decline
 close: Close
 acceptAll: 'Accept all'
