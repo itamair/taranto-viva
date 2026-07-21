@@ -5,7 +5,7 @@ dependencies: {  }
 _core:
   default_config_hash: rrSeECmRTHSq5ndTWg2FAj_DNC_IxbpKaLbqGORp7xY
 id: cms
-label: Functional
+label: Funzionale
 description: 'Store data (e.g. cookie for user session) in your browser (required to use this website).'
 default: true
 purposes:

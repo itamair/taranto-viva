@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
+    - field.field.node.geoplace.field_video
     - field.field.node.geoplace.field_when_to_visit
     - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
@@ -89,6 +90,7 @@ hidden:
   field_project_namespace: true
   field_related_content: true
   field_touristic_value: true
+  field_video: true
   field_when_to_visit: true
   field_why_to_visit: true
   field_zoom_visibility: true

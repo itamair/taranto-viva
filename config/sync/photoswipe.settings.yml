@@ -29,11 +29,10 @@ options:
   tapAction: toggle-controls
   doubleTapAction: zoom
   bgClickAction: close
-  closeTitle: Close
+  closeTitle: Chiudi
   zoomTitle: Zoom
   arrowPrevTitle: Previous
   arrowNextTitle: Next
-  downloadTitle: Download
   indexIndicatorSep: ' / '
   errorMsg: 'The image could not be loaded.'
   preload:
@@ -41,6 +40,7 @@ options:
     - 1
   preloaderDelay: 2000
   mainClass: null
+  downloadTitle: Download
   showHideOpacity: false
   maxSpreadZoom: 2
   closeOnScroll: true

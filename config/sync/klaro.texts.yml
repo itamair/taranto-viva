@@ -1,38 +1,38 @@
 _core:
   default_config_hash: FHr6psQnRtYvXa9wwVyQsT3ytUtv2w9OvbvbdMDq4a0
-langcode: en
+langcode: it
 consentModal:
-  title: 'Use of personal data and cookies'
-  description: "Please choose the services and 3rd party applications we would like to use.\r\n"
+  title: 'Utilizzo di dati personali e cookies'
+  description: "Prego scegliere i servizi e le applicazioni di terze parti per cui autorizzi il consenso.\r\n"
   privacyPolicy:
-    name: 'Privacy & Cookies Policy'
-    text: "To learn more, please read our {privacyPolicy}.\r\n"
-    url: 'https://www.taranto-viva.com/en/privacy-cookies-policy'
+    name: 'Informativa sulla privacy e sui cookie'
+    text: "Per più informazioni, fare riferimento alla {privacyPolicy}.\r\n"
+    url: 'https://www.taranto-viva.com/it/informativa-sulla-privacy-e-sui-cookiey-policy'
 consentNotice:
-  title: 'Use of personal data and cookies'
-  changeDescription: 'There were changes since your last visit, please update your consent.'
-  description: "We use cookies and process data in aggregate form for the following purposes: {purposes}.\r\n"
-  learnMore: Customise
-ok: Accept
-save: Save
-decline: Decline
-close: Close
-acceptAll: 'Accept all'
-acceptSelected: 'Accept selected'
+  title: 'Utilizzo di dati personali e cookies'
+  changeDescription: 'Ci sono stati dei cambiamenti dalla tua ultima visita, ti preghiamo di aggiornare il tuo consenso..'
+  description: "Utilizziamo i cookie e trattiamo i dati in forma aggregata per le seguenti finalità: {purposes}.\r\n"
+  learnMore: Personalizza
+ok: Accetta
+save: Salva
+decline: Rifiuta
+close: Chiudi
+acceptAll: 'Acetta tutto'
+acceptSelected: 'Accetta i selezionati'
 service:
   disableAll:
-    title: 'Toggle all services'
-    description: 'Use this switch to enable/disable all services.'
+    title: 'Attiva/disattiva tutti i servizi'
+    description: 'Utilizzare questo interruttore per abilitare/disabilitare tutti i servizi.'
   optOut:
     title: (opt-out)
-    description: 'This service is loaded by default (opt-out possible).'
+    description: 'Questo servizio è caricato di default (è possibile disattivarlo).'
   required:
-    title: '(always required)'
-    description: 'This service is always required.'
-  purposes: Purposes
-  purpose: Purpose
+    title: '(sempre richiesto)'
+    description: 'Questo servizio è sempre richiesto.'
+  purposes: Scopi
+  purpose: Scopo
 contextualConsent:
   acceptAlways: Sempre
-  acceptOnce: 'Yes (this time)'
-  description: 'Load external content supplied by {title}?'
+  acceptOnce: 'Sì (questa volta)'
+  description: 'Carica contenuti esterni forniti da {title}?'
 poweredBy: 'Powered by Klaro!'

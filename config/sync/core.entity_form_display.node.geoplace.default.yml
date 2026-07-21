@@ -24,6 +24,7 @@ dependencies:
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
+    - field.field.node.geoplace.field_video
     - field.field.node.geoplace.field_when_to_visit
     - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
@@ -54,7 +55,7 @@ third_party_settings:
       label: 'AI Generated Content'
       region: content
       parent_name: ''
-      weight: 17
+      weight: 18
       format_type: details
       format_settings:
         classes: ''
@@ -71,7 +72,7 @@ third_party_settings:
       label: 'OCR from Media Image'
       region: content
       parent_name: ''
-      weight: 18
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -98,7 +99,7 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 20
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -121,7 +122,7 @@ content:
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 16
+    weight: 17
     region: content
     settings:
       title: Paragraph
@@ -365,6 +366,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_video:
+    type: media_library_widget
+    weight: 16
+    region: content
+    settings:
+      media_types:
+        - remote_video
+        - video
+    third_party_settings: {  }
   field_when_to_visit:
     type: string_textarea
     weight: 15
@@ -415,13 +425,13 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 23
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 21
+    weight: 22
     region: content
     settings:
       display_label: true
@@ -432,20 +442,20 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 26
+    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 25
+    weight: 26
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 22
+    weight: 23
     region: content
     settings:
       display_label: true
@@ -459,19 +469,24 @@ content:
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 19
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 28
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   ai_automator_status: true
