@@ -27,14 +27,18 @@ a, a.link {
 */
 
 .user-profile-section .block-layout-builder {
-  margin-bottom: 10px;
   &.block-field-blockuseruseruser-picture {
-    margin-bottom: 20px;
+    margin-block-end: 20px;
   }
 }
 
 .block-layout-builder {
-  margin-bottom: 20px;
+  margin-block-end: 30px;
+  .block__title {
+    font-size: 100%;
+    color: inherit;
+  }
+
   &.node-title {
     font-size: 2.6rem;
     font-weight: bold;
