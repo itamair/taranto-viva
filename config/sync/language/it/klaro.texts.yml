@@ -11,7 +11,7 @@ consentModal:
 consentNotice:
   title: 'Utilizzo di dati personali e cookies'
   changeDescription: 'Ci sono stati dei cambiamenti dalla tua ultima visita, ti preghiamo di aggiornare il tuo consenso..'
-  description: "Utilizziamo i cookie e trattiamo i dati personali per le seguenti finalità: {purposes}.\r\n"
+  description: "Utilizziamo i cookie e trattiamo i dati in forma aggregata per le seguenti finalità: {purposes}.\r\n"
   learnMore: Personalizza
 ok: Accetta
 save: Salva

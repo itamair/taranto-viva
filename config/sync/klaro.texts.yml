@@ -11,7 +11,7 @@ consentModal:
 consentNotice:
   title: 'Use of personal data and cookies'
   changeDescription: 'There were changes since your last visit, please update your consent.'
-  description: "We use cookies and process personal data for the following purposes: {purposes}.\r\n"
+  description: "We use cookies and process data in aggregate form for the following purposes: {purposes}.\r\n"
   learnMore: Customise
 ok: Accept
 save: Save
