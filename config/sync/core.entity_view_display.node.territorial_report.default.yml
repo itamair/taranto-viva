@@ -22,14 +22,15 @@ dependencies:
     - field.field.node.territorial_report.field_source_link
     - field.field.node.territorial_report.field_sub_title
     - field.field.node.territorial_report.field_tags
+    - field.field.node.territorial_report.field_zoom_visibility
     - node.type.territorial_report
     - views.view.content_locations_addresses_and_google_maps_links
     - views.view.content_media_images
   module:
     - comment
-    - custom_layouts
     - datetime_range
     - layout_builder
+    - layout_discovery
     - link
     - options
     - text
@@ -42,16 +43,35 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: twocol
+        layout_id: layout_onecol
         layout_settings:
           label: ''
           context_mapping: {  }
           layout_builder_styles_style:
             user_profile_section_style: 0
         components:
+          864e9305-1769-404e-811b-f358104cb8a4:
+            uuid: 864e9305-1769-404e-811b-f358104cb8a4
+            region: content
+            configuration:
+              id: 'field_block:node:territorial_report:field_sub_title'
+              label: 'Sub Title'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_header
+                label: hidden
+                settings:
+                  level: '3'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
           5d20fd3d-0492-4228-9674-b124103b556a:
             uuid: 5d20fd3d-0492-4228-9674-b124103b556a
-            region: top
+            region: content
             configuration:
               id: 'field_block:node:territorial_report:field_category_type'
               label: 'Tipo Categoria'
@@ -68,9 +88,30 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          fd91e8fa-6366-4656-b03b-704bbf6262a5:
+            uuid: fd91e8fa-6366-4656-b03b-704bbf6262a5
+            region: content
+            configuration:
+              id: 'field_block:node:territorial_report:field_date_range'
+              label: 'Date Range'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: custom_daterange
+                label: inline
+                settings:
+                  timezone_override: ''
+                  date_format: d-m-Y
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
           19f064da-4234-4c77-9d39-cd9b84d8937a:
             uuid: 19f064da-4234-4c77-9d39-cd9b84d8937a
-            region: top
+            region: content
             configuration:
               id: 'field_block:node:territorial_report:uid'
               label: 'Authored by'
@@ -85,31 +126,11 @@ third_party_settings:
                 settings:
                   link: false
                 third_party_settings: {  }
-            weight: 4
-            additional: {  }
-          d2ece69c-81f0-427c-a20b-b5cfa471fc8f:
-            uuid: d2ece69c-81f0-427c-a20b-b5cfa471fc8f
-            region: bottom
-            configuration:
-              id: 'field_block:node:territorial_report:field_source_link'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: link
-                label: above
-                settings:
-                  trim_length: 80
-                  url_only: false
-                  url_plain: false
-                  rel: ''
-                  target: ''
-                third_party_settings: {  }
             weight: 3
             additional: {  }
           da044adf-281e-4076-9bc4-5295c58f080c:
             uuid: da044adf-281e-4076-9bc4-5295c58f080c
-            region: bottom
+            region: content
             configuration:
               id: 'field_block:node:territorial_report:body'
               label_display: '0'
@@ -120,46 +141,18 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 2
+            weight: 4
             additional: {  }
-          a1038003-4f19-411b-b325-91bed338d265:
-            uuid: a1038003-4f19-411b-b325-91bed338d265
-            region: bottom
-            configuration:
-              id: 'field_block:node:territorial_report:field_related_content'
-              label: 'Related Content'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings:
-                  field_formatter_range:
-                    order: 0
-                    limit: 0
-                    offset: 0
-            weight: 5
-            additional: {  }
-          5a99905b-eeb4-4f0f-9460-030c97d8f5cd:
-            uuid: 5a99905b-eeb4-4f0f-9460-030c97d8f5cd
-            region: bottom
-            configuration:
-              id: 'extra_field_block:node:territorial_report:links'
-              label: Links
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                settings: {  }
-                third_party_settings: {  }
-            weight: 7
-            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 50-50
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
           691f046e-1371-4c3a-ae73-41218032b7c9:
             uuid: 691f046e-1371-4c3a-ae73-41218032b7c9
             region: first
@@ -207,30 +200,38 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          fd91e8fa-6366-4656-b03b-704bbf6262a5:
-            uuid: fd91e8fa-6366-4656-b03b-704bbf6262a5
-            region: top
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
+          d2ece69c-81f0-427c-a20b-b5cfa471fc8f:
+            uuid: d2ece69c-81f0-427c-a20b-b5cfa471fc8f
+            region: content
             configuration:
-              id: 'field_block:node:territorial_report:field_date_range'
-              label: 'Date Range'
+              id: 'field_block:node:territorial_report:field_source_link'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
-                type: custom_daterange
-                label: inline
+                type: link
+                label: above
                 settings:
-                  timezone_override: ''
-                  date_format: d-m-Y
-                  separator: '-'
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: ''
+                  target: ''
                 third_party_settings: {  }
-            weight: 3
+            weight: 0
             additional: {  }
           dbe2a793-2bd3-468e-9622-baf4ea7a4152:
             uuid: dbe2a793-2bd3-468e-9622-baf4ea7a4152
-            region: bottom
+            region: content
             configuration:
               id: 'field_block:node:territorial_report:field_link'
               label: 'Web Links'
@@ -249,30 +250,34 @@ third_party_settings:
                   rel: '0'
                   target: _blank
                 third_party_settings: {  }
-            weight: 4
+            weight: 1
             additional: {  }
-          864e9305-1769-404e-811b-f358104cb8a4:
-            uuid: 864e9305-1769-404e-811b-f358104cb8a4
-            region: top
+          a1038003-4f19-411b-b325-91bed338d265:
+            uuid: a1038003-4f19-411b-b325-91bed338d265
+            region: content
             configuration:
-              id: 'field_block:node:territorial_report:field_sub_title'
-              label: 'Sub Title'
+              id: 'field_block:node:territorial_report:field_related_content'
+              label: 'Related Content'
               label_display: '0'
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: text_header
-                label: hidden
+                type: entity_reference_label
+                label: above
                 settings:
-                  level: '3'
-                third_party_settings: {  }
-            weight: 0
+                  link: true
+                third_party_settings:
+                  field_formatter_range:
+                    order: 0
+                    limit: 0
+                    offset: 0
+            weight: 2
             additional: {  }
           b48f5ba0-8b51-4ccb-bfc2-946d4e2517dc:
             uuid: b48f5ba0-8b51-4ccb-bfc2-946d4e2517dc
-            region: bottom
+            region: content
             configuration:
               id: 'field_block:node:territorial_report:field_tags'
               label: Tags
@@ -287,7 +292,22 @@ third_party_settings:
                 settings:
                   link: false
                 third_party_settings: {  }
-            weight: 6
+            weight: 3
+            additional: {  }
+          5a99905b-eeb4-4f0f-9460-030c97d8f5cd:
+            uuid: 5a99905b-eeb4-4f0f-9460-030c97d8f5cd
+            region: content
+            configuration:
+              id: 'extra_field_block:node:territorial_report:links'
+              label: Links
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 4
             additional: {  }
         third_party_settings: {  }
 id: node.territorial_report.default
@@ -413,6 +433,14 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_zoom_visibility:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 7
     region: content
   links:
     settings: {  }

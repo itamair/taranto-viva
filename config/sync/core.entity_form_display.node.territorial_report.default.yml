@@ -20,6 +20,7 @@ dependencies:
     - field.field.node.territorial_report.field_source_link
     - field.field.node.territorial_report.field_sub_title
     - field.field.node.territorial_report.field_tags
+    - field.field.node.territorial_report.field_zoom_visibility
     - node.type.territorial_report
   module:
     - comment
@@ -364,6 +365,12 @@ content:
     region: content
     settings:
       show_initial_vote: '1'
+    third_party_settings: {  }
+  field_zoom_visibility:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
     third_party_settings: {  }
   langcode:
     type: language_select

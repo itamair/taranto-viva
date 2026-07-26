@@ -1,0 +1,39 @@
+uuid: d55826ea-b28f-472b-b819-5c1a296db656
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_zoom_visibility
+    - node.type.territorial_report
+    - taxonomy.vocabulary.zoom_visibility_levels
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.territorial_report.field_zoom_visibility
+field_name: field_zoom_visibility
+entity_type: node
+bundle: territorial_report
+label: 'Zoom Visibility'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      zoom_visibility_levels: zoom_visibility_levels
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
