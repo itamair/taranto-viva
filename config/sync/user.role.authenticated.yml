@@ -60,7 +60,6 @@ permissions:
   - 'use mcp server'
   - 'use text format basic_html'
   - 'use text format restricted_html'
-  - 'view field_exclude_from_markercluster'
   - 'view field_location_type'
   - 'view media'
   - 'view own unpublished content'
