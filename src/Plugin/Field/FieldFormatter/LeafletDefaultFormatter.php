@@ -525,12 +525,10 @@ class LeafletDefaultFormatter extends FormatterBase implements ContainerFactoryP
    */
   protected function setExistingZoomSettings(): void {
     $settings = $this->getSettings();
-    if (isset($settings['zoom'])) {
-      $settings['map_position']['zoom'] = (int) $settings['zoom'] ?? 10;
-      $settings['map_position']['minZoom'] = (int) $settings['minZoom'] ?? 3;
-      $settings['map_position']['maxZoom'] = (int) $settings['maxZoom'] ?? 16;
+      $settings['map_position']['zoom'] = (int) ($settings['zoom'] ?? 10);
+      $settings['map_position']['minZoom'] = (int) ($settings['minZoom'] ?? 3);
+      $settings['map_position']['maxZoom'] = (int) ($settings['maxZoom'] ?? 16);
       $this->setSettings($settings);
-    }
   }
 
   /**
