@@ -102,7 +102,9 @@
               properties['active_type'].length > 0) {
 
               const pulsing_type = properties['active_type'];
-              const pulsing_marker = new L.Marker(new L.LatLng(feature.lat, feature.lon), {
+              // Define a pulsing_marker L.Marker as property attached to the
+              // feature.
+              feature.pulsing_marker = new L.Marker(new L.LatLng(feature.lat, feature.lon), {
                 icon: L.divIcon({
                   className: pulsing_type + ' pulsing-marker',
                   html: '<span class="pulsing-marker dot"></span>',
@@ -110,24 +112,22 @@
                 iconSize: [100, 100]
               });
 
-              // Add the pulsing marker to the map.
-              if (pulsing_marker) {
-                Drupal.Leaflet.prototype.feature_bind_popup(pulsing_marker, feature);
+              // Add the feature pulsing marker to the map.
+              Drupal.Leaflet.prototype.feature_bind_popup(feature.pulsing_marker, feature);
 
-                // Add marker to appropriate layer group.
-                if (layers_groups?.unclustered &&
-                  feature.group_label &&
-                  layers_groups.unclustered.hasOwnProperty(feature.group_label)) {
-                  pulsing_marker.addTo(layers_groups.unclustered[feature.group_label]);
-                }
-                else if (layers_groups &&
-                  feature.group_label &&
-                  layers_groups.hasOwnProperty(feature.group_label)) {
-                  pulsing_marker.addTo(layers_groups[feature.group_label]);
-                }
-                else if (add_features?.lMap) {
-                  pulsing_marker.addTo(add_features.lMap);
-                }
+              // Add the feature.pulsing_marker to appropriate layer group.
+              if (layers_groups?.unclustered &&
+                feature.group_label &&
+                layers_groups.unclustered.hasOwnProperty(feature.group_label)) {
+                feature.pulsing_marker.addTo(layers_groups.unclustered[feature.group_label]);
+              }
+              else if (layers_groups &&
+                feature.group_label &&
+                layers_groups.hasOwnProperty(feature.group_label)) {
+                feature.pulsing_marker.addTo(layers_groups[feature.group_label]);
+              }
+              else if (add_features?.lMap) {
+                feature.pulsing_marker.addTo(add_features.lMap);
               }
             }
           } catch (error) {
@@ -378,10 +378,22 @@
                   Drupal.Leaflet[mapid].overlays[markers[i].options.group_label]._layers.hasOwnProperty(markers[i]._layers_id)) {
 
                   Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].removeLayer(markers[i]);
+
+                  // In case the features[i] has a pulsing_marker attached.
+                  if (features[i].pulsing_marker) {
+                    // Remove the pulsing_marker from the Group Overlay.
+                    Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].removeLayer(features[i].pulsing_marker);
+                  }
                 }
                 // Otherwise Remove the marker directly from the map.
                 else {
                   map.removeLayer(markers[i]);
+
+                  // In case the features[i] has a pulsing_marker attached.
+                  if (features[i].pulsing_marker) {
+                    // Remove also the pulsing_marker from map.
+                    map.removeLayer(features[i].pulsing_marker);
+                  }
                 }
 
                 // Eventually remove the Marker from its Group Overlay cluster.
@@ -392,6 +404,13 @@
                       overlays._layers[k] &&
                       overlays._layers[k]._markerCluster) {
                       overlays._layers[k].removeLayer(markers[i]);
+
+                      // In case the features[i] has a pulsing_marker attached.
+                      if (features[i].pulsing_marker) {
+                        // Remove also the pulsing_marker from the Group Overlay
+                        // cluster.
+                        overlays._layers[k].removeLayer(features[i].pulsing_marker);
+                      }
                     }
                   }
                 }
@@ -412,10 +431,25 @@
 
                   // Add the marker in its group Overlay.
                   Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].addLayer(markers[i]);
+
+                  // In case the features[i] has a pulsing_marker attached.
+                  if (features[i].pulsing_marker) {
+                    // Add also the pulsing_marker in its group Overlay.
+                    Drupal.Leaflet[mapid].overlays[markers[i].options.group_label].addLayer(features[i].pulsing_marker);
+                  }
                 }
                 // Otherwise add it directly to the map.
                 else {
                   markers[i].addTo(map);
+                  if (features[i].pulsing_marker) {
+                    features[i].pulsing_marker.addTo(map);
+                  }
+                }
+
+                // In case the features[i] has a pulsing_marker attached.
+                if (features[i].pulsing_marker) {
+                  // Add also the pulsing_marker from map.
+                  Drupal.Leaflet.prototype.feature_bind_popup(features[i].pulsing_marker, features[i]);
                 }
 
                 // Add the hover scaling effect to the Map marker.
