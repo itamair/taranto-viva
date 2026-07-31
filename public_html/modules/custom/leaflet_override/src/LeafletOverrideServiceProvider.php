@@ -20,7 +20,8 @@ class LeafletOverrideServiceProvider extends ServiceProviderBase {
       // Override the service definition.
       $definition = $container->getDefinition('leaflet.service');
       // Set the class to a new class in this module.
-      // $definition->setClass('Drupal\leaflet_override\LeafletServiceOverride')->addArgument(new Reference('cache.leaflet_permanent'));
+      $definition->setClass('Drupal\leaflet_override\LeafletServiceOverride')
+        ->addArgument(new Reference('cache.leaflet_permanent'));
     }
   }
 

@@ -2,6 +2,7 @@
 
 namespace Drupal\leaflet_override;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\File\FileUrlGeneratorInterface;
@@ -11,6 +12,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Utility\LinkGeneratorInterface;
 use Drupal\geofield\GeoPHP\GeoPHPInterface;
 use Drupal\leaflet\LeafletService;
+use GuzzleHttp\ClientInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -70,18 +72,42 @@ class LeafletServiceOverride extends LeafletService {
   protected $cache;
 
   /**
-   * Static cache for icon sizes.
+   * The file URL generator.
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected $fileUrlGenerator;
+
+  /**
+   * The http client, NULL until the container has been rebuilt.
+   *
+   * @var \GuzzleHttp\ClientInterface|null
+   */
+  protected $httpClient;
+
+  /**
+   * Icon sizes already resolved in this request, keyed by cache prefix and url.
+   *
+   * A FALSE value means the size could not be determined.
    *
    * @var array
    */
   protected $iconSizes = [];
 
   /**
-   * The file URL generator.
-   *
-   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   * Seconds to wait for the connection when an icon has to be requested.
    */
-  protected $fileUrlGenerator;
+  const int ICON_CONNECT_TIMEOUT = 1;
+
+  /**
+   * Seconds to wait for the whole request when an icon has to be requested.
+   */
+  const int ICON_TIMEOUT = 2;
+
+  /**
+   * Seconds to remember that an icon size could not be determined.
+   */
+  const int ICON_FAILURE_TTL = 3600;
 
   /**
    * The permanent cache backend service.
@@ -109,6 +135,10 @@ class LeafletServiceOverride extends LeafletService {
    *   The cache backend leaflet service.
    * @param \Drupal\Core\File\FileUrlGeneratorInterface $file_url_generator
    *   The file URL generator.
+   * @param \GuzzleHttp\ClientInterface|null $http_client
+   *   The http client. Optional, so that a container compiled before this
+   *   argument was added does not fatal before it is rebuilt. Until then, the
+   *   size of an icon hosted elsewhere cannot be determined.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache_permanent
    *   The permanent backend leaflet cache service.
    */
@@ -121,7 +151,8 @@ class LeafletServiceOverride extends LeafletService {
     RequestStack $request_stack,
     CacheBackendInterface $cache,
     FileUrlGeneratorInterface $file_url_generator,
-    CacheBackendInterface $cache_permanent
+    ClientInterface $http_client,
+    CacheBackendInterface $cache_permanent,
   ) {
     parent::__construct(
       $current_user,
@@ -131,86 +162,46 @@ class LeafletServiceOverride extends LeafletService {
       $stream_wrapper_manager,
       $request_stack,
       $cache,
-      $file_url_generator
+      $file_url_generator,
+      $http_client,
     );
     $this->cachePermanent = $cache_permanent;
   }
 
   /**
-   * Set Size If Empty or Invalid.
+   * Get the intrinsic size of an icon, from the cache when possible.
    *
-   * @param array $feature
-   *   The feature.
-   * @param string $type
-   *   The type.
-   * @param string $urlKey
-   *   The url key.
-   * @param string $sizeKey
-   *   The size key.
+   * Both outcomes are cached, so that an icon that cannot be measured is not
+   * looked up again for every feature of every map.
+   *
+   * @param string $uri
+   *   The icon uri, as configured.
+   * @param string $url
+   *   The absolute icon url.
    * @param string $cachePrefix
    *   The cache prefix.
+   *
+   * @return array|null
+   *   The [width, height] of the icon, or NULL if it could not be determined.
    */
-  protected function setSizeIfEmptyOrInvalid(array &$feature, string $type, string $urlKey, string $sizeKey, string $cachePrefix) {
-    $url = $feature["icon"][$urlKey] ?? NULL;
-    if (!empty($url) && isset($feature["icon"][$sizeKey])
-      && (intval($feature["icon"][$sizeKey]["x"]) === 0 || intval($feature["icon"][$sizeKey]["y"]) === 0)) {
-
-      $url = $this->generateAbsoluteString($url);
-      $cache_index = $url . '-' . $feature["icon"][$sizeKey]["x"] . '-' . $feature["icon"][$sizeKey]["y"];
-
-      // Use the cached size if present for this URL.
-      $page_cache = &drupal_static($cachePrefix . ":" . $cache_index);
-      if (is_array($page_cache) && array_key_exists('x', $page_cache) && array_key_exists('y', $page_cache)) {
-        $feature["icon"][$sizeKey]["x"] = $page_cache['x'];
-        $feature["icon"][$sizeKey]["y"] = $page_cache['y'];
-      }
-      elseif ($cached = $this->cachePermanent->get('leaflet_map_icon_size:' . $cache_index)) {
-        $feature["icon"][$sizeKey]["x"] = $cached->data['x'];
-        $feature["icon"][$sizeKey]["y"] = $cached->data['y'];
-        // Set the size in the page cache.
-        $page_cache = $feature["icon"][$sizeKey];
-      }
-      elseif ($this->fileExists($url)) {
-        $fileParts = pathinfo($url);
-        switch ($fileParts['extension']) {
-          case "svg":
-            $xml = simplexml_load_file($url);
-            $attr = $xml ? $xml->attributes() : NULL;
-            $size_x = !is_null($attr) && !empty($attr->width) ? intval($attr->width->__toString()) : 40;
-            $size_y = !is_null($attr) && !empty($attr->height) ? intval($attr->height->__toString()) : 40;
-            if (empty($feature["icon"][$sizeKey]["x"]) && !empty($feature["icon"][$sizeKey]["y"])) {
-              $feature["icon"][$sizeKey]["x"] = intval($feature["icon"][$sizeKey]["y"] * $size_x / $size_y);
-            }
-            elseif (!empty($feature["icon"][$sizeKey]["x"]) && empty($feature["icon"][$sizeKey]["y"])) {
-              $feature["icon"][$sizeKey]["y"] = intval($feature["icon"][$sizeKey]["x"] * $size_y / $size_x);
-            }
-            else {
-              $feature["icon"][$sizeKey]["x"] = $size_x;
-              $feature["icon"][$sizeKey]["y"] = $size_y;
-            }
-            break;
-
-          default:
-            if ($size = getimagesize($url)) {
-              if (empty($feature["icon"][$sizeKey]["x"]) && !empty($feature["icon"][$sizeKey]["y"])) {
-                $feature["icon"][$sizeKey]["x"] = intval($feature["icon"][$sizeKey]["y"] * $size[0] / $size[1]);
-              }
-              elseif (!empty($feature["icon"][$sizeKey]["x"]) && empty($feature["icon"][$sizeKey]["y"])) {
-                $feature["icon"][$sizeKey]["y"] = intval($feature["icon"][$sizeKey]["x"] * $size[1] / $size[0]);
-              }
-              else {
-                $feature["icon"][$sizeKey]["x"] = $size[0];
-                $feature["icon"][$sizeKey]["y"] = $size[1];
-              }
-            }
-        }
-        // Set the size in the page cache.
-        $page_cache = $feature["icon"][$sizeKey];
-
-        // Set the feature icon size in the backend cache.
-        $this->cachePermanent->set('leaflet_map_icon_size:' . $cache_index, $feature["icon"][$sizeKey]);
-      }
+  protected function getIconSize(string $uri, string $url, string $cachePrefix): ?array {
+    $key = $cachePrefix . ':' . $url;
+    if (isset($this->iconSizes[$key])) {
+      return $this->iconSizes[$key] ?: NULL;
     }
+
+    $cid = 'leaflet_map_icon_size:' . $key;
+    if ($cached = $this->cachePermanent->get($cid)) {
+      $this->iconSizes[$key] = $cached->data ?: FALSE;
+      return $cached->data ?: NULL;
+    }
+
+    $size = $this->readIconSize($uri, $url);
+    $this->iconSizes[$key] = $size ?: FALSE;
+    $expire = $size ? Cache::PERMANENT : time() + self::ICON_FAILURE_TTL;
+    $this->cachePermanent->set($cid, $size, $expire);
+
+    return $size;
   }
 
 }
