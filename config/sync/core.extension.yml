@@ -108,7 +108,6 @@ module:
   leaflet: 0
   leaflet_choropleth: 0
   leaflet_markercluster: 0
-  leaflet_override: 0
   leaflet_views: 0
   link: 0
   link_class: 0
