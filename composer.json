@@ -289,6 +289,9 @@
             },
             "drupal/feeds_ex":{
                 "#3590881 add support for PHP 8.5 - jsonpath ^1.0": "https://git.drupalcode.org/project/feeds_ex/-/merge_requests/60/diffs.patch"
+            },
+            "drupal/leaflet": {
+                "#3613592 Icon size lookup can exhaust the PHP worker pool": "https://git.drupalcode.org/project/leaflet/-/merge_requests/80/diffs.patch"
             }
         }
     },
