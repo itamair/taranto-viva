@@ -1,0 +1,375 @@
+// Leaflet popup Content
+/*.leaflet-popup-content .field--name-field-category-type {
+  display: none;
+}*/
+
+// Dynamically extend the Popup Content width according to its image width content.
+.leaflet-popup-content-wrapper {
+  border-radius: 1px !important;
+
+  .leaflet-popup-content {
+    position: relative;
+    margin: 4px;
+    font-size: 0.8rem;
+
+    h2 {
+      font-size: 1.1rem;
+      margin: 0.5em 20px 0.5em 0;
+      line-height: 1.3rem;
+      font-weight: normal;
+    }
+
+    h3 {
+      font-size: 0.90rem;
+      color: dimgray;
+      margin: 0.5em 20px 0.5em 0;
+      line-height: 1.2rem;
+      font-weight: normal;
+    }
+    div {
+      margin-bottom: 6px;
+    }
+    div:last-child {
+      margin-bottom: 4px;
+    }
+    /* Overrides the Olivero olivero_tarantoviva/css/components/text-content.css */
+    .text-content,
+    .cke_editable {
+      font-size: 0.8rem !important;
+      line-height: 1.3rem !important;
+    }
+
+    article.node--type-geoplace, > div {
+      padding: 2px 4px
+    }
+
+    // Node content
+    .node__content {
+      padding-bottom: 0 !important;
+    }
+
+    .node--type-geoimage {
+      margin: 0;
+      .node__content {
+        margin: 0;
+        padding-bottom: 0 !important;
+      }
+      .node__title {
+        display: none;
+      }
+    }
+
+    // Fields
+    .field--name-field-address field {
+      font-size: 0.7rem !important;
+    }
+
+    .field--name-field-image-caption {
+      font-size: 0.6rem !important;
+      color: darkgray;
+    }
+
+    .field--type-image img, .field--name-user-picture img {
+      margin: 0;
+    }
+
+    .field--name-geoimage-caption {
+      padding-left: 0.5rem !important;
+      font-size: 0.8rem;
+      opacity: 70%;
+      line-height: 1.2rem;
+    }
+
+    @media only screen and (max-width: 992px) {
+      min-width: 80px;
+      max-width: 280px;
+
+      .field--type-text-with-summary, .field--name-body {
+        display: none;
+      }
+
+      .node--type-geoimage {
+        .node__content {
+          margin: 0;
+        }
+        .node__title {
+          display: none;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 720px) {
+      min-width: 80px;
+      max-width: 200px;
+      font-size: 0.6rem;
+
+      .node__content {
+        padding-bottom: 0!important;
+      }
+
+      .field--name-field-category-type,
+      .field--name-field-sub-title {
+        display: none;
+      }
+    }
+  }
+}
+
+// Move down the Leaflet Popup Close Button,
+// if we want the leaflet-popup-content-wrapper padding top is 0.
+.leaflet-container a.leaflet-popup-close-button {
+  top: 12px;
+}
+
+// Tune the Geocoder Control Input element font size.
+.leaflet-control-geocoder-container input {
+  font-size: 1rem;
+}
+
+// Customise Leaflet Marker Icons
+.leaflet-pane .leaflet-marker-icon,
+.leaflet-pane > svg path {
+  opacity: 80% !important;
+  &.svg-marker-cluster-icon {
+    opacity: 70% !important;
+  }
+  &:hover {
+    opacity: 100% !important;
+  }
+  &.up-to-the-top {
+    z-index: 1000 !important;
+  }
+  &.opacity-50 {
+    //border-radius: 50px;
+    border: 3px solid white;
+    opacity: 50% !important;
+  }
+  &.opacity-50:hover {
+    opacity: 100% !important;
+  }
+  &.opacity-75 {
+    opacity: 60% !important;
+  }
+  &.opacity-75:hover {
+    opacity: 100% !important;
+  }
+  &.geoimage {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+}
+
+// Customise Leaflet Marker Images (Overture Maps) Tile Container
+.leaflet-pane .leaflet-tile-container svg image {
+  opacity: 50% !important;
+  &:hover {
+    opacity: 100% !important;
+  }
+}
+
+// Fine Style the Control Layer List.
+.leaflet-control-layers-list {
+  label {
+    margin-bottom: 4px;
+  }
+  input[type="radio"] {
+    margin-right: 4px;
+    height: 1.2rem;
+    width: 1.2rem;
+    &:checked {
+      background-size: 0.6rem;
+    }
+  }
+  input[type="checkbox"] {
+    margin-right: 4px;
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+}
+
+// Pulsing Markers
+@-webkit-keyframes blink {
+  50% {
+    height: 60px;
+    width: 60px;
+    border-width: 0;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    margin-top: -20px;
+    margin-left: -20px;
+  }
+  100% {
+    height: 80px;
+    width: 80px;
+    border-width: 0;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    margin-top: -60px;
+    margin-left: -60px;
+  }
+}
+@-moz-keyframes blink {
+  50% {
+    height: 60px;
+    width: 60px;
+    border-width: 0;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    margin-top: -20px;
+    margin-left: -20px;
+  }
+  100% {
+    height: 80px;
+    width: 80px;
+    border-width: 0;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    margin-top: -60px;
+    margin-left: -60px;
+  }
+}
+.leaflet-container .dot {
+  border-style: solid;
+  display: inline-block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border-width: 15px;
+  border-radius: 15px;
+  -moz-animation: blink 3.5s infinite ease-in-out;
+  -webkit-animation: blink 3.5s infinite ease-in-out;
+  -webkit-font-smoothing: antialiased;
+  height: 30px;
+  width: 30px;
+  margin-top: -11px;
+  margin-left: -11px;
+  pointer-events: none;
+}
+
+.leaflet-container .leaflet-marker-icon.pulsing-marker {
+  z-index: 500 !important;
+  &.negative .dot {
+    border-color: orange;
+  }
+  &.very_negative .dot {
+    border-color: red;
+  }
+  &.positive .dot {
+    border-color: limegreen;
+  }
+}
+
+// Leaflet Markers Clusters Style overrides
+
+.leaflet-marker-icon.svg-marker-cluster-icon {
+
+}
+
+.leaflet-marker-icon.marker-cluster {
+  div {
+    font-weight: bold;
+    font-size: 16px;
+    opacity: 70%;
+    &:hover {
+      opacity: 100%;
+    }
+  }
+  &.marker-cluster-small {
+    background-color: inherit !important;
+    div {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: rgb(241, 207, 97) !important;
+      border: gray solid 1px;
+      span {
+        line-height: 26px;
+      }
+    }
+  }
+  &.marker-cluster-medium {
+    background-color: inherit !important;
+    div {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: rgb(246, 139, 80) !important;
+      border: black solid 1px;
+      span {
+        line-height: 36px;
+      }
+    }
+  }
+  &.marker-cluster-large {
+    background-color: inherit !important;
+    z-index: 100 !important;
+    div {
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius:30px;
+      background-color: rgb(253, 51, 51) !important;
+      border: black solid 1px;
+      span {
+        line-height: 44px;
+      }
+    }
+  }
+}
+
+// Tooltips Classes
+.leaflet-tooltip.big-and-bold {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.leaflet-tooltip.big {
+  font-size: 1.1rem;
+}
+
+.leaflet-tooltip.bold {
+  font-weight: bold;
+}
+
+.leaflet-tooltip.small {
+  font-size: 0.7rem;
+  padding: 3pxx
+}
+
+// Map marker hover effects
+// All these rules have been made better and moved into the
+// Drupal.behaviors.leafletInteractions:processInitialActions method.
+/*.leaflet-marker-icon.hovering:hover {
+  background-color:rgba(255, 255, 255, 0.6);
+  opacity: 80%;
+  //outline: 8px solid white;
+  border-radius: 50%;
+  transition: background 400ms ease-out;
+}*/
+
+// Map Path/Geometry hover effects
+.leaflet-map-path-hover-highlight {
+  path:hover {
+    stroke-width: 14;
+  }
+}
+
+// Leaflet Tooltips Styling Overrides on Views
+.view-ciclovia-acquedotti,
+.view {
+
+  .leaflet-tooltip-top {
+    margin-top: -16px !important;
+    &.wider {
+      margin-top: -24px !important;
+    }
+  }
+  .leaflet-tooltip-bottom {
+    margin-top: 16px !important;
+    &.wider {
+      margin-top: 24px !important;
+    }
+  }
+}
+

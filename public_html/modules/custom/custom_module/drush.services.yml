@@ -1,0 +1,6 @@
+services:
+ custom_module.commands:
+    class: Drupal\custom_module\Commands\CustomDrushCommands
+    arguments: ['@entity_type.manager']
+    tags:
+      - {name: drush.command}

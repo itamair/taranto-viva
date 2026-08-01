@@ -1,0 +1,9 @@
+name: custom_module
+type: module
+description: My module to test some Drupal functionalities
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - geofield_map:geofield_map
+  - leaflet:leaflet
+

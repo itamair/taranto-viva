@@ -1,0 +1,164 @@
+/**
+ * @file
+ * SCSS for the Leaflet Choropleth module.
+ */
+
+.leaflet-sidebar-list {
+  min-width: 180px;
+  max-width: 250px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  opacity: 1;
+  box-shadow: 0 1px 3px gray;
+  line-height: 1.4;
+  position: relative;
+  color: white;
+  background: rgba(17, 152, 225, 0.9);
+
+  .list-title {
+    margin-bottom: 8px;
+    font-size: 1.2em;
+   // color: #f25e0a;
+    font-weight: bold;
+  }
+
+  .list-subtitle {
+    margin-bottom: 8px;
+  }
+
+  .list-search-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+  }
+
+  .list-search-label {
+    font-size: 0.72em;
+    font-weight: bold;
+    color: #888;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .list-search-input {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 0.85em;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 180ms ease;
+  }
+
+  .list-search-input:focus {
+    border-color: #888;
+  }
+
+  .list-search-input::placeholder {
+    color: #aaa;
+  }
+
+  .list-items {
+    margin-bottom: 8px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .list-item {
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+    cursor: pointer;
+    &.marker-selected {
+      background: #e3e5f5;
+    }
+    .marker-selector {
+      padding: 6px 4px;
+      display: flex;
+      align-items: flex-start;
+      .title {
+        width: 180px;
+      }
+      .icon {
+        padding: 0 4px;
+      }
+    }
+
+  }
+
+  /* Toggle functionality styles */
+  .list-toggle {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 2px;
+    color: #dedede;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+}
+
+.leaflet-sidebar-list {
+
+  .list-collapsed-title {
+    display: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    // color: #f25e0a;
+  }
+
+  &.list-collapsed {
+    text-wrap: nowrap;
+    min-width: 60px;
+    max-width: 160px;
+    padding: 8px;
+    cursor: pointer;
+
+    .list-content {
+      display: none;
+    }
+
+    .list-collapsed-title{
+      display: block;
+    }
+
+    .list-toggle {
+      display: none;
+    }
+
+    &:hover {
+      background: rgb(1, 114, 175);
+    }
+  }
+}
+
+/* Compact legend for smaller screens */
+@media (max-width: 380px) {
+  .leaflet-sidebar-list {
+    max-width: 100px;
+    min-width: 50px;
+    padding: 5px;
+
+    &.list-collapsed {
+      padding: 6px;
+    }
+  }
+
+  .list-toggle {
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

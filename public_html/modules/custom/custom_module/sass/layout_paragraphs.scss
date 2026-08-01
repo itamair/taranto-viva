@@ -1,0 +1,30 @@
+// Layout Paragraphs Widget
+.lp-builder .layout__region {
+  padding: 0 8px;
+}
+
+.layout {
+  .paragraph--type--title {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 2.6rem;
+    margin-block-end: 14px
+  }
+
+  .paragraph {
+    p, ul {
+      display: block;
+      margin-block-start: 4px !important;
+      margin-block-end: 10px !important;
+    }
+
+    hr {
+      height: 1px;
+      margin: 16px 0;
+      padding: 0;
+      border: none;
+      background: rgb(128, 128, 128);;
+    }
+  }
+}
+
