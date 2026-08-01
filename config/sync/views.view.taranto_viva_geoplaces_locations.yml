@@ -21,7 +21,7 @@ dependencies:
   module:
     - file
     - geofield
-    - italo_module
+    - custom_module
     - node
     - options
     - paragraphs

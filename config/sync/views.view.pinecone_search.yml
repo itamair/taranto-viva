@@ -7,7 +7,7 @@ dependencies:
     - search_api.index.pinecone_index
     - system.menu.main
   module:
-    - italo_module
+    - custom_module
     - search_api
     - text
 id: pinecone_search

@@ -45,6 +45,7 @@ module:
   contextual: 0
   csv_serialization: 0
   custom_layouts: 0
+  custom_module: 0
   date_filter: 0
   datetime: 0
   datetime_range: 0
@@ -86,7 +87,6 @@ module:
   http_response_headers: 0
   image: 0
   image_styles_generator: 0
-  italo_module: 0
   jquery_deprecated_functions: 0
   jquery_ui: 0
   jquery_ui_accordion: 0

@@ -13,7 +13,7 @@ dependencies:
     - field.field.node.event.field_project_namespace
     - node.type.event
   module:
-    - italo_module
+    - custom_module
     - layout_builder
     - user
 third_party_settings:

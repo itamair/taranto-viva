@@ -31,7 +31,7 @@ dependencies:
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
   module:
-    - italo_module
+    - custom_module
     - layout_builder
     - user
 third_party_settings:

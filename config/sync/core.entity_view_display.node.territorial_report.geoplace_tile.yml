@@ -25,7 +25,7 @@ dependencies:
     - node.type.territorial_report
   module:
     - datetime_range
-    - italo_module
+    - custom_module
     - layout_builder
     - options
     - user

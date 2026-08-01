@@ -12,7 +12,7 @@ dependencies:
     - field.field.node.map_label.field_zoom_visibility
     - node.type.map_label
   module:
-    - italo_module
+    - custom_module
     - text
     - user
 id: node.map_label.default
@@ -89,4 +89,5 @@ content:
     region: content
 hidden:
   langcode: true
+  search_api_excerpt: true
   uuid: true

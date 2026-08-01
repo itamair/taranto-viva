@@ -12,7 +12,7 @@ dependencies:
   module:
     - better_exposed_filters
     - datetime
-    - italo_module
+    - custom_module
     - node
     - options
     - user

@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.title.field_title
     - paragraphs.paragraphs_type.title
   module:
-    - italo_module
+    - custom_module
 id: paragraph.title.default
 targetEntityType: paragraph
 bundle: title

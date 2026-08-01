@@ -24,7 +24,7 @@ dependencies:
     - field.field.node.territorial_report.field_zoom_visibility
     - node.type.territorial_report
   module:
-    - italo_module
+    - custom_module
     - user
 id: node.territorial_report.leaflet_popup
 targetEntityType: node

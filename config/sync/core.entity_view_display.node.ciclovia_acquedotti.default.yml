@@ -14,7 +14,7 @@ dependencies:
     - field.field.node.ciclovia_acquedotti.field_tratta_ciclovia_aqp
     - node.type.ciclovia_acquedotti
   module:
-    - italo_module
+    - custom_module
     - layout_builder
     - layout_discovery
     - text
@@ -298,4 +298,5 @@ content:
 hidden:
   field_geofied_view: true
   langcode: true
+  search_api_excerpt: true
   uuid: true

@@ -47,7 +47,7 @@ dependencies:
     - color_field
     - geofield
     - geofield_311
-    - italo_module
+    - custom_module
     - leaflet_views
     - media
     - node

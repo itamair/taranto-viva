@@ -51,7 +51,7 @@ dependencies:
     - color_field
     - geofield
     - geofield_311
-    - italo_module
+    - custom_module
     - leaflet_views
     - media
     - node
@@ -5098,7 +5098,7 @@ display:
             og_description: "Taranto Viva is an experimental project aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
         library_in_views_display_extender:
-          attach_library: italo_module/leaflet_map_control
+          attach_library: custom_module/leaflet_map_control
         simple_sitemap_display_extender:
           variants: {  }
       path: ciclovia-acquedotto-pugliese

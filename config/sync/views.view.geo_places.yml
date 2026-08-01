@@ -56,7 +56,7 @@ dependencies:
     - geofield
     - geofield_311
     - graphql_compose_views
-    - italo_module
+    - custom_module
     - leaflet_views
     - media
     - node
@@ -7632,7 +7632,7 @@ display:
             og_description: "Taranto Viva is a Web project with advanced WebGis and CMS functionalities, aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
         library_in_views_display_extender:
-          attach_library: 'italo_module/leaflet_pmtiles_layer, italo_module/leaflet_map_control'
+          attach_library: 'custom_module/leaflet_pmtiles_layer, custom_module/leaflet_map_control'
         simple_sitemap_display_extender:
           variants:
             default:
