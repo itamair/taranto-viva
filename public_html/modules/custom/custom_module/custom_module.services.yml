@@ -1,0 +1,6 @@
+services:
+  custom_module.utility:
+    class: Drupal\custom_module\UtilityService
+    arguments:
+      - '@http_client'
+      - '@logger.factory'
