@@ -4,63 +4,112 @@ declare(strict_types=1);
 
 namespace Drupal\custom_module;
 
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
 
 /**
- * Provides utility methods for the custom_module.
+ * Provides utility methods for the custom module.
  */
-readonly class UtilityService {
+final readonly class UtilityService {
+
+  private const string RELEASES_PAGE =
+    'https://docs.overturemaps.org/blog/tags/releases/';
+
+  private const string PMTILES_URL_TEMPLATE =
+    'https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/%s/%s.pmtiles';
+
+  private const string RELEASE_REGEX =
+    '/(\d{4}-\d{2}-\d{2}\.\d+)/';
+
+  private const string CACHE_ID = 'custom_module:overture_latest_release';
+
+  private const int CACHE_TTL = 86400;
+
+  private const int HTTP_TIMEOUT = 10;
 
   /**
    * Constructs a UtilityService object.
    *
    * @param \GuzzleHttp\ClientInterface $httpClient
    *   The HTTP client.
-   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $loggerFactory
+   * @param \Drupal\Core\Cache\CacheBackendInterface $cache
+   *   The default cache bin.
+   * @param \Drupal\Core\Logger\LoggerChannelInterface $logger
    *   The logger channel factory.
    */
   public function __construct(
     protected ClientInterface $httpClient,
-    protected LoggerChannelFactoryInterface $loggerFactory,
+    protected CacheBackendInterface $cache,
+    protected LoggerChannelInterface $logger,
   ) {}
 
   /**
-   * Returns the PMTiles URL for the latest Overture Maps places release.
-   *
-   * Fetches the Overture Maps releases page, extracts the latest release
-   * identifier via regex, and constructs the corresponding S3 PMTiles URL.
-   *
-   * @return string|null
-   *   The constructed PMTiles URL, or NULL if the release cannot be determined.
+   * Returns the latest available Overture release.
    */
-  public function getLatestOverturePlacesPmtilesUrl(): ?string {
-    $releases_page_url = 'https://docs.overturemaps.org/blog/tags/releases/';
+  public function getLatestOvertureRelease(): ?string {
+
+    if ($cache = $this->cache->get(self::CACHE_ID)) {
+      return $cache->data;
+    }
+
     try {
-      $response = $this->httpClient->get($releases_page_url);
+      $response = $this->httpClient->get(self::RELEASES_PAGE, [
+        'timeout' => self::HTTP_TIMEOUT,
+      ]);
+
+      if ($response->getStatusCode() !== 200) {
+        $this->logger->warning(
+          'Unexpected HTTP status while fetching Overture releases: @status',
+          ['@status' => $response->getStatusCode()]
+        );
+        return NULL;
+      }
+
       $html = (string) $response->getBody();
     }
     catch (GuzzleException $e) {
-      $this->loggerFactory->get('custom_module')->error(
-        'Failed to fetch Overture Maps releases page: @message',
+      $this->logger->error(
+        'Unable to retrieve Overture releases: @message',
         ['@message' => $e->getMessage()]
       );
       return NULL;
     }
 
-    if (!preg_match('/(\d{4}-\d{2}-\d{2}\.\d)/', $html, $matches)) {
-      $this->loggerFactory->get('custom_module')->warning(
-        'Could not extract release version from the Overture Maps releases page.'
+    if (!preg_match(self::RELEASE_REGEX, $html, $matches)) {
+      $this->logger->warning(
+        'Unable to determine latest Overture release.'
       );
       return NULL;
     }
 
     $release = $matches[1];
+
+    $this->cache->set(
+      self::CACHE_ID,
+      $release,
+      time() + self::CACHE_TTL
+    );
+
+    return $release;
+  }
+
+  /**
+   * Returns the PMTiles URL for the latest Overture release.
+   */
+  public function getLatestPmtilesUrl(string $theme = 'places'): ?string {
+
+    $release = $this->getLatestOvertureRelease();
+
+    if ($release === NULL) {
+      return NULL;
+    }
+
     return sprintf(
-      'https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/%s/places.pmtiles',
-      $release
+      self::PMTILES_URL_TEMPLATE,
+      $release,
+      $theme,
     );
   }
 
