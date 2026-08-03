@@ -1,6 +1,11 @@
 services:
+  logger.channel.custom_module:
+    parent: logger.channel_base
+    arguments: ['custom_module']
+
   custom_module.utility:
     class: Drupal\custom_module\UtilityService
     arguments:
       - '@http_client'
-      - '@logger.factory'
+      - '@cache.discovery'
+      - '@logger.channel.custom_module'

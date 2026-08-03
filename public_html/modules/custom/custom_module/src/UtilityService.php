@@ -14,20 +14,23 @@ use GuzzleHttp\Exception\GuzzleException;
  */
 final readonly class UtilityService {
 
-  private const string RELEASES_PAGE =
+  private const  RELEASES_PAGE =
     'https://docs.overturemaps.org/blog/tags/releases/';
 
-  private const string PMTILES_URL_TEMPLATE =
+  private const  PMTILES_URL_TEMPLATE =
     'https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/%s/%s.pmtiles';
 
-  private const string RELEASE_REGEX =
+  private const  RELEASE_REGEX =
     '/(\d{4}-\d{2}-\d{2}\.\d+)/';
 
-  private const string CACHE_ID = 'custom_module:overture_latest_release';
+  private const  CACHE_ID = 'custom_module:overture_latest_release';
 
-  private const int CACHE_TTL = 86400;
+  private const  CACHE_TTL = 86400;
 
-  private const int HTTP_TIMEOUT = 10;
+  private const  HTTP_TIMEOUT = 10;
+
+  private const  RELEASES_RSS =
+    'https://docs.overturemaps.org/blog/rss.xml';
 
   /**
    * Constructs a UtilityService object.
@@ -54,37 +57,14 @@ final readonly class UtilityService {
       return $cache->data;
     }
 
-    try {
-      $response = $this->httpClient->get(self::RELEASES_PAGE, [
-        'timeout' => self::HTTP_TIMEOUT,
-      ]);
+    $release = $this->fetchLatestRelease();
 
-      if ($response->getStatusCode() !== 200) {
-        $this->logger->warning(
-          'Unexpected HTTP status while fetching Overture releases: @status',
-          ['@status' => $response->getStatusCode()]
-        );
-        return NULL;
+    if ($release === NULL) {
+      if ($cache = $this->cache->get(self::CACHE_ID, TRUE)) {
+        return $cache->data;
       }
-
-      $html = (string) $response->getBody();
-    }
-    catch (GuzzleException $e) {
-      $this->logger->error(
-        'Unable to retrieve Overture releases: @message',
-        ['@message' => $e->getMessage()]
-      );
       return NULL;
     }
-
-    if (!preg_match(self::RELEASE_REGEX, $html, $matches)) {
-      $this->logger->warning(
-        'Unable to determine latest Overture release.'
-      );
-      return NULL;
-    }
-
-    $release = $matches[1];
 
     $this->cache->set(
       self::CACHE_ID,
@@ -93,6 +73,36 @@ final readonly class UtilityService {
     );
 
     return $release;
+  }
+
+  /**
+   * Fetches the latest release from RSS, falling back to the HTML page.
+   */
+  private function fetchLatestRelease(): ?string {
+
+    foreach ([self::RELEASES_RSS, self::RELEASES_PAGE] as $url) {
+      try {
+        $response = $this->httpClient->get($url, [
+          'timeout' => self::HTTP_TIMEOUT,
+        ]);
+
+        if ($response->getStatusCode() !== 200) {
+          continue;
+        }
+
+        $body = (string) $response->getBody();
+
+        if (preg_match(self::RELEASE_REGEX, $body, $matches)) {
+          return $matches[1];
+        }
+      }
+      catch (GuzzleException) {
+      }
+    }
+
+    $this->logger->warning('Unable to determine latest Overture release from RSS or HTML.');
+
+    return NULL;
   }
 
   /**
