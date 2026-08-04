@@ -5,7 +5,6 @@ dependencies:
   config:
     - node.type.article
     - node.type.ciclovia_acquedotti
-    - node.type.event
     - node.type.geoplace
     - node.type.map_label
     - node.type.page
@@ -957,7 +956,6 @@ display:
             article: article
             page: page
             ciclovia_acquedotti: ciclovia_acquedotti
-            event: event
             geoplace: geoplace
             map_label: map_label
             territorial_report: territorial_report

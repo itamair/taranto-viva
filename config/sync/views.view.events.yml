@@ -13,7 +13,6 @@ dependencies:
     - field.storage.paragraph.field_stroke_weight
     - field.storage.paragraph.field_title
     - field.storage.paragraph.field_zindex
-    - node.type.event
     - system.menu.main
   module:
     - color_field

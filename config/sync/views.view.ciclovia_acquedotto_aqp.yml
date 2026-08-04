@@ -32,7 +32,6 @@ dependencies:
     - field.storage.paragraph.field_zindex
     - field.storage.taxonomy_term.field_zoom_visibility_range
     - node.type.ciclovia_acquedotti
-    - node.type.event
     - node.type.geoimage
     - node.type.geoplace
     - node.type.map_label
@@ -322,7 +321,6 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            event: event
             geoimage: geoimage
             geoplace: geoplace
             territorial_report: territorial_report
@@ -2072,7 +2070,6 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            event: event
             geoplace: geoplace
             territorial_report: territorial_report
           group: 1
