@@ -1,4 +1,4 @@
-uuid: e9d2dfa3-6679-4d7a-a335-632d66b165c9
+uuid: 6a922c41-bb94-4543-b736-fda94e1f3951
 langcode: it
 status: true
 dependencies:
@@ -15,7 +15,7 @@ bundle: event
 label: 'Media Slideshow'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     target_uuid: 2447ed9f-af67-4f19-9a95-c31821d3c183

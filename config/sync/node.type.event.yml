@@ -1,17 +1,27 @@
-uuid: 255010e0-1658-4f3b-95b0-6683ca27dd09
+uuid: 53e5a321-7aa8-4983-b001-ed07107a68db
 langcode: en
 status: true
 dependencies:
   module:
+    - content_access
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus:
       - main
     parent: 'main:'
+  content_access:
+    view_own:
+      - anonymous
+      - authenticated
+      - administrator
+    view:
+      - anonymous
+      - authenticated
+      - administrator
 name: Event
 type: event
-description: null
+description: ''
 help: null
 new_revision: true
 preview_mode: 1

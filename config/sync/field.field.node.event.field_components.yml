@@ -1,4 +1,4 @@
-uuid: 5de73736-5a30-4cdd-a3ac-02f610c05785
+uuid: ab35ec37-d393-4ed3-9825-2179a545fcc4
 langcode: it
 status: true
 dependencies:
@@ -48,5 +48,5 @@ settings:
         enabled: true
       path:
         weight: 12
-        enabled: true
+        enabled: false
 field_type: entity_reference_revisions

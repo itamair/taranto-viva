@@ -6,7 +6,6 @@ dependencies:
     - field.storage.node.field_related_content
     - node.type.article
     - node.type.ciclovia_acquedotti
-    - node.type.event
     - node.type.geoplace
     - node.type.page
     - node.type.territorial_report
@@ -37,7 +36,6 @@ settings:
       article: article
       page: page
       ciclovia_acquedotti: ciclovia_acquedotti
-      event: event
       geoplace: geoplace
       territorial_report: territorial_report
     sort:

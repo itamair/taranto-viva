@@ -1,9 +1,9 @@
-uuid: f032a7ee-e1bf-471c-a31e-4b29705b049b
+uuid: 20ab272d-66bb-4200-8daf-cf786b97359e
 langcode: it
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.geoplace_tile
     - field.field.node.event.body
     - field.field.node.event.field_active_type
     - field.field.node.event.field_category_type
@@ -24,29 +24,51 @@ dependencies:
     - field.field.node.event.field_zoom_visibility
     - node.type.event
   module:
+    - custom_module
+    - datetime_range
+    - layout_builder
+    - options
     - user
-id: node.event.full
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.event.geoplace_tile
 targetEntityType: node
 bundle: event
-mode: full
+mode: geoplace_tile
 content:
-  links:
+  field_active_type:
+    type: list_default
+    label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 1
     region: content
-  rate_thumbs_up_down:
-    settings: {  }
+  field_components:
+    type: components_with_title_entity_view
+    label: hidden
+    settings:
+      view_mode: address
+      link: ''
     third_party_settings: {  }
-    weight: 100
+    weight: 0
+    region: content
+  field_date_range:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   body: true
-  field_active_type: true
   field_category_type: true
   field_comments: true
-  field_components: true
-  field_date_range: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true
@@ -60,5 +82,7 @@ hidden:
   field_tags: true
   field_zoom_visibility: true
   langcode: true
+  links: true
+  rate_thumbs_up_down: true
   search_api_excerpt: true
   uuid: true

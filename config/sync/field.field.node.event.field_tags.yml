@@ -1,13 +1,11 @@
-uuid: 43b7bfa3-d80a-41bb-82df-c9a916e41b46
+uuid: e41f635d-b3dd-4ca6-9b79-5667ab6a1ef6
 langcode: it
 status: true
 dependencies:
   config:
-    - field.storage.node.field_category_type
+    - field.storage.node.field_tags
     - node.type.event
-    - taxonomy.vocabulary.places_categories
-  content:
-    - 'taxonomy_term:places_categories:f71f0fc8-2dd2-4c55-88f9-56da249d0bf8'
+    - taxonomy.vocabulary.categorie_segnalazioni_territori
   module:
     - ai_translate
     - tmgmt_content
@@ -18,26 +16,24 @@ third_party_settings:
     translate_references: default
   tmgmt_content:
     excluded: false
-id: node.event.field_category_type
-field_name: field_category_type
+id: node.event.field_tags
+field_name: field_tags
 entity_type: node
 bundle: event
-label: 'Tipo Categoria'
-description: ''
-required: true
-translatable: true
-default_value:
-  -
-    target_uuid: f71f0fc8-2dd2-4c55-88f9-56da249d0bf8
+label: Tags
+description: 'Enter a comma-separated list. For example: Amsterdam, Mexico City, "Cleveland, Ohio"'
+required: false
+translatable: false
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      places_categories: places_categories
+      categorie_segnalazioni_territori: categorie_segnalazioni_territori
     sort:
-      field: name
+      field: _none
       direction: asc
-    auto_create: false
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference

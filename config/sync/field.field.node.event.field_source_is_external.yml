@@ -1,20 +1,21 @@
-uuid: bb87fb3c-63b2-4c8a-acdc-6af7d67b19fb
-langcode: en
+uuid: 3a276c76-3450-446b-9254-d16272c6870a
+langcode: it
 status: true
 dependencies:
   config:
+    - field.storage.node.field_source_is_external
     - node.type.event
-id: node.event.status
-field_name: status
+id: node.event.field_source_is_external
+field_name: field_source_is_external
 entity_type: node
 bundle: event
-label: Published
+label: 'Source is External'
 description: ''
 required: false
 translatable: false
 default_value:
   -
-    value: 1
+    value: 0
 default_value_callback: ''
 settings:
   on_label: 'On'

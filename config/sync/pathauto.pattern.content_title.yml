@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - node.type.article
-    - node.type.event
     - node.type.geoimage
     - node.type.geoplace
     - node.type.page
@@ -24,7 +23,6 @@ selection_criteria:
       node: node
     bundles:
       article: article
-      event: event
       geoimage: geoimage
       geoplace: geoplace
       page: page

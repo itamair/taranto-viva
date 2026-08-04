@@ -1,0 +1,29 @@
+uuid: 703569d9-1bc2-4c30-b5dd-8dfc8354235d
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_content
+    - node.type.event
+    - node.type.geoplace
+id: node.event.field_related_content
+field_name: field_related_content
+entity_type: node
+bundle: event
+label: 'Related Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      geoplace: geoplace
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: geoimage
+field_type: entity_reference

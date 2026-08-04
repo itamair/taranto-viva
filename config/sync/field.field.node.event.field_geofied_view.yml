@@ -1,4 +1,4 @@
-uuid: e6db03c8-c787-4514-abd9-9e994c9e5913
+uuid: 8f5ea12d-3112-4dbf-b812-a31662db1331
 langcode: en
 status: true
 dependencies:
@@ -41,6 +41,7 @@ settings:
     paragraphs: '0'
     paragraphs_library: '0'
     paragraphs_media_slideshow: '0'
+    paragraphs_revs_media_slideshow: '0'
     user_admin_people: '0'
     places_types: '0'
     comments_recent: '0'

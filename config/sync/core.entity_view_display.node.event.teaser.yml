@@ -1,16 +1,27 @@
-uuid: b834cc16-d44f-452d-9aeb-e735fad06bbf
-langcode: en
+uuid: ab8ab6b9-0317-4d41-a080-c3adca78325f
+langcode: it
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.event.body
+    - field.field.node.event.field_active_type
     - field.field.node.event.field_category_type
+    - field.field.node.event.field_comments
     - field.field.node.event.field_components
+    - field.field.node.event.field_date_range
+    - field.field.node.event.field_exclude_from_map_bounds
+    - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_link
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
+    - field.field.node.event.field_related_content
+    - field.field.node.event.field_source_is_external
+    - field.field.node.event.field_source_link
+    - field.field.node.event.field_sub_title
+    - field.field.node.event.field_tags
+    - field.field.node.event.field_zoom_visibility
     - node.type.event
   module:
     - text
@@ -28,19 +39,41 @@ content:
     third_party_settings: {  }
     weight: 101
     region: content
+  field_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
     weight: 100
     region: content
+  rate_thumbs_up_down:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
+  field_active_type: true
   field_category_type: true
+  field_comments: true
   field_components: true
+  field_date_range: true
+  field_exclude_from_map_bounds: true
+  field_exclude_from_markercluster: true
   field_geofied_view: true
   field_link: true
   field_media_slideshow: true
   field_project_namespace: true
+  field_related_content: true
+  field_source_is_external: true
+  field_source_link: true
+  field_sub_title: true
+  field_zoom_visibility: true
   langcode: true
   search_api_excerpt: true
-  territorial_report_active_level: true
   uuid: true

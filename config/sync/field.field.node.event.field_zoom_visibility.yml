@@ -1,13 +1,11 @@
-uuid: 43b7bfa3-d80a-41bb-82df-c9a916e41b46
-langcode: it
+uuid: c0610f33-9b5a-4edf-affe-416365110d7e
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_category_type
+    - field.storage.node.field_zoom_visibility
     - node.type.event
-    - taxonomy.vocabulary.places_categories
-  content:
-    - 'taxonomy_term:places_categories:f71f0fc8-2dd2-4c55-88f9-56da249d0bf8'
+    - taxonomy.vocabulary.zoom_visibility_levels
   module:
     - ai_translate
     - tmgmt_content
@@ -18,23 +16,21 @@ third_party_settings:
     translate_references: default
   tmgmt_content:
     excluded: false
-id: node.event.field_category_type
-field_name: field_category_type
+id: node.event.field_zoom_visibility
+field_name: field_zoom_visibility
 entity_type: node
 bundle: event
-label: 'Tipo Categoria'
+label: 'Zoom Visibility'
 description: ''
-required: true
-translatable: true
-default_value:
-  -
-    target_uuid: f71f0fc8-2dd2-4c55-88f9-56da249d0bf8
+required: false
+translatable: false
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      places_categories: places_categories
+      zoom_visibility_levels: zoom_visibility_levels
     sort:
       field: name
       direction: asc

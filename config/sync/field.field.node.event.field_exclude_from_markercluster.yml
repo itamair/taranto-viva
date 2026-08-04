@@ -1,0 +1,28 @@
+uuid: 7bcecba1-4f67-47c6-9668-ef12ff3e8a7d
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_from_markercluster
+    - node.type.event
+  module:
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.event.field_exclude_from_markercluster
+field_name: field_exclude_from_markercluster
+entity_type: node
+bundle: event
+label: 'Exclude from Markercluster'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
