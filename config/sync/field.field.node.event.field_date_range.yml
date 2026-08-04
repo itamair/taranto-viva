@@ -15,7 +15,7 @@ id: node.event.field_date_range
 field_name: field_date_range
 entity_type: node
 bundle: event
-label: Validità
+label: Date
 description: ''
 required: false
 translatable: false

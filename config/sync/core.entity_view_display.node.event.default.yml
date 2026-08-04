@@ -3,7 +3,6 @@ langcode: it
 status: true
 dependencies:
   config:
-    - core.base_field_override.node.territorial_report.uid
     - core.entity_view_display.comment.custom_comments.default
     - field.field.node.event.body
     - field.field.node.event.field_active_type
@@ -95,7 +94,7 @@ third_party_settings:
                 settings:
                   link: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           fd91e8fa-6366-4656-b03b-704bbf6262a5:
             uuid: fd91e8fa-6366-4656-b03b-704bbf6262a5
@@ -116,25 +115,6 @@ third_party_settings:
                   date_format: d-m-Y
                   separator: '-'
                 third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          19f064da-4234-4c77-9d39-cd9b84d8937a:
-            uuid: 19f064da-4234-4c77-9d39-cd9b84d8937a
-            region: content
-            configuration:
-              id: 'field_block:node:territorial_report:uid'
-              label: 'Authored by'
-              label_display: visible
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_label
-                label: inline
-                settings:
-                  link: false
-                third_party_settings: {  }
             weight: 3
             additional: {  }
           da044adf-281e-4076-9bc4-5295c58f080c:
@@ -150,7 +130,7 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
           55c97c59-03ac-4779-af18-f5b7e10fba66:
             uuid: 55c97c59-03ac-4779-af18-f5b7e10fba66
@@ -166,7 +146,7 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
-            weight: 5
+            weight: 6
             additional: {  }
         third_party_settings: {  }
       -

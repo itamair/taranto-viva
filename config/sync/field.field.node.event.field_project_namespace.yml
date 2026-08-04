@@ -8,6 +8,16 @@ dependencies:
     - taxonomy.vocabulary.project_namespace
   content:
     - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
 id: node.event.field_project_namespace
 field_name: field_project_namespace
 entity_type: node
@@ -28,6 +38,6 @@ settings:
     sort:
       field: name
       direction: asc
-    auto_create: false
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference

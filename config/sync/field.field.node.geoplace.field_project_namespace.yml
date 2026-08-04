@@ -7,8 +7,13 @@ dependencies:
     - node.type.geoplace
     - taxonomy.vocabulary.project_namespace
   module:
+    - ai_translate
     - tmgmt_content
 third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
   tmgmt_content:
     excluded: false
 id: node.geoplace.field_project_namespace
@@ -29,6 +34,6 @@ settings:
     sort:
       field: name
       direction: asc
-    auto_create: false
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference

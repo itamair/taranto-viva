@@ -513,12 +513,23 @@ function custom_module_leaflet_views_features_alter(array &$features, ViewsPlugi
   // transparent stroke & fill and wider stroke so to make polyline more
   // 'touchable' or tap-friendly.
   // ref: https://stackoverflow.com/questions/54602793/how-to-make-leaflet-polylines-more-touchable-or-tap-friendly
-  foreach ($features as $feature) {
+  foreach ($features as $k => $feature) {
     if (isset($feature['type']) && $feature['type'] === "linestring" && isset($feature['path'])) {
       $transparent_linestring = $feature;
       $transparent_linestring['path'] = '{"opacity":"0","stroke":true,"weight":"20","fillColor":"#000000","fillOpacity":"0.0"}';
       $transparent_linestring['weight'] = $feature['weight'] - 500;
       $features[] = $transparent_linestring;
+    }
+
+
+    if ($view_style->view->current_display === 'page_ta2026_map' &&
+      !str_contains($feature["properties"], '"content_type":"event"')
+    ) {
+      $features[$k]["tooltip"]["options"] = str_replace(
+        '"permanent":"true"',
+        '"permanent":"false"',
+        $feature["tooltip"]["options"]
+      );
     }
   }
 }
