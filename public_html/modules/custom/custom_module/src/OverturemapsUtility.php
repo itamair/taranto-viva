@@ -10,9 +10,9 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
- * Provides utility methods for the custom module.
+ * Provides Overture Maps utility service with methods.
  */
-final readonly class UtilityService {
+final readonly class OverturemapsUtility {
 
   private const  RELEASES_PAGE =
     'https://docs.overturemaps.org/blog/tags/releases/';
@@ -33,7 +33,7 @@ final readonly class UtilityService {
     'https://docs.overturemaps.org/blog/rss.xml';
 
   /**
-   * Constructs a UtilityService object.
+   * Constructs an Overture Maps utility service object.
    *
    * @param \GuzzleHttp\ClientInterface $httpClient
    *   The HTTP client.

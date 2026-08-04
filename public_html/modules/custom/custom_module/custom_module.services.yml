@@ -3,8 +3,8 @@ services:
     parent: logger.channel_base
     arguments: ['custom_module']
 
-  custom_module.utility:
-    class: Drupal\custom_module\UtilityService
+  custom_module.overture_utility:
+    class: Drupal\custom_module\OverturemapsUtility
     arguments:
       - '@http_client'
       - '@cache.discovery'

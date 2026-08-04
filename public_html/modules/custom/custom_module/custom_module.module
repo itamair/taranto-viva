@@ -42,6 +42,13 @@ function custom_module_page_attachments(array &$page) {
   $page['#attached']['library'][] = 'custom_module/leaflet_drupal_overrides';
   $page['#attached']['library'][] = 'custom_module/leaflet_pmtiles_layer';
 
+  /** @var \Drupal\custom_module\OverturemapsUtility $utility_service */
+  $overture_utility = \Drupal::service('custom_module.overture_utility');
+  $pmtiles_url = $overture_utility->getLatestPmtilesUrl();
+  if ($pmtiles_url !== NULL) {
+    $page['#attached']['drupalSettings']['leaflet_pmtiles_layer']['url'] = $pmtiles_url;
+  }
+
   // The leaflet_map_control library now being added to specific views,
   // (such as the views.view.geo_places.yml) throughout the views_attach_library
   // contrib module (https://www.drupal.org/project/views_attach_library).
