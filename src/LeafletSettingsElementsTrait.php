@@ -635,7 +635,7 @@ trait LeafletSettingsElementsTrait {
     $element['iconSize'] = [
       '#title' => $this->t('Icon Size'),
       '#type' => 'fieldset',
-      '#description' => $this->t("Size of the icon image in pixels (if empty the natural icon image size will be used).<br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)<br>If one value is null it will be derived from the populated one, according to the natural icon image size rate."),
+      '#description' => $this->t("Size of the icon image in pixels (if empty the natural icon image size will be used, which requires looking up the image once per unique icon).<br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)<br>If one value is null it will be derived from the populated one, according to the natural icon image size rate."),
     ];
 
     $element['iconSize']['x'] = [
@@ -676,7 +676,7 @@ trait LeafletSettingsElementsTrait {
     $element['shadowSize'] = [
       '#title' => $this->t('Shadow Size'),
       '#type' => 'fieldset',
-      '#description' => $this->t("Size of the shadow image in pixels (if empty the natural shadow image size will be used). <br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)<br>If one value is null it will be derived from the populated one, according to the natural icon image size rate."),
+      '#description' => $this->t("Size of the shadow image in pixels (if empty the natural shadow image size will be used, which requires looking up the image once per unique image). <br>Both support <b>Replacement Patterns</b> and should end up into an Integer (positive value)<br>If one value is null it will be derived from the populated one, according to the natural icon image size rate."),
     ];
 
     $element['shadowSize']['x'] = [
