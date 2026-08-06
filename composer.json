@@ -181,6 +181,7 @@
         "michelf/php-markdown": "^2.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "pschocke/google-maps-links": "dev-master",
+        "sebastian/diff": "^6",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "conflict": {
@@ -296,9 +297,12 @@
         }
     },
     "require-dev": {
+        "behat/mink-selenium2-driver": "^1.7",
         "mglaman/phpstan-drupal": "^2.0",
+        "phpspec/prophecy-phpunit": "^2.5",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
-        "phpstan/phpstan-deprecation-rules": "^2.0"
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpunit/phpunit": "^11"
     }
 }
