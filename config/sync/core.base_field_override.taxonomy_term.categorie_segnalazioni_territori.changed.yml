@@ -1,0 +1,18 @@
+uuid: b014de32-9064-4c23-8c86-330edb8d7a1f
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_segnalazioni_territori
+id: taxonomy_term.categorie_segnalazioni_territori.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: categorie_segnalazioni_territori
+label: Changed
+description: 'The time that the term was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
+    - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
@@ -21,6 +22,7 @@ dependencies:
     - field.field.node.event.field_source_link
     - field.field.node.event.field_sub_title
     - field.field.node.event.field_tags
+    - field.field.node.event.field_validity_range
     - field.field.node.event.field_zoom_visibility
     - field.field.node.territorial_report.body
     - field.field.node.territorial_report.field_category_type
@@ -130,23 +132,28 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 5
+            weight: 6
             additional: {  }
-          55c97c59-03ac-4779-af18-f5b7e10fba66:
-            uuid: 55c97c59-03ac-4779-af18-f5b7e10fba66
+          3b9b3309-ed76-46d2-bc86-8a6546bad6fd:
+            uuid: 3b9b3309-ed76-46d2-bc86-8a6546bad6fd
             region: content
             configuration:
-              id: 'field_block:node:event:field_zoom_visibility'
+              id: 'field_block:node:event:field_validity_range'
+              label: 'Validity Range'
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
-                type: entity_reference_label
-                label: above
+                type: custom_daterange
+                label: inline
                 settings:
-                  link: true
+                  timezone_override: ''
+                  date_format: d-m-Y
+                  separator: '-'
                 third_party_settings: {  }
-            weight: 6
+            weight: 5
             additional: {  }
         third_party_settings: {  }
       -
@@ -440,6 +447,17 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
+  field_validity_range:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 106
+    region: content
   field_zoom_visibility:
     type: entity_reference_label
     label: above
@@ -450,6 +468,7 @@ content:
     region: content
 hidden:
   field_components: true
+  field_google_maps_address: true
   field_link: true
   field_sub_title: true
   field_tags: true

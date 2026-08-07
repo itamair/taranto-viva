@@ -1,0 +1,20 @@
+uuid: 0129c820-e539-45c4-987b-f78fec9b8713
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_segnalazioni_territori
+  module:
+    - metatag
+id: taxonomy_term.categorie_segnalazioni_territori.metatag
+field_name: metatag
+entity_type: taxonomy_term
+bundle: categorie_segnalazioni_territori
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed

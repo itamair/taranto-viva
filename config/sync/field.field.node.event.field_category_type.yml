@@ -7,7 +7,7 @@ dependencies:
     - node.type.event
     - taxonomy.vocabulary.places_categories
   content:
-    - 'taxonomy_term:places_categories:f71f0fc8-2dd2-4c55-88f9-56da249d0bf8'
+    - 'taxonomy_term:places_categories:ad5f6805-db9c-4baf-b6ed-c276d7f88944'
   module:
     - ai_translate
     - tmgmt_content
@@ -25,10 +25,10 @@ bundle: event
 label: 'Tipo Categoria'
 description: ''
 required: true
-translatable: true
+translatable: false
 default_value:
   -
-    target_uuid: f71f0fc8-2dd2-4c55-88f9-56da249d0bf8
+    target_uuid: ad5f6805-db9c-4baf-b6ed-c276d7f88944
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'

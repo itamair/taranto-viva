@@ -1,0 +1,22 @@
+uuid: 203ebd09-9887-4f84-a70c-9c2c9963911c
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_segnalazioni_territori
+id: taxonomy_term.categorie_segnalazioni_territori.status
+field_name: status
+entity_type: taxonomy_term
+bundle: categorie_segnalazioni_territori
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: Acceso
+  off_label: Spento
+field_type: boolean

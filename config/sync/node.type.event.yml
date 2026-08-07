@@ -5,6 +5,7 @@ dependencies:
   module:
     - content_access
     - menu_ui
+    - revision_manager
 third_party_settings:
   menu_ui:
     available_menus:
@@ -19,9 +20,20 @@ third_party_settings:
       - anonymous
       - authenticated
       - administrator
+  revision_manager:
+    age:
+      id: age
+      status: false
+      settings:
+        age: 6
+    amount:
+      id: amount
+      status: true
+      settings:
+        amount: 3
 name: Event
 type: event
-description: ''
+description: null
 help: null
 new_revision: true
 preview_mode: 1

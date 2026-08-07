@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.media.field_address
     - field.storage.paragraph.field_address
+    - node.type.event
     - node.type.geoimage
     - node.type.geoplace
     - node.type.territorial_report
@@ -413,6 +414,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            event: event
             geoimage: geoimage
             geoplace: geoplace
             territorial_report: territorial_report

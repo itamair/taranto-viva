@@ -1,0 +1,20 @@
+uuid: 2c771e43-6691-49b3-aedb-e800fa32fb26
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.categorie_segnalazioni_territori
+  module:
+    - path
+id: taxonomy_term.categorie_segnalazioni_territori.path
+field_name: path
+entity_type: taxonomy_term
+bundle: categorie_segnalazioni_territori
+label: 'Alias URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

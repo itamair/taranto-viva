@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
+    - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
@@ -21,6 +22,7 @@ dependencies:
     - field.field.node.event.field_source_link
     - field.field.node.event.field_sub_title
     - field.field.node.event.field_tags
+    - field.field.node.event.field_validity_range
     - field.field.node.event.field_zoom_visibility
     - node.type.event
   module:
@@ -66,6 +68,7 @@ hidden:
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true
+  field_google_maps_address: true
   field_link: true
   field_media_slideshow: true
   field_project_namespace: true
@@ -73,6 +76,7 @@ hidden:
   field_source_is_external: true
   field_source_link: true
   field_sub_title: true
+  field_validity_range: true
   field_zoom_visibility: true
   langcode: true
   search_api_excerpt: true

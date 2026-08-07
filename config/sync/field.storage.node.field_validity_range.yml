@@ -1,0 +1,21 @@
+uuid: d1fcf6b8-c659-41be-8ce9-5662cba36a86
+langcode: it
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - node
+id: node.field_validity_range
+field_name: field_validity_range
+entity_type: node
+type: daterange
+settings:
+  datetime_type: date
+  optional_end_date: true
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,25 @@
+uuid: 59c6c9c8-f66e-4823-bf00-ce19663f3641
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_validity_range
+    - node.type.event
+  module:
+    - datetime_range
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.event.field_validity_range
+field_name: field_validity_range
+entity_type: node
+bundle: event
+label: 'Validity Range'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange
