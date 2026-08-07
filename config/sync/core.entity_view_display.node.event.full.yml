@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
+    - field.field.node.event.field_location_ref
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
     - field.field.node.event.field_related_content
@@ -54,6 +55,7 @@ hidden:
   field_geofied_view: true
   field_google_maps_address: true
   field_link: true
+  field_location_ref: true
   field_media_slideshow: true
   field_project_namespace: true
   field_related_content: true

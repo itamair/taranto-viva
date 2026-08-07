@@ -294,11 +294,6 @@ display:
           multi_type: separator
           separator: ''
           field_api_classes: false
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
-          plugin_id: custom
       pager:
         type: some
         options:

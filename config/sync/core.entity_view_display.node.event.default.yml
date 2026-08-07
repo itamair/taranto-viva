@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
+    - field.field.node.event.field_location_ref
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
     - field.field.node.event.field_related_content
@@ -154,6 +155,25 @@ third_party_settings:
                   separator: '-'
                 third_party_settings: {  }
             weight: 5
+            additional: {  }
+          5c68e32c-6df8-4f0e-b0a4-94ad34cf2091:
+            uuid: 5c68e32c-6df8-4f0e-b0a4-94ad34cf2091
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_location_ref'
+              label: Location
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: teaser
+                third_party_settings: {  }
+            weight: 7
             additional: {  }
         third_party_settings: {  }
       -
@@ -398,6 +418,14 @@ content:
       empty_view_title: hidden
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_location_ref:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
     region: content
   field_media_slideshow:
     type: viewfield_default

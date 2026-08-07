@@ -30,37 +30,47 @@ dependencies:
     - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
+    - views.view.content_locations_addresses_and_google_maps_links
   module:
-    - text
+    - layout_builder
+    - layout_discovery
     - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
+          b344afc9-f061-4687-a907-20274213566d:
+            uuid: b344afc9-f061-4687-a907-20274213566d
+            region: content
+            configuration:
+              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
 id: node.geoplace.teaser
 targetEntityType: node
 bundle: geoplace
 mode: teaser
-content:
-  body:
-    type: text_summary_or_trimmed
-    label: hidden
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    weight: 101
-    region: content
-  geoimage_caption:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: -5
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
+content: {  }
 hidden:
   ai_automator_status: true
+  body: true
   field_category_type: true
   field_components: true
   field_crawled_content: true
@@ -84,7 +94,9 @@ hidden:
   field_when_to_visit: true
   field_why_to_visit: true
   field_zoom_visibility: true
+  geoimage_caption: true
   langcode: true
+  links: true
   search_api_excerpt: true
   territorial_report_active_level: true
   uuid: true
