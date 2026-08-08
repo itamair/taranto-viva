@@ -173,7 +173,6 @@ third_party_settings:
               label_display: '0'
               provider: layout_builder
               context_mapping:
-                entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
                 type: viewfield_default
@@ -183,26 +182,7 @@ third_party_settings:
                   always_build_output: false
                   empty_view_title: hidden
                 third_party_settings: {  }
-            weight: 1
-            additional: {  }
-          5c68e32c-6df8-4f0e-b0a4-94ad34cf2091:
-            uuid: 5c68e32c-6df8-4f0e-b0a4-94ad34cf2091
-            region: second
-            configuration:
-              id: 'field_block:node:event:field_location_ref'
-              label: Location
-              label_display: visible
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: teaser
-                third_party_settings: {  }
-            weight: 0
+            weight: 2
             additional: {  }
         third_party_settings: {  }
       -

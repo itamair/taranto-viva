@@ -41,7 +41,7 @@ content:
       view_mode: leaflet_popup
       link: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_date_range:
     type: custom_daterange
@@ -51,7 +51,15 @@ content:
       date_format: d-m-Y
       separator: '-'
     third_party_settings: {  }
-    weight: 2
+    weight: 3
+    region: content
+  field_location_ref:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_sub_title:
     type: text_header
@@ -71,7 +79,6 @@ hidden:
   field_geofied_view: true
   field_google_maps_address: true
   field_link: true
-  field_location_ref: true
   field_media_slideshow: true
   field_project_namespace: true
   field_related_content: true

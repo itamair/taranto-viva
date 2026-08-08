@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_components
     - node.type.event
     - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.location
   module:
     - ai_translate
     - entity_reference_revisions
@@ -32,6 +33,7 @@ settings:
   handler_settings:
     target_bundles:
       image: image
+      location: location
     negate: 0
     target_bundles_drag_drop:
       geoimage:
@@ -48,7 +50,7 @@ settings:
         enabled: false
       location:
         weight: 11
-        enabled: false
+        enabled: true
       text:
         weight: 13
         enabled: false
