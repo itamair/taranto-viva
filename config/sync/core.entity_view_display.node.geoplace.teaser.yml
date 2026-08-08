@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.geoplace.field_for_public_visit
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_google_maps_address
+    - field.field.node.geoplace.field_google_maps_link_view
     - field.field.node.geoplace.field_how_to_reach
     - field.field.node.geoplace.field_image_for_ocr_recognition
     - field.field.node.geoplace.field_link
@@ -30,12 +31,10 @@ dependencies:
     - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
-    - views.view.content_locations_addresses_and_google_maps_links
   module:
     - layout_builder
     - layout_discovery
     - user
-    - views
 third_party_settings:
   layout_builder:
     enabled: true
@@ -49,18 +48,26 @@ third_party_settings:
           layout_builder_styles_style:
             user_profile_section_style: 0
         components:
-          b344afc9-f061-4687-a907-20274213566d:
-            uuid: b344afc9-f061-4687-a907-20274213566d
+          a02268b6-3754-4fc5-9d33-2c9df00c0c6a:
+            uuid: a02268b6-3754-4fc5-9d33-2c9df00c0c6a
             region: content
             configuration:
-              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
-              label: ''
+              id: 'field_block:node:geoplace:field_google_maps_link_view'
+              label: 'Google Maps Link View'
               label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: null
-            weight: 1
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 2
             additional: {  }
         third_party_settings: {  }
 id: node.geoplace.teaser
@@ -79,6 +86,7 @@ hidden:
   field_for_public_visit: true
   field_geofied_view: true
   field_google_maps_address: true
+  field_google_maps_link_view: true
   field_how_to_reach: true
   field_image_for_ocr_recognition: true
   field_link: true

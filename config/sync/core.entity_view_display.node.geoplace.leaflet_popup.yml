@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.geoplace.field_for_public_visit
     - field.field.node.geoplace.field_geofied_view
     - field.field.node.geoplace.field_google_maps_address
+    - field.field.node.geoplace.field_google_maps_link_view
     - field.field.node.geoplace.field_how_to_reach
     - field.field.node.geoplace.field_image_for_ocr_recognition
     - field.field.node.geoplace.field_link
@@ -80,6 +81,7 @@ hidden:
   field_for_public_visit: true
   field_geofied_view: true
   field_google_maps_address: true
+  field_google_maps_link_view: true
   field_how_to_reach: true
   field_image_for_ocr_recognition: true
   field_link: true

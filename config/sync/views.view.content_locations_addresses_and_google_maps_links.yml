@@ -358,7 +358,7 @@ display:
           entity_type: node
           entity_field: nid
           plugin_id: node_nid
-          default_action: default
+          default_action: ignore
           exception:
             value: all
             title_enable: false
