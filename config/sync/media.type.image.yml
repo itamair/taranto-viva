@@ -29,4 +29,3 @@ source_configuration:
   gather_exif: '1'
 field_map:
   name: name
-  created: field_exif_creation_date

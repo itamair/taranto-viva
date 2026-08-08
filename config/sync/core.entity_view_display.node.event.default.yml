@@ -38,6 +38,7 @@ dependencies:
     - views.view.content_media_images
   module:
     - comment
+    - custom_layouts
     - datetime_range
     - layout_builder
     - layout_discovery
@@ -205,7 +206,7 @@ third_party_settings:
             additional: {  }
         third_party_settings: {  }
       -
-        layout_id: layout_onecol
+        layout_id: onecol
         layout_settings:
           label: ''
           context_mapping: {  }
@@ -310,7 +311,7 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
           da044adf-281e-4076-9bc4-5295c58f080c:
             uuid: da044adf-281e-4076-9bc4-5295c58f080c
@@ -325,7 +326,7 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 5
+            weight: 4
             additional: {  }
         third_party_settings: {  }
 id: node.event.default
