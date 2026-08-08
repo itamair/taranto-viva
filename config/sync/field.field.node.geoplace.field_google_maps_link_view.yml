@@ -29,7 +29,7 @@ default_value:
     token_help: ''
 default_value_callback: ''
 settings:
-  force_default: false
+  force_default: true
   allowed_views:
     content_locations_addresses_and_google_maps_links: content_locations_addresses_and_google_maps_links
     ciclovia_acquedotto_aqp: '0'

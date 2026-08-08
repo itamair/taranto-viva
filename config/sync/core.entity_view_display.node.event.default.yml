@@ -35,7 +35,6 @@ dependencies:
     - field.field.node.territorial_report.field_sub_title
     - field.field.node.territorial_report.field_tags
     - node.type.event
-    - views.view.content_locations_addresses_and_google_maps_links
     - views.view.content_media_images
   module:
     - comment
@@ -120,21 +119,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
-          da044adf-281e-4076-9bc4-5295c58f080c:
-            uuid: da044adf-281e-4076-9bc4-5295c58f080c
-            region: content
-            configuration:
-              id: 'field_block:node:territorial_report:body'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: text_default
-                label: visually_hidden
-                settings: {  }
-                third_party_settings: {  }
-            weight: 6
-            additional: {  }
           3b9b3309-ed76-46d2-bc86-8a6546bad6fd:
             uuid: 3b9b3309-ed76-46d2-bc86-8a6546bad6fd
             region: content
@@ -155,25 +139,6 @@ third_party_settings:
                   separator: '-'
                 third_party_settings: {  }
             weight: 5
-            additional: {  }
-          5c68e32c-6df8-4f0e-b0a4-94ad34cf2091:
-            uuid: 5c68e32c-6df8-4f0e-b0a4-94ad34cf2091
-            region: content
-            configuration:
-              id: 'field_block:node:event:field_location_ref'
-              label: Location
-              label_display: visible
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: teaser
-                third_party_settings: {  }
-            weight: 7
             additional: {  }
         third_party_settings: {  }
       -
@@ -198,19 +163,6 @@ third_party_settings:
               items_per_page: 0
             weight: 0
             additional: {  }
-          b5a1db7e-76fc-49db-9002-335c2b7962cd:
-            uuid: b5a1db7e-76fc-49db-9002-335c2b7962cd
-            region: second
-            configuration:
-              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
-              label: ''
-              label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: 0
-            weight: 1
-            additional: {  }
           68d5338e-e684-4c41-92f6-3f1a403ff4ea:
             uuid: 68d5338e-e684-4c41-92f6-3f1a403ff4ea
             region: second
@@ -229,6 +181,25 @@ third_party_settings:
                   view_title: hidden
                   always_build_output: false
                   empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          5c68e32c-6df8-4f0e-b0a4-94ad34cf2091:
+            uuid: 5c68e32c-6df8-4f0e-b0a4-94ad34cf2091
+            region: second
+            configuration:
+              id: 'field_block:node:event:field_location_ref'
+              label: Location
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: teaser
                 third_party_settings: {  }
             weight: 0
             additional: {  }
@@ -340,6 +311,21 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 4
+            additional: {  }
+          da044adf-281e-4076-9bc4-5295c58f080c:
+            uuid: da044adf-281e-4076-9bc4-5295c58f080c
+            region: content
+            configuration:
+              id: 'field_block:node:territorial_report:body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: visually_hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 5
             additional: {  }
         third_party_settings: {  }
 id: node.event.default

@@ -30,7 +30,6 @@ dependencies:
     - field.field.node.geoplace.field_why_to_visit
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
-    - views.view.content_locations_addresses_and_google_maps_links
     - views.view.content_media_images
   module:
     - entity_reference_revisions
@@ -73,7 +72,7 @@ third_party_settings:
                   ellipsis: true
                   wordsafe: true
                 third_party_settings: {  }
-            weight: 4
+            weight: 9
             additional: {  }
           f6ce4061-108f-414e-8442-be81e31d9d91:
             uuid: f6ce4061-108f-414e-8442-be81e31d9d91
@@ -92,7 +91,28 @@ third_party_settings:
                 settings:
                   level: '3'
                 third_party_settings: {  }
-            weight: 2
+            weight: 6
+            additional: {  }
+          21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f:
+            uuid: 21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_google_maps_link_view'
+              label: 'Google Maps Link View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 8
             additional: {  }
           90353cc3-61a6-4e66-8041-c522422c94e5:
             uuid: 90353cc3-61a6-4e66-8041-c522422c94e5
@@ -111,7 +131,7 @@ third_party_settings:
                 settings:
                   link: false
                 third_party_settings: {  }
-            weight: 3
+            weight: 7
             additional: {  }
         third_party_settings: {  }
       -
@@ -126,34 +146,6 @@ third_party_settings:
             region: first
             configuration:
               id: 'views_block:content_media_images-block_content_media_images'
-              label: ''
-              label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: 0
-            weight: 1
-            additional: {  }
-          b2783de3-ffac-4d39-bfe8-9ebef4e3e76d:
-            uuid: b2783de3-ffac-4d39-bfe8-9ebef4e3e76d
-            region: second
-            configuration:
-              id: 'field_block:node:geoplace:field_how_to_reach'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: basic_string
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          ad64522d-7538-48fc-bbab-fffa1f730d58:
-            uuid: ad64522d-7538-48fc-bbab-fffa1f730d58
-            region: second
-            configuration:
-              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
               label: ''
               label_display: '0'
               provider: views
@@ -237,26 +229,20 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 4
             additional: {  }
-          21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f:
-            uuid: 21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f
+          b2783de3-ffac-4d39-bfe8-9ebef4e3e76d:
+            uuid: b2783de3-ffac-4d39-bfe8-9ebef4e3e76d
             region: second
             configuration:
-              id: 'field_block:node:geoplace:field_google_maps_link_view'
-              label: 'Google Maps Link View'
+              id: 'field_block:node:geoplace:field_how_to_reach'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
-                type: viewfield_default
-                label: hidden
-                settings:
-                  view_title: hidden
-                  always_build_output: false
-                  empty_view_title: hidden
+                type: basic_string
+                label: above
+                settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
         third_party_settings: {  }
       -

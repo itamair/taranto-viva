@@ -69,6 +69,27 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 2
             additional: {  }
+          7b63b0c1-7c42-4ef1-84f4-bb8e7e9d2d9b:
+            uuid: 7b63b0c1-7c42-4ef1-84f4-bb8e7e9d2d9b
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_geofied_view'
+              label: 'Geofied View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
         third_party_settings: {  }
 id: node.geoplace.teaser
 targetEntityType: node
