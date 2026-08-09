@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.event.body
     - field.field.node.event.field_active_type
     - field.field.node.event.field_category_type
-    - field.field.node.event.field_comments
     - field.field.node.event.field_components
     - field.field.node.event.field_date_range
     - field.field.node.event.field_exclude_from_map_bounds
@@ -14,7 +13,6 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
-    - field.field.node.event.field_location_ref
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
     - field.field.node.event.field_related_content
@@ -27,7 +25,6 @@ dependencies:
     - node.type.event
   module:
     - autocomplete_deluxe
-    - comment
     - conditional_fields
     - datetime_range
     - field_layout
@@ -84,12 +81,6 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  field_comments:
-    type: comment_default
-    weight: 29
-    region: content
-    settings: {  }
     third_party_settings: {  }
   field_components:
     type: paragraphs
@@ -236,23 +227,6 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
-  field_location_ref:
-    type: autocomplete_deluxe
-    weight: 18
-    region: content
-    settings:
-      match_operator: CONTAINS
-      autocomplete_route_name: autocomplete_deluxe.autocomplete
-      size: 60
-      selection_handler: default
-      match_limit: 10
-      min_length: 0
-      delimiter: ''
-      not_found_message_allow: false
-      not_found_message: "The term '@term' will be added"
-      new_terms: false
-      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
     third_party_settings: {  }
   field_locations:
     type: paragraphs

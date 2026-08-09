@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.event.body
     - field.field.node.event.field_active_type
     - field.field.node.event.field_category_type
-    - field.field.node.event.field_comments
     - field.field.node.event.field_components
     - field.field.node.event.field_date_range
     - field.field.node.event.field_exclude_from_map_bounds
@@ -15,7 +14,6 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
-    - field.field.node.event.field_location_ref
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_project_namespace
     - field.field.node.event.field_related_content
@@ -53,14 +51,6 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_location_ref:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_sub_title:
     type: text_header
     label: hidden
@@ -73,7 +63,6 @@ hidden:
   body: true
   field_active_type: true
   field_category_type: true
-  field_comments: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true

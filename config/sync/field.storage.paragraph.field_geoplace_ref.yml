@@ -1,18 +1,19 @@
-uuid: fbefd030-7574-488e-9671-7bb187995e11
+uuid: c0d8c0b2-dc8e-4175-8a06-6112b55afb97
 langcode: it
 status: true
 dependencies:
   module:
     - node
-id: node.field_location_ref
-field_name: field_location_ref
-entity_type: node
+    - paragraphs
+id: paragraph.field_geoplace_ref
+field_name: field_geoplace_ref
+entity_type: paragraph
 type: entity_reference
 settings:
   target_type: node
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

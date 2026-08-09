@@ -1,0 +1,35 @@
+uuid: e132a9f6-9add-428c-af7f-4e486a27c4c0
+langcode: it
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.leaflet_popup
+    - field.field.paragraph.geoplace_ref.field_geofield
+    - field.field.paragraph.geoplace_ref.field_geoplace_ref
+    - paragraphs.paragraphs_type.geoplace_ref
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: paragraph.geoplace_ref.leaflet_popup
+targetEntityType: paragraph
+bundle: geoplace_ref
+mode: leaflet_popup
+content:
+  field_geoplace_ref:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: leaflet_popup
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_geofield: true
+  geofield_googlemaps_link: true
+  geomarker_icon_url: true
+  search_api_excerpt: true
+  uuid: true

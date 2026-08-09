@@ -1,0 +1,10 @@
+uuid: 4d5a4893-2433-49ff-af55-d3aa39b0ef50
+langcode: it
+status: true
+dependencies: {  }
+id: geoplace_ref
+label: 'Geoplace Ref'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

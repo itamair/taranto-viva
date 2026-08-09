@@ -1,0 +1,127 @@
+uuid: 0ee1be51-764f-45dc-992f-f9d07e5ff68f
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.geoplace_ref.field_geofield
+    - field.field.paragraph.geoplace_ref.field_geoplace_ref
+    - paragraphs.paragraphs_type.geoplace_ref
+  module:
+    - autocomplete_deluxe
+    - leaflet
+id: paragraph.geoplace_ref.default
+targetEntityType: paragraph
+bundle: geoplace_ref
+mode: default
+content:
+  field_geofield:
+    type: leaflet_widget_default
+    weight: 3
+    region: content
+    settings:
+      geometry_validation: true
+      map:
+        leaflet_map: multilayers
+        height: 700
+        auto_center: 1
+        map_position:
+          force: false
+          center:
+            lat: 40.47
+            lon: 17.24
+          zoomControlPosition: topleft
+          zoom: 18
+          minZoom: 8
+          maxZoom: 21
+          zoomFiner: 0
+        scroll_zoom_enabled: 1
+      input:
+        show: true
+        readonly: false
+      toolbar:
+        position: topright
+        marker: defaultMarker
+        drawPolyline: false
+        drawRectangle: false
+        drawPolygon: false
+        drawCircle: false
+        drawText: false
+        editMode: true
+        dragMode: true
+        cutPolygon: false
+        removalMode: true
+        rotateMode: false
+      reset_map:
+        control: true
+        options: '{"position":"topleft","title":"Reset View"}'
+      map_scale:
+        control: false
+        options: '{"position":"bottomright","maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":false}'
+      fullscreen:
+        control: true
+        options: '{"position":"topleft","pseudoFullscreen":false}'
+      path: '{"color":"[paragraph:field_stroke_color]","opacity":"[paragraph:field_stroke_opacity]","stroke":true,"weight":3,"fill":"depends","fillColor":"[paragraph:field_fill_color]","fillOpacity":"[paragraph:field_fill_opacity]","radius":"6"}'
+      feature_properties:
+        values: ''
+      locate:
+        control: false
+        options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"strings":{"title":"Locate my position"}}'
+        automatic: false
+      geocoder:
+        control: true
+        settings:
+          set_marker: true
+          popup: true
+          autocomplete:
+            placeholder: 'Search Address'
+            title: 'Search an Address on the Map'
+          position: topright
+          input_size: 25
+          providers:
+            arcgisonline:
+              weight: -100
+              checked: true
+            googlemaps:
+              weight: -99
+              checked: true
+            file:
+              weight: 0
+              checked: false
+            gpx_file:
+              weight: 0
+              checked: false
+            photon:
+              weight: 0
+              checked: false
+          min_terms: 4
+          delay: 800
+          zoom: 16
+          options: ''
+      geojson_overlays:
+        sources:
+          fields: {  }
+        zoom_to_geojson: true
+        path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
+        snapping: true
+    third_party_settings: {  }
+  field_geoplace_ref:
+    type: autocomplete_deluxe
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      size: 60
+      selection_handler: default
+      match_limit: 20
+      min_length: 0
+      delimiter: ''
+      not_found_message_allow: false
+      not_found_message: "The term '@term' will be added"
+      new_terms: false
+      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uuid: true

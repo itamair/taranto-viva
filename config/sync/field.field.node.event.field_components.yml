@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_components
     - node.type.event
+    - paragraphs.paragraphs_type.geoplace_ref
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.location
   module:
@@ -33,6 +34,7 @@ settings:
   handler_settings:
     target_bundles:
       image: image
+      geoplace_ref: geoplace_ref
       location: location
     negate: 0
     target_bundles_drag_drop:
@@ -42,6 +44,9 @@ settings:
       geometry:
         weight: 9
         enabled: false
+      geoplace_ref:
+        weight: 11
+        enabled: true
       image:
         weight: 10
         enabled: true

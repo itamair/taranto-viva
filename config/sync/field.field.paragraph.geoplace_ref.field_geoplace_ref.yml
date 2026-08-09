@@ -1,11 +1,11 @@
-uuid: 133dd410-011c-4775-a244-a903547d6c58
+uuid: ca997539-2f22-4ca7-83b9-7d8ce543cbe2
 langcode: it
 status: true
 dependencies:
   config:
-    - field.storage.node.field_location_ref
-    - node.type.event
+    - field.storage.paragraph.field_geoplace_ref
     - node.type.geoplace
+    - paragraphs.paragraphs_type.geoplace_ref
   module:
     - ai_translate
     - tmgmt_content
@@ -16,11 +16,11 @@ third_party_settings:
     translate_references: default
   tmgmt_content:
     excluded: false
-id: node.event.field_location_ref
-field_name: field_location_ref
-entity_type: node
-bundle: event
-label: 'Location ref'
+id: paragraph.geoplace_ref.field_geoplace_ref
+field_name: field_geoplace_ref
+entity_type: paragraph
+bundle: geoplace_ref
+label: 'Geoplace Ref'
 description: ''
 required: false
 translatable: false

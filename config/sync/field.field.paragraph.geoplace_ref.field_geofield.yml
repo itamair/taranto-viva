@@ -1,0 +1,25 @@
+uuid: 22931f87-3b9e-4785-864a-2a0e3f150186
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_geofield
+    - paragraphs.paragraphs_type.geoplace_ref
+  module:
+    - geofield
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: paragraph.geoplace_ref.field_geofield
+field_name: field_geofield
+entity_type: paragraph
+bundle: geoplace_ref
+label: Geofield
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield
