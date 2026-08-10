@@ -22,16 +22,11 @@
     h3 {
       font-size: 0.90rem;
       color: dimgray;
-      margin: 0.5em 20px 0.5em 0;
+      margin: 0.4em 0;
       line-height: 1.2rem;
       font-weight: normal;
     }
-    div {
-      margin-bottom: 6px;
-    }
-    div:last-child {
-      margin-bottom: 4px;
-    }
+
     /* Overrides the Olivero olivero_tarantoviva/css/components/text-content.css */
     .text-content,
     .cke_editable {
@@ -112,6 +107,13 @@
         display: none;
       }
     }
+
+    .node--view-mode-teaser,
+    .node--view-mode-teaser .layout,
+    .node--view-mode-teaser .layout .block-layout-builder {
+      margin-block-end: 0;
+    }
+
   }
 }
 
