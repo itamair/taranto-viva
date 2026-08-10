@@ -129,31 +129,37 @@
       let lat = feature.lat ?? '';
       let lng = feature.lon ?? '';
 
+      // In case the Content Type is not Event,
       // Append to the feature.popup.value the Google Maps Links corresponding to
       // the feature centroid location.
-      let gmaps_links = self.get_gmaps_links(lat, lng);
+      let gmaps_links = feature_properties['content_type'] !== 'event' ? self.get_gmaps_links(lat, lng) : '';
       lFeature.bindPopup(feature.popup.value + gmaps_links, popup_options);
 
-      // In case of feature.path replace the gmaps_links corresponding to the
-      // popup LatLng place (click location).
-      lFeature.on('popupopen', function (e) {
-        const popup = e.popup;
-        if (e.target._path) {
-          const lat = popup.getLatLng().lat;
-          const lng = popup.getLatLng().lng;
-          gmaps_links = self.get_gmaps_links(lat, lng);
-          popup.setContent(feature.popup.value + gmaps_links);
-        }
-          // Else, in case the google_map_place is defined, then generate a Google Maps
-        // query based on that address.
-        else if (
-          typeof feature_properties['google_maps_address'] === 'string' &&
-          feature_properties['google_maps_address'].trim() !== ''
-        ) {
-          gmaps_links = self.get_gmaps_links(lat, lng, feature_properties['google_maps_address']);
-          popup.setContent(feature.popup.value + gmaps_links);
-        }
-      });
+      // In case gmaps_links is not empty.
+      if (gmaps_links.length > 0) {
+
+        // In case of feature.path replace the gmaps_links corresponding to the
+        // popup LatLng place (click location).
+        lFeature.on('popupopen', function (e) {
+          const popup = e.popup;
+          if (e.target._path) {
+            const lat = popup.getLatLng().lat;
+            const lng = popup.getLatLng().lng;
+            gmaps_links = self.get_gmaps_links(lat, lng);
+            popup.setContent(feature.popup.value + gmaps_links);
+          }
+            // Else, in case the google_map_place is defined, then generate a Google Maps
+          // query based on that address.
+          else if (
+            typeof feature_properties['google_maps_address'] === 'string' &&
+            feature_properties['google_maps_address'].trim() !== ''
+          ) {
+            // Define new gmaps_links
+            gmaps_links = self.get_gmaps_links(lat, lng, feature_properties['google_maps_address']);
+            popup.setContent(feature.popup.value + gmaps_links);
+          }
+        });
+    }
     }
   };
 
