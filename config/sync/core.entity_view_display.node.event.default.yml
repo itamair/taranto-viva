@@ -23,159 +23,212 @@ dependencies:
     - field.field.node.event.field_validity_range
     - field.field.node.event.field_zoom_visibility
     - node.type.event
+    - views.view.content_locations_addresses_and_google_maps_links
   module:
-    - datetime_range
+    - custom_layouts
     - layout_builder
-    - link
-    - options
-    - text
+    - layout_discovery
     - user
-    - viewfield
+    - views
 third_party_settings:
   layout_builder:
-    enabled: false
+    enabled: true
     allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          80dc4e70-b6cd-4174-8a76-63b1f3092ff1:
+            uuid: 80dc4e70-b6cd-4174-8a76-63b1f3092ff1
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_category_type'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: hidden
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: twocol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
+          3d462edb-cccf-4d78-bfe6-56409736c48b:
+            uuid: 3d462edb-cccf-4d78-bfe6-56409736c48b
+            region: bottom
+            configuration:
+              id: 'field_block:node:event:field_validity_range'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: daterange_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                  from_to: both
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          c252b4a4-5607-4215-9ebb-ec80df85268a:
+            uuid: c252b4a4-5607-4215-9ebb-ec80df85268a
+            region: bottom
+            configuration:
+              id: 'field_block:node:event:field_source_link'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: ''
+                  target: ''
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          ad5961ce-3e26-457f-9948-d2f56727db25:
+            uuid: ad5961ce-3e26-457f-9948-d2f56727db25
+            region: bottom
+            configuration:
+              id: 'field_block:node:event:field_date_range'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: daterange_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                  from_to: both
+                  separator: '-'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          39b18133-bea2-4fb3-905e-12ebe518d976:
+            uuid: 39b18133-bea2-4fb3-905e-12ebe518d976
+            region: bottom
+            configuration:
+              id: 'field_block:node:event:field_related_content'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          83e2175b-4f6f-4e38-88f0-462d4aeb617a:
+            uuid: 83e2175b-4f6f-4e38-88f0-462d4aeb617a
+            region: top
+            configuration:
+              id: 'field_block:node:event:body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: visually_hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          802cda91-654c-4c10-9500-a9f21d4aee79:
+            uuid: 802cda91-654c-4c10-9500-a9f21d4aee79
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_media_slideshow'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          806ae84e-7943-43ad-9cb0-3ae9036061b5:
+            uuid: 806ae84e-7943-43ad-9cb0-3ae9036061b5
+            region: second
+            configuration:
+              id: 'field_block:node:event:field_geofied_view'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          50805de5-89f6-410f-840d-a68d3d31a25c:
+            uuid: 50805de5-89f6-410f-840d-a68d3d31a25c
+            region: second
+            configuration:
+              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
 id: node.event.default
 targetEntityType: node
 bundle: event
 mode: default
-content:
-  body:
-    type: text_default
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
-    region: content
-  field_active_type:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 11
-    region: content
-  field_category_type:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
-  field_date_range:
-    type: daterange_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-      from_to: both
-      separator: '-'
-    third_party_settings: {  }
-    weight: 10
-    region: content
-  field_exclude_from_map_bounds:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 105
-    region: content
-  field_exclude_from_markercluster:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 8
-    region: content
-  field_geofied_view:
-    type: viewfield_default
-    label: hidden
-    settings:
-      view_title: hidden
-      always_build_output: false
-      empty_view_title: hidden
-    third_party_settings: {  }
-    weight: 6
-    region: content
-  field_media_slideshow:
-    type: viewfield_default
-    label: hidden
-    settings:
-      view_title: hidden
-      always_build_output: false
-      empty_view_title: hidden
-    third_party_settings: {  }
-    weight: 5
-    region: content
-  field_project_namespace:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 104
-    region: content
-  field_related_content:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_source_is_external:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 103
-    region: content
-  field_source_link:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 102
-    region: content
-  field_validity_range:
-    type: daterange_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-      from_to: both
-      separator: '-'
-    third_party_settings: {  }
-    weight: 106
-    region: content
-  field_zoom_visibility:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 7
-    region: content
+content: {  }
 hidden:
+  body: true
+  field_active_type: true
+  field_category_type: true
   field_components: true
+  field_date_range: true
+  field_exclude_from_map_bounds: true
+  field_exclude_from_markercluster: true
+  field_geofied_view: true
   field_google_maps_address: true
   field_link: true
+  field_media_slideshow: true
+  field_project_namespace: true
+  field_related_content: true
+  field_source_is_external: true
+  field_source_link: true
   field_sub_title: true
   field_tags: true
+  field_validity_range: true
+  field_zoom_visibility: true
   langcode: true
   links: true
   rate_thumbs_up_down: true

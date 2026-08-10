@@ -31,7 +31,6 @@ dependencies:
     - field.storage.paragraph.field_tooltip_sticky
     - field.storage.paragraph.field_zindex
     - field.storage.taxonomy_term.field_zoom_visibility_range
-    - node.type.article
     - node.type.event
     - node.type.geoimage
     - node.type.geojson_geometry
@@ -9939,7 +9938,6 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            227: 227
             52: 52
           group: 1
           exposed: false
@@ -9988,7 +9986,11 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            article: article
+            geoimage: geoimage
+            geoplace: geoplace
+            geojson_geometry: geojson_geometry
+            map_label: map_label
+            territorial_report: territorial_report
           group: 1
           exposed: false
           expose:
@@ -10190,10 +10192,10 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_date_range_value:
-          id: field_date_range_value
-          table: node__field_date_range
-          field: field_date_range_value
+        field_validity_range_value:
+          id: field_validity_range_value
+          table: node__field_validity_range
+          field: field_validity_range_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -10207,15 +10209,15 @@ display:
           group: 2
           exposed: true
           expose:
-            operator_id: field_date_range_value_op
-            label: 'Validità eventi e segnalazioni'
+            operator_id: field_validity_range_value_op
+            label: 'Validity Range'
             description: ''
             use_operator: false
-            operator: field_date_range_value_op
+            operator: field_validity_range_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_date_range_value
-            required: true
+            identifier: field_validity_range_value
+            required: false
             remember: false
             multiple: false
             remember_roles:
