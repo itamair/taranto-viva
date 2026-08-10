@@ -26,3 +26,4 @@ hidden:
   author: true
   langcode: true
   subject: true
+  uuid: true

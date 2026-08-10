@@ -35,6 +35,7 @@ dependencies:
     - conditional_fields
     - field_group
     - field_layout
+    - layout_discovery
     - link_class
     - media_library
     - paragraphs

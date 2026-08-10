@@ -27,6 +27,7 @@ dependencies:
     - conditional_fields
     - datetime_range
     - field_layout
+    - layout_discovery
     - link
     - paragraphs
     - path
