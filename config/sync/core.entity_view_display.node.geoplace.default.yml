@@ -93,27 +93,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 6
             additional: {  }
-          21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f:
-            uuid: 21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f
-            region: content
-            configuration:
-              id: 'field_block:node:geoplace:field_google_maps_link_view'
-              label: 'Google Maps Link View'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: viewfield_default
-                label: hidden
-                settings:
-                  view_title: hidden
-                  always_build_output: false
-                  empty_view_title: hidden
-                third_party_settings: {  }
-            weight: 8
-            additional: {  }
           90353cc3-61a6-4e66-8041-c522422c94e5:
             uuid: 90353cc3-61a6-4e66-8041-c522422c94e5
             region: content
@@ -241,6 +220,27 @@ third_party_settings:
                 type: basic_string
                 label: above
                 settings: {  }
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f:
+            uuid: 21bbc88c-9c4e-48a0-88a1-9c32ece0bd9f
+            region: second
+            configuration:
+              id: 'field_block:node:geoplace:field_google_maps_link_view'
+              label: 'Google Maps Link View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
                 third_party_settings: {  }
             weight: 4
             additional: {  }

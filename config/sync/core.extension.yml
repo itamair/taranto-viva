@@ -44,7 +44,6 @@ module:
   content_access: 0
   contextual: 0
   csv_serialization: 0
-  custom_layouts: 0
   custom_module: 0
   date_filter: 0
   datetime: 0

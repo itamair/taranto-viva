@@ -103,7 +103,7 @@ content:
         drawCircle: false
         drawText: false
         editMode: true
-        dragMode: false
+        dragMode: true
         cutPolygon: false
         removalMode: true
         rotateMode: false
