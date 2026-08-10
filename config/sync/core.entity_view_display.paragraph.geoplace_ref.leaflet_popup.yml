@@ -20,9 +20,9 @@ mode: leaflet_popup
 content:
   field_geoplace_ref:
     type: entity_reference_entity_view
-    label: hidden
+    label: above
     settings:
-      view_mode: leaflet_popup
+      view_mode: teaser
       link: false
     third_party_settings: {  }
     weight: 0

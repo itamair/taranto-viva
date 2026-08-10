@@ -20,7 +20,7 @@ id: paragraph.geoplace_ref.field_geoplace_ref
 field_name: field_geoplace_ref
 entity_type: paragraph
 bundle: geoplace_ref
-label: 'Geoplace Ref'
+label: Location
 description: ''
 required: false
 translatable: false
