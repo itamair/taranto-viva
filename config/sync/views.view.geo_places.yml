@@ -31,6 +31,7 @@ dependencies:
     - field.storage.paragraph.field_tooltip_sticky
     - field.storage.paragraph.field_zindex
     - field.storage.taxonomy_term.field_zoom_visibility_range
+    - node.type.article
     - node.type.event
     - node.type.geoimage
     - node.type.geojson_geometry
@@ -9938,6 +9939,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
+            227: 227
             52: 52
           group: 1
           exposed: false
@@ -9986,10 +9988,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            event: event
-            geoplace: geoplace
-            geojson_geometry: geojson_geometry
-            map_label: map_label
+            article: article
           group: 1
           exposed: false
           expose:

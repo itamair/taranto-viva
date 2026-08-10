@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.leaflet_popup
-    - field.field.paragraph.geoplace_ref.field_geofield
     - field.field.paragraph.geoplace_ref.field_geoplace_ref
     - paragraphs.paragraphs_type.geoplace_ref
   module:
@@ -28,7 +27,6 @@ content:
     weight: 0
     region: content
 hidden:
-  field_geofield: true
   geofield_googlemaps_link: true
   geomarker_icon_url: true
   search_api_excerpt: true
