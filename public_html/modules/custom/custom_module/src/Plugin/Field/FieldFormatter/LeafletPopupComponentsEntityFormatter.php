@@ -66,8 +66,14 @@ class LeafletPopupComponentsEntityFormatter extends EntityReferenceRevisionsEnti
             $images_limit_reached = TRUE;
           }
         }
-        if ($entity->bundle() == ['location']) {
-          if ($locations_limit_reached) {
+        if ($entity->bundle() == 'location') {
+          /** @var \Drupal\paragraphs\Entity\Paragraph $entity */
+          if (!isset($parent_entity)) {
+            $parent_entity = $entity->getParentEntity();
+          }
+
+          // In case of parent enity event don't render any location component.
+          if ($locations_limit_reached || $parent_entity->bundle() === 'event') {
             continue;
           }
           else {
