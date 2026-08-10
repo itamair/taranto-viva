@@ -5,8 +5,9 @@ namespace Drupal\custom_module\Plugin\views\filter;
 use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\datetime\Plugin\views\filter\Date;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Date/time Ranges Custom Views filters.
@@ -21,6 +22,8 @@ use Drupal\datetime\Plugin\views\filter\Date;
  * @ViewsFilter("views_custom_daterange_filters")
  */
 class DateRangeCustomFilters extends Date implements ContainerFactoryPluginInterface {
+
+  use StringTranslationTrait;
 
   /**
    * Add a type selector to the value form.
