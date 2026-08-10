@@ -29,6 +29,7 @@ class LeafletPopupComponentsEntityFormatter extends EntityReferenceRevisionsEnti
 
     $locations_limit_reached = FALSE;
     $images_limit_reached = FALSE;
+    $geoplace_ref_limit_reached = FALSE;
 
     $parent_entity = NULL;
 
@@ -46,7 +47,12 @@ class LeafletPopupComponentsEntityFormatter extends EntityReferenceRevisionsEnti
         return $elements;
       }
       if ($entity instanceof Paragraph &&
-        in_array($entity->bundle(), ['image', 'location', 'geoimage'])
+        in_array($entity->bundle(), [
+          'image',
+          'location',
+          'geoimage',
+          'geoplace_ref',
+        ])
       ) {
         if (in_array($entity->bundle(), ['image', 'geoimage'])) {
           if ($images_limit_reached) {
@@ -66,6 +72,18 @@ class LeafletPopupComponentsEntityFormatter extends EntityReferenceRevisionsEnti
           }
           else {
             $locations_limit_reached = TRUE;
+          }
+        }
+        if (in_array($entity->bundle(), ['geoplace_ref'])) {
+          if ($geoplace_ref_limit_reached) {
+            continue;
+          }
+          else {
+            /** @var \Drupal\paragraphs\Entity\Paragraph $entity */
+            if (!isset($parent_entity)) {
+              $parent_entity = $entity->getParentEntity();
+            }
+            $geoplace_ref_limit_reached = TRUE;
           }
         }
 
@@ -95,7 +113,7 @@ class LeafletPopupComponentsEntityFormatter extends EntityReferenceRevisionsEnti
         }
         $depth = 0;
       }
-      elseif ($locations_limit_reached && $images_limit_reached) {
+      elseif ($locations_limit_reached && $images_limit_reached && $geoplace_ref_limit_reached) {
         break;
       }
     }
