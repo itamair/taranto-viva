@@ -3,12 +3,8 @@ langcode: it
 status: true
 dependencies:
   module:
-    - field_permissions
     - node
     - options
-third_party_settings:
-  field_permissions:
-    permission_type: public
 id: node.field_active_type
 field_name: field_active_type
 entity_type: node
@@ -24,6 +20,9 @@ settings:
     -
       value: very_negative
       label: 'Molto Negativa'
+    -
+      value: event
+      label: Event
   allowed_values_function: ''
 module: options
 locked: false

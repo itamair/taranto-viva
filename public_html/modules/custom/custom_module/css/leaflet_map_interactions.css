@@ -280,22 +280,26 @@
 .leaflet-container .leaflet-marker-icon.pulsing-marker.positive .dot {
   border-color: limegreen;
 }
+/* line 263, ../sass/leaflet_map_interactions.scss */
+.leaflet-container .leaflet-marker-icon.pulsing-marker.event .dot {
+  border-color: orangered;
+}
 
-/* line 272, ../sass/leaflet_map_interactions.scss */
+/* line 275, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster div {
   font-weight: bold;
   font-size: 16px;
   opacity: 70%;
 }
-/* line 276, ../sass/leaflet_map_interactions.scss */
+/* line 279, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster div:hover {
   opacity: 100%;
 }
-/* line 280, ../sass/leaflet_map_interactions.scss */
+/* line 283, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small {
   background-color: inherit !important;
 }
-/* line 282, ../sass/leaflet_map_interactions.scss */
+/* line 285, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small div {
   width: 30px;
   height: 30px;
@@ -303,15 +307,15 @@
   background-color: #f1cf61 !important;
   border: gray solid 1px;
 }
-/* line 288, ../sass/leaflet_map_interactions.scss */
+/* line 291, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-small div span {
   line-height: 26px;
 }
-/* line 293, ../sass/leaflet_map_interactions.scss */
+/* line 296, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium {
   background-color: inherit !important;
 }
-/* line 295, ../sass/leaflet_map_interactions.scss */
+/* line 298, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium div {
   width: 40px;
   height: 40px;
@@ -319,16 +323,16 @@
   background-color: #f68b50 !important;
   border: black solid 1px;
 }
-/* line 301, ../sass/leaflet_map_interactions.scss */
+/* line 304, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium div span {
   line-height: 36px;
 }
-/* line 306, ../sass/leaflet_map_interactions.scss */
+/* line 309, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large {
   background-color: inherit !important;
   z-index: 100 !important;
 }
-/* line 309, ../sass/leaflet_map_interactions.scss */
+/* line 312, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large div {
   color: white;
   width: 60px;
@@ -337,28 +341,28 @@
   background-color: #fd3333 !important;
   border: black solid 1px;
 }
-/* line 316, ../sass/leaflet_map_interactions.scss */
+/* line 319, ../sass/leaflet_map_interactions.scss */
 .leaflet-marker-icon.marker-cluster.marker-cluster-large div span {
   line-height: 44px;
 }
 
-/* line 324, ../sass/leaflet_map_interactions.scss */
+/* line 327, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.big-and-bold {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-/* line 329, ../sass/leaflet_map_interactions.scss */
+/* line 332, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.big {
   font-size: 1.1rem;
 }
 
-/* line 333, ../sass/leaflet_map_interactions.scss */
+/* line 336, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.bold {
   font-weight: bold;
 }
 
-/* line 337, ../sass/leaflet_map_interactions.scss */
+/* line 340, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.small {
   font-size: 0.7rem;
   padding: 3pxx;
@@ -371,27 +375,27 @@
   border-radius: 50%;
   transition: background 400ms ease-out;
 }*/
-/* line 355, ../sass/leaflet_map_interactions.scss */
+/* line 358, ../sass/leaflet_map_interactions.scss */
 .leaflet-map-path-hover-highlight path:hover {
   stroke-width: 14;
 }
 
-/* line 364, ../sass/leaflet_map_interactions.scss */
+/* line 367, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-top,
 .view .leaflet-tooltip-top {
   margin-top: -16px !important;
 }
-/* line 366, ../sass/leaflet_map_interactions.scss */
+/* line 369, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-top.wider,
 .view .leaflet-tooltip-top.wider {
   margin-top: -24px !important;
 }
-/* line 370, ../sass/leaflet_map_interactions.scss */
+/* line 373, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom,
 .view .leaflet-tooltip-bottom {
   margin-top: 16px !important;
 }
-/* line 372, ../sass/leaflet_map_interactions.scss */
+/* line 375, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom.wider,
 .view .leaflet-tooltip-bottom.wider {
   margin-top: 24px !important;

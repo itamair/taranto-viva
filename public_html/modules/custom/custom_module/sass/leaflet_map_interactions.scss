@@ -260,6 +260,9 @@
   &.positive .dot {
     border-color: limegreen;
   }
+  &.event .dot {
+    border-color: orangered;
+  }
 }
 
 // Leaflet Markers Clusters Style overrides

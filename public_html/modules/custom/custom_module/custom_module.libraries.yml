@@ -110,3 +110,5 @@ leaflet_map_view_ta2026:
   css:
     component:
       css/view_ta2026.css: {}
+  dependencies:
+    - leaflet/leaflet
