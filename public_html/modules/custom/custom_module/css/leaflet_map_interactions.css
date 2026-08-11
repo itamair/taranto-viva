@@ -150,7 +150,6 @@
 /* line 144, ../sass/leaflet_map_interactions.scss */
 .leaflet-pane .leaflet-marker-icon.opacity-50,
 .leaflet-pane > svg path.opacity-50 {
-  border: 3px solid white;
   opacity: 50% !important;
 }
 /* line 149, ../sass/leaflet_map_interactions.scss */
