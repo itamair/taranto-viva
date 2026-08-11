@@ -522,14 +522,15 @@ function custom_module_leaflet_views_features_alter(array &$features, ViewsPlugi
     }
 
 
-    if ($view_style->view->current_display === 'page_ta2026_map' &&
-      !str_contains($feature["properties"], '"content_type":"event"')
-    ) {
-      $features[$k]["tooltip"]["options"] = str_replace(
-        '"permanent":"true"',
-        '"permanent":"false"',
-        $feature["tooltip"]["options"]
-      );
+    // Remove tooltips in Ta2026 Map in case of not Event content type.
+    if ($view_style->view->current_display === 'page_ta2026_map') {
+      if (!str_contains($feature["properties"], '"content_type":"event"')) {
+        unset($features[$k]["tooltip"]);
+        $features[$k]["icon"]["className"] = $features[$k]["icon"]["className"] . ' ' . 'opacity-75';
+      }
+      else {
+        $feature["weight"] = $feature["weight"] + 1000 + $k;
+      }
     }
   }
 }
@@ -545,11 +546,20 @@ function custom_module_leaflet_views_features_group_alter(array &$group, ViewsPl
     $group["weight"] = -10;
   }
 
+  // Bring the areas and quarters overlay on higher position.
   if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
     'zone e quartieri',
-    'areas and quaråters',
+    'areas and quarters',
   ])) {
     $group["weight"] = 100;
+  }
+
+  // Bring the event overlay on top.
+  if (!empty($group["group_label"]) && in_array(strtolower($group["group_label"]), [
+    'event',
+    'evento',
+  ])) {
+    $group["weight"] = 200;
   }
 
   if ($view_style->getPluginId() == 'leaflet_choropleth_map') {
@@ -566,7 +576,6 @@ function custom_module_leaflet_views_features_group_alter(array &$group, ViewsPl
         $group["weight"] = 5;
     }
   }
-
 }
 
 /**
