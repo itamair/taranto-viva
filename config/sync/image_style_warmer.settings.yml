@@ -3,5 +3,6 @@ _core:
 langcode: it
 initial_image_styles:
   image_map_marker: image_map_marker
+  image_map_marker_height_100: image_map_marker_height_100
   image_map_square_marker: image_map_square_marker
 queue_image_styles: {  }

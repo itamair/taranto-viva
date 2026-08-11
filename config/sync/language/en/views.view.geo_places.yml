@@ -13,3 +13,6 @@ display:
       title: 'Home | Map'
       menu:
         title: 'Home | Map'
+  page_ta2026_map:
+    display_options:
+      title: 'Ta2026 - Map of the Mediterranean Games'
