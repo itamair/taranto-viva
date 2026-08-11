@@ -138,6 +138,21 @@ function geofield_311_leaflet_map_info() {
     ],
   ];
 
+  $map_info['taranto_viva_topomaps'] = [
+    'label' => 'Taranto-Viva Topomaps',
+    'description' => t('Taranto-Viva Topomaps.'),
+    'settings' => geofield_311_leaflet_map_default_settings(),
+    'layers' => [
+      'Taranto-Viva Topomaps' => [
+        'type' => 'vector',
+        'urlTemplate' => '//api.maptiler.com/maps/019f2315-d543-7f3f-9897-7ea272fb2007/style.json?key=OIQHXCpngQEP6dfvC5nq',
+        'options' => [
+          'attribution' => '&copy; <a href="https://www.maptiler.com/">Map Tiler</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+        ],
+      ],
+    ],
+  ];
+
   $map_info['google_roads'] = [
     'label' => 'Google Roads',
     'description' => t('Leaflet default map.'),
