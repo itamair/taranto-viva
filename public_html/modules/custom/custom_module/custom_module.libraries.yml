@@ -107,6 +107,8 @@ leaflet_map_control:
 
 leaflet_map_view_ta2026:
   version: 1.x
+  js:
+    js/leaflet_ta2026_watermark_control.js: { }
   css:
     component:
       css/view_ta2026.css: {}
