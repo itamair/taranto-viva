@@ -32,6 +32,11 @@ class GeoMarkerIconUrlFieldItemList extends FieldItemList {
   protected function computeValue(): void {
     if (!$this->isCalculated) {
       $entity = $this->getEntity();
+      $bundle = $entity->bundle();
+      $parent_entity = $entity->getParentEntity();
+      if ($parent_entity) {
+        $parent_bundle = $parent_entity->bundle();
+      }
       $image_style = NULL;
       $value = '';
       if ($entity instanceof ParagraphInterface) {
@@ -49,7 +54,7 @@ class GeoMarkerIconUrlFieldItemList extends FieldItemList {
 
           case "location":
             $media = isset($entity->field_marker_image) ? $entity->field_marker_image->entity : NULL;
-            $image_style = 'image_map_marker';
+            $image_style = (isset($parent_bundle) &&  $parent_bundle === 'event') ? 'image_map_marker_height_100' : 'image_map_marker';
             if (!$media instanceof MediaInterface && $entity->field_location_type->entity instanceof ContentEntityInterface) {
               $media = $entity->field_location_type->entity->field_place_type_icon->entity;
             }
