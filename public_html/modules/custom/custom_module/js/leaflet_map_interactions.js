@@ -31,7 +31,7 @@
     zoomDefaultIconSize: 19,
 
     // Zoom increment applied when clicking a Point permanent Tooltip.
-    tooltipClickZoomIncrement: 3,
+    tooltipClickZoomIncrement: 5,
 
     // Stores markers that are currently hidden.
     hidden_markers: [],
@@ -590,7 +590,9 @@
       const permanent_tooltip_features = Drupal.Leaflet[mapid].permanent_tooltip_features || [];
 
       for (const lFeature of permanent_tooltip_features) {
-        if (!lFeature || !lFeature.getTooltip) {
+
+        // Eventually disable the Tooltip Zoom for the Events.
+        if (!lFeature || !lFeature.getTooltip || lFeature.options.className?.split(/\s+/).includes('event')) {
           continue;
         }
 
