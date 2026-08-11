@@ -9939,6 +9939,7 @@ display:
           operator: or
           value:
             227: 227
+            52: 52
           group: 1
           exposed: false
           expose:
@@ -10163,6 +10164,49 @@ display:
           operator: in
           value:
             event: event
+          group: 2
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        type_3:
+          id: type_3
+          table: paragraphs_item_field_data
+          field: type
+          relationship: field_components
+          group_type: group
+          admin_label: ''
+          entity_type: paragraph
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            geometry: geometry
+            location: location
           group: 2
           exposed: false
           expose:
