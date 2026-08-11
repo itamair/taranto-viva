@@ -65,7 +65,7 @@
 
           // (Re)bind the Click-to-Zoom action on Permanent Tooltips, as their
           // DOM element gets recreated by setPermanentTooltipVisibility.
-          self.bindPermanentTooltipClickZoom(mapid, map);
+          self.bindPermanentTooltipClickPopupOrZoom(mapid, map);
         });
 
         // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
@@ -177,7 +177,7 @@
       this.setPermanentTooltipVisibility(mapid, map);
 
       // Bind the Click-to-Zoom action on Permanent Tooltips.
-      this.bindPermanentTooltipClickZoom(mapid, map);
+      this.bindPermanentTooltipClickPopupOrZoom(mapid, map);
     },
 
     /**
@@ -581,7 +581,7 @@
      * @param {object} map
      *   The Leaflet map object.
      */
-    bindPermanentTooltipClickZoom: function(mapid, map) {
+    bindPermanentTooltipClickPopupOrZoom: function(mapid, map) {
       if (!map || !Drupal.Leaflet || !Drupal.Leaflet[mapid]) {
         return;
       }
