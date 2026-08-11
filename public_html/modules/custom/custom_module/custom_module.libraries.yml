@@ -15,7 +15,6 @@ leaflet_map_interactions:
   css:
     component:
       css/leaflet_map_interactions.css: {}
-      css/leaflet_map_controls.css: {}
   js:
     js/leaflet_map_interactions.js: {}
   dependencies:
@@ -99,6 +98,15 @@ leaflet_map_control:
   version: 1.x
   js:
     js/leaflet_map_control.js: {}
+  css:
+    component:
+      css/leaflet_map_control.css: {}
   dependencies:
     - leaflet/leaflet
     - custom_module/leaflet_pmtiles_layer
+
+leaflet_map_view_ta2026:
+  version: 1.x
+  css:
+    component:
+      css/view_ta2026.css: {}
