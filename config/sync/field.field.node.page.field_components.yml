@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.layout_section
     - paragraphs.paragraphs_type.text
     - paragraphs.paragraphs_type.title
+    - paragraphs.paragraphs_type.view_reference
   module:
     - ai_translate
     - entity_reference_revisions
@@ -38,6 +39,7 @@ settings:
       layout_section: layout_section
       text: text
       title: title
+      view_reference: view_reference
     negate: 0
     target_bundles_drag_drop:
       geoimage:
@@ -45,6 +47,9 @@ settings:
         enabled: false
       geometry:
         weight: 9
+        enabled: false
+      geoplace_ref:
+        weight: 12
         enabled: false
       image:
         weight: 10
@@ -60,5 +65,8 @@ settings:
         enabled: true
       title:
         weight: 14
+        enabled: true
+      view_reference:
+        weight: 18
         enabled: true
 field_type: entity_reference_revisions

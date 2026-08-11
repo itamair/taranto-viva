@@ -1,0 +1,29 @@
+uuid: e8084e9c-2270-4b4d-b350-6281971f0b60
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.view_reference.field_view_ref
+    - paragraphs.paragraphs_type.view_reference
+  module:
+    - viewfield
+id: paragraph.view_reference.default
+targetEntityType: paragraph
+bundle: view_reference
+mode: default
+content:
+  field_view_ref:
+    type: viewfield_default
+    label: hidden
+    settings:
+      view_title: hidden
+      always_build_output: false
+      empty_view_title: hidden
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  geofield_googlemaps_link: true
+  geomarker_icon_url: true
+  search_api_excerpt: true
+  uuid: true

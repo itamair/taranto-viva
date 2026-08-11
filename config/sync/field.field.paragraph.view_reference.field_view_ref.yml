@@ -1,0 +1,96 @@
+uuid: 0b66320d-162d-4e53-86b5-d45fe0782bc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_view_ref
+    - paragraphs.paragraphs_type.view_reference
+  module:
+    - tmgmt_content
+    - viewfield
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: paragraph.view_reference.field_view_ref
+field_name: field_view_ref
+entity_type: paragraph
+bundle: view_reference
+label: 'View Ref'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  force_default: false
+  allowed_views:
+    geo_places: geo_places
+    bici_e_radici_monopoli_14_09_25: '0'
+    ciclovia_acquedotto_aqp: '0'
+    ciclovia_acquedotto_aqp_geojson: '0'
+    comment: '0'
+    content: '0'
+    block_content: '0'
+    content_locations_addresses_and_google_maps_links: '0'
+    content_media_images: '0'
+    content_translations: '0'
+    entity_mesh_domains: '0'
+    eca_log: '0'
+    entity_mesh_media: '0'
+    entity_mesh_node: '0'
+    entity_mesh_taxonomy: '0'
+    entity_mesh: '0'
+    fancy_file_delete: '0'
+    fancy_file_list_unmanaged: '0'
+    feeds_feed: '0'
+    feeds_import_logs: '0'
+    files: '0'
+    fonti: '0'
+    frontpage: '0'
+    geo_images_list: '0'
+    geojson_view_test: '0'
+    graphql_segnalazioni_territoriali: '0'
+    italian_provinces_choropleth: '0'
+    tmgmt_job_overview: '0'
+    media_library: '0'
+    paragraphs: '0'
+    paragraphs_media_slideshow: '0'
+    user_admin_people: '0'
+    pinecone_search: '0'
+    places_types: '0'
+    rate_widgets_results: '0'
+    comments_recent: '0'
+    content_recent: '0'
+    redirect: '0'
+    taranto_viva_geojson: '0'
+    taranto_viva_geoplaces_geojson: '0'
+    taranto_viva_geoplaces_locations: '0'
+    taranto_viva_territorial_reports_geojson: '0'
+    taranto_viva_geoimages_geojson: '0'
+    taxonomy_term: '0'
+    territorial_reports: '0'
+    tmgmt_translation_all_job_items: '0'
+    tmgmt_job_items: '0'
+    tmgmt_job_messages: '0'
+    visitors: '0'
+    visitors_geoip: '0'
+    votingapi_votes: '0'
+    watchdog: '0'
+    watchdog_statistics: '0'
+    who_s_new: '0'
+    who_s_online: '0'
+  allowed_display_types:
+    block: block
+    page: page
+    attachment: '0'
+    data_export: '0'
+    default: '0'
+    embed: '0'
+    feed: '0'
+    geojson_export: '0'
+    graphql: '0'
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: viewfield
