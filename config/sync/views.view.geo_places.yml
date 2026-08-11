@@ -10467,7 +10467,7 @@ display:
             og_description: "Taranto Viva is a Web project with advanced WebGis and CMS functionalities, aiming to the promotion of the City of Taranto, both on the Territorial Marketing and Citizens' Active Participation sides."
           tokenize: false
         library_in_views_display_extender:
-          attach_library: 'custom_module/leaflet_pmtiles_layer,custom_module/leaflet_map_control,custom_module/leaflet_map_view_ta2026'
+          attach_library: custom_module/leaflet_map_view_ta2026
         simple_sitemap_display_extender:
           variants:
             default:
