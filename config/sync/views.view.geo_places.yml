@@ -9938,7 +9938,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            52: 52
+            227: 227
           group: 1
           exposed: false
           expose:
@@ -10114,6 +10114,7 @@ display:
           operator: or
           value:
             227: 227
+            52: 52
           group: 2
           exposed: false
           expose:

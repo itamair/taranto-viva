@@ -1,0 +1,15 @@
+uuid: 7c024eae-72a9-4694-989a-2ceb71d9a89a
+langcode: it
+status: true
+dependencies: {  }
+name: image_map_marker_height_100
+label: 'Image Map Marker - Height 100'
+effects:
+  27df2363-0910-4d86-8e65-f6c4740b49e1:
+    uuid: 27df2363-0910-4d86-8e65-f6c4740b49e1
+    id: image_scale
+    weight: 1
+    data:
+      width: null
+      height: 100
+      upscale: true
