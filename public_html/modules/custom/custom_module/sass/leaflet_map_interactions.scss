@@ -13,18 +13,22 @@
     font-size: 0.8rem;
 
     h2 {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       margin: 0.5em 20px 0.5em 0;
-      line-height: 1.3rem;
+      line-height: 1.5rem;
       font-weight: normal;
     }
 
     h3 {
-      font-size: 0.90rem;
+      font-size: 0.9rem;
       color: dimgray;
       margin: 0.4em 0;
       line-height: 1.2rem;
       font-weight: normal;
+    }
+
+    .paragraph--type--geoplace-ref h2 {
+      font-size: 1rem;
     }
 
     /* Overrides the Olivero olivero_tarantoviva/css/components/text-content.css */
@@ -34,7 +38,7 @@
       line-height: 1.3rem !important;
     }
 
-    article.node--type-geoplace, > div {
+    article.node--type-geoplace, article.node--type-event, > div {
       padding: 2px 4px
     }
 

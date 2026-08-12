@@ -7689,7 +7689,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: 'Ta2026 - Mappa dei Giochi del Mediterraneo '
+      title: 'Mappa dei Giochi del Mediterraneo | Taranto 2026'
       fields:
         title:
           id: title
@@ -10449,7 +10449,12 @@ display:
           required: false
       group_by: false
       display_description: ''
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
       rendering_language: '***LANGUAGE_language_content***'
       display_extenders:
         metatag_display_extender:
@@ -10479,7 +10484,7 @@ display:
       path: mediterranean_games_map
       menu:
         type: normal
-        title: 'Ta2026 | Mappa'
+        title: 'Giochi del Mediterraneo | Ta 2026'
         description: ''
         weight: -45
         expanded: false

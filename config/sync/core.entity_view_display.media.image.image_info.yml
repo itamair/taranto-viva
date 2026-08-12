@@ -1,9 +1,9 @@
-uuid: 568eef0c-5de5-4c82-a472-ae537c74ac61
+uuid: 80fb669a-93f0-46e6-92e0-e04bd5b4653a
 langcode: it
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.image
+    - core.entity_view_mode.media.image_info
     - field.field.media.image.ai_automator_status
     - field.field.media.image.field_exif_creation_date
     - field.field.media.image.field_image_caption
@@ -12,39 +12,55 @@ dependencies:
     - image.style.big
     - media.type.image
   module:
+    - datetime
     - layout_builder
     - svg_image
+    - text
 third_party_settings:
   layout_builder:
     enabled: false
     allow_custom: false
 _core:
   default_config_hash: B1a2aBHmUulUZN6HrxITEH1tSResuVjXMBEv1lUBtOo
-id: media.image.image
+id: media.image.image_info
 targetEntityType: media
 bundle: image
-mode: image
+mode: image_info
 content:
+  field_exif_creation_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: short
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_image_caption:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_media_image:
     type: image
-    label: visually_hidden
+    label: hidden
     settings:
       image_link: ''
       image_style: big
       image_loading:
-        attribute: eager
+        attribute: lazy
       svg_attributes:
         width: null
         height: null
       svg_render_as_image: true
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden:
   ai_automator_status: true
   created: true
-  field_exif_creation_date: true
-  field_image_caption: true
   field_tags: true
   geofield_googlemaps_link: true
   geoimage_caption: true

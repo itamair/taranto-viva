@@ -1,0 +1,102 @@
+uuid: 255210d8-695a-4ede-a9b8-118ed6bc8c51
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.image_info
+    - field.field.media.geoimage.field_address
+    - field.field.media.geoimage.field_exif_creation_date
+    - field.field.media.geoimage.field_generate_host_content
+    - field.field.media.geoimage.field_geofield
+    - field.field.media.geoimage.field_image_caption
+    - field.field.media.geoimage.field_media_image
+    - field.field.media.geoimage.field_place_type
+    - field.field.media.geoimage.field_project_namespace
+    - media.type.geoimage
+  module:
+    - datetime
+    - field_group
+    - layout_builder
+    - photoswipe
+    - photoswipe_dynamic_caption
+    - text
+third_party_settings:
+  field_group:
+    group_wrapper:
+      children:
+        - field_media_image
+        - field_image_caption
+      label: Wrapper
+      parent_name: ''
+      region: content
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: image-wrapper
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: media.geoimage.image_info
+targetEntityType: media
+bundle: geoimage
+mode: image_info
+content:
+  field_exif_creation_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: olivero_medium
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_image_caption:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media_image:
+    type: photoswipe_field_formatter
+    label: hidden
+    settings:
+      photoswipe_thumbnail_style_first: null
+      photoswipe_thumbnail_style: null
+      photoswipe_image_style: ''
+      photoswipe_reference_image_field: ''
+      photoswipe_view_mode: default
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      photoswipe_dynamic_caption:
+        photoswipe_caption: null
+        photoswipe_caption_custom: null
+    weight: 1
+    region: content
+hidden:
+  created: true
+  field_address: true
+  field_generate_host_content: true
+  field_geofield: true
+  field_place_type: true
+  field_project_namespace: true
+  geofield_googlemaps_link: true
+  geoimage_caption: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  territorial_report_active_level: true
+  thumbnail: true
+  uid: true
+  uuid: true

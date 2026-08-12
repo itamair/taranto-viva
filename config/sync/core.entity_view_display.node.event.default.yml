@@ -227,6 +227,29 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          cacf96fd-f341-40fa-bf98-85de20f16943:
+            uuid: cacf96fd-f341-40fa-bf98-85de20f16943
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_link'
+              label: 'Web Links'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: nofollow
+                  target: _blank
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
 id: node.event.default
 targetEntityType: node

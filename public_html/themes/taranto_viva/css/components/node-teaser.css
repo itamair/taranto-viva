@@ -15,16 +15,6 @@
   margin-block-end: var(--sp1-5);
 }
 
-.node--view-mode-teaser::after {
-  position: absolute;
-  inset-block-end: 0;
-  width: var(--sp3);
-  height: 0;
-  content: "";
-  /* Intentionally not using CSS logical properties. */
-  border-top: solid 2px var(--color--gray-95);
-}
-
 .node--view-mode-teaser .node__meta {
   margin-block-end: var(--sp);
 }
