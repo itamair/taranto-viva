@@ -27,8 +27,15 @@
       font-weight: normal;
     }
 
-    .paragraph--type--geoplace-ref h2 {
-      font-size: 1rem;
+    .paragraph--type--geoplace-ref {
+      h2 {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: bolder;
+      }
+      div {
+        margin: 4px 0;
+      }
     }
 
     /* Overrides the Olivero olivero_tarantoviva/css/components/text-content.css */
