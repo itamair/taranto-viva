@@ -44,12 +44,9 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
-          context_mapping: {  }
-          layout_builder_styles_style:
-            user_profile_section_style: 0
         components:
-          a02268b6-3754-4fc5-9d33-2c9df00c0c6a:
-            uuid: a02268b6-3754-4fc5-9d33-2c9df00c0c6a
+          1fac96f0-9248-4347-a286-d6adb9395253:
+            uuid: 1fac96f0-9248-4347-a286-d6adb9395253
             region: content
             configuration:
               id: 'field_block:node:geoplace:field_google_maps_link_view'
@@ -67,7 +64,7 @@ third_party_settings:
                   always_build_output: false
                   empty_view_title: hidden
                 third_party_settings: {  }
-            weight: 3
+            weight: 0
             additional: {  }
         third_party_settings: {  }
 id: node.geoplace.teaser

@@ -18,11 +18,3 @@ display:
       title: 'Map of the Mediterranean Games | Taranto 2026'
       menu:
         title: 'Mediterranean Games | Ta2026'
-  page_vaganti_map:
-    display_options:
-      filters:
-        field_exif_creation_date_value:
-          expose:
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''

@@ -7834,7 +7834,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "{{ title }}<br>\r\n<i>{{ field_title }}</i>\r\n"
+            text: "<div>{{ title }}</div>\r\n<div class=\"view_onhover\"><i>{{ field_title }} <br>{{ field_address_composed_locality }}</i></div>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -10445,6 +10445,15 @@ display:
           relationship: field_components
           group_type: group
           admin_label: 'field_zoom_visibility: Taxonomy term'
+          plugin_id: standard
+          required: false
+        field_geoplace_ref:
+          id: field_geoplace_ref
+          table: paragraph__field_geoplace_ref
+          field: field_geoplace_ref
+          relationship: field_components
+          group_type: group
+          admin_label: 'field_geoplace_ref: Content'
           plugin_id: standard
           required: false
       group_by: false

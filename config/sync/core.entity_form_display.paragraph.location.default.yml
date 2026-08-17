@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.location.field_address
+    - field.field.paragraph.location.field_address_composed
     - field.field.paragraph.location.field_classname
     - field.field.paragraph.location.field_geofield
     - field.field.paragraph.location.field_geojson_reference
@@ -19,6 +20,7 @@ dependencies:
     - field.field.paragraph.location.field_zoom_visibility
     - paragraphs.paragraphs_type.location
   module:
+    - address
     - field_group
     - leaflet
     - link
@@ -54,11 +56,18 @@ mode: default
 content:
   field_address:
     type: string_textfield
-    weight: 10
+    weight: 6
     region: content
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_address_composed:
+    type: address_default
+    weight: 7
+    region: content
+    settings:
+      wrapper_type: fieldset
     third_party_settings: {  }
   field_classname:
     type: entity_reference_autocomplete
@@ -72,7 +81,7 @@ content:
     third_party_settings: {  }
   field_geofield:
     type: leaflet_widget_default
-    weight: 12
+    weight: 5
     region: content
     settings:
       geometry_validation: true

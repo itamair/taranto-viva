@@ -23,7 +23,7 @@ dependencies:
     - field.field.node.event.field_validity_range
     - field.field.node.event.field_zoom_visibility
     - node.type.event
-    - views.view.content_locations_addresses_and_google_maps_links
+    - views.view.content_media_images
   module:
     - layout_builder
     - layout_discovery
@@ -130,27 +130,6 @@ third_party_settings:
           layout_builder_styles_style:
             user_profile_section_style: 0
         components:
-          7042207b-09e5-4d10-846a-004b7cad4df1:
-            uuid: 7042207b-09e5-4d10-846a-004b7cad4df1
-            region: first
-            configuration:
-              id: 'field_block:node:event:field_media_slideshow'
-              label: 'Media Slideshow'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: viewfield_default
-                label: hidden
-                settings:
-                  view_title: hidden
-                  always_build_output: false
-                  empty_view_title: hidden
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
           f5888be8-a844-4b43-abdc-c0bff135acf5:
             uuid: f5888be8-a844-4b43-abdc-c0bff135acf5
             region: second
@@ -172,26 +151,13 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          9ef7e4ee-d82e-4ffa-8964-3adff9200c7f:
-            uuid: 9ef7e4ee-d82e-4ffa-8964-3adff9200c7f
-            region: second
-            configuration:
-              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
-              label: ''
-              label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: null
-            weight: 2
-            additional: {  }
           dfb92e79-dae2-45fb-9aa8-1db08d614a80:
             uuid: dfb92e79-dae2-45fb-9aa8-1db08d614a80
             region: second
             configuration:
               id: 'field_block:node:event:field_components'
-              label: Components
-              label_display: '0'
+              label: Location
+              label_display: visible
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
@@ -200,7 +166,7 @@ third_party_settings:
                 type: geoplace_ref_component_entity_view
                 label: hidden
                 settings:
-                  view_mode: preview
+                  view_mode: default
                 third_party_settings: {  }
             weight: 1
             additional: {  }
@@ -225,7 +191,7 @@ third_party_settings:
                   rel: nofollow
                   target: _blank
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           cacf96fd-f341-40fa-bf98-85de20f16943:
             uuid: cacf96fd-f341-40fa-bf98-85de20f16943
@@ -248,7 +214,20 @@ third_party_settings:
                   rel: nofollow
                   target: _blank
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
+            additional: {  }
+          740910b5-e513-4b8a-ba77-facb6c89b6d1:
+            uuid: 740910b5-e513-4b8a-ba77-facb6c89b6d1
+            region: first
+            configuration:
+              id: 'views_block:content_media_images-block_content_media_images'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
+            weight: 1
             additional: {  }
         third_party_settings: {  }
 id: node.event.default

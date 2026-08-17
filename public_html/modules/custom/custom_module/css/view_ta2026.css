@@ -2,4 +2,22 @@
 .leaflet-tooltip {
   background-color: orangered;
   color: white;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+/* line 6, ../sass/view_ta2026.scss */
+.leaflet-tooltip .view_onhover {
+  display: none;
+}
+
+/* line 11, ../sass/view_ta2026.scss */
+.leaflet-tooltip:hover {
+  font-size: 1.1em;
+  background-color: var(--color--gold, #fdca40);
+  color: var(--color--gray-10, #1c2024);
+  z-index: 1000;
+}
+/* line 16, ../sass/view_ta2026.scss */
+.leaflet-tooltip:hover .view_onhover {
+  display: block;
+  font-weight: normal;
 }

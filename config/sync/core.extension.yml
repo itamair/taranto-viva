@@ -3,6 +3,7 @@ _core:
 langcode: it
 module:
   auto_entitylabel: -100
+  address: 0
   admin_toolbar: 0
   admin_toolbar_tools: 0
   ai: 0
@@ -72,6 +73,7 @@ module:
   filter: 0
   geocms: 0
   geocoder: 0
+  geocoder_address: 0
   geocoder_field: 0
   geocoder_geofield: 0
   geofield: 0

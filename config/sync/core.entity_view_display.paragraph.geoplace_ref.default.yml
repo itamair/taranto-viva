@@ -11,10 +11,11 @@ bundle: geoplace_ref
 mode: default
 content:
   field_geoplace_ref:
-    type: entity_reference_label
-    label: above
+    type: entity_reference_entity_view
+    label: hidden
     settings:
-      link: true
+      view_mode: teaser
+      link: false
     third_party_settings: {  }
     weight: 3
     region: content

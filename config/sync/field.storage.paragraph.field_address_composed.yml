@@ -1,0 +1,19 @@
+uuid: 82951fc7-e4a3-4cae-be53-436acae3cb2b
+langcode: it
+status: true
+dependencies:
+  module:
+    - address
+    - paragraphs
+id: paragraph.field_address_composed
+field_name: field_address_composed
+entity_type: paragraph
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

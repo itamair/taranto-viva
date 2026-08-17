@@ -2,4 +2,19 @@
 .leaflet-tooltip {
   background-color: orangered;
   color: white;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  .view_onhover {
+    display: none;
+  }
+}
+
+.leaflet-tooltip:hover {
+  font-size: 1.1em;
+  background-color: var(--color--gold, #fdca40);
+  color: var(--color--gray-10, #1c2024);
+  z-index: 1000;
+  .view_onhover {
+    display: block;
+    font-weight: normal;
+  }
 }
