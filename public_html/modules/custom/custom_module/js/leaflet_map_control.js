@@ -330,10 +330,27 @@
               'title': Drupal.t('Places of Interest'),
               'items': [],
               'start_collapsed': 0,
+              'source_endpoint': "/taranto-viva-geoplaces-list",
+              'click_zoom': 17,
             }
           };
           self.addLeafletSidebarListControl(root, lMap, mapid, data_markers, leaflet_list_control_options);
         }
+
+        if (mapid === 'leaflet-map-view-geo-places-page-ta2026-map') {
+          const leaflet_list_control_options = {
+            'classes': mapid,
+            'list': {
+              'title': Drupal.t('Events List'),
+              'items': [],
+              'start_collapsed': 0,
+              'source_endpoint': "/taranto-2026-events-list",
+              'click_zoom': 13,
+            }
+          };
+          self.addLeafletSidebarListControl(root, lMap, mapid, data_markers, leaflet_list_control_options);
+        }
+
       })
     },
 
@@ -437,7 +454,7 @@
       // Fetch Geoplaces data to populate the sidebar list items, then add the
       // control to the map.
       const pageLang = drupalSettings.path.currentLanguage;
-      const source_endpoint = '/' + pageLang + '/taranto-viva-geoplaces-list';
+      const source_endpoint = '/' + pageLang + settings.list.source_endpoint;
       fetch(source_endpoint)
         .then(function (response) {
           return response.json();
@@ -447,10 +464,10 @@
             return geoplace.title;
           });
           sidebarListControl.addTo(map);
-          self.addInteractivityWithSidebar(root, mapid, map, markers);
+          self.addInteractivityWithSidebar(root, mapid, map, markers, settings);
         })
         .catch(function (error) {
-          console.warn('Failed to load Geoplaces list:', error);
+          console.warn('Failed to load Data list:', error.message);
         });
     },
 
@@ -493,98 +510,93 @@
      *   The map object.
      * @param {obejct} markers
      *   The map markers object.
+     * @param {obejct} settings
+     *   The settings object.
      */
-    addInteractivityWithSidebar: function(root, mapid, map, markers) {
+    addInteractivityWithSidebar: function(root, mapid, map, markers, settings) {
       const leaflet_sidebar_list_mapid_selector = '.leaflet-sidebar-list.' + mapid;
 
-      if (
-        mapid === "leaflet-map-view-geo-places-page-map-taranto-viva" &&
-        (root.querySelector('.view-display-id-block_geoplaces_locations') || root.querySelector(leaflet_sidebar_list_mapid_selector))
-      ) {
+      let clickTimeout = null;
+      let currentMarkerId = null;
+      let popup = null;
 
-        let clickTimeout = null;
-        let currentMarkerId = null;
-        let popup = null;
+      // Function to increment by 1 the MarkerId identifier, in case it is
+      // not pointing to a Location marker (with marker._icon).
+      function incrementMarkerId(id) {
+        const [prefix, suffix] = id.split('-');
+        return `${prefix}-${Number(suffix) + 1}`;
+      }
 
-        // Function to increment by 1 the MarkerId identifier, in case it is
-        // not pointing to a Location marker (with marker._icon).
-        function incrementMarkerId(id) {
-          const [prefix, suffix] = id.split('-');
-          return `${prefix}-${Number(suffix) + 1}`;
+      // Shared element hover logic, called both from mouseenter (when the
+      // gate is already open) and from the dwell timeout (when the mouse was
+      // already resting on an element as the gate opened).
+      function handleElementHover(el) {
+        currentMarkerId = el.dataset.markerId;
+        // Until the currentMarkerId is not pointing to a Location
+        // marker (with marker._icon) ...
+        while (markers[currentMarkerId]?._icon === undefined) {
+          // Increment by 1 the MarkerId identifier.
+          currentMarkerId = incrementMarkerId(currentMarkerId);
         }
-
-        // Shared element hover logic, called both from mouseenter (when the
-        // gate is already open) and from the dwell timeout (when the mouse was
-        // already resting on an element as the gate opened).
-        function handleElementHover(el) {
-          currentMarkerId = el.dataset.markerId;
-          // Until the currentMarkerId is not pointing to a Location
-          // marker (with marker._icon) ...
-          while (markers[currentMarkerId]?._icon === undefined) {
-            // Increment by 1 the MarkerId identifier.
-            currentMarkerId = incrementMarkerId(currentMarkerId);
-          }
-          const marker = markers[currentMarkerId];
-          if (!marker || typeof marker.getLatLng !== 'function') {
-            return;
-          }
-          const center = marker.getLatLng();
-          el.parentElement.classList.add('marker-selected');
-
-          // Move Y center map of -50 pixels
-          /* const centerInPx = map.latLngToContainerPoint(center);
-          const newCenterInPx = {
-            ...centerInPx,
-            y: centerInPx.y - 50,
-          };
-          const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
-          //map.setView(newCenterInCoords, 16);
-
-          map.flyTo(center, 16, {
-            duration: 0.4,
-            animate: true
-          });*/
-
-          map.setView(center, 17);
-          // marker.closeTooltip(); // not needed if the marker.fire('click') is not used
-          clickTimeout = setTimeout(() => {
-            el.parentElement.classList.remove('marker-selected');
-            marker.openPopup(center, {"autoPan":true, autoPanPadding: [0, 70]});
-          }, 400);
+        const marker = markers[currentMarkerId];
+        if (!marker || typeof marker.getLatLng !== 'function') {
+          return;
         }
+        const center = marker.getLatLng();
+        el.parentElement.classList.add('marker-selected');
 
-        const elements = once(
-          'geoPlacesHover',
-          root.querySelectorAll(
-            //'.view-display-id-block_geoplaces_locations .views-field .marker-selector'
-            '.leaflet-sidebar-list' + '.' + mapid + ' .list-item .marker-selector'
-          )
-        );
+        // Move Y center map of -50 pixels
+        /* const centerInPx = map.latLngToContainerPoint(center);
+        const newCenterInPx = {
+          ...centerInPx,
+          y: centerInPx.y - 50,
+        };
+        const newCenterInCoords = map.containerPointToLatLng(newCenterInPx)
+        //map.setView(newCenterInCoords, 16);
 
-        elements.forEach((el) => {
-          el.addEventListener('click', (e) => {
-            handleElementHover(el);
-            // On small screens, collapse the sidebar after triggering the
-            // map marker interaction, so it doesn't obscure the map.
-            // stopPropagation prevents the click from bubbling up to the
-            // legendDiv handler, which would immediately re-open the sidebar.
-            if (window.innerWidth <= 700) {
-              const sidebarDiv = root.querySelector(leaflet_sidebar_list_mapid_selector);
-              if (sidebarDiv) {
-                sidebarDiv.classList.add('list-collapsed');
-                e.stopPropagation();
-              }
+        map.flyTo(center, 16, {
+          duration: 0.4,
+          animate: true
+        });*/
+
+        map.setView(center, settings.list.click_zoom ?? 17);
+        // marker.closeTooltip(); // not needed if the marker.fire('click') is not used
+        clickTimeout = setTimeout(() => {
+          el.parentElement.classList.remove('marker-selected');
+          marker.openPopup(center, {"autoPan":true, autoPanPadding: [0, 70]});
+        }, 400);
+      }
+
+      const elements = once(
+        'geoPlacesHover',
+        root.querySelectorAll(
+          //'.view-display-id-block_geoplaces_locations .views-field .marker-selector'
+          '.leaflet-sidebar-list' + '.' + mapid + ' .list-item .marker-selector'
+        )
+      );
+
+      elements.forEach((el) => {
+        el.addEventListener('click', (e) => {
+          handleElementHover(el);
+          // On small screens, collapse the sidebar after triggering the
+          // map marker interaction, so it doesn't obscure the map.
+          // stopPropagation prevents the click from bubbling up to the
+          // legendDiv handler, which would immediately re-open the sidebar.
+          if (window.innerWidth <= 700) {
+            const sidebarDiv = root.querySelector(leaflet_sidebar_list_mapid_selector);
+            if (sidebarDiv) {
+              sidebarDiv.classList.add('list-collapsed');
+              e.stopPropagation();
             }
-          });
-        });
-
-        if (window.innerWidth <= 1280) {
-          const sidebarDiv = root.querySelector(leaflet_sidebar_list_mapid_selector);
-          if (sidebarDiv) {
-            sidebarDiv.classList.add('list-collapsed');
           }
-        }
+        });
+      });
 
+      if (window.innerWidth <= 1280) {
+        const sidebarDiv = root.querySelector(leaflet_sidebar_list_mapid_selector);
+        if (sidebarDiv) {
+          sidebarDiv.classList.add('list-collapsed');
+        }
       }
     }
 

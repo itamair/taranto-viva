@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.geometry.field_arrowed
+    - field.field.paragraph.geometry.field_dash_array
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
@@ -32,6 +33,7 @@ third_party_settings:
     group_attributes:
       children:
         - field_arrowed
+        - field_dash_array
         - field_stroke_color
         - field_stroke_weight
         - field_stroke_opacity
@@ -67,16 +69,23 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  field_dash_array:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
   field_fill_color:
     type: color_field_widget_html5
-    weight: 10
+    weight: 11
     region: content
     settings:
       show_extra: false
     third_party_settings: {  }
   field_fill_opacity:
     type: number
-    weight: 11
+    weight: 12
     region: content
     settings:
       placeholder: ''
@@ -174,7 +183,7 @@ content:
     third_party_settings: {  }
   field_geojson_reference:
     type: link_default
-    weight: 18
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -197,21 +206,21 @@ content:
     third_party_settings: {  }
   field_stroke_color:
     type: color_field_widget_html5
-    weight: 7
+    weight: 8
     region: content
     settings:
       show_extra: false
     third_party_settings: {  }
   field_stroke_opacity:
     type: number
-    weight: 9
+    weight: 10
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_stroke_weight:
     type: number
-    weight: 8
+    weight: 9
     region: content
     settings:
       placeholder: ''
@@ -226,41 +235,41 @@ content:
     third_party_settings: {  }
   field_tooltip_class:
     type: options_select
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   field_tooltip_disabled:
-    type: boolean_checkbox
-    weight: 14
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_tooltip_permanent:
     type: boolean_checkbox
     weight: 15
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
-  field_tooltip_sticky:
+  field_tooltip_permanent:
     type: boolean_checkbox
     weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  field_tooltip_sticky:
+    type: boolean_checkbox
+    weight: 17
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_zindex:
     type: number
-    weight: 12
+    weight: 13
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_zoom_visibility:
     type: options_select
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }

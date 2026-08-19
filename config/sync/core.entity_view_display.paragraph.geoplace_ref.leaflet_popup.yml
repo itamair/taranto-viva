@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.leaflet_popup
     - field.field.paragraph.geoplace_ref.field_geoplace_ref
+    - field.field.paragraph.geoplace_ref.field_location_text
     - paragraphs.paragraphs_type.geoplace_ref
   module:
     - layout_builder
@@ -40,6 +41,7 @@ content:
     weight: 1
     region: content
 hidden:
+  field_location_text: true
   geomarker_icon_url: true
   search_api_excerpt: true
   uuid: true

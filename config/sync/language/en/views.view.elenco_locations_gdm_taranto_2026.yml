@@ -1,0 +1,9 @@
+label: 'Locations List - Mediterranean Games - Taranto 2026'
+display:
+  default:
+    display_options:
+      title: 'Locations List Mediterranean Games - Taranto 2026'
+      filters:
+        field_project_namespace_target_id:
+          expose:
+            description: ''

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.geometry.field_arrowed
+    - field.field.paragraph.geometry.field_dash_array
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
@@ -126,12 +127,6 @@ content:
           options: ''
       map_lazy_load:
         lazy_load: false
-      geojson_overlays:
-        sources:
-          fields: {  }
-        path: '{"color":"#f71ed3","opacity":"0.7","stroke":true,"weight":2,"fillColor":"#ffddfe","fillOpacity":"0.1","radius":3,"dashArray":"5, 5"}'
-        zoom_to_geojson: true
-        snapping: true
     third_party_settings: {  }
     weight: 2
     region: content
@@ -145,7 +140,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 10
+    weight: 8
     region: content
   field_gpx_track:
     type: file_default
@@ -165,7 +160,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 11
+    weight: 9
     region: content
   field_title:
     type: string
@@ -223,6 +218,7 @@ content:
     region: content
 hidden:
   field_arrowed: true
+  field_dash_array: true
   field_fill_color: true
   field_fill_opacity: true
   field_stroke_color: true

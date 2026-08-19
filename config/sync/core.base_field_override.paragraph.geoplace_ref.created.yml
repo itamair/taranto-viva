@@ -1,0 +1,18 @@
+uuid: 19588cbb-b23c-449a-af04-155645759fa6
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.geoplace_ref
+id: paragraph.geoplace_ref.created
+field_name: created
+entity_type: paragraph
+bundle: geoplace_ref
+label: 'Authored on'
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

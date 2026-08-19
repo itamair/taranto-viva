@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.geoplace_ref.field_geoplace_ref
+    - field.field.paragraph.geoplace_ref.field_location_text
     - paragraphs.paragraphs_type.geoplace_ref
+  module:
+    - custom_module
 id: paragraph.geoplace_ref.default
 targetEntityType: paragraph
 bundle: geoplace_ref
@@ -18,6 +21,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_location_text:
+    type: text_header
+    label: hidden
+    settings:
+      level: '3'
+    third_party_settings: {  }
+    weight: 4
     region: content
 hidden:
   geofield_googlemaps_link: true

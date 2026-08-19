@@ -97,7 +97,7 @@
         "drupal/field_group": "^4.0",
         "drupal/field_permissions": "^1.2",
         "drupal/file_delete": "^3.0",
-        "drupal/geocoder": "^4.10",
+        "drupal/geocoder": "^4.35",
         "drupal/geofield": "^10.3",
         "drupal/geofield_map": "^11.1",
         "drupal/google_tag": "^2.0",

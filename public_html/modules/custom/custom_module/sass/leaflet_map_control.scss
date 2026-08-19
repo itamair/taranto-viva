@@ -13,14 +13,38 @@
   box-shadow: 0 1px 3px gray;
   line-height: 1.4;
   position: relative;
-  color: white;
-  background: rgba(17, 152, 225, 0.9);
-
+  &.leaflet-map-view-geo-places-page-map-taranto-viva {
+    color: white;
+    background: rgba(17, 152, 225, 0.9);
+    .marker-selector {
+      .title {
+        width: 180px;
+      }
+      .icon {
+        padding: 0 4px;
+      }
+    }
+  }
+  &.leaflet-map-view-geo-places-page-ta2026-map {
+    color: black;
+    background: whitesmoke;
+    .event_info {
+      width: 150px;
+      .title {
+        font-weight: bolder;
+      }
+    }
+    .icon {
+      img {
+        min-width: 50px;
+      }
+    }
+  }
   .list-title {
     margin-bottom: 8px;
     font-size: 1.2em;
    // color: #f25e0a;
-    font-weight: bold;
+    font-weight: bold
   }
 
   .list-subtitle {
@@ -78,12 +102,6 @@
       padding: 6px 4px;
       display: flex;
       align-items: flex-start;
-      .title {
-        width: 180px;
-      }
-      .icon {
-        padding: 0 4px;
-      }
     }
 
   }
@@ -145,16 +163,6 @@
 
 /* Compact legend for smaller screens */
 @media (max-width: 380px) {
-  .leaflet-sidebar-list {
-    max-width: 100px;
-    min-width: 50px;
-    padding: 5px;
-
-    &.list-collapsed {
-      padding: 6px;
-    }
-  }
-
   .list-toggle {
     width: 16px;
     height: 16px;

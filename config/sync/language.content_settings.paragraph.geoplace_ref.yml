@@ -1,0 +1,18 @@
+uuid: 662d1d33-dddc-4e68-95d0-0b16cd7fb4ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.geoplace_ref
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.geoplace_ref
+target_entity_type_id: paragraph
+target_bundle: geoplace_ref
+default_langcode: site_default
+language_alterable: true

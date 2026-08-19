@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.image
     - field.field.paragraph.geometry.field_arrowed
+    - field.field.paragraph.geometry.field_dash_array
     - field.field.paragraph.geometry.field_fill_color
     - field.field.paragraph.geometry.field_fill_opacity
     - field.field.paragraph.geometry.field_geofield
@@ -35,6 +36,7 @@ mode: image
 content: {  }
 hidden:
   field_arrowed: true
+  field_dash_array: true
   field_fill_color: true
   field_fill_opacity: true
   field_geofield: true

@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.article
     - node.type.ciclovia_acquedotti
+    - node.type.event
     - node.type.geoplace
     - node.type.map_label
     - node.type.page
@@ -909,6 +910,7 @@ display:
             article: article
             page: page
             ciclovia_acquedotti: ciclovia_acquedotti
+            event: event
             geoplace: geoplace
             map_label: map_label
             territorial_report: territorial_report
@@ -956,6 +958,7 @@ display:
             article: article
             page: page
             ciclovia_acquedotti: ciclovia_acquedotti
+            event: event
             geoplace: geoplace
             map_label: map_label
             territorial_report: territorial_report
@@ -971,7 +974,7 @@ display:
             operator_list: {  }
             identifier: type_1
             required: false
-            remember: false
+            remember: true
             multiple: true
             remember_roles:
               authenticated: authenticated
@@ -1014,7 +1017,7 @@ display:
             operator_list: {  }
             identifier: field_project_namespace_target_id
             required: false
-            remember: false
+            remember: true
             multiple: false
             remember_roles:
               authenticated: authenticated

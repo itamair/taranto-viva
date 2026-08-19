@@ -29,7 +29,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Elenco Locations GdM Taranto 2026'
+      title: 'Elenco Locations Giochi del Mediterraneo - Taranto 2026'
       fields:
         title:
           id: title
@@ -306,6 +306,7 @@ display:
           plugin_id: bundle
           value:
             event: event
+          group: 1
         field_project_namespace_target_id:
           id: field_project_namespace_target_id
           table: node__field_project_namespace
@@ -438,6 +439,10 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: default
         options:
@@ -516,6 +521,7 @@ display:
     position: 1
     display_options:
       display_description: ''
+      rendering_language: '***LANGUAGE_language_interface***'
       display_extenders:
         metatag_display_extender:
           metatags: {  }
@@ -523,7 +529,7 @@ display:
         library_in_views_display_extender: {  }
         simple_sitemap_display_extender:
           variants: {  }
-      path: elenco-locations-gdm-taranto-2026
+      path: locations-list_gdm-taranto-2026
       menu:
         type: normal
         title: 'Locations GdM Taranto 2026'
@@ -536,7 +542,6 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - 'user.node_grants:view'
         - user.permissions

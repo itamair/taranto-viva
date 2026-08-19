@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.geoplace_ref.field_geoplace_ref
+    - field.field.paragraph.geoplace_ref.field_location_text
     - paragraphs.paragraphs_type.geoplace_ref
   module:
+    - custom_module
     - layout_builder
 third_party_settings:
   layout_builder:
@@ -23,7 +25,15 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 3
+    weight: 0
+    region: content
+  field_location_text:
+    type: text_header
+    label: hidden
+    settings:
+      level: '3'
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   geofield_googlemaps_link: true
