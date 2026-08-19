@@ -67,6 +67,13 @@ function geofield_311_leaflet_map_info() {
     'description' => t('Multilayers'),
     'settings' => geofield_311_leaflet_map_default_settings(),
     'layers' => [
+      'Openstreetmap' => [
+        'urlTemplate' => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'options' => [
+          "maxZoom" => 20,
+          'attribution' => '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        ],
+      ],
       'Stadia Alidade Smooth' => [
         'type' => 'vector',
         'urlTemplate' => '//tiles.stadiamaps.com/styles/alidade_smooth.json',
@@ -74,25 +81,18 @@ function geofield_311_leaflet_map_info() {
           'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
         ],
       ],
-      'Stadia Alidade Dark' => [
+/*      'Stadia Alidade Dark' => [
         'type' => 'vector',
         'urlTemplate' => '//tiles.stadiamaps.com/styles/alidade_smooth_dark.json',
         'options' => [
           'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
         ],
-      ],
+      ],*/
       'Taranto-Viva Topomaps' => [
         'type' => 'vector',
         'urlTemplate' => '//api.maptiler.com/maps/019f2315-d543-7f3f-9897-7ea272fb2007/style.json?key=OIQHXCpngQEP6dfvC5nq',
         'options' => [
-          'attribution' => '&copy; <a href="https://www.maptiler.com/">Map Tiler</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-        ],
-      ],
-      'Openstreetmap' => [
-        'urlTemplate' => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        'options' => [
-          "maxZoom" => 20,
-          'attribution' => '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          // 'attribution' => '&copy; <a href="https://www.maptiler.com/">Map Tiler</a>',
         ],
       ],
       'Google Roads' => [
@@ -117,7 +117,7 @@ function geofield_311_leaflet_map_info() {
           'subdomains' => ['0', '1', '2', '3'],
         ],
       ],
-      'Google Terrain' => [
+/*      'Google Terrain' => [
         'type' => 'google',
         'urlTemplate' => '//mt{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
         'options' => [
@@ -127,14 +127,14 @@ function geofield_311_leaflet_map_info() {
           'detectRetina' => FALSE,
           'subdomains' => ['0', '1', '2', '3'],
         ],
-      ],
-      'Stamen TonerLite' => [
+      ],*/
+/*      'Stamen TonerLite' => [
         'type' => 'vector',
         'urlTemplate' => '//tiles.stadiamaps.com/styles/stamen_toner.json',
         'options' => [
           'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
         ],
-      ],
+      ],*/
     ],
   ];
 
@@ -147,7 +147,7 @@ function geofield_311_leaflet_map_info() {
         'type' => 'vector',
         'urlTemplate' => '//api.maptiler.com/maps/019f2315-d543-7f3f-9897-7ea272fb2007/style.json?key=OIQHXCpngQEP6dfvC5nq',
         'options' => [
-          'attribution' => '&copy; <a href="https://www.maptiler.com/">Map Tiler</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+         // 'attribution' => '&copy; <a href="https://www.maptiler.com/">Map Tiler</a>, &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
         ],
       ],
     ],

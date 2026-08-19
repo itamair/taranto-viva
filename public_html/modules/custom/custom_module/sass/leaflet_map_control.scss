@@ -43,9 +43,22 @@
     &.list-collapsed {
       background: whitesmoke;
       color: black;
+      border-left: 4px solid orangered;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+      &::after {
+        content: ' ▶';
+        font-size: 0.75em;
+        opacity: 0.6;
+        vertical-align: middle;
+      }
       &:hover {
         background: orangered;
         color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+        &::after {
+          opacity: 1;
+        }
       }
     }
 
@@ -161,6 +174,8 @@
     max-width: 160px;
     padding: 8px;
     cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 
     .list-content {
       display: none;
@@ -176,6 +191,7 @@
 
     &:hover {
       background: rgb(1, 114, 175);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
     }
   }
 }
