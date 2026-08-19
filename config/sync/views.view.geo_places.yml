@@ -10461,7 +10461,7 @@ display:
             value: '#rendered_entity'
             options: '{"autoPan":true,"minWidth":300}'
             view_mode: leaflet_popup
-          leaflet_map: taranto_viva_topomaps
+          leaflet_map: multilayers
           height: '80'
           height_unit: vh
           hide_empty_map: true
