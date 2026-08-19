@@ -39,7 +39,26 @@
         min-width: 50px;
       }
     }
+
+    &.list-collapsed {
+      background: whitesmoke;
+      color: black;
+      &:hover {
+        background: orangered;
+        color: white;
+      }
+    }
+
+    /* Toggle functionality styles */
+    .list-toggle {
+      color: slategray;
+      &:hover {
+        color: dimgray;
+      }
+    }
+
   }
+
   .list-title {
     margin-bottom: 8px;
     font-size: 1.2em;

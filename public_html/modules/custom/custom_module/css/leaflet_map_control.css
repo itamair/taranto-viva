@@ -32,6 +32,7 @@
 .leaflet-sidebar-list.leaflet-map-view-geo-places-page-ta2026-map {
   color: black;
   background: whitesmoke;
+  /* Toggle functionality styles */
 }
 /* line 31, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list.leaflet-map-view-geo-places-page-ta2026-map .event_info {
@@ -46,22 +47,40 @@
   min-width: 50px;
 }
 /* line 43, ../sass/leaflet_map_control.scss */
+.leaflet-sidebar-list.leaflet-map-view-geo-places-page-ta2026-map.list-collapsed {
+  background: whitesmoke;
+  color: black;
+}
+/* line 46, ../sass/leaflet_map_control.scss */
+.leaflet-sidebar-list.leaflet-map-view-geo-places-page-ta2026-map.list-collapsed:hover {
+  background: orangered;
+  color: white;
+}
+/* line 53, ../sass/leaflet_map_control.scss */
+.leaflet-sidebar-list.leaflet-map-view-geo-places-page-ta2026-map .list-toggle {
+  color: slategray;
+}
+/* line 55, ../sass/leaflet_map_control.scss */
+.leaflet-sidebar-list.leaflet-map-view-geo-places-page-ta2026-map .list-toggle:hover {
+  color: dimgray;
+}
+/* line 62, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-title {
   margin-bottom: 8px;
   font-size: 1.2em;
   font-weight: bold;
 }
-/* line 50, ../sass/leaflet_map_control.scss */
+/* line 69, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-subtitle {
   margin-bottom: 8px;
 }
-/* line 54, ../sass/leaflet_map_control.scss */
+/* line 73, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-search-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
 }
-/* line 60, ../sass/leaflet_map_control.scss */
+/* line 79, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-search-label {
   font-size: 0.72em;
   font-weight: bold;
@@ -70,7 +89,7 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-/* line 69, ../sass/leaflet_map_control.scss */
+/* line 88, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-search-input {
   width: 100%;
   padding: 4px 8px;
@@ -81,37 +100,37 @@
   outline: none;
   transition: border-color 180ms ease;
 }
-/* line 80, ../sass/leaflet_map_control.scss */
+/* line 99, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-search-input:focus {
   border-color: #888;
 }
-/* line 84, ../sass/leaflet_map_control.scss */
+/* line 103, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-search-input::placeholder {
   color: #aaa;
 }
-/* line 88, ../sass/leaflet_map_control.scss */
+/* line 107, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-items {
   margin-bottom: 8px;
   max-height: 60vh;
   overflow-y: auto;
 }
-/* line 94, ../sass/leaflet_map_control.scss */
+/* line 113, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-item {
   display: flex;
   border-bottom: 1px solid lightgrey;
   cursor: pointer;
 }
-/* line 98, ../sass/leaflet_map_control.scss */
+/* line 117, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-item.marker-selected {
   background: #e3e5f5;
 }
-/* line 101, ../sass/leaflet_map_control.scss */
+/* line 120, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-item .marker-selector {
   padding: 6px 4px;
   display: flex;
   align-items: flex-start;
 }
-/* line 110, ../sass/leaflet_map_control.scss */
+/* line 129, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-toggle {
   position: absolute;
   top: 6px;
@@ -126,18 +145,18 @@
   border-radius: 2px;
   color: #dedede;
 }
-/* line 124, ../sass/leaflet_map_control.scss */
+/* line 143, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-toggle:hover {
   color: #ffffff;
 }
 
-/* line 132, ../sass/leaflet_map_control.scss */
+/* line 151, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list .list-collapsed-title {
   display: none;
   font-size: 1.2em;
   font-weight: bold;
 }
-/* line 139, ../sass/leaflet_map_control.scss */
+/* line 158, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list.list-collapsed {
   text-wrap: nowrap;
   min-width: 60px;
@@ -145,26 +164,26 @@
   padding: 8px;
   cursor: pointer;
 }
-/* line 146, ../sass/leaflet_map_control.scss */
+/* line 165, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list.list-collapsed .list-content {
   display: none;
 }
-/* line 150, ../sass/leaflet_map_control.scss */
+/* line 169, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list.list-collapsed .list-collapsed-title {
   display: block;
 }
-/* line 154, ../sass/leaflet_map_control.scss */
+/* line 173, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list.list-collapsed .list-toggle {
   display: none;
 }
-/* line 158, ../sass/leaflet_map_control.scss */
+/* line 177, ../sass/leaflet_map_control.scss */
 .leaflet-sidebar-list.list-collapsed:hover {
   background: #0172af;
 }
 
 /* Compact legend for smaller screens */
 @media (max-width: 380px) {
-  /* line 166, ../sass/leaflet_map_control.scss */
+  /* line 185, ../sass/leaflet_map_control.scss */
   .list-toggle {
     width: 16px;
     height: 16px;
