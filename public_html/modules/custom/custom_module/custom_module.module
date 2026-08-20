@@ -522,14 +522,30 @@ function custom_module_leaflet_views_features_alter(array &$features, ViewsPlugi
     }
 
 
-    // Remove tooltips in Ta2026 Map in case of not Event content type.
+    // In Ta2026 Map View..
     if ($view_style->view->current_display === 'page_ta2026_map') {
+
+      // Remove tooltips of not Event feature type.
       if (!str_contains($feature["properties"], '"content_type":"event"')) {
         unset($features[$k]["tooltip"]);
         $features[$k]["icon"]["className"] = $features[$k]["icon"]["className"] . ' ' . 'opacity-75';
       }
       else {
         $feature["weight"] = $feature["weight"] + 1000 + $k;
+      }
+
+      // Remove path fill_opacity in case of Geoplaces feature types.
+      if (isset($feature['properties']) &&
+        is_string($feature['properties']) &&
+        str_contains($feature['properties'], '"content_type":"geoplace"') &&
+        isset($feature['path']) &&
+        is_string($feature['path'])
+      ) {
+        $features[$k]['path'] = preg_replace(
+          '/"fillOpacity"\s*:\s*"(?!0")[^"]*"/',
+          '"fillOpacity":"0"',
+          $feature['path']
+        );
       }
     }
   }

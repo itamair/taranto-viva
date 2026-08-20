@@ -341,7 +341,7 @@
           const leaflet_list_control_options = {
             'classes': mapid,
             'list': {
-              'title': Drupal.t('Events List'),
+              'title': Drupal.t('List of Events'),
               'items': [],
               'start_collapsed': 0,
               'source_endpoint': "/taranto-2026-events-list",

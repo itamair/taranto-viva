@@ -18,3 +18,18 @@ display:
       title: 'Map of the Mediterranean Games | Taranto 2026'
       menu:
         title: 'Mediterranean Games | Ta2026'
+  default:
+    display_options:
+      footer:
+        area:
+          content:
+            value: "<p>This interactive map is an independent creation of <strong>https://www.taranto-viva.com</strong>, developed with the aim of offering a geographic and interactive representation of the venues, disciplines, and events of the XX Mediterranean Games – Taranto 2026. The information on the map has been independently collected and reworked from the event's official sources, in particular the website <strong>https://www.ta2026.com</strong>. The map, the georeferencing of the venues, the structure, and the reworking of the data constitute an independent and unofficial project and are not created, managed, or approved by the Organizing Committee of the Mediterranean Games – Taranto 2026, CONI, or other organizing bodies. For official information, updates, any changes to the program, schedule, ticketing, and any other details relating to the Games, please always refer to the official website <strong>https://www.ta2026.com</strong>. In the event of any discrepancies, changes, or inaccuracies, the information published by the organizers will prevail.</p>"
+            format: restricted_html
+  page_vaganti_map:
+    display_options:
+      filters:
+        field_exif_creation_date_value:
+          expose:
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''

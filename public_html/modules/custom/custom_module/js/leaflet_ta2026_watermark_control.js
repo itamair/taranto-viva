@@ -30,7 +30,7 @@
             a.rel = 'noopener noreferrer';
 
             const img = L.DomUtil.create('img', '', a);
-            img.src = '/sites/default/files/styles/medium/public/media_image/GdM_logo_header_it.png';
+            img.src = '/sites/default/files/GdM_logo_header_it_obfuscated.jpg';
             img.style.width = '100px';
 
             return a;
