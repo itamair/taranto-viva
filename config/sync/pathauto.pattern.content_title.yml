@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - node.type.article
+    - node.type.ciclovia_acquedotti
+    - node.type.event
     - node.type.geoimage
     - node.type.geoplace
     - node.type.page
@@ -23,6 +25,8 @@ selection_criteria:
       node: node
     bundles:
       article: article
+      ciclovia_acquedotti: ciclovia_acquedotti
+      event: event
       geoimage: geoimage
       geoplace: geoplace
       page: page
