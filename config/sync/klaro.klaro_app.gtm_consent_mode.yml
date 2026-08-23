@@ -7,7 +7,7 @@ _core:
 id: gtm_consent_mode
 label: 'Google Tag Manager'
 description: 'Loads Google Analytics to collect anonymised, aggregated usage statistics.'
-default: false
+default: true
 purposes:
   - analytics
 cookies:
