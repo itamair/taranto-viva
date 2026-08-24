@@ -86,7 +86,7 @@
           const feature_path = feature.path instanceof Object ? feature.path : JSON.parse(feature.path);
           if (feature_path['arrowed'] === "1" && typeof lFeature.arrowheads !== "undefined") {
             const feature_path_weight = Number(feature_path.weight) ?? 1;
-            const arrow_size =  3 * feature_path.weight;
+            const arrow_size =  6 * feature_path.weight;
             lFeature.arrowheads({frequency: '100px', size: arrow_size + '%', proportionalToTotal: true});
           }
         }
