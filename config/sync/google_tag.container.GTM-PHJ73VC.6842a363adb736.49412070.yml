@@ -8,7 +8,7 @@ weight: 0
 tag_container_ids:
   - G-0Z3JXY63LD
 advanced_settings:
-  consent_mode: false
+  consent_mode: true
 dimensions_metrics: {  }
 conditions: {  }
 events:
