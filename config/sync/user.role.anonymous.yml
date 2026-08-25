@@ -11,7 +11,6 @@ dependencies:
     - field_permissions
     - filter
     - graphql
-    - klaro
     - media
     - paragraphs_type_permissions
     - popup_message
@@ -34,7 +33,6 @@ permissions:
   - 'display popup message'
   - 'execute graphql_compose_server arbitrary graphql requests'
   - 'search content'
-  - 'use klaro'
   - 'use text format markdown_html'
   - 'use text format restricted_html'
   - 'view field_location_type'

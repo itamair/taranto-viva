@@ -8,16 +8,16 @@ weight: 0
 tag_container_ids:
   - G-0Z3JXY63LD
 advanced_settings:
-  consent_mode: true
+  consent_mode: false
 dimensions_metrics: {  }
 conditions: {  }
 events:
+  search: {  }
+  sign_up:
+    method: CMS
+  login:
+    method: CMS
+  custom: {  }
   generate_lead:
     value: ''
     currency: ''
-  search: {  }
-  custom: {  }
-  login:
-    method: CMS
-  sign_up:
-    method: CMS
