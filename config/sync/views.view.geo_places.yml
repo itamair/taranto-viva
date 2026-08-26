@@ -7965,7 +7965,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "<div>{{ title }}</div>\r\n<div class=\"view_onhover\"><i>{{ field_title }} <br>{{ field_address_composed_locality }}</i></div>\r\n"
+            text: "<div>{{ title }}</div>\r\n<div>{{ field_title }}</div>\r\n<div class=\"view_onhover\"><i>{{ field_address_composed_locality }}</i></div>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -7998,7 +7998,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '{{ title }}'
+          empty: "<div>{{ title }}</div>\r\n<div class=\"view_onhover\"><i>{{ field_address_composed_locality }}</i></div>\r\n"
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -10042,6 +10042,11 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          plugin_id: custom
       exposed_form:
         type: bef
         options:
@@ -10403,10 +10408,10 @@ display:
             value: '+1 day'
             type: offset
           group: 2
-          exposed: false
+          exposed: true
           expose:
             operator_id: field_validity_range_value_op
-            label: 'Validity Range'
+            label: Validità
             description: ''
             use_operator: false
             operator: field_validity_range_value_op
