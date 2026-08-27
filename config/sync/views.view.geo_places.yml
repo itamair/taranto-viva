@@ -7965,7 +7965,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "<div>{{ title }}</div>\r\n<div>{{ field_title }}</div>\r\n<div class=\"view_onhover\"><i>{{ field_address_composed_locality }}</i></div>\r\n"
+            text: "<div>{{ title }}</div>\r\n<div class=\"view_onhover\"><i>{{ field_title }}</i></div>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -7998,7 +7998,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: "<div>{{ title }}</div>\r\n<div class=\"view_onhover\"><i>{{ field_address_composed_locality }}</i></div>\r\n"
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
