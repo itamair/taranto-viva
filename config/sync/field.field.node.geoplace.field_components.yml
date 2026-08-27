@@ -9,9 +9,14 @@ dependencies:
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.location
   module:
+    - ai_translate
     - entity_reference_revisions
     - tmgmt_content
 third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: 'no'
+    translate_references: 'no'
   tmgmt_content:
     excluded: false
 id: node.geoplace.field_components
@@ -39,13 +44,25 @@ settings:
       geometry:
         weight: 8
         enabled: true
+      geoplace_ref:
+        weight: 12
+        enabled: false
       image:
         weight: 7
         enabled: true
+      layout_section:
+        weight: 14
+        enabled: false
       location:
         weight: 9
         enabled: true
-      path:
-        weight: 10
+      text:
+        weight: 16
+        enabled: false
+      title:
+        weight: 17
+        enabled: false
+      view_reference:
+        weight: 18
         enabled: false
 field_type: entity_reference_revisions
