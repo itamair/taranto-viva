@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
     - field.field.node.event.field_date_range
+    - field.field.node.event.field_disclaimer
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
@@ -27,6 +28,7 @@ dependencies:
   module:
     - layout_builder
     - layout_discovery
+    - text
     - user
     - views
 third_party_settings:
@@ -89,12 +91,12 @@ third_party_settings:
                 type: readmore
                 label: hidden
                 settings:
-                  trim_length: 300
+                  trim_length: 400
                   trim_on_break: false
-                  show_readmore: false
-                  show_readless: false
-                  ellipsis: false
-                  wordsafe: false
+                  show_readmore: true
+                  show_readless: true
+                  ellipsis: true
+                  wordsafe: true
                 third_party_settings: {  }
             weight: 2
             additional: {  }
@@ -230,11 +232,42 @@ third_party_settings:
             weight: 1
             additional: {  }
         third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
+          a6f63403-37e5-4f9f-9e35-34922ee02b71:
+            uuid: a6f63403-37e5-4f9f-9e35-34922ee02b71
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_disclaimer'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
 id: node.event.default
 targetEntityType: node
 bundle: event
 mode: default
-content: {  }
+content:
+  field_disclaimer:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   body: true
   field_active_type: true

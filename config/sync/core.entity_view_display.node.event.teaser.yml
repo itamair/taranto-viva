@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
     - field.field.node.event.field_date_range
+    - field.field.node.event.field_disclaimer
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
@@ -63,6 +64,7 @@ hidden:
   field_category_type: true
   field_components: true
   field_date_range: true
+  field_disclaimer: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true

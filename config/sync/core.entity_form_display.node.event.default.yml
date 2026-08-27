@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
     - field.field.node.event.field_date_range
+    - field.field.node.event.field_disclaimer
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
@@ -78,7 +79,7 @@ content:
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 17
+    weight: 18
     region: content
     settings:
       title: Paragraph
@@ -100,6 +101,14 @@ content:
     weight: 13
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_disclaimer:
+    type: text_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 4
+      placeholder: ''
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
@@ -216,7 +225,7 @@ content:
     third_party_settings: {  }
   field_link:
     type: link_default
-    weight: 16
+    weight: 17
     region: content
     settings:
       placeholder_url: ''
@@ -422,7 +431,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 31
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -464,7 +473,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 30
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }

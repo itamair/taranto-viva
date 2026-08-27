@@ -1,0 +1,30 @@
+uuid: 15222d0e-638d-4ea1-88fb-c928e65781ac
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disclaimer
+    - filter.format.markdown_html
+    - filter.format.restricted_html
+    - node.type.event
+  module:
+    - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.event.field_disclaimer
+field_name: field_disclaimer
+entity_type: node
+bundle: event
+label: Disclaimer
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - markdown_html
+    - restricted_html
+field_type: text_long
