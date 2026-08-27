@@ -11,6 +11,7 @@ dependencies:
     - field.field.paragraph.location.field_location_icon_width
     - field.field.paragraph.location.field_location_type
     - field.field.paragraph.location.field_marker_image
+    - field.field.paragraph.location.field_subtitle
     - field.field.paragraph.location.field_title
     - field.field.paragraph.location.field_tooltip_class
     - field.field.paragraph.location.field_tooltip_direction
@@ -173,6 +174,14 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_subtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
     region: content
   field_title:
     type: string

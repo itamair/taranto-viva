@@ -12,6 +12,7 @@ dependencies:
     - field.field.paragraph.location.field_location_icon_width
     - field.field.paragraph.location.field_location_type
     - field.field.paragraph.location.field_marker_image
+    - field.field.paragraph.location.field_subtitle
     - field.field.paragraph.location.field_title
     - field.field.paragraph.location.field_tooltip_class
     - field.field.paragraph.location.field_tooltip_direction
@@ -34,6 +35,7 @@ hidden:
   field_location_icon_width: true
   field_location_type: true
   field_marker_image: true
+  field_subtitle: true
   field_title: true
   field_tooltip_class: true
   field_tooltip_direction: true

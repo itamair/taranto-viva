@@ -14,6 +14,7 @@ dependencies:
     - field.field.paragraph.geometry.field_stroke_color
     - field.field.paragraph.geometry.field_stroke_opacity
     - field.field.paragraph.geometry.field_stroke_weight
+    - field.field.paragraph.geometry.field_subtitle
     - field.field.paragraph.geometry.field_title
     - field.field.paragraph.geometry.field_tooltip_class
     - field.field.paragraph.geometry.field_tooltip_disabled
@@ -49,7 +50,7 @@ third_party_settings:
       label: Attributes
       region: content
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: details
       format_settings:
         classes: geometry-attributes
@@ -71,28 +72,28 @@ content:
     third_party_settings: {  }
   field_dash_array:
     type: number
-    weight: 7
+    weight: 8
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_fill_color:
     type: color_field_widget_html5
-    weight: 11
+    weight: 12
     region: content
     settings:
       show_extra: false
     third_party_settings: {  }
   field_fill_opacity:
     type: number
-    weight: 12
+    weight: 13
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_geofield:
     type: leaflet_widget_default
-    weight: 3
+    weight: 4
     region: content
     settings:
       geometry_validation: true
@@ -183,7 +184,7 @@ content:
     third_party_settings: {  }
   field_geojson_reference:
     type: link_default
-    weight: 19
+    weight: 20
     region: content
     settings:
       placeholder_url: ''
@@ -191,14 +192,14 @@ content:
     third_party_settings: {  }
   field_gpx_track:
     type: file_generic
-    weight: 1
+    weight: 2
     region: content
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
   field_link:
     type: link_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder_url: ''
@@ -206,23 +207,31 @@ content:
     third_party_settings: {  }
   field_stroke_color:
     type: color_field_widget_html5
-    weight: 8
+    weight: 9
     region: content
     settings:
       show_extra: false
     third_party_settings: {  }
   field_stroke_opacity:
     type: number
-    weight: 10
+    weight: 11
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_stroke_weight:
     type: number
-    weight: 9
+    weight: 10
     region: content
     settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_subtitle:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 125
       placeholder: ''
     third_party_settings: {  }
   field_title:
@@ -235,41 +244,41 @@ content:
     third_party_settings: {  }
   field_tooltip_class:
     type: options_select
-    weight: 18
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
   field_tooltip_disabled:
-    type: boolean_checkbox
-    weight: 15
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_tooltip_permanent:
     type: boolean_checkbox
     weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
-  field_tooltip_sticky:
+  field_tooltip_permanent:
     type: boolean_checkbox
     weight: 17
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
+  field_tooltip_sticky:
+    type: boolean_checkbox
+    weight: 18
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_zindex:
     type: number
-    weight: 13
+    weight: 14
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_zoom_visibility:
     type: options_select
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
