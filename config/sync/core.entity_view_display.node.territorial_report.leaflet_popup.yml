@@ -42,7 +42,7 @@ content:
     region: content
   field_date_range:
     type: custom_daterange
-    label: inline
+    label: hidden
     settings:
       timezone_override: ''
       date_format: d-m-Y

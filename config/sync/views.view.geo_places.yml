@@ -3436,7 +3436,7 @@ display:
             options: '{"autoPan":true,"minWidth":300}'
             view_mode: leaflet_popup
           leaflet_map: multilayers
-          height: '60'
+          height: '50'
           height_unit: vh
           hide_empty_map: true
           disable_wheel: false
