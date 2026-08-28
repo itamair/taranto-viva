@@ -1,9 +1,9 @@
-uuid: 15222d0e-638d-4ea1-88fb-c928e65781ac
+uuid: a3532add-25e6-4829-833d-669fb63fc177
 langcode: it
 status: true
 dependencies:
   config:
-    - field.storage.node.field_disclaimer
+    - field.storage.node.field_detailed_info
     - filter.format.restricted_html
     - node.type.event
   module:
@@ -12,14 +12,14 @@ dependencies:
 third_party_settings:
   tmgmt_content:
     excluded: false
-id: node.event.field_disclaimer
-field_name: field_disclaimer
+id: node.event.field_detailed_info
+field_name: field_detailed_info
 entity_type: node
 bundle: event
-label: Disclaimer
+label: 'Detailed Info'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

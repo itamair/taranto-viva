@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
     - field.field.node.event.field_date_range
+    - field.field.node.event.field_detailed_info
     - field.field.node.event.field_disclaimer
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
@@ -253,7 +254,25 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 0
+            weight: 2
+            additional: {  }
+          11297689-e55e-4a24-911c-aae1319d2d85:
+            uuid: 11297689-e55e-4a24-911c-aae1319d2d85
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_detailed_info'
+              label: 'Detailed Info'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
         third_party_settings: {  }
 id: node.event.default
@@ -261,6 +280,13 @@ targetEntityType: node
 bundle: event
 mode: default
 content:
+  field_detailed_info:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_disclaimer:
     type: text_default
     label: above
