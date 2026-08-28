@@ -1,0 +1,8 @@
+uuid: e0731014-af65-49f6-aebc-6cfbac46abdc
+langcode: it
+status: true
+dependencies: {  }
+id: node__event
+label: 'Content: Event'
+tags:
+  title: '[node:title] [node:field_sub_title] | [site:name]'

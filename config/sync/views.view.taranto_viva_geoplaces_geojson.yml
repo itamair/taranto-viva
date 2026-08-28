@@ -12,15 +12,17 @@ dependencies:
     - field.storage.paragraph.field_geofield
     - field.storage.paragraph.field_location_icon_width
     - field.storage.paragraph.field_tooltip_permanent
+    - node.type.event
     - node.type.geoplace
     - paragraphs.paragraphs_type.geometry
     - paragraphs.paragraphs_type.location
     - taxonomy.vocabulary.project_namespace
   content:
+    - 'taxonomy_term:project_namespace:290b46e6-3c78-4258-8218-3922d8bafd2e'
     - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
   module:
-    - geofield
     - custom_module
+    - geofield
     - node
     - paragraphs
     - rest
@@ -1006,6 +1008,7 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
+            227: 227
             52: 52
           group: 1
           exposed: false
@@ -1177,6 +1180,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            event: event
             geoplace: geoplace
           group: 1
           exposed: false
