@@ -1,0 +1,9 @@
+uuid: 305e3118-2d1b-4573-ae99-6933999a170f
+langcode: it
+status: true
+dependencies: {  }
+name: Disclaimers
+vid: disclaimers
+description: null
+weight: 0
+new_revision: true

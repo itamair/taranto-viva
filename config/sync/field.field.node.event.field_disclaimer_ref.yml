@@ -1,0 +1,39 @@
+uuid: f698c7b1-5845-4561-af8c-6ddcc9702a9a
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disclaimer_ref
+    - node.type.event
+    - taxonomy.vocabulary.disclaimers
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: 'no'
+    translate_references: 'no'
+  tmgmt_content:
+    excluded: false
+id: node.event.field_disclaimer_ref
+field_name: field_disclaimer_ref
+entity_type: node
+bundle: event
+label: 'Disclaimer Ref'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      disclaimers: disclaimers
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,23 @@
+uuid: 76c0d677-1541-48ac-8c69-51b04f0fa019
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.disclaimers
+  module:
+    - layout_builder
+    - layout_discovery
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.disclaimers.default
+targetEntityType: taxonomy_term
+bundle: disclaimers
+mode: default
+content: {  }
+hidden:
+  description: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

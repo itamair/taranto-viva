@@ -1,0 +1,16 @@
+uuid: d54e89ec-669e-476b-b716-c3f7e03f7fc3
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.disclaimers
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.disclaimers
+target_entity_type_id: taxonomy_term
+target_bundle: disclaimers
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,52 @@
+uuid: ed21999d-be65-4225-aae4-a4295a37aa7b
+langcode: it
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.disclaimer
+    - taxonomy.vocabulary.disclaimers
+  module:
+    - layout_builder
+    - layout_discovery
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
+          e8bd980b-f00d-4109-a856-87377947e81c:
+            uuid: e8bd980b-f00d-4109-a856-87377947e81c
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:disclaimers:description'
+              label: Disclaimer
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: taxonomy_term.disclaimers.disclaimer
+targetEntityType: taxonomy_term
+bundle: disclaimers
+mode: disclaimer
+content: {  }
+hidden:
+  description: true
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

@@ -48,6 +48,7 @@ dependencies:
     - taxonomy.vocabulary.project_namespace
     - user.role.authenticated
   content:
+    - 'taxonomy_term:disclaimers:e60cd04e-5198-4814-a98d-db65dc53d977'
     - 'taxonomy_term:places_categories:a841baac-2165-4eb1-8954-60c0a0bf78b6'
     - 'taxonomy_term:project_namespace:290b46e6-3c78-4258-8218-3922d8bafd2e'
     - 'taxonomy_term:project_namespace:3463a0e6-4f97-414a-a185-64a79b7a2082'
@@ -10842,19 +10843,19 @@ display:
       display_description: ''
       header: {  }
       footer:
-        area:
-          id: area
+        entity_taxonomy_term:
+          id: entity_taxonomy_term
           table: views
-          field: area
+          field: entity_taxonomy_term
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: text
+          plugin_id: entity
           empty: false
-          content:
-            value: 'Questa mappa interattiva è una realizzazione indipendente di <strong>https://www.taranto-viva.com</strong>, sviluppata con l’obiettivo di offrire una rappresentazione geografica e interattiva delle sedi, delle discipline e degli eventi dei XX Giochi del Mediterraneo – Taranto 2026. Le informazioni presenti nella mappa sono state raccolte e rielaborate autonomamente a partire dalle fonti ufficiali dell’evento, in particolare dal sito <strong>https://www.ta2026.com</strong>. La mappa, la georeferenziazione delle sedi, la struttura e la rielaborazione dei dati costituiscono un progetto autonomo e non ufficiale e non sono realizzati, gestiti o approvati dal Comitato Organizzatore dei Giochi del Mediterraneo – Taranto 2026, dal CONI o dagli altri enti organizzatori. Per informazioni ufficiali, aggiornamenti, eventuali variazioni di programma, orari, biglietteria e ogni altro dettaglio relativo allo svolgimento dei Giochi si invita a fare sempre riferimento al sito ufficiale <strong>https://www.ta2026.com</strong>. In caso di eventuali discrepanze, variazioni o imprecisioni, fanno fede le informazioni pubblicate dagli organizzatori.'
-            format: restricted_html
-          tokenize: false
+          target: e60cd04e-5198-4814-a98d-db65dc53d977
+          view_mode: disclaimer
+          tokenize: true
+          bypass_access: false
       rendering_language: '***LANGUAGE_language_content***'
       display_extenders:
         metatag_display_extender:

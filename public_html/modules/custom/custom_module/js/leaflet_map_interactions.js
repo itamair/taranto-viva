@@ -86,8 +86,8 @@
           const feature_path = feature.path instanceof Object ? feature.path : JSON.parse(feature.path);
           if (feature_path['arrowed'] === "1" && typeof lFeature.arrowheads !== "undefined") {
             const feature_path_weight = Number(feature_path.weight) ?? 1;
-            const arrow_size =  6 * feature_path.weight;
-            lFeature.arrowheads({frequency: '100px', size: arrow_size + '%', proportionalToTotal: true});
+            const arrow_size =  4 * feature_path_weight;
+            lFeature.arrowheads({frequency: '200px', size: arrow_size + '%', fill: true, color: feature_path.color, fillColor: feature_path.color});
           }
         }
         // Pulsing Markers.

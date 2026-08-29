@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.event.field_components
     - field.field.node.event.field_date_range
     - field.field.node.event.field_detailed_info
-    - field.field.node.event.field_disclaimer
+    - field.field.node.event.field_disclaimer_ref
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
@@ -51,7 +51,7 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -80,7 +80,7 @@ content:
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 19
+    weight: 20
     region: content
     settings:
       title: Paragraph
@@ -111,13 +111,22 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_disclaimer:
-    type: text_textarea
-    weight: 17
+  field_disclaimer_ref:
+    type: autocomplete_deluxe
+    weight: 18
     region: content
     settings:
-      rows: 4
-      placeholder: ''
+      match_operator: CONTAINS
+      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      size: 60
+      selection_handler: default
+      match_limit: 10
+      min_length: 0
+      delimiter: ''
+      not_found_message_allow: false
+      not_found_message: "The term '@term' will be added"
+      new_terms: false
+      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
@@ -234,7 +243,7 @@ content:
     third_party_settings: {  }
   field_link:
     type: link_default
-    weight: 18
+    weight: 19
     region: content
     settings:
       placeholder_url: ''
@@ -294,7 +303,7 @@ content:
     third_party_settings: {  }
   field_related_content:
     type: options_select
-    weight: 20
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -423,37 +432,37 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 27
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 25
+    weight: 26
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   simple_sitemap:
-    weight: 21
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 31
+    weight: 32
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 28
+    weight: 29
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 26
+    weight: 27
     region: content
     settings:
       display_label: true
@@ -467,13 +476,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   translation:
-    weight: 23
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 22
+    weight: 23
     region: content
     settings:
       match_operator: CONTAINS
@@ -482,13 +491,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 30
+    weight: 31
     region: content
     settings: {  }
     third_party_settings: {  }
   uuid:
     type: uuid
-    weight: 29
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
