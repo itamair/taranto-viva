@@ -123,22 +123,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
-          44b267d3-14f0-4fc2-b37a-5b519429c00e:
-            uuid: 44b267d3-14f0-4fc2-b37a-5b519429c00e
-            region: content
-            configuration:
-              id: 'field_block:node:event:field_disclaimer_ref'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-            weight: 4
-            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
