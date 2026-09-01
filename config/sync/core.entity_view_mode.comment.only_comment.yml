@@ -1,0 +1,11 @@
+uuid: e801e751-141f-44d2-857c-631f0ce30e06
+langcode: it
+status: true
+dependencies:
+  module:
+    - comment
+id: comment.only_comment
+label: 'Only Comment'
+description: null
+targetEntityType: comment
+cache: true

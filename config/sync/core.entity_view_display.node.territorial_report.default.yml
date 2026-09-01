@@ -26,6 +26,7 @@ dependencies:
     - node.type.territorial_report
     - views.view.content_locations_addresses_and_google_maps_links
     - views.view.content_media_images
+    - views.view.rate_widgets_results
   module:
     - comment
     - datetime_range
@@ -294,6 +295,54 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
+          2ff1d001-59e4-4f7a-9256-cfe426bea3ab:
+            uuid: 2ff1d001-59e4-4f7a-9256-cfe426bea3ab
+            region: content
+            configuration:
+              id: 'field_block:node:territorial_report:field_comments'
+              label: Comments
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: comment_default
+                label: above
+                settings:
+                  view_mode: only_comment
+                  pager_id: 0
+                third_party_settings: {  }
+            weight: 7
+            additional: {  }
+          6110d882-c5c5-4a89-a01e-86fad3fe4d55:
+            uuid: 6110d882-c5c5-4a89-a01e-86fad3fe4d55
+            region: content
+            configuration:
+              id: 'views_block:rate_widgets_results-node_results_block'
+              label: ''
+              label_display: visible
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: null
+            weight: 6
+            additional: {  }
+          efbaf850-b0de-46ed-9dd6-f037f20a1321:
+            uuid: efbaf850-b0de-46ed-9dd6-f037f20a1321
+            region: content
+            configuration:
+              id: 'extra_field_block:node:territorial_report:rate_thumbs_up_down'
+              label: 'Rate Thumbs Up/Down'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
           5a99905b-eeb4-4f0f-9460-030c97d8f5cd:
             uuid: 5a99905b-eeb4-4f0f-9460-030c97d8f5cd
             region: content
@@ -307,7 +356,7 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
         third_party_settings: {  }
 id: node.territorial_report.default

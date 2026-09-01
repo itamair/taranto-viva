@@ -200,8 +200,6 @@ module:
   views_slideshow: 0
   views_slideshow_cycle: 0
   views_ui: 0
-  visitors: 0
-  visitors_geoip: 0
   votingapi: 0
   warmer: 0
   warmer_cdn: 0

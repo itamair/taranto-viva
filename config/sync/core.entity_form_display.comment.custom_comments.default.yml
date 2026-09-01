@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - comment.type.custom_comments
+    - field.field.comment.custom_comments.comment_body
     - field.field.comment.custom_comments.field_comment_plain
+  module:
+    - text
 id: comment.custom_comments.default
 targetEntityType: comment
 bundle: custom_comments
@@ -15,8 +18,8 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_comment_plain:
-    type: string_textarea
+  comment_body:
+    type: text_textarea
     weight: 1
     region: content
     settings:
@@ -24,6 +27,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_comment_plain: true
   langcode: true
   subject: true
   uuid: true

@@ -1,17 +1,23 @@
-uuid: b343cfdf-791a-43ed-99f9-dbb9e2bb1579
+uuid: 98981d0d-5db4-469e-8ec7-dd6f9e4e53e5
 langcode: it
 status: true
 dependencies:
   config:
     - comment.type.custom_comments
+    - core.entity_view_mode.comment.full
     - field.field.comment.custom_comments.comment_body
     - field.field.comment.custom_comments.field_comment_plain
   module:
+    - layout_builder
     - text
-id: comment.custom_comments.default
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: comment.custom_comments.full
 targetEntityType: comment
 bundle: custom_comments
-mode: default
+mode: full
 content:
   comment_body:
     type: text_default

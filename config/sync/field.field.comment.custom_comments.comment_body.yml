@@ -1,9 +1,9 @@
-uuid: caa93a29-4a69-4fa3-a7f1-62dba13b97eb
+uuid: 2bfd3673-b110-4b29-a4c7-31504d45d1c4
 langcode: it
 status: true
 dependencies:
   config:
-    - comment.type.comment
+    - comment.type.custom_comments
     - field.storage.comment.comment_body
     - filter.format.restricted_html
   module:
@@ -12,15 +12,13 @@ dependencies:
 third_party_settings:
   tmgmt_content:
     excluded: false
-_core:
-  default_config_hash: TmAKjNrJ7RR60YpqvJq_QqEewYe_S8Kd23n8VRCqiWs
-id: comment.comment.comment_body
+id: comment.custom_comments.comment_body
 field_name: comment_body
 entity_type: comment
-bundle: comment
-label: Commento
+bundle: custom_comments
+label: Comment
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
