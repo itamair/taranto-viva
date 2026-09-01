@@ -17,19 +17,19 @@
 
 @media (min-width: 31.25rem) {
   .mobile-buttons {
-    margin-block-start: var(--sp2);
+    margin-block-start: var(--sp);
   }
 }
 
 @media (min-width: 43.75rem) {
   .mobile-buttons {
-    margin-block-start: var(--sp4);
+    margin-block-start: var(--sp);
   }
 }
 
 @media (min-width: 75rem) {
   .mobile-buttons {
-    margin-block-start: var(--sp4);
+    margin-block-start: var(--sp);
   }
 }
 

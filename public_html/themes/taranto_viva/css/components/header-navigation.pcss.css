@@ -31,6 +31,7 @@
 
   &.is-active {
     visibility: visible;
+    border-top-width: 190px !important;
     transform: translateX(calc(-100% - var(--drupal-displace-offset-right, 0px))); /* LTR */
 
     &:dir(rtl) {

@@ -10,15 +10,15 @@
   margin-inline-start: auto;
 
   @media (--sm) {
-    margin-block-start: var(--sp2);
+    margin-block-start: var(--sp);
   }
 
   @media (--md) {
-    margin-block-start: var(--sp4);
+    margin-block-start: var(--sp);
   }
 
   @media (--nav) {
-    margin-block-start: var(--sp4);
+    margin-block-start: var(--sp);
   }
 }
 

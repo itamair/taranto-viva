@@ -9,6 +9,7 @@ libraries:
   - taranto_viva/global-styling
 regions:
   header: Header
+  language_selector: 'Language Selector'
   primary_menu: 'Primary menu'
   secondary_menu: 'Secondary menu'
   hero: 'Hero (full width)'

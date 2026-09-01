@@ -49,7 +49,7 @@
 <div id="page-wrapper" class="page-wrapper">
   <div id="page">
 
-    {% if page.header or page.primary_menu or page.secondary_menu %}
+    {% if page.header or page.page_selector or page.primary_menu or page.secondary_menu %}
       <header id="header" class="site-header" data-drupal-selector="site-header" role="banner">
 
         {# Gets fixed by JavaScript at wide widths. #}
@@ -72,6 +72,11 @@
 
               {% if page.primary_menu or page.secondary_menu %}
                 <div class="mobile-buttons" data-drupal-selector="mobile-buttons">
+                  {% if page.language_selector %}
+                    <div class="language_selector" data-drupal-selector="header-nav">
+                      {{ page.language_selector }}
+                    </div>
+                  {% endif %}
                   <button class="mobile-nav-button" data-drupal-selector="mobile-nav-button" aria-label="{{ 'Main Menu'|t }}" aria-controls="header-nav" aria-expanded="false">
                     <span class="mobile-nav-button__label">{{ 'Menu'|t }}</span>
                     <span class="mobile-nav-button__icon"></span>
