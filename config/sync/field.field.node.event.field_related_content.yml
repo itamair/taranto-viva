@@ -6,6 +6,16 @@ dependencies:
     - field.storage.node.field_related_content
     - node.type.event
     - node.type.geoplace
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+  tmgmt_content:
+    excluded: false
 id: node.event.field_related_content
 field_name: field_related_content
 entity_type: node
@@ -20,10 +30,11 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
+      event: event
       geoplace: geoplace
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: geoimage
+    auto_create_bundle: event
 field_type: entity_reference

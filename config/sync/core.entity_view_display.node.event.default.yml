@@ -232,6 +232,25 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
+          d907820c-421b-4671-9c74-a48301475bba:
+            uuid: d907820c-421b-4671-9c74-a48301475bba
+            region: first
+            configuration:
+              id: 'field_block:node:event:field_related_content'
+              label: 'Related Content'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_onecol

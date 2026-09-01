@@ -12,7 +12,6 @@ dependencies:
     - field.storage.paragraph.field_geofield
     - field.storage.paragraph.field_location_icon_width
     - field.storage.paragraph.field_tooltip_permanent
-    - node.type.event
     - node.type.geoplace
     - paragraphs.paragraphs_type.geometry
     - paragraphs.paragraphs_type.location
@@ -1180,7 +1179,6 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            event: event
             geoplace: geoplace
           group: 1
           exposed: false
