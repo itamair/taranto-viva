@@ -987,7 +987,7 @@ display:
           plugin_id: language
           operator: in
           value:
-            '***LANGUAGE_language_interface***': '***LANGUAGE_language_interface***'
+            it: it
           group: 1
           exposed: false
           expose:
@@ -1302,11 +1302,16 @@ display:
       group_by: false
       header: {  }
       footer: {  }
-      display_extenders: {  }
+      rendering_language: '***LANGUAGE_language_interface***'
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender: {  }
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
       tags:
