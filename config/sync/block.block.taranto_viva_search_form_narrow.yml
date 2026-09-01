@@ -11,7 +11,7 @@ _core:
 id: taranto_viva_search_form_narrow
 theme: taranto_viva
 region: primary_menu
-weight: -9
+weight: -12
 provider: null
 plugin: search_form_block
 settings:
