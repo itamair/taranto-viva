@@ -73,11 +73,6 @@
           // Toggle header z-index based on fullscreen state.
           $("header.site-header").css('z-index', map.isFullscreen() ? 1 : 101);
         });
-
-        map.on('overlayadd', function(e){
-          console.log(e.name);
-        })
-
       });
 
       // Interact with each feature created and added to the map.
