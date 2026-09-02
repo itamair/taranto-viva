@@ -55,6 +55,11 @@
         // Trigger/Process Initial Actions.
         self.processInitialActions(mapid, map, features, markers, markersOriginalSizes);
 
+        // setScalingOnMarkerHovering for all markers that will be added afterword.
+        map.on('layeradd', function(e){
+          self.setScalingOnMarkerHovering(e.layer);
+        })
+
         // Set Actions on every Zoom End.
         map.on('zoomend', function () {
           // Markers resize on Zoomend.
