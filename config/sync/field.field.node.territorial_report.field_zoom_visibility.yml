@@ -6,13 +6,13 @@ dependencies:
     - field.storage.node.field_zoom_visibility
     - node.type.territorial_report
     - taxonomy.vocabulary.zoom_visibility_levels
+  content:
+    - 'taxonomy_term:zoom_visibility_levels:b057ea5b-c6f1-4e14-82c9-6bbcfbd1b2dd'
   module:
     - ai_translate
     - tmgmt_content
 third_party_settings:
   ai_translate:
-    entity_reference:
-      translate_references: default
     translate_references: default
   tmgmt_content:
     excluded: false
@@ -24,7 +24,9 @@ label: 'Zoom Visibility'
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: b057ea5b-c6f1-4e14-82c9-6bbcfbd1b2dd
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
