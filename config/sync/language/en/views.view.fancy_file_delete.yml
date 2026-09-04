@@ -50,6 +50,7 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           label: 'Views bulk operations'
+          action_title: Action
         filename:
           label: 'File Name'
           separator: ', '
@@ -70,6 +71,7 @@ display:
       fields:
         views_bulk_operations_bulk_form:
           label: 'Views bulk operations'
+          action_title: Action
         filename:
           label: 'File Name'
           separator: ', '

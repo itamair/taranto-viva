@@ -3,5 +3,6 @@ options:
   zoomTitle: Zoom
   arrowPrevTitle: Previous
   arrowNextTitle: Next
+  downloadTitle: Download
   indexIndicatorSep: ' / '
   errorMsg: 'The image could not be loaded.'
