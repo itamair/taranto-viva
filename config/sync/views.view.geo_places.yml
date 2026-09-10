@@ -5205,7 +5205,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: "{{ title }}<br>\r\n<i>{{ field_title }}</i><br>\r\n<i>{{ field_subtitle }}</i>\r\n"
+            text: "{{ field_title }}<br>\r\n<i>{{ field_subtitle }}</i>\r\n"
             make_link: false
             path: ''
             absolute: false
