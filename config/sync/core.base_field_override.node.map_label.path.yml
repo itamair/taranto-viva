@@ -1,0 +1,20 @@
+uuid: 001b71ae-c942-45a3-afad-fa35c6cf08f7
+langcode: it
+status: true
+dependencies:
+  config:
+    - node.type.map_label
+  module:
+    - path
+id: node.map_label.path
+field_name: path
+entity_type: node
+bundle: map_label
+label: 'Alias URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

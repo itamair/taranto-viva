@@ -1,0 +1,20 @@
+uuid: 2e49cf8b-5312-49ba-99ea-199359c30750
+langcode: it
+status: true
+dependencies:
+  config:
+    - node.type.territorial_report
+  module:
+    - metatag
+id: node.territorial_report.metatag
+field_name: metatag
+entity_type: node
+bundle: territorial_report
+label: 'Metatags (Hidden field for JSON support)'
+description: 'The computed meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: metatag_computed

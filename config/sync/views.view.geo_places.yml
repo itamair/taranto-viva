@@ -4974,7 +4974,7 @@ display:
         library_in_views_display_extender: {  }
         simple_sitemap_display_extender:
           variants: {  }
-      path: luoghi_di_interesse
+      path: places_of_interest
       menu:
         type: normal
         title: 'Luoghi di Interesse'
