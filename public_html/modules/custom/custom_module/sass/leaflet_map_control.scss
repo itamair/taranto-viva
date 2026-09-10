@@ -14,11 +14,11 @@
   line-height: 1.4;
   position: relative;
   &.leaflet-map-view-geo-places-page-map-taranto-viva {
-    color: white;
-    background: rgba(17, 152, 225, 0.9);
+    background: whitesmoke;
+    font-size: 1.1em;
     .marker-selector {
       .title {
-        width: 180px;
+        width: 160px
       }
       .icon {
         padding: 0 4px;

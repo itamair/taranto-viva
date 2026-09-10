@@ -335,6 +335,11 @@
 }
 
 // Tooltips Classes
+
+.leaflet-tooltip {
+  font-size: 1rem;
+}
+
 .leaflet-tooltip.big-and-bold {
   font-size: 1.1rem;
   font-weight: bold;

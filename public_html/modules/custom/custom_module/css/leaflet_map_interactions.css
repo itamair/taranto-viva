@@ -356,23 +356,28 @@
   line-height: 44px;
 }
 
-/* line 338, ../sass/leaflet_map_interactions.scss */
+/* line 339, ../sass/leaflet_map_interactions.scss */
+.leaflet-tooltip {
+  font-size: 1rem;
+}
+
+/* line 343, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.big-and-bold {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-/* line 343, ../sass/leaflet_map_interactions.scss */
+/* line 348, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.big {
   font-size: 1.1rem;
 }
 
-/* line 347, ../sass/leaflet_map_interactions.scss */
+/* line 352, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.bold {
   font-weight: bold;
 }
 
-/* line 351, ../sass/leaflet_map_interactions.scss */
+/* line 356, ../sass/leaflet_map_interactions.scss */
 .leaflet-tooltip.small {
   font-size: 0.7rem;
   padding: 3pxx;
@@ -385,27 +390,27 @@
   border-radius: 50%;
   transition: background 400ms ease-out;
 }*/
-/* line 369, ../sass/leaflet_map_interactions.scss */
+/* line 374, ../sass/leaflet_map_interactions.scss */
 .leaflet-map-path-hover-highlight path:hover {
   stroke-width: 14;
 }
 
-/* line 378, ../sass/leaflet_map_interactions.scss */
+/* line 383, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-top,
 .view .leaflet-tooltip-top {
   margin-top: -16px !important;
 }
-/* line 380, ../sass/leaflet_map_interactions.scss */
+/* line 385, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-top.wider,
 .view .leaflet-tooltip-top.wider {
   margin-top: -24px !important;
 }
-/* line 384, ../sass/leaflet_map_interactions.scss */
+/* line 389, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom,
 .view .leaflet-tooltip-bottom {
   margin-top: 16px !important;
 }
-/* line 386, ../sass/leaflet_map_interactions.scss */
+/* line 391, ../sass/leaflet_map_interactions.scss */
 .view-ciclovia-acquedotti .leaflet-tooltip-bottom.wider,
 .view .leaflet-tooltip-bottom.wider {
   margin-top: 24px !important;
