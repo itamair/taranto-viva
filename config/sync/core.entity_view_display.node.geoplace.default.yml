@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.geoplace.field_more_info
     - field.field.node.geoplace.field_ocr_text_from_media
     - field.field.node.geoplace.field_project_namespace
+    - field.field.node.geoplace.field_qrcode
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
@@ -36,6 +37,7 @@ dependencies:
     - layout_builder
     - layout_discovery
     - options
+    - qrcode_fields
     - text
     - user
     - viewfield
@@ -111,6 +113,25 @@ third_party_settings:
                   link: false
                 third_party_settings: {  }
             weight: 7
+            additional: {  }
+          0ec18da4-66e0-4d57-9a05-ebbbc8048bb3:
+            uuid: 0ec18da4-66e0-4d57-9a05-ebbbc8048bb3
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_qrcode'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: qrcode_fields_formatter
+                label: above
+                settings:
+                  display_text: false
+                  image:
+                    width: 200
+                    height: 200
+                third_party_settings: {  }
+            weight: 10
             additional: {  }
         third_party_settings: {  }
       -
@@ -266,7 +287,7 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 12
+            weight: 13
             additional: {  }
           989f4367-ae1b-4887-96fe-04b7a64462e7:
             uuid: 989f4367-ae1b-4887-96fe-04b7a64462e7
@@ -304,6 +325,47 @@ third_party_settings:
                   view_mode: full
                 third_party_settings: {  }
             weight: 11
+            additional: {  }
+          06e23074-f886-4690-86b4-749c23b8e362:
+            uuid: 06e23074-f886-4690-86b4-749c23b8e362
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_qrcode'
+              label: QRCode
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: qrcode_fields_formatter
+                label: hidden
+                settings:
+                  display_text: false
+                  image:
+                    width: '200'
+                    height: '200'
+                  plugin: ''
+                third_party_settings: {  }
+            weight: 14
+            additional: {  }
+          66e425c3-42b9-4c56-a89b-f0fad48e95ab:
+            uuid: 66e425c3-42b9-4c56-a89b-f0fad48e95ab
+            region: content
+            configuration:
+              id: qrcode_url_block
+              label: 'QR url block'
+              label_display: '0'
+              provider: qrcode_fields
+              context_mapping: {  }
+              qrcode_plugin: goqr
+              text: 'Block: Enter you QR url here (e.g.: Welcome to [site:name] [site:url])'
+              display_text: 0
+              image:
+                width: '200'
+                height: '200'
+              url: '[current-page:url]'
+            weight: 12
             additional: {  }
         third_party_settings: {  }
 id: node.geoplace.default
@@ -429,6 +491,17 @@ content:
       link: true
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_qrcode:
+    type: qrcode_fields_formatter
+    label: above
+    settings:
+      display_text: false
+      image:
+        width: 200
+        height: 200
+    third_party_settings: {  }
+    weight: 22
     region: content
   field_related_content:
     type: entity_reference_label

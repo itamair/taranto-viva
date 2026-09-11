@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.geoplace.field_more_info
     - field.field.node.geoplace.field_ocr_text_from_media
     - field.field.node.geoplace.field_project_namespace
+    - field.field.node.geoplace.field_qrcode
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
@@ -73,6 +74,7 @@ hidden:
   field_more_info: true
   field_ocr_text_from_media: true
   field_project_namespace: true
+  field_qrcode: true
   field_related_content: true
   field_sub_title: true
   field_touristic_value: true

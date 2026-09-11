@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.geoplace.field_more_info
     - field.field.node.geoplace.field_ocr_text_from_media
     - field.field.node.geoplace.field_project_namespace
+    - field.field.node.geoplace.field_qrcode
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
     - field.field.node.geoplace.field_touristic_value
@@ -35,11 +36,11 @@ dependencies:
     - conditional_fields
     - field_group
     - field_layout
-    - layout_discovery
     - link_class
     - media_library
     - paragraphs
     - path
+    - qrcode_fields
     - text
 third_party_settings:
   field_layout:
@@ -351,6 +352,16 @@ content:
       not_found_message: "The term '@term' will be added"
       new_terms: false
       no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+    third_party_settings: {  }
+  field_qrcode:
+    type: qrcode_url_field_widget
+    weight: 29
+    region: content
+    settings:
+      url: ''
+      image:
+        width: '200'
+        height: '200'
     third_party_settings: {  }
   field_related_content:
     type: options_select

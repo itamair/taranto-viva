@@ -365,3 +365,8 @@ div.image-wrapper {
 .field--name-field-image-caption p, .field--name-field-image-caption a {
   color: grey !important;
 }
+
+/* line 347, ../sass/common.scss */
+.qr-alt-text {
+  display: none;
+}

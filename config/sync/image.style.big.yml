@@ -5,11 +5,11 @@ dependencies: {  }
 name: big
 label: 'Big 1200×800'
 effects:
-  cf63c5a4-bb7d-4b0c-b5bb-be57fc2097df:
-    uuid: cf63c5a4-bb7d-4b0c-b5bb-be57fc2097df
-    id: image_scale
+  56da0c72-e432-4b34-993d-7d8aa625937d:
+    uuid: 56da0c72-e432-4b34-993d-7d8aa625937d
+    id: image_scale_and_crop
     weight: 2
     data:
       width: 1200
       height: 800
-      upscale: true
+      anchor: center-center

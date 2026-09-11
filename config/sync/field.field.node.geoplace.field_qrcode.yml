@@ -1,0 +1,26 @@
+uuid: cdc35d49-b6fe-4075-bdfb-330b5d3f5455
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_qrcode
+    - node.type.geoplace
+  module:
+    - qrcode_fields
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_qrcode
+field_name: field_qrcode
+entity_type: node
+bundle: geoplace
+label: QRCode
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  qrcode_plugin: goqr
+field_type: qrcode_url

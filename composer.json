@@ -134,6 +134,7 @@
         "drupal/permissions_fixer": "^2.0",
         "drupal/photoswipe": "^5.0",
         "drupal/popup_message": "3.0.3",
+        "drupal/qrcode_fields": "^2.1",
         "drupal/queue_ui": "^3.1",
         "drupal/r4032login": "^2.2",
         "drupal/range": "^1.5",
