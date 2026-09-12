@@ -17,7 +17,8 @@ edit_mode: false
 base_field: revision_log
 prompt: ''
 token: |-
-  Solo nel caso in cui [node:field_google_maps_address] non sia nullo ed il punto di interesse [node:field_google_maps_address] ha rilevanza turistica oppure è una struttura pubblica con accesso al pubblico. allora scrivi una descrizione in lingua [language:langcode] su come raggiungere [node:field_google_maps_address] dal centro di Taranto. Massimo 500 caratteri.
+  Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo 
+  allora scrivi una breve descrizione in lingua [language:langcode] sul come raggiungere [node:field_google_maps_address] dal centro di Taranto. Massimo 500 caratteri.
   Altrimenti lascia vuoto questo campo.
 guardrail_set_id: null
 plugin_config:
@@ -27,15 +28,17 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: ''
   automator_token: |-
-    Solo nel caso in cui [node:field_google_maps_address] non sia nullo ed il punto di interesse [node:field_google_maps_address] ha rilevanza turistica oppure è una struttura pubblica con accesso al pubblico. allora scrivi una descrizione in lingua [language:langcode] su come raggiungere [node:field_google_maps_address] dal centro di Taranto. Massimo 500 caratteri.
+    Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo 
+    allora scrivi una breve descrizione in lingua [language:langcode] sul come raggiungere [node:field_google_maps_address] dal centro di Taranto. Massimo 500 caratteri.
     Altrimenti lascia vuoto questo campo.
   automator_edit_mode: 0
   automator_label: 'How to reach Default'
   automator_weight: '100'
   automator_worker_type: queue
+  automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: openai
-  automator_ai_model: gpt-5.5-2026-04-23
+  automator_ai_model: gpt-5.5
   automator_configuration_max_completion_tokens: '4096'
   automator_configuration_reasoning_effort: medium
   automator_configuration_image_field: ''

@@ -41,6 +41,7 @@ plugin_config:
   automator_label: 'Perchè Visitare Default'
   automator_weight: '105'
   automator_worker_type: queue
+  automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: openai
   automator_ai_model: gpt-5.5
