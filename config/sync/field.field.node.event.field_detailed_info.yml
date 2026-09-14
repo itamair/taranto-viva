@@ -16,7 +16,7 @@ id: node.event.field_detailed_info
 field_name: field_detailed_info
 entity_type: node
 bundle: event
-label: 'Detailed Info'
+label: 'Info di dettaglio'
 description: ''
 required: false
 translatable: true

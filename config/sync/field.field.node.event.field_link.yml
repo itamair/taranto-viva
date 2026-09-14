@@ -15,7 +15,7 @@ id: node.event.field_link
 field_name: field_link
 entity_type: node
 bundle: event
-label: 'Related Links'
+label: 'Web Links correlati'
 description: ''
 required: false
 translatable: true

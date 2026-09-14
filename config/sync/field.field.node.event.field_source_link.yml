@@ -15,7 +15,7 @@ id: node.event.field_source_link
 field_name: field_source_link
 entity_type: node
 bundle: event
-label: 'Source Links'
+label: 'Web Links alle fonti'
 description: ''
 required: false
 translatable: false

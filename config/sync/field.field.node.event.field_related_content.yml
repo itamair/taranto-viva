@@ -11,8 +11,6 @@ dependencies:
     - tmgmt_content
 third_party_settings:
   ai_translate:
-    entity_reference:
-      translate_references: default
     translate_references: default
   tmgmt_content:
     excluded: false
@@ -20,7 +18,7 @@ id: node.event.field_related_content
 field_name: field_related_content
 entity_type: node
 bundle: event
-label: 'Related Content'
+label: 'Contenuto Correlato'
 description: ''
 required: false
 translatable: false
