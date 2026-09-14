@@ -415,3 +415,8 @@
 .view .leaflet-tooltip-bottom.wider {
   margin-top: 24px !important;
 }
+
+/* line 397, ../sass/leaflet_map_interactions.scss */
+#leaflet-map-view-geo-places-block-single-location {
+  outline-style: ridge;
+}
