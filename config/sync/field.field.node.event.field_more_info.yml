@@ -1,27 +1,24 @@
-uuid: e799721d-f9f4-4fce-8563-ac451d11b1c4
+uuid: 6e2eab6c-b916-4294-9c19-63692a309805
 langcode: it
 status: true
 dependencies:
   config:
-    - field.storage.node.field_source_link
+    - field.storage.node.field_more_info
     - node.type.event
   module:
-    - link
     - tmgmt_content
 third_party_settings:
   tmgmt_content:
     excluded: false
-id: node.event.field_source_link
-field_name: field_source_link
+id: node.event.field_more_info
+field_name: field_more_info
 entity_type: node
 bundle: event
-label: 'Source Links'
+label: 'Info Aggiuntive'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
-settings:
-  title: 1
-  link_type: 16
-field_type: link
+settings: {  }
+field_type: string_long

@@ -1,0 +1,48 @@
+uuid: 82f6d839-a887-489f-9343-501ab0533772
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.event.field_more_info
+id: node.event.field_more_info.default
+label: 'More Info Default'
+rule: llm_string_long
+input_mode: token
+weight: 200
+worker_type: queue
+entity_type: node
+bundle: event
+field_name: field_more_info
+edit_mode: false
+base_field: revision_log
+prompt: ''
+token: |-
+  Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
+  Non ripetere i contenuti già presenti nel campo [node:body]
+  Non includere, e nel caso elimina, ogni tag html nel testo.
+  Massimo 2000 caratteri
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: llm_string_long
+  automator_mode: token
+  automator_base_field: revision_log
+  automator_prompt: ''
+  automator_token: |-
+    Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
+    Non ripetere i contenuti già presenti nel campo [node:body]
+    Non includere, e nel caso elimina, ogni tag html nel testo.
+    Massimo 2000 caratteri
+  automator_edit_mode: 0
+  automator_label: 'More Info Default'
+  automator_weight: '200'
+  automator_worker_type: queue
+  automator_guardrail_set_id: ''
+  automator_ai_provider: openai
+  automator_ai_model: gpt-5.5-2026-04-23
+  automator_configuration_max_completion_tokens: '4096'
+  automator_configuration_reasoning_effort: medium
+  automator_configuration_image_field: ''
+  automator_configuration_image_style: ''
+  automator_joiner: ''
+  automator_joiner_other: ''

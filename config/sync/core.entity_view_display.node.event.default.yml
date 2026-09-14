@@ -3,10 +3,12 @@ langcode: it
 status: true
 dependencies:
   config:
+    - field.field.node.event.ai_automator_status
     - field.field.node.event.body
     - field.field.node.event.field_active_type
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
+    - field.field.node.event.field_crawled_content
     - field.field.node.event.field_date_range
     - field.field.node.event.field_detailed_info
     - field.field.node.event.field_disclaimer_ref
@@ -16,6 +18,7 @@ dependencies:
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
     - field.field.node.event.field_media_slideshow
+    - field.field.node.event.field_more_info
     - field.field.node.event.field_project_namespace
     - field.field.node.event.field_related_content
     - field.field.node.event.field_source_is_external
@@ -92,7 +95,7 @@ third_party_settings:
                 type: readmore
                 label: hidden
                 settings:
-                  trim_length: 400
+                  trim_length: 600
                   trim_on_break: false
                   show_readmore: true
                   show_readless: true
@@ -211,27 +214,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
-          f5888be8-a844-4b43-abdc-c0bff135acf5:
-            uuid: f5888be8-a844-4b43-abdc-c0bff135acf5
-            region: second
-            configuration:
-              id: 'field_block:node:event:field_geofied_view'
-              label: 'Geofied View'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: viewfield_default
-                label: hidden
-                settings:
-                  view_title: hidden
-                  always_build_output: false
-                  empty_view_title: hidden
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
           d907820c-421b-4671-9c74-a48301475bba:
             uuid: d907820c-421b-4671-9c74-a48301475bba
             region: first
@@ -295,6 +277,21 @@ third_party_settings:
                 settings:
                   view_mode: disclaimer
                 third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          63be7c11-3c88-415d-a39f-ffc31142e96c:
+            uuid: 63be7c11-3c88-415d-a39f-ffc31142e96c
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_more_info'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
             weight: 3
             additional: {  }
         third_party_settings: {  }
@@ -303,6 +300,13 @@ targetEntityType: node
 bundle: event
 mode: default
 content:
+  field_crawled_content:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
   field_detailed_info:
     type: text_default
     label: above
@@ -318,7 +322,15 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_more_info:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
 hidden:
+  ai_automator_status: true
   body: true
   field_active_type: true
   field_category_type: true

@@ -1,0 +1,134 @@
+uuid: d940d4e5-e7cb-4541-ba6b-762bcc723d2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser_with_map
+    - field.field.node.geoplace.ai_automator_status
+    - field.field.node.geoplace.body
+    - field.field.node.geoplace.field_category_type
+    - field.field.node.geoplace.field_components
+    - field.field.node.geoplace.field_crawled_content
+    - field.field.node.geoplace.field_exclude_from_map_bounds
+    - field.field.node.geoplace.field_exclude_from_markercluster
+    - field.field.node.geoplace.field_for_public_visit
+    - field.field.node.geoplace.field_geofied_view
+    - field.field.node.geoplace.field_google_maps_address
+    - field.field.node.geoplace.field_google_maps_link_view
+    - field.field.node.geoplace.field_how_to_reach
+    - field.field.node.geoplace.field_image_for_ocr_recognition
+    - field.field.node.geoplace.field_link
+    - field.field.node.geoplace.field_map_popup_disabled
+    - field.field.node.geoplace.field_media_slideshow
+    - field.field.node.geoplace.field_more_info
+    - field.field.node.geoplace.field_ocr_text_from_media
+    - field.field.node.geoplace.field_project_namespace
+    - field.field.node.geoplace.field_qrcode
+    - field.field.node.geoplace.field_related_content
+    - field.field.node.geoplace.field_sub_title
+    - field.field.node.geoplace.field_touristic_value
+    - field.field.node.geoplace.field_video
+    - field.field.node.geoplace.field_when_to_visit
+    - field.field.node.geoplace.field_why_to_visit
+    - field.field.node.geoplace.field_zoom_visibility
+    - node.type.geoplace
+  module:
+    - layout_builder
+    - layout_discovery
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            user_profile_section_style: 0
+        components:
+          d430b500-8ada-40c3-987b-d98f0b13c1f8:
+            uuid: d430b500-8ada-40c3-987b-d98f0b13c1f8
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_google_maps_link_view'
+              label: 'Google Maps Link View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          fe0ac65f-710c-4ae1-8521-1327be76f286:
+            uuid: fe0ac65f-710c-4ae1-8521-1327be76f286
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_geofied_view'
+              label: 'Geofied View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.geoplace.teaser_with_map
+targetEntityType: node
+bundle: geoplace
+mode: teaser_with_map
+content: {  }
+hidden:
+  active_level: true
+  ai_automator_status: true
+  body: true
+  field_category_type: true
+  field_components: true
+  field_crawled_content: true
+  field_exclude_from_map_bounds: true
+  field_exclude_from_markercluster: true
+  field_for_public_visit: true
+  field_geofied_view: true
+  field_google_maps_address: true
+  field_google_maps_link_view: true
+  field_how_to_reach: true
+  field_image_for_ocr_recognition: true
+  field_link: true
+  field_map_popup_disabled: true
+  field_media_slideshow: true
+  field_more_info: true
+  field_ocr_text_from_media: true
+  field_project_namespace: true
+  field_qrcode: true
+  field_related_content: true
+  field_sub_title: true
+  field_touristic_value: true
+  field_video: true
+  field_when_to_visit: true
+  field_why_to_visit: true
+  field_zoom_visibility: true
+  geoimage_caption: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
+  territorial_report_active_level: true
+  uuid: true

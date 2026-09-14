@@ -7597,6 +7597,7 @@ display:
           plugin_id: bundle
           operator: in
           value:
+            event: event
             territorial_report: territorial_report
           group: 2
           exposed: false
@@ -7685,7 +7686,8 @@ display:
               field: field_category_type
               rendered: true
               overlays_options:
-                disabled_overlays: {  }
+                disabled_overlays:
+                  'Segnalazione Territoriale': 'Segnalazione Territoriale'
                 hidden_overlays_controls: {  }
           data_source:
             field_geofield: field_geofield

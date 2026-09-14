@@ -1,0 +1,39 @@
+uuid: d7b8d166-652e-41fd-b000-f7137fd17908
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.field.node.event.field_crawled_content
+id: node.event.field_crawled_content.default
+label: 'Crawled Content Default'
+rule: simple_crawler_text_long
+input_mode: base
+weight: 100
+worker_type: queue
+entity_type: node
+bundle: event
+field_name: field_crawled_content
+edit_mode: false
+base_field: field_source_link
+prompt: ''
+token: ''
+guardrail_set_id: null
+plugin_config:
+  automator_enabled: 1
+  automator_rule: simple_crawler_text_long
+  automator_mode: base
+  automator_base_field: field_source_link
+  automator_edit_mode: 0
+  automator_label: 'Crawled Content Default'
+  automator_weight: '100'
+  automator_user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
+  automator_worker_type: queue
+  automator_rate_limit: '1000'
+  automator_basic_auth_username: ''
+  automator_basic_auth_password: ''
+  automator_custom_headers: ''
+  automator_custom_cookies: ''
+  automator_crawler_strip_tags: 1
+  automator_crawler_mode: readability
+  automator_crawler_tag: body
+  automator_crawler_remove: "style\r\nscript\r\n"

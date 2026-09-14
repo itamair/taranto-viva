@@ -1,0 +1,11 @@
+uuid: 114571b1-d6d3-4036-bb30-6830de6d4768
+langcode: it
+status: true
+dependencies:
+  module:
+    - node
+id: node.teaser_with_map
+label: 'Teaser with Map'
+description: null
+targetEntityType: node
+cache: true

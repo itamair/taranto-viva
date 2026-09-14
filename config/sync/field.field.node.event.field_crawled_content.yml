@@ -1,0 +1,30 @@
+uuid: d5234f74-2648-4241-b117-fc236768ce20
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_crawled_content
+    - filter.format.full_html
+    - filter.format.plain_text
+    - node.type.event
+  module:
+    - text
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.event.field_crawled_content
+field_name: field_crawled_content
+entity_type: node
+bundle: event
+label: 'Crawled Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - plain_text
+field_type: text_long
