@@ -32,6 +32,7 @@ dependencies:
   module:
     - layout_builder
     - layout_discovery
+    - qrcode_fields
     - text
     - user
     - views
@@ -293,6 +294,24 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 3
+            additional: {  }
+          5d1d7bf1-b5ce-433c-8e28-bd620bc20fa5:
+            uuid: 5d1d7bf1-b5ce-433c-8e28-bd620bc20fa5
+            region: content
+            configuration:
+              id: qrcode_url_block
+              label: 'QR Code Page URL'
+              label_display: '0'
+              provider: qrcode_fields
+              context_mapping: {  }
+              qrcode_plugin: goqr
+              text: 'Block: Enter you QR url here (e.g.: Welcome to [site:name] [site:url])'
+              display_text: 0
+              image:
+                width: '150'
+                height: '150'
+              url: '[current-page:url]'
+            weight: 6
             additional: {  }
         third_party_settings: {  }
 id: node.event.default
