@@ -12,7 +12,7 @@ dependencies:
     - field.field.media.geoimage.field_media_image
     - field.field.media.geoimage.field_place_type
     - field.field.media.geoimage.field_project_namespace
-    - image.style.map_scaled_cropped_image_800_500
+    - image.style.big
     - media.type.geoimage
   module:
     - datetime
@@ -50,10 +50,12 @@ content:
     label: hidden
     settings:
       photoswipe_thumbnail_style_first: ''
-      photoswipe_thumbnail_style: map_scaled_cropped_image_800_500
+      photoswipe_thumbnail_style: big
       photoswipe_image_style: ''
       photoswipe_reference_image_field: ''
-      photoswipe_view_mode: image
+      photoswipe_view_mode: geoimage
+      photoswipe_remove_gallery_wrapper_class: false
+      photoswipe_show_download_button: false
       image_loading:
         attribute: lazy
     third_party_settings:
