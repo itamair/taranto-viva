@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.event.ai_automator_status
     - field.field.node.event.body
     - field.field.node.event.field_active_type
+    - field.field.node.event.field_ai_disclosure
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
     - field.field.node.event.field_crawled_content
@@ -29,6 +30,7 @@ dependencies:
     - field.field.node.event.field_zoom_visibility
     - node.type.event
   module:
+    - ai_disclosure
     - autocomplete_deluxe
     - conditional_fields
     - datetime_range
@@ -88,6 +90,12 @@ content:
   field_active_type:
     type: options_select
     weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_ai_disclosure:
+    type: ai_disclosure_default
+    weight: 34
     region: content
     settings: {  }
     third_party_settings: {  }

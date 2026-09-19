@@ -1,0 +1,21 @@
+uuid: 5965c511-2ba6-43cc-a236-987c43961df8
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: zyCrYkCmcc3t7K_IAI_YnvcP4BMc5k4G80r4nccvxJA
+id: ai_metadata
+label: 'Metadata picked by AI'
+description: 'AI picked tags or categories.'
+severity: 10
+eu_icon: none
+label_required: false
+disclosure_sentence: 'Metadata on this page was picked by AI.'
+iptc_digital_source_type: null
+visible_parts:
+  icon: false
+  sentence: true
+  legal: false
+  description: false
+  statement: false
+  editorial_responsibility: false

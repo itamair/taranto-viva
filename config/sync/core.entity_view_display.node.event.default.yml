@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.event.ai_automator_status
     - field.field.node.event.body
     - field.field.node.event.field_active_type
+    - field.field.node.event.field_ai_disclosure
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
     - field.field.node.event.field_crawled_content
@@ -243,24 +244,6 @@ third_party_settings:
           layout_builder_styles_style:
             user_profile_section_style: 0
         components:
-          11297689-e55e-4a24-911c-aae1319d2d85:
-            uuid: 11297689-e55e-4a24-911c-aae1319d2d85
-            region: content
-            configuration:
-              id: 'field_block:node:event:field_detailed_info'
-              label: 'Detailed Info'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: text_default
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
           01475135-dc15-4623-b777-cf8845a70a6c:
             uuid: 01475135-dc15-4623-b777-cf8845a70a6c
             region: content
@@ -295,12 +278,12 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
-          5d1d7bf1-b5ce-433c-8e28-bd620bc20fa5:
-            uuid: 5d1d7bf1-b5ce-433c-8e28-bd620bc20fa5
+          06a93ea5-d6bc-44fa-a248-1c2b4139266d:
+            uuid: 06a93ea5-d6bc-44fa-a248-1c2b4139266d
             region: content
             configuration:
               id: qrcode_url_block
-              label: 'QR Code Page URL'
+              label: 'QR url block'
               label_display: '0'
               provider: qrcode_fields
               context_mapping: {  }
@@ -311,6 +294,28 @@ third_party_settings:
                 width: '150'
                 height: '150'
               url: '[current-page:url]'
+            weight: 7
+            additional: {  }
+          4986dfbe-6855-4258-a213-01086dc70d2b:
+            uuid: 4986dfbe-6855-4258-a213-01086dc70d2b
+            region: content
+            configuration:
+              id: 'field_block:node:event:field_ai_disclosure'
+              label: 'AI disclosure'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: ai_disclosure_default
+                label: hidden
+                settings:
+                  visibility: always
+                  icon_variant: site
+                  details_open: false
+                  style: card
+                third_party_settings: {  }
             weight: 6
             additional: {  }
         third_party_settings: {  }
@@ -352,6 +357,7 @@ hidden:
   ai_automator_status: true
   body: true
   field_active_type: true
+  field_ai_disclosure: true
   field_category_type: true
   field_components: true
   field_date_range: true

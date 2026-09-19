@@ -1,0 +1,27 @@
+uuid: d7113a82-cfff-491c-878b-e494a866128e
+langcode: it
+status: true
+dependencies:
+  config:
+    - ai_disclosure.ai_disclosure_profile.ai_assisted_human_led
+    - field.storage.node.field_ai_disclosure
+    - node.type.event
+  module:
+    - ai_disclosure
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.event.field_ai_disclosure
+field_name: field_ai_disclosure
+entity_type: node
+bundle: event
+label: 'AI disclosure'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  default_profile: ai_assisted_human_led
+field_type: ai_disclosure

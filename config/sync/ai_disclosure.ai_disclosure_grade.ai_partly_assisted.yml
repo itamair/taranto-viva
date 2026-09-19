@@ -1,0 +1,21 @@
+uuid: d41dd59d-01e8-4996-8b18-f9dd22ac85d3
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: aLSHvVVYrMtRn7obkFjJfOHmcfEjjOpfrOaJDUl1cGE
+id: ai_partly_assisted
+label: 'Partly AI assisted'
+description: 'AI wrote parts, a person the rest.'
+severity: 50
+eu_icon: ai_modified
+label_required: true
+disclosure_sentence: 'Parts of this content were produced by AI.'
+iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia'
+visible_parts:
+  icon: true
+  sentence: true
+  legal: true
+  description: true
+  statement: true
+  editorial_responsibility: false

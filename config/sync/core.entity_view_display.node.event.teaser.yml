@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.event.ai_automator_status
     - field.field.node.event.body
     - field.field.node.event.field_active_type
+    - field.field.node.event.field_ai_disclosure
     - field.field.node.event.field_category_type
     - field.field.node.event.field_components
     - field.field.node.event.field_crawled_content
@@ -66,6 +67,7 @@ content:
 hidden:
   ai_automator_status: true
   field_active_type: true
+  field_ai_disclosure: true
   field_category_type: true
   field_components: true
   field_crawled_content: true

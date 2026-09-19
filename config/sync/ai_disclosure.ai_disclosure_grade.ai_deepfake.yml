@@ -1,0 +1,21 @@
+uuid: bec3f91e-4e9f-4759-9197-546eb1bc8aae
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: RlzLq6DjjLps5DMPN9_yheWLjlGUSaewYwiqvSAgEUE
+id: ai_deepfake
+label: 'AI deep fake (media)'
+description: 'Synthetic media of events that never happened.'
+severity: 80
+eu_icon: ai_generated
+label_required: true
+disclosure_sentence: 'This is synthetic media produced by AI.'
+iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia'
+visible_parts:
+  icon: true
+  sentence: true
+  legal: true
+  description: true
+  statement: true
+  editorial_responsibility: false

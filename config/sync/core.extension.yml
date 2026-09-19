@@ -13,6 +13,7 @@ module:
   ai_automators: 0
   ai_chatbot: 0
   ai_ckeditor: 0
+  ai_disclosure: 0
   ai_provider_anthropic: 0
   ai_provider_openai: 0
   ai_rag_assistant: 0

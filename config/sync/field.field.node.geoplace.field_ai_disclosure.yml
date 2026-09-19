@@ -1,0 +1,27 @@
+uuid: 78d01180-30e5-4ef5-8bf2-95c993dd6053
+langcode: en
+status: true
+dependencies:
+  config:
+    - ai_disclosure.ai_disclosure_profile.ai_assisted_human_led
+    - field.storage.node.field_ai_disclosure
+    - node.type.geoplace
+  module:
+    - ai_disclosure
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_ai_disclosure
+field_name: field_ai_disclosure
+entity_type: node
+bundle: geoplace
+label: 'AI disclosure'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  default_profile: ai_assisted_human_led
+field_type: ai_disclosure

@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.geoplace.ai_automator_status
     - field.field.node.geoplace.body
+    - field.field.node.geoplace.field_ai_disclosure
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
     - field.field.node.geoplace.field_crawled_content
@@ -33,6 +34,7 @@ dependencies:
     - node.type.geoplace
     - views.view.content_media_images
   module:
+    - ai_disclosure
     - entity_reference_revisions
     - layout_builder
     - layout_discovery
@@ -287,7 +289,7 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 13
+            weight: 15
             additional: {  }
           989f4367-ae1b-4887-96fe-04b7a64462e7:
             uuid: 989f4367-ae1b-4887-96fe-04b7a64462e7
@@ -347,7 +349,7 @@ third_party_settings:
                     height: '200'
                   plugin: ''
                 third_party_settings: {  }
-            weight: 14
+            weight: 16
             additional: {  }
           66e425c3-42b9-4c56-a89b-f0fad48e95ab:
             uuid: 66e425c3-42b9-4c56-a89b-f0fad48e95ab
@@ -365,7 +367,29 @@ third_party_settings:
                 width: '200'
                 height: '200'
               url: '[current-page:url]'
-            weight: 12
+            weight: 14
+            additional: {  }
+          02117858-8c7e-411b-9300-407ead7ee422:
+            uuid: 02117858-8c7e-411b-9300-407ead7ee422
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_ai_disclosure'
+              label: 'AI disclosure'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: ai_disclosure_default
+                label: hidden
+                settings:
+                  visibility: always
+                  icon_variant: site
+                  details_open: false
+                  style: card
+                third_party_settings: {  }
+            weight: 13
             additional: {  }
         third_party_settings: {  }
 id: node.geoplace.default
@@ -379,6 +403,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_ai_disclosure:
+    type: ai_disclosure_default
+    label: above
+    settings:
+      visibility: site_policy
+      icon_variant: site
+      details_open: false
+      style: card
+    third_party_settings: {  }
+    weight: 23
     region: content
   field_category_type:
     type: entity_reference_label

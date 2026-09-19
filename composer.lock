@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b66ed9c84b18b5684b39d82f60a3bd61",
+    "content-hash": "910a97c9dc4bc58a08cd3458c554cf6a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2312,6 +2312,59 @@
             ],
             "support": {
                 "source": "https://git.drupalcode.org/project/ai_agents"
+            }
+        },
+        {
+            "name": "drupal/ai_disclosure",
+            "version": "1.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ai_disclosure.git",
+                "reference": "1.0.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ai_disclosure-1.0.0-alpha2.zip",
+                "reference": "1.0.0-alpha2",
+                "shasum": "e5114a93c06f13ed0421d49ee1774514ffce5479"
+            },
+            "require": {
+                "drupal/core": "^10.4 || ^11",
+                "league/commonmark": "^2.8",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "drupal/tool": "^1.0@beta"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-alpha2",
+                    "datestamp": "1789241151",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
+                },
+                {
+                    "name": "sjpagan",
+                    "homepage": "https://www.drupal.org/user/3164127"
+                }
+            ],
+            "description": "Provides AI involvement disclosure labelling to help sites comply with Art. 50 of the EU AI Act.",
+            "homepage": "https://www.drupal.org/project/ai_disclosure",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ai_disclosure"
             }
         },
         {
@@ -22781,6 +22834,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/ai_disclosure": 15,
         "drupal/ai_tmgmt": 10,
         "drupal/ai_vdb_provider_pinecone": 10,
         "drupal/auto_entitylabel": 10,

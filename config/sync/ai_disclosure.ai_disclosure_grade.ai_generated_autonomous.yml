@@ -1,0 +1,21 @@
+uuid: 4aa4c943-462b-4fe6-8caf-af1f2ffe0b7b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: wbznPNZkFYlqMndZnvBBTm-vy90bS1mpDYNKrN-46eU
+id: ai_generated_autonomous
+label: 'Autonomously AI generated'
+description: 'AI wrote it, no person edited it.'
+severity: 70
+eu_icon: ai_generated
+label_required: true
+disclosure_sentence: 'This content was produced by AI.'
+iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia'
+visible_parts:
+  icon: true
+  sentence: true
+  legal: true
+  description: true
+  statement: true
+  editorial_responsibility: false

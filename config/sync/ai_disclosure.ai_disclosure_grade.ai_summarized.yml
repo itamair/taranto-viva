@@ -1,0 +1,21 @@
+uuid: 757276cd-f2e6-4e4e-b885-ea0569b4293c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: SrjoqP1dWMgQaCY3WDQbzWSiVl1Umr7WvzyuyPr7IdA
+id: ai_summarized
+label: 'AI summarized'
+description: 'AI summary of a longer text.'
+severity: 40
+eu_icon: ai_generated
+label_required: true
+disclosure_sentence: 'This summary was produced by AI.'
+iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia'
+visible_parts:
+  icon: true
+  sentence: true
+  legal: true
+  description: true
+  statement: true
+  editorial_responsibility: false

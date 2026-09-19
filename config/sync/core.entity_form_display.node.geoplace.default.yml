@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.geoplace.ai_automator_status
     - field.field.node.geoplace.body
+    - field.field.node.geoplace.field_ai_disclosure
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
     - field.field.node.geoplace.field_crawled_content
@@ -32,6 +33,7 @@ dependencies:
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
   module:
+    - ai_disclosure
     - autocomplete_deluxe
     - conditional_fields
     - field_group
@@ -103,6 +105,12 @@ content:
   created:
     type: datetime_timestamp
     weight: 21
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_ai_disclosure:
+    type: ai_disclosure_default
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }

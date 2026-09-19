@@ -1,0 +1,19 @@
+uuid: 028903df-3500-4465-8309-d78364927d2e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ai_disclosure
+    - node
+id: node.field_ai_disclosure
+field_name: field_ai_disclosure
+entity_type: node
+type: ai_disclosure
+settings: {  }
+module: ai_disclosure
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

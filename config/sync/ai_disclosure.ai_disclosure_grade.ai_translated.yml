@@ -1,0 +1,21 @@
+uuid: 6fa2cade-e16b-41ad-bb14-4489ed267381
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: akguuCOP5IRMnBA07-6E3kEbbUq6g8UFIfniN3HJyjY
+id: ai_translated
+label: 'AI translated'
+description: 'Machine translation of a human text.'
+severity: 30
+eu_icon: ai_modified
+label_required: true
+disclosure_sentence: 'This text was translated by AI.'
+iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/algorithmicallyEnhanced'
+visible_parts:
+  icon: true
+  sentence: true
+  legal: true
+  description: false
+  statement: true
+  editorial_responsibility: false

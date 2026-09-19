@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.geoplace_tile
     - field.field.node.geoplace.ai_automator_status
     - field.field.node.geoplace.body
+    - field.field.node.geoplace.field_ai_disclosure
     - field.field.node.geoplace.field_category_type
     - field.field.node.geoplace.field_components
     - field.field.node.geoplace.field_crawled_content
@@ -58,6 +59,7 @@ hidden:
   active_level: true
   ai_automator_status: true
   body: true
+  field_ai_disclosure: true
   field_category_type: true
   field_crawled_content: true
   field_exclude_from_map_bounds: true

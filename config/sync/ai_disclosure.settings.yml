@@ -1,0 +1,10 @@
+_core:
+  default_config_hash: cys_E6XzJAoYhCQrVZbayY8PpgJsSjTcBVhM6hdY2MI
+site_policy: always
+editorial_statement_url: null
+label_notice: "Labelled per this site's AI disclosure policy."
+undetermined_notice: 'This site has not assessed whether a label is required for this content.'
+machine_readable_output:
+  jsonld: true
+  meta: true
+default_icon_variant: black
