@@ -366,7 +366,29 @@ div.image-wrapper {
   color: grey !important;
 }
 
-/* line 347, ../sass/common.scss */
+/* line 348, ../sass/common.scss */
 .qr-alt-text {
   display: none;
+}
+
+/* line 352, ../sass/common.scss */
+.block-layout-builder.block-field-blocknodegeoplacefield-related-content {
+  padding-top: 10px;
+  margin-block-end: 6px;
+}
+/* line 355, ../sass/common.scss */
+.block-layout-builder.block-field-blocknodegeoplacefield-related-content article {
+  margin-block-end: 0;
+}
+/* line 358, ../sass/common.scss */
+.block-layout-builder.block-field-blocknodegeoplacefield-related-content .node__content {
+  padding-block-end: var(--sp1);
+}
+/* line 361, ../sass/common.scss */
+.block-layout-builder.block-field-blocknodegeoplacefield-related-content .node--view-mode-teaser .node__title {
+  font-size: var(--sp1-5);
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

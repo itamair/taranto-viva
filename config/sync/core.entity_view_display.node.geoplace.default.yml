@@ -171,22 +171,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 2
             additional: {  }
-          d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
-            uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
-            region: first
-            configuration:
-              id: 'field_block:node:geoplace:field_related_content'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-            weight: 6
-            additional: {  }
           aaf72266-743f-4f4e-80bc-f434b3eed85c:
             uuid: aaf72266-743f-4f4e-80bc-f434b3eed85c
             region: second
@@ -289,7 +273,7 @@ third_party_settings:
               formatter:
                 settings: {  }
                 third_party_settings: {  }
-            weight: 15
+            weight: 16
             additional: {  }
           989f4367-ae1b-4887-96fe-04b7a64462e7:
             uuid: 989f4367-ae1b-4887-96fe-04b7a64462e7
@@ -349,7 +333,7 @@ third_party_settings:
                     height: '200'
                   plugin: ''
                 third_party_settings: {  }
-            weight: 16
+            weight: 17
             additional: {  }
           66e425c3-42b9-4c56-a89b-f0fad48e95ab:
             uuid: 66e425c3-42b9-4c56-a89b-f0fad48e95ab
@@ -367,7 +351,7 @@ third_party_settings:
                 width: '200'
                 height: '200'
               url: '[current-page:url]'
-            weight: 14
+            weight: 15
             additional: {  }
           02117858-8c7e-411b-9300-407ead7ee422:
             uuid: 02117858-8c7e-411b-9300-407ead7ee422
@@ -388,6 +372,33 @@ third_party_settings:
                   icon_variant: site
                   details_open: false
                   style: card
+                third_party_settings: {  }
+            weight: 14
+            additional: {  }
+          d2944fbc-d32d-494a-ace3-5d7e5614fbfb:
+            uuid: d2944fbc-d32d-494a-ace3-5d7e5614fbfb
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_related_content'
+              label: 'Related Content'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: blazy_entity
+                label: above
+                settings:
+                  by_delta: null
+                  view_mode: teaser
+                  admin_uri: '/it/layout_builder/update/block/defaults/node.geoplace.default/2/content/d2944fbc-d32d-494a-ace3-5d7e5614fbfb?destination=/it/admin/structure/types/manage/geoplace/display/default/layout&_wrapper_format=drupal_dialog.off_canvas&ajax_form=1&_wrapper_format=drupal_ajax'
+                  use_lb: true
+                  use_theme_field: false
+                  grid: '4'
+                  grid_medium: ''
+                  grid_small: ''
+                  style: flexbox
                 third_party_settings: {  }
             weight: 13
             additional: {  }

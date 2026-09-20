@@ -66,6 +66,25 @@ third_party_settings:
                   always_build_output: false
                   empty_view_title: hidden
                 third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          5fdc4cc0-69f9-45cd-80ab-a46da610ba09:
+            uuid: 5fdc4cc0-69f9-45cd-80ab-a46da610ba09
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_components'
+              label: Components
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: leaflet_popup_components_entity_view
+                label: hidden
+                settings:
+                  view_mode: image
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }
