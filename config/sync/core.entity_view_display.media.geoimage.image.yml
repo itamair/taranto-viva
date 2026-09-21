@@ -12,7 +12,7 @@ dependencies:
     - field.field.media.geoimage.field_media_image
     - field.field.media.geoimage.field_place_type
     - field.field.media.geoimage.field_project_namespace
-    - image.style.map_scaled_cropped_image_600x400
+    - image.style.big
     - media.type.geoimage
   module:
     - layout_builder
@@ -39,7 +39,7 @@ content:
     label: hidden
     settings:
       image_link: ''
-      image_style: map_scaled_cropped_image_600x400
+      image_style: big
       image_loading:
         attribute: lazy
       svg_attributes:

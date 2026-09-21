@@ -76,6 +76,8 @@ content:
       photoswipe_image_style: ''
       photoswipe_reference_image_field: ''
       photoswipe_view_mode: default
+      photoswipe_remove_gallery_wrapper_class: false
+      photoswipe_show_download_button: false
       image_loading:
         attribute: lazy
     third_party_settings:
