@@ -4,8 +4,7 @@
  */
 
 .leaflet-sidebar-list {
-  min-width: 180px;
-  max-width: 250px;
+  width: 250px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -132,7 +131,7 @@
       background: #e3e5f5;
     }
     .marker-selector {
-      padding: 6px 4px;
+      margin: 6px 4px;
       display: flex;
       align-items: flex-start;
     }
