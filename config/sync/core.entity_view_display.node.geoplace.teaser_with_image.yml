@@ -1,9 +1,9 @@
-uuid: 1472fded-11a6-41d5-997b-4b7ca168162c
+uuid: 981a1a68-f6cc-44d1-9cf3-fe462ba49fcf
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.teaser_with_image
     - field.field.node.geoplace.ai_automator_status
     - field.field.node.geoplace.body
     - field.field.node.geoplace.field_ai_disclosure
@@ -46,9 +46,12 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            user_profile_section_style: 0
         components:
-          1fac96f0-9248-4347-a286-d6adb9395253:
-            uuid: 1fac96f0-9248-4347-a286-d6adb9395253
+          701ed587-2833-4ba9-9d1b-c45536c9cb9f:
+            uuid: 701ed587-2833-4ba9-9d1b-c45536c9cb9f
             region: content
             configuration:
               id: 'field_block:node:geoplace:field_google_maps_link_view'
@@ -68,13 +71,33 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          907ad616-b4e2-49bf-8759-12dc7b262433:
+            uuid: 907ad616-b4e2-49bf-8759-12dc7b262433
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_components'
+              label: Components
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: leaflet_popup_components_entity_view
+                label: hidden
+                settings:
+                  view_mode: image
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
         third_party_settings: {  }
-id: node.geoplace.teaser
+id: node.geoplace.teaser_with_image
 targetEntityType: node
 bundle: geoplace
-mode: teaser
+mode: teaser_with_image
 content: {  }
 hidden:
+  active_level: true
   ai_automator_status: true
   body: true
   field_ai_disclosure: true

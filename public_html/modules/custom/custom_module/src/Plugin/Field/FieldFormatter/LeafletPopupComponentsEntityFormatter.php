@@ -72,8 +72,8 @@ class LeafletPopupComponentsEntityFormatter extends EntityReferenceRevisionsEnti
             $parent_entity = $entity->getParentEntity();
           }
 
-          // In case of parent enity event don't render any location component.
-          if ($locations_limit_reached || $parent_entity->bundle() === 'event') {
+          // In case of parent entity event don't render any location component.
+          if ($locations_limit_reached || (isset($parent_entity) && $parent_entity->bundle() === 'event')) {
             continue;
           }
           else {

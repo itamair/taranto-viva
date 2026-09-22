@@ -391,7 +391,7 @@ third_party_settings:
                 label: above
                 settings:
                   by_delta: null
-                  view_mode: teaser
+                  view_mode: teaser_with_image
                   admin_uri: '/it/layout_builder/update/block/defaults/node.geoplace.default/2/content/d2944fbc-d32d-494a-ace3-5d7e5614fbfb?destination=/it/admin/structure/types/manage/geoplace/display/default/layout&_wrapper_format=drupal_dialog.off_canvas&ajax_form=1&_wrapper_format=drupal_ajax'
                   use_lb: true
                   use_theme_field: false
