@@ -7728,7 +7728,7 @@ display:
             operator: field_tour_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_tour_target_id
+            identifier: tour_id
             required: false
             remember: false
             multiple: false

@@ -324,13 +324,25 @@
           context.querySelector('#' + mapid)
         );
         if (typeof mapid === 'string' && mapid.startsWith('leaflet-map-view-geo-places-page-map-taranto-viva')) {
+
+          const tourIdParam = new URLSearchParams(window.location.search).get('tour_id');
+          let source_endpoint = '/taranto-viva-geoplaces-list';
+
+          if (
+            tourIdParam !== null &&
+            tourIdParam.trim() !== '' &&
+            Number.isFinite(Number(tourIdParam))
+          ) {
+            source_endpoint += "/" + tourIdParam;
+          }
+
           const leaflet_list_control_options = {
             'classes': mapid,
             'list': {
               'title': Drupal.t('Places of Interest'),
               'items': [],
               'start_collapsed': 0,
-              'source_endpoint': "/taranto-viva-geoplaces-list",
+              'source_endpoint': source_endpoint,
               'click_zoom': 17,
             }
           };
