@@ -1,0 +1,9 @@
+uuid: 36efa370-d1d9-45c1-be83-baa468b2109e
+langcode: it
+status: true
+dependencies: {  }
+name: Tour
+vid: tour
+description: null
+weight: 0
+new_revision: false

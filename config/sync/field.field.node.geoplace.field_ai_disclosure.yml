@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - ai_disclosure.ai_disclosure_profile.ai_assisted_human_led
     - field.storage.node.field_ai_disclosure
     - node.type.geoplace
   module:
@@ -23,5 +22,5 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  default_profile: ai_assisted_human_led
+  default_profile: ''
 field_type: ai_disclosure

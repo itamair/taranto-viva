@@ -1,0 +1,37 @@
+uuid: d2ed88b6-6f95-4081-93c5-3d4a73c78106
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tour
+    - node.type.geoplace
+    - taxonomy.vocabulary.tour
+  module:
+    - ai_translate
+    - tmgmt_content
+third_party_settings:
+  ai_translate:
+    translate_references: default
+  tmgmt_content:
+    excluded: false
+id: node.geoplace.field_tour
+field_name: field_tour
+entity_type: node
+bundle: geoplace
+label: Tour
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tour: tour
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

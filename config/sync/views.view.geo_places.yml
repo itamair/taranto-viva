@@ -46,6 +46,7 @@ dependencies:
     - system.menu.main
     - taxonomy.vocabulary.places_categories
     - taxonomy.vocabulary.project_namespace
+    - taxonomy.vocabulary.tour
     - user.role.authenticated
   content:
     - 'taxonomy_term:disclaimers:e60cd04e-5198-4814-a98d-db65dc53d977'
@@ -7707,6 +7708,51 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_tour_target_id:
+          id: field_tour_target_id
+          table: node__field_tour
+          field: field_tour_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_tour_target_id_op
+            label: Tour
+            description: ''
+            use_operator: false
+            operator: field_tour_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: tour_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: tour
+          type: select
+          hierarchy: true
+          limit: true
+          error_message: true
       filter_groups:
         operator: OR
         groups:
