@@ -1,6 +1,6 @@
 /**
  * @file
- * SCSS for the Leaflet Choropleth module.
+ * SCSS for the Leaflet Map Control.
  */
 
 .leaflet-sidebar-list {
@@ -12,21 +12,25 @@
   box-shadow: 0 1px 3px gray;
   line-height: 1.4;
   position: relative;
-  &.leaflet-map-view-geo-places-page-map-taranto-viva {
+  font-size: 1.1em;
+
+  // and any class starting with ... (to cope ajax requests)
+  &[class*= leaflet-map-view-geo-places-page-map-taranto-viva] {
     background: whitesmoke;
-    font-size: 1.1em;
+    color: black;
     .marker-selector {
       .title {
-        width: 160px
+        width: 160px;
       }
       .icon {
         padding: 0 4px;
       }
     }
   }
-  &.leaflet-map-view-geo-places-page-ta2026-map {
-    color: black;
+  // and any class starting with ... (to cope ajax requests)
+  &[class*= leaflet-map-view-geo-places-page-ta2026-map] {
     background: whitesmoke;
+    color: black;
     .event_info {
       width: 150px;
       .title {
@@ -61,21 +65,24 @@
       }
     }
 
-    /* Toggle functionality styles */
     .list-toggle {
       color: slategray;
       &:hover {
         color: dimgray;
       }
     }
+  }
 
+  .list-collapsed-title {
+    display: none;
+    font-size: 1.2em;
+    font-weight: bold;
   }
 
   .list-title {
     margin-bottom: 8px;
     font-size: 1.2em;
-   // color: #f25e0a;
-    font-weight: bold
+    font-weight: bold;
   }
 
   .list-subtitle {
@@ -89,12 +96,12 @@
   }
 
   .list-search-label {
+    margin-bottom: 2px;
+    color: #888;
     font-size: 0.72em;
     font-weight: bold;
-    color: #888;
-    margin-bottom: 2px;
-    text-transform: uppercase;
     letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .list-search-input {
@@ -102,9 +109,9 @@
     padding: 4px 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    box-sizing: border-box;
     /* 16px minimum prevents mobile browsers from auto-zooming on focus. */
     font-size: 16px;
-    box-sizing: border-box;
     outline: none;
     transition: border-color 180ms ease;
   }
@@ -118,8 +125,8 @@
   }
 
   .list-items {
-    margin-bottom: 8px;
     max-height: 60vh;
+    margin-bottom: 8px;
     overflow-y: auto;
   }
 
@@ -127,45 +134,35 @@
     display: flex;
     border-bottom: 1px solid lightgrey;
     cursor: pointer;
+
     &.marker-selected {
       background: #e3e5f5;
     }
+
     .marker-selector {
-      margin: 6px 4px;
       display: flex;
       align-items: flex-start;
+      margin: 6px 4px;
     }
-
   }
 
-  /* Toggle functionality styles */
   .list-toggle {
     position: absolute;
     top: 6px;
     right: 6px;
     width: 18px;
     height: 18px;
+    border-radius: 2px;
+    color: #dedede;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
     line-height: 16px;
     text-align: center;
-    border-radius: 2px;
-    color: #dedede;
 
     &:hover {
-      color: #ffffff;
+      color: #fff;
     }
-  }
-}
-
-.leaflet-sidebar-list {
-
-  .list-collapsed-title {
-    display: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    // color: #f25e0a;
   }
 
   &.list-collapsed {
@@ -181,7 +178,7 @@
       display: none;
     }
 
-    .list-collapsed-title{
+    .list-collapsed-title {
       display: block;
     }
 
@@ -193,15 +190,5 @@
       background: rgb(1, 114, 175);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
     }
-  }
-}
-
-/* Compact legend for smaller screens */
-@media (max-width: 380px) {
-  .list-toggle {
-    width: 16px;
-    height: 16px;
-    font-size: 12px;
-    line-height: 14px;
   }
 }
