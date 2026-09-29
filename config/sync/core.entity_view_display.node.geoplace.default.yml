@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.geoplace.field_project_namespace
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
+    - field.field.node.geoplace.field_tour
     - field.field.node.geoplace.field_touristic_value
     - field.field.node.geoplace.field_video
     - field.field.node.geoplace.field_when_to_visit
@@ -114,6 +115,22 @@ third_party_settings:
                   link: false
                 third_party_settings: {  }
             weight: 7
+            additional: {  }
+          b9948a86-462b-4ec3-b872-8353e0020848:
+            uuid: b9948a86-462b-4ec3-b872-8353e0020848
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_tour'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 10
             additional: {  }
         third_party_settings: {  }
       -
@@ -502,6 +519,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_tour:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 24
     region: content
   field_touristic_value:
     type: list_default

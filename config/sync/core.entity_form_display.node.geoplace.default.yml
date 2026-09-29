@@ -23,9 +23,9 @@ dependencies:
     - field.field.node.geoplace.field_more_info
     - field.field.node.geoplace.field_ocr_text_from_media
     - field.field.node.geoplace.field_project_namespace
-    - field.field.node.geoplace.field_qrcode
     - field.field.node.geoplace.field_related_content
     - field.field.node.geoplace.field_sub_title
+    - field.field.node.geoplace.field_tour
     - field.field.node.geoplace.field_touristic_value
     - field.field.node.geoplace.field_video
     - field.field.node.geoplace.field_when_to_visit
@@ -42,7 +42,6 @@ dependencies:
     - media_library
     - paragraphs
     - path
-    - qrcode_fields
     - text
 third_party_settings:
   field_layout:
@@ -60,7 +59,7 @@ third_party_settings:
       label: 'AI Generated Content'
       region: content
       parent_name: ''
-      weight: 18
+      weight: 19
       format_type: details
       format_settings:
         classes: ''
@@ -77,7 +76,7 @@ third_party_settings:
       label: 'OCR from Media Image'
       region: content
       parent_name: ''
-      weight: 19
+      weight: 20
       format_type: details
       format_settings:
         classes: ''
@@ -94,7 +93,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 14
+    weight: 15
     region: content
     settings:
       rows: 9
@@ -104,19 +103,19 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 21
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
   field_ai_disclosure:
     type: ai_disclosure_default
-    weight: 30
+    weight: 29
     region: content
     settings: {  }
     third_party_settings: {  }
   field_category_type:
     type: autocomplete_deluxe
-    weight: 11
+    weight: 12
     region: content
     settings:
       match_operator: CONTAINS
@@ -133,7 +132,7 @@ content:
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 17
+    weight: 18
     region: content
     settings:
       title: Paragraph
@@ -161,21 +160,21 @@ content:
     third_party_settings: {  }
   field_exclude_from_map_bounds:
     type: boolean_checkbox
-    weight: 5
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_exclude_from_markercluster:
     type: boolean_checkbox
-    weight: 6
+    weight: 7
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_for_public_visit:
     type: boolean_checkbox
-    weight: 3
+    weight: 4
     region: content
     settings:
       display_label: true
@@ -209,7 +208,7 @@ content:
     third_party_settings: {  }
   field_google_maps_address:
     type: string_textfield
-    weight: 10
+    weight: 11
     region: content
     settings:
       size: 60
@@ -217,7 +216,7 @@ content:
     third_party_settings: {  }
   field_how_to_reach:
     type: string_textarea
-    weight: 16
+    weight: 17
     region: content
     settings:
       rows: 5
@@ -248,7 +247,7 @@ content:
     third_party_settings: {  }
   field_link:
     type: link_class_field_widget
-    weight: 15
+    weight: 16
     region: content
     settings:
       placeholder_url: ''
@@ -277,7 +276,7 @@ content:
     third_party_settings: {  }
   field_map_popup_disabled:
     type: boolean_checkbox
-    weight: 7
+    weight: 8
     region: content
     settings:
       display_label: true
@@ -373,7 +372,7 @@ content:
     third_party_settings: {  }
   field_related_content:
     type: autocomplete_deluxe
-    weight: 12
+    weight: 13
     region: content
     settings:
       match_operator: CONTAINS
@@ -390,7 +389,7 @@ content:
     third_party_settings: {  }
   field_sub_title:
     type: string_textfield
-    weight: 9
+    weight: 10
     region: content
     settings:
       size: 60
@@ -403,15 +402,32 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  field_tour:
+    type: autocomplete_deluxe
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      autocomplete_route_name: autocomplete_deluxe.autocomplete
+      size: 60
+      selection_handler: default
+      match_limit: 10
+      min_length: 0
+      delimiter: ''
+      not_found_message_allow: false
+      not_found_message: "The term '@term' will be added"
+      new_terms: false
+      no_empty_message: 'No terms could be found. Please type in order to add a new term.'
+    third_party_settings: {  }
   field_touristic_value:
     type: options_select
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_video:
     type: media_library_widget
-    weight: 16
+    weight: 17
     region: content
     settings:
       media_types:
@@ -437,7 +453,7 @@ content:
       conditional_fields: {  }
   field_zoom_visibility:
     type: options_select
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -468,19 +484,19 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 22
+    weight: 23
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   simple_sitemap:
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -498,14 +514,14 @@ content:
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 23
+    weight: 24
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 8
+    weight: 9
     region: content
     settings:
       size: 60
@@ -518,7 +534,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 20
+    weight: 21
     region: content
     settings:
       match_operator: CONTAINS

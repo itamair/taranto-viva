@@ -1,0 +1,11 @@
+uuid: e48dd931-2667-47b7-a20f-d56832f75b12
+langcode: it
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tour
+id: taxonomy_term.tour
+target_entity_type_id: taxonomy_term
+target_bundle: tour
+default_langcode: site_default
+language_alterable: false
