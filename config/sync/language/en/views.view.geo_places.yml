@@ -10,6 +10,9 @@ display:
         field_date_range_value:
           expose:
             label: 'Validity of events and reports'
+        field_tour_target_id:
+          expose:
+            label: 'Tour / Visit'
       title: 'Home | Map'
       menu:
         title: 'Home | Map'
@@ -18,3 +21,11 @@ display:
       title: 'Map of the Mediterranean Games | Taranto 2026'
       menu:
         title: 'Mediterranean Games | Ta2026'
+  page_vaganti_map:
+    display_options:
+      filters:
+        field_exif_creation_date_value:
+          expose:
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''

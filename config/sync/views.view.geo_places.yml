@@ -7722,7 +7722,7 @@ display:
           exposed: true
           expose:
             operator_id: field_tour_target_id_op
-            label: Tour
+            label: 'Tour / Visita'
             description: ''
             use_operator: false
             operator: field_tour_target_id_op
