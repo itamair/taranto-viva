@@ -323,7 +323,7 @@
           mapid + '-init',
           context.querySelector('#' + mapid)
         );
-        if (mapid === 'leaflet-map-view-geo-places-page-map-taranto-viva') {
+        if (typeof mapid === 'string' && mapid.startsWith('leaflet-map-view-geo-places-page-map-taranto-viva')) {
           const leaflet_list_control_options = {
             'classes': mapid,
             'list': {
@@ -337,7 +337,7 @@
           self.addLeafletSidebarListControl(root, lMap, mapid, data_markers, leaflet_list_control_options);
         }
 
-        if (mapid === 'leaflet-map-view-geo-places-page-ta2026-map') {
+        if (typeof mapid === 'string' && mapid.startsWith('leaflet-map-view-geo-places-page-ta2026-map')) {
           const leaflet_list_control_options = {
             'classes': mapid,
             'list': {
