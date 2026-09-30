@@ -7,9 +7,6 @@ display:
   page_map_taranto_viva:
     display_options:
       filters:
-        field_date_range_value:
-          expose:
-            label: 'Validity of events and reports'
         field_tour_target_id:
           expose:
             label: 'Tour / Visit'
