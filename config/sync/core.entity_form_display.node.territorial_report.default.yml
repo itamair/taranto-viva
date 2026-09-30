@@ -20,6 +20,7 @@ dependencies:
     - field.field.node.territorial_report.field_source_link
     - field.field.node.territorial_report.field_sub_title
     - field.field.node.territorial_report.field_tags
+    - field.field.node.territorial_report.field_validity_range
     - field.field.node.territorial_report.field_zoom_visibility
     - node.type.territorial_report
   module:
@@ -44,7 +45,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 13
+    weight: 14
     region: content
     settings:
       rows: 9
@@ -54,7 +55,7 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 19
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -79,13 +80,13 @@ content:
     third_party_settings: {  }
   field_comments:
     type: comment_default
-    weight: 25
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }
   field_components:
     type: paragraphs
-    weight: 15
+    weight: 16
     region: content
     settings:
       title: Paragraph
@@ -215,7 +216,7 @@ content:
     third_party_settings: {  }
   field_link:
     type: link_default
-    weight: 14
+    weight: 15
     region: content
     settings:
       placeholder_url: ''
@@ -264,7 +265,7 @@ content:
     third_party_settings: {  }
   field_related_content:
     type: options_select
-    weight: 16
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -365,6 +366,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_validity_range:
+    type: daterange_default
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_vote:
     type: voting_api_widget
     weight: 28
@@ -387,37 +394,37 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 22
+    weight: 23
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 20
+    weight: 21
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   simple_sitemap:
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 27
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 23
+    weight: 24
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 21
+    weight: 22
     region: content
     settings:
       display_label: true
@@ -437,7 +444,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -446,13 +453,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 26
+    weight: 27
     region: content
     settings: {  }
     third_party_settings: {  }
   uuid:
     type: uuid
-    weight: 24
+    weight: 25
     region: content
     settings: {  }
     third_party_settings: {  }

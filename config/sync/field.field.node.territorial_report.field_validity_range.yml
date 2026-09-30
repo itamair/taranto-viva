@@ -1,9 +1,9 @@
-uuid: ebbb5b0a-a53e-46c3-aec6-36362e8eb652
+uuid: bb31d481-489d-4a33-b1ea-4c0c936b1212
 langcode: it
 status: true
 dependencies:
   config:
-    - field.storage.node.field_date_range
+    - field.storage.node.field_validity_range
     - node.type.territorial_report
   module:
     - datetime_range
@@ -11,20 +11,15 @@ dependencies:
 third_party_settings:
   tmgmt_content:
     excluded: false
-id: node.territorial_report.field_date_range
-field_name: field_date_range
+id: node.territorial_report.field_validity_range
+field_name: field_validity_range
 entity_type: node
 bundle: territorial_report
-label: Date
+label: 'Validity Range'
 description: ''
 required: false
 translatable: false
-default_value:
-  -
-    default_date_type: now
-    default_date: now
-    default_end_date_type: ''
-    default_end_date: ''
+default_value: {  }
 default_value_callback: ''
 settings: {  }
 field_type: daterange

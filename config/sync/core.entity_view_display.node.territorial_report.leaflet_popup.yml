@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.territorial_report.field_source_link
     - field.field.node.territorial_report.field_sub_title
     - field.field.node.territorial_report.field_tags
+    - field.field.node.territorial_report.field_validity_range
     - field.field.node.territorial_report.field_zoom_visibility
     - node.type.territorial_report
   module:
@@ -82,6 +83,7 @@ hidden:
   field_source_is_external: true
   field_source_link: true
   field_tags: true
+  field_validity_range: true
   field_zoom_visibility: true
   geomarker_icon_url: true
   langcode: true

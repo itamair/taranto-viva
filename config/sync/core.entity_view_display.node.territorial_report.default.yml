@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.territorial_report.field_source_link
     - field.field.node.territorial_report.field_sub_title
     - field.field.node.territorial_report.field_tags
+    - field.field.node.territorial_report.field_validity_range
     - field.field.node.territorial_report.field_zoom_visibility
     - node.type.territorial_report
     - views.view.content_locations_addresses_and_google_maps_links
@@ -127,7 +128,7 @@ third_party_settings:
                 settings:
                   link: false
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           da044adf-281e-4076-9bc4-5295c58f080c:
             uuid: da044adf-281e-4076-9bc4-5295c58f080c
@@ -142,7 +143,7 @@ third_party_settings:
                 label: visually_hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
         third_party_settings: {  }
       -
@@ -482,6 +483,17 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_validity_range:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 106
     region: content
   field_zoom_visibility:
     type: entity_reference_label
