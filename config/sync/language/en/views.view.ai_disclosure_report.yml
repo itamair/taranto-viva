@@ -1,0 +1,69 @@
+label: 'AI disclosure report'
+description: 'Lists the effective AI disclosure of every node, for Art. 50 compliance review.'
+display:
+  default:
+    display_title: Default
+    display_options:
+      title: 'AI disclosure report'
+      fields:
+        title:
+          label: Title
+        type:
+          label: 'Content type'
+        langcode:
+          label: Language
+        ai_disclosure_effective_grade:
+          label: 'Effective grade'
+        ai_disclosure_source_mode:
+          label: 'Source mode'
+        ai_disclosure_label_required:
+          label: 'Label required'
+        ai_disclosure_human_review:
+          label: 'Human review'
+        ai_disclosure_pending_suggestions:
+          label: 'Pending suggestions'
+        changed:
+          label: Updated
+      pager:
+        options:
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Filter
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      footer:
+        result:
+          content: 'Displaying @start - @end of @total'
+      filters:
+        type:
+          expose:
+            label: 'Content type'
+        langcode:
+          expose:
+            label: Language
+        ai_disclosure_effective_grade:
+          expose:
+            label: 'Effective grade'
+        ai_disclosure_label_required:
+          expose:
+            label: 'Label required'
+        ai_disclosure_pending_suggestions:
+          expose:
+            label: 'Pending suggestions'
+  page_1:
+    display_title: Page
+    display_options:
+      menu:
+        title: 'AI disclosure report'
+        description: 'See the effective AI disclosure of every node, for Art. 50 compliance review.'

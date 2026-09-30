@@ -1,0 +1,63 @@
+label: 'AI disclosure suggestions'
+description: 'Lists raw AI disclosure suggestion rows recorded by third-party modules through the recorder API, including accepted and dismissed ones.'
+display:
+  default:
+    display_title: Default
+    display_options:
+      title: 'AI disclosure suggestions'
+      fields:
+        entity_type_id:
+          label: 'Entity type'
+        entity_label:
+          label: Entity
+        langcode:
+          label: Language
+        grade:
+          label: Grade
+        source:
+          label: Source
+        status:
+          label: Status
+        note:
+          label: Note
+        name:
+          label: Author
+        changed:
+          label: Changed
+      pager:
+        options:
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Filter
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      empty:
+        area_text_custom:
+          content: '<p><strong>No AI disclosure suggestions to show.</strong></p><p>Suggestions are not created on this page. Another module records them through the recorder API - the ai_disclosure.recorder service, documented in ai_disclosure.api.php. If you expected rows here, check that the integrating module is calling it, and that the exposed filters above are not excluding them.</p>'
+      filters:
+        status:
+          expose:
+            label: Status
+        grade:
+          expose:
+            label: Grade
+        source:
+          expose:
+            label: Source
+  page_1:
+    display_title: Page
+    display_options:
+      menu:
+        title: 'AI disclosure suggestions'
+        description: 'View raw AI disclosure suggestion rows, including accepted and dismissed ones.'

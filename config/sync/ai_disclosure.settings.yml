@@ -1,8 +1,9 @@
 _core:
   default_config_hash: cys_E6XzJAoYhCQrVZbayY8PpgJsSjTcBVhM6hdY2MI
+langcode: it
 site_policy: always
 editorial_statement_url: null
-label_notice: "Labelled per this site's AI disclosure policy."
+label_notice: "Etichettato in conformità con la politica di questo sito sulla divulgazione dell'uso dell'IA."
 undetermined_notice: 'This site has not assessed whether a label is required for this content.'
 machine_readable_output:
   jsonld: true

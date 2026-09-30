@@ -1,5 +1,5 @@
 uuid: 693ad004-3ea8-488e-af41-494174fc9d05
-langcode: en
+langcode: it
 status: true
 dependencies:
   config:
@@ -73,7 +73,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Source
+          label: Sorgente
           exclude: false
         status:
           id: status
@@ -282,7 +282,7 @@ display:
           exposed: true
           expose:
             operator_id: source_op
-            label: Source
+            label: Sorgente
             description: ''
             use_operator: false
             operator: source_op
