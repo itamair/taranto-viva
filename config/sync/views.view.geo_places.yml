@@ -7750,7 +7750,7 @@ display:
           reduce_duplicates: false
           vid: tour
           type: select
-          hierarchy: true
+          hierarchy: false
           limit: true
           error_message: true
       filter_groups:

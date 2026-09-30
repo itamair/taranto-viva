@@ -390,9 +390,8 @@ div.image-wrapper {
   padding-block-end: var(--sp1);
 }
 /* line 365, ../sass/common.scss */
-.block-layout-builder.block-field-blocknodegeoplacefield-related-content .node--view-mode-teaser .node__title {
+.block-layout-builder.block-field-blocknodegeoplacefield-related-content .node__title {
   font-size: var(--sp1-5);
-  padding-left: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

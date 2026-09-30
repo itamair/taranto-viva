@@ -362,9 +362,8 @@ div.image-wrapper {
   .node__content {
     padding-block-end: var(--sp1);
   }
-  .node--view-mode-teaser .node__title {
+  .node__title {
     font-size: var(--sp1-5);
-    padding-left: 10px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
