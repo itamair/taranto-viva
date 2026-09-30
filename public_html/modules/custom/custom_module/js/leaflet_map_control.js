@@ -20,9 +20,10 @@
       // React on leafletMapInit event.
       // Resizing Markers.
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
-        if (context.leafletMapInitImagesControl) {
+        // We need to comment this condition otherwise the control won't appear after Ajax request.
+        /*  if (context.leafletMapInitImagesControl) {
           return;
-        }
+        }*/
         context.leafletMapInitImagesControl = true;
         const map = lMap;
         const imagesZoomLimit = Drupal.Leaflet[mapid].imagesZoomLimit;
@@ -174,9 +175,10 @@
       // React on leafletMapInit event.
       // Resizing Markers.
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid, data_markers) {
-        if (context.leafletMapInitPmPlacesControl) {
+       // We need to comment this condition otherwise the control won't appear after Ajax request.
+        /* if (context.leafletMapInitPmPlacesControl) {
           return;
-        }
+        } */
 
         context.leafletMapInitPmPlacesControl = true;
         const map = lMap;
@@ -626,13 +628,10 @@
       context.leafletMapInitControlLayersReorder = false;
 
       $(context).on('leafletMapInit', function (e, settings, lMap, mapid) {
-        // Apply this altering to all Leaflet Maps.
-        /* if (mapid !== 'leaflet-map-view-geo-places-page-map-taranto-viva') {
-            return;
-           }*/
-        if (context.leafletMapInitControlLayersReorder) {
+        // We need to comment this condition otherwise the control won't appear after Ajax request.
+/*        if (context.leafletMapInitControlLayersReorder) {
           return;
-        }
+        }*/
         context.leafletMapInitControlLayersReorder = true;
 
         const controlContainer = lMap._controlCorners.topright;
