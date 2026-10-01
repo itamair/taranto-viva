@@ -44,7 +44,7 @@ content:
     label: inline
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_components:
     type: components_with_title_entity_view
@@ -57,13 +57,14 @@ content:
     region: content
   field_date_range:
     type: daterange_default
-    label: above
+    label: inline
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: taranto_viva_medium
+      from_to: both
       separator: '-'
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   rate_emotion:
     settings: {  }

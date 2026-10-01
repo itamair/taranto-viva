@@ -11,8 +11,8 @@ dependencies:
     - system.menu.main
   module:
     - better_exposed_filters
-    - datetime
     - custom_module
+    - datetime
     - node
     - options
     - user
@@ -30,7 +30,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Territorial Reports'
+      title: 'Segnalazioni Territoriali'
       fields:
         nid:
           id: nid
@@ -706,6 +706,49 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_active_type_value:
+          id: field_active_type_value
+          table: node__field_active_type
+          field: field_active_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value:
+            positive: positive
+            negative: negative
+            very_negative: very_negative
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
         active_status:
           id: active_status
           table: node__field_date_range
@@ -722,7 +765,7 @@ display:
           expose:
             operator_id: ''
             label: Stato
-            description: State
+            description: ''
             use_operator: false
             operator: active_status_op
             operator_limit_selection: false
@@ -747,47 +790,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_active_type_value:
-          id: field_active_type_value
-          table: node__field_active_type
-          field: field_active_type_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: list_field
-          operator: or
-          value:
-            all: all
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_active_type_value_op
-            label: Tipo
-            description: Type
-            use_operator: false
-            operator: field_active_type_value_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_active_type_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
         langcode:
           id: langcode
           table: node_field_data
@@ -873,7 +875,12 @@ display:
           empty: false
           content: 'Showing @start - @end of @total'
       footer: {  }
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender: {  }
     cache_metadata:
       max-age: -1
       contexts:

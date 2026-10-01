@@ -1,25 +1,19 @@
 display:
-  block_territorial_reports:
-    display_title: 'Block Segnalazioni Territoriali'
+  block_territorial_reports: {  }
   default:
     display_options:
       title: 'Territorial Reports'
       empty:
         area:
           content:
-            value: "<p>No results found.</p>\r\n"
+            value: '<p>No results found.</p>'
             format: basic_html
       filters:
         active_status:
           expose:
             description: State
-        field_active_type_value:
-          expose:
-            description: Type
       header:
-        result:
-          content: 'Showing @start - @end of @total'
+        result: {  }
   page_territorial_reports:
     display_options:
-      menu:
-        title: Reports
+      menu: {  }
