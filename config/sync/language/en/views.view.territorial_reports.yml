@@ -1,5 +1,4 @@
 display:
-  block_territorial_reports: {  }
   default:
     display_options:
       title: 'Territorial Reports'
@@ -12,8 +11,3 @@ display:
         active_status:
           expose:
             description: State
-      header:
-        result: {  }
-  page_territorial_reports:
-    display_options:
-      menu: {  }
