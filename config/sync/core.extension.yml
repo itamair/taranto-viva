@@ -56,7 +56,6 @@ module:
   duplicate_role: 0
   dynamic_page_cache: 0
   editor: 0
-  entity_mesh: 0
   entity_reference_revisions: 0
   entity_type_clone: 0
   fancy_file_delete: 0

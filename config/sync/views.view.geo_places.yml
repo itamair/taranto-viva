@@ -7731,8 +7731,8 @@ display:
             operator: field_validity_range_value_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_validity_range_value
-            required: false
+            identifier: validity
+            required: true
             remember: false
             multiple: false
             remember_roles:
@@ -7799,12 +7799,12 @@ display:
             options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"initialZoomLevel":16,"flyTo":true,"strings":{"title":"Locate my position"},"cacheLocation":true,"tap":false,"enableHighAccuracy":true,"touch_helper":true}'
             automatic: false
           map_position:
-            force: false
+            force: true
             center:
               lat: 40.472317
               lon: 17.240046
             zoomControlPosition: topright
-            zoom: 14
+            zoom: 13
             minZoom: 10
             maxZoom: 20
             zoomFiner: 0
