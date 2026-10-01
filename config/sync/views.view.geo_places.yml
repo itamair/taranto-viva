@@ -7767,6 +7767,7 @@ display:
               overlays_options:
                 disabled_overlays:
                   'Segnalazione Territoriale': 'Segnalazione Territoriale'
+                  'Territorial report': 'Territorial report'
                 hidden_overlays_controls: {  }
           data_source:
             field_geofield: field_geofield
@@ -7799,12 +7800,12 @@ display:
             options: '{"position":"topright","setView":"untilPanOrZoom","returnToPrevBounds":true,"keepCurrentZoomLevel":true,"initialZoomLevel":16,"flyTo":true,"strings":{"title":"Locate my position"},"cacheLocation":true,"tap":false,"enableHighAccuracy":true,"touch_helper":true}'
             automatic: false
           map_position:
-            force: true
+            force: false
             center:
               lat: 40.472317
               lon: 17.240046
             zoomControlPosition: topright
-            zoom: 13
+            zoom: 14
             minZoom: 10
             maxZoom: 20
             zoomFiner: 0
