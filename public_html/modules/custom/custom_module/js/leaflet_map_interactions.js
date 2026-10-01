@@ -117,8 +117,9 @@
                 iconSize: [100, 100]
               });
 
-              // Add the feature pulsing marker to the map.
+              // Add both the popup and the tooltip to the pulsing_marker.
               Drupal.Leaflet.prototype.feature_bind_popup(feature.pulsing_marker, feature);
+              Drupal.Leaflet.prototype.feature_bind_tooltip(feature.pulsing_marker, feature);
 
               // Add the feature.pulsing_marker to appropriate layer group.
               if (layers_groups?.unclustered &&
@@ -453,8 +454,10 @@
 
                 // In case the features[i] has a pulsing_marker attached.
                 if (features[i].pulsing_marker) {
-                  // Add also the pulsing_marker from map.
+
+                  // Add both the popup and the tooltip to the pulsing_marker.
                   Drupal.Leaflet.prototype.feature_bind_popup(features[i].pulsing_marker, features[i]);
+                  Drupal.Leaflet.prototype.feature_bind_tooltip(feature.pulsing_marker, features[i]);
                 }
 
                 // Add the hover scaling effect to the Map marker.
