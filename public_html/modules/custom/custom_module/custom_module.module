@@ -87,8 +87,8 @@ function custom_module_views_query_alter(ViewExecutable $view, QueryPluginBase $
 
   // For the "geo_place" view we need this views_query_alter hack to work around
   // a Drupal Views kind of bug on the Grouped Filters.
-  // Without this hack the secound group of filters (on the "territorial
-  // reports") will prvent all territorial reports to appear.
+  // Without this hack the second group of filters (on the "territorial
+  // reports") will prevent all territorial reports to appear.
   // The following hack was inspired by ChatGPT advice and analysis.
   // @see https://chatgpt.com/share/697292d7-bcdc-800a-acbb-94ee5ef3bc45
   if ($view->storage->id() == 'geo_places' && "$view->current_display" == "page_map_taranto_viva" && $query instanceof Sql) {
@@ -109,11 +109,7 @@ function custom_module_views_query_alter(ViewExecutable $view, QueryPluginBase $
     // Unset the extra that contains the "condition"
     // of the join, which in your case includes "... != 1".
     unset($join->extra);
-
-    // The following step looks un-needed.
-    // $query->getTableQueue()[$bad_alias]['join'] = $join;
   }
-
 
 }
 
