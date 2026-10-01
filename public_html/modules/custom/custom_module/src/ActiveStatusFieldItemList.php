@@ -24,25 +24,30 @@ class ActiveStatusFieldItemList extends FieldItemList {
   /**
    * {@inheritdoc}
    *
-   * Generate the Active Level Value for specific Content Types.
+   * Generate the Active Status Value for specific Content Types.
+   *
+   * The status defaults to FALSE (inactive) and becomes TRUE only for nodes of
+   * the listed bundles whose 'field_date_range' is currently running:
+   * - start date already reached (start <= now), and
+   * - end date, if any, not passed yet (now <= end).
    */
   protected function computeValue() {
     if (!$this->isCalculated) {
       $entity = $this->getEntity();
-      $value = TRUE;
+      $value = FALSE;
       $entity_bundles = ['territorial_report'];
-      if ($entity instanceof NodeInterface && in_array($entity->bundle(), $entity_bundles)) {
+      if ($entity instanceof NodeInterface
+        && in_array($entity->bundle(), $entity_bundles)
+        && $entity->hasField('field_date_range')
+        && !$entity->get('field_date_range')->isEmpty()) {
         $now = new DrupalDateTime();
-        if (is_array($entity->get('field_date_range')->getValue())) {
-          $start_date = DrupalDateTime::createFromFormat('Y-m-d', $entity->get('field_date_range')->value);
-          if ($end_date = $entity->get('field_date_range')->end_value) {
-            $end_date = DrupalDateTime::createFromFormat('Y-m-d', $end_date);
-            if (($now > $start_date && $now > $end_date) || $start_date > $now) {
-              $value = FALSE;
-            }
-          }
-          elseif ($start_date > $now) {
-            $value = FALSE;
+        $date_range = $entity->get('field_date_range');
+        $start_date = DrupalDateTime::createFromFormat('Y-m-d', $date_range->value);
+        if ($start_date <= $now) {
+          $value = TRUE;
+          if (!empty($date_range->end_value)) {
+            $end_date = DrupalDateTime::createFromFormat('Y-m-d', $date_range->end_value);
+            $value = $now <= $end_date;
           }
         }
       }
