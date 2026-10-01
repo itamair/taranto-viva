@@ -327,7 +327,7 @@
         );
         if (typeof mapid === 'string' && mapid.startsWith('leaflet-map-view-geo-places-page-map-taranto-viva')) {
 
-          const tourIdParam = new URLSearchParams(window.location.search).get('tour_id');
+          const tourIdParam = root.querySelector('[name="tour_id"]')?.value;
           let source_endpoint = '/taranto-viva-geoplaces-list';
 
           if (
