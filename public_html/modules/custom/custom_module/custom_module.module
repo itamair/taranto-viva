@@ -493,6 +493,90 @@ function custom_module_media_insert(MediaInterface $media) {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_presave() for node entities.
+ *
+ * Every time a 'territorial_report' Node is created or edited (and saved)
+ * in Italian (IT) or English (EN), ensure that its counterpart translation
+ * (EN or IT) exists, creating it as an identical copy of the saved one if it
+ * is still missing. Existing translations are never overwritten.
+ *
+ * The translation is added in presave (and not in insert/update) so that it
+ * is stored within the very same save operation: no nested $node->save()
+ * calls and no recursion through the update hook.
+ */
+function custom_module_node_presave(NodeInterface $node) {
+  if ($node->bundle() !== 'territorial_report' || !$node->isTranslatable()) {
+    return;
+  }
+
+  // Source langcode => target langcode mapping.
+  $translation_map = [
+    'it' => 'en',
+    'en' => 'it',
+  ];
+
+  // The language of the translation being saved (i.e. the one edited).
+  $source_langcode = $node->language()->getId();
+  if (!isset($translation_map[$source_langcode])) {
+    return;
+  }
+  $target_langcode = $translation_map[$source_langcode];
+
+  // Nothing to do if the target translation already exists, or if the
+  // target language is not enabled on the site.
+  if ($node->hasTranslation($target_langcode)
+    || !\Drupal::languageManager()->getLanguage($target_langcode)) {
+    return;
+  }
+
+  // Copy all the values of the saved translation, except for identifiers,
+  // language/translation metadata and the path alias (copying the path 'pid'
+  // would overwrite the source language alias; pathauto, if enabled, will
+  // generate the new one).
+  $values = $node->toArray();
+  $excluded_keys = [
+    'nid',
+    'vid',
+    'uuid',
+    'langcode',
+    'default_langcode',
+    'path',
+    'revision_translation_affected',
+    'content_translation_source',
+    'content_translation_outdated',
+  ];
+  $values = array_diff_key($values, array_flip($excluded_keys));
+
+  try {
+    // addTranslation() only applies the values of translatable fields;
+    // untranslatable ones are shared among translations by definition.
+    $translation = $node->addTranslation($target_langcode, $values);
+
+    // Track the source language in the Content Translation metadata.
+    if (\Drupal::hasService('content_translation.manager')) {
+      /** @var \Drupal\content_translation\ContentTranslationManagerInterface $content_translation_manager */
+      $content_translation_manager = \Drupal::service('content_translation.manager');
+      $metadata = $content_translation_manager->getTranslationMetadata($translation);
+      $metadata->setSource($source_langcode);
+      $metadata->setOutdated(FALSE);
+    }
+
+    \Drupal::logger('custom_module')->info('Territorial Report "@title": @target translation automatically created from @source.', [
+      '@title' => $node->label(),
+      '@target' => strtoupper($target_langcode),
+      '@source' => strtoupper($source_langcode),
+    ]);
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('custom_module')->error('Territorial Report "@title": unable to create the @target translation: @message', [
+      '@title' => $node->label(),
+      '@target' => strtoupper($target_langcode),
+      '@message' => $e->getMessage(),
+    ]);
+  }
+}
+
+/**
  * Implements hook_leaflet_views_feature_alter().
  */
 function custom_module_leaflet_views_feature_alter(array &$feature, ResultRow $row, ?ViewsPluginInterface $rowPlugin = NULL) {
