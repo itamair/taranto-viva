@@ -36,6 +36,7 @@ dependencies:
     - datetime_range
     - field_group
     - link
+    - link_class
     - paragraphs
     - path
     - text
@@ -281,12 +282,15 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
   field_link:
-    type: link_default
+    type: link_class_field_widget
     weight: 20
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      link_class_mode: select_class
+      link_class_force: ''
+      link_class_select: hidden|Hidden
     third_party_settings: {  }
   field_locations:
     type: paragraphs

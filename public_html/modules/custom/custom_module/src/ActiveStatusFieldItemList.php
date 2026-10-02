@@ -35,13 +35,13 @@ class ActiveStatusFieldItemList extends FieldItemList {
     if (!$this->isCalculated) {
       $entity = $this->getEntity();
       $value = FALSE;
-      $entity_bundles = ['territorial_report'];
+      $entity_bundles = ['territorial_report', 'event'];
       if ($entity instanceof NodeInterface
         && in_array($entity->bundle(), $entity_bundles)
-        && $entity->hasField('field_date_range')
-        && !$entity->get('field_date_range')->isEmpty()) {
+        && $entity->hasField('field_validity_range')
+        && !$entity->get('field_validity_range')->isEmpty()) {
         $now = new DrupalDateTime();
-        $date_range = $entity->get('field_date_range');
+        $date_range = $entity->get('field_validity_range');
         $start_date = DrupalDateTime::createFromFormat('Y-m-d', $date_range->value);
         if ($start_date <= $now) {
           $value = TRUE;
