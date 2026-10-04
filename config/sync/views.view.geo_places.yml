@@ -10938,7 +10938,7 @@ display:
         type: normal
         title: 'Giochi del Mediterraneo | Ta 2026'
         description: ''
-        weight: -45
+        weight: -44
         expanded: false
         menu_name: main
         parent: ''
@@ -12886,7 +12886,7 @@ display:
         type: normal
         title: 'I Vaganti (Mappa)'
         description: ''
-        weight: -43
+        weight: -41
         expanded: false
         menu_name: main
         parent: ''

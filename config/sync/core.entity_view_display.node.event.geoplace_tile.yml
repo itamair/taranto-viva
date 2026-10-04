@@ -34,7 +34,6 @@ dependencies:
     - custom_module
     - datetime_range
     - layout_builder
-    - options
     - user
 third_party_settings:
   layout_builder:
@@ -45,13 +44,6 @@ targetEntityType: node
 bundle: event
 mode: geoplace_tile
 content:
-  field_active_type:
-    type: list_default
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_components:
     type: components_with_title_entity_view
     label: hidden
@@ -63,18 +55,19 @@ content:
     region: content
   field_date_range:
     type: daterange_default
-    label: above
+    label: inline
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: taranto_viva_medium
       from_to: both
       separator: '-'
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
 hidden:
   ai_automator_status: true
   body: true
+  field_active_type: true
   field_ai_disclosure: true
   field_category_type: true
   field_crawled_content: true

@@ -28,7 +28,6 @@ dependencies:
     - custom_module
     - datetime_range
     - layout_builder
-    - options
     - user
 third_party_settings:
   layout_builder:
@@ -39,13 +38,6 @@ targetEntityType: node
 bundle: territorial_report
 mode: geoplace_tile
 content:
-  field_active_type:
-    type: list_default
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_components:
     type: components_with_title_entity_view
     label: hidden
@@ -87,6 +79,7 @@ content:
 hidden:
   active_level: true
   body: true
+  field_active_type: true
   field_category_type: true
   field_comments: true
   field_exclude_from_map_bounds: true
