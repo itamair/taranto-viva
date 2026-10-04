@@ -349,17 +349,7 @@ display:
           admin_label: 'field_geoimage: Media'
           plugin_id: standard
           required: false
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Risults @start - @end of @total'
+      header: {  }
       footer: {  }
       display_extenders:
         metatag_display_extender:
