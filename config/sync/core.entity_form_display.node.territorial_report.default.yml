@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.territorial_report.field_exclude_from_map_bounds
     - field.field.node.territorial_report.field_exclude_from_markercluster
     - field.field.node.territorial_report.field_geofied_view
+    - field.field.node.territorial_report.field_google_maps_link_view
     - field.field.node.territorial_report.field_link
     - field.field.node.territorial_report.field_media_slideshow
     - field.field.node.territorial_report.field_project_namespace
@@ -33,6 +34,7 @@ dependencies:
     - path
     - text
     - uuid_extra
+    - viewfield
 third_party_settings:
   field_layout:
     id: layout_onecol
@@ -205,6 +207,12 @@ content:
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_google_maps_link_view:
+    type: viewfield_select
+    weight: 29
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_image:
     type: image_image

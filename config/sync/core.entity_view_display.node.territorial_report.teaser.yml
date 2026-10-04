@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.territorial_report.field_exclude_from_map_bounds
     - field.field.node.territorial_report.field_exclude_from_markercluster
     - field.field.node.territorial_report.field_geofied_view
+    - field.field.node.territorial_report.field_google_maps_link_view
     - field.field.node.territorial_report.field_link
     - field.field.node.territorial_report.field_media_slideshow
     - field.field.node.territorial_report.field_project_namespace
@@ -27,6 +28,7 @@ dependencies:
   module:
     - text
     - user
+    - viewfield
 id: node.territorial_report.teaser
 targetEntityType: node
 bundle: territorial_report
@@ -37,6 +39,16 @@ content:
     label: hidden
     settings:
       trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_google_maps_link_view:
+    type: viewfield_default
+    label: hidden
+    settings:
+      view_title: hidden
+      always_build_output: false
+      empty_view_title: hidden
     third_party_settings: {  }
     weight: 101
     region: content

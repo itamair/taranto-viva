@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.territorial_report.field_exclude_from_map_bounds
     - field.field.node.territorial_report.field_exclude_from_markercluster
     - field.field.node.territorial_report.field_geofied_view
+    - field.field.node.territorial_report.field_google_maps_link_view
     - field.field.node.territorial_report.field_link
     - field.field.node.territorial_report.field_media_slideshow
     - field.field.node.territorial_report.field_project_namespace
@@ -25,7 +26,6 @@ dependencies:
     - field.field.node.territorial_report.field_validity_range
     - field.field.node.territorial_report.field_zoom_visibility
     - node.type.territorial_report
-    - views.view.content_locations_addresses_and_google_maps_links
     - views.view.content_media_images
     - views.view.rate_widgets_results
   module:
@@ -145,6 +145,24 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 5
             additional: {  }
+          3eea62f7-20e0-4e12-9ecd-06bf05006ed0:
+            uuid: 3eea62f7-20e0-4e12-9ecd-06bf05006ed0
+            region: content
+            configuration:
+              id: 'field_block:node:territorial_report:field_google_maps_link_view'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 6
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
@@ -168,19 +186,6 @@ third_party_settings:
               items_per_page: 0
             weight: 0
             additional: {  }
-          b5a1db7e-76fc-49db-9002-335c2b7962cd:
-            uuid: b5a1db7e-76fc-49db-9002-335c2b7962cd
-            region: second
-            configuration:
-              id: 'views_block:content_locations_addresses_and_google_maps_links-block_content_media_images'
-              label: ''
-              label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: 0
-            weight: 1
-            additional: {  }
           68d5338e-e684-4c41-92f6-3f1a403ff4ea:
             uuid: 68d5338e-e684-4c41-92f6-3f1a403ff4ea
             region: second
@@ -201,6 +206,27 @@ third_party_settings:
                   empty_view_title: hidden
                 third_party_settings: {  }
             weight: 0
+            additional: {  }
+          be618bf2-d930-44a6-8d4b-32def94dd788:
+            uuid: be618bf2-d930-44a6-8d4b-32def94dd788
+            region: second
+            configuration:
+              id: 'field_block:node:territorial_report:field_google_maps_link_view'
+              label: 'Google Maps Link View'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: viewfield_default
+                label: hidden
+                settings:
+                  view_title: hidden
+                  always_build_output: false
+                  empty_view_title: hidden
+                third_party_settings: {  }
+            weight: 2
             additional: {  }
         third_party_settings: {  }
       -
@@ -427,6 +453,16 @@ content:
     weight: 8
     region: content
   field_geofied_view:
+    type: viewfield_default
+    label: hidden
+    settings:
+      view_title: hidden
+      always_build_output: false
+      empty_view_title: hidden
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_google_maps_link_view:
     type: viewfield_default
     label: hidden
     settings:
