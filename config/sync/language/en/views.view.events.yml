@@ -1,0 +1,8 @@
+display:
+  default:
+    display_options:
+      title: Events
+  page_taranto_viva_events:
+    display_options:
+      menu:
+        title: Events

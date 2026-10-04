@@ -48,9 +48,9 @@ dependencies:
   module:
     - better_exposed_filters
     - color_field
+    - custom_module
     - geofield
     - geofield_311
-    - custom_module
     - leaflet_views
     - media
     - node
@@ -5103,7 +5103,7 @@ display:
         type: normal
         title: 'Ciclovia degli Acquedotti'
         description: ''
-        weight: -45
+        weight: -43
         enabled: true
         expanded: false
         menu_name: main

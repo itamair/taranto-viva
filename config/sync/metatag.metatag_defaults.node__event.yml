@@ -5,4 +5,4 @@ dependencies: {  }
 id: node__event
 label: 'Content: Event'
 tags:
-  title: '[node:title] [node:field_sub_title] | [site:name]'
+  title: '[node:content-type:name] | [node:title] | [node:field_project_namespace] | [site:name]'

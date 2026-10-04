@@ -11,3 +11,7 @@ display:
         active_status:
           expose:
             description: State
+  page_territorial_reports:
+    display_options:
+      menu:
+        title: Reports

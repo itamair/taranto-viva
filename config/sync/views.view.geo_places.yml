@@ -10938,7 +10938,7 @@ display:
         type: normal
         title: 'Giochi del Mediterraneo | Ta 2026'
         description: ''
-        weight: -44
+        weight: -42
         expanded: false
         menu_name: main
         parent: ''

@@ -91,9 +91,9 @@ a, a.link {
   margin-bottom: 20px;
 }
 
-/* line 94, ../sass/common.scss */
-.view.view-geo-places.view-id-geo_places a.node_title,
-.view-territorial-reports.view-id-territorial_reports a.node_title {
+/* line 91, ../sass/common.scss */
+.node--view-mode-leaflet-popup a.node_title,
+.node--view-mode-geoplace-tile a.node_title {
   padding-bottom: 0.1875rem;
   transition: background-size 0.2s, color 0.2s;
   text-decoration: none;
@@ -107,126 +107,126 @@ a, a.link {
   background-size: 0 0.1875rem;
   font-size: 1.5rem;
 }
-/* line 105, ../sass/common.scss */
-.view.view-geo-places.view-id-geo_places a.node_title:any-link,
-.view-territorial-reports.view-id-territorial_reports a.node_title:any-link {
+/* line 102, ../sass/common.scss */
+.node--view-mode-leaflet-popup a.node_title:any-link,
+.node--view-mode-geoplace-tile a.node_title:any-link {
   text-decoration: none;
 }
-/* line 108, ../sass/common.scss */
-.view.view-geo-places.view-id-geo_places a.node_title h2,
-.view-territorial-reports.view-id-territorial_reports a.node_title h2 {
+/* line 105, ../sass/common.scss */
+.node--view-mode-leaflet-popup a.node_title h2,
+.node--view-mode-geoplace-tile a.node_title h2 {
   margin-bottom: 6px;
 }
-/* line 111, ../sass/common.scss */
-.view.view-geo-places.view-id-geo_places a.node_title h3,
-.view-territorial-reports.view-id-territorial_reports a.node_title h3 {
+/* line 108, ../sass/common.scss */
+.node--view-mode-leaflet-popup a.node_title h3,
+.node--view-mode-geoplace-tile a.node_title h3 {
   font-weight: normal;
   font-size: 1.2rem;
   margin-top: 6px;
   margin-bottom: 6px;
 }
-/* line 119, ../sass/common.scss */
-.view.view-geo-places.view-id-geo_places .field--name-field-media-image,
-.view-territorial-reports.view-id-territorial_reports .field--name-field-media-image {
-  margin-bottom: .25rem;
+/* line 116, ../sass/common.scss */
+.node--view-mode-leaflet-popup .field--name-field-media-image,
+.node--view-mode-geoplace-tile .field--name-field-media-image {
+  margin-bottom: 6px;
 }
-/* line 123, ../sass/common.scss */
-.view.view-geo-places.view-id-geo_places .field--name-field-image-caption,
-.view-territorial-reports.view-id-territorial_reports .field--name-field-image-caption {
+/* line 120, ../sass/common.scss */
+.node--view-mode-leaflet-popup .field--name-field-image-caption,
+.node--view-mode-geoplace-tile .field--name-field-image-caption {
   font-size: 0.7rem;
 }
-/* line 127, ../sass/common.scss */
-.view.view-geo-places.view-id-geo_places .field--name-field-address,
-.view-territorial-reports.view-id-territorial_reports .field--name-field-address {
+/* line 124, ../sass/common.scss */
+.node--view-mode-leaflet-popup .field--name-field-address,
+.node--view-mode-geoplace-tile .field--name-field-address {
   font-size: 0.85rem;
   margin-bottom: 0.2rem;
 }
 
 @media (min-width: 43.75rem) {
-  /* line 138, ../sass/common.scss */
+  /* line 135, ../sass/common.scss */
   .view.view-geo-places.view-id-geo_places.view-display-id-page_geoplaces_grid article header {
     height: 20px;
   }
-  /* line 140, ../sass/common.scss */
+  /* line 137, ../sass/common.scss */
   .view.view-geo-places.view-id-geo_places.view-display-id-page_geoplaces_grid article header h2 {
     font-size: 1.4rem;
     line-height: 1.8rem;
   }
-  /* line 147, ../sass/common.scss */
+  /* line 144, ../sass/common.scss */
   .view.view-geo-places.view-id-geo_places.view-display-id-page_geoplaces_grid .paragraph--type--location.paragraph--view-mode--leaflet-popup {
     height: 40px;
   }
 }
-/* line 155, ../sass/common.scss */
+/* line 152, ../sass/common.scss */
 .view-id-geo_images_list .views-view-grid__item {
   margin-bottom: 0.5rem;
 }
-/* line 158, ../sass/common.scss */
+/* line 155, ../sass/common.scss */
 .view-id-geo_images_list .views-field-field-components {
   font-size: 0.8rem;
 }
-/* line 160, ../sass/common.scss */
+/* line 157, ../sass/common.scss */
 .view-id-geo_images_list .views-field-field-components .field--name-field-media-image {
   margin-bottom: 1rem;
 }
 
-/* line 167, ../sass/common.scss */
+/* line 164, ../sass/common.scss */
 div.image-wrapper {
   max-width: 1200px;
 }
 
-/* line 171, ../sass/common.scss */
+/* line 168, ../sass/common.scss */
 .field--name-field-image-caption {
   text-align: right;
   font-size: 0.9rem;
 }
 
-/* line 177, ../sass/common.scss */
+/* line 174, ../sass/common.scss */
 .views-field.views-field-geofield-googlemaps-link a,
 .field--name-geofield-googlemaps-link .field__item {
   display: inline;
   margin: 0 10px 0 0;
 }
 
-/* line 185, ../sass/common.scss */
+/* line 182, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map.form--inline > *,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list.form--inline > * {
   vertical-align: unset;
   margin-block: 0;
 }
-/* line 189, ../sass/common.scss */
+/* line 186, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset {
   border: none;
 }
-/* line 191, ../sass/common.scss */
+/* line 188, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__legend,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__legend {
   display: none;
 }
-/* line 195, ../sass/common.scss */
+/* line 192, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper {
   padding: 0;
 }
-/* line 198, ../sass/common.scss */
+/* line 195, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper .form-item,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper .form-item {
   margin: 0;
   border: none;
 }
-/* line 201, ../sass/common.scss */
+/* line 198, ../sass/common.scss */
 #views-exposed-form-geo-places-page-vaganti-map fieldset .fieldset__wrapper .form-item input,
 #views-exposed-form-geo-images-list-page-vaganti-geimages-list fieldset .fieldset__wrapper .form-item input {
   padding: 10px;
 }
 
-/* line 214, ../sass/common.scss */
+/* line 211, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates h2,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates h2 {
   font-size: 1.5rem;
 }
-/* line 217, ../sass/common.scss */
+/* line 214, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content {
   max-height: 300px;
@@ -234,76 +234,76 @@ div.image-wrapper {
   border: 1px solid lightgrey;
   padding: 10px;
 }
-/* line 222, ../sass/common.scss */
+/* line 219, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content > h3,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content > h3 {
   margin-block: 4px;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 227, ../sass/common.scss */
+/* line 224, ../sass/common.scss */
 #block-taranto-viva-views-block-geo-places-block-vaganti-dates .block__content .view-content > div,
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .block__content .view-content > div {
   display: none;
 }
 
-/* line 234, ../sass/common.scss */
+/* line 231, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content {
   max-height: 100px;
   overflow-y: scroll;
   border: 1px solid lightgrey;
   padding: 10px;
 }
-/* line 239, ../sass/common.scss */
+/* line 236, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content > h3 {
   margin-block: 4px;
   font-size: 1rem;
   font-weight: normal;
 }
-/* line 244, ../sass/common.scss */
+/* line 241, ../sass/common.scss */
 .view-id-geo_places.view-display-id-attachment_vaganti_dates .view-content > div {
   display: none;
 }
 
-/* line 251, ../sass/common.scss */
+/* line 248, ../sass/common.scss */
 #popup-message-window {
   max-width: 80vw !important;
   min-height: 70% !important;
 }
 
 @media only screen and (max-width: 1000px) {
-  /* line 257, ../sass/common.scss */
+  /* line 254, ../sass/common.scss */
   #popup-message-window {
     padding: 0 20px !important;
   }
 }
-/* line 264, ../sass/common.scss */
+/* line 261, ../sass/common.scss */
 #popup-message-window h1.popup-message-title {
   margin-bottom: 4px;
 }
-/* line 267, ../sass/common.scss */
+/* line 264, ../sass/common.scss */
 #popup-message-window #popup-message-content {
   font-size: 16px;
 }
-/* line 270, ../sass/common.scss */
+/* line 267, ../sass/common.scss */
 #popup-message-window #popup-message-content .text-content {
   font-family: inherit;
   font-size: inherit;
 }
-/* line 275, ../sass/common.scss */
+/* line 272, ../sass/common.scss */
 #popup-message-window #popup-message-content .field--name-field-image, #popup-message-window #popup-message-content .field--name-field-media-image {
   padding-top: 6px;
 }
-/* line 279, ../sass/common.scss */
+/* line 276, ../sass/common.scss */
 #popup-message-window #popup-message-content .node__content {
   padding-block-end: var(--sp0-75);
 }
 
-/* line 285, ../sass/common.scss */
+/* line 282, ../sass/common.scss */
 .view-header {
   font-size: 1rem !important;
 }
-/* line 287, ../sass/common.scss */
+/* line 284, ../sass/common.scss */
 .view-header .text-content {
   line-height: var(--line-height-base) !important;
   font-weight: normal !important;
@@ -311,85 +311,85 @@ div.image-wrapper {
   font-size: inherit;
   font-family: var(--font-sans), serif !important;
 }
-/* line 294, ../sass/common.scss */
+/* line 291, ../sass/common.scss */
 .view-header p {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
 }
 
-/* line 300, ../sass/common.scss */
+/* line 297, ../sass/common.scss */
 .view-footer {
   font-size: 0.9rem !important;
 }
-/* line 302, ../sass/common.scss */
+/* line 299, ../sass/common.scss */
 .view-footer p {
   margin-block-start: 0 !important;
   margin-block-end: 0 !important;
 }
 
-/* line 309, ../sass/common.scss */
+/* line 306, ../sass/common.scss */
 .view-fonti table.views-table {
   margin-block-start: 4px !important;
   margin-block-end: 4px !important;
   font-size: inherit !important;
 }
-/* line 314, ../sass/common.scss */
+/* line 311, ../sass/common.scss */
 .view-fonti .views-field-field-html-symbol {
   width: 100px;
 }
 
-/* line 321, ../sass/common.scss */
+/* line 318, ../sass/common.scss */
 .readmore-summary p, .readmore-text p {
   margin-block-end: 8px !important;
 }
-/* line 324, ../sass/common.scss */
+/* line 321, ../sass/common.scss */
 .readmore-summary span, .readmore-text span {
   margin-left: 4px;
 }
-/* line 326, ../sass/common.scss */
+/* line 323, ../sass/common.scss */
 .readmore-summary span a, .readmore-text span a {
   margin-left: 6px;
 }
 
-/* line 333, ../sass/common.scss */
+/* line 330, ../sass/common.scss */
 #block-taranto-viva-page-title h1.title .bundle {
   font-size: small;
 }
 
-/* line 337, ../sass/common.scss */
+/* line 334, ../sass/common.scss */
 .views_slideshow_controls_text {
   display: flex;
   justify-content: center;
 }
-/* line 340, ../sass/common.scss */
+/* line 337, ../sass/common.scss */
 .views_slideshow_controls_text span {
   margin-right: 10%;
 }
 
-/* line 346, ../sass/common.scss */
+/* line 343, ../sass/common.scss */
 .field--name-field-image-caption p, .field--name-field-image-caption a {
   color: grey !important;
 }
 
-/* line 352, ../sass/common.scss */
+/* line 349, ../sass/common.scss */
 .qr-alt-text {
   display: none;
 }
 
-/* line 356, ../sass/common.scss */
+/* line 353, ../sass/common.scss */
 .block-layout-builder.block-field-blocknodegeoplacefield-related-content {
   padding-top: 10px;
   margin-block-end: 6px;
 }
-/* line 359, ../sass/common.scss */
+/* line 356, ../sass/common.scss */
 .block-layout-builder.block-field-blocknodegeoplacefield-related-content article {
   margin-block-end: 0;
 }
-/* line 362, ../sass/common.scss */
+/* line 359, ../sass/common.scss */
 .block-layout-builder.block-field-blocknodegeoplacefield-related-content .node__content {
   padding-block-end: var(--sp1);
 }
-/* line 365, ../sass/common.scss */
+/* line 362, ../sass/common.scss */
 .block-layout-builder.block-field-blocknodegeoplacefield-related-content .node__title {
   font-size: var(--sp1-5);
   white-space: nowrap;

@@ -1,0 +1,34 @@
+uuid: 80f26b5e-9c48-4e61-b477-268d46508c4a
+langcode: it
+status: true
+dependencies:
+  config:
+    - node.type.event
+  module:
+    - language
+    - node
+id: event_url_alias
+label: 'Event Url Aliases'
+type: 'canonical_entities:node'
+pattern: '/event/[node:title]'
+selection_criteria:
+  79806d4e-ac6b-4154-9eb7-3645a99e4522:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      event: event
+  7ecfa16b-a39e-415a-b56b-82f4dbcb6cd3:
+    id: language
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      en: en
+      it: it
+selection_logic: and
+weight: -10
+relationships:
+  'node:langcode:language':
+    label: Language

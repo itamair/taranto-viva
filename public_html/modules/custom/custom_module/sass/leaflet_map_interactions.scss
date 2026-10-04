@@ -28,13 +28,11 @@
     }
 
     .paragraph--type--geoplace-ref {
+      margin-block-start: 10px;
       h2 {
         margin: 0;
         font-size: 0.9rem;
         font-weight: bolder;
-      }
-      div {
-        margin: 4px 0;
       }
     }
 
@@ -272,7 +270,7 @@
     border-color: limegreen;
   }
   &.event .dot {
-    border-color: orangered;
+    border-color: #0131f8;
   }
 }
 

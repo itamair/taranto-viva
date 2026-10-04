@@ -921,13 +921,19 @@ display:
         access: false
         arguments: false
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender:
+          variants: {  }
       path: territorial_reports
       menu:
         type: normal
-        title: Reports
+        title: Segnalazioni
         description: ''
-        weight: -42
+        weight: -44
         expanded: false
         menu_name: main
         parent: ''

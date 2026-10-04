@@ -86,11 +86,8 @@ a, a.link {
   margin-bottom: 20px;
 }
 
-// view view-geo-places view-id-geo_places
-
-.view.view-geo-places.view-id-geo_places,
-.view-territorial-reports.view-id-territorial_reports {
-
+.node--view-mode-leaflet-popup,
+.node--view-mode-geoplace-tile {
   a.node_title {
     padding-bottom: 0.1875rem;
     transition: background-size 0.2s, color 0.2s;
@@ -117,7 +114,7 @@ a, a.link {
   }
 
   .field--name-field-media-image {
-    margin-bottom: .25rem;
+    margin-bottom: 6px;
   }
 
   .field--name-field-image-caption {

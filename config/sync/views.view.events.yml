@@ -28,7 +28,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Taranto Viva Events'
+      title: Eventi
       fields:
         title:
           id: title
@@ -267,7 +267,12 @@ display:
       relationships: {  }
       header: {  }
       footer: {  }
-      display_extenders: {  }
+      display_extenders:
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+        library_in_views_display_extender: {  }
+        simple_sitemap_display_extender: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -410,9 +415,9 @@ display:
       path: events
       menu:
         type: normal
-        title: Events
+        title: Eventi
         description: ''
-        weight: -43
+        weight: -45
         expanded: false
         menu_name: main
         parent: ''
