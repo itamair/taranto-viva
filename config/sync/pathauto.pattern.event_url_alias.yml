@@ -10,7 +10,7 @@ dependencies:
 id: event_url_alias
 label: 'Event Url Aliases'
 type: 'canonical_entities:node'
-pattern: '/event/[node:title]'
+pattern: '/event/[node:field_project_namespace]/[node:title]'
 selection_criteria:
   79806d4e-ac6b-4154-9eb7-3645a99e4522:
     id: 'entity_bundle:node'
