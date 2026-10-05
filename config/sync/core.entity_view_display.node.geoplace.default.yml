@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.geoplace.field_how_to_reach
     - field.field.node.geoplace.field_image_for_ocr_recognition
     - field.field.node.geoplace.field_link
+    - field.field.node.geoplace.field_links_crawled
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_more_info
@@ -38,6 +39,7 @@ dependencies:
     - entity_reference_revisions
     - layout_builder
     - layout_discovery
+    - link
     - options
     - qrcode_fields
     - text
@@ -479,6 +481,18 @@ content:
       link: true
     third_party_settings: {  }
     weight: 19
+    region: content
+  field_links_crawled:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 25
     region: content
   field_map_popup_disabled:
     type: boolean
