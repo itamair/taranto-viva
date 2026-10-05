@@ -33,7 +33,7 @@ plugin_config:
   automator_basic_auth_password: ''
   automator_custom_headers: ''
   automator_custom_cookies: ''
-  automator_crawler_strip_tags: 0
+  automator_crawler_strip_tags: 1
   automator_crawler_mode: readability
   automator_crawler_tag: body
   automator_crawler_remove: "style\r\nscript\r\n"
