@@ -22,7 +22,7 @@ plugin_config:
   automator_enabled: 1
   automator_rule: simple_crawler_text_long
   automator_mode: base
-  automator_base_field: field_link
+  automator_base_field: field_links_crawled
   automator_edit_mode: 0
   automator_label: 'Crawled Content Default'
   automator_weight: '100'
