@@ -31,11 +31,12 @@ plugin_config:
   automator_label: 'Geo Place Body Default'
   automator_weight: '100'
   automator_worker_type: queue
+  automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: openai
-  automator_ai_model: gpt-5.5-2026-04-23
+  automator_ai_model: gpt-5.6-terra
   automator_configuration_max_completion_tokens: '4096'
-  automator_configuration_reasoning_effort: medium
+  automator_configuration_reasoning_effort: low
   automator_configuration_image_field: ''
   automator_configuration_image_style: ''
   automator_joiner: '<br />'

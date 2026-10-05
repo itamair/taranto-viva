@@ -39,11 +39,12 @@ plugin_config:
   automator_label: 'Sub Title Default'
   automator_weight: '100'
   automator_worker_type: queue
+  automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: openai
-  automator_ai_model: gpt-5.5-2026-04-23
+  automator_ai_model: gpt-5.6-luna
   automator_configuration_max_completion_tokens: '4096'
-  automator_configuration_reasoning_effort: medium
+  automator_configuration_reasoning_effort: minimal
   automator_configuration_image_field: ''
   automator_configuration_image_style: ''
   automator_code_block_type: html

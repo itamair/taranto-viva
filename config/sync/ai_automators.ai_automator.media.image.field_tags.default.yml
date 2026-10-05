@@ -29,6 +29,7 @@ plugin_config:
   automator_label: 'Tags Default'
   automator_weight: '100'
   automator_worker_type: queue
+  automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: default_vision
   automator_configuration_image_field: field_media_image
