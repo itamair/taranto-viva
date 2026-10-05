@@ -40,7 +40,7 @@ plugin_config:
   automator_ai_provider: openai
   automator_ai_model: gpt-5.6-terra
   automator_configuration_max_completion_tokens: '4096'
-  automator_configuration_reasoning_effort: low
+  automator_configuration_reasoning_effort: medium
   automator_configuration_image_field: ''
   automator_configuration_image_style: ''
   automator_code_block_type: html
