@@ -12,13 +12,13 @@ dependencies:
     - field.field.node.event.field_components
     - field.field.node.event.field_crawled_content
     - field.field.node.event.field_date_range
-    - field.field.node.event.field_detailed_info
     - field.field.node.event.field_disclaimer_ref
     - field.field.node.event.field_exclude_from_map_bounds
     - field.field.node.event.field_exclude_from_markercluster
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
+    - field.field.node.event.field_links_crawled
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_more_info
     - field.field.node.event.field_project_namespace
@@ -69,13 +69,13 @@ hidden:
   field_ai_disclosure: true
   field_category_type: true
   field_crawled_content: true
-  field_detailed_info: true
   field_disclaimer_ref: true
   field_exclude_from_map_bounds: true
   field_exclude_from_markercluster: true
   field_geofied_view: true
   field_google_maps_address: true
   field_link: true
+  field_links_crawled: true
   field_media_slideshow: true
   field_more_info: true
   field_project_namespace: true

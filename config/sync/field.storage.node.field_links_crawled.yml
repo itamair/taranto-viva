@@ -1,18 +1,18 @@
-uuid: da486f53-1209-49b0-af71-9e6ab253a7b3
+uuid: 60065ae4-40ed-4cba-a3a2-6babc15f129d
 langcode: it
 status: true
 dependencies:
   module:
+    - link
     - node
-    - text
-id: node.field_detailed_info
-field_name: field_detailed_info
+id: node.field_links_crawled
+field_name: field_links_crawled
 entity_type: node
-type: text_long
+type: link
 settings: {  }
-module: text
+module: link
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

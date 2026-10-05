@@ -1,0 +1,27 @@
+uuid: 2562731f-0063-401f-bd97-385ab268ba10
+langcode: it
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_links_crawled
+    - node.type.event
+  module:
+    - link
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: node.event.field_links_crawled
+field_name: field_links_crawled
+entity_type: node
+bundle: event
+label: 'Web Links Crawled'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 17
+field_type: link

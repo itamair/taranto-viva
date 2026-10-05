@@ -14,7 +14,7 @@ entity_type: node
 bundle: event
 field_name: field_crawled_content
 edit_mode: false
-base_field: field_source_link
+base_field: field_links_crawled
 prompt: ''
 token: ''
 guardrail_set_id: null
@@ -22,7 +22,7 @@ plugin_config:
   automator_enabled: 1
   automator_rule: simple_crawler_text_long
   automator_mode: base
-  automator_base_field: field_link
+  automator_base_field: field_links_crawled
   automator_edit_mode: 0
   automator_label: 'Crawled Content Default'
   automator_weight: '100'
@@ -33,7 +33,7 @@ plugin_config:
   automator_basic_auth_password: ''
   automator_custom_headers: ''
   automator_custom_cookies: ''
-  automator_crawler_strip_tags: 1
+  automator_crawler_strip_tags: 0
   automator_crawler_mode: readability
   automator_crawler_tag: body
   automator_crawler_remove: "style\r\nscript\r\n"
