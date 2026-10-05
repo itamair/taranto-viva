@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
-    - field.field.node.event.field_links_crawled
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_more_info
     - field.field.node.event.field_project_namespace
@@ -33,7 +32,6 @@ dependencies:
   module:
     - layout_builder
     - layout_discovery
-    - link
     - qrcode_fields
     - text
     - user
@@ -127,26 +125,6 @@ third_party_settings:
                   separator: '-'
                 third_party_settings: {  }
             weight: 3
-            additional: {  }
-          27923379-f93f-49b9-b182-02848cae77da:
-            uuid: 27923379-f93f-49b9-b182-02848cae77da
-            region: content
-            configuration:
-              id: 'field_block:node:event:field_links_crawled'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: link
-                label: above
-                settings:
-                  trim_length: 80
-                  url_only: false
-                  url_plain: false
-                  rel: ''
-                  target: ''
-                third_party_settings: {  }
-            weight: 4
             additional: {  }
         third_party_settings: {  }
       -
@@ -351,6 +329,13 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
+  field_detailed_info:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_disclaimer_ref:
     type: entity_reference_label
     label: above
@@ -358,18 +343,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_links_crawled:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 6
     region: content
   field_more_info:
     type: basic_string
