@@ -45,6 +45,7 @@ third_party_settings:
   field_group:
     group_ai_generated_content:
       children:
+        - field_links_crawled
         - field_more_info
         - field_crawled_content
       label: ' AI Generated Content'
@@ -131,7 +132,7 @@ content:
     third_party_settings: {  }
   field_crawled_content:
     type: text_textarea
-    weight: 19
+    weight: 20
     region: content
     settings:
       rows: 10
@@ -326,7 +327,7 @@ content:
     third_party_settings: {  }
   field_more_info:
     type: string_textarea
-    weight: 18
+    weight: 19
     region: content
     settings:
       rows: 5
