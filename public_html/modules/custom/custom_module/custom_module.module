@@ -491,7 +491,7 @@ function custom_module_media_insert(MediaInterface $media) {
 /**
  * Implements hook_ENTITY_TYPE_presave() for node entities.
  *
- * Every time a 'territorial_report' Node is created or edited (and saved)
+ * Every time a ['geoplace', 'territorial_report', 'event'] Node is created or edited (and saved)
  * in Italian (IT) or English (EN), ensure that its counterpart translation
  * (EN or IT) exists, creating it as an identical copy of the saved one if it
  * is still missing. Existing translations are never overwritten.
@@ -501,7 +501,8 @@ function custom_module_media_insert(MediaInterface $media) {
  * calls and no recursion through the update hook.
  */
 function custom_module_node_presave(NodeInterface $node) {
-  if ($node->bundle() !== 'territorial_report' || !$node->isTranslatable()) {
+  $bundles_to_auto_translate = ['geoplace', 'territorial_report', 'event'];
+  if (!in_array($node->bundle(), $bundles_to_auto_translate) || !$node->isTranslatable()) {
     return;
   }
 
@@ -554,7 +555,7 @@ function custom_module_node_presave(NodeInterface $node) {
       $content_translation_manager = \Drupal::service('content_translation.manager');
       $metadata = $content_translation_manager->getTranslationMetadata($translation);
       $metadata->setSource($source_langcode);
-      $metadata->setOutdated(FALSE);
+      $metadata->setOutdated(TRUE);
     }
 
     \Drupal::logger('custom_module')->info('Territorial Report "@title": @target translation automatically created from @source.', [

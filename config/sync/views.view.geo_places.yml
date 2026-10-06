@@ -7722,6 +7722,8 @@ display:
               rendered: true
               overlays_options:
                 disabled_overlays:
+                  Immagini: Immagini
+                  Images: Images
                   'Segnalazione Territoriale': 'Segnalazione Territoriale'
                   'Territorial report': 'Territorial report'
                 hidden_overlays_controls: {  }
