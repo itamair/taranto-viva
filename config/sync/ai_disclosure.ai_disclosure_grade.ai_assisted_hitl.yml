@@ -10,7 +10,7 @@ description: 'AI wrote it, a person directed it.'
 severity: 60
 eu_icon: ai_modified
 label_required: true
-disclosure_sentence: "Etichettato in conformità con la politica di questo sito sulla divulgazione dell'uso dell'IA."
+disclosure_sentence: "Questo contenuto è stato prodotto dall'IA e revisionato da una persona."
 iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia'
 visible_parts:
   icon: true
