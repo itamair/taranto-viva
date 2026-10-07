@@ -1,0 +1,27 @@
+uuid: 11d43d24-e1c2-4726-add9-9ab514ccba15
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.taranto_viva_links
+    - field.storage.block_content.field_web_links
+  module:
+    - link
+    - tmgmt_content
+third_party_settings:
+  tmgmt_content:
+    excluded: false
+id: block_content.taranto_viva_links.field_web_links
+field_name: field_web_links
+entity_type: block_content
+bundle: taranto_viva_links
+label: 'Web Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

@@ -1,0 +1,39 @@
+uuid: ccdd1c32-75f1-4832-a3a8-a1cb8dd63eda
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.taranto_viva_links
+    - field.field.block_content.taranto_viva_links.field_web_links
+  module:
+    - link
+id: block_content.taranto_viva_links.default
+targetEntityType: block_content
+bundle: taranto_viva_links
+mode: default
+content:
+  field_web_links:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden:
+  uuid: true

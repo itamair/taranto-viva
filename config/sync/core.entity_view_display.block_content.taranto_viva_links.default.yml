@@ -1,0 +1,30 @@
+uuid: f5f4c434-a1c3-49b5-9697-d26ea835719d
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.taranto_viva_links
+    - field.field.block_content.taranto_viva_links.field_web_links
+  module:
+    - link
+id: block_content.taranto_viva_links.default
+targetEntityType: block_content
+bundle: taranto_viva_links
+mode: default
+content:
+  field_web_links:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
+  uuid: true

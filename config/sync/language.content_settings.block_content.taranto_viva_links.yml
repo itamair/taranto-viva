@@ -1,0 +1,11 @@
+uuid: 081b26f4-ce53-4b36-97ce-515c1f0e66a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.taranto_viva_links
+id: block_content.taranto_viva_links
+target_entity_type_id: block_content
+target_bundle: taranto_viva_links
+default_langcode: site_default
+language_alterable: false

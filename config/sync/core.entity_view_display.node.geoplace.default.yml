@@ -34,8 +34,11 @@ dependencies:
     - field.field.node.geoplace.field_zoom_visibility
     - node.type.geoplace
     - views.view.content_media_images
+  content:
+    - 'block_content:taranto_viva_links:dd09de22-078f-4a27-8bd2-9b583adf9ed4'
   module:
     - ai_disclosure
+    - block_content
     - entity_reference_revisions
     - layout_builder
     - layout_discovery
@@ -71,7 +74,7 @@ third_party_settings:
                 type: readmore
                 label: visually_hidden
                 settings:
-                  trim_length: 400
+                  trim_length: 600
                   trim_on_break: false
                   show_readmore: true
                   show_readless: true
@@ -249,6 +252,18 @@ third_party_settings:
                   empty_view_title: hidden
                 third_party_settings: {  }
             weight: 4
+            additional: {  }
+          4d8718b1-3570-4266-bb03-01a030cb6fec:
+            uuid: 4d8718b1-3570-4266-bb03-01a030cb6fec
+            region: first
+            configuration:
+              id: 'block_content:dd09de22-078f-4a27-8bd2-9b583adf9ed4'
+              label: 'Web Links Mappa Interattiva & Luoghi di Interesse '
+              label_display: '0'
+              provider: block_content
+              context_mapping: {  }
+              view_mode: full
+            weight: 5
             additional: {  }
         third_party_settings: {  }
       -
