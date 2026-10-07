@@ -205,7 +205,7 @@ function Map() {
           },
           overturemaps_places: {
             type: 'vector' as const,
-            url: 'pmtiles://https://overturemaps-tiles-us-west-2-beta.s3.amazonaws.com/2025-04-23/places.pmtiles',
+            url: 'pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-09-23.1/places.pmtiles',
             attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>'
           },
 /*          osm_layers: {
