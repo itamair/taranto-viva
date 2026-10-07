@@ -255,7 +255,7 @@ third_party_settings:
             additional: {  }
           4f81d87f-b464-4da6-b28d-b8acaf4229cb:
             uuid: 4f81d87f-b464-4da6-b28d-b8acaf4229cb
-            region: first
+            region: second
             configuration:
               id: 'block_content:27529df3-ba3b-4d0a-8776-ea8383040d02'
               label: 'Web Links Mappa Interattiva & Luoghi di Interesse '
@@ -263,7 +263,7 @@ third_party_settings:
               provider: block_content
               context_mapping: {  }
               view_mode: full
-            weight: 5
+            weight: 6
             additional: {  }
         third_party_settings: {  }
       -
