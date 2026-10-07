@@ -396,3 +396,9 @@ div.image-wrapper {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* line 370, ../sass/common.scss */
+.view.view-content-media-images img {
+  outline-style: solid;
+  outline-width: 2px;
+}

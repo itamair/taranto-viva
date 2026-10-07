@@ -366,3 +366,8 @@ div.image-wrapper {
     text-overflow: ellipsis;
   }
 }
+
+.view.view-content-media-images img {
+  outline-style: solid;
+  outline-width: 2px;
+}
