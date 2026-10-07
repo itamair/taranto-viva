@@ -1,27 +1,25 @@
-uuid: 6c4c172c-9dfc-41fe-b6be-f8498375a6da
+uuid: 8c77a7b7-2838-47fd-922a-496abe7f5a03
 langcode: it
 status: true
 dependencies:
   config:
-    - node.type.article
-    - node.type.page
+    - node.type.geoplace
   module:
     - language
     - node
-id: content_title
-label: 'Content Title'
+id: geoplace_url_aliases
+label: 'Geoplace Url Aliases'
 type: 'canonical_entities:node'
-pattern: '/[node:title]'
+pattern: '/place/[node:title]'
 selection_criteria:
-  dbee2d9d-997a-4974-a27f-e4c78ad48d3a:
+  79806d4e-ac6b-4154-9eb7-3645a99e4522:
     id: 'entity_bundle:node'
     negate: false
     context_mapping:
       node: node
     bundles:
-      article: article
-      page: page
-  f3e45ed4-b4a8-4f65-b51b-be57b0ced3cd:
+      geoplace: geoplace
+  7ecfa16b-a39e-415a-b56b-82f4dbcb6cd3:
     id: language
     negate: false
     context_mapping:
@@ -33,4 +31,4 @@ selection_logic: and
 weight: -10
 relationships:
   'node:langcode:language':
-    label: Lingua
+    label: Language
