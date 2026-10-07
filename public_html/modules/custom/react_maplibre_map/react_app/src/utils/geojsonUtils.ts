@@ -109,8 +109,17 @@ export function buildPopupContent(properties: any): string {
       content += `<p style="margin: 5px 0; font-size: 12px;"><a href="${properties.weblink}" >view more</a></p>`;
     }
 
+    /**
+     * Parses an HTML fragment in isolation so unclosed tags cannot leak out.
+     */
+    function balanceHtml(html: string): string {
+      const template = document.createElement('template');
+      template.innerHTML = html;
+      return template.innerHTML;
+    }
+
     if (properties.websites) {
-      content += properties.websites;
+      content += balanceHtml(String(properties.websites));
     }
 
     if (properties.confidence) {
