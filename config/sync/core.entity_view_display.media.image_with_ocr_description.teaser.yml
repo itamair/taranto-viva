@@ -1,0 +1,55 @@
+uuid: 37cb0096-3859-4703-af23-390e1573e152
+langcode: it
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.teaser
+    - field.field.media.image_with_ocr_description.ai_automator_status
+    - field.field.media.image_with_ocr_description.field_image_description
+    - field.field.media.image_with_ocr_description.field_media_image
+    - image.style.medium
+    - media.type.image_with_ocr_description
+  module:
+    - layout_builder
+    - photoswipe
+    - photoswipe_dynamic_caption
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: media.image_with_ocr_description.teaser
+targetEntityType: media
+bundle: image_with_ocr_description
+mode: teaser
+content:
+  field_media_image:
+    type: photoswipe_field_formatter
+    label: hidden
+    settings:
+      photoswipe_thumbnail_style_first: ''
+      photoswipe_thumbnail_style: medium
+      photoswipe_image_style: ''
+      photoswipe_reference_image_field: ''
+      photoswipe_view_mode: teaser
+      photoswipe_remove_gallery_wrapper_class: false
+      photoswipe_show_download_button: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      photoswipe_dynamic_caption:
+        photoswipe_caption: alt
+        photoswipe_caption_custom: ''
+    weight: 0
+    region: content
+hidden:
+  ai_automator_status: true
+  created: true
+  field_image_description: true
+  geofield_googlemaps_link: true
+  geoimage_caption: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
+  uuid: true

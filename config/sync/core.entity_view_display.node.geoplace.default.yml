@@ -171,7 +171,7 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           aaf72266-743f-4f4e-80bc-f434b3eed85c:
             uuid: aaf72266-743f-4f4e-80bc-f434b3eed85c
@@ -324,7 +324,7 @@ third_party_settings:
                 settings:
                   view_mode: full
                 third_party_settings: {  }
-            weight: 11
+            weight: 12
             additional: {  }
           66e425c3-42b9-4c56-a89b-f0fad48e95ab:
             uuid: 66e425c3-42b9-4c56-a89b-f0fad48e95ab
@@ -392,6 +392,25 @@ third_party_settings:
                   style: flexbox
                 third_party_settings: {  }
             weight: 13
+            additional: {  }
+          0ef05ffd-4902-42d1-b8b1-a25f89fc17f1:
+            uuid: 0ef05ffd-4902-42d1-b8b1-a25f89fc17f1
+            region: content
+            configuration:
+              id: 'field_block:node:geoplace:field_image_for_ocr_recognition'
+              label: 'Attachments Pippo'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: teaser
+                third_party_settings: {  }
+            weight: 11
             additional: {  }
         third_party_settings: {  }
 id: node.geoplace.default

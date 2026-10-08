@@ -8,7 +8,7 @@ id: node.geoplace.field_more_info.default
 label: 'More Info Default'
 rule: llm_string_long
 input_mode: token
-weight: 200
+weight: 300
 worker_type: queue
 entity_type: node
 bundle: geoplace
@@ -18,9 +18,10 @@ base_field: revision_log
 prompt: ''
 token: |-
   Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
-  Non ripetere i contenuti già presenti nel campo [node:body]
+  Eventualmente puoi utilizzare anche il contenuto presente nel campo [node:field_ocr_text_from_media]
+  Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body]
   Non includere, e nel caso elimina, ogni tag html nel testo.
-  Massimo 2000 caratteri
+  Massimo 2500 caratteri.
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -30,12 +31,13 @@ plugin_config:
   automator_prompt: ''
   automator_token: |-
     Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
-    Non ripetere i contenuti già presenti nel campo [node:body]
+    Eventualmente puoi utilizzare anche il contenuto presente nel campo [node:field_ocr_text_from_media]
+    Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body]
     Non includere, e nel caso elimina, ogni tag html nel testo.
-    Massimo 2000 caratteri
+    Massimo 3000 caratteri.
   automator_edit_mode: 0
   automator_label: 'More Info Default'
-  automator_weight: '200'
+  automator_weight: '300'
   automator_worker_type: queue
   automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
