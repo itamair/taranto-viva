@@ -9,7 +9,7 @@ label: 'OCR Text from Media Default'
 rule: llm_text_long
 input_mode: token
 weight: 200
-worker_type: direct
+worker_type: queue
 entity_type: node
 bundle: geoplace
 field_name: field_ocr_text_from_media
@@ -28,7 +28,7 @@ plugin_config:
   automator_edit_mode: 0
   automator_label: 'OCR Text from Media Default'
   automator_weight: '200'
-  automator_worker_type: direct
+  automator_worker_type: queue
   automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: openai

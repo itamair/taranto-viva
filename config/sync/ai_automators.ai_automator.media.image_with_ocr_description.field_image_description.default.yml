@@ -8,7 +8,7 @@ id: media.image_with_ocr_description.field_image_description.default
 label: 'image_description Default'
 rule: llm_text_long
 input_mode: token
-weight: 100
+weight: 1
 worker_type: direct
 entity_type: media
 bundle: image_with_ocr_description
@@ -27,8 +27,9 @@ plugin_config:
   automator_token: 'Provide formatted text extracted from the image attached to this media, with uri: [media:field_media_image:entity:url]'
   automator_edit_mode: 0
   automator_label: 'image_description Default'
-  automator_weight: '100'
+  automator_weight: '1'
   automator_worker_type: direct
+  automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: default_vision
   automator_configuration_image_field: field_media_image
