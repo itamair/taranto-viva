@@ -18,7 +18,6 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
-    - field.field.node.event.field_links_crawled
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_more_info
     - field.field.node.event.field_project_namespace
@@ -75,7 +74,6 @@ hidden:
   field_geofied_view: true
   field_google_maps_address: true
   field_link: true
-  field_links_crawled: true
   field_media_slideshow: true
   field_more_info: true
   field_project_namespace: true

@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.geoplace.field_how_to_reach
     - field.field.node.geoplace.field_image_for_ocr_recognition
     - field.field.node.geoplace.field_link
-    - field.field.node.geoplace.field_links_crawled
     - field.field.node.geoplace.field_map_popup_disabled
     - field.field.node.geoplace.field_media_slideshow
     - field.field.node.geoplace.field_more_info
@@ -116,7 +115,6 @@ hidden:
   field_how_to_reach: true
   field_image_for_ocr_recognition: true
   field_link: true
-  field_links_crawled: true
   field_map_popup_disabled: true
   field_media_slideshow: true
   field_more_info: true

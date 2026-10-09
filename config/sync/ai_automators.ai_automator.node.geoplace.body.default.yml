@@ -18,9 +18,8 @@ base_field: revision_log
 prompt: '{{ context }} '
 token: |-
   Una descrizione di [node:field_google_maps_address] in lingua [node:langcode].
-  Scrivi informazioni di base / introduttive facendo una selezione estesa e significativa estratta dai valori del campo multi value [node:field_crawled_content].
   Menziona le sue caratteristiche ed il suo attuale ruolo funzionale (cosa è, a cosa serve), cenni storici e culturali.
-  Limitati ad un un massimo di 2500 caratteri.
+  Se non nuillo, scrivi informazioni di base / introduttive facendo riferimento ai valori del campo multi value [node:field_crawled_content]. Limitati ad un un massimo di 2500 caratteri.
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -30,9 +29,8 @@ plugin_config:
   automator_prompt: '{{ context }} '
   automator_token: |-
     Una descrizione di [node:field_google_maps_address] in lingua [node:langcode].
-    Scrivi informazioni di base / introduttive facendo una selezione estesa e significativa estratta dai valori del campo multi value [node:field_crawled_content].
     Menziona le sue caratteristiche ed il suo attuale ruolo funzionale (cosa è, a cosa serve), cenni storici e culturali.
-    Limitati ad un un massimo di 2500 caratteri.
+    Se non nuillo, scrivi informazioni di base / introduttive facendo riferimento ai valori del campo multi value [node:field_crawled_content]. Limitati ad un un massimo di 2500 caratteri.
   automator_edit_mode: 0
   automator_label: 'Geo Place Body Default'
   automator_weight: '150'

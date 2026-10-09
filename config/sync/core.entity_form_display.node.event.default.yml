@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.event.field_geofied_view
     - field.field.node.event.field_google_maps_address
     - field.field.node.event.field_link
-    - field.field.node.event.field_links_crawled
     - field.field.node.event.field_media_slideshow
     - field.field.node.event.field_more_info
     - field.field.node.event.field_project_namespace
@@ -284,17 +283,6 @@ content:
       link_class_mode: select_class
       link_class_force: ''
       link_class_select: hidden|Hidden
-    third_party_settings: {  }
-  field_links_crawled:
-    type: link_class_field_widget
-    weight: 18
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-      link_class_mode: force_class
-      link_class_force: hidden|Hidden
-      link_class_select: ''
     third_party_settings: {  }
   field_locations:
     type: paragraphs
