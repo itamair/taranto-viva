@@ -16,12 +16,12 @@ field_name: field_why_to_visit
 edit_mode: false
 base_field: revision_log
 prompt: |-
-  Solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora 
-  scrivi una breve descrizione in lingua [language:langcode] sul quando visitare [node:field_google_maps_address]. Massimo 500 caratteri.
+  Solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora
+  scrivi una breve descrizione in lingua [node:langcode] sul quando visitare [node:field_google_maps_address]. Massimo 500 caratteri.
   Altrimenti lascia vuoto questo campo.
 token: |-
-  Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo 
-  allora scrivi una breve descrizione in lingua [language:langcode] sul perchè visitare [node:field_google_maps_address].
+  Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo
+  allora scrivi una breve descrizione in lingua [node:langcode] sul perchè visitare [node:field_google_maps_address].
   Usa anche il valore del campo [node:body].
   Massimo 500 caratteri.
   Altrimenti lascia vuoto questo campo.
@@ -32,12 +32,12 @@ plugin_config:
   automator_mode: token
   automator_base_field: revision_log
   automator_prompt: |-
-    Solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora 
-    scrivi una breve descrizione in lingua [language:langcode] sul quando visitare [node:field_google_maps_address]. Massimo 500 caratteri.
+    Solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) allora
+    scrivi una breve descrizione in lingua [node:langcode] sul quando visitare [node:field_google_maps_address]. Massimo 500 caratteri.
     Altrimenti lascia vuoto questo campo.
   automator_token: |-
-    Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo 
-    allora scrivi una breve descrizione in lingua [language:langcode] sul perchè visitare [node:field_google_maps_address].
+    Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo
+    allora scrivi una breve descrizione in lingua [node:langcode] sul perchè visitare [node:field_google_maps_address].
     Usa anche il valore del campo [node:body].
     Massimo 500 caratteri.
     Altrimenti lascia vuoto questo campo.
