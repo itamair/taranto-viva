@@ -402,3 +402,8 @@ div.image-wrapper {
   outline-style: solid;
   outline-width: 2px;
 }
+
+/* line 376, ../sass/common.scss */
+table img.no-image-style.image-style-thumbnail {
+  max-width: 100px;
+}
