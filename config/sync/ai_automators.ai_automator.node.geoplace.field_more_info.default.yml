@@ -34,7 +34,7 @@ plugin_config:
     Eventualmente puoi utilizzare anche il contenuto presente nel campo [node:field_ocr_text_from_media]
     Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body]
     Non includere, e nel caso elimina, ogni tag html nel testo.
-    Massimo 3000 caratteri.
+    Massimo 2500 caratteri.
   automator_edit_mode: 0
   automator_label: 'More Info Default'
   automator_weight: '300'
