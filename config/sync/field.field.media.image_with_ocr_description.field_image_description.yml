@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_image_description
-    - filter.format.full_html
+    - filter.format.basic_html
     - media.type.image_with_ocr_description
   module:
     - text
@@ -24,5 +24,5 @@ default_value: {  }
 default_value_callback: ''
 settings:
   allowed_formats:
-    - full_html
+    - basic_html
 field_type: text_long
