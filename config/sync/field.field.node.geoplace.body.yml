@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.body
     - filter.format.basic_html
-    - filter.format.restricted_html
     - node.type.geoplace
   module:
     - text
@@ -28,5 +27,4 @@ settings:
   required_summary: false
   allowed_formats:
     - basic_html
-    - restricted_html
 field_type: text_with_summary
