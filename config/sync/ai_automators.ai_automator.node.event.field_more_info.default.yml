@@ -17,7 +17,7 @@ edit_mode: false
 base_field: revision_log
 prompt: ''
 token: |-
-  Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
+  Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multil value [node:field_crawled_content].
   Non ripetere i contenuti già presenti nel campo [node:body]
   Non includere, e nel caso elimina, ogni tag html nel testo.
   Massimo 4000 caratteri
@@ -29,7 +29,7 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: ''
   automator_token: |-
-    Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multilivalue [node:field_crawled_content].
+    Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multil value [node:field_crawled_content].
     Non ripetere i contenuti già presenti nel campo [node:body]
     Non includere, e nel caso elimina, ogni tag html nel testo.
     Massimo 4000 caratteri

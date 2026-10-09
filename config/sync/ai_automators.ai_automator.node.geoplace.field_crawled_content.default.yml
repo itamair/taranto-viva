@@ -14,7 +14,7 @@ entity_type: node
 bundle: geoplace
 field_name: field_crawled_content
 edit_mode: false
-base_field: field_link
+base_field: field_links_crawled
 prompt: ''
 token: ''
 guardrail_set_id: null
@@ -26,7 +26,7 @@ plugin_config:
   automator_edit_mode: 0
   automator_label: 'Crawled Content Default'
   automator_weight: '100'
-  automator_user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36'
+  automator_user_agent: 'TarantoVivaBot/1.0 (+https://taranto-viva.com)'
   automator_worker_type: queue
   automator_rate_limit: '1000'
   automator_basic_auth_username: ''

@@ -17,7 +17,7 @@ edit_mode: false
 base_field: revision_log
 prompt: ''
 token: |
-  Un sottotitolo per [node:field_google_maps_address], in lingua [language:langcode]
+  Un sottotitolo per [node:field_google_maps_address], in lingua [node:langcode]
   Non più di 70 caratteri.
   Non usare imperativo.
   Non usare la parola "tra".
@@ -30,7 +30,7 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: ''
   automator_token: |
-    Un sottotitolo per [node:field_google_maps_address], in lingua [language:langcode]
+    Un sottotitolo per [node:field_google_maps_address], in lingua [node:langcode]
     Non più di 70 caratteri.
     Non usare imperativo.
     Non usare la parola "tra".

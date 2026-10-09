@@ -17,7 +17,7 @@ edit_mode: false
 base_field: revision_log
 prompt: '{{ context }} '
 token: |-
-  Una descrizione di [node:field_google_maps_address] in lingua [language:langcode].
+  Una descrizione di [node:field_google_maps_address] in lingua [node:langcode].
   Solo se [node:field_crawled_content] non è nullo scrivi informazioni di base / introduttive facendo una selezione estesa e significativa estratta dai valori del campo multili value [node:field_crawled_content].
   Menziona le sue caratteristiche ed il suo attuale ruolo funzionale (cosa è, a cosa serve), cenni storici e culturali.
   Limitati ad un un massimo di 2500 caratteri.
@@ -29,7 +29,7 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: '{{ context }} '
   automator_token: |-
-    Una descrizione di [node:field_google_maps_address] in lingua [language:langcode].
+    Una descrizione di [node:field_google_maps_address] in lingua [node:langcode].
     Solo se [node:field_crawled_content] non è nullo scrivi informazioni di base / introduttive facendo una selezione estesa e significativa estratta dai valori del campo multili value [node:field_crawled_content].
     Menziona le sue caratteristiche ed il suo attuale ruolo funzionale (cosa è, a cosa serve), cenni storici e culturali.
     Limitati ad un un massimo di 2000 caratteri.
@@ -47,4 +47,4 @@ plugin_config:
   automator_configuration_image_style: ''
   automator_joiner: '<br />'
   automator_joiner_other: ''
-  automator_use_text_format: full_html
+  automator_use_text_format: restricted_html

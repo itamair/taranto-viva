@@ -8,7 +8,7 @@ id: node.event.body.default
 label: 'Body Default'
 rule: llm_text_with_summary
 input_mode: token
-weight: 100
+weight: 150
 worker_type: queue
 entity_type: node
 bundle: event
@@ -17,7 +17,7 @@ edit_mode: false
 base_field: revision_log
 prompt: '{{ context }} '
 token: |
-  Una descrizione dell'evento [node:title] [node:field_sub_title] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona le principali caratteristiche ed informazioni sull'evento.
+  Una descrizione dell'evento [node:title] [node:field_sub_title] in lingua [node:langcode], per un massimo di 2000 caratteri. Menziona le principali caratteristiche ed informazioni sull'evento, utilizzando anche i contenuti del campo multil value [node:field_crawled_content].
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -26,10 +26,10 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: '{{ context }} '
   automator_token: |
-    Una descrizione dell'evento [node:title] [node:field_sub_title] in lingua [language:langcode], per un massimo di 2000 caratteri. Menziona le principali caratteristiche ed informazioni sull'evento.
+    Una descrizione dell'evento [node:title] [node:field_sub_title] in lingua [node:langcode], per un massimo di 2000 caratteri. Menziona le principali caratteristiche ed informazioni sull'evento, utilizzando anche i contenuti del campo multil value [node:field_crawled_content].
   automator_edit_mode: 0
   automator_label: 'Body Default'
-  automator_weight: '100'
+  automator_weight: '150'
   automator_worker_type: queue
   automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
@@ -41,4 +41,4 @@ plugin_config:
   automator_configuration_image_style: ''
   automator_joiner: '<br />'
   automator_joiner_other: ''
-  automator_use_text_format: full_html
+  automator_use_text_format: restricted_html

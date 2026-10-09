@@ -8,7 +8,7 @@ id: node.geoplace.field_how_to_reach.default
 label: 'How to reach Default'
 rule: llm_simple_string_long
 input_mode: token
-weight: 100
+weight: 160
 worker_type: queue
 entity_type: node
 bundle: geoplace
@@ -17,9 +17,26 @@ edit_mode: false
 base_field: revision_log
 prompt: ''
 token: |-
-  Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo 
-  allora scrivi una breve descrizione in lingua [language:langcode] sul come raggiungere [node:field_google_maps_address] dal centro di Taranto. Massimo 500 caratteri.
-  Altrimenti lascia vuoto questo campo.
+  Sei un redattore di guide turistiche su Taranto. Il tuo compito è scrivere, in lingua [node:langcode], un breve testo che spieghi come raggiungere il luogo indicato partendo dal centro di Taranto.
+
+  DATI DEL LUOGO
+  - Nome: «[node:title]»
+  - Indirizzo: «[node:field_google_maps_address]»
+  - Valore turistico: «[node:field_touristic_value:value]»
+  - Visitabile dal pubblico: «[node:field_for_public_visit:value]»
+
+  CONTENUTI RACCOLTI DAL WEB SUL LUOGO (possono essere vuoti):
+  <<<
+  [node:field_crawled_content]
+  >>>
+
+  REGOLE
+  1. Restituisci una stringa completamente vuota, senza alcun commento o spiegazione, SOLO se si verifica almeno una di queste condizioni: l'Indirizzo tra « » è vuoto; il Valore turistico tra « » è vuoto oppure è 0; il campo Visitabile dal pubblico tra « » è vuoto oppure è 0.
+  2. In tutti gli altri casi scrivi SEMPRE il testo.
+  3. Usa con priorità le informazioni presenti nei contenuti raccolti dal web: linee e fermate dei mezzi pubblici, parcheggi, percorsi pedonali, ingressi, zone a traffico limitato, accessibilità, distanze.
+  4. Riporta solo informazioni presenti nei contenuti raccolti o certe. Non inventare numeri di linea, orari, prezzi o nomi di fermate.
+  5. Se i contenuti raccolti non contengono indicazioni utili sul come arrivare, descrivi il percorso in modo generale partendo dall'indirizzo e dalla zona della città (a piedi, in auto, con i mezzi pubblici).
+  6. Massimo 500 caratteri. Testo semplice, senza tag HTML, senza titoli, senza elenchi puntati, senza ripetere il nome del luogo all'inizio.
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -28,19 +45,36 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: ''
   automator_token: |-
-    Solo nel caso in cui [node:field_google_maps_address] non sia nullo e solo nel caso in cui il punto di interesse [node:field_google_maps_address] ha rilevanza turistica ([node:field_touristic_value:value] > 0) ed il campo [node:field_for_public_visit] non è nullo 
-    allora scrivi una breve descrizione in lingua [language:langcode] sul come raggiungere [node:field_google_maps_address] dal centro di Taranto. Massimo 500 caratteri.
-    Altrimenti lascia vuoto questo campo.
+    Sei un redattore di guide turistiche su Taranto. Il tuo compito è scrivere, in lingua [node:langcode], un breve testo che spieghi come raggiungere il luogo indicato partendo dal centro di Taranto.
+
+    DATI DEL LUOGO
+    - Nome: «[node:title]»
+    - Indirizzo: «[node:field_google_maps_address]»
+    - Valore turistico: «[node:field_touristic_value:value]»
+    - Visitabile dal pubblico: «[node:field_for_public_visit:value]»
+
+    CONTENUTI RACCOLTI DAL WEB SUL LUOGO (possono essere vuoti):
+    <<<
+    [node:field_crawled_content]
+    >>>
+
+    REGOLE
+    1. Restituisci una stringa completamente vuota, senza alcun commento o spiegazione, SOLO se si verifica almeno una di queste condizioni: l'Indirizzo tra « » è vuoto; il Valore turistico tra « » è vuoto oppure è 0; il campo Visitabile dal pubblico tra « » è vuoto oppure è 0.
+    2. In tutti gli altri casi scrivi SEMPRE il testo.
+    3. Usa con priorità le informazioni presenti nei contenuti raccolti dal web: linee e fermate dei mezzi pubblici, parcheggi, percorsi pedonali, ingressi, zone a traffico limitato, accessibilità, distanze.
+    4. Riporta solo informazioni presenti nei contenuti raccolti o certe. Non inventare numeri di linea, orari, prezzi o nomi di fermate.
+    5. Se i contenuti raccolti non contengono indicazioni utili sul come arrivare, descrivi il percorso in modo generale partendo dall'indirizzo e dalla zona della città (a piedi, in auto, con i mezzi pubblici).
+    6. Massimo 500 caratteri. Testo semplice, senza tag HTML, senza titoli, senza elenchi puntati, senza ripetere il nome del luogo all'inizio.
   automator_edit_mode: 0
   automator_label: 'How to reach Default'
-  automator_weight: '100'
+  automator_weight: '160'
   automator_worker_type: queue
   automator_queue_allow_requeue: 0
   automator_guardrail_set_id: ''
   automator_ai_provider: openai
   automator_ai_model: gpt-5.6-terra
-  automator_configuration_max_completion_tokens: '4096'
-  automator_configuration_reasoning_effort: medium
+  automator_configuration_max_completion_tokens: '8000'
+  automator_configuration_reasoning_effort: low
   automator_configuration_image_field: ''
   automator_configuration_image_style: ''
   automator_code_block_type: html

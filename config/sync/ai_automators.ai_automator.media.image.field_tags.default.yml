@@ -16,7 +16,7 @@ field_name: field_tags
 edit_mode: false
 base_field: revision_log_message
 prompt: ''
-token: 'Provide (from 3 to 6) tags that better describe the provided image'
+token: 'Fornisci (da 1 to 3) tags che meglio descrivono la immagine fornita'
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -24,7 +24,7 @@ plugin_config:
   automator_mode: token
   automator_base_field: revision_log_message
   automator_prompt: ''
-  automator_token: 'Provide (from 3 to 6) tags that better describe the provided image'
+  automator_token: 'Fornisci (da 1 to 3) tags che meglio descrivono la immagine fornita'
   automator_edit_mode: 0
   automator_label: 'Tags Default'
   automator_weight: '100'
