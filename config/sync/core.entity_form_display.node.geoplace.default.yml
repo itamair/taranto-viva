@@ -39,6 +39,7 @@ dependencies:
     - conditional_fields
     - field_group
     - field_layout
+    - link
     - link_class
     - media_library
     - paragraphs
@@ -259,15 +260,12 @@ content:
       link_class_select: hidden|Hidden
     third_party_settings: {  }
   field_links_crawled:
-    type: link_class_field_widget
+    type: link_default
     weight: 17
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
-      link_class_mode: force_class
-      link_class_force: hidden|Hidden
-      link_class_select: ''
     third_party_settings: {  }
   field_locations:
     type: paragraphs

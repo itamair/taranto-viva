@@ -39,4 +39,4 @@ plugin_config:
   automator_configuration_image_style: ''
   automator_joiner: ''
   automator_joiner_other: ''
-  automator_use_text_format: full_html
+  automator_use_text_format: basic_html
