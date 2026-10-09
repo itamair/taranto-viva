@@ -4,8 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_crawled_content
-    - filter.format.full_html
-    - filter.format.plain_text
+    - filter.format.basic_html
     - node.type.event
   module:
     - text
@@ -25,6 +24,5 @@ default_value: {  }
 default_value_callback: ''
 settings:
   allowed_formats:
-    - full_html
-    - plain_text
+    - basic_html
 field_type: text_long
