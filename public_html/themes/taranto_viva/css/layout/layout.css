@@ -49,6 +49,15 @@ body.is-fixed .container {
   }
 }
 
+/*Limits the main-content width on the about page*/
+
+@media (min-width: 75rem) {
+  .path-alias-about .main-content {
+    width: calc(75% - var(--content-left));
+    margin-inline: auto;
+  }
+}
+
 @media (min-width: 75rem) {
   .main-content {
     width: calc(100% - var(--content-left));

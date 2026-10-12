@@ -367,7 +367,8 @@ div.image-wrapper {
   }
 }
 
-.view.view-content-media-images img {
+.view.view-content-media-images img,
+.field--name-field-components .media--view-mode-geoimage img {
   outline-style: solid;
   outline-width: 2px;
 }
@@ -376,3 +377,4 @@ div.image-wrapper {
 table img.no-image-style.image-style-thumbnail {
   max-width: 100px;
 }
+

@@ -41,6 +41,14 @@
   }
 }
 
+/*Limits the main-content width on the about page*/
+.path-alias-about .main-content {
+  @media (--nav) {
+    width: calc(75% - var(--content-left));
+    margin-inline: auto;
+  }
+}
+
 .main-content {
   @media (--nav) {
     width: calc(100% - var(--content-left));

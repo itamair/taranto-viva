@@ -44,6 +44,17 @@ function taranto_viva_preprocess_html(&$variables) {
       'href' => $variables['taranto_viva_path'] . '/css/components/navigation/nav-primary-no-js.css?' . $query_string,
     ],
   ];
+
+  // Adds a class to the <body> based on the path alias.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $alias = trim($alias, '/');
+  if ($alias !== '') {
+    // Es. "path-alias-about".
+    $variables['attributes']['class'][] = 'path-alias-' . Html::getClass($alias);
+  }
+  $variables['#cache']['contexts'][] = 'url.path';
+
 }
 
 /**

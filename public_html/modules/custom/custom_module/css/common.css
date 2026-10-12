@@ -398,12 +398,13 @@ div.image-wrapper {
 }
 
 /* line 370, ../sass/common.scss */
-.view.view-content-media-images img {
+.view.view-content-media-images img,
+.field--name-field-components .media--view-mode-geoimage img {
   outline-style: solid;
   outline-width: 2px;
 }
 
-/* line 376, ../sass/common.scss */
+/* line 377, ../sass/common.scss */
 table img.no-image-style.image-style-thumbnail {
   max-width: 100px;
 }
