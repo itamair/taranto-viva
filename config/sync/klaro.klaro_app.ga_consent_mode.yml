@@ -6,7 +6,7 @@ _core:
   default_config_hash: VdibtFj4X5ekW1PpEJx9ujvGgbz_v8oXOpZi2hi2OaA
 id: ga_consent_mode
 label: 'Google Analytics 4'
-description: 'Raccoglie statistiche aggregate sulle visite al sito (Google Analytics 4, Google Ireland Ltd.).'
+description: 'Raccoglie statistiche aggregate sulle visite al sito (Google Analytics 4, Google Ireland Ltd.). Senza consenso non vengono salvati cookie: Google riceve solo segnali anonimi senza identificativi, usati per stime statistiche.'
 default: false
 purposes:
   - analytics
@@ -26,9 +26,8 @@ contextual_consent_only: null
 contextual_consent_text: null
 info_url: 'https://marketingplatform.google.com/about/analytics/'
 privacy_policy_url: 'https://policies.google.com/privacy'
-javascripts:
-  - gtag.js
-callback_code: "if (window.gtag) {\r\n  gtag('consent', 'update', {\r\n    'analytics_storage': consent ? 'granted' : 'denied'\r\n  });\r\n}"
+javascripts: {  }
+callback_code: "window.dataLayer = window.dataLayer || [];\r\nwindow.gtag = window.gtag || function () { dataLayer.push(arguments); };\r\ngtag('consent', 'update', {\r\n  'analytics_storage': consent ? 'granted' : 'denied'\r\n});"
 on_init: ''
 on_accept: ''
 on_decline: ''
