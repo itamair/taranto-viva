@@ -1,17 +1,17 @@
 uuid: 0e0e43b3-dcac-4a38-9de3-e3b5aa235451
 langcode: it
-status: true
+status: false
 dependencies: {  }
 _core:
   default_config_hash: yUNFm4zDnRj9Fj6If-Z-upP2C6_QCSQezNPiJyijyoE
 id: gtm_consent_mode
 label: 'Google Tag Manager'
 description: 'Loads Google Analytics to collect anonymised, aggregated usage statistics.'
-default: true
+default: false
 purposes:
   - advertising
 cookies: {  }
-required: true
+required: false
 opt_out: false
 only_once: false
 contextual_consent_only: null

@@ -1,26 +1,22 @@
 uuid: 1a4e12ea-fd62-4bbb-9440-9feeba9609c7
 langcode: it
-status: false
+status: true
 dependencies: {  }
 _core:
   default_config_hash: VdibtFj4X5ekW1PpEJx9ujvGgbz_v8oXOpZi2hi2OaA
 id: ga_consent_mode
-label: 'Google Analytics'
-description: 'Tracks online visits of the website as a service.'
+label: 'Google Analytics 4'
+description: 'Raccoglie statistiche aggregate sulle visite al sito (Google Analytics 4, Google Ireland Ltd.).'
 default: false
 purposes:
   - analytics
 cookies:
   -
-    regex: '^_ga(_.*)?'
+    regex: '^_ga(_.*)?$'
     path: ''
     domain: ''
   -
-    regex: ^_gid
-    path: ''
-    domain: ''
-  -
-    regex: ^IDE
+    regex: '^_gid$'
     path: ''
     domain: ''
 required: false
@@ -28,13 +24,14 @@ opt_out: false
 only_once: false
 contextual_consent_only: null
 contextual_consent_text: null
-info_url: 'https://marketingplatform.google.com/intl/de/about/analytics/'
+info_url: 'https://marketingplatform.google.com/about/analytics/'
 privacy_policy_url: 'https://policies.google.com/privacy'
-javascripts: {  }
-callback_code: ''
+javascripts:
+  - gtag.js
+callback_code: "if (window.gtag) {\r\n  gtag('consent', 'update', {\r\n    'analytics_storage': consent ? 'granted' : 'denied'\r\n  });\r\n}"
 on_init: ''
-on_accept: "gtag('consent', 'update', {\r\n  'analytics_storage': 'granted'\r\n});"
-on_decline: "gtag('consent', 'update', {\r\n  'analytics_storage': 'denied'\r\n});"
+on_accept: ''
+on_decline: ''
 wrapper_identifier: {  }
 attachments: {  }
 weight: 1

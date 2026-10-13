@@ -12,7 +12,7 @@ purposes:
   - cms
 cookies:
   -
-    regex: '^[SESS|SSESS]'
+    regex: '^S?SESS'
     path: ''
     domain: ''
 required: true

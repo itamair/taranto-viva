@@ -1,7 +1,7 @@
 _core:
   default_config_hash: OE3ByQ7OzSlI54C2RfXPanzIytXm5DBLVA467r3020U
 langcode: it
-dialog_mode: silent
+dialog_mode: notice
 auto_decorate_final_html: false
 auto_decorate_js_alter: true
 auto_decorate_page_attachments: true
@@ -13,7 +13,8 @@ block_unknown_label: 'Unknown services'
 block_unknown_description: 'Allow loading of unknown external resources'
 show_toggle_button: false
 show_close_button: false
-deletable_cookie_domains: {  }
+deletable_cookie_domains:
+  - .taranto-viva.com
 exclude_urls: {  }
 disable_urls: {  }
 styles:
