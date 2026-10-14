@@ -184,7 +184,36 @@
           map.getContainer().style.cursor = '';
         });
 
-        // Add a basic popup on feature click to show place name/category.
+        // Safely parses a JSON-encoded vector tile property.
+        const parseJsonProp = function (value, fallback) {
+          if (!value) {
+            return fallback;
+          }
+          try {
+            return typeof value === 'string' ? JSON.parse(value) : value;
+          }
+          catch (err) {
+            return fallback;
+          }
+        };
+
+        // Builds the "→ website" links from the Overture websites property
+        // (a JSON-encoded array of URLs), as in the React MapLibre app
+        // (react_maplibre_map/react_app/src/utils/layerUtils.ts).
+        const buildWebsitesHtml = function (websitesValue) {
+          const websites = parseJsonProp(websitesValue, []);
+          if (!Array.isArray(websites)) {
+            return '';
+          }
+          return websites
+            .filter(function (url) { return typeof url === 'string' && /^https?:\/\//i.test(url); })
+            .map(function (url) {
+              return '<a href="' + Drupal.checkPlain(url) + '" target="_blank" rel="noopener">&rarr; website</a>';
+            })
+            .join(' ');
+        };
+
+        // Add a popup on feature click to show place details.
         pmtilesLayer.on('click', function (e) {
           if (!layerOptions.interactive) {
             return;
@@ -192,16 +221,32 @@
           const props = e.layer.properties || {};
           const coords = e.latlng || {};
           const name = props['@name'] ?? '—';
-          const addresses_data = props.addresses ? JSON.parse(props.addresses) : {};
-          const category_data = props.categories ? JSON.parse(props.categories) : (props.taxonomy ? JSON.parse(props.taxonomy) : {});
-          let locality = addresses_data[0].freeform ??  null;
-          locality += ' ' + addresses_data[0].locality ??  null;
-          const category = category_data?.primary ? category_data?.primary.replaceAll('_', ' ') : '';
+          const addresses_data = parseJsonProp(props.addresses, []);
+          const category_data = parseJsonProp(props.categories, null) || parseJsonProp(props.taxonomy, {});
+          const firstAddress = Array.isArray(addresses_data) ? (addresses_data[0] || {}) : {};
+          const locality = [firstAddress.freeform, firstAddress.locality].filter(Boolean).join(' ') || null;
+          const category = category_data?.primary ? category_data.primary.replaceAll('_', ' ') : '';
           const address = locality ? name + ' - ' + locality : null;
           const gmaps_links = Drupal.Leaflet.prototype.get_gmaps_links(coords.lat, coords.lng, address);
+
+          let content = '<h3 class="place-name"><strong>' + Drupal.checkPlain(name) + '</strong></h3>'
+            + (category ? '<div class="place-category">' + Drupal.checkPlain(category) + '</div>' : '');
+
+          // Websites and confidence, as in buildPopupContent()
+          // (react_maplibre_map/react_app/src/utils/geojsonUtils.ts).
+          const websitesHtml = buildWebsitesHtml(props.websites);
+          if (websitesHtml) {
+            content += '<div class="place-websites">' + websitesHtml + '</div>';
+          }
+          content += '<div class="place-gmaps-links">' + gmaps_links + '</div>';
+          content += '<div class="data-source">'
+            + 'Data Source: <a href="https://overturemaps.org" target="_blank" rel="noopener">Overture Maps Foundation</a>'
+            // + ' - Confidence: ' + Drupal.checkPlain(String(props.confidence))
+            + '</div>';
+
           L.popup()
             .setLatLng(e.latlng)
-            .setContent('<strong>' + name + '</strong>' + (category ? '<br>' + category : '') + '<br>' + gmaps_links)
+            .setContent('<div class="overture-data">' + content + '</div>')
             .openOn(map);
         });
 
