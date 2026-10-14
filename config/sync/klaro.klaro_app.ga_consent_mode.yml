@@ -16,7 +16,7 @@ cookies:
     path: ''
     domain: ''
   -
-    regex: '^_gid$'
+    regex: ^_gid$
     path: ''
     domain: ''
 required: false

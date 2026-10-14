@@ -4783,7 +4783,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Titolo
+            label: ''
             description: ''
             use_operator: false
             operator: title_op
@@ -4987,20 +4987,10 @@ display:
         filter_groups: false
         header: false
       relationships: {  }
-      use_ajax: false
+      use_ajax: true
       group_by: false
       display_description: ''
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Visualizza @start - @end di @total'
+      header: {  }
       rendering_language: '***LANGUAGE_language_interface***'
       display_extenders:
         metatag_display_extender:
