@@ -65,7 +65,7 @@
         };
 
         const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
-          || 'https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-06-17.0/places.pmtiles';
+          || 'https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-09-23.1/places.pmtiles';
 
         const pmtiles_svg_icons_path = "/sites/default/files/pmtiles_svg_icons/";
 
