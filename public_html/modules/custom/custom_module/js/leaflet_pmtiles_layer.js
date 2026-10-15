@@ -73,7 +73,8 @@
         */
         const pmtilesUrl_local_fallback = '/sites/default/files/pmtiles/taranto-places.pmtiles';
 
-        const pmtilesUrl = pmtilesUrl_local_fallback;
+        const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
+          || pmtilesUrl_local_fallback;
 
         const pmtiles_svg_icons_path = "/sites/default/files/pmtiles_svg_icons/";
 
