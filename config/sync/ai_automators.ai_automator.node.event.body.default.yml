@@ -19,7 +19,8 @@ prompt: '{{ context }} '
 token: |-
   Una descrizione dell'evento [node:title] [node:field_sub_title] in lingua [node:langcode].
   Menziona le principali caratteristiche ed informazioni sull'evento, utilizzando anche i contenuti del campo multi value [node:field_crawled_content].
-  Limitati ad un un massimo di 2500 caratteri.
+  Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti.
+  Limitati ad un massimo di 2500 caratteri.
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -30,7 +31,8 @@ plugin_config:
   automator_token: |-
     Una descrizione dell'evento [node:title] [node:field_sub_title] in lingua [node:langcode].
     Menziona le principali caratteristiche ed informazioni sull'evento, utilizzando anche i contenuti del campo multi value [node:field_crawled_content].
-    Limitati ad un un massimo di 2500 caratteri.
+    Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti.
+    Limitati ad un massimo di 2500 caratteri.
   automator_edit_mode: 0
   automator_label: 'Body Default'
   automator_weight: '150'

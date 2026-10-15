@@ -17,10 +17,11 @@ edit_mode: false
 base_field: revision_log
 prompt: ''
 token: |-
-  Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multi value [node:field_crawled_content].
-  Non ripetere i contenuti già presenti nel campo [node:body]
+  Solo se [node:field_crawled_content] non è nullo, scrivi in lingua [node:langcode] informazioni aggiuntive per [node:title], selezionando gli aspetti più significativi dai valori del campo multi value [node:field_crawled_content].
+  Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body].
+  Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti.
   Non includere, e nel caso elimina, ogni tag html nel testo.
-  Massimo 4000 caratteri
+  Massimo 4000 caratteri.
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -29,10 +30,11 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: ''
   automator_token: |-
-    Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multi value [node:field_crawled_content].
-    Non ripetere i contenuti già presenti nel campo [node:body]
+    Solo se [node:field_crawled_content] non è nullo, scrivi in lingua [node:langcode] informazioni aggiuntive per [node:title], selezionando gli aspetti più significativi dai valori del campo multi value [node:field_crawled_content].
+    Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body].
+    Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti.
     Non includere, e nel caso elimina, ogni tag html nel testo.
-    Massimo 4000 caratteri
+    Massimo 4000 caratteri.
   automator_edit_mode: 0
   automator_label: 'More Info Default'
   automator_weight: '200'

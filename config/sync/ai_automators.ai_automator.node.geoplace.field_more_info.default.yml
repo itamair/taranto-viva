@@ -17,9 +17,10 @@ edit_mode: false
 base_field: revision_log
 prompt: ''
 token: |-
-  Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multi value [node:field_crawled_content].
-  Eventualmente puoi utilizzare anche il contenuto presente nel campo [node:field_ocr_text_from_media]
-  Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body]
+  Solo se [node:field_crawled_content] non è nullo, scrivi in lingua [node:langcode] informazioni aggiuntive per [node:title], selezionando gli aspetti più significativi dai valori del campo multi value [node:field_crawled_content].
+  Eventualmente puoi utilizzare anche il contenuto presente nel campo [node:field_ocr_text_from_media].
+  Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body].
+  Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti.
   Non includere, e nel caso elimina, ogni tag html nel testo.
   Massimo 2500 caratteri.
 guardrail_set_id: null
@@ -30,9 +31,10 @@ plugin_config:
   automator_base_field: revision_log
   automator_prompt: ''
   automator_token: |-
-    Solo se [node:field_crawled_content] non è nullo, scrivi informazioni aggiuntive per [node:title] facendo una selezione estesa e significativa estratta dai valori del campo multi value [node:field_crawled_content].
-    Eventualmente puoi utilizzare anche il contenuto presente nel campo [node:field_ocr_text_from_media]
-    Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body]
+    Solo se [node:field_crawled_content] non è nullo, scrivi in lingua [node:langcode] informazioni aggiuntive per [node:title], selezionando gli aspetti più significativi dai valori del campo multi value [node:field_crawled_content].
+    Eventualmente puoi utilizzare anche il contenuto presente nel campo [node:field_ocr_text_from_media].
+    Nel contenuto finale non ripetere i contenuti già presenti nel campo [node:body].
+    Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti.
     Non includere, e nel caso elimina, ogni tag html nel testo.
     Massimo 2500 caratteri.
   automator_edit_mode: 0

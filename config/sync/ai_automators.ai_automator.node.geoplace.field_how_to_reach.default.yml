@@ -35,8 +35,9 @@ token: |-
   2. In tutti gli altri casi scrivi SEMPRE il testo.
   3. Usa con priorità le informazioni presenti nei contenuti raccolti dal web: linee e fermate dei mezzi pubblici, parcheggi, percorsi pedonali, ingressi, zone a traffico limitato, accessibilità, distanze.
   4. Riporta solo informazioni presenti nei contenuti raccolti o certe. Non inventare numeri di linea, orari, prezzi o nomi di fermate.
-  5. Se i contenuti raccolti non contengono indicazioni utili sul come arrivare, descrivi il percorso in modo generale partendo dall'indirizzo e dalla zona della città (a piedi, in auto, con i mezzi pubblici).
-  6. Massimo 500 caratteri. Testo semplice, senza tag HTML, senza titoli, senza elenchi puntati, senza ripetere il nome del luogo all'inizio.
+  5. Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti (nomi, numeri di linea e fermate vanno invece riportati esattamente).
+  6. Se i contenuti raccolti non contengono indicazioni utili sul come arrivare, descrivi il percorso in modo generale partendo dall'indirizzo e dalla zona della città (a piedi, in auto, con i mezzi pubblici).
+  7. Massimo 500 caratteri. Testo semplice, senza tag HTML, senza titoli, senza elenchi puntati, senza ripetere il nome del luogo all'inizio.
 guardrail_set_id: null
 plugin_config:
   automator_enabled: 1
@@ -63,8 +64,9 @@ plugin_config:
     2. In tutti gli altri casi scrivi SEMPRE il testo.
     3. Usa con priorità le informazioni presenti nei contenuti raccolti dal web: linee e fermate dei mezzi pubblici, parcheggi, percorsi pedonali, ingressi, zone a traffico limitato, accessibilità, distanze.
     4. Riporta solo informazioni presenti nei contenuti raccolti o certe. Non inventare numeri di linea, orari, prezzi o nomi di fermate.
-    5. Se i contenuti raccolti non contengono indicazioni utili sul come arrivare, descrivi il percorso in modo generale partendo dall'indirizzo e dalla zona della città (a piedi, in auto, con i mezzi pubblici).
-    6. Massimo 500 caratteri. Testo semplice, senza tag HTML, senza titoli, senza elenchi puntati, senza ripetere il nome del luogo all'inizio.
+    5. Rielabora sempre con parole tue: non riportare frasi testuali dalle fonti (nomi, numeri di linea e fermate vanno invece riportati esattamente).
+    6. Se i contenuti raccolti non contengono indicazioni utili sul come arrivare, descrivi il percorso in modo generale partendo dall'indirizzo e dalla zona della città (a piedi, in auto, con i mezzi pubblici).
+    7. Massimo 500 caratteri. Testo semplice, senza tag HTML, senza titoli, senza elenchi puntati, senza ripetere il nome del luogo all'inizio.
   automator_edit_mode: 0
   automator_label: 'How to reach Default'
   automator_weight: '160'
