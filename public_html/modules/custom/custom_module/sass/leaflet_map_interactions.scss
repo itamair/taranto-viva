@@ -127,6 +127,16 @@
       margin-block-start: 10px;
     }
 
+    // Overture attribution link: same look as the "Data Source" text.
+    .overture-data .data-source {
+      color: grey;
+      font-size: 0.9em;
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+
   }
 }
 
