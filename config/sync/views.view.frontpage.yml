@@ -41,7 +41,7 @@ display:
             last: 'Last »'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Elementi per pagina'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
             items_per_page_options_all_label: '- All -'
@@ -51,7 +51,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Applica
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'

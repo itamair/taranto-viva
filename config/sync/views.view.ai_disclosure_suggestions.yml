@@ -139,7 +139,7 @@ display:
             last: 'Last »'
           expose:
             items_per_page: true
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Elementi per pagina'
             items_per_page_options: '20, 50, 100'
             items_per_page_options_all: true
             items_per_page_options_all_label: '- All -'

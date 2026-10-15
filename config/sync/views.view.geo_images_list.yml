@@ -156,33 +156,33 @@ display:
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 100
+          items_per_page: 250
           total_pages: null
           id: 0
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
+            next: 'Prossima ›'
+            previous: '‹ Precedente'
+            first: '« Prima'
+            last: 'Ultima »'
           expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page: true
+            items_per_page_label: 'Oggetti per pagina'
+            items_per_page_options: '250'
+            items_per_page_options_all: true
+            items_per_page_options_all_label: '- Tutti -'
             offset: false
             offset_label: Offset
           quantity: 9
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Applica
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: 'Ordina per'
           expose_sort_order: true
           sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_desc_label: Disc
       access:
         type: perm
         options:
@@ -349,6 +349,11 @@ display:
           admin_label: 'field_geoimage: Media'
           plugin_id: standard
           required: false
+      use_more: false
+      use_more_always: false
+      use_more_text: more
+      link_display: page_geo_images
+      link_url: ''
       header: {  }
       footer: {  }
       display_extenders:
