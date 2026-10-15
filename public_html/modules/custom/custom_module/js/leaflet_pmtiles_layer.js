@@ -20,7 +20,7 @@
         }
 
         const map = lMap;
-        Drupal.Leaflet[mapid].placesZoomLimit = 16;
+        Drupal.Leaflet[mapid].placesZoomLimit = 15;
         Drupal.Leaflet[mapid].placesOverlayName = Drupal.t('Overture Places');
 
         // VectorGrid's PointSymbolizer extends L.CircleMarker and inherits
@@ -64,8 +64,17 @@
           return _origFireDOMEvent(ev, type, canvasTargets);
         };
 
+        // Generation of local fallback pmtilesUrl (Claude hint)
+        /* brew install pmtiles
+        cd ~/Sites/geodemocracy/taranto-viva
+        ddev drush php:eval "echo \Drupal::service('custom_module.overture_utility')->getLatestPmtilesUrl();"
+        mkdir -p public_html/sites/default/files/pmtiles
+        pmtiles extract "<dev drush php:eval>" \public_html/sites/default/files/pmtiles/taranto-places.pmtiles\--bbox=16.991730,40.289740,17.563019,40.565720
+        */
+        const pmtilesUrl_local_fallback = '/sites/default/files/pmtiles/taranto-places.pmtiles';
+
         const pmtilesUrl = drupalSettings.leaflet_pmtiles_layer?.url
-          || 'https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-09-23.1/places.pmtiles';
+          || pmtilesUrl_local_fallback;
 
         const pmtiles_svg_icons_path = "/sites/default/files/pmtiles_svg_icons/";
 
