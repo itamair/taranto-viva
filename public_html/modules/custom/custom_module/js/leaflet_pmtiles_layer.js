@@ -20,7 +20,7 @@
         }
 
         const map = lMap;
-        Drupal.Leaflet[mapid].placesZoomLimit = 15;
+        Drupal.Leaflet[mapid].placesZoomLimit = 16;
         Drupal.Leaflet[mapid].placesOverlayName = Drupal.t('Overture Places');
 
         // VectorGrid's PointSymbolizer extends L.CircleMarker and inherits
