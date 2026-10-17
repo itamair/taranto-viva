@@ -535,6 +535,7 @@ display:
         title: 'Locations GdM Taranto 2026'
         description: ''
         weight: 0
+        enabled: false
         expanded: false
         menu_name: main
         parent: 'views_view:views.geo_places.page_ta2026_map'

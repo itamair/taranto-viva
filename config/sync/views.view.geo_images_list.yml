@@ -604,6 +604,7 @@ display:
         title: 'I Vaganti (Immagini)'
         description: ''
         weight: -40
+        enabled: false
         expanded: false
         menu_name: main
         parent: ''
