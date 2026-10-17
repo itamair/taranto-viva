@@ -1,6 +1,6 @@
 uuid: 1a4e12ea-fd62-4bbb-9440-9feeba9609c7
 langcode: it
-status: true
+status: false
 dependencies: {  }
 _core:
   default_config_hash: VdibtFj4X5ekW1PpEJx9ujvGgbz_v8oXOpZi2hi2OaA

@@ -77,7 +77,6 @@ module:
   geofield: 0
   geofield_311: 0
   geofield_map: 0
-  google_tag: 0
   graphql: 0
   graphql_compose: 0
   graphql_compose_views: 0
@@ -114,6 +113,7 @@ module:
   locale: 0
   markdown: 0
   masquerade: 0
+  matomo: 0
   mcp: 0
   media: 0
   media_image_exif_importer: 0

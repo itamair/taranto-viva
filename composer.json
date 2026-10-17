@@ -120,6 +120,7 @@
         "drupal/link_class": "^2.2",
         "drupal/markdown": "^3.1",
         "drupal/masquerade": "^2.0@RC",
+        "drupal/matomo": "^1.26",
         "drupal/mcp": "^1.2",
         "drupal/meaofd": "^1.1",
         "drupal/media_entity_slideshow": "^2.5",
