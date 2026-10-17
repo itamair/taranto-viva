@@ -6,11 +6,11 @@ _core:
   default_config_hash: P0igW8P8E8-2cO8c1GZKHPaJ6ssdk7Su_DmkpDEPm4A
 id: ai_assisted_hitl
 label: 'AI assisted (human led)'
-description: 'AI wrote it, a person directed it.'
+description: "L'IA l'ha scritto, una persona l'ha diretto."
 severity: 60
 eu_icon: ai_generated
 label_required: true
-disclosure_sentence: "Questo contenuto è stato prodotto dall'IA e revisionato da una persona."
+disclosure_sentence: 'Questo contenuto è stato prodotto da IA e revisionato da un essere umano'
 iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia'
 visible_parts:
   icon: true
@@ -18,4 +18,4 @@ visible_parts:
   legal: false
   description: true
   statement: false
-  editorial_responsibility: false
+  editorial_responsibility: true
