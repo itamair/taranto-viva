@@ -10,12 +10,12 @@ description: 'Machine translation of a human text.'
 severity: 30
 eu_icon: ai_modified
 label_required: true
-disclosure_sentence: 'This text was translated by AI.'
+disclosure_sentence: "Questo testo è stato tradotto in inglese dall'IA"
 iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/algorithmicallyEnhanced'
 visible_parts:
   icon: true
-  sentence: true
-  legal: true
-  description: false
-  statement: true
+  sentence: false
+  legal: false
+  description: true
+  statement: false
   editorial_responsibility: false
