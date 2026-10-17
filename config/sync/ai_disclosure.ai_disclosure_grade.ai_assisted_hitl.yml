@@ -8,14 +8,14 @@ id: ai_assisted_hitl
 label: 'AI assisted (human led)'
 description: 'AI wrote it, a person directed it.'
 severity: 60
-eu_icon: ai_modified
+eu_icon: ai_generated
 label_required: true
 disclosure_sentence: "Questo contenuto è stato prodotto dall'IA e revisionato da una persona."
 iptc_digital_source_type: 'http://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia'
 visible_parts:
   icon: true
-  sentence: true
-  legal: true
+  sentence: false
+  legal: false
   description: true
-  statement: true
+  statement: false
   editorial_responsibility: false
