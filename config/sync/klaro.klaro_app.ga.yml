@@ -6,7 +6,7 @@ _core:
   default_config_hash: 9k3tkKyDEQ6oHCBVtCa7v6c6lWQy8DcGB8JCfp68Bn0
 id: ga
 label: 'Google Analytics (legacy)'
-description: 'Tracks online visits of the website as a service.'
+description: 'Raccoglie statistiche aggregate sulle visite al sito (Google Analytics 4, Google Ireland Ltd.). Senza consenso non vengono salvati cookie: Google riceve solo segnali anonimi senza identificativi, usati per stime statistiche.'
 default: false
 purposes:
   - analytics
