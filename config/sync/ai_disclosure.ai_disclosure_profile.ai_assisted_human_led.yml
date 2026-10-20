@@ -5,7 +5,7 @@ dependencies:
   config:
     - ai_disclosure.ai_disclosure_grade.ai_assisted_hitl
 id: ai_assisted_human_led
-label: 'AI assisted (human led)'
+label: 'AI Generated (human reviewed)'
 grade: ai_assisted_hitl
 human_review: false
 editorial_responsibility: 'Web Site Editor'
