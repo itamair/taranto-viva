@@ -378,3 +378,10 @@ table img.no-image-style.image-style-thumbnail {
   max-width: 100px;
 }
 
+
+/* Nessun outline al click del mouse, su tutto il sito. */
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
